@@ -1,0 +1,170 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+script], rdi
+mov     eax, esi
+mov     [rbp+allow_next], al
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+mov     ebx, cs:COLS@@NCURSES_TINFO_5_0_19991023
+mov     rax, cs:MODE_QUERY
+mov     rdi, rax
+call    utf8len
+sub     ebx, eax
+mov     eax, ebx
+lea     edx, [rax-2]
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:MODE_QUERY
+mov     rdi, rax
+call    wideaddstr_rev
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+cmp     [rbp+allow_next], 0
+jz      short loc_4047E8
+mov     rax, cs:REPEAT_NEXT_EXIT_MSG
+mov     rdi, rax
+call    wideaddstr_rev
+jmp     short loc_4047F7
+mov     rax, cs:REPEAT_EXIT_MSG
+mov     rdi, rax
+call    wideaddstr_rev
+mov     edi, 0
+call    getch_fl
+mov     [rbp+resp], eax
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    towideupper
+cmp     eax, 52h
+jz      short loc_40482C
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    towideupper
+mov     edx, eax
+mov     rax, cs:RNE
+mov     eax, [rax]
+cmp     edx, eax
+jnz     short loc_404838
+mov     [rbp+resp], 52h
+jmp     loc_4049A0
+cmp     [rbp+allow_next], 0
+jz      short loc_404876
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    towideupper
+cmp     eax, 4Eh
+jz      short loc_40486A
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    towideupper
+mov     edx, eax
+mov     rax, cs:RNE
+add     rax, 8
+mov     eax, [rax]
+cmp     edx, eax
+jnz     short loc_404876
+mov     [rbp+resp], 4Eh
+jmp     loc_4049A0
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    towideupper
+cmp     eax, 45h
+jz      short loc_4048A6
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    towideupper
+mov     edx, eax
+mov     rax, cs:RNE
+add     rax, 10h
+mov     eax, [rax]
+cmp     edx, eax
+jnz     loc_4047F7
+mov     rax, cs:CONFIRM_EXIT_LESSON_MSG
+mov     rdi, rax
+call    do_query_simple
+test    al, al
+jz      short loc_4048E0
+mov     rcx, cs:fkey_bindings+58h
+mov     rax, [rbp-28h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    seek_label
+mov     [rbp+resp], 45h
+jmp     loc_4049A0
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+mov     ebx, cs:COLS@@NCURSES_TINFO_5_0_19991023
+mov     rax, cs:MODE_QUERY
+mov     rdi, rax
+call    utf8len
+sub     ebx, eax
+mov     eax, ebx
+lea     edx, [rax-2]
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:MODE_QUERY
+mov     rdi, rax
+call    wideaddstr_rev
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+cmp     [rbp+allow_next], 0
+jz      short loc_40498C
+mov     rax, cs:REPEAT_NEXT_EXIT_MSG
+mov     rdi, rax
+call    wideaddstr_rev
+jmp     loc_4047F7
+mov     rax, cs:REPEAT_EXIT_MSG
+mov     rdi, rax
+call    wideaddstr_rev
+jmp     loc_4047F7
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+mov     eax, [rbp-14h]
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

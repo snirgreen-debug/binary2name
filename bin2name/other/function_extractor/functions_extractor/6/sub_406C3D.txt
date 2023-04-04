@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rdx, [rbp-20h]
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_406AB0
+mov     [rbp+var_4], eax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406C8D
+call    sub_406A8F
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     [rbp+var_4], 4
+mov     eax, [rbp-4]
+leave
+retn

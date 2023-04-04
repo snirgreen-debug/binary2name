@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, cs:stdscr
+mov     edx, 0
+mov     esi, 0
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr
+mov     rdi, rax
+call    _wclrtobot
+mov     rax, [rbp-10h]
+add     rax, 2
+mov     rdi, rax
+call    sub_4020F6
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4086EE
+mov     cs:byte_60C32D, 42h
+nop
+leave
+retn

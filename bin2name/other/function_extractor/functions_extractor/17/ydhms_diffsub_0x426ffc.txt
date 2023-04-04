@@ -1,0 +1,176 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+year1], rdi
+mov     [rbp+yday1], rsi
+mov     [rbp+hour1], edx
+mov     [rbp+min1], ecx
+mov     [rbp+sec1], r8d
+mov     [rbp+year0], r9d
+mov     rax, [rbp-58h]
+sar     rax, 2
+mov     edx, eax
+mov     rax, [rbp-58h]
+and     eax, 3
+test    rax, rax
+setz    al
+movzx   eax, al
+sub     edx, eax
+mov     eax, edx
+add     eax, 1DBh
+mov     [rbp+a4], eax
+mov     eax, [rbp-70h]
+sar     eax, 2
+mov     edx, eax
+mov     eax, [rbp-70h]
+and     eax, 3
+test    eax, eax
+setz    al
+movzx   eax, al
+sub     edx, eax
+mov     eax, edx
+add     eax, 1DBh
+mov     [rbp+b4], eax
+mov     ecx, [rbp-4Ch]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+mov     esi, edx
+sub     esi, eax
+mov     ecx, [rbp-4Ch]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+shl     eax, 2
+add     eax, edx
+lea     edx, [rax*4+0]
+add     eax, edx
+sub     ecx, eax
+mov     edx, ecx
+mov     eax, edx
+shr     eax, 1Fh
+movzx   eax, al
+sub     esi, eax
+mov     eax, esi
+mov     [rbp+a100], eax
+mov     ecx, [rbp-48h]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+mov     esi, edx
+sub     esi, eax
+mov     ecx, [rbp-48h]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+shl     eax, 2
+add     eax, edx
+lea     edx, [rax*4+0]
+add     eax, edx
+sub     ecx, eax
+mov     edx, ecx
+mov     eax, edx
+shr     eax, 1Fh
+movzx   eax, al
+sub     esi, eax
+mov     eax, esi
+mov     [rbp+b100], eax
+mov     eax, [rbp-44h]
+sar     eax, 2
+mov     [rbp+a400], eax
+mov     eax, [rbp-40h]
+sar     eax, 2
+mov     [rbp+b400], eax
+mov     eax, [rbp-4Ch]
+sub     eax, [rbp-48h]
+mov     edx, eax
+mov     eax, [rbp-40h]
+sub     eax, [rbp-44h]
+add     edx, eax
+mov     eax, [rbp-3Ch]
+sub     eax, [rbp-38h]
+add     eax, edx
+mov     [rbp+intervening_leap_days], eax
+mov     rax, [rbp-58h]
+mov     [rbp+tyear1], rax
+mov     eax, [rbp-70h]
+cdqe
+mov     rdx, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+years], rax
+mov     rdx, [rbp-28h]
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+shl     rax, 3
+add     rax, rdx
+lea     rdx, [rax*4+0]
+add     rdx, rax
+mov     rax, [rbp-60h]
+add     rdx, rax
+mov     eax, [rbp+10h]
+cdqe
+sub     rdx, rax
+mov     eax, [rbp-34h]
+cdqe
+add     rax, rdx
+mov     [rbp+days], rax
+mov     rdx, [rbp-20h]
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+mov     rdx, rax
+mov     eax, [rbp-64h]
+cdqe
+add     rdx, rax
+mov     eax, [rbp+18h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+hours], rax
+mov     rax, [rbp-18h]
+shl     rax, 2
+mov     rdx, rax
+shl     rdx, 4
+sub     rdx, rax
+mov     eax, [rbp-68h]
+cdqe
+add     rdx, rax
+mov     eax, [rbp+20h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+minutes], rax
+mov     rax, [rbp-10h]
+shl     rax, 2
+mov     rdx, rax
+shl     rdx, 4
+sub     rdx, rax
+mov     eax, [rbp-6Ch]
+cdqe
+add     rdx, rax
+mov     eax, [rbp+28h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+seconds], rax
+mov     rax, [rbp-8]
+pop     rbp
+retn

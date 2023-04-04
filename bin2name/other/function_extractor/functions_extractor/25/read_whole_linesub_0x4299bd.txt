@@ -1,0 +1,82 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fp], rdi
+mov     [rbp+length], 0
+mov     [rbp+bufsize], 52h
+mov     eax, [rbp-0Ch]
+cdqe
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+line], rax
+jmp     short loc_429A44
+mov     eax, [rbp-10h]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-10h]
+add     eax, edx
+mov     [rbp+length], eax
+cmp     [rbp+length], 0
+jnz     short loc_429A11
+jmp     short loc_429A44
+mov     eax, [rbp-10h]
+cdqe
+lea     rdx, [rax-1]
+mov     rax, [rbp-8]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+jz      short loc_429A6C
+shl     [rbp+bufsize], 1
+mov     eax, [rbp-0Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     [rbp+line], rax
+mov     eax, [rbp-0Ch]
+sub     eax, [rbp-10h]
+mov     edx, [rbp-10h]
+movsxd  rcx, edx
+mov     rdx, [rbp-8]
+add     rcx, rdx
+mov     rdx, [rbp-18h]
+mov     esi, eax
+mov     rdi, rcx
+call    _fgets
+test    rax, rax
+jnz     short loc_4299EA
+jmp     short loc_429A6D
+nop
+cmp     [rbp+length], 0
+jz      short loc_429A83
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _ferror
+test    eax, eax
+jz      short loc_429A96
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     short locret_429AC1
+mov     eax, [rbp-10h]
+add     eax, 1
+cmp     eax, [rbp-0Ch]
+jge     short loc_429ABD
+mov     eax, [rbp-10h]
+add     eax, 1
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     [rbp+line], rax
+mov     rax, [rbp-8]
+leave
+retn

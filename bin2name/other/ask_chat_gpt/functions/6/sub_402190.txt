@@ -1,0 +1,14 @@
+mov     eax, 6134C7h
+push    rbp
+sub     rax, 6134C0h
+cmp     rax, 0Eh
+mov     rbp, rsp
+jbe     short loc_4021C0
+mov     eax, 0
+test    rax, rax
+jz      short loc_4021C0
+pop     rbp
+mov     edi, 6134C0h
+jmp     rax
+pop     rbp
+retn

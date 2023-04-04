@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 0Eh
+ja      short def_403595
+mov     eax, [rbp-4]
+mov     rax, [rax*8+42AB78h]
+jmp     rax
+mov     eax, 42AAFEh
+jmp     short locret_403617
+mov     eax, 42AB04h
+jmp     short locret_403617
+mov     eax, 42AB0Bh
+jmp     short locret_403617
+mov     eax, 42AB17h
+jmp     short locret_403617
+mov     eax, 42AB1Fh
+jmp     short locret_403617
+mov     eax, 42AB27h
+jmp     short locret_403617
+mov     eax, 42AB2Eh
+jmp     short locret_403617
+mov     eax, 42AB36h
+jmp     short locret_403617
+mov     eax, 42AB3Ch
+jmp     short locret_403617
+mov     eax, 42AB45h
+jmp     short locret_403617
+mov     eax, 42AB4Ch
+jmp     short locret_403617
+mov     eax, 42AB55h
+jmp     short locret_403617
+mov     eax, 42AB5Ch
+jmp     short locret_403617
+mov     eax, 42AB67h
+jmp     short locret_403617
+mov     eax, [rbp-4]
+mov     edx, eax
+mov     esi, 42AB6Dh
+mov     edi, 63ADB0h
+mov     eax, 0
+call    _sprintf
+mov     eax, 63ADB0h
+leave
+retn

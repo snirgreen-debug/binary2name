@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     eax, cs:force
+test    eax, eax
+jnz     loc_4065AA
+mov     [rbp+ok], 0
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 64CF20h
+mov     esi, 410BCFh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:foreground
+test    eax, eax
+jz      short loc_40656B
+movzx   eax, cs:presume_input_tty
+test    al, al
+jnz     short loc_406533
+mov     edi, 0
+call    _isatty
+test    eax, eax
+jz      short loc_40656B
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 24h
+mov     esi, 1
+mov     edi, 410BE8h
+call    _fwrite
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fflush
+call    yesno
+movzx   eax, al
+mov     [rbp+ok], eax
+cmp     [rbp+ok], 0
+jnz     short loc_4065AA
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 11h
+mov     esi, 1
+mov     edi, 410C0Dh
+call    _fwrite
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_4065A3
+mov     cs:exit_code, 2
+mov     eax, 1
+jmp     short locret_4065CE
+mov     edi, 64CF20h
+call    xunlink
+test    eax, eax
+jz      short loc_4065C9
+mov     edi, 64CF20h
+call    progerror
+mov     eax, 1
+jmp     short locret_4065CE
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,112 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0D0h
+mov     [rbp+var_B8], rdi
+mov     [rbp+var_C0], rsi
+mov     [rbp+var_C8], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-90h]
+mov     [rbp+var_A0], rax
+mov     [rbp+var_B0], 80h
+call    sub_41C9B9
+mov     [rbp+var_98], rax
+mov     eax, cs:dword_6420D4
+test    eax, eax
+jnz     short loc_41CB2B
+mov     rdx, [rbp-0C8h]
+mov     rcx, [rbp-0C0h]
+mov     rax, [rbp-98h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _vfprintf
+jmp     loc_41CC8A
+mov     rax, [rbp-0B8h]
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      short loc_41CB5A
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     [rbp+var_A0], rax
+mov     rax, [rbp-0B8h]
+mov     eax, [rax+0Ch]
+mov     [rbp+var_B0], eax
+mov     eax, [rbp-0B0h]
+movsxd  rsi, eax
+mov     rcx, [rbp-0C8h]
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0A0h]
+mov     rdi, rax
+call    _vsnprintf
+mov     [rbp+var_AC], eax
+cmp     [rbp+var_AC], 0FFFFFFFFh
+jnz     short loc_41CBE2
+mov     eax, [rbp-0B0h]
+add     eax, eax
+mov     [rbp+var_A8], eax
+mov     eax, [rbp-0A8h]
+movsxd  rdx, eax
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_428858
+mov     rdx, rax
+mov     rax, [rbp-0B8h]
+mov     [rax], rdx
+mov     rax, [rbp-0B8h]
+mov     edx, [rbp-0A8h]
+mov     [rax+0Ch], edx
+mov     eax, 0
+jmp     loc_41CCAA
+mov     eax, [rbp-0ACh]
+cmp     eax, [rbp-0B0h]
+jl      short loc_41CC41
+mov     eax, [rbp-0ACh]
+add     eax, 1
+mov     [rbp+var_A4], eax
+mov     eax, [rbp-0A4h]
+movsxd  rdx, eax
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_428858
+mov     rdx, rax
+mov     rax, [rbp-0B8h]
+mov     [rax], rdx
+mov     rax, [rbp-0B8h]
+mov     edx, [rbp-0A4h]
+mov     [rax+0Ch], edx
+mov     eax, 0
+jmp     short loc_41CCAA
+mov     rax, [rbp-0A0h]
+mov     rdi, rax
+call    sub_41C945
+mov     rdx, [rbp-98h]
+mov     rax, [rbp-0A0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41CC8A
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     eax, cs:dword_63F2E0
+test    eax, eax
+jz      short loc_41CC9B
+call    sub_41CCC0
+jmp     short loc_41CCA5
+mov     cs:dword_6420D8, 1
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41CCBE
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,77 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+file], 0
+mov     edi, 43376Dh
+call    _getenv
+mov     [rbp+env], rax
+cmp     [rbp+env], 0
+jz      short loc_41A591
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41A591
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jnz     short loc_41A580
+mov     rbx, cs:exec_name
+mov     edi, 433778h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-20h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+jmp     loc_41A61F
+call    home_dir
+mov     [rbp+home], rax
+cmp     [rbp+home], 0
+jz      short loc_41A5D7
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+add     rax, 9
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+file], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     esi, 4337A7h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+cmp     [rbp+home], 0
+jz      short loc_41A5EA
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+file], 0
+jnz     short loc_41A5F8
+mov     eax, 0
+jmp     short loc_41A61F
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jnz     short loc_41A61B
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     short loc_41A61F
+mov     rax, [rbp-28h]
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

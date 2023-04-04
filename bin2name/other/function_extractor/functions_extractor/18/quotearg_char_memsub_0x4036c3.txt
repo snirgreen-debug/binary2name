@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+arg], rdi
+mov     [rbp+argsize], rsi
+mov     eax, edx
+mov     [rbp+ch_0], al
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, qword ptr cs:default_quoting_options.style
+mov     qword ptr [rbp+options.style], rax
+mov     rax, qword ptr cs:default_quoting_options.quote_these_too
+mov     qword ptr [rbp+options.quote_these_too], rax
+mov     rax, qword ptr cs:default_quoting_options.quote_these_too+8
+mov     qword ptr [rbp+options.quote_these_too+8], rax
+mov     rax, qword ptr cs:default_quoting_options.quote_these_too+10h
+mov     qword ptr [rbp+options.quote_these_too+10h], rax
+mov     rax, qword ptr cs:default_quoting_options.quote_these_too+18h
+mov     qword ptr [rbp+options.quote_these_too+18h], rax
+mov     rax, cs:default_quoting_options.left_quote
+mov     [rbp+options.left_quote], rax
+mov     rax, cs:default_quoting_options.right_quote
+mov     [rbp+options.right_quote], rax
+movsx   ecx, byte ptr [rbp-54h]
+lea     rax, [rbp-40h]
+mov     edx, 1
+mov     esi, ecx
+mov     rdi, rax
+call    set_char_quoting
+lea     rcx, [rbp-40h]
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 0
+call    quotearg_n_options
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_403778
+call    ___stack_chk_fail
+leave
+retn

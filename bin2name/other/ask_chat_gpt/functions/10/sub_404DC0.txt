@@ -1,0 +1,148 @@
+push    r15
+push    r14
+xor     r15d, r15d
+push    r13
+push    r12
+mov     r13, rcx
+push    rbp
+push    rbx
+mov     r12, rdx
+xor     ebp, ebp
+xor     ebx, ebx
+sub     rsp, 848h
+mov     rax, fs:28h
+mov     [rsp+878h+var_40], rax
+xor     eax, eax
+mov     [rsp+878h+var_870], rdi
+mov     [rsp+878h+var_868], rsi
+nop     dword ptr [rax+rax+00h]
+movsxd  r8, r15d
+add     r8, r12
+movzx   eax, byte ptr [r8]
+test    al, al
+jz      loc_404F30
+cmp     ebx, 13FDh
+jg      loc_40500B
+test    ebp, ebp
+jz      loc_404F68
+cmp     al, 5Dh
+mov     ecx, r15d
+jz      loc_404FF2
+xor     edx, edx
+lea     r14, [rsp+30h]
+jmp     short loc_404E44
+cmp     al, 5Dh
+jz      short loc_404E5E
+mov     [r14+rdx], al
+movzx   eax, byte ptr [r8+rdx+1]
+add     ecx, 1
+mov     esi, ecx
+add     rdx, 1
+sub     esi, r15d
+test    al, al
+jnz     short loc_404E40
+cmp     al, 5Dh
+mov     r15d, ecx
+mov     ebp, 1
+jz      loc_405000
+movsxd  rsi, esi
+lea     rdx, [rsp+24h]
+lea     rdi, [rsp+28h]
+mov     [rsp+rsi+878h+var_848], 0
+lea     rsi, [rsp+430h]
+mov     [rsp+878h+var_850], r14
+mov     [rsp+878h+var_854], 0
+mov     [rsp+878h+var_448], 0
+call    sub_402510
+cmp     [rsp+878h+var_448], 0
+jz      loc_404FB0
+mov     rsi, [rsp+10h]
+mov     rdi, [rsp+8]
+lea     r8, [rsp+24h]
+lea     rcx, [rsp+430h]
+lea     rdx, [rsp+28h]
+call    sub_4029C0
+mov     r8, rax
+mov     edx, 3FFh
+xor     eax, eax
+mov     ecx, 413389h
+mov     esi, 1
+mov     rdi, r14
+call    ___sprintf_chk
+movzx   edx, byte ptr [rsp+30h]
+test    dl, dl
+jz      loc_404E00
+movsxd  rcx, ebx
+xor     eax, eax
+add     rcx, r13
+nop     word ptr [rax+rax+00h]
+mov     [rcx+rax], dl
+add     rax, 1
+add     ebx, 1
+movzx   edx, byte ptr [r14+rax]
+test    dl, dl
+jnz     short loc_404F08
+movsxd  r8, r15d
+add     r8, r12
+movzx   eax, byte ptr [r8]
+test    al, al
+jnz     loc_404E12
+nop     dword ptr [rax]
+mov     rax, [rsp+838h]
+xor     rax, fs:28h
+movsxd  rbx, ebx
+mov     byte ptr [r13+rbx+0], 0
+jnz     loc_405032
+add     rsp, 848h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+cmp     al, 5Bh
+jz      short loc_404FD8
+cmp     al, 5Dh
+jnz     short loc_404F97
+mov     rdi, [rsp+8]
+mov     ecx, 412439h
+mov     edx, 413953h
+mov     esi, 8011h
+mov     [rsp+878h+var_860], r8
+call    sub_405040
+mov     r8, [rsp+18h]
+movzx   eax, byte ptr [r8]
+movsxd  rdx, ebx
+add     r15d, 1
+add     ebx, 1
+mov     [r13+rdx+0], al
+jmp     loc_404E00
+mov     rdx, [rsp+28h]
+mov     rdi, [rsp+8]
+mov     ecx, 412530h
+mov     esi, 8011h
+call    sub_405040
+xor     r8d, r8d
+jmp     loc_404ED4
+movsxd  rax, ebx
+add     r15d, 1
+add     ebx, 1
+mov     byte ptr [r13+rax+0], 5Fh
+mov     ebp, 1
+jmp     loc_404E00
+lea     r14, [rsp+30h]
+xor     esi, esi
+nop     dword ptr [rax+00000000h]
+lea     r15d, [rcx+1]
+xor     ebp, ebp
+jmp     loc_404E6E
+cmp     ebx, 13FEh
+jnz     loc_404F30
+mov     rdi, [rsp+8]
+mov     ecx, 412454h
+xor     edx, edx
+mov     esi, 8104h
+call    sub_405040
+jmp     loc_404F30
+call    ___stack_chk_fail

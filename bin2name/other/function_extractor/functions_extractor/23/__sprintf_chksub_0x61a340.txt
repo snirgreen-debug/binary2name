@@ -1,0 +1,1 @@
+extrn __sprintf_chk:near

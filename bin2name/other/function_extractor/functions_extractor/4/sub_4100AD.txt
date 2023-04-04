@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     [rbp+var_C], esi
+mov     rax, [rbp-8]
+mov     esi, 42E960h
+mov     rdi, rax
+call    _strpbrk
+test    rax, rax
+jnz     short loc_4100EE
+cmp     [rbp+var_C], 0
+jz      short loc_4100F8
+mov     rax, [rbp-8]
+mov     esi, 2Eh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_4100F8
+movss   xmm0, cs:dword_42F980
+jmp     short locret_410100
+movss   xmm0, cs:dword_42F984
+leave
+retn

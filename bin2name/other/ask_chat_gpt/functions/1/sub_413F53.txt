@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_24], edx
+cmp     [rbp+var_24], 0
+jz      short loc_413FE9
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rdi, rax
+call    sub_413D6D
+mov     rax, [rbp-20h]
+mov     rax, [rax+70h]
+mov     rdi, rax
+call    sub_413D6D
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rdx, [rax+28h]
+mov     rax, [rbp-20h]
+mov     rax, [rax+70h]
+mov     rax, [rax+28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40BFDD
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rax, [rax+28h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rdx, [rbp-20h]
+mov     rdx, [rdx+70h]
+mov     rdx, [rdx+28h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax+70h]
+mov     rdx, [rbp-8]
+mov     [rax+28h], rdx
+jmp     short loc_414024
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rdi, rax
+call    sub_413E24
+mov     rax, [rbp-20h]
+mov     rax, [rax+70h]
+mov     rdi, rax
+call    sub_413E24
+mov     rax, [rbp-20h]
+mov     rdx, [rax+70h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_413E8B
+nop
+leave
+retn

@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+s2], rdi
+mov     [rbp+var_28], 0
+mov     [rbp+var_2C], 0
+jmp     short loc_405707
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 613360h
+mov     rax, [rax]
+mov     rdx, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4056DB
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 61336Ch
+mov     eax, [rax]
+jmp     loc_4057CA
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 613360h
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40B25F
+mov     rdi, rax
+call    _strlen
+add     rax, 2
+add     [rbp+var_28], rax
+add     [rbp+var_2C], 1
+cmp     [rbp+var_2C], 0Ch
+jbe     short loc_4056A4
+mov     rax, [rbp-28h]
+add     rax, 1
+mov     rdi, rax
+call    sub_40BD4C
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+mov     [rbp+s], rax
+mov     [rbp+var_2C], 0
+jmp     short loc_405785
+cmp     [rbp+var_2C], 0
+jz      short loc_40574A
+mov     rax, [rbp-20h]
+mov     word ptr [rax], 202Ch
+mov     byte ptr [rax+2], 0
+add     [rbp+s], 2
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 613360h
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40B25F
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     esi, 40EE13h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+cdqe
+add     [rbp+s], rax
+add     [rbp+var_2C], 1
+cmp     [rbp+var_2C], 0Ch
+jbe     short loc_405732
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    sub_40B25F
+mov     rbx, rax
+mov     edi, 40EE18h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     r8, rax
+mov     rcx, rbx
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0FFFFFFFFh
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

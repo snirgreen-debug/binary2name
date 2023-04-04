@@ -1,0 +1,120 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+argc], edi
+mov     [rbp+argv], rsi
+mov     [rbp+i], 1
+jmp     loc_40B517
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 42C4F0h
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B3C4
+mov     edi, 2
+call    set_follow_state
+jmp     loc_40B513
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 42C4F3h
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B3FB
+mov     edi, 1
+call    set_follow_state
+jmp     loc_40B513
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 42C4F6h
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B432
+mov     edi, 0
+call    set_follow_state
+jmp     loc_40B513
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 42C4F9h
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B468
+mov     eax, [rbp-8]
+add     eax, 1
+mov     [rbp+end_of_leading_options], eax
+jmp     loc_40B529
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 42C4FCh
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B4B9
+mov     eax, [rbp-8]
+cdqe
+add     rax, 1
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    process_debug_options
+add     [rbp+i], 1
+jmp     short loc_40B513
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+mov     edx, 2
+mov     rsi, rax
+mov     edi, 42C4FFh
+call    _strncmp
+test    eax, eax
+jnz     short loc_40B50B
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+add     rax, 2
+mov     rdi, rax
+call    process_optimisation_option
+jmp     short loc_40B513
+mov     eax, [rbp-8]
+mov     [rbp+end_of_leading_options], eax
+jmp     short loc_40B529
+add     [rbp+i], 1
+mov     eax, [rbp-8]
+mov     [rbp+end_of_leading_options], eax
+mov     eax, [rbp-4]
+cmp     eax, [rbp-14h]
+jl      loc_40B38D
+mov     eax, [rbp-4]
+leave
+retn

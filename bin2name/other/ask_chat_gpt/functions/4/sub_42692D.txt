@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+var_28], rdi
+mov     [rbp+src], rsi
+mov     r12, rdx
+lea     rax, [r12+109h]
+mov     [rbp+size], rax
+add     [rbp+size], 0Fh
+and     [rbp+size], 0FFFFFFFFFFFFFFF0h
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _malloc
+mov     rbx, rax
+test    rbx, rbx
+jnz     short loc_426974
+mov     eax, 0
+jmp     short loc_4269DC
+lea     rax, [rbx+108h]
+mov     rcx, [rbp-30h]
+mov     rdx, r12
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     byte ptr [rbx+r12+108h], 0
+mov     [rbx+60h], r12
+mov     rax, [rbp-28h]
+mov     [rbx+50h], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     [rbx+38h], rax
+mov     dword ptr [rbx+40h], 0
+mov     qword ptr [rbx+18h], 0
+mov     word ptr [rbx+72h], 0
+mov     word ptr [rbx+74h], 3
+mov     qword ptr [rbx+20h], 0
+mov     qword ptr [rbx+28h], 0
+mov     rax, rbx
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

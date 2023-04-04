@@ -1,0 +1,1561 @@
+push    rbp
+mov     rbp, rsp
+push    r14
+push    r13
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     eax, cs:grecs_grecs__init
+test    eax, eax
+jnz     loc_41D1E3
+mov     cs:grecs_grecs__init, 1
+mov     eax, cs:grecs_grecs__start
+test    eax, eax
+jnz     short loc_41D14F
+mov     cs:grecs_grecs__start, 1
+mov     rax, cs:grecs_grecs_in
+test    rax, rax
+jnz     short loc_41D169
+mov     rax, cs:stdin@@GLIBC_2_2_5
+mov     cs:grecs_grecs_in, rax
+mov     rax, cs:grecs_grecs_out
+test    rax, rax
+jnz     short loc_41D183
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     cs:grecs_grecs_out, rax
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_41D1AC
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_41D1DE
+call    grecs_grecs_ensure_buffer_stack
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+lea     rbx, [rax+rdx]
+mov     rax, cs:grecs_grecs_in
+mov     esi, 4000h
+mov     rdi, rax
+call    grecs_grecs__create_buffer
+mov     [rbx], rax
+call    grecs_grecs__load_buffer_state
+mov     rbx, cs:grecs_grecs__c_buf_p
+movzx   eax, cs:grecs_grecs__hold_char
+mov     [rbx], al
+mov     r13, rbx
+mov     r12d, cs:grecs_grecs__start
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+2Ch]
+add     r12d, eax
+movzx   eax, byte ptr [rbx]
+movzx   eax, al
+mov     eax, eax
+mov     eax, [rax*4+4252E0h]
+mov     r14d, eax
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+4251C0h]
+test    ax, ax
+jz      short loc_41D275
+mov     cs:grecs_grecs__last_accepting_state, r12d
+mov     cs:grecs_grecs__last_accepting_cpos, rbx
+jmp     short loc_41D275
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+4258A0h]
+movsx   r12d, ax
+cmp     r12d, 85h
+jle     short loc_41D275
+movzx   eax, r14b
+mov     eax, eax
+mov     eax, [rax*4+4256E0h]
+mov     r14d, eax
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+425740h]
+movsx   edx, ax
+movzx   eax, r14b
+add     eax, edx
+cdqe
+movzx   eax, word ptr [rax+rax+425E60h]
+cwde
+cmp     eax, r12d
+jnz     short loc_41D24D
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+425740h]
+movsx   edx, ax
+movzx   eax, r14b
+add     eax, edx
+mov     eax, eax
+movzx   eax, word ptr [rax+rax+425A00h]
+movsx   r12d, ax
+add     rbx, 1
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+425740h]
+cmp     ax, 20Fh
+jnz     loc_41D21B
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+4251C0h]
+movsx   r12d, ax
+test    r12d, r12d
+jnz     short loc_41D305
+mov     rbx, cs:grecs_grecs__last_accepting_cpos
+mov     r12d, cs:grecs_grecs__last_accepting_state
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+4251C0h]
+movsx   r12d, ax
+mov     cs:grecs_grecs_text, r13
+mov     rdx, rbx
+mov     rax, r13
+sub     rdx, rax
+mov     rax, rdx
+mov     cs:grecs_grecs_leng, eax
+movzx   eax, byte ptr [rbx]
+mov     cs:grecs_grecs__hold_char, al
+mov     byte ptr [rbx], 0
+mov     cs:grecs_grecs__c_buf_p, rbx
+mov     eax, cs:grecs_grecs__flex_debug
+test    eax, eax
+jz      loc_41D419
+test    r12d, r12d
+jnz     short loc_41D367
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 15h
+mov     esi, 1
+mov     edi, 426300h
+call    _fwrite
+jmp     loc_41D419
+cmp     r12d, 1Fh
+jg      short loc_41D39E
+mov     rcx, cs:grecs_grecs_text
+movsxd  rax, r12d
+movzx   eax, word ptr [rax+rax+4262C0h]
+movsx   rdx, ax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 426318h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_41D419
+cmp     r12d, 20h
+jnz     short loc_41D3C6
+mov     rdx, cs:grecs_grecs_text
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 426340h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_41D419
+cmp     r12d, 21h
+jnz     short loc_41D3EC
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 1Bh
+mov     esi, 1
+mov     edi, 426361h
+call    _fwrite
+jmp     short loc_41D419
+mov     eax, cs:grecs_grecs__start
+sub     eax, 1
+mov     edx, eax
+shr     edx, 1Fh
+add     eax, edx
+sar     eax, 1
+mov     edx, eax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 42637Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+cmp     r12d, 25h
+ja      def_41D42E
+mov     eax, r12d
+mov     rax, [rax*8+426400h]
+jmp     rax
+movzx   eax, cs:grecs_grecs__hold_char
+mov     [rbx], al
+mov     rbx, cs:grecs_grecs__last_accepting_cpos
+mov     r12d, cs:grecs_grecs__last_accepting_state
+jmp     loc_41D2D4
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D494
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D4CA
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     cs:grecs_grecs__start, 3
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D551
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D587
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D604
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D63A
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D6B7
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D6ED
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D783
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D7B9
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     cs:grecs_grecs__start, 1
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D840
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D876
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     rax, cs:grecs_grecs_text
+mov     ecx, 62D798h
+mov     edx, 62D8B0h
+mov     esi, 62D820h
+mov     rdi, rax
+call    grecs_parse_line_directive_cpp
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D911
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41D947
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     rax, cs:grecs_grecs_text
+mov     ecx, 62D798h
+mov     edx, 62D8B0h
+mov     esi, 62D820h
+mov     rdi, rax
+call    grecs_parse_line_directive
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41D9E2
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DA18
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DAAE
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DAE4
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DB61
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DB97
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DC2D
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DC63
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DCE0
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DD16
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+call    ident
+jmp     loc_41EE08
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DD98
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DDCE
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+call    grecs_line_begin
+mov     eax, cs:grecs_grecs_leng
+movsxd  rdx, eax
+mov     rax, cs:grecs_grecs_text
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_line_acc_grow
+call    grecs_line_finish
+mov     cs:grecs_grecs_lval, rax
+mov     eax, 102h
+jmp     loc_41EE08
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DE7C
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DEB2
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+call    grecs_line_begin
+mov     eax, cs:grecs_grecs_leng
+sub     eax, 2
+cdqe
+mov     rdx, cs:grecs_grecs_text
+add     rdx, 1
+mov     rsi, rax
+mov     rdi, rdx
+call    grecs_line_acc_grow
+call    grecs_line_finish
+mov     cs:grecs_grecs_lval, rax
+call    qstring_locus_fixup
+mov     eax, 103h
+jmp     loc_41EE08
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41DF6B
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41DFA1
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     cs:grecs_grecs__start, 7
+call    grecs_line_begin
+mov     eax, cs:grecs_grecs_leng
+sub     eax, 1
+cdqe
+mov     rdx, cs:grecs_grecs_text
+lea     rcx, [rdx+1]
+mov     edx, 62D820h
+mov     rsi, rax
+mov     rdi, rcx
+call    grecs_line_acc_grow_unescape_last
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E06C
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E0A2
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     cs:grecs_grecs__start, 7
+call    grecs_line_begin
+mov     eax, cs:grecs_grecs_leng
+sub     eax, 1
+cdqe
+mov     rdx, cs:grecs_grecs_text
+lea     rcx, [rdx+1]
+mov     edx, 62D820h
+mov     rsi, rax
+mov     rdi, rcx
+call    grecs_line_acc_grow_unescape_last
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E154
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E18A
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, cs:grecs_grecs_leng
+movsxd  rcx, eax
+mov     rax, cs:grecs_grecs_text
+mov     edx, 62D820h
+mov     rsi, rcx
+mov     rdi, rax
+call    grecs_line_acc_grow_unescape_last
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E240
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E276
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, cs:grecs_grecs_leng
+movsxd  rcx, eax
+mov     rax, cs:grecs_grecs_text
+mov     edx, 62D820h
+mov     rsi, rcx
+mov     rdi, rax
+call    grecs_line_acc_grow_unescape_last
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E313
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E349
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     cs:grecs_grecs__start, 1
+mov     eax, cs:grecs_grecs_leng
+cmp     eax, 1
+jle     short loc_41E3AC
+mov     eax, cs:grecs_grecs_leng
+sub     eax, 1
+movsxd  rdx, eax
+mov     rax, cs:grecs_grecs_text
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_line_acc_grow
+call    grecs_line_finish
+mov     cs:grecs_grecs_lval, rax
+call    qstring_locus_fixup
+mov     eax, 103h
+jmp     loc_41EE08
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E40F
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E445
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     cs:grecs_grecs__start, 5
+mov     rax, cs:grecs_grecs_text
+add     rax, 2
+mov     rdi, rax
+call    multiline_begin
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E4DF
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E515
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E5AB
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E5E1
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     rax, cs:grecs_grecs_text
+mov     rdi, rax
+call    multiline_strip_tabs
+mov     [rbp+s1], rax
+mov     rdx, cs:multiline_delimiter_len
+mov     rcx, cs:multiline_delimiter
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strncmp
+test    eax, eax
+jnz     loc_41E730
+mov     rdx, cs:multiline_delimiter_len
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rdx, rax
+mov     rax, cs:grecs_grecs_text
+sub     rdx, rax
+mov     rax, rdx
+mov     edi, eax
+call    isemptystr
+test    eax, eax
+jz      loc_41E730
+mov     rax, cs:multiline_delimiter
+mov     rdi, rax
+call    grecs_free
+mov     cs:multiline_delimiter, 0
+mov     cs:grecs_grecs__start, 1
+call    grecs_line_finish
+mov     cs:grecs_grecs_lval, rax
+mov     eax, dword ptr cs:qword_62D838
+sub     eax, 1
+mov     dword ptr cs:qword_62D838, eax
+mov     dword ptr cs:qword_62D838+4, 0
+mov     rbx, cs:grecs_grecs_lval
+mov     rax, cs:grecs_grecs_lval
+mov     rdi, rax
+call    _strlen
+sub     rax, 1
+add     rax, rbx
+mov     [rbp+s1], rax
+jmp     short loc_41E6F6
+mov     eax, dword ptr cs:qword_62D838+4
+add     eax, 1
+mov     dword ptr cs:qword_62D838+4, eax
+sub     [rbp+s1], 1
+mov     rax, cs:grecs_grecs_lval
+cmp     rax, [rbp-28h]
+jnb     short loc_41E712
+mov     rax, [rbp-28h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+jnz     short loc_41E6E2
+mov     eax, dword ptr cs:qword_62D838+4
+test    eax, eax
+jnz     short loc_41E726
+mov     dword ptr cs:qword_62D838+4, 1
+mov     eax, 104h
+jmp     loc_41EE08
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    multiline_add
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E7A2
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E7D8
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E855
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E88B
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E921
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41E957
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     rax, cs:grecs_grecs_text
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+jmp     loc_41EE08
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41E9E1
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41EA17
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     rax, cs:grecs_grecs_text
+movzx   eax, byte ptr [rax]
+test    al, al
+js      short loc_41EAB5
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, cs:grecs_grecs_text
+movzx   eax, byte ptr [rax]
+movsx   rax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 4000h
+test    eax, eax
+jz      short loc_41EAB5
+mov     rax, cs:grecs_grecs_text
+movzx   eax, byte ptr [rax]
+movsx   ebx, al
+mov     edi, 426399h
+call    _gettext
+mov     ecx, ebx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 62D820h
+mov     eax, 0
+call    grecs_error
+jmp     loc_41EE03
+mov     rax, cs:grecs_grecs_text
+movzx   eax, byte ptr [rax]
+movzx   ebx, al
+mov     edi, 4263ACh
+call    _gettext
+mov     ecx, ebx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 62D820h
+mov     eax, 0
+call    grecs_error
+jmp     loc_41EE03
+mov     eax, cs:grecs_grecs_leng
+test    eax, eax
+jle     short loc_41EB32
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_text
+mov     ecx, cs:grecs_grecs_leng
+movsxd  rcx, ecx
+sub     rcx, 1
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+cmp     dl, 0Ah
+setz    dl
+movzx   edx, dl
+mov     [rax+2Ch], edx
+mov     eax, cs:grecs_grecs__start
+cmp     eax, 2
+ja      short loc_41EB68
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D8B8+4
+mov     edx, cs:grecs_grecs_leng
+add     eax, edx
+mov     dword ptr cs:qword_62D8B8+4, eax
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D830, rax
+mov     cs:qword_62D838, rdx
+mov     rdx, cs:grecs_grecs_out
+mov     eax, cs:grecs_grecs_leng
+movsxd  rsi, eax
+mov     rax, cs:grecs_grecs_text
+mov     rcx, rdx
+mov     edx, 1
+mov     rdi, rax
+call    _fwrite
+jmp     loc_41EE03
+mov     eax, 0
+jmp     loc_41EE08
+mov     rdx, rbx
+mov     rax, cs:grecs_grecs_text
+sub     rdx, rax
+mov     rax, rdx
+sub     eax, 1
+mov     [rbp+var_30], eax
+movzx   eax, cs:grecs_grecs__hold_char
+mov     [rbx], al
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+3Ch]
+test    eax, eax
+jnz     short loc_41EC6E
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+20h]
+mov     cs:grecs_grecs__n_chars, eax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs_in
+mov     [rax], rdx
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     dword ptr [rax+3Ch], 1
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rax+8]
+mov     eax, cs:grecs_grecs__n_chars
+cdqe
+add     rdx, rax
+mov     rax, cs:grecs_grecs__c_buf_p
+cmp     rdx, rax
+jb      short loc_41ED05
+mov     rdx, cs:grecs_grecs_text
+mov     eax, [rbp-30h]
+cdqe
+add     rax, rdx
+mov     cs:grecs_grecs__c_buf_p, rax
+call    grecs_grecs__get_previous_state
+mov     r12d, eax
+mov     edi, r12d
+call    grecs_grecs__try_NUL_trans
+mov     [rbp+var_2C], eax
+mov     r13, cs:grecs_grecs_text
+cmp     [rbp+var_2C], 0
+jz      short loc_41ECF9
+mov     rax, cs:grecs_grecs__c_buf_p
+add     rax, 1
+mov     cs:grecs_grecs__c_buf_p, rax
+mov     rbx, cs:grecs_grecs__c_buf_p
+mov     r12d, [rbp-2Ch]
+jmp     loc_41D21B
+mov     rbx, cs:grecs_grecs__c_buf_p
+jmp     loc_41D2D4
+call    grecs_grecs__get_next_buffer
+cmp     eax, 1
+jz      short loc_41ED21
+cmp     eax, 2
+jz      loc_41EDAD
+test    eax, eax
+jz      short loc_41ED7C
+jmp     loc_41EE03
+mov     cs:grecs_grecs__did_buffer_switch_on_eof, 0
+call    grecs_grecs_wrap
+test    eax, eax
+jz      short loc_41ED5D
+mov     rax, cs:grecs_grecs_text
+mov     cs:grecs_grecs__c_buf_p, rax
+mov     eax, cs:grecs_grecs__start
+sub     eax, 1
+mov     edx, eax
+shr     edx, 1Fh
+add     eax, edx
+sar     eax, 1
+lea     r12d, [rax+22h]
+jmp     loc_41D331
+mov     eax, cs:grecs_grecs__did_buffer_switch_on_eof
+test    eax, eax
+jnz     loc_41EDF6
+mov     rax, cs:grecs_grecs_in
+mov     rdi, rax
+call    grecs_grecs_restart
+jmp     short loc_41EDF6
+mov     rdx, cs:grecs_grecs_text
+mov     eax, [rbp-30h]
+cdqe
+add     rax, rdx
+mov     cs:grecs_grecs__c_buf_p, rax
+call    grecs_grecs__get_previous_state
+mov     r12d, eax
+mov     rbx, cs:grecs_grecs__c_buf_p
+mov     r13, cs:grecs_grecs_text
+jmp     loc_41D21B
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rax+8]
+mov     eax, cs:grecs_grecs__n_chars
+cdqe
+add     rax, rdx
+mov     cs:grecs_grecs__c_buf_p, rax
+call    grecs_grecs__get_previous_state
+mov     r12d, eax
+mov     rbx, cs:grecs_grecs__c_buf_p
+mov     r13, cs:grecs_grecs_text
+jmp     loc_41D2D4
+nop
+jmp     short loc_41EE03
+mov     edi, 4263C8h
+call    grecs_grecs__fatal_error
+jmp     loc_41D1E3
+add     rsp, 10h
+pop     rbx
+pop     r12
+pop     r13
+pop     r14
+pop     rbp
+retn

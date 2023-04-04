@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_8], 0
+mov     [rbp+var_4], 0
+jmp     short loc_420C98
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jns     short loc_420C3C
+mov     eax, 0
+jmp     short locret_420CB0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jnz     short loc_420C5A
+add     [rbp+var_8], 1
+cmp     [rbp+var_8], 3
+jg      short loc_420CA5
+mov     [rbp+var_4], 0
+jmp     short loc_420C93
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   rax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jz      short loc_420C8C
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 3
+jle     short loc_420C93
+mov     eax, 0
+jmp     short locret_420CB0
+add     [rbp+var_18], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_420C2A
+jmp     short loc_420CA6
+nop
+cmp     [rbp+var_8], 3
+setz    al
+movzx   eax, al
+leave
+retn

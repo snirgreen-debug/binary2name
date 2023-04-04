@@ -1,0 +1,108 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0C0h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+name_shortened], 0
+mov     [rbp+flags], 0C1h
+mov     [rbp+base], 64CF20h
+mov     [rbp+atfd], 0FFFFFF9Ch
+mov     eax, cs:keep
+test    eax, eax
+jnz     short loc_40488A
+mov     edi, 64CF20h
+call    last_component
+mov     [rbp+b], rax
+mov     rax, [rbp-98h]
+mov     edx, 64CF20h
+sub     rax, rdx
+mov     rsi, rax
+mov     edi, 64CF20h
+call    atdir_set
+mov     [rbp+f], eax
+cmp     [rbp+f], 0
+js      short loc_40488A
+mov     rax, [rbp-98h]
+mov     [rbp+base], rax
+mov     eax, [rbp-0A8h]
+mov     [rbp+atfd], eax
+lea     rax, [rbp-90h]
+mov     rdx, rax
+mov     esi, 6148C0h
+mov     edi, 0
+call    _sigprocmask
+mov     edx, [rbp-0ACh]
+mov     rsi, [rbp-0A0h]
+mov     eax, [rbp-0B0h]
+mov     ecx, 180h
+mov     edi, eax
+mov     eax, 0
+call    openat_safer
+mov     cs:ofd, eax
+mov     eax, cs:ofd
+mov     cs:remove_ofname_fd, eax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+open_errno], eax
+lea     rax, [rbp-90h]
+mov     edx, 0
+mov     rsi, rax
+mov     edi, 2
+call    _sigprocmask
+mov     eax, cs:ofd
+test    eax, eax
+js      short loc_404917
+cmp     [rbp+name_shortened], 0
+jnz     short loc_40497E
+jmp     loc_4049CB
+mov     eax, [rbp-0A4h]
+cmp     eax, 11h
+jz      short loc_40493D
+cmp     eax, 24h
+jnz     short loc_40495A
+mov     edi, 64CF20h
+call    shorten_name
+mov     [rbp+name_shortened], 1
+jmp     short loc_404979
+call    check_ofname
+test    eax, eax
+jz      short loc_404978
+mov     eax, cs:ifd
+mov     edi, eax
+call    _close
+mov     eax, 1
+jmp     short loc_4049D0
+mov     edi, 64CF20h
+call    progerror
+mov     eax, cs:ifd
+mov     edi, eax
+call    _close
+mov     eax, 1
+jmp     short loc_4049D0
+nop
+jmp     loc_40488A
+mov     eax, cs:decompress
+test    eax, eax
+jz      short loc_4049CB
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_4049B7
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 64CF20h
+mov     esi, 410840h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_4049CB
+mov     cs:exit_code, 2
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4049E4
+call    ___stack_chk_fail
+leave
+retn

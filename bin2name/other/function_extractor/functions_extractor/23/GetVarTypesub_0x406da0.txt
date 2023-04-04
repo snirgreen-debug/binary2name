@@ -1,0 +1,29 @@
+test    pvm, pvm
+jz      short loc_406DE9
+push    rbp
+push    rbx
+mov     rbp, szName
+mov     rbx, pvm
+sub     rsp, 8
+jmp     short loc_406DC1
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_406DE0
+mov     rsi, [rbx]
+mov     rdi, szName
+call    _strcmp
+test    eax, eax
+jnz     short loc_406DB8
+mov     rax, [rbx+10h]
+add     rsp, 8
+pop     rbx
+pop     szName
+and     eax, 0F0000h
+retn
+add     rsp, 8
+xor     eax, eax
+pop     rbx
+pop     szName
+retn
+xor     eax, eax
+retn

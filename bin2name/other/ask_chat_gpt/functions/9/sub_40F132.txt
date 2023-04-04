@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+stream], rdi
+mov     [rbp+var_C], 0
+mov     [rbp+var_8], 0
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fileno
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jns     short loc_40F16F
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fclose
+jmp     short locret_40F1E8
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    ___freading
+test    eax, eax
+jz      short loc_40F1A2
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fileno
+mov     edx, 1
+mov     esi, 0
+mov     edi, eax
+call    _lseek
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jz      short loc_40F1BC
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40F504
+test    eax, eax
+jz      short loc_40F1BC
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_C], eax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fclose
+mov     [rbp+var_8], eax
+cmp     [rbp+var_C], 0
+jz      short loc_40F1E5
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0Ch]
+mov     [rdx], eax
+mov     [rbp+var_8], 0FFFFFFFFh
+mov     eax, [rbp-8]
+leave
+retn

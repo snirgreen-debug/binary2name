@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+rbuf], rdi
+mov     [rbp+store], rsi
+mov     rax, [rbp-18h]
+mov     rax, [rax+1010h]
+test    rax, rax
+jnz     short loc_4221EE
+mov     rax, [rbp-18h]
+lea     rdx, [rax+4]
+mov     rax, [rbp-18h]
+mov     [rax+1008h], rdx
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+1010h], 0
+mov     rax, [rbp-18h]
+lea     rcx, [rax+4]
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+mov     edx, 1000h
+mov     rsi, rcx
+mov     edi, eax
+call    iread
+mov     [rbp+res], eax
+cmp     [rbp+res], 0
+jg      short loc_4221DD
+mov     eax, [rbp-4]
+jmp     short locret_422207
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     [rax+1010h], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+1008h]
+movzx   edx, byte ptr [rax]
+mov     rax, [rbp-20h]
+mov     [rax], dl
+mov     eax, 1
+leave
+retn

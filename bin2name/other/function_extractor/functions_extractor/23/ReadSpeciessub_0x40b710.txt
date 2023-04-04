@@ -1,0 +1,19 @@
+push    rbp
+push    rbx
+mov     ebp, edx
+mov     rbx, pibIn
+sub     rsp, 8
+jmp     short loc_40B72A
+mov     esi, ebp
+mov     rdi, pibIn
+call    Read1Species
+mov     edx, 6
+mov     esi, 4
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40B720
+add     rsp, 8
+pop     pibIn
+pop     bProcessPK_ODEs
+retn

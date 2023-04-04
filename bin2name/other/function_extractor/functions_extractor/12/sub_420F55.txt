@@ -1,0 +1,120 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+movsd   [rbp+var_30], xmm0
+mov     rax, [rbp-28h]
+mov     [rbp+var_10], rax
+mov     rax, cs:qword_6477B0
+mov     [rbp+var_1C], eax
+mov     rdx, cs:qword_6477B0
+mov     eax, cs:dword_6477B8
+cdqe
+imul    rax, rdx
+mov     [rbp+var_8], rax
+mov     edi, 0
+call    sub_41CCF1
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+test    eax, eax
+jnz     short loc_420FDB
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+cdqe
+imul    rax, [rbp-8]
+lea     rdx, [rax+3FFh]
+test    rax, rax
+cmovs   rax, rdx
+sar     rax, 0Ah
+mov     rdx, rax
+mov     esi, 436386h
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+mov     [rbp+var_20], eax
+jmp     short loc_42101B
+mov     ecx, cs:dword_6477BC
+mov     eax, [rbp-20h]
+cdq
+idiv    ecx
+mov     eax, edx
+test    eax, eax
+jnz     short loc_421008
+mov     esi, 43638Dh
+mov     edi, 0
+call    sub_41C9EC
+mov     esi, 43638Dh
+mov     edi, 0
+call    sub_41C9EC
+add     [rbp+var_20], 1
+mov     eax, cs:dword_6477B8
+cmp     eax, [rbp-20h]
+jg      short loc_420FE7
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_421076
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-10h]
+mov     edx, [rdx+14h]
+movsxd  rdx, edx
+mov     rcx, rdx
+imul    rcx, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     edx, [rdx+18h]
+imul    edx, [rbp-1Ch]
+movsxd  rdx, edx
+add     rcx, rdx
+mov     rdx, [rbp-10h]
+mov     edx, [rdx+10h]
+movsxd  rdx, edx
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    sub_420CCB
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+imul    eax, [rbp-1Ch]
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+add     eax, edx
+cdqe
+mov     [rbp+var_18], rax
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+movsxd  rcx, eax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+cqo
+idiv    qword ptr [rbp-8]
+cmp     rcx, rax
+jnz     short loc_4210C2
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+cqo
+idiv    qword ptr [rbp-8]
+mov     rax, rdx
+sub     [rbp+var_18], rax
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     [rbp+var_38], rcx
+movsd   xmm0, qword ptr [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_420D22
+mov     esi, 4363C4h
+mov     edi, 0
+call    sub_41C9EC
+mov     edi, 0
+call    sub_41CCF1
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, edi
+mov     [rbp+var_14], ax
+mov     [rbp+var_4], 0
+jmp     short loc_409C76
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 4
+add     rax, 63A960h
+movzx   eax, word ptr [rax]
+cmp     ax, [rbp-14h]
+jz      short loc_409C90
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 4
+add     rax, 63A960h
+movzx   eax, word ptr [rax]
+cmp     ax, 0FFFFh
+jnz     short loc_409C5A
+jmp     short loc_409C91
+nop
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 4
+add     rax, 63A968h
+mov     rax, [rax]
+pop     rbp
+retn

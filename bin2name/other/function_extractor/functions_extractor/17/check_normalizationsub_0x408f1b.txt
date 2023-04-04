@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], rdi
+mov     eax, esi
+mov     [rbp+at_root], al
+cmp     [rbp+at_root], 0
+jz      short loc_408F57
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cmp     eax, 3
+jz      short loc_408F57
+mov     ecx, 42BF10h
+mov     edx, 4D6h
+mov     esi, 42B9B7h
+mov     edi, 42BB20h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_408FAB
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+mov     eax, [rax+10h]
+cmp     eax, 3
+jz      short loc_408F93
+mov     ecx, 42BF10h
+mov     edx, 4DBh
+mov     esi, 42B9B7h
+mov     edi, 42BB33h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+mov     esi, 0
+mov     rdi, rax
+call    check_normalization
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+test    rax, rax
+jz      short loc_408FD3
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+mov     esi, 0
+mov     rdi, rax
+call    check_normalization
+nop
+leave
+retn

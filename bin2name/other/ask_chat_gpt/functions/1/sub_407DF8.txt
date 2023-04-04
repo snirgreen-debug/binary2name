@@ -1,0 +1,96 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0D8h
+mov     [rbp+var_D8], rdi
+mov     [rbp+var_E0], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-0D8h]
+mov     rdi, rax
+call    sub_4077AC
+mov     [rbp+var_C0], rax
+cmp     [rbp+var_C0], 0
+jz      short loc_407E4F
+mov     rax, [rbp-0C0h]
+mov     eax, [rax+28h]
+test    eax, eax
+jnz     short loc_407E59
+mov     eax, 0
+jmp     loc_407F9C
+mov     rdx, [rbp-0E0h]
+mov     rax, [rbp-0D8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_402D34
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_407EBD
+mov     edi, 4236C0h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0E0h]
+mov     rax, [rbp-0D8h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+mov     eax, 0FFFFFFFFh
+jmp     loc_407F9C
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-0B8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_422870
+test    eax, eax
+jz      short loc_407F2A
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 4236F0h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0E0h]
+mov     rax, [rbp-0D8h]
+mov     r8, rbx
+mov     rcx, rdx
+mov     rdx, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+mov     [rbp+var_C4], 0FFFFFFFFh
+jmp     short loc_407F87
+mov     eax, [rbp-98h]
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     short loc_407F7D
+mov     rdx, [rbp-0E0h]
+mov     rax, [rbp-0C0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_407D4F
+mov     rsi, [rbp-0B8h]
+mov     rax, [rbp-0C0h]
+mov     ecx, 1
+mov     edx, 1
+mov     rdi, rax
+call    sub_407C52
+mov     [rbp+var_C4], eax
+jmp     short loc_407F87
+mov     [rbp+var_C4], 0
+mov     rax, [rbp-0B8h]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-0C4h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_407FB0
+call    ___stack_chk_fail
+add     rsp, 0D8h
+pop     rbx
+pop     rbp
+retn

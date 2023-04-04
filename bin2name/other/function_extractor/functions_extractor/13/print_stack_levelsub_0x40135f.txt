@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:tos
+mov     rdx, rax
+mov     eax, 605480h
+sub     rdx, rax
+mov     rax, rdx
+sar     rax, 3
+mov     rdx, rax
+mov     rax, 0AAAAAAAAAAAAAAABh
+imul    rax, rdx
+mov     rdx, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 403880h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:isp
+mov     rdx, rax
+mov     eax, 6052C0h
+sub     rdx, rax
+mov     rax, rdx
+sar     rax, 3
+mov     rdx, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 4038A8h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

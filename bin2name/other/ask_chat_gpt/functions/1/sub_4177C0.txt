@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 7Bh
+jz      short loc_4177F3
+mov     eax, [rbp-4]
+cmp     eax, 40h
+jbe     short loc_4177DD
+mov     eax, [rbp-4]
+cmp     eax, 5Ah
+jbe     short loc_4177F3
+mov     eax, [rbp-4]
+cmp     eax, 60h
+jbe     short loc_4177ED
+mov     eax, [rbp-4]
+cmp     eax, 7Ah
+jbe     short loc_4177F3
+cmp     [rbp+var_4], 5Fh
+jnz     short loc_4177FA
+mov     eax, 1
+jmp     short loc_4177FF
+mov     eax, 0
+pop     rbp
+retn

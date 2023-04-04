@@ -1,0 +1,1 @@
+extrn init_pair:near

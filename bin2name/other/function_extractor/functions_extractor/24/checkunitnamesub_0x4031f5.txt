@@ -1,0 +1,138 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+name], rdi
+mov     [rbp+linenum], esi
+mov     [rbp+file], rdx
+mov     [rbp+errfile], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, 5E7C2F2A2D2B3B7Eh
+mov     qword ptr [rbp+nonunitchars], rax
+mov     word ptr [rbp+nonunitchars+8], 29h
+lea     rdx, [rbp-20h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strpbrk
+mov     [rbp+cptr], rax
+cmp     [rbp+cptr], 0
+jz      short loc_4032A5
+cmp     [rbp+errfile], 0
+jz      short loc_40329B
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+movsx   esi, al
+lea     rax, progname
+mov     rdx, [rax]
+mov     r8d, [rbp-3Ch]
+mov     rdi, [rbp-48h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-50h]
+sub     rsp, 8
+push    rsi
+mov     r9d, r8d
+mov     r8, rdi
+lea     rsi, aSUnitSInUnitsF
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+mov     eax, 1
+jmp     loc_4033FF
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+movsx   edx, al
+lea     rax, digits
+mov     rax, [rax]
+mov     esi, edx
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_40330C
+cmp     [rbp+errfile], 0
+jz      short loc_403302
+lea     rax, progname
+mov     rdx, [rax]
+mov     edi, [rbp-3Ch]
+mov     rsi, [rbp-48h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-50h]
+mov     r9d, edi
+mov     r8, rsi
+lea     rsi, aSUnitSInUnitsF_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 1
+jmp     loc_4033FF
+lea     rax, builtins
+mov     [rbp+ptr], rax
+jmp     short loc_40337C
+mov     rax, [rbp-30h]
+mov     rdx, [rax]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_403377
+cmp     [rbp+errfile], 0
+jz      short loc_40336D
+lea     rax, progname
+mov     rdx, [rax]
+mov     edi, [rbp-3Ch]
+mov     rsi, [rbp-48h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-50h]
+mov     r9d, edi
+mov     r8, rsi
+lea     rsi, aSRedefinitionO
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 1
+jmp     loc_4033FF
+add     [rbp+ptr], 8
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_403319
+lea     rax, all_commands
+mov     [rbp+ptr], rax
+jmp     short loc_4033EE
+mov     rax, [rbp-30h]
+mov     rdx, [rax]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4033E9
+cmp     [rbp+errfile], 0
+jz      short loc_4033E9
+lea     rax, progname
+mov     rdx, [rax]
+mov     edi, [rbp-3Ch]
+mov     rsi, [rbp-48h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-50h]
+mov     r9d, edi
+mov     r8, rsi
+lea     rsi, aSUnitNameSInFi
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+ptr], 8
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_403395
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_403413
+call    ___stack_chk_fail
+leave
+retn

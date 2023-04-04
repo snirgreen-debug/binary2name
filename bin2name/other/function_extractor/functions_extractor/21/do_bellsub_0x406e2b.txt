@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 7
+call    _putchar
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rdi, rax
+call    _fflush
+nop
+pop     rbp
+retn

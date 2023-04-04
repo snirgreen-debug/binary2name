@@ -1,0 +1,104 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_4C], esi
+mov     [rbp+var_58], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_34], eax
+mov     eax, [rbp-34h]
+lea     ebx, [rax+1]
+mov     eax, [rbp-4Ch]
+cdqe
+mov     rdi, rax
+call    sub_42A48D
+add     eax, ebx
+add     eax, 1
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+var_30], rax
+mov     eax, [rbp-34h]
+movsxd  rdx, eax
+mov     rcx, [rbp-48h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-34h]
+movsxd  rdx, eax
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     byte ptr [rax], 3Ah
+mov     eax, [rbp-4Ch]
+cdqe
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+lea     rcx, [rdx+1]
+mov     rdx, [rbp-30h]
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    sub_42A4E6
+mov     rax, cs:qword_642F48
+test    rax, rax
+jnz     short loc_423F52
+mov     edi, 0
+call    sub_410C8B
+mov     cs:qword_642F48, rax
+mov     [rbp+var_28], 0
+mov     [rbp+var_20], 0
+mov     rax, cs:qword_642F48
+mov     rcx, [rbp-28h]
+mov     rdx, [rbp-20h]
+mov     rsi, [rbp-30h]
+mov     rdi, rax
+call    sub_4105CC
+test    eax, eax
+jz      short loc_423FB0
+cmp     [rbp+var_28], 0
+jz      short loc_423F94
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_423AB6
+mov     rax, cs:qword_642F48
+mov     rdx, [rbp-58h]
+mov     rcx, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41080A
+jmp     short loc_423FD5
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    sub_4288AF
+mov     rcx, rax
+mov     rax, cs:qword_642F48
+mov     rdx, [rbp-58h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41080A
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_423FEA
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

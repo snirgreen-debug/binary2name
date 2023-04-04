@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rdi, rax
+call    close_stream
+test    eax, eax
+jz      loc_401E37
+movzx   eax, cs:ignore_EPIPE
+xor     eax, 1
+test    al, al
+jnz     short loc_401DB1
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 20h
+jz      loc_401E37
+mov     edi, 4053F1h
+call    _gettext
+mov     [rbp+write_error], rax
+mov     rax, cs:file_name
+test    rax, rax
+jz      short loc_401E06
+mov     rax, cs:file_name
+mov     rdi, rax
+call    quotearg_colon
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     r8, rdx
+mov     rcx, rbx
+mov     edx, 4053FDh
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+jmp     short loc_401E2A
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     rcx, rdx
+mov     edx, 405404h
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     eax, cs:exit_failure
+mov     edi, eax
+call    __exit
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    close_stream
+test    eax, eax
+jz      short loc_401E57
+mov     eax, cs:exit_failure
+mov     edi, eax
+call    __exit
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

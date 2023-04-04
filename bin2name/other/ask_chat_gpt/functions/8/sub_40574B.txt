@@ -1,0 +1,175 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 468h
+mov     [rbp+s], rdi
+mov     [rbp+var_450], rsi
+mov     [rbp+src], rdx
+mov     [rbp+var_45C], ecx
+mov     [rbp+var_460], r8d
+mov     [rbp+var_464], r9d
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+var_43C], 0
+mov     word ptr [rbp+delim], 20h
+cmp     [rbp+s], 0
+jz      short loc_4057C0
+cmp     [rbp+var_450], 0
+jz      short loc_4057C0
+cmp     [rbp+src], 0
+jnz     short loc_4057D9
+mov     ecx, 40AD60h
+mov     edx, 671h
+mov     esi, 409858h
+mov     edi, 409868h
+call    ___assert_fail
+cmp     [rbp+var_45C], 0
+js      short loc_405809
+mov     eax, [rbp-45Ch]
+cmp     eax, [rbp-460h]
+jge     short loc_405809
+mov     eax, [rbp-460h]
+cmp     eax, [rbp-464h]
+jge     short loc_405809
+mov     eax, [rbp-464h]
+cmp     eax, [rbp+10h]
+jl      short loc_405822
+mov     ecx, 40AD60h
+mov     edx, 673h
+mov     esi, 409858h
+mov     edi, 409890h
+call    ___assert_fail
+mov     eax, [rbp-45Ch]
+mov     edi, eax
+call    sub_405714
+mov     rax, [rbp-448h]
+mov     rsi, rax
+mov     edi, 4098D5h
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-448h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-45Ch]
+add     edx, eax
+mov     eax, [rbp-43Ch]
+add     eax, edx
+mov     [rbp+var_43C], eax
+mov     eax, [rbp-460h]
+sub     eax, [rbp-43Ch]
+mov     edi, eax
+call    sub_405714
+mov     rax, [rbp-450h]
+mov     rsi, rax
+mov     edi, 4098D5h
+mov     eax, 0
+call    _printf
+mov     eax, [rbp-460h]
+sub     eax, [rbp-43Ch]
+mov     edx, 0
+test    eax, eax
+cmovs   eax, edx
+mov     ebx, eax
+mov     rax, [rbp-450h]
+mov     rdi, rax
+call    _strlen
+lea     edx, [rbx+rax]
+mov     eax, [rbp-43Ch]
+add     eax, edx
+mov     [rbp+var_43C], eax
+mov     eax, [rbp-464h]
+sub     eax, [rbp-43Ch]
+mov     edi, eax
+call    sub_405714
+mov     eax, [rbp-464h]
+sub     eax, [rbp-43Ch]
+mov     edx, 0
+test    eax, eax
+cmovs   eax, edx
+add     [rbp+var_43C], eax
+mov     rdx, [rbp-458h]
+lea     rax, [rbp-420h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+lea     rdx, [rbp-430h]
+lea     rax, [rbp-420h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strtok
+mov     [rbp+var_438], rax
+jmp     loc_405A42
+mov     eax, [rbp-43Ch]
+movsxd  rbx, eax
+mov     rax, [rbp-438h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rbx+rax]
+mov     eax, [rbp+10h]
+cdqe
+cmp     rdx, rax
+jb      short loc_4059D8
+mov     rax, cs:stdout
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+mov     eax, [rbp-464h]
+mov     edi, eax
+call    sub_405714
+mov     rdx, cs:stdout
+mov     rax, [rbp-438h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, cs:stdout
+mov     rsi, rax
+mov     edi, 20h
+call    __IO_putc
+mov     rax, [rbp-438h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-464h]
+add     eax, edx
+add     eax, 1
+mov     [rbp+var_43C], eax
+jmp     short loc_405A27
+mov     rdx, cs:stdout
+mov     rax, [rbp-438h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, cs:stdout
+mov     rsi, rax
+mov     edi, 20h
+call    __IO_putc
+mov     rax, [rbp-438h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-43Ch]
+add     eax, edx
+add     eax, 1
+mov     [rbp+var_43C], eax
+lea     rax, [rbp-430h]
+mov     rsi, rax
+mov     edi, 0
+call    _strtok
+mov     [rbp+var_438], rax
+cmp     [rbp+var_438], 0
+jnz     loc_405940
+mov     rax, cs:stdout
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_405A79
+call    ___stack_chk_fail
+add     rsp, 468h
+pop     rbx
+pop     rbp
+retn

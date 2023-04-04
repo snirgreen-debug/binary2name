@@ -1,0 +1,2641 @@
+400820,sub_400820,Unpredicted,"""Function to Push and Jump to Addresses"""
+400970,deregister_tm_clones,Unpredicted,"""Compare and Jump Function"""
+4009F0,__do_global_dtors_aux,Unpredicted,"""Check and call function"""
+400A10,frame_dummy,Unpredicted,"""Memory allocation function"""
+400A36,init_string_with_size,Unpredicted,"""Memory Allocation Function"" or ""Dynamic Memory Allocation"""
+400A74,init_string,Unpredicted,Function with Stack Allocation
+400A94,find,P_get_int,"""Stack Frame Comparison"""
+400B0B,write_buffer,P_parser_parse_opt,"""Stack allocation and file output"""
+400B5E,delete_string,Unpredicted,Function: Free Memory.
+400B7C,addr,Unpredicted,"""Addition function"""
+400B96,at,P_hostrange_cmp,"""Function to Compare Two Values"""
+400BCA,catchar,P_fsserial,Function Name: dynamic_array_resize
+400C4C,overwrite_string,Unpredicted,Free Memory Function
+400C9C,catbuf,P_print,"""Function to Reallocate and Copy Memory"""
+400D5C,cattext,Unpredicted,Function prologue.
+400D90,catstr,Unpredicted,"""Function with parameter and subroutine call"""
+400DC3,skip_white_and_stars,P_skip_edit_for_move,"""Function for checking input validity"""
+400E5F,skip_past_newline_1,P_skip_past_newline_1,"""Function with Local Variables"""
+400EC0,.strlen,Unpredicted,Function to Print Error Message and Exit
+400EF3,check_range,Unpredicted,"""Check and Call Function"""
+400F2E,icheck_range,Unpredicted,Check for and call subroutines based on memory values.
+400F69,exec,P_list_is_all,"""Function with stack and call"""
+400FA9,call,Unpredicted,"""Function with local variable initialization"""
+400FE9,remchar,Unpredicted,"""Stack Frame Setup and Variable Modification"""
+401025,strip_trailing_newlines,P_do_length,"""Function Prologue"""
+4010D3,push_number,Unpredicted,"""Memory Manipulation Function"""
+40112E,push_text,Unpredicted,"""Function with stack manipulation"""
+4011A0,.getenv,Unpredicted,"""String parsing"" or ""Input validation"""
+40135F,print_stack_level,Unpredicted,Function Initialization.
+4013F3,paramstuff,Unpredicted,Function Prologue
+40146B,translatecomments,Unpredicted,"""Function Prologue"" or ""Stack Setup"""
+4015B2,outputdots,Unpredicted,Function Prologue
+401747,courierize,Unpredicted,"""Function Prologue"""
+401B32,bulletize,Unpredicted,Function prologue.
+401D7F,do_fancy_stuff,P_do,Function Prologue.
+401F4C,iscommand,Unpredicted,Function for checking input
+402022,copy_past_newline,P_read_past_newline_1,"""Function with Local Variables"""
+4020F7,icopy_past_newline,Unpredicted,Function prologue.
+40215F,kill_bogus_lines,P_kill,Function prologue or stack setup.
+4023ED,indent,P_indent,Function Entry Setup
+4025A6,get_stuff_in_command,Unpredicted,"""Function prologue"" or ""Function setup"""
+402649,swap,Unpredicted,"""Memory Copy and Address Update"""
+4026C7,rsync_roll,P_re_compile_class,"""Stack Manipulation and Function Calls"""
+402728,drop,Unpredicted,Function prologue/entry.
+40275D,idrop,Unpredicted,Stack cleanup function.
+402792,icatstr,Unpredicted,Function to Modify Memory Address.
+4027F7,skip_past_newline,Unpredicted,"""Function initialization"" or ""Stack frame setup"""
+402832,internalmode,Unpredicted,"""Copy and Modify Stack Variable"""
+402877,maybecatstr,Unpredicted,"""Function for Comparing and Manipulating Memory"""
+4028E8,nextword,P_nextword,Function Prologue
+402B00,.strncpy,Unpredicted,Stack Frame Initialization and Comparison
+402B7A,perform,P_perform,"""Function setup"""
+402C83,newentry,P_make_variable_completions,"""Memory Allocation Function"""
+402CF3,add_to_definition,P_line_copy,Memory reallocation function.
+402D87,add_intrinsic,Unpredicted,Function Initialization
+402DCE,add_var,Unpredicted,Function Setup.
+402E29,compile,P_parse_xml_options,"""Function Prologue"""
+403057,bang,Unpredicted,"""Move and Update Pointer Function"""
+4030A7,atsign,Unpredicted,"""Copy Pointer and Increment"""
+4030D7,hello,Unpredicted,"""Print and Increment Counter"""
+4030FA,stdout_,Unpredicted,"""Memory Allocation and Initialization"""
+40313D,stderr_,Unpredicted,"""Memory Allocation and Initialization"""
+403180,.memrchr,Unpredicted,"""Function with Output Handling"""
+40324A,read_in,Unpredicted,File Input Function.
+4032FF,usage,Unpredicted,"""Write to stderr and Exit"" or ""Log and Exit"""
+40332B,chew_exit,Unpredicted,"""Exit function with stack setup."""
+401F70,.free,Unpredicted,"""Jump to Memory Location"""
+4026F0,deregister_tm_clones,Unpredicted,"""Check and Jump Function"""
+402770,__do_global_dtors_aux,Unpredicted,Set flag and call sub.
+402790,frame_dummy,Unpredicted,"""Memory Operation and Function Call"""
+4027B6,severity,Unpredicted,Function Setup or Comparison Check
+40280F,vdiag,P_is_non_files,Function with error logging and stack preparation.
+402A42,diag,Unpredicted,Set up function frame.
+402B11,debugprt,Unpredicted,Function Prologue.
+402BDE,emalloc,Unpredicted,Allocate Memory and Exit Function
+402C2D,ecalloc,Unpredicted,Function Name: allocate_mem
+402C7F,erealloc,Unpredicted,Function to allocate and initialize memory.
+402CD9,estrdup,Unpredicted,Function for String Copy and Length Calculation.
+402D34,mkfilename,P_mkfilename,Function Name: setPath
+402E37,trans_strtotok,P_get_last_type,"""Function with Local Variables"""
+402E93,trans_toktostr,P_list,Function name: var_compare_or_increment
+402ECD,trans_toknext,P_hash,Function with variable initialization and comparison.
+402F57,trans_tokfirst,Unpredicted,Function for Initializing Variables
+402F8B,set_program_name,P_set_program_name,"""Push and String Manipulation"""
+402FD2,signal_setup,Unpredicted,Function with memory allocation and call
+402FFC,storepid,Unpredicted,open file function or fopen function.
+403090,.__fxstat,Unpredicted,Function with Local Variables and Loop Counter Initialization.
+4030E0,.fchdir,Unpredicted,Initiate User Data Retrieval Function.
+403277,setuser,Unpredicted,set user and group ID function
+403413,ev_log,Unpredicted,Function Prologue
+4034B1,genev_init,Unpredicted,"""Function Entry/Initialization"""
+403518,sigmain,Unpredicted,"""Set Variable and Check Value"""
+403548,self_test,P_rpl_output,Function with Fork & Execv
+403655,print_dir,Unpredicted,"""Function Initialize Variables and Print"""
+403691,help_hook,Unpredicted,Print Stream Function
+403766,parse_options,Unpredicted,"""arg parsing function"""
+403D47,get_facility,P_get_link,Function: ____________
+403E05,get_priority,Unpredicted,Function name: parse_input_numbers.
+403EC3,assert_grecs_value_type,P_bitset_stats,Function Prologue
+403F97,cb_syslog_facility,P_node,Stack setup function.
+4040AA,envfree,P_hostrange_destroy,Function name: free_multiple_ptrs.
+404116,eventconf_init,Unpredicted,Function that sets memory to 0.
+40413B,eventconf_free,Unpredicted,Free allocated memory and return.
+40418D,eventconf_flush,Unpredicted,Function prologue
+404365,cb_watcher,P_open_elf,Function name: var_check_and_update
+404485,pathent_alloc,Unpredicted,Function with string parameter and return value.
+4044ED,cb_path,P_xlat,Function Prologue.
+4047CE,cb_eventlist,P_fconn,Function name: Initialize Stack Frame.
+404ADA,membergid_0,Unpredicted,"""Variable Initialization and Comparison"""
+404B2A,get_user_groups_0,Unpredicted,"""Function with stack variables"""
+404C71,cb_user,P_pies_check_or,"""Function Setup"""
+404F61,cb_option,P_char_set,"Function Name: ""various possibilities depending on the purpose and context of the code"""
+405153,cb_environ,P_adns_qdpl_normal,Initial Function Setup
+40540C,file_name_pattern,P_parse_fetch,"""Function Initialization"""
+405715,cb_file_pattern,P_adns_cancel,Function Name: Unknown
+405879,config_help,Unpredicted,Function Prologue and Epilogue
+4058B7,config_init,Unpredicted,"""Function with Memory Initialization"""
+4058D7,config_parse,Unpredicted,Function Prologue.
+405926,find_env,Unpredicted,"""Function Name"""
+405A36,locate_unset,P_var_builtin_function,"""String Comparison"""
+405B9A,env_concat,P_prog_act,"""Copy string with format specifier"""
+405D7B,environ_setup,P_load,Function prologue or function setup.
+4064E8,hash_string,P_hash_pjw,Assembly function with variable manipulation.
+40652E,symevt_hash,Unpredicted,Function entry or Function prologue
+40655F,symevt_cmp,Unpredicted,Function: string comparison.
+40659C,symevt_copy,P_cond,Function setup or variable initialization.
+4065E8,symevt_free,Unpredicted,Function Prologue with Freeing Memory
+40661B,defevt,P_getuidbyname,Function Prologue
+406710,getevt,Unpredicted,Function Setup or Initial Setup Function.
+4067C8,evtnullp,P_list_delete,"""Variable Initialization and Check"""
+4067F3,event_mask_init,P_mpz_parse_value,"""Variable Assignment and Comparison"""
+406894,evtsetall,Unpredicted,"""Function to set variable to 0"""
+406908,filename_pattern_free,P_cb,"""Stack Setup and Memory Management"""
+40695E,filename_pattern_match,P_grecs_list_free,Function for matching file name pattern.
+406A37,hashent_free,P_syment_free,Function Entry / Memory Allocation
+406A76,hashent_alloc,P_syment_alloc,Function Prologue
+406B31,hashtab_insert_pos,Unpredicted,"""Function with Push and Memory Operations"""
+406BBE,hashtab_replace,Unpredicted,Function Name: Recursive Function to Allocate Memory and Assign Values
+406CA3,hashtab_rehash,P_match_ctx_end,Function Setup/Initialization.
+406DB2,hashtab_strerror,P_grecs_symtab_strerror,Function with error handling.
+406DFF,hashtab_remove,Unpredicted,"""Function with stack allocation"""
+406FCB,hashtab_get_index,P_ipmi_config_section_commit,Function with Variable Initialization
+407141,hashtab_lookup_or_install,P_mh_msgset_single,Function with memory allocation and error handling.
+407229,hashtab_clear,P_hashtab_destroy,"""Function Setup"""
+4072C6,hashtab_create,P_hostlist_iterator_create,Function Prologue.
+4073AE,hashtab_free,Unpredicted,Function for freeing memory.
+4073EC,hashtab_count_entries,P_mpz_lcm,"""Function setup and loop"""
+407443,hashtab_foreach,P_grecs_symtab_clear,Function with Local Variables
+4074D0,hashtab_count,P_grecs_symtab_enumerate,Push-RBP-Init-Loop-Exit Function
+407535,dirwatcher_unref,P_hol_help,"""Memory Allocation and Freeing Function"""
+40757B,dwname_hash,Unpredicted,Function Setup or Memory Initialization.
+4075B0,inflate_codes,Unpredicted,"""Function with variable comparisons"""
+4075F5,dwname_copy,P_cond_to,Function prologue with parameter initialization.
+407632,dwref_free,Unpredicted,Function prologue
+407665,dirwatcher_install,P_load_for_variable,"""Function Setup"""
+4077AC,dirwatcher_lookup,Unpredicted,"""Function Prologue"" or ""Stack Setup"""
+407836,dirwatcher_remove,Unpredicted,Function Prologue.
+40789C,dw_hash,Unpredicted,Function Prologue.
+4078CB,dw_cmp,P_fh_s,"""Memory Compare"""
+407907,dw_copy,P_parse_opt_insert,"""Variable Assignment and Increment"""
+407953,dirwatcher_register,P_builtin_addr,Function Prologue.
+407A5F,dirwatcher_lookup_wd,Unpredicted,Function Prologue.
+407AE6,dirwatcher_remove_wd,Unpredicted,Function Prologue.
+407B49,dirwatcher_init,P_print_do_file,"""Function name: Push and Initialization"""
+407C52,subwatcher_create,P_grecs_tree_locate,"""Function Initialization"""
+407D4F,deliver_ev_create,P_convert_put,Function Prologue
+407DF8,check_new_watcher,P_check_button,Function Prologue or Stack Setup
+407FBA,watch_subdirs,Unpredicted,Function Prologue
+40829D,setwatcher,P_fts_compare,Function Initialization.
+4082F5,setup_watchers,Unpredicted,"""Function with Push and Pop"""
+40838E,dirwatcher_destroy,Unpredicted,Function Entry/Initialization.
+4083F9,split_pathname,P_hostrange_cmp,"""String Manipulation Function"""
+408472,unsplit_pathname,P_cint_clear,Set file path or Replace file path with forward slash
+4084A1,proc_unlink,P_unlink_prog,"""Function Name: Copy and Clear"""
+40851C,proc_pop,Unpredicted,Function prologue.
+408553,proc_push,P_list_cmp,Function to Copy Pointers and Values.
+4085A2,register_process,Unpredicted,Stack Setup Function
+408638,deregister_process,Unpredicted,"""Function for Memory Management"""
+4086CE,process_lookup,Unpredicted,Function Entry or Compare and Return.
+40870D,print_status,P_format_exit,Function name: set_name_localization
+408942,process_cleanup,Unpredicted,Function prologue.
+408BB7,process_timeouts,Unpredicted,set_time_seconds
+408D09,switchpriv,P_owner_failure_ok,setuid function
+408E65,close_fds,Unpredicted,"""File Operations"""
+408F26,redir_exit,P_imap4d,"""Function Initialization"""
+408F3B,open_redirector,P_parse_seq,initialize pipe and fork process.
+4092CF,runcmd,Unpredicted,Function prologue.
+4097AE,run_handler,P_ftpfs_list,Function preamble.
+409C87,sigv_set_action,P_adns_fdevents,"""Function with stack allocation"""
+409D0C,sigv_restore_tab,P_adns_parse_uuxqt,"""Function setup or signal handling setup"""
+409D90,sigv_set_all,P_fsysdep_mail,Function name: sigaction_init
+409EE8,sigv_set_tab,P_fsysdep_execute,"Function with Push, Mov, Sub operations."
+40A04E,sysev_filemask,Unpredicted,"""Function with Variable Initialization"""
+40A05D,sysev_init,Unpredicted,inotify_init_error_exit
+40A0A9,sysev_add_watch,Unpredicted,"""Watch Adder"""
+40A0D8,sysev_rm_watch,Unpredicted,Function for Removing Inotify Watch.
+40A0FD,remove_watcher,Unpredicted,Function Prologue.
+40A172,process_event,P_prt_opt_arg,Function Prologue
+40A417,sysev_select,P_read_make,Function with File I/O Operations
+40A567,detach,Unpredicted,Initialize Process/Setup Environment.
+40A6CF,default_print_diag,Unpredicted,Error Handling Function.
+40A930,grecs_warning,P_mh_getyn,Function prologue.
+40AA55,grecs_error,P_mh_getyn,Function Initialization.
+40AB89,grecs_asprint_locus,P_block_grecs_grecs_str_to_fsysdep_register,"""Function Set Variables and Compare Strings"""
+40AD0E,grecs_data_type_string,Unpredicted,"""Function Prologue"""
+40AD7C,format_level,Unpredicted,"""Function with File Output Handling"""
+40ADB8,grecs_print_docstring,Unpredicted,"""Stream Input Function"" or ""Read Stream Function"""
+40AF87,grecs_print_simple_statement,P_grecs_print_simple_statement,"""Function with register manipulation"""
+40B18E,grecs_print_block_statement,P_grecs_print_block_statement,"""Stream Output Function"""
+40B2C5,grecs_print_statement_array,P_grecs_print_statement_array,"""Function Prologue"""
+40B35E,grecs_format_locus,P_grecs_format_locus,Function Prologue
+40B585,grecs_format_node_path,P_lbitset_list,Function Prologue.
+40B6D7,grecs_format_value,P_prt_opt_usage,"""Function setup"" or ""Function initialization"""
+40B956,grecs_format_node,P_grecs_format_node,Function prologue.
+40BB60,txtacc_fmt,Unpredicted,Function with string manipulation
+40BBA1,grecs_txtacc_format_value,Unpredicted,"""Function Initialization"""
+40BBFF,file_fmt,Unpredicted,Function to Print to Stream.
+40BC29,grecs_print_locus,Unpredicted,Initialize stack frame or Stack initialization.
+40BC82,grecs_print_node_path,Unpredicted,Function prologue.
+40BCE0,grecs_print_value,Unpredicted,"""Function prologue"" or ""Stack setup"""
+40BD3E,grecs_print_node,Unpredicted,"""Function Prologue"""
+40BD9B,grecs_list_create,Unpredicted,Function prologue.
+40BDCD,grecs_list_size,Unpredicted,Function Initialization.
+40BDED,grecs_list_insert_entry,P_grecs_list_insert_entry,"""Function Setup"""
+40BEFB,grecs_list_remove_entry,P_grecs_list_remove_entry,"""Function for Moving and Comparing Pointers"""
+40BF93,grecs_list_append,Unpredicted,"""Initialize Local Variables"""
+40BFDD,grecs_list_add,P_grecs_list_add,"""Function Prologue"""
+40C092,grecs_list_push,Unpredicted,Function setup or Variable initialization.
+40C0D9,grecs_list_pop,P_grecs_list_iterate,"""Function for assigning and calling pointer"""
+40C126,grecs_list_remove_tail,P_hol_cluster_base,Function prologue
+40C17B,grecs_list_clear,P_list_peek,Function with Variable Assignment
+40C206,grecs_list_free,Unpredicted,Function prologue.
+40C234,_ptrcmp,Unpredicted,Compare Two Values Function
+40C250,grecs_list_locate,P_grecs_list_locate,Function Setup or Variable Initialization.
+40C2CC,grecs_list_index,P_hol_cluster_base,"""Function with Stack Variables"""
+40C31B,grecs_list_compare,P_grecs_list_node_info,Function prologue.
+40C425,def_malloc_fun,Unpredicted,Allocate Memory Function
+40C43F,def_realloc_fun,Unpredicted,Function with realloc operation.
+40C464,def_free_fun,Unpredicted,Function to Free Memory Block.
+40C47F,grecs_free,Unpredicted,Function prologue.
+40C49E,grecs_malloc,Unpredicted,"""Function prologue"""
+40C4D0,grecs_zalloc,Unpredicted,"""Function Prologue"""
+40C507,grecs_calloc,Unpredicted,"""Multiplication Function"""
+40C52A,grecs_realloc,Unpredicted,Function prologue.
+40C567,grecs_strdup,Unpredicted,"""String Copy Function"""
+40C5A4,grecs_alloc_die,Unpredicted,Function entry and exit with system call.
+40C5E0,indent,P_indent,Function setup or Variable initialization.
+40C60E,print_option_descr,P_print_option_descr,Function prologue.
+40C7B2,sort_options,Unpredicted,qsort function
+40C7F3,sort_group,P_sort,"""Function with variable assignments"""
+40C859,sort_opthelp,P_sort,Function Prologue.
+40C8D2,grecs_print_help,Unpredicted,Function Prologue
+40CDF9,cmpidx_short,Unpredicted,"""various variable assignments and comparisons"""
+40CE43,cmpidx_long,P_cmpidx_long,"Function Name: ""String Comparison and Search"""
+40DEFB,grecs_print_version_only,P_grecs_print_version_only,"""print function"""
+40E044,grecs_print_version,P_grecs_print_version,Function to Print Text with Formatting
+40E251,grecs_gram_trace,Unpredicted,"""Set Flag Based on Input"""
+40E281,update_timespec,P_update_timespec,"""Set Variable to Non-Zero and Update Flag"""
+40E2B1,grecs_parse,P_grecs_parse,Function with Environmental Variable Check
+40E384,grecs_getline,P_grecs_getline,"""Initialize Stream Function"""
+40E4BA,putback,P_putback,Function name: strcpy_dest_length_check
+40E547,pp_line_stmt,P_pp_line_stmt,"""String Copy Function"""
+40E64B,next_line,Unpredicted,"""Function Prologue"""
+40E727,grecs_preproc_fill_buffer,P_grecs_preproc_fill_buffer,Function with Local Variables
+40E9F2,utimens,Unpredicted,"""Function Setup"" or ""Variable Initialization"""
+40EA61,grecs_include_path_count,Unpredicted,Function name: sub_40EA70
+40EAB4,foreach_dir,Unpredicted,"""Function Setup and Execution"""
+40EB16,grecs_foreach_include_dir,P_grecs_foreach_include,"""Function with Variable Declarations and Calls"""
+40EB8D,pp_list_find,P_argp_doc,Function setup.
+40ECDC,incl_free,Unpredicted,"""Function with Memory Allocation"" or ""Memory Allocating Function"""
+40ECF7,grecs_include_path_clear,Unpredicted,"""Function Prologue and Epilogue"""
+40ED34,grecs_include_path_setup_v,P_bc,"""Function Prologue"" or ""Stack Setup"""
+40EDE9,grecs_include_path_setup,P_grecs_include_path_setup,Function prologue.
+40EFC7,grecs_preproc_add_include_dir,Unpredicted,Function setup or Function initialization.
+40F01E,incl_hasher,Unpredicted,"""Variable Initialization and Calculation"" or ""Integer Division"""
+40F052,incl_compare,P_AD_compare,"""Stack Comparison Function"""
+40F0A4,incl_copy,Unpredicted,Function Setup
+40F0CD,source_lookup,P_cb_tls,Function Setup or Stack Setup.
+40F194,push_source,P_push_source,Function Initialization or File Open Function
+40F5B3,pop_source,Unpredicted,"""Stack setup and file operations"""
+40F721,grecs_find_include_file,Unpredicted,Function Prologue.
+40F82A,isglob,P_R_recordtime,"""Function with Stack Manipulation"""
+40F871,parse_include,P_parse_include,Function prologue
+40FB9D,grecs_preproc_init,Unpredicted,Function Setup or Stack Setup.
+40FBBC,grecs_preproc_done,Unpredicted,Function to free memory and reset variables.
+40FC5A,grecs_preproc_run,P_grecs_preproc_run,Function name: execute_command_via_popen
+40FE92,grecs_preproc_extrn_start,P_grecs_preproc,Function Name: pipe and fork implementation.
+4101CA,grecs_preproc_extrn_shutdown,Unpredicted,Function Prologue
+410211,syment_free,P_syment_free,Function Prologue
+410250,syment_alloc,P_gl,Function setup or Memory allocation function.
+41030B,grecs_hash_string,P_hash_pjw,"""Push and XOR Function"" or ""Variable Shifting Function"""
+410351,grecs_hash_string_ci,Unpredicted,"""Lowercase conversion function"""
+4103A2,def_hash,Unpredicted,Function prologue.
+4103D2,def_cmp,Unpredicted,Function to compare two strings.
+41040D,def_copy,Unpredicted,Function for String Duplication and Null Check
+410458,def_free_fun_0,Unpredicted,Function prologue and memory deallocation.
+41048A,symtab_insert_pos,Unpredicted,Function Name: Process Data or Array Processing.
+410517,grecs_symtab_replace,Unpredicted,"""Function initialization"""
+4105FC,symtab_rehash,P_symtab_rehash,Function with Memory Allocation
+41070D,grecs_symtab_strerror,P_grecs_symtab_strerror,"""error handling"" or ""error message function"""
+41075A,grecs_symtab_remove,Unpredicted,Function Name: Subroutine Name
+410937,grecs_symtab_get_index,P_hol_cluster_is_child,"""Function Setup"" or ""Function Initialization"""
+410AAD,grecs_symtab_lookup_or_install,P_stream_set_lookup,Function name: sub_410937.
+410B95,grecs_symtab_clear,P_hashtab_next,Function Prologue
+410C32,grecs_symtab_create,P_grecs_symtab_create,Function Prologue
+410D6E,grecs_symtab_create_default,Unpredicted,"""Function Setup"""
+410DA3,grecs_symtab_free,P_print,Save and free memory function.
+410DE1,grecs_symtab_count_entries,P_mpz_lcm,"""Push and Compare Function"""
+410E38,grecs_symtab_enumerate,P_mh_free_channel_fd,Function setup or Variable initialization.
+410EC5,grecs_install_text,P_close_stdout,Function prologue or setup.
+410F64,grecs_destroy_text,Unpredicted,"""Function name not provided"" or ""Unnamed function"""
+410F7A,grecs_text_table,Unpredicted,"""Set cs:qword_62D710 to 0"""
+410F9A,grecs_value_free_content,P_grecs_grecs_free_count,Function prologue
+41103E,grecs_value_free,Unpredicted,Function Prologue.
+411065,grecs_node_create,Unpredicted,"""Function Setup"""
+4110BF,grecs_node_create_points,Unpredicted,Function Prologue.
+411142,grecs_node_bind,Unpredicted,Function prologue.
+41126A,grecs_node_unlink,P_symbol_free_menu,"""Modify Object Properties"""
+4112E7,listel_dispose,Unpredicted,Function Setup or Function Entry Prologue.
+411302,_grecs_simple_list_create,Unpredicted,Function Prologue.
+41132E,_tree_recurse,Unpredicted,"""Function with Variable Assignment and Conditions"""
+411447,grecs_tree_recurse,Unpredicted,Function or Procedure Setup
+41148A,grecs_node_free,P_action_free,"""Function with local variables and calls"" or ""Local variable and call function"""
+4114EA,freeproc,P_smtp_session_str,Function Prologue.
+411531,grecs_tree_free,Unpredicted,Function initialization or Error Handling function.
+411584,fake_callback,Unpredicted,Function prologue.
+41159E,find_keyword,P_find_keyword,"Function Name: ""Compare String to Constant Value"""
+41161B,target_ptr,P_grecs_symtab_clear,"""Function prologue"""
+411666,string_to_bool,P_string_to_bool,Function with string comparison statements.
+411778,string_to_host,P_split_bool,"""Resolve Hostname and IP Address"""
+4117DB,string_to_sockaddr,P_print_current_address,Function Initialization or Stack Setup.
+4130A4,short_cmp,Unpredicted,Function with Memory Comparison
+4130CE,int_cmp,Unpredicted,Function with Memory Comparison.
+4130F8,long_cmp,Unpredicted,Memory Comparison Function.
+413122,size_t_cmp,Unpredicted,Memory comparison function.
+41314C,time_t_cmp,Unpredicted,"""Memory Comparison Function"""
+413176,in_addr_cmp,Unpredicted,"""CompareTwoStrings"""
+4131A0,grecs_sockaddr_cmp,Unpredicted,Memory comparison function.
+4131CA,cidr_cmp,P_cidr_cmp,"""Compare strings function"""
+41326A,grecs_process_ident,P_grecs_process_ident,Function Prologue.
+4138B0,stmt_begin,Unpredicted,Function prologue.
+41397E,stmt_end,P_do,Function prologue
+413A82,nodeproc,P_Barcode_pls_encode,Function prologue
+413BD8,grecs_tree_process,Unpredicted,Function prologue.
+413C91,grecs_node_eq,P_fconn,"""String Comparison Function"""
+413D27,free_value_entry,Unpredicted,Function Prologue.
+413D4A,grecs_value_list_create,Unpredicted,"""Set Value in Memory Function"""
+413D6D,value_to_list,P_value_to_list,"""Function with stack allocation"""
+413E24,value_to_array,P_value_to_array,"""Push, Move, Sub, Compare, Call."""
+413E8B,array_add,P_array_add,Push and Store Function
+413F53,node_aggregate_stmt,P_node,Function prologue.
+414027,node_merge_stmt,P_node_merge_stmt,Function with Variable Allocation.
+4140B1,node_merge_block,P_component_buffer,"""Function Set Variables and Pointers"""
+414133,node_reduce,P_node_reduce,Function to handle data storage and retrieval.
+4141FD,reduceproc,Unpredicted,Function name: var_24_comparison
+414371,grecs_tree_reduce,Unpredicted,stack setup
+41443A,grecs_tree_first_node,Unpredicted,Function Prologue With Condition Check.
+41445C,grecs_next_node,P_fts_lfree,"""Function Setup"""
+4144C4,grecs_txtacc_alloc_entry,Unpredicted,Function Prologue
+414529,grecs_txtacc_cur_entry,P_hostlist_delete_host,"Function Name: ""sub_414540"""
+4145A5,grecs_txtacc_entry_append,Unpredicted,"""Copy String Function"""
+4145F9,grecs_txtacc_entry_tailor,P_grecs_txtacc_entry,Function Setup or Variable Initialization.
+41465F,grecs_txtacc_entry_free,Unpredicted,Function name: free_double_pointer
+414698,grecs_txtacc_create,P_grecs_txtacc_create,"""Modify Data in Memory"""
+4146F2,grecs_txtacc_free,Unpredicted,"""Function with Dynamic Memory Allocation"""
+414733,grecs_txtacc_grow,P_grecs_txtacc_grow,"Function name: ""Variable Initialization and Manipulation"""
+4147B6,grecs_txtacc_grow_string,Unpredicted,"""String Input Processing"""
+4147EB,grecs_txtacc_grow_string_escape,Unpredicted,"""Function Initialization"""
+41488C,grecs_txtacc_finish,P_grecs_txtacc_finish,Function Prologue or Stack Setup
+4149F8,grecs_txtacc_free_string,P_tree_find,"""Function_Startup"" or ""Process_Input"""
+414A6B,grecs_txtacc_clear,Unpredicted,Function Prologue.
+414A89,_wsplt_alloc_die,Unpredicted,"""Translate and Execute C Function"""
+414AB7,_wsplt_error,Unpredicted,Function with Exception Handling
+414B9D,_wsplt_seterr,Unpredicted,Function prologue.
+414BD8,_wsplt_nomem,Unpredicted,Function with Error Handling.
+414C6A,_wsplt_subsplit,Unpredicted,"""Set Variables and Pointers"""
+414DA8,_wsplt_seterr_sub,Unpredicted,"""Variable Swap and Free"""
+414E33,wordsplit_init0,P_wordsplit_init0,Function prologue.
+414ECE,wordsplit_init,Unpredicted,Stack Frame Initialization
+41518E,alloc_space,P_alloc_space,"""Function Setup"""
+4152AE,wsnode_flagstr,P_wsnode_flagstr,"""Variable Initialization"""
+4153E2,wsnode_ptr,P_wsnode_ptr,"""Function with Push and Move operations"""
+415433,wsnode_len,P_wsnode_len,"""Process Input String Length"" or ""String Length Calculation"""
+41548C,wsnode_new,Unpredicted,Allocate and copy function.
+4154D6,wsnode_free,P_wsnode_free,"""Allocate and Free Memory"""
+41550F,wsnode_append,P_wsnode_append,Stack Frame Setup and Variable Assignment
+41557F,wsnode_remove,P_wsnode_remove,"""Function for Variable Assignment"""
+415634,wsnode_insert,P_wsnode_insert,"""Function Initialization"""
+41575A,wordsplit_add_segm,P_wordsplit_add_segm,Function Prologue.
+415814,wordsplit_free_nodes,P_wordsplit_free_nodes,"""Function Entry and Initialization"""
+415880,wordsplit_dump_nodes,P_wordsplit_dump_nodes,"""Function Prologue"""
+4159BE,coalesce_segment,P_coalesce_segment,Function Prologue
+415B90,wsnode_quoteremoval,P_wsnode_quoteremoval,"Function name: ""mem_copy_with_flags"""
+415CD6,wsnode_coalesce,P_wsnode_coalesce,Initialize and check variable.
+415D39,wordsplit_finish,P_wordsplit_finish,"""Function Setup"""
+415EA4,node_split_prefix,P_node_split_prefix,Function Prologue.
+416021,find_closing_paren,P_find_closing_paren,Function name: variable initialization and comparison.
+41616A,wordsplit_find_env,P_wordsplit_find_env,"""Memory Check and Comparison Function"""
+416369,wsplt_assign_var,P_wsplt_assign_var,Function with input validation and string manipulation.
+4177C0,begin_var_p,P_begin_var_p,"""Variable range checker"""
+417801,node_expand,P_node_expand,"""Stack Setup Function"""
+417A67,wsnode_nullelim,P_wsnode_nullelim,"Function name: ""Set Flag and Call Subroutines"""
+417B00,wordsplit_varexp,P_wordsplit_cmdexp,"""Function with stack manipulation"""
+417B7E,begin_cmd_p,Unpredicted,Set Flag for Value Comparison.
+417B91,expcmd,P_expcmd,Function with Stack Allocation.
+418157,wordsplit_cmdexp,P_wordsplit_cmdexp,Function with Variable Initialization
+4181D5,wordsplit_trimws,Unpredicted,"""Function Name: input handling"""
+418393,wordsplit_tildexpand,P_wordsplit_tildexpand,Function Initialization
+41862C,isglob_0,Unpredicted,"""Stack Frame Initialization and String Check"""
+41867B,wordsplit_pathexpand,Unpredicted,Function prologue.
+418B45,skip_sed_expr,P_skip_sed_expr,"""Function to Parse Input"""
+418CF0,skip_delim,P_skip_delim,Function name: Process String Input
+418E16,scan_qstring,P_scan_qstring,"""Function Setup"""
+418F34,scan_word,Unpredicted,Function Prologue
+419412,xtonum,P_xtonum,Function initialization or Stack allocation.
+4194C6,wordsplit_c_quoted_length,Unpredicted,"""Variable Initialization Function"""
+4195B4,wsplt_unquote_char,P_wsplt_unquote_char,"""Push and Compare Function"""
+41960A,wsplt_quote_char,P_wsplt_unquote_char,Function for comparing and manipulating bytes.
+41965C,wordsplit_c_unquote_char,Unpredicted,Function to call sub_4195B4
+419694,wordsplit_string_unquote_copy,Unpredicted,Function Prologue.
+419A38,wordsplit_c_quote_copy,P_wordsplit_c_quote_copy,"""Copy String with Escape Characters"""
+419BD3,wordsplit_process_list,P_wordsplit_process_list,"Function Name: ""rbp_setup"""
+419E36,wordsplit_run,P_wordsplit_translate,"""Function setup"""
+41A10D,wordsplit_len,Unpredicted,Function Setup or Stack Setup.
+41A143,wordsplit,Unpredicted,Function to Check String Length and Return Result
+41A188,wordsplit_free_words,P_parse_symbol,"""Function name not specified."""
+41A21B,wordsplit_free_envbuf,P_wordsplit_free_envbuf,"""Function with Memory Allocation"""
+41A2CF,wordsplit_clearerr,P_wordsplit_clearerr,Function name: free_null_pointer_check
+41A31D,wordsplit_free,Unpredicted,Function to Free Memory Block.
+41A360,wordsplit_getwords,P_pa_addr,Function Setup/Initialization
+41A3EE,wordsplit_strerror,P_wordsplit_strerror,"""Function with ISRs"""
+41A443,wordsplit_perror,P_wordsplit_perror,Function Prologue
+41A4DC,grecs_vasprintf,P_grecs_vasprintf,Function with Dynamic Memory Allocation.
+41A681,grecs_asprintf,Unpredicted,Function Prologue.
+41A762,uint32_to_bytes,Unpredicted,"""Copy Input to Memory"""
+41A799,grecs_inaddr_to_bytes,P_grecs_inaddr_to_bytes,Function Prologue.
+41A823,grecs_sockaddr_to_bytes,P_di_addr,"Function Name: ""Push and Store Arguments"""
+41A88D,grecs_sockaddr_to_cidr,Unpredicted,Function Setup or Function Initialization
+41A93C,masklen_to_netmask,Unpredicted,Function: Store and Manipulate Data.
+41A9E0,grecs_str_to_cidr,P_grecs_str_to_cidr,Function Prologue
+41AE06,grecs_cidr_match,P_grecs_cidr_match,"""Comparison function"""
+41AE80,grecs_sockadd_cidr_match,Unpredicted,Function Initialization.
+41AEE6,grecs_grecs__symbol_value_print,Unpredicted,Function with Stack Variables and Argument Saving
+41AF09,grecs_grecs__symbol_print,Unpredicted,"""Stream and variable initialization"""
+41B12A,grecs_grecs__stack_print,Unpredicted,Function to Write Error Messages
+41B1A7,grecs_grecs__reduce_print,Unpredicted,Function for Printing Error Messages.
+41B2C3,grecs_grecs_stpcpy,Unpredicted,"""Stack Frame Initialization and String Copy"""
+41B310,grecs_grecs_tnamerr,P_yytnamerr,"""String Comparison Function"""
+41B3F3,grecs_grecs_syntax_error,P_yysyntax_error,Function with Variable Initialization.
+41B703,grecs_grecs_destruct,Unpredicted,"Function with Push, Move, Compare, and Jump Instructions."
+41D04E,grecs_grecs_error,Unpredicted,"""Function with memory allocation and API call"""
+41D081,grecs_grecs_parser,P_builtin_decode,Assembly function for memory space allocation and function call.
+41EE15,grecs_grecs__get_next_buffer,Unpredicted,Function Prologue
+41F334,grecs_grecs__get_previous_state,Unpredicted,"""Push and Move Function"""
+41F436,grecs_grecs__try_NUL_trans,Unpredicted,"""Function Prologue"""
+41F500,grecs_grecs_restart,Unpredicted,Function to Write Data to Stream
+41F5AF,grecs_grecs__switch_to_buffer,Unpredicted,Function name: sub_41F5E6
+41F6A2,grecs_grecs__load_buffer_state,Unpredicted,"""Get Stream Information Function"""
+41F72D,grecs_grecs__create_buffer,Unpredicted,Function with Local Variables.
+41F7C3,grecs_grecs__delete_buffer,Unpredicted,Function Prologue.
+41F84F,grecs_grecs__init_buffer,Unpredicted,Function prologue.
+41F913,grecs_grecs__flush_buffer,Unpredicted,Function initialization or Struct initialization.
+41F9B0,grecs_grecs_push_buffer_state,Unpredicted,"""Function Setup"""
+41FAB4,grecs_grecs_pop_buffer_state,Unpredicted,Function Initialization
+41FB93,grecs_grecs_ensure_buffer_stack,Unpredicted,"""Initialize Memory Block"""
+41FCC5,grecs_grecs__scan_buffer,Unpredicted,FunctionInitializeArray
+41FDC2,grecs_grecs__scan_string,Unpredicted,Function to calculate string length and manipulate it.
+41FDEC,grecs_grecs__scan_bytes,Unpredicted,Function with Local Variable Initialization.
+41FEBA,grecs_grecs__fatal_error,Unpredicted,Function that prints error message and exits.
+41FEF9,grecs_grecs_get_in,Unpredicted,"""StreamGetter"""
+41FF06,grecs_grecs_get_out,Unpredicted,"""Get Address Function"""
+41FF13,grecs_grecs_get_leng,Unpredicted,"""Get Memory Address and Return"""
+41FF1F,grecs_grecs_get_text,Unpredicted,"""Function Setup"" or ""Prologue Setup"""
+41FF2C,grecs_grecs_set_lineno,Unpredicted,Function Entry/Prologue
+41FF3F,grecs_grecs_set_in,Unpredicted,"""Stream Injection"""
+41FF55,grecs_grecs_set_out,Unpredicted,Function prologue with variable initialization.
+41FF6B,grecs_grecs_get_debug,Unpredicted,"""Get Address from Constant"""
+41FF77,grecs_grecs_set_debug,Unpredicted,Function with parameter saving and returning value.
+41FF8A,grecs_grecs__init_globals,Unpredicted,Initialization function.
+41FFEB,grecs_grecs_lex_destroy,Unpredicted,"""Function with Memory Manipulation"""
+420094,grecs_grecs_alloc,Unpredicted,"""Function allocates memory on stack"""
+4200AE,grecs_grecs_realloc,Unpredicted,Function for reallocating memory with parameters
+4200D3,grecs_grecs_free,Unpredicted,"""Memory Allocation and Freeing Function"""
+4200EE,grecs_grecs_wrap,Unpredicted,Function Close Stream
+420133,grecs_lex_begin,Unpredicted,Function for file opening and error handling.
+42023B,grecs_lex_end,Unpredicted,Function Prologue
+42024E,isemptystr,P_isemptystr,"""Function Setup and Processing"""
+4203A3,multiline_strip_tabs,Unpredicted,Function Prologue
+4203EC,multiline_add,Unpredicted,"""Function Name: Substring Check"""
+42046F,is_tab,Unpredicted,"""Check for Single Digit"""
+420484,is_ws,Unpredicted,Check if char is a digit or hex.
+4204A7,multiline_begin,P_multiline_begin,Function Prologue.
+42063D,ident,P_ident,"""Function prologue with string manipulation"""
+4206D3,qstring_locus_fixup,Unpredicted,"""Increment/Decrement Counter"""
+420702,grecs_value_ptr_from_static,Unpredicted,"""Memory Copy Function"" or ""Copy Structure Function"""
+420760,assign_locus,P_assign_locus,Function Name: Unknown (requires more context)
+420844,grecs_parse_line_directive,P_grecs_parse_line_directive,Function Setup or Function Initialization.
+420AB7,grecs_parse_line_directive_cpp,P_grecs_parse_line_directive_cpp,Function prologue.
+420C0E,grecs_str_is_ipv4,P_grecs_str_is_ipv4,"""Function Setup"""
+420CB2,grecs_str_is_ipv6,P_grecs_str_is_ipv6,"""Function with Stack Manipulation"""
+420D9E,grecs_str_is_num,Unpredicted,"""ctype character check"""
+420DF2,grecs_str_is_ipaddr,Unpredicted,"""Substring search function"""
+420E4D,grecs_line_acc_create,Unpredicted,Save and call subroutine function.
+420E60,grecs_line_acc_free,Unpredicted,"""Function prologue and epilogue"""
+420E81,grecs_line_acc_grow_char,Unpredicted,"""Function Setup"" or ""Stack Setup"""
+420ED3,grecs_line_acc_grow_char_unescape,P_grecs_line_acc_grow_char_unescape,"""Function with Conditional Branching"""
+420F19,grecs_line_acc_grow,Unpredicted,"""Function Setup and Call"""
+420F46,grecs_line_acc_grow_unescape_last,P_grecs_line_acc_grow_unescape_last,"Function name: ""GetStringAndPrint"""
+420FE2,grecs_line_begin,Unpredicted,Function prologue.
+420FFA,grecs_line_finish,Unpredicted,"""Function with initialization and cleanup"""
+42101E,_grecs_list_eq,Unpredicted,Check if two variables are equal.
+4210E3,_grecs_array_eq,Unpredicted,Function Name: Compare Pointers
+421175,grecs_value_eq,P_grecs_value_eq,Function with Local Variable Comparison
+42124A,_grecs_list_match,Unpredicted,Function with Variable Comparison
+421318,_grecs_array_match,Unpredicted,"""Comparison and Loop Function"""
+4213B0,grecs_value_match,P_grecs_value_match,"""Function Setup"""
+4214D7,grecs_match_buf_create,P_panel_init,Function Prologue.
+4216FE,grecs_match_buf_get_args,Unpredicted,"""Push and Retrieve Pointers"""
+42172A,grecs_match_buf_get_node,Unpredicted,Function prologue
+42173C,grecs_match_buf_get_root,Unpredicted,Function Prologue.
+42174E,grecs_match_buf_set_root,Unpredicted,Function prologue.
+421769,grecs_match_buf_free_contents,P_grecs_match_buf_free,"""Memory Allocation/Deallocation"""
+4217F1,grecs_match_buf_free,Unpredicted,Function with stack and memory allocation.
+42181F,parse_label,P_parse_label,Function Prologue.
+421B43,split_cfg_path,P_split_cfg_path,Function Initialization
+421E1F,grecs_node_exact_match,P_grecs_node_exact_match,Function setup or Function initialization.
+421F99,grecs_find_node,P_builtin_path,Function Initialization
+422054,fixup_loci,P_hash_free,Function Name: push_rbp_mov_vars
+422105,grecs_node_from_path_locus,Unpredicted,Function Prologue
+42237A,grecs_node_from_path,Unpredicted,Function with variable initialization.
+4223A6,is_root,P_list_node,"""Function with variable comparison"""
+4223D8,grecs_match,P_flocal_rec_var,Function name: varComparison
+422632,grecs_match_next,Unpredicted,"""Function prologue"" or ""Stack frame setup"""
+422691,grecs_match_buf_first,Unpredicted,Function initialization.
+422717,grecs_match_first,P_pies_url_copy,"""Function with Memory Allocation"""
+422870,stat,Unpredicted,"""File Statistic Jump Function"""
+400DF0,sub_400DF0,Unpredicted,"""Jump to Memory Address"""
+401280,deregister_tm_clones,Unpredicted,Function to check and jump based on a value.
+401300,__do_global_dtors_aux,Unpredicted,Function to set byte to 1 if 0.
+401320,frame_dummy,Unpredicted,"""Memory Address Comparison and Branching"""
+401350,exchange,Unpredicted,Memory Allocation Function.
+4020F0,.bindtextdomain,Unpredicted,option parsing function
+402510,.access,Unpredicted,"""Function to check and modify strings"""
+402640,.strptime,Unpredicted,"""Push and comparison function"""
+402830,FillBuffer_0,Unpredicted,Function to read file and check for errors.
+4028D0,CountChars,Unpredicted,"""Input Counter Function"""
+402910,EvalAtom,P_grecs_value_eq,"""Push-RBX-Mov-Sub-Cmp-Jz-Jnz"""
+4029C0,EvalSum,P_parse_string,"""Function with multiple push and mov instructions"""
+402FA0,EvalProd,P_uvwrite_assign_full,Function with Push and Mov Instructions
+4033D0,EvaluateExpression,Unpredicted,Function initialization or Initialization function.
+4035E0,FillBuffer,P_process_history,"""File read function"""
+4036A0,InitBuffer,Unpredicted,File open and read function
+403870,MakeStringBuffer,P_match_init,"""Test and Copy Function"""
+4038C0,FlushBuffer,P_smtp_reply_hash_cmp,putchar with byte input
+4038F0,GetaString,Unpredicted,"""String Copy"" or ""String Check and Copy"""
+4039B0,GetIdentifier,P_build_file,Function for Testing Input Parameters
+403B90,GetNumber,Unpredicted,"""Check and Jump Function"""
+403BC0,PreventLexSplit,Unpredicted,"""Function with Push and Mov Instructions"""
+403C50,SkipComment,P_parse_range,Test and Modify String
+403E30,SkipWhitespace,P_get_special,Function to Check and Manipulate String
+403F80,NextLex,Unpredicted,parse_string function
+4042B0,ENextLex,P_list_insert,"""Push and Initialization Function"""
+404330,GetPunct,P_print,"""Function Prologue"""
+404390,EGetPunct,P_get_symbol,Stack Check Fail Prevention Function.
+404410,GetArrayBounds,P_print_watch,Function with Push and Mov Instructions
+404660,GetOptPunct,Unpredicted,"""Read file function"""
+404770,GetStatement,Unpredicted,Check and Process Input Arguments.
+404B00,GetFuncArgs,Unpredicted,"""Function with Push and Mov Instructions"""
+404DC0,UnrollEquation,P_unescape,"""Function with Push and Mov Instructions"""
+405040,ReportError,Unpredicted,"""Function with Pushes and Moves"""
+405640,GetFnType,Unpredicted,"""Push-RBP-RBX-Mov-Sub-Mov-Cmp-Jmp/Conditional-Jump-Add-Mov-Cmp-Call-Test-Ret"""
+405790,GetInputArgs,P_check_file,Push and Setup Function
+405B30,GetNDoses,P_tokenize_section,"""Push and Memory Manipulation Function"""
+405E20,GetInputFn,Unpredicted,Function prologue.
+406050,AnnounceProgram,Unpredicted,"""Print Three Strings Function"""
+406080,PromptFilenames,P_split_acl,"""String Parsing Function"""
+406260,ShowHelp,Unpredicted,"""Print String Block"" or ""String Printing Routine"""
+4062D0,GetCmdLineArgs,Unpredicted,"""Function for Pushing Registers and Calling Operations"""
+406560,Cleanup,P_argp_hol,"""Free Memory Block"""
+4067B0,IsMathFunc,Unpredicted,"""String comparison function"""
+406840,VerifyEqn,P_verify_menu,Push and Initialization Function.
+406B10,AddEquation,P_add_file_name,"""allocate and copy strings"""
+406D60,GetVarPTR,P_get_cache_number,"""Compare Strings"""
+406DA0,GetVarType,Unpredicted,test and compare function.
+406DF0,CalculateVarHandle,P_list_remove,"""Compare and Jump Function"""
+406E80,DefineGlobalVar,Unpredicted,"""Function with Push and Comparisons"""
+406FB0,DefineDynamicsEqn,P_fts_open,Function to push and compare values.
+407210,DefineScaleEqn,P_adns_hostaddr,"""Push and move registers function"""
+407780,DefineEventEqn,P_adns_hostlist_uniq,Function for Pushing and Moving Data
+407910,DefineRootEqn,P_record_from_ok,Function to Compare Strings
+407AA0,DefineVariable,Unpredicted,"""Function with Push and Comparison Instructions"""
+408040,DeclareModelVar,Unpredicted,Function with multiple push and comparisons
+408330,GetKeywordCode,P_mh_alias_get_internal,"""Copy String and Compare"""
+408380,GetVarList,P_find,"""Function for Pushing and Comparing Values"""
+4084E0,ProcessDTStatement,P_header_parse,Function with Multiple Pushes and Memory Operations.
+408730,ProcessIdentifier,P_make_line_copy,"Function with push, mov, sub, call instructions."
+408A00,ProcessWord_0,Unpredicted,Function Prologue
+408EB0,ProcessWord,P_info_get_client_node,Input validation check.
+408EE0,FindEnd,P_out_normalize_diff,"""find valid input"""
+408F90,ReadModel,Unpredicted,"""Function with Push Instructions"""
+4091C0,Transcribe1AlgEqn,Unpredicted,Function name: initialize_buffer
+409430,Transcribe1DiffEqn,Unpredicted,"""Function with Push and Mov Instructions"""
+409670,AugmentEquation_0,Unpredicted,Function with Push and String Operations
+409A40,CountLines,Unpredicted,"""Push and Scan Function"""
+409AE0,GetSBMLKeywordCode,Unpredicted,"""Push and compare function"" or ""Strcmp and return function"""
+409B30,GetSBMLLex,Unpredicted,Push and Compare Function.
+409CE0,SetVar,P_node_open,Function with Push and Pop Instructions
+409EA0,Create1Var,P_parse_bracket_element,"""Function with Multiple Push Instructions"""
+40A130,ReadCpt,Unpredicted,Push and move function.
+40A290,ReadCpts,P_fts_alloc,"""Set Null in Struct Function"""
+40A2E0,ReadDifferentials,Unpredicted,Function to push and manipulate registers
+40A780,ReadParameter,P_parse_lock,Function name not provided.
+40A8E0,ReadParameters,Unpredicted,"""Function with RBX manipulation"""
+40A910,ReadReaction_L1,P_mark_array,Stack setup and value manipulation.
+40AA20,TranscribeOpSymbol,Unpredicted,"""Function to Compare Strings"""
+40AAE0,ReadApply,Unpredicted,"""Function with Push and Mov Instructions"""
+40AE90,ReadReaction_L2,P_copy,"""Prints string with format specifier"""
+40AFF0,ReadRule,P_mark_a_char,print statement function
+40B190,ReadSBMLLevel,Unpredicted,"""Copy String"""
+40B2C0,Read1Species,Unpredicted,Function Setup or Function Initialization.
+40B710,ReadSpecies,Unpredicted,"Function ""Push and call with error check""."
+40B750,ReadFileNames,Unpredicted,Push and Memory Allocation Function.
+40B930,ReadSBMLModels,Unpredicted,Function to print formatted output.
+40BEA0,ReadPKTemplate,P_panel_act,"""Stack setup"" or ""Function prologue"""
+40C130,WriteOne_R_ParmInit,P_prt_no_arg,Function prologue.
+40C2B0,WriteOne_R_PSDecl,P_prt_opt_arg,Function Name: Unknown (no context provided)
+40C490,ForAllVar,P_uuconf_get_arg,"""Push and Test Function"""
+40C5C0,WriteOneName,P_prt_usage,Comparison and Jump with Printing of Error Messages.
+40C770,WriteHeader,P_prt_version,Print current time function.
+40CAE0,WriteIncludes,Unpredicted,"""Fwrite with multiple string outputs"""
+40CBA0,WriteOneDecl,P_prt_timespec,"""Function Prologue"""
+40CD10,WriteDecls,Unpredicted,Function for Writing File Contents
+40D280,GetName,P_long_file,Function Name: Check Arguments and Format
+40D3E0,WriteOneVMEntry,P_dir_name,Function to check and manipulate values in registers.
+40D5E0,WriteVarMap,P_setStdOptFmts,Function with File Writing and Pointer Manipulation
+40D740,WriteOneInit,Unpredicted,"""Memory Corruption Detection"""
+40DFB0,TranslateID,P_get_stat,"""Stack setup function"""
+40E1C0,TranslateEquation,P_mk_and_path,Function name not provided in code snippet.
+40E470,WriteOneEquation_0,Unpredicted,"""Function with Push and Mov instructions"""
+40E8F0,WriteCalcDeriv,P_prt_ini_list,"""Test and fwrite"""
+40EE60,WriteCalcJacob,P_prt_usage,Function to Write to File
+40EFD0,WriteCalcOutputs,P_prt_opt_from_opt,function_test
+40F1E0,IndexVariables,P_prt_usage,Memory usage check function.
+40F670,AdjustVarHandles,P_prt_opt_system,"""Add and Test Function"""
+40F710,ReversePointers,Unpredicted,"""Check and Update Pointer"""
+40F750,AssertExistsEqn,P_print_var,"""Push RBP and RBX"""
+40F7E0,VerifyEqns,P_do_clear,"""Push and Test Function"""
+40F970,VerifyOutputEqns,P_prt_opt_line,"""Push and Check Function"""
+40FA50,WriteModel,P_list_delete,Function Name: sub_40F1E0
+410070,Write_R_Scale,P_do,"""File Output Function with Registers"""
+410240,Write_R_CalcDeriv,P_prt_version,Check and print function
+4104F0,Write_R_InitModel,Unpredicted,Output File Function.
+4106B0,Write_R_CalcJacob,P_prt_bucket_path,Function for writing data to file.
+410840,Write_R_Events,Unpredicted,Function: Print Data and Check for Null Pointers.
+410980,Write_R_Roots,P_fts_read,Assembly code for fwrite function with some conditionals.
+410AE0,WriteOne_R_PIDefine,P_prt_opt,Prints debug information
+410CF0,Is_numeric,Unpredicted,Convert String to Double
+410ED0,Write_R_InitPOS,Unpredicted,Print Stack Trace Function.
+4116A0,Write_R_Decls,P_argp_opt,"""File Write Function"""
+411C30,Write_R_Includes,Unpredicted,"""Print with Push and Pop"""
+411CB0,Write_R_Model,Unpredicted,"""Function to Copy and Print Data"""
+412180,MyStrcmp,P_adns_rr_info,String Compare Helper Function
+401C10,sub_401C10,Unpredicted,Jump Function
+402120,.__stack_chk_fail,Unpredicted,Function to compare and jump based on a value
+4021A0,.printf,Unpredicted,Function to initialize BSS segment.
+4021C0,._IO_putc,Unpredicted,"""Memory Access and Function Call"""
+4021E6,save_history,Unpredicted,"""Append History Function"""
+4022CE,growbuffer,P_get,Memory Allocation Function
+40239A,logprintf,P_mail_error,"""Function with Stack and Formatting"""
+4024C4,logputchar,Unpredicted,"""Function to Print Character(s)"""
+402506,logputs,P_open,"""Print String Function"""
+402556,hassubscript,Unpredicted,"""String length and comparison function"""
+4025D1,replace_minus,P_parse,"""Function Setup"""
+402716,replacectrlchars,P_check,Function name: ctype_b_check_and_replace_spaces
+402764,fgetscont,Unpredicted,process_input.
+4028E1,fgetslong,P_check_sol_function,Function prologue or stack setup
+402A3E,mymalloc,Unpredicted,Memory Allocation Function
+402AA1,dupstr,Unpredicted,"""String Duplication Function"""
+402AE7,dupnstr,Unpredicted,"""String Copy Function"""
+402B3D,strwidth,Unpredicted,Function Prologue or Set Up Stack Frame.
+402BF1,uhash,Unpredicted,"""Variable manipulation function"""
+402C4B,ulookup,Unpredicted,Function initialization.
+402CB2,plookup,Unpredicted,Function with Stack Allocation
+402D49,fnlookup,Unpredicted,Function with Memory Comparison
+402DB5,aliaslookup,Unpredicted,Function Prologue
+402E0B,addfunction,Unpredicted,Function to Copy Data and Store in Array.
+402E5A,freefunction,P_free,"""Free Memory Function"""
+402FA3,removespaces,P_extract_escape,"""String Manipulation Function"""
+403048,invfnlookup,Unpredicted,Check Bit in Byte Function
+403088,strip_comment,Unpredicted,"""String Manipulation"" or ""String Search"""
+4030D1,tightprint,Unpredicted,Function with stream manipulation.
+40312B,splitline,P_fi_hostlist_copy,"""String Parsing Function"""
+4031C5,isdecimal,Unpredicted,"""Stack Allocation and String Search"""
+4031F5,checkunitname,P_find_callback,Function with Stack Operations.
+403415,newunit,P_api_get_text_text,Function for Creating Units in Game
+403693,newprefix,Unpredicted,Function_initializePrefix
+403858,parsepair,P_get_str,"""Function Setup"""
+403AEC,extract_interval,P_mh_get_string,Function with Variable Assignments
+403C29,copyfunctype,P_hash_table,"""Copy Function"""
+403D96,copyfunction,Unpredicted,"""Function Setup"" or ""Setup Function"""
+405149,newtable,P_unserialize_wordsplit,"""Initialize Variable"""
+405720,newalias,P_hostlist_iterator_create,Function Name: create_new_alias
+4058A8,checkvar,P_host_is_localhost,"""Name retrieval and comparison function."""
+405930,pathend,P_last_component,"""String Length Calculation"""
+40597F,isfullpath,Unpredicted,"""Check For Slash"""
+4069E0,initializeunit,Unpredicted,Store Double Precision Float in Array.
+406A20,freeunit,P_find_symbol_list,Function Prologue
+406ACF,showunit,P_hash_get_alias_string,"""Function Setup"""
+406D31,sortunit,Unpredicted,Function with qsort sorting algorithm.
+406DDA,cancelunit,P_convert_put,Function Name: String Comparison and Memory Management
+406ED2,lookupunit,Unpredicted,Function name: sub_407000
+4072B0,moveproduct,Unpredicted,"""Function Prologue"""
+40738A,copyproduct,P_dicod_Pfdset,Function Prologue or Stack Frame Setup.
+407402,unitcopy,Unpredicted,"Function name: ""CopyDataToBuffer"""
+407460,multunit,Unpredicted,Calculate Two Numbers with SSE Multiplication
+4074DC,divunit,Unpredicted,"""Divide and Conquer"""
+407559,reduceproduct,P_load_variable,Function with Variable Initialization
+40776F,reduceunit,P_wsnode_free,"""Function to Allocate Memory and Check Status"""
+40781D,ignore_dimless,P_hostlist_push,"""Function with Stack Allocation and Comparison"""
+407877,ignore_nothing,Unpredicted,Function prologue or stack setup
+407886,ignore_primitive,P_hostlist_push,"""Function Setup"" or ""Argument Handling"""
+4078DF,compareproducts,P_check_conf_section,"""Function for String Comparison"""
+407A0E,compareunits,Unpredicted,Function with stack manipulation and sub-calls.
+407A74,completereduce,Unpredicted,"""Function Setup"""
+407AB9,expunit,Unpredicted,"""Function Setup"" or ""Stack Frame Setup"""
+407CE0,unit2num,P_builtin_decode,"""Function Prologue"""
+407D8B,unitdimless,Unpredicted,Function Setup or Stack Setup.
+407E10,subunitroot,Unpredicted,"""Function Setup"""
+407F26,rootunit,P_is_do_dir,"""Function prologue"""
+4080B8,invertunit,Unpredicted,"""Stack Variable Manipulation Function"""
+4081A3,float2rat,Unpredicted,Function with XMM0 and stack manipulation.
+408364,unitpower,Unpredicted,Function Prologue.
+40853F,addunit,P_edit_get_argument,Function name: add_two_numbers_and_process_results.
+4085E3,linearinterp,Unpredicted,"""Calculate Division and Addition"""
+408E8C,showdefinition,Unpredicted,func_push_rbp_rbx_sub_rsp_mov_var
+408F7F,showfunction,P_ukshow_folder,"""Initialize Stack Frame Function"""
+4093E6,showtable,P_do_parse,"""Interpolation Function"""
+4096AE,showfuncdefinition,Unpredicted,"""Function Prologue"""
+409746,showunitlistdef,Unpredicted,"""SunitList function"""
+4097C6,showfunc,P_file_enter,Function initialization or Function setup.
+409AD1,showconformabilityerr,Unpredicted,Function with Local Variables
+409BAC,isfract,P_convert_length,"""Function Setup/Initialization"" or ""Variable Initialization"""
+409C73,checksigdigits,P_get_page,Initialize Function
+409DCA,setnumformat,Unpredicted,"""Set Number Format Function"""
+40A6D9,round_to_displayed,P_vfs,"""Calculate Floating Point Number Display"""
+40A8DC,showunitname,P_pap_hostaddr,"""Function with Memory Manipulation"""
+40AACE,showanswer,P_edit_init_check_cmd,"""Function with stack allocation"""
+40BADE,addtolist,P_parse_variable,"""Memory Allocation"""
+40BDC7,compnd,Unpredicted,String comparison function.
+40BDF2,screensize,Unpredicted,"""Function14h"""
+40BDFD,tryallunits,P_write_sequence,"The best name for this ASM function would be ""initialize_variables."""
+40C1FA,getuser_noreadline,Unpredicted,Function with Input Validation and Error Handling.
+40C2D3,getuser_readline,P_get_int,"""Input Processing"""
+40C3E9,getuser,P_getuser,Function Entry or Stack Setup
+40C43E,completeunits,P_load,"""Function setup or initialization"""
+40CA17,checkcwd,Unpredicted,Open file and check for errors.
+40CA5B,getprogramname,P_ident,"""Function with Push and String Manipulation"""
+40CB1E,getprogdir,Unpredicted,Function to Initialize Variables and Open File
+40CD40,getdatadir,P_ipmi_oem_output,"""Get Data Dir Function"""
+40CEB3,findlocalemap,Unpredicted,Function for Opening a File.
+40D265,findunitsfile,Unpredicted,open_units_file
+40D73B,personalfile,P_write_file,initialize file stream and variables
+40D97A,usage,Unpredicted,"""Usage and Help Function"""
+40DA33,helpmsg,Unpredicted,Print Error and Exit Function.
+40DA69,printversion,Unpredicted,Function Setup or Setup Function
+40DDF3,showunitsfile,Unpredicted,Function to Call Units Data File Name.
+40DE2D,processargs,P_ipmi_fru_output_oem_record,"""Function with Stack and Argument Handling"""
+40E3EF,showpointer,P_inter_maxtoabs,"""Function to Print a Number"""
+40E428,processunit,P_parser_parse_help,Function Initialization or Stack Setup.
+40E633,checkunitlist,P_enlist,Function with Push and Sub Instructions
+40EA8F,processwant,Unpredicted,Function with local variable and string processing.
+40EAF0,checkallaliases,Unpredicted,"""Initiate Unit List Print Function"""
+40EBDB,checkunits,Unpredicted,Function Setup.
+40F128,showunitlist,P_edit_block_menu_cmd,Function with Stack Allocation and String Manipulation
+40F849,ishelpquery,Unpredicted,Function name: initialize variables and check input.
+40FCA1,checklocale,Unpredicted,"""Function to Set Locale and Language"""
+40FD47,replacealias,Unpredicted,Function Name: unclear/unknown (due to lack of context)
+40FE82,remaplocale,P_mc,"""File Input Function"""
+41000A,close_logfile,Unpredicted,"""Push, Open and Close File"""
+410049,open_logfile,Unpredicted,Function to write log file.
+410F88,getnewunit,Unpredicted,"""NewUnit"""
+410FEF,destroyunit,Unpredicted,"""Function with Memory Allocation and Freeing"""
+41102B,makenumunit,Unpredicted,Function with Memory Assignment.
+411083,logunit,Unpredicted,"""Function with Local Variables"""
+411114,funcunit,P_env_eval,Function initialization or Stack setup.
+4112FB,yydestruct,P_option_set_base,Function Prologue.
+4131DA,unitserror,Unpredicted,"""Function to save two parameters"""
+4131E9,parseunit,P_randread_error,Initialize Function.
+413430,atexit,Unpredicted,"""__cxa_atexit implementation"""
+1,not found in dict,Unpredicted,"""Fast Return"""
+401F40,sub_401F40,Unpredicted,Jump to address with push
+4026E0,deregister_tm_clones,Unpredicted,"""Check Value and Jump Function"""
+402760,__do_global_dtors_aux,Unpredicted,Check and Execute Function.
+402780,frame_dummy,Unpredicted,"""Memory access and function calls"""
+4027A6,resolve_bind_address,Unpredicted,"""Function Name"""
+402846,connect_with_timeout_callback,Unpredicted,"""Connect Function"""
+402885,connect_with_timeout,P_configFileLoad,Function Prologue.
+40292B,set_connection_host_name,Unpredicted,"""Function Setup and Assertion Check"""
+402996,connect_to_one,Unpredicted,Function prologue.
+402C7C,connect_to_many,P_argp_fmtstream_hol,"push, move, subtract, load, call, compare, return."
+402D2F,test_socket_open,Unpredicted,"""Select Polling Function"""
+402E2C,bindport,P_generate_dh,Initialize Socket Function.
+4030C7,select_fd,Unpredicted,"""Function with stack setup and select"""
+40326E,acceptport,P_generate_crq_info,"""Function Start"" or ""Function Initialization"""
+40334F,closeport,Unpredicted,Function for Closing a File.
+4033CE,conaddr,Unpredicted,socket initialization function
+403458,iread,P_do_restart,Function prologue.
+4034E3,iwrite,P_file_read,Function Setup
+40359C,convert_all_links,P_unix_group_to_list,"""Function Setup"""
+40381A,convert_links,P_location,Function for Saving File
+403D7D,construct_relative,P_last_component,"""String Processing"""
+403F6A,write_backup_file,P_file_open,"""Function"" or ""Function name"" would be appropriate names."
+404171,replace_attr,Unpredicted,Function Prologue
+404281,replace_attr_refresh_hack,Unpredicted,Function name: generate_string_hex_checksum.
+404357,find_fragment,P_argcv_strncasecmp,"""Function with Push and Move Instructions"""
+4043E1,local_quote_string,Unpredicted,"""Function Setup"" or ""Stack Frame Initialization"""
+404566,match_except_index,P_last_component,"""Function"""
+40466B,dissociate_urls_from_file_mapper,Unpredicted,Function name not provided.
+4046E3,dissociate_urls_from_file,Unpredicted,Function prologue.
+40470A,register_download,P_mh_file_copy,Function prologue.
+4048E1,register_redirection,Unpredicted,Function with Memory Allocation and Assert Failure Handling.
+4049BB,register_delete_file,Unpredicted,Function prologue.
+404A82,register_html,Unpredicted,"""Function Prologue"""
+404B03,convert_cleanup,Unpredicted,Set and Clear Global Variables.
+404BA9,downloaded_mode_to_ptr,P_get_symbol_visibility,"""Select Value Function"" or ""Integer Switch Function"""
+404BEC,downloaded_file,Unpredicted,Function with Push and Sub Instructions.
+404CF4,df_free_mapper,Unpredicted,"""Free Memory Function"""
+404D1B,downloaded_files_free,Unpredicted,"""Initialize function"""
+404D61,cookie_jar_new,Unpredicted,"""Function Setup"""
+404D9C,cookie_new,Unpredicted,"""Function Initialization"""
+404DD9,delete_cookie,Unpredicted,Function for freeing memory allocations.
+404E66,find_matching_cookie,P_profile,Function with Local Variable Initialization
+404F3D,store_cookie,P_ping_set_dest,Function Prologue.
+40514D,discard_matching_cookie,P_filter_open,Function prologue
+4052A0,update_cookie_field,Unpredicted,Stack setup function.
+4057D4,parse_set_cookies,Unpredicted,Initialize function
+405D3E,numeric_address_p,Unpredicted,"""Check for Decimal Point"""
+405F18,check_domain_match,P_argp_fmtstream_arg,RBPSUB function.
+4061D4,check_path_match,Unpredicted,"""Function Setup and Call"""
+4061F9,cookie_jar_process_set_cookie,Unpredicted,Function Setup or Memory Allocation Function.
+406381,find_chains_of_host,P_str_to_file,"""Function with Stack Frame Setup"" or ""Function Prologue"""
+40645C,path_matches,P_xbasename,"""String Comparison Function"""
+4064BE,cookie_matches_url,P_tunnel_inode,Function Prologue.
+4065AC,equality_comparator,P_b_auth,"""Function with String Comparison"""
+406624,eliminate_dups,P_mmalloca,"""Function Setup"""
+40673A,goodness_comparator,P_dev_ino_hash_compare,"""Function with local variable operations"" or ""Local variable setup and calculation"""
+406790,cookie_jar_generate_cookie_header,P_locale_charset,"""Initialize Stack Frame Function"""
+406C8E,domain_port,Unpredicted,"""Function Setup"""
+406D5C,cookie_jar_load,Unpredicted,Stack Frame Setup and File Reading
+4073F0,save_cookies_mapper,Unpredicted,Function prologue or parameter initialization.
+407567,cookie_jar_save,P_temp_stream,Function opening and writing to a file.
+407720,nuke_cookie_chain,P_free_callback,Function Setup
+40779E,cookie_jar_delete,Unpredicted,Function Prologue
+4077E0,ftp_expected_bytes,Unpredicted,"""Function Setup"" or ""Function Initialization"""
+40ABE4,ftp_get_listing,P_edit_replace_sequence,"""Function Name Unknown"""
+40B794,ftp_retrieve_dirs,P_emit_number,Function Prologue
+40BA3E,has_insecure_name_p,P_fsysdep,"""Check for '/' or strstr"""
+40BA80,ftp_retrieve_glob,P_edit_execute_to_init,Function prologue.
+40BDAE,ftp_loop,P_dbop_put,Function Prologue
+40C176,delelement,P_free_buffer,Function for Freeing Memory and Moving Pointers
+40C210,freefileinfo,P_cleanup,Function setup and cleanup.
+40C275,ftp_response,Unpredicted,Function Prologue or Stack Setup.
+40C564,ftp_request,Unpredicted,String Comparison Function.
+40C677,ftp_login,P_get,Function prologue.
+40C9BD,ftp_port,P_login,"""Function Setup"" or ""Prologue Setup"""
+40CB92,ftp_pasv,Unpredicted,Function prologue.
+40CE76,ftp_type,P_mf_manyistr,Function prologue.
+40CF6F,ftp_cwd,P_get,Function with memory allocation and string manipulation.
+40D080,ftp_rest,P_print_pacct_record,Function with stack manipulation and string operations.
+40D17F,ftp_retr,P_openat_save_fail,"""Function with Memory Management"""
+40D290,ftp_list,P_get_arg_char,Function Name: Substring_Validation
+40D3A1,ftp_syst,P_is_regexp,Function initialization.
+40D586,ftp_pwd,P_get_fs_usage,"""Function Prologue"""
+40D6CF,ftp_size,P_get,"""Function Setup/Initialization"""
+40D842,ftp_process_type,P_isar_parse_check,Function name: str_contains_letter
+40D8A1,symperms,P_extract,Function for string comparison.
+40E68E,ftp_parse_winnt_ls,P_create_fields,file open and read function
+40EB86,vmsperms,P_c_hash_2,"""Function Entry Setup"""
+40F50F,ftp_parse_ls,P_get_elf_visibility,"""Function Entry"""
+40F645,ftp_index,Unpredicted,Function Prologue.
+40FC7A,extract,Unpredicted,"""Variable Initialization and Conversion"""
+40FD4E,btoe,Unpredicted,"""Function Setup"" or ""Stack Setup"""
+410134,calculate_skey_response,Unpredicted,"""Function Setup"""
+410312,prime_size,Unpredicted,"""Function to Push and Allocate Space"""
+410371,hash_table_new,P_new_new_item,Function Prologue
+410490,hash_table_destroy,Unpredicted,"""Free Memory Allocation Function"""
+4104BB,find_mapping,Unpredicted,Function with multiple instructions.
+410588,hash_table_get,P_get_link_generator,Function with local variable and function call.
+4105CC,hash_table_get_pair,P_hash_find,Function with Memory Allocation and Variable Initialization
+410640,hash_table_contains,Unpredicted,"""Function Setup and Call"""
+410679,grow_hash_table,P_hash_insert_at,"""Stack allocation and variable initialization."""
+41080A,hash_table_put,P_dump_id,Function Name: Var_Initialization
+4108B9,hash_table_remove,P_transit_state,"""Function with Stack Operations"""
+410A4F,hash_table_clear,Unpredicted,"""Initialize buffer function"""
+410A8E,hash_table_map,P_hash_map,Function Setup or Variable Initialization.
+410B2F,hash_table_count,Unpredicted,Extract 14th Item from Structure
+410B40,string_hash,P_put_word,"""Function with no name"" or ""Unnamed function"""
+410B99,string_cmp,Unpredicted,Function to Compare Strings.
+410BC6,make_string_hash_table,Unpredicted,Function setup and call.
+410BE7,string_hash_nocase,Unpredicted,"""Stack frame initialization and processing"""
+410C5E,string_cmp_nocase,Unpredicted,String comparison function.
+410C8B,make_nocase_string_hash_table,Unpredicted,"""Function with Memory Allocation and Call"""
+410CAC,ptrhash,Unpredicted,"""Bit Manipulation Function"""
+410D82,ptrcmp,Unpredicted,Comparison function or Compare integers function.
+410D9E,header_get,Unpredicted,Function start prologue or Function initialization prologue.
+41104B,header_process,Unpredicted,Function Prologue
+4110F7,header_extract_number,Unpredicted,"""Function Setup"" or ""Stack Setup"""
+4111B0,header_strdup,Unpredicted,"""Function with argument passing and return value"""
+4111DD,header_exists,Unpredicted,"""Set var to 1"""
+4111FA,skip_lws,Unpredicted,Function Name: process_input
+41124D,address_list_get_bounds,Unpredicted,"""Parameter Copy and Exchange Function"""
+411279,address_list_copy_one,P_mh_opt_list,Variable Initialization and Comparison
+4112DC,address_list_match_all,P_group_match,"""Compare Memory Function"""
+411349,address_list_set_faulty,P_re_string_add_inode,"""Function to modify variable value"""
+4113AD,address_list_from_vector,P_mc_input,Function Name: sub_4113D0
+41149C,address_list_from_single,P_make_display,"""Function with Variable Initialization"""
+411501,address_list_delete,Unpredicted,Function for freeing memory.
+41152C,address_list_release,P_init_arg,Function push-rbp-sub-rsp-mov-mov-lea-mov-mov-mov-test-jz-mov-mov-mov-call-mov-test-jg-jz-mov-mov-edi-call-leave-retn
+4115AA,wget_sockaddr_set_address,Unpredicted,"""Function Initialization"""
+411662,wget_sockaddr_set_port,P_absolute_file,Function Name: htons_or_abort
+41169F,wget_sockaddr_get_addr,Unpredicted,Function name: check_argument_value.
+4116C9,wget_sockaddr_get_port,Unpredicted,"""Convert to Network Order"""
+4116FD,sockaddr_len,Unpredicted,"""Check Domain and Abort"""
+41171A,map_ipv4_to_ip,Unpredicted,Function prologue with variable assignment.
+41173F,map_ip_to_ipv4,Unpredicted,Function or Procedure: Store and Return Value.
+411765,gethostbyname_with_timeout_callback,Unpredicted,"""Host Lookup Function"""
+411796,gethostbyname_with_timeout,Unpredicted,"""Function Setup"""
+41182B,pretty_print_address,Unpredicted,"""Convert to IP Address"""
+411844,cache_host_lookup,Unpredicted,Function Name: Init Variables and Memory Allocation.
+411920,lookup_host,P_make_id,Function Setup or Function Initialization.
+411B9F,accept_domain,P_print_owner_ttl,"""Function with assert and return value"""
+411C3A,sufmatch,Unpredicted,Function name: string comparison and manipulation.
+411D32,herrmsg,Unpredicted,Input validation function.
+411D73,host_cleanup_mapper,Unpredicted,Function that frees memory and asserts.
+411DD3,host_cleanup,Unpredicted,"""Initialize and Clear Memory Function"""
+4129A4,advance_declaration,P_unw_is,"""Stack frame initialization"""
+412CEB,find_comment_end,Unpredicted,"""Argument Parsing Function"""
+412DF6,name_allowed,Unpredicted,Function with stack allocation and string manipulation
+413CA0,init_interesting,Unpredicted,"""Function Setup"""
+413E7E,find_attr,P_re_string_parse_insert,"""Function with Local Variables"""
+413F1C,append_url,P_record_to_directive,Function Setup/Initialization
+414223,tag_find_urls,Unpredicted,Function Initialize or InitRBPSpace.
+4143E2,tag_handle_base,P_get_lan_section_member,Function Prologue.
+4144EB,tag_handle_form,Unpredicted,"""Function Prologue"" or ""Stack Frame Setup"""
+414574,tag_handle_link,P_host_is_localhost,Function Prologue
+414648,tag_handle_meta,Unpredicted,"""Function prologue"" or ""Stack frame setup"""
+41498B,collect_tags_mapper,P_http_inc_value,"""Function Setup"""
+4149FD,get_urls_html,P_print_context,Function with Local Variables and Error Handling
+414BBF,get_urls_file,Unpredicted,Function prologue
+414E9C,cleanup_html_url,Unpredicted,"""Free Memory Function"""
+414ED9,parse_http_status_line,Unpredicted,"""Setup Function"" or ""Function Setup"""
+41511E,post_file,P_cbuf_read,"""Function with Stack Allocation"""
+4152D7,http_process_range,Unpredicted,"""Function Name: Push RBP"""
+415523,http_process_none,Unpredicted,"""String Search Function"""
+41556E,http_process_type,Unpredicted,Stack Frame Initialization.
+415616,http_process_connection,Unpredicted,Function name: strcasecmp_and_set_flag
+415654,http_process_set_cookie,Unpredicted,Function entry or Stack setup function.
+4156C5,invalidate_persistent,Unpredicted,"""Init Memory and Clean-up Function"""
+41571D,register_persistent,Unpredicted,"""Function Setup"""
+415821,persistent_available_p,Unpredicted,"""Function Prologue"""
+415908,free_hstat,P_argp_args,Function_cleanUpMemory
+4191FD,mktime_from_utc,P_catchSignals,"""Setup function"""
+41930D,check_end,Unpredicted,"""Check for Valid Input"""
+4193C9,http_atotm,Unpredicted,Function setup or DateTime parser.
+419457,base64_encode,Unpredicted,"""Function with memory manipulation"""
+4195A2,basic_authentication_encode,Unpredicted,"""Function Name"""
+419718,extract_header_attr,Unpredicted,Function setup.
+419896,dump_hash,Unpredicted,"""Save to buffer"""
+41A0CA,known_authentication_scheme_p,Unpredicted,"""String Comparison and Validation"""
+41A1D6,create_authorization_line,P_ali_member,Function entry or Stack setup.
+41A2AB,http_cleanup,Unpredicted,Function prologue with call.
+41A2CD,findcmd,P_read_files,Function Entry or Compare and Return
+41A35A,defaults,Unpredicted,Function Setup.
+41A492,home_dir,P_load,"""getenv and getpwuid function"""
+41A503,wgetrc_file_name,Unpredicted,"""Function with Environmental Variable Check"""
+41A626,run_wgetrc,P_close_stdout,Function Prologue
+41A7E9,initialize,P_builtin_printhdr,Function Push and Error Handling.
+41A88B,dehyphen,Unpredicted,"""Function for String Manipulation"""
+41A8F4,parse_line,Unpredicted,Function with Memory Copy
+41ABD2,setval_internal,P_check,Function with Variable Initialization.
+41AC53,setoptval,Unpredicted,"""Function with stack allocation and function calls"""
+41AC94,run_command,P_init,Function Name: Subroutine with Error Handling.
+41AD6C,cmd_boolean,Unpredicted,Function Entry or Setup Function
+41AF99,cmd_lockable_boolean,Unpredicted,"""Function with Push, Mov and Strcmp"""
+41B297,cmd_number,Unpredicted,Function to Print Error Message.
+41B326,cmd_number_inf,Unpredicted,Compare two strings.
+41B379,cmd_string,P_list_delete_all,Function to Allocate and Assign Memory Block.
+41B3CD,cmd_file,P_find1,"""Function to Modify String URL Path"""
+41B537,cmd_directory,P_find_name,Stack frame initialization.
+41B5BC,cmd_vector,P_Barcode_93_verify,"""Function to Initialize Variables"""
+41B631,cmd_directory_vector,P_adns_qdpl_tcp,"""Function with Stack Operations"""
+41B71B,parse_bytes_helper,Unpredicted,Function with string comparison and multiplication.
+41B926,cmd_bytes,Unpredicted,"""Function Prologue"""
+41B9D2,cmd_bytes_large,Unpredicted,"""Function Entry"" or ""Function Prologue"""
+41BA7E,cmd_time,Unpredicted,"""Function Initialization"" or ""Function Setup"""
+41BCAE,cmd_spec_dirstruct,Unpredicted,"""Function Setup"""
+41BD0C,cmd_spec_header,Unpredicted,"""Function Prologue"""
+41BE83,cmd_spec_htmlify,Unpredicted,Function with local variable initialization.
+41BED1,cmd_spec_mirror,P_mh_set_reply_regex,Function Setup or Stack Setup.
+41BF74,cmd_spec_progress,Unpredicted,Function Prologue
+41C013,cmd_spec_recursive,Unpredicted,Function_Setup
+41C06F,cmd_spec_restrict_file_names,P_host_is_valid_1,"""String comparison and variable assignment"""
+41C1FE,cmd_spec_timeout,Unpredicted,Function prologue.
+41C285,cmd_spec_useragent,P_pop3d,Function prologue with error handling.
+41C31A,simple_atoi,Unpredicted,"""Function with Local Variable Initialization"""
+41C3BD,simple_atof,Unpredicted,Function Prologue.
+41C4EC,check_user_specified_header,Unpredicted,Function to check input validity
+41C57E,cleanup,P_read,"""Close stream"""
+41C5A0,free_log_line,Unpredicted,Memory Allocation and Deallocation Function.
+41C613,saved_append_1,P_name_of_hash_2,Function with Stack Allocation
+41C945,saved_append,P_is_control,"""Function Prologue"""
+41C9B9,get_log_fp,Unpredicted,"""CS Access and Return Function"""
+41C9EC,logputs,P_open,Function prologue
+41CAA9,logvprintf,Unpredicted,Function Prologue
+41CCC0,logflush,Unpredicted,Function Setup/Call.
+41CCF1,log_set_flush,P_get_nth_panel_name,"""Function Setup and Control Flow"""
+41CD37,log_set_save_context,Unpredicted,"""Function with Local Variable Assignment"""
+41CD55,logprintf,P_mail_error,"""Function Initialization"""
+41CEC0,debug_logprintf,Unpredicted,Function Prologue
+41CFD9,log_init,P_xrealloc,"""Function for file I/O setup"""
+41D071,log_close,Unpredicted,"""Initialize and Close File Function"""
+41D0E7,log_dump_context,Unpredicted,"""Function with push, mov, sub, movsxd"""
+41D219,redirect_output,Unpredicted,Function Setup
+41D2F3,check_redirect_output,Unpredicted,SetFlagIfNeeded.
+41D314,log_request_redirect_output,Unpredicted,"""Function Initialization"""
+41D348,i18n_initialize,Unpredicted,"""Language Localization Setup"""
+41D386,print_usage,Unpredicted,Gettext and printf function call.
+41D3B8,print_help,Unpredicted,print function
+41E706,redirect_output_signal,Unpredicted,Function to Check Signal Code
+41E757,gen_md5_context_size,Unpredicted,"""Allocate Memory and Return"""
+41E762,gen_md5_init,Unpredicted,Function Prologue or Stack Frame Setup.
+41E785,gen_md5_update,Unpredicted,"""Function with stack allocation"""
+41E7BC,gen_md5_finish,Unpredicted,Function prologue.
+41E7EA,md5_init_ctx,Unpredicted,Initialize MD5 hash state
+41E844,md5_read_ctx,Unpredicted,"""Copy and Swap Function"""
+41E895,md5_finish_ctx,P_md5_finish_ctx_add,"""Memory Copy and Modification"""
+41E9BD,md5_process_bytes,P_get_char,Memory Copy Function.
+41FE97,search_netrc,Unpredicted,Function Prologue
+4201EA,maybe_add_to_list,P_uuconf_free_block,Function Initialize Memory Block.
+4202AD,shift_left,Unpredicted,"""Function Entry/Initialization"""
+4202E0,parse_netrc,Unpredicted,Function prologue
+4207FE,free_netrc,P_hol_cluster_cmp,Function Prolog
+42088B,valid_progress_implementation_p,P_builtin_decode,Function with variable initialization.
+420929,set_progress_implementation,P_gtagsobjdir,Function Prologue.
+420A0A,progress_schedule_redirect,Unpredicted,"""Set Value and Return"""
+420A1B,progress_create,Unpredicted,Function Setup.
+420A70,progress_update,Unpredicted,"""Function prologue and call"""
+420AB0,progress_finish,Unpredicted,Function Prologue.
+420AE5,dot_create,P_add_option,"""Function Start"""
+420CCB,print_percentage,Unpredicted,"""Divide and Round Integer Function"""
+420D22,print_download_speed,Unpredicted,"""Function to Perform Calculation"""
+420D82,dot_update,P_cbuf_find_unread,Function prologue.
+420F55,dot_finish,P_comma,Function prologue.
+42110A,dot_set_params,Unpredicted,"""Variable Initialization"""
+421249,bar_create,P_create_table,Initialize Function
+42130A,bar_update,P_print,Function Setup or Function Initialization.
+421463,bar_finish,Unpredicted,Function Prologue
+421519,update_speed_ring,P_sfn,Function Prologue
+421FA7,display_image,Unpredicted,"""Function Initialization"""
+421FED,bar_set_params,Unpredicted,"""Environment variable processing"""
+4220A4,progress_handle_sigwinch,Unpredicted,"""Function with signal and comparison"""
+4220DE,rbuf_initialize,Unpredicted,"""Copy values to array with offset"""
+422117,rbuf_initialized_p,Unpredicted,"""Check for non-zero value"""
+422130,rbuf_uninitialize,Unpredicted,Function with local variable initialization.
+422145,rbuf_read_bufferful,Unpredicted,Function prologue with memory allocation.
+422170,rbuf_peek,Unpredicted,"""Function with Memory Assignments"""
+422209,rbuf_flush,P_config_free,"""Function Name: Memcpy and Variable Assignment"""
+4222B9,rbuf_discard,Unpredicted,Function with memory allocation and initialization.
+4222E6,url_queue_new,Unpredicted,Function Setup or Memory Allocation Function.
+422318,url_queue_delete,Unpredicted,"""Free Memory Function"""
+422333,url_enqueue,P_hash_get_next,Function Prologue
+42246A,url_dequeue,P_fh,Function prologue.
+422C96,download_child_p,P_mail_file,Function name not provided.
+423173,descend_redirect_p,P_hostlist_delete,Function name not provided
+423297,match_user_agent,P_get_bool,Function Setup.
+423322,add_path,P_adns_parse_domain,"""Function to Store Args in Memory"""
+42341F,prune_non_exact,P_ukshow_params,"""Function with Memory Allocation"""
+42354A,res_parse,Unpredicted,Stack frame setup.
+423A2C,res_parse_from_file,P_info_server,"""Function Setup"""
+423AB6,free_specs,P_free_url,Function Prologue
+423B26,matches,Unpredicted,"""Check for Hexadecimal Input"""
+423D89,res_match_path,P_find_range,Function prologue or Stack setup function.
+423E68,res_register_specs,Unpredicted,"""String to Hex Conversion"""
+423FF0,res_get_specs,Unpredicted,Function prologue.
+4240FC,res_retrieve_file,Unpredicted,"""Function Setup and Memory Management"""
+4241AA,cleanup_hash_table_mapper,Unpredicted,"""Memory deallocation and function return"""
+4241DD,res_cleanup,Unpredicted,Function Name: Reset Memory Block
+424223,limit_bandwidth_reset,Unpredicted,Function Prologue.
+424241,limit_bandwidth,P_my,"""Calculate X Function"""
+424425,get_contents,P_recode_char,Function Start/Automated Prologue
+424753,retr_rate,Unpredicted,Function Prologue
+4247FF,calc_rate,P_cmp,Floating point comparison and division function
+42505F,retrieve_from_file,Unpredicted,"""Function Setup"""
+425297,printwhat,Unpredicted,Compare and Call function.
+4252D3,sleep_between_retrievals,Unpredicted,"""Sleep Function"""
+42542E,free_urlpos,Unpredicted,Function Prologue.
+42549E,rotate_backups,P_isdir,"""Function Setup"""
+425684,getproxy,Unpredicted,"""Function Setup"""
+42578E,no_proxy_match,Unpredicted,"""Function: Parameter Check"""
+4257C9,url_unescape,Unpredicted,"""Copy and transform characters"""
+425923,url_escape_1,Unpredicted,Function Setup or Setup Function.
+425AC2,url_escape,Unpredicted,Function with Local Variable Initialization.
+425AE6,url_escape_allow_passthrough,Unpredicted,Function prologue.
+425B0A,decide_copy_method,Unpredicted,"""Function with Comparison and Logical Operations"""
+425C8F,reencode_escapes,P_process_map,Function Prologue.
+425ED8,url_scheme_0,Unpredicted,"""Check String Equality Function"""
+425F72,url_has_scheme,Unpredicted,"""parse_integer"""
+42602E,scheme_default_port,Unpredicted,"""Get Variable Value and Return"""
+426046,scheme_disable,Unpredicted,Function with Memory Write
+426063,url_skip_credentials,P_make,Function: str_search_or_skip_char
+4260B4,parse_credentials,P_pa_hostaddr,Function with Push and Memory Operations
+4261A1,rewrite_shorthand_url,Unpredicted,Function Setup or Stack Setup Function.
+42630C,lowercase_str,Unpredicted,"""Function Name: Push and Assignment"""
+426B6E,url_error,P_check,"Function Name: ""compare_and_gettext"""
+426BB7,split_path,Unpredicted,mov_strrchr
+426C6B,full_path_length,P_argp_hol,Function prologue or Stack setup
+426D01,full_path_write,P_argp_hol,string builder function
+426E0D,url_full_path,Unpredicted,"""Stack Manipulation Function"""
+426E65,url_escape_dir,P_read_input,Function with variable assignments and comparisons.
+426F13,sync_path,P_mk_expand,Memory Allocation and String Manipulation.
+427092,url_set_dir,Unpredicted,"""Memory Deallocation and Modification"""
+4270D8,url_set_file,Unpredicted,"""Free and Modify Function"""
+42711E,url_free,Unpredicted,"""Free Memory Function"""
+427219,mkalldirs,Unpredicted,Stack Setup and String Comparison.
+4273C2,append_string,P_ecc_number,Function name: str_copy
+4274A4,append_char,P_coerce,Function Prologue.
+427565,append_uri_pathel,Unpredicted,"""Function Setup"" or ""Function Initialization"""
+4278E7,append_dir_structure,P_re_node_set_insert_copy,Function for Moving and Initializing Variables.
+42798E,url_file_name,P_edit,Function prologue
+427C4E,path_length,Unpredicted,"""String Search Function"""
+427CA8,find_last_char,Unpredicted,"""Function with Parameter Comparison"""
+427CE3,path_simplify,P_minimize_path,"""Path Parsing Function"""
+427EB0,uri_merge,P_find_name,Function name: push_rbp_mov_rbp_rsp_add_rsp_var_mov_var_mov_rax_mov_rdi_call_test_jz_mov_jmp_mov_movsxd_add_call_mov_movzx_test_jnz_mov_mov_strchr_cmp_jnz_mov_call_jmp_cmp_jz_jnz_mov_add_mov_movsxd_call_cmp_jnz_mov_cmp_jz_jnz_mov_call_cmp_jnz_jz_mov_call_mov_leave_retn.
+4283F7,url_string,P_panel,"""Function setup"""
+4287B7,schemes_are_similar_p,Unpredicted,Comparison function.
+4287D7,memfatal,Unpredicted,"""Enter Text Function"""
+428825,xmalloc_real,Unpredicted,"""allocate_memory"""
+428858,xrealloc_real,Unpredicted,Stack allocation and memory management function.
+4288AF,xstrdup_real,Unpredicted,Function name: strdup_check_or_error
+4288E2,xstrdup_lower,Unpredicted,"""Function with Stack Allocation"""
+42893C,count_char,Unpredicted,Push-and-Compare or Incremental Letter Search.
+42897F,strdupdelim,Unpredicted,Copy and null-terminate string.
+4289F2,sepstring,Unpredicted,"""Function with Push, Mov, Sub"""
+428B76,time_str,Unpredicted,"""Stack Setup and Time Retrieval"""
+428C13,datetime_str,Unpredicted,Function Prologue.
+428CD3,fork_to_background,Unpredicted,Function Prologue
+428DDC,touch,Unpredicted,"""Set File Timestamps"""
+428E69,remove_link,P_mimetypes_open,Function Setup
+428F67,file_exists_p,Unpredicted,AccessCheck function.
+428F8E,file_non_directory_p,Unpredicted,"""Function Prologue"""
+428FFF,file_size,Unpredicted,FILE_OPEN_FUNCTION
+429068,unique_name_1,Unpredicted,init_stackframe
+42915E,unique_name,Unpredicted,Function Name: subroutine with parameter and conditional statements.
+4291A5,make_directory,Unpredicted,"""_mkdir"" or ""Create Directory"""
+4292F9,file_merge,Unpredicted,"""String Manipulation"""
+4293D9,acceptable,P_get_one_file,"""Stack Allocation and String Processing"""
+4294EE,frontcmp,P_prefix_hash_2,"""Byte Comparison"""
+42953F,proclist,Unpredicted,"""Function with Stack Operations"""
+4295FF,accdir,P_handle_type,"""Check if slash character in string"""
+429691,match_tail,Unpredicted,String comparison function.
+42979C,in_acclist,Unpredicted,"""Function with Stack Variables"""
+429856,suffix,Unpredicted,"""String Length Comparison"""
+4298D5,has_wildcards_p,P_string_size,"""Check for Special Characters"""
+429929,has_html_suffix_p,P_starttls_proto_to_port,Function to Compare Strings.
+4299BD,read_whole_line,P_get_char_from_string,"""Initialize String Input Function"""
+429AC3,read_file,P_edit_file,"""Function Setup"" or ""Stack Setup"""
+429E0C,read_file_free,P_alog_remote_ip,"""Memory Deallocation Function"""
+429E60,free_vec,P_hostrange_destroy,"""Function Prologue"""
+429EAF,merge_vecs,P_info_free,"""Copy and free function"""
+429FBF,slist_append,P_glist_new_iter,Function Prologue
+42A03F,slist_prepend,Unpredicted,Function Prologue with Variable Initialization.
+42A085,slist_nreverse,P_mh_format_free,"""Function Setup and Return"""
+42A0CC,slist_contains,P_inboth,"""String Comparison Function"" or ""strcmp Function"""
+42A119,slist_free,P_set_status,Function Prologue and Epilogue
+42A160,string_set_add,Unpredicted,"""Function with Stack and Calls"""
+42A1AF,string_set_contains,Unpredicted,Function Prologue.
+42A1D4,string_set_free_mapper,Unpredicted,"""Memory Allocation Cleanup"""
+42A1FB,string_set_free,Unpredicted,"Function name: ""Call and save result"""
+42A22C,free_keys_and_values_mapper,Unpredicted,"""Dynamic Memory Deallocation"""
+42A25F,free_keys_and_values,Unpredicted,"""Function prologue with call"""
+42A284,legible_1,P_msg_to_str_string,"""Setup Function"""
+42A3B8,legible,Unpredicted,"""Function Prologue"""
+42A408,large_int_to_string,Unpredicted,"""Buffer Format Function"" or ""snprintf Call"""
+42A43D,legible_large_int,Unpredicted,Function prologue.
+42A48D,numdigit,P_is,"""Integer Division Function"""
+42F41E,wtimer_allocate,Unpredicted,Function setup and call.
+42F43A,wtimer_new,Unpredicted,Function Prologue
+42F45D,wtimer_delete,Unpredicted,"""Memory Allocation and Release"""
+42F478,wtimer_sys_set,Unpredicted,"""Get Time Function"""
+42F498,wtimer_reset,Unpredicted,"""Function Prologue and Epilogue"""
+42F4CD,wtimer_sys_diff,Unpredicted,"""Calculate Difference and Ratio"""
+42F533,wtimer_elapsed,Unpredicted,Function prologue.
+42F5F1,wtimer_granularity,Unpredicted,"""Load Constant from Memory Function"""
+42F5FF,html_quote_string,P_extract_colon_len,"""Push and variable assignment function"""
+42F84F,determine_screen_width,Unpredicted,Function Prologue.
+42F8CB,random_number,Unpredicted,"""Calculation with random number generation"""
+42F935,random_float,Unpredicted,"""Calculate Average"""
+42F9B1,abort_run_with_timeout,P_int_calc_key,"""Stack allocation and error handling"""
+42F9EA,alarm_set,P_int_int,"""Memory Allocation and Timer Initialization"""
+42FAA6,alarm_cancel,Unpredicted,"""Function Prologue"""
+42FB00,run_with_timeout,P_physmem_total,Function Name: xmm0_comparison
+42FBD0,__libc_csu_init,Unpredicted,"""Initiate Process"""
+42FC50,stat_0,Unpredicted,"""Copy and Jump"""
+42FC60,fstat,Unpredicted,"""File Stat Request Setup"""
+42FC70,lstat,Unpredicted,"""File Stat Request Function"""
+400F10,.__assert_fail,Unpredicted,Jump to and Push Memory Addresses.
+401200,.strcpy,Unpredicted,"""Function with Memory Address Comparison"""
+401280,deregister_tm_clones,Unpredicted,Set flag and call function.
+4012A0,.gettext,Unpredicted,Memory Comparison and Function Call
+4012C6,prefix_length,P_prefix_p,"""Compare and Subtract Bytes"""
+40150C,close_stdout_set_file_name,Unpredicted,Function with local variable storage.
+401522,close_stdout_set_ignore_EPIPE,Unpredicted,"""Function with Variable Assignment"""
+401538,close_stdout,P_close_stdout,Function Prologue.
+401624,set_program_name,P_set_program_name,"Function Name: ""string_manipulation"""
+40170C,clone_quoting_options,P_clone_quoting_options,"""errno_location"""
+401758,usage,Unpredicted,Function Prologue.
+401776,set_quoting_style,Unpredicted,"""Function with local variable initialization"""
+40179B,set_char_quoting,P_set_char_quoting,"""Push and manipulate variables"""
+401823,set_quoting_flags,P_set_quoting_flags,"""Function to Set Variable Value and Return"""
+401856,set_custom_quoting,P_set_custom_quoting,"""Function Initialization"""
+4018B1,quoting_options_from_style,Unpredicted,Function Prologue.
+401949,gettext_quote,P_gettext_quote,"""msg translation function"""
+40277E,quotearg_buffer,P_quotearg_buffer,"""Function Setup"""
+402820,quotearg_alloc,Unpredicted,Function Setup or Parameter Initialization
+402852,quotearg_alloc_mem,P_quotearg_alloc_mem,"Function name: ""Save Variables and Call Function"""
+40297E,quotearg_free,Unpredicted,"""Allocate and free memory function"""
+402A2A,quotearg_n_options,P_quotearg_n_options,"""Function with Stack Operations"""
+402CD5,quotearg_n,Unpredicted,Function prologue.
+402D00,.__stack_chk_fail,Unpredicted,"""Function Prologue"" or ""Stack Frame Setup"""
+402D2C,quotearg,Unpredicted,Function prologue.
+402D4B,quotearg_mem,Unpredicted,"""Function Setup"""
+402D72,quotearg_n_style,Unpredicted,"""Function Prologue"""
+402DD6,quotearg_n_style_mem,Unpredicted,Function prologue or Stack setup.
+402E38,quotearg_style,Unpredicted,"""Function prologue with call"""
+402E5C,quotearg_style_mem,Unpredicted,"""Function setup"""
+402E88,quotearg_char_mem,Unpredicted,Function Prologue.
+402F3F,quotearg_char,Unpredicted,Function prologue.
+402F69,quotearg_colon,Unpredicted,Function with Local Variable and Calling Subroutine.
+402F88,quotearg_colon_mem,Unpredicted,"""Function with Memory Allocation"""
+402FB2,quotearg_n_style_colon,Unpredicted,Function Name: Unknown (not enough context provided)
+403070,.nl_langinfo,Unpredicted,Function prologue.
+4030A6,quotearg_n_custom_mem,Unpredicted,Function prologue.
+403160,.memmove,Unpredicted,Function Prologue.
+40318F,quotearg_custom_mem,Unpredicted,"""Function Setup"" or ""Function Prologue"""
+4031C9,quote_n_mem,Unpredicted,"""Function Setup and Call"""
+4031F5,checkunitname,P_find_callback,Function prologue or Stack setup.
+40321C,quote_n,Unpredicted,Function Prologue.
+403245,quote,Unpredicted,Function setup or Stack setup.
+403264,xnmalloc,P_xnmalloc,"""Stack overflow protection function."""
+4032D1,xnrealloc,P_xnmalloc,Stack allocation and multiplication function.
+40334C,x2nrealloc,P_x2nrealloc,Set or Check Stack Size Function.
+4033FB,xcharalloc,Unpredicted,Function Prologue.
+403415,newunit,P_api_get_text_text,Allocating Function.
+40344A,xrealloc,P_xrealloc,"""Memory Allocation Function"""
+4034AB,x2realloc,Unpredicted,Function prologue.
+4034D5,xzalloc,Unpredicted,Function Prologue
+403506,xcalloc,P_xcalloc,Function with Dynamic Memory Allocation
+40353F,xmemdup,Unpredicted,Function with Local Variables and Memory Copy
+403573,xstrdup,Unpredicted,String Length Function.
+4035A0,xalloc_die,P_clear_ungetc,"""Gettext Error and Abort Function"""
+4035D5,c_strcasecmp,P_c_strcasecmp,"""Function Prologue"""
+40364D,close_stream,P_close_stream,"""Filing error checker"""
+4036D8,get_charset_aliases,Unpredicted,Function Prologue.
+403BB2,locale_charset,P_locale_charset,initialize language information or set default value
+403C80,c_isalnum,P_c_isalnum,"""Alphanumeric Validation Function"""
+403CB4,c_isalpha,P_c_isalpha,Range Check Function.
+403CDE,c_isascii,Unpredicted,"""Check number range validity"""
+403CFE,c_isblank,Unpredicted,Function with integer comparison and branching.
+403D22,c_iscntrl,P_c_iscntrl,"""Check validity of input value"""
+403D48,c_isdigit,P_c_isdigit,"""CheckInputValidity"""
+403D68,c_isgraph,P_c_isgraph,CheckValue.
+403D88,c_islower,P_c_islower,"""Check Hex Value Range Function"""
+403DA8,c_isprint,P_c_isprint,Function that Compares Two Values.
+403DC8,c_ispunct,P_c_ispunct,"""Check Valid Input Range"""
+403E06,c_isspace,P_c_isspace,Validation of input character.
+403E2D,c_isupper,P_c_isupper,Function to Compare Two Values.
+403E4D,c_isxdigit,Unpredicted,"""Check and Run Function"""
+403E79,c_tolower,P_c_tolower,Function with variable subtraction and comparison.
+403E98,c_toupper,P_c_toupper,Function prologue and input validation.
+403F40,atexit,Unpredicted,"""Exit Function"" or ""Atexit Handler"""
+4011F0,._exit,Unpredicted,Push and Jump Instruction
+4015B0,frame_dummy,Unpredicted,Comparison and Jump Function.
+401630,.init_proc,Unpredicted,Check if byte is zero and call function if not.
+401650,sub_401650,Unpredicted,"""Check and Call Function"""
+401676,strindex,P_find_prefix,Function for string comparison.
+401711,prefix_length,P_prefix_p,"""Comparison function with push/pop"""
+401758,usage,Unpredicted,print error message function
+4017BF,inerr,Unpredicted,"""Error Handling Function"""
+4017F4,outerr,Unpredicted,"""Error handling function"""
+401C79,__bswap_32,Unpredicted,ByteSwapInt32
+401C87,decode_value,Unpredicted,Function prologue.
+401D7B,getword,P_cert_var,"""File input function"""
+401E9C,putword,P_opt_op,"""Function with Push and Assert"""
+401F16,display_findutils_version,Unpredicted,Print Error Message Function.
+401F99,close_stdout_set_file_name,Unpredicted,Function Prologue
+401FAF,close_stdout_set_ignore_EPIPE,Unpredicted,"Function name: ""Copy Parameter and Store in Memory"""
+401FC5,close_stdout,P_close_stdout,"""Function Prologue and Epilogue"""
+4020B1,set_program_name,P_set_program_name,"Function Name: ""str_func"""
+402199,clone_quoting_options,P_clone_quoting_options,errno_location function.
+4021E5,get_quoting_style,Unpredicted,Function prologue with if statement.
+402203,set_quoting_style,Unpredicted,"""Variable Assignment and Return"""
+402228,set_char_quoting,P_set_char_quoting,"""Variable Assignment Function"""
+4022B0,.setsid,Unpredicted,Function Set Variable and Return
+4022E3,set_custom_quoting,P_set_custom_quoting,Function with Local Variables Initialization.
+40233E,quoting_options_from_style,Unpredicted,"""Function Setup"""
+4023D6,gettext_quote,P_gettext_quote,"""Msgid Translation Function"""
+40320B,quotearg_buffer,P_quotearg_buffer,Stack frame setup.
+4032AD,quotearg_alloc,Unpredicted,"""Function with variable initialization and call"""
+4032DF,quotearg_alloc_mem,P_quotearg_alloc_mem,Function name: var_setup
+40340B,quotearg_free,Unpredicted,"""Memory Allocation and Freeing"" or ""Dynamic Memory Handling"""
+4034B7,quotearg_n_options,P_quotearg_n_options,"""Function Prologue"" or ""Stack Init"""
+403762,quotearg_n,Unpredicted,Function prologue with arguments initialization.
+40378D,quotearg_n_mem,Unpredicted,Function Prologue.
+4037B9,quotearg,Unpredicted,Function name: subroutine or method.
+4037D8,quotearg_mem,Unpredicted,Function Prologue.
+4037FF,quotearg_n_style,Unpredicted,Initial Setup Function
+403863,quotearg_n_style_mem,Unpredicted,Function Entry Setup
+4038C5,quotearg_style,Unpredicted,Function prologue and call
+4038E9,quotearg_style_mem,Unpredicted,"""Function Entry/Setup"""
+403915,quotearg_char_mem,Unpredicted,Function Start.
+4039CC,quotearg_char,Unpredicted,Function Prologue
+4039F6,quotearg_colon,Unpredicted,"""Function with Memory Allocation"""
+403A15,quotearg_colon_mem,Unpredicted,Function setup or variable initialization.
+403A3F,quotearg_n_style_colon,Unpredicted,Function with Local Variables
+403AFD,quotearg_n_custom,Unpredicted,"""Function Setup"""
+403B33,quotearg_n_custom_mem,Unpredicted,Function Prologue
+403BED,quotearg_custom,Unpredicted,"""Function Prologue"""
+403C1C,quotearg_custom_mem,Unpredicted,Function Prologue.
+403C56,quote_n_mem,Unpredicted,Function setup or Stack setup.
+403C82,quote_mem,Unpredicted,Function with Variable Initialization.
+403CA9,quote_n,Unpredicted,"""Function Prologue"""
+403CD2,quote,Unpredicted,Function Prologue.
+403CF1,version_etc_arn,P_version_etc_arn,"""Function Prologue"" or ""Stack Setup"""
+404260,version_etc_ar,Unpredicted,Function Name: Push and Save Data to Stack Frame.
+4042CF,version_etc_va,P_version_etc_va,Function with stack allocation and input parameter saving.
+4043D1,version_etc,Unpredicted,Function Prologue.
+4044B1,emit_bug_reporting_address,Unpredicted,print function
+40451B,xnmalloc,P_xnmalloc,"""Function Prologue"""
+404588,xnrealloc,P_xnmalloc,"""Function Prologue"""
+404603,x2nrealloc,P_x2nrealloc,"""Function Name: Memory Allocation"""
+4046B2,xcharalloc,Unpredicted,Function prologue.
+4046CC,xmalloc,Unpredicted,"""Function for Dynamic Memory Allocation"""
+404701,xrealloc,P_xrealloc,"""Memory Allocation Function"""
+404762,x2realloc,Unpredicted,"""Function Setup and Call"""
+40478C,xzalloc,Unpredicted,"""Memory Allocation and Initialization"""
+4047BD,xcalloc,P_xcalloc,"""Allocate Memory Function"""
+4047F6,xmemdup,Unpredicted,"""Memory copy function"" or ""memcpy subroutine"""
+40482A,xstrdup,Unpredicted,String Length Calculation Function.
+404857,xalloc_die,P_clear_ungetc,"""Language error abort function"""
+40488C,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,"""Function with stack manipulation and conditional jumps"""
+4048C0,rpl_fflush,Unpredicted,"""Function Name: flush_or_write"""
+40490B,rpl_fseeko,P_rpl_fseeko,file_seek
+4049C5,c_strcasecmp,P_c_strcasecmp,Function name: Compare Strings
+404A3D,close_stream,P_close_stream,Function for File ErrorChecking
+404AC8,get_charset_aliases,Unpredicted,"""The initialization function"""
+404FA2,locale_charset,P_locale_charset,Set Lang Info and String Manipulation
+405070,c_isalnum,P_c_isalnum,"""Hexadecimal Digit Checker"""
+4050A4,c_isalpha,P_c_isalpha,"""Alphabet_Check"""
+4050CE,c_isascii,Unpredicted,CheckIfGreaterThan127.
+4050EE,c_isblank,Unpredicted,Function to Check Integer Value
+405112,c_iscntrl,P_c_iscntrl,"""Check Input Range Function"""
+405138,c_isdigit,P_c_isdigit,Compare and branch function.
+405158,c_isgraph,P_c_isgraph,"""Check Range Function"""
+405178,c_islower,P_c_islower,"""Check Input Range Function"""
+405198,c_isprint,P_c_isprint,Function name: checkValueInRange
+4051B8,c_ispunct,P_c_ispunct,"""Check Character Validity"""
+4051F6,c_isspace,P_c_isspace,"""Input Validation Check"""
+40521D,c_isupper,P_c_isupper,"""Check Input Range Function"""
+40523D,c_isxdigit,Unpredicted,"""Function with Memory Check"""
+405269,c_tolower,P_c_tolower,"Function Name: ""subtract_check_add"""
+405288,c_toupper,P_c_toupper,"""Subtract and Compare Function"""
+405330,atexit,Unpredicted,Load and Jump to Exit.
+402A50,sub_402A50,Unpredicted,"""Jump to CS memory address"""
+4033D0,EvaluateExpression,Unpredicted,Function for Checking Memory Address.
+403450,__do_global_dtors_aux,Unpredicted,Set flag if not zero
+403470,frame_dummy,Unpredicted,"""Function mov and cmp with jumps"""
+403496,left_dir,Unpredicted,"""Close file function"""
+4034CD,inside_dir,Unpredicted,Function prologue.
+403579,get_fts_info_name,Unpredicted,"""Function with Jump Table"""
+403619,visit,P_mtx_panel,Assembly function to set up stack and call other functions
+4036C4,partial_quotearg_n,P_re_node_list,Stack Frame Initialization
+403744,issue_loop_warning,P_panel_act,Function name: error_check
+40381C,symlink_loop,P_import_handler,"""Setup function"""
+40389A,show_outstanding_execdirs,Unpredicted,"""Function Setup"""
+403A34,consider_visiting,P_panel_act,Function Prologue
+4040FB,find,P_get_int,Function prologue.
+4043A5,process_all_startpoints,P_ipmi_config_sensors_data_conf_get_section,"""Function Prologue"""
+40463A,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,"""Function with Push/Pop and Memory Operations"""
+404655,ts_difference,Unpredicted,"""Time Difference Calculation"" or ""Time Delta Function"""
+4046C6,compare_ts,P_fmt_pa_equal,"""Function Setup and Comparison"""
+40474C,pred_timewindow,P_is_do_move,"""Function setup and validation"""
+40484D,pred_amin,Unpredicted,Function Setup or Function Initialization.
+404895,pred_and,P_xheader_set_symbol,Function with Local Variable Initialization.
+404902,pred_anewer,P_auth_pop,"""Function with Memory Allocation and Assert Check"""
+404979,pred_atime,Unpredicted,"""Function with Push and Pop"""
+4049C1,pred_closeparen,Unpredicted,Function prologue.
+4049D8,do_query_simple,Unpredicted,Function Prologue or Function Setup.
+404A20,pred_cnewer,P_menubar,Function for Asserting and Returning Value.
+404A97,pred_comma,Unpredicted,Function Setup or Function Init.
+404AF9,pred_ctime,Unpredicted,Function name: Process Data.
+404B41,perform_delete,Unpredicted,"""Unlinkat function with flag manipulation"""
+404B6D,pred_delete,P_pop3d_open,Function with Push and Mov instructions.
+404C76,pred_empty,P_fts_stat,Function initialization or File handling function.
+404E69,pred_exec,Unpredicted,Function preamble/prologue.
+404E96,pred_execdir,Unpredicted,Function setup or Function prologue.
+404EC6,pred_false,Unpredicted,Function prologue with arguments saving.
+404EDD,pred_fls,Unpredicted,Function Initialization
+404F42,pred_fprint,Unpredicted,Function startup or Initialization.
+404F8C,pred_fprint0,Unpredicted,"""Stream output function"""
+404FD7,pred_fstype,P_cli_attach,"""Function with String Comparison and Cleanup"""
+405029,pred_gid,Unpredicted,"""Function for Comparing Variables"""
+4050B6,pred_group,P_dynvec_copy,Function with Parameter Comparison
+4050E6,pred_ilname,Unpredicted,"""Function Prologue"""
+405115,pred_name_common,Unpredicted,"""Pattern Matching Function"""
+405174,pred_iname,Unpredicted,"""Function with stack allocation and call"""
+4051A6,pred_inum,Unpredicted,Function with error checking and assertion
+40525A,pred_ipath,P_until_short,"""Function to check file name using fnmatch"""
+40529C,pred_links,Unpredicted,Function with Push and Comparison Instructions.
+405326,pred_lname,Unpredicted,"""Function Setup"""
+405355,match_lname,P_panel_do_owner,Function with file matching and error handling.
+40540F,pred_ls,Unpredicted,Function prologue with argument initialization.
+40543C,pred_mmin,Unpredicted,"""Function with Variable Initialization"""
+405484,pred_mtime,Unpredicted,Function for Initializing Variables and Calling Subroutine.
+4054CC,pred_name,Unpredicted,Function Prologue.
+4054FE,pred_negate,Unpredicted,Function prologue with call
+405543,pred_newer,P_auth_pop,"Function: ""Assert and memory operation"""
+4055BA,pred_newerXY,P_init_in_end,stack setup and parameter handling
+40573E,pred_nogroup,Unpredicted,"""get_group_status"""
+405768,pred_nouser,Unpredicted,Get Password User ID Function.
+405792,is_ok,Unpredicted,"""Push and Print Function"""
+405822,pred_ok,P_read_in_op_do_bytes,Function Prologue
+405877,pred_okdir,P_check,Function name: process data and return
+4058CF,pred_openparen,Unpredicted,Function Setup or Parameter Initialization
+4058E6,pred_or,P_move_listbox,Function Name: Process Input and Return Result.
+405956,pred_path,P_until_short,"""Function for Filename Matching"""
+405998,readunits,Unpredicted,Function Initialization
+405A32,pred_executable,Unpredicted,"""File Access Function"""
+405A6B,pred_readable,Unpredicted,Function Setup for File Access Check
+405AA4,pred_writable,Unpredicted,"""File Access Function"""
+405ADD,pred_print,Unpredicted,"""Function with memory manipulation and subroutine call"""
+405B27,pred_print0,Unpredicted,Function prologue.
+405B54,pred_prune,Unpredicted,Function with Local Variable Initialization
+405BBF,pred_quit,P_do_delete_files,Function prologue.
+405BE5,pred_regex,Unpredicted,"""String Matching Function"""
+405C3D,pred_size,Unpredicted,"""Integer Division and Comparison"""
+405CF6,pred_samefile,P_mu_locus_point_eq,Function prologue.
+405D92,pred_true,Unpredicted,"""Function Start"""
+405DA9,pred_type,Unpredicted,"""Function Setup and Assertion Check"""
+405E37,pred_uid,P_panel_grow,Function to Compare Memory Values
+405EC4,pred_used,Unpredicted,"""Function with Stack Allocation"""
+405F65,pred_user,P_add_file,"""Compare Arguments and Return Boolean"""
+405F95,pred_xtype,Unpredicted,Function Name: init_exception_handler
+4060D3,pred_context,P_status_list,Function Name: PushRBPandSetupLocals
+4061BB,blank_rtrim,P_argcv_delete,"""Copy string with spaces removed"""
+40624C,print_list,P_ipmi_config_builtin_arg_hostaddr,Function prologue.
+406307,print_parenthesised,P_arm,Function Name: sub_4062F0
+4063F2,print_optlist,Unpredicted,"""Print stream function"""
+4065DF,show_success_rates,Unpredicted,"""Stack Frame Setup and Output Handling Function"""
+406645,pred_sanity_check,P_grecs_grecs_usage,Stack frame initialization function.
+40684F,initialize_wd_for_exec,P_wordsplit_free_entry,"""File Open Function"""
+4068F3,record_exec_dir,P_sentence_out_internal,"""Function Initialization"""
+4069B3,impl_pred_exec,Unpredicted,Function prologue or stack setup.
+406CAE,prep_child_for_exec,P_restorecon,Function: Open File or Handle Error.
+406E2F,launch,P_do,Function Prologue or Stack Frame Setup
+40710F,matches_start_point,Unpredicted,"""Pattern matching function"""
+4071AD,get_expr,P_panel_find_index,"""Function with Push and Mov Instructions"""
+40754C,scan_rest,P_member_file_qsort_compare,"""Function Prologue"""
+4076A8,predicate_is_cost_free,P_set_variable_flags,"""Check for Specific Values Function"""
+407757,print_predicate,P_datum_scan,"""Function name"" (as the code itself does not provide any indication of its purpose or functionality)"
+4077B6,predlist_init,Unpredicted,"""Function to Clear Memory"""
+4077DC,predlist_insert,Unpredicted,Function with Stack Frame Initialization
+407842,pred_cost_compare,P_default_count,"""Comparison and Checking Function"""
+4078F9,predlist_merge_sort,Unpredicted,Function prologue.
+407B2C,merge_lists,Unpredicted,Function to Push and Call with Arguments.
+407BBF,subtree_has_side_effects,P_read_section_line,Function Entry with Variable Comparison
+407C24,worst_cost,Unpredicted,Function prologue.
+407C92,perform_arm_swap,Unpredicted,"""Copy and Modify Stack Variables"""
+407CDF,consider_arm_swap,P_do_copy,"Function name: ""checkValueAndPrintMessage"""
+407F90,do_arm_swaps,P_sparse,"""Function with stack allocation and comparisons"""
+407FFC,opt_expr,P_radiusd,Function prologue.
+408652,constrain_rate,Unpredicted,"""Stack Frame Comparison Function"""
+40868E,set_new_parent,P_match_file_init,Function Set Up
+4087FC,merge_pred,Unpredicted,Function to Save Registers and Update Values.
+40882C,check_sorted,Unpredicted,Function Prologue.
+408986,get_pred_cost,Unpredicted,Function setup or Stack frame setup.
+408B5D,estimate_costs,P_ipmipower_sparse,Save and process parameters.
+408BAE,get_eval_tree,Unpredicted,Function prologue.
+408BBB,getrate,P_ali_yy_delete_buffer,Function prologue.
+408BDF,calculate_derived_rates,P_ali_yy_delete_buffer,"""Function with Assert Failure and Floating Point Operations"""
+408F1B,check_normalization,P_hashtab_remove,"""Function Prologue"""
+4097F5,init_pred_perf,P_def,function start or stack frame setup
+409829,get_new_pred_noarg,Unpredicted,"""Function to set qword to zero"""
+40985E,get_new_pred,P_mailvar_set_free,Function_Prologue
+409A41,get_new_pred_chk_op,Unpredicted,"""Function Initialization"""
+409B99,cost_name,Unpredicted,"""Function with Push and Compare Instructions"""
+409BE9,type_name,Unpredicted,"""Memory Access and Comparison Function"""
+409C47,prec_name,Unpredicted,"""Memory Access and Comparison Function"""
+409CA5,print_tree,Unpredicted,Function for Writing and Formatting Output.
+40A02A,insert_primary_withpred,Unpredicted,"""Function Entry/Initialization"""
+40A098,insert_primary,P_mu_script_done,Function prologue with assertions.
+40A0EB,insert_primary_noarg,Unpredicted,Function Prologue.
+40A10A,show_valid_debug_options,Unpredicted,"""Stack frame initialization and print"""
+40A1FE,usage,Unpredicted,"""Print Status Function"""
+40A2AF,set_stat_placeholders,Unpredicted,"""Function setup and return"""
+40A2BA,get_statinfo,P_of_version,Function with Push and Mov Instructions.
+40A3B9,get_info,P_file_progress_update,"""Function Setup"""
+40A4EB,check_nofollow,P_builtin_decode,Function with Stack Manipulation
+40A5C2,exec_cb,Unpredicted,Function Setup or Function Initialization.
+40A5F8,do_exec,P_wordsplit_finish,Function Prologue
+40A66F,do_complete_pending_execdirs,P_do_transfer_entries,Function prologue.
+40A725,complete_pending_execdirs,Unpredicted,Function with Call and Test Instruction
+40A74B,complete_pending_execs,P_set_sparse,Function prologue.
+40A7D9,record_initial_cwd,P_get,Function prologue.
+40A8A2,cleanup_initial_cwd,P_xalloc_die,"""Function Prologue"""
+40A98D,traverse_tree,P_group_parse,"""Function with Memory Allocation and Calls"""
+40AA01,undangle_file_pointers,P_check,Function name: check_and_clear_token
+40AA54,fd_leak_check_is_enabled,Unpredicted,"""Get Environment Variable Check"""
+40AA75,cleanup,P_read,Function Prologue or Stack Setup
+40AB0C,fallback_stat,Unpredicted,File error handling function.
+40AB7D,optionh_stat,Unpredicted,Function to Open File and Check Error Codes.
+40AC2F,optionl_stat,Unpredicted,Function to Open File and Check for Errors.
+40ACBB,optionp_stat,Unpredicted,File open function.
+40AD21,debug_stat,Unpredicted,"""Function with Push and Variable Declarations"""
+40ADD1,following_links,Unpredicted,"""Check for Value and Return"""
+40AE02,digest_mode,P_vfs_s,Function prologue.
+40AF1E,c_strcasecmp,P_c_strcasecmp,"""Variable Check Function"""
+40AF58,looks_like_expression,Unpredicted,"""Function with Push and Mov Instructions"""
+40AFEE,process_debug_options,Unpredicted,Function to tokenize a string
+40B18B,process_optimisation_option,P_char_to,"""Parameter Parsing Function"""
+40B372,process_leading_options,P_cb_listen,"""Function with Memory Access and String Comparison"""
+40B52E,now,Unpredicted,"""Function prologue"" or ""Stack setup and timestamp retrieval"""
+40B5D7,set_option_defaults,P_re_compile_pattern,Function Setup or Initialize Function
+40B769,apply_predicate,Unpredicted,Function with Variable Initialization
+40B821,is_exec_in_local_dir,Unpredicted,"""Compare Value Function"""
+40B84E,safely_quote_err_filename,Unpredicted,Function prologue.
+40B875,error_severity,Unpredicted,Function prologue and epilogue.
+40B893,report_file_err,P_df_df_list,Function Initialization or Error Handling Function.
+40B90B,nonfatal_target_file_error,Unpredicted,Function setup and call.
+40B938,fatal_target_file_error,Unpredicted,Function with Stack Allocation and Abort Call.
+40B967,nonfatal_nontarget_file_error,Unpredicted,"""Function Setup and Call"""
+40B994,fatal_nontarget_file_error,Unpredicted,"Function with Push, Move, Sub and Abort Instructions."
+40B9CA,entry_comparator,Unpredicted,Function to Compare Two Pointers.
+40BA1F,entry_free,P_find_input_value,"""Function with File I/O Operations"""
+40BA92,entry_hashfunc,Unpredicted,Function prologue with division
+40BAC6,c_isspace,P_c_isspace,"""Allocation and Freeing Function"""
+40BB7A,sharefile_destroy,Unpredicted,"""Memory deallocation function"""
+40BBB0,sharefile_fopen,P_section_parse,Function for Allocating Memory and Reading a File.
+40BE08,make_segment,P_uuconf_key_string,"The function could be named ""string assignment and manipulation""."
+40C17F,is_octal_char,Unpredicted,Input validation function.
+40C1A5,parse_octal_escape,P_install,"""Function Prologue"""
+40C22D,parse_escape_char,Unpredicted,"""Variable Assignment and Comparison"""
+40C287,get_format_flags_length,P_skip_of_prefix,"""Function with Variable Manipulation"""
+40C35B,get_format_specifer_length,P_hard_locale,"""Set character index function"""
+40C3A7,insert_fprintf,Unpredicted,Function prologue or stack setup.
+40C913,scan_for_digit_differences,P_Barcode_msi_verify,Function prologue.
+40CA81,do_time_format,P_common_parse_point_char,"""Set Date and Time Function"""
+40CDD9,format_date,Unpredicted,"""Function with push, mov, cmp, and jmp"""
+40D10D,ctime_format,Unpredicted,"""localtime function"""
+40D325,file_sparseness,Unpredicted,"""Function to Divide Two Numbers"""
+40D3B4,checked_fprintf,P_aio_write,Function with variable arguments.
+40D4C1,checked_print_quoted,Unpredicted,Function Prologue.
+40D52E,checked_fwrite,Unpredicted,"""Function with Stack Manipulation"""
+40D592,checked_fflush,Unpredicted,Function Prologue
+40D5D4,mode_to_filetype,P_is,"""Set Variable and Check Values"""
+40E319,pred_fprintf,P_add_len,Function Prologue
+40E4EA,free_file_system_list,P_start,Function with Memory Deallocation.
+40E56C,filesystem_type,Unpredicted,"""Function Setup"""
+40E5EE,set_fstype_devno,P_mu_locus_point_same_line,"Function name: ""Stack Variable Initialization"""
+40E68F,must_read_fs_list,Unpredicted,"""Function with push, move and call instructions"""
+40E6D9,file_system_type_uncached,P_unix_group_to_list,Function setup or Function initialization.
+40E7C5,get_mounted_filesystems,P_display_debug_message,Function initialization.
+40E8DB,get_mounted_devices,P_set_program,Function initialization or Stack setup function.
+40E9F7,fallback_getfilecon,Unpredicted,Function to Handle Errno Location and Error Codes
+40EA3A,optionh_getfilecon,Unpredicted,Function Prologue
+40EAAA,optionl_getfilecon,Unpredicted,"""Function with Push and Move Instructions."""
+40EAF9,optionp_getfilecon,Unpredicted,"""Function Prologue"" or ""Function Setup"""
+40EB23,check_option_combinations,P_mh_symbol,"""Function with Local Variables"""
+40EBBC,get_noop,Unpredicted,Set Global Variable from Register
+40EC27,get_stat_Ytime,P_get_char,Function Prologue
+40ED06,set_follow_state,Unpredicted,"""Set Variable and Branch Function"""
+40ED9D,parse_begin_user_args,Unpredicted,Function prologue with parameters.
+40EDBE,parse_end_user_args,Unpredicted,Function Prologue or Stack Frame Setup
+40EDD4,should_issue_warnings,Unpredicted,Function name: CheckCsByteAndReturnOrZero
+40EDF3,found_parser,P_opt_delete,Function name: error_handling_function
+40EE8E,find_parser,P_mu_tcp_wrapper_prefork,Function with strncmp and strcmp
+40EF62,estimate_file_age_success_rate,Unpredicted,"""Check Floating Point Value against Constants"""
+40EFC2,estimate_timestamp_success_rate,Unpredicted,"""Timer Calculation"""
+40F010,collect_arg_nonconst,P_inter_immed,"""Function Name: Mov and Compare"""
+40F08F,collect_arg,Unpredicted,"""Function Prologue"""
+40F0F1,collect_arg_stat_info,P_read_date,Function with Push and Move Operations
+40F1A1,parse_and,Unpredicted,Function setup and initialization.
+40F204,parse_anewer,Unpredicted,Function with variable initialization.
+40F309,parse_closeparen,Unpredicted,Function setup and initialization.
+40F36C,parse_cnewer,Unpredicted,Function Prologue
+40F471,parse_comma,Unpredicted,"""Function Setup and Initialization"""
+40F4E5,parse_daystart,Unpredicted,"""Timer Update Function"""
+40F5C4,parse_delete,Unpredicted,Function Setup/Initialization
+40F635,parse_depth,Unpredicted,Function prologue.
+40F670,AdjustVarHandles,P_prt_opt_system,Function Setup or Error Handling Function
+40F6C7,parse_empty,Unpredicted,Stack Allocation and Function Call
+40F703,parse_exec,Unpredicted,Function setup or Function initialization.
+40F732,parse_execdir,Unpredicted,Function Prologue with Call
+40F761,insert_false,Unpredicted,Function to Set Register Values and Clear Memory
+40F7C9,parse_false,Unpredicted,Function Prologue
+40F7E4,insert_fls,Unpredicted,"""Function with Variable Initialization"""
+40F863,parse_fls,P_sparse_scan_file,Function Prologue.
+40F8E9,parse_follow,Unpredicted,Function Prologue.
+40F920,parse_fprint,P_read_text,Function Initialization
+40F9ED,insert_fprint,Unpredicted,Function Setup or Function Initialization.
+40FA8A,parse_fprint0,P_eval_and_old,Function initialization or Stack setup function.
+40FB10,estimate_fstype_success_rate,P_builtin_decode,"""Function Entry Setup"""
+40FBC8,is_used_fs_type,P_module_load,"""Function with String Comparison"""
+40FC54,parse_fstype,Unpredicted,Function with Stack Initialization.
+40FD42,parse_gid,P_unix,Function with Local Variables
+40FDBE,parse_group,Unpredicted,Function Prologue
+40FFE6,parse_help,Unpredicted,"""Display Text Message Function"""
+4100AD,estimate_pattern_match_rate,Unpredicted,"""String search and comparison"""
+410102,parse_ilname,Unpredicted,Function Prologue.
+4101B3,fnmatch_sanitycheck,P_builtin_addr,"""Check File Name and Print Error"""
+410245,check_name_arg,Unpredicted,"""Stack Frame Setup and Error Handling"""
+4102DB,parse_iname,Unpredicted,Stack initialization or Function prologue.
+4103AB,parse_inum,P_fts_alloc,"""Function with var_XX variables"""
+410427,parse_iregex,Unpredicted,Function Prologue.
+41045E,parse_links,Unpredicted,Function with Local Variable Initialization.
+410504,parse_lname,Unpredicted,Initialize Variables and Calculate Result.
+4105BA,parse_ls,Unpredicted,Function prologue.
+4105E1,insert_depthspec,Unpredicted,Function Prologue
+41071D,parse_maxdepth,Unpredicted,Function Prologue
+41074C,parse_mindepth,Unpredicted,"""Function with Local Variables"""
+41077B,do_parse_xmin,Unpredicted,Function Prologue.
+4108A0,parse_amin,Unpredicted,Function Entry Prologue.
+4108CF,parse_cmin,Unpredicted,Function with 7 local variables.
+4108FE,parse_mmin,Unpredicted,Function prologue.
+41092D,parse_name,Unpredicted,Function Setup or Stack Setup.
+410A13,parse_negate,Unpredicted,"""Stack allocation and initialization"""
+410A7B,parse_newer,Unpredicted,"Function with Push, Mov, Sub, and Call Instructions."
+410B80,parse_newerXY,Unpredicted,Function Prologue.
+41115F,parse_noleaf,Unpredicted,Function Initialization or Function Entry
+411193,parse_nogroup,Unpredicted,Function Initialization.
+4111D4,parse_nouser,Unpredicted,"""Function for Initializing Variables"""
+411210,parse_nowarn,Unpredicted,Function setup or Function initialization.
+411244,parse_ok,Unpredicted,Function Prologue or Stack Frame Initialization.
+411273,parse_okdir,Unpredicted,"""Function with Stack Allocation and Call"""
+4112A2,parse_openparen,Unpredicted,Function Setup or Memory Allocation Setup.
+41130A,parse_or,Unpredicted,Function initialization or Variable assignment.
+41136D,is_feasible_path_argument,P_dc_open_escape,"""String Processing Function"""
+4113D4,insert_path_check,Unpredicted,Function Set Error Message or Handle Error
+41151E,parse_path,Unpredicted,"""Function with Parameter Initialization"""
+411553,parse_wholename,Unpredicted,Setup Function.
+411588,parse_ipath,Unpredicted,Function setup or Parameter initialization.
+4115BD,parse_iwholename,Unpredicted,Function Setup or Variable Initialization
+4115F2,parse_perm,P_fmtspec,Function Prologue.
+411844,cache_host_lookup,Unpredicted,Function initialization or Local variable initialization.
+4118AD,parse_print0,Unpredicted,Function Setup or Parameter Initialization.
+4118D4,parse_printf,P_cmp_all_from_file,Function Prologue.
+411974,parse_fprintf,P_eval_do,Function Prologue
+411A38,parse_prune,P_tree_new,Initialize Local Variables and Return Value.
+411A98,parse_quit,Unpredicted,Function setup and initialization.
+411AFB,parse_regextype,Unpredicted,Function Prologue
+411B7F,parse_regex,Unpredicted,Function prologue.
+411BAF,insert_regex,Unpredicted,"""Function Setup"""
+411D37,parse_size,P_guess,Function setup or Function initialization.
+412083,parse_samefile,P_panel_act,Function prologue or function setup.
+412384,parse_true,Unpredicted,Function Setup or Stack Setup.
+4123D7,parse_noop,Unpredicted,Function setup or Function prologue.
+412408,parse_accesscheck,P_cue_new_item,"""Function with Parameter Initialization"""
+412494,parse_type,Unpredicted,Function Setup or Argument Setup.
+4124C3,parse_uid,P_unix,"""Function with Local Variables"""
+41253F,parse_used,Unpredicted,Function with Stack Setup and Error Handling.
+412697,parse_user,Unpredicted,Function Entry or Function Prologue
+41282D,parse_version,P_confirm,"""Function with Various Print Statements"""
+412A7B,parse_xdev,Unpredicted,Function Setup or Function Initialization.
+412AAF,parse_ignore_race,Unpredicted,"""Function to Call Subroutine"""
+412AE3,parse_noignore_race,Unpredicted,Function prologue
+412B17,parse_warn,Unpredicted,Function Initialization
+412B4B,parse_xtype,Unpredicted,Function Prologue.
+412B7A,insert_type,P_do_send_data,Function Prologue.
+412DBF,stream_is_tty,Unpredicted,"""Stream file descriptor check function"""
+412DF8,check_path_safety,P_parse_acl,Function with Push and Env Variables
+41374E,get_relative_timestamp,P_get_variable_char,"""Function with push and variable assignments"""
+41394E,parse_time,P_ipmiseld_init,Function Entry or Initialization
+413C3C,get_comp_type,P_conffile_errmsg,"""Check Sign and Increment"""
+413CAF,get_num,Unpredicted,Function_initialize_vars
+413D47,insert_num,P_eval_and,Function Initialization or Stack Setup.
+413EC9,open_output_file,P_count,Function with no name
+413FDD,open_stdout,Unpredicted,Function with 7 lines of ASM code.
+413FFD,display_findutils_version,Unpredicted,"""Print Error Message Function"""
+414080,print_num,P_wordsplit_lookup,Function with stack manipulation and conditional branching.
+414C03,print_name_without_quoting,Unpredicted,Stream Output Function.
+414C34,print_name_with_quoting,Unpredicted,"""Function Prologue"""
+414E0A,print_name,Unpredicted,"Function Name: ""Push, Move, Compare, Call, Return"""
+414E44,decide_size,P_resize_buffer,"""Variable Assignment and Comparison Function"""
+414E92,extendbuf,P_next_file,Function Name: sub_414E44
+414F97,xextendbuf,Unpredicted,Function setup or Memory allocation function.
+414FE4,bc_args_complete,Unpredicted,"""Function with Local Variables"""
+415029,bc_do_insert,P_expand_name,"Function name: ""Copy String with Error Handling"""
+41521D,update_limit,P_checkc_query,Function Name: VarReadWrite
+415356,copy_args,P_merge_get_state,"""Function Setup"""
+415474,bc_do_exec,P_info_buffer_ref,Function name: sub_41525F
+415648,bc_argc_limit_reached,P_listbox_select_last,"""Function name not provided"""
+4156AA,bc_push_arg,Unpredicted,"""Function Setup"""
+4159C1,bc_get_arg_max,Unpredicted,"""System Configuration Check"" or ""Get System Configuration"""
+4159F0,cb_exec_noop,Unpredicted,"""Function Prologue"" or ""Stack Frame Setup"""
+415A0A,bc_size_of_environment,Unpredicted,Function with Variable Assignment
+415A58,bc_init_controlinfo,P_vfs_s_insert,Function Initialization.
+415B9C,bc_use_sensible_arg_max,P_AnnotationList,"""Copy and Check Range Limit"""
+415BF7,bc_init_state,P_pa_inaddr,Set up stack frame and variables.
+415CE2,bc_clear_args,Unpredicted,"""Function to Initialize Variables"""
+415D26,exceeds,P_fsysdep_find,"""Function Name"""
+415DEA,bc_args_exceed_testing_limit,P_cmp,"Function Name: ""String Length Check"""
+415E6C,print_quoted,Unpredicted,"""Stream format function"""
+416011,get_regex_type,Unpredicted,"""Function with Push and Mov Instructions"""
+41615C,get_regex_type_name,Unpredicted,"""check input value and retrieve result"""
+416182,get_regex_type_flags,Unpredicted,"""Check Input Value and Retrieve Data"""
+4161A7,get_regex_type_context,P_string_control,"""Check for Valid Input"""
+4161CC,get_regex_type_synonym,P_string_bin,"""Function Check Value Range"""
+416227,run_in_dir,P_close_stdout,Function prologue.
+416315,run_in_dirfd,P_close,Function Prologue.
+416422,get_proc_max_fd,P_check_text,"""Directory function"""
+4164EF,get_max_fd,P_rpl_fclose,"""Initialize Stack and Variables"""
+416580,visit_open_fds,P_muscle_info_unsigned,"""Stack setup and poll implementation"""
+41672E,fd_is_cloexec,Unpredicted,Function setup or Variable initialization.
+416758,remember_fd_if_non_cloexec,P_com_create,Function with local variable initialization
+416808,remember_non_cloexec_fds,Unpredicted,Function Initialization.
+416894,find_first_leak_callback,P_find_match,Function with Local Variable Initialization
+416946,find_first_leaked_fd,Unpredicted,Function initialization.
+4169CD,o_cloexec_works,Unpredicted,"""Function with push, mov, sub, call"""
+416A18,open_cloexec,P_get_node_listed,Function with Memory Allocation.
+416BA5,forget_non_cloexec_fds,Unpredicted,Free Memory Function.
+416BD1,complain_about_leaky_fds,Unpredicted,"""Function with assert statement"""
+416C51,safe_atoi,Unpredicted,Push and strtol function.
+416E2E,field_length,P_lookup_word,Function prologue.
+416E85,splitstring,P_parse_string,"""Function with local variable initialization"""
+416F36,to_uchar,Unpredicted,"""Copy Parameter to Local Variable"""
+416F45,unibyte_qmark_chars,Unpredicted,Function entry or function prologue
+416FC1,qmark_chars,Unpredicted,"""Function with variable initialization"""
+4171B3,areadlinkat,Unpredicted,Function setup or Stack setup.
+4171E8,careadlinkat,Unpredicted,Function Prologue.
+41754F,set_cloexec_flag,P_set_cloexec_flag,Function name: sub_41755E
+4175CA,dup_cloexec,Unpredicted,"""Function with Memory Allocation and Call"""
+4175F0,close_stdout_set_file_name,Unpredicted,Function prologue/entry.
+417606,close_stdout_set_ignore_EPIPE,Unpredicted,"""Func_StoreByte"""
+41761C,close_stdout,P_close_stdout,Function Prologue.
+417708,opendir_safer,P_fopen_safer,Open Directory function
+4177C1,base_name,P_base_name,"""Function with stack allocation and calls"""
+417844,dir_len,P_dir_len,"""Check for Forward Slash"""
+4178CE,mdir_name,P_mdir_name,Function with Memory Allocation and Copying.
+417965,last_component,P_last_component,"""String comparison function"""
+4179CE,base_len,P_base_len,"""Function with stack allocation and string manipulation"""
+417A1C,strip_trailing_slashes,P_strip_trailing_slashes,Function prologue.
+417A81,open_safer,P_open_safer,Function to open file.
+417BB9,ftypelet,P_ftypelet,"""Get Command Code Name Function"""
+417C64,strmode,Unpredicted,Function Name: setVariableName
+417E30,filemodestring,Unpredicted,"""Function with Stack Frame Setup"""
+417E58,fopen_safer,P_fopen_safer,file open function
+417F44,hash_get_n_buckets,Unpredicted,"""Get Value from struct"""
+417F56,hash_get_n_buckets_used,Unpredicted,"""Function with Local Variable Retrieval"""
+417F68,hash_get_n_entries,Unpredicted,Function Prologue or Variable Initialization.
+417F7A,hash_get_max_bucket_length,P_hash_get_max_bucket_length,"""Function for Variable Initialization"""
+417FF8,hash_table_ok,P_hash_table_ok,"""Function Initialization"""
+418092,hash_print_statistics,Unpredicted,Function with variable declarations and printf calls.
+4181BB,safe_hasher,Unpredicted,Function Prologue
+418212,hash_lookup,P_hash_lookup,"""Function with Stack Variables"""
+4182A5,hash_get_first,Unpredicted,Function prologue.
+418301,hash_get_next,P_hash_get_next,"""Function Setup"""
+41839B,hash_get_entries,P_hash_get_entries,"""Function Setup"""
+418437,hash_do_for_each,P_hash_do_for_each,"""Function with Stack Variables"""
+4184CB,hash_string,P_hash_pjw,"""Variable Calculation Function"""
+418521,is_prime,Unpredicted,"""Square Calculation"""
+41858D,next_prime,P_next_prime,"""Number Comparison and Manipulation"""
+4185D4,hash_reset_tuning,Unpredicted,"""Initialize Float Array"" or ""Clear Float Array"""
+418626,raw_hasher,Unpredicted,"""Function: Divide and Store Parameters"""
+41865D,raw_comparator,Unpredicted,Function name: compare_two_variables
+418676,check_tuning,P_check_tuning,Check if value is valid.
+418773,compute_bucket_size,P_compute_bucket_size,"""Function Prologue"" or ""Function Setup"""
+4188A1,hash_initialize,P_hash_initialize,"""Function Setup"" or ""Variable Initialization"""
+418A0C,hash_clear,P_hash_clear,"""Function with stack manipulation and calls"""
+418B13,hash_free,P_hash_free,"Function Name: ""Memory Allocation and Freeing"""
+418C3E,allocate_entry,P_allocate_entry,"Function name: ""Allocate and Copy Memory Block"""
+418C89,free_entry,Unpredicted,Function Prologue.
+418CBF,hash_find_entry,P_hash_find_entry,"""Function with Register Operations"""
+418E54,transfer_entries,P_transfer_entries,Function Entry or Stack Setup.
+419024,hash_rehash,P_hash_rehash,Function prologue
+41924B,hash_insert_if_absent,Unpredicted,"""Function Setup/Initialization"""
+4195B8,hash_insert,Unpredicted,Stack Frame Setup Function
+419624,hash_delete,Unpredicted,Function prologue.
+419926,adjust_value,Unpredicted,"""Check if number is negative"""
+419A0F,group_number,P_group_number,Function: memcpy with string length check
+41A5C5,default_block_size,Unpredicted,"""getenv_check"""
+41A5E6,humblock,P_humblock,Function prologue.
+41A773,human_options,P_human_options,"""Function Setup and Data Initialization"""
+41A7C8,getuser,P_getuser,Function to Get User ID and Password
+41A8B1,getuidbyname,Unpredicted,Function with no name/anonymous function.
+41AA04,getgroup,P_getuser,"""Initialize gid variable function"""
+41AAED,getgidbyname,P_getgidbyname,Function name: push_rbp_sub_rsp_mov_mov_jmp_mov_mov_cmp_jnz_mov_lea_mov_mov_call_test_jnz_jmp_cmp_jnz_mov_cmp_jz_mov_call_mov_mov_add_mov_mov_jz_mov_mov_mov_jmp_mov_mov_leave_retn
+41AC40,knuth_morris_pratt,P_knuth_morris_pratt,Function prologue.
+41BD7E,gnu_mbswidth,Unpredicted,Function to Copy String and Return Modified String
+41BDB0,mbsnwidth,Unpredicted,Function name not provided.
+41C038,mbuiter_multi_next,P_mbuiter_multi_next,"""Function with Push and Mov Instructions"""
+41C224,mbuiter_multi_reloc,Unpredicted,Function for adding two variables.
+41C24A,mbuiter_multi_copy,P_mbuiter_multi_copy,"""Function for Memory Manipulation"""
+41C2D1,octal_to_mode,Unpredicted,"Function name: ""Function with Stack Frame and Argument Handling"""
+41C2DD,make_node_op_equals,Unpredicted,Function initialization or Stack frame setup.
+41C339,mode_compile,P_mode_compile,Function setup or Function initialization.
+41C767,mode_create_from_ref,Unpredicted,Function with filename parameter.
+41C7D4,mode_adjust,Unpredicted,"""Assembly Function with Variable Manipulation"""
+41C96B,openat_save_fail,Unpredicted,"""Error Handling Function"""
+41C99F,openat_restore_fail,Unpredicted,Function name: errormsg_with_abort
+41C9D3,to_uchar_0,Unpredicted,"""Function Prologue"""
+41C9E2,digits_to_date_time,P_digits_to_date_time,Function Prologue
+41CC6B,apply_relative_time,Unpredicted,Set Object Position.
+41CD89,set_hhmmss,Unpredicted,Function prologue or Stack frame setup.
+41CDD4,yydestruct,P_option_set_base,Function prologue.
+41E8F4,time_zone_hhmm,P_time_zone_hhmm,"""Function with stack manipulation and comparisons"""
+41EA2A,to_hour,P_to_hour,"""Function for variable comparison"" or ""Variable comparison function"""
+41EAB1,to_year,P_to_year,"""Variable comparison and calculation"""
+41EAF1,lookup_zone,Unpredicted,"""Function with Push, Move and Compare Instructions"""
+41EBC2,lookup_word,P_lookup_word,Function prologue
+41EEE9,yylex,Unpredicted,Function Name: Stack Allocation and Initialization
+41F3E3,yyerror,Unpredicted,Function Prologue.
+41F3F6,mktime_ok,P_mktime_ok,"""Check Time Equality"""
+41F4A3,get_tz,P_get_tz,"""Memory copy function"""
+420545,set_program_name,P_set_program_name,Function Initialization or Error Handling.
+42062D,clone_quoting_options,P_clone_quoting_options,"""Stack allocation and error handling"""
+420679,get_quoting_style,Unpredicted,Function prologue with conditional return.
+420697,set_quoting_style,Unpredicted,"""Function with Variable Initialization"""
+4206BC,set_char_quoting,P_set_char_quoting,"""Function with Variable Manipulation"""
+420744,set_quoting_flags,P_set_quoting_flags,"""Save Parameters and Return"""
+420777,set_custom_quoting,P_set_custom_quoting,"""Function Prologue"" or ""Stack Frame Setup"""
+4207D2,quoting_options_from_style,Unpredicted,Function Initialization.
+42086A,gettext_quote,P_gettext_quote,Function name: msgid_var_processing.
+42169F,quotearg_buffer,P_quotearg_buffer,Function with Error Handling.
+421741,quotearg_alloc,Unpredicted,Function Prologue in x86 Assembly.
+421773,quotearg_alloc_mem,P_quotearg_alloc_mem,"""Function with Stack Allocation"" or ""Stack Allocating Function"""
+42189F,quotearg_free,Unpredicted,Function Initialization or Memory Management.
+42194B,quotearg_n_options,P_quotearg_n_options,Function with Register and Memory Operations.
+421BF6,quotearg_n,Unpredicted,Function with stack allocation and parameter setting.
+421C21,quotearg_n_mem,Unpredicted,Function Prologue.
+421C4D,quotearg,Unpredicted,"""Function Setup and Call"""
+421C6C,quotearg_mem,Unpredicted,Function Prologue.
+421C93,quotearg_n_style,Unpredicted,Function Prologue.
+421CF7,quotearg_n_style_mem,Unpredicted,Function Prologue.
+421D59,quotearg_style,Unpredicted,Function setup or Function initialization.
+421D7D,quotearg_style_mem,Unpredicted,Function Setup or Variable Assignment
+421DA9,quotearg_char_mem,Unpredicted,Function name: setup function or initialization function.
+421E60,quotearg_char,Unpredicted,function name: None/Unknown (as it does not have a unique or descriptive operation)
+421E8A,quotearg_colon,Unpredicted,function with variable assignment
+421EA9,quotearg_colon_mem,Unpredicted,Function prologue with call
+421ED3,quotearg_n_style_colon,Unpredicted,Function Setup or Setup Function.
+421F91,quotearg_n_custom,Unpredicted,Function Prologue.
+421FC7,quotearg_n_custom_mem,Unpredicted,Function prologue.
+422081,quotearg_custom,Unpredicted,Function to call sub_421F91
+4220B0,quotearg_custom_mem,Unpredicted,Function Setup or Variable Initialization
+4220EA,quote_n_mem,Unpredicted,Function with Local Variables
+422116,quote_mem,Unpredicted,"""Function with Stack Allocation and Call"""
+42213D,quote_n,Unpredicted,Function prologue with argument initialization
+422166,quote,Unpredicted,Function Prologue.
+422185,save_cwd,P_save_cwd,"""Function with stack allocation and directory handling"""
+422211,restore_cwd,Unpredicted,"""Set Current Directory"""
+422248,free_cwd,Unpredicted,"""Function for Closing and Freeing Memory"""
+42227E,get_stat_atime_ns,Unpredicted,Function to retrieve a specific value.
+422290,get_stat_ctime_ns,Unpredicted,"""ReadMemoryAtOffset"""
+4222A2,get_stat_mtime_ns,Unpredicted,Function Prologue.
+4222B4,get_stat_birthtime_ns,Unpredicted,Function Prologue.
+4222C3,get_stat_atime,Unpredicted,Function prologue.
+4222D9,get_stat_ctime,Unpredicted,"""Function to Retrieve 70h and 68h Values"""
+4222EF,get_stat_mtime,Unpredicted,Function Prologue
+422305,get_stat_birthtime,Unpredicted,Function Prologue or Function Setup.
+422327,strnlen1,Unpredicted,"""Memory Comparison Function"""
+422371,dup_safer,Unpredicted,Function start or subroutine prologue.
+422397,fd_safer,Unpredicted,"""Function Name"" or ""File Close Function"""
+4223E7,version_etc_arn,P_version_etc_arn,"""Function Setup"""
+422956,version_etc_ar,Unpredicted,"""Function Prologue"" or ""Stack Frame Setup"""
+4229C5,version_etc_va,P_version_etc_va,"""Function Setup"""
+422AC7,version_etc,Unpredicted,"""Function prologue"""
+422BA7,emit_bug_reporting_address,Unpredicted,print menu options function.
+422C11,xnmalloc,P_xnmalloc,"""Function Prologue"" or ""Stack Frame Setup"""
+422C7E,xnrealloc,P_xnmalloc,Function Setup or Stack Initialization.
+422CF9,x2nrealloc,P_x2nrealloc,"""Function Initialization"""
+422DA8,xcharalloc,Unpredicted,Function Setup or Function Prologue
+422DC2,xmalloc,Unpredicted,Function for memory allocation.
+422DF7,xrealloc,P_xrealloc,"""Alloc"""
+422E58,x2realloc,Unpredicted,Function setup or Variable initialization.
+422E82,xzalloc,Unpredicted,Function prologue with memset.
+422EB3,xcalloc,P_xcalloc,Function name: calloc_with_error_handling
+422EEC,xmemdup,Unpredicted,"""Function to copy memory"""
+422F20,xstrdup,Unpredicted,Function to Copy String
+422F4D,xalloc_die,P_clear_ungetc,gettext error and abort function.
+422F82,xstrndup,Unpredicted,"""String Copy Function"""
+422FBB,xstrtod,Unpredicted,Function prologue.
+42308F,bkm_scale,P_bkm_scale,"""Integer division and assignment function"""
+4230EE,bkm_scale_by_power,Unpredicted,Function setup and calculation.
+42312F,xstrtoul,P_xstrtoumax,"""Function with stack allocation"""
+423521,bkm_scale_0,Unpredicted,"""Integer division function"""
+423580,bkm_scale_by_power_0,Unpredicted,Function name: var_processing
+4235C1,xstrtoumax,P_xstrtoul,"""Function with Stack Allocation"""
+4239B3,yesno,P_yesno,Function name: getline_rpmatch
+423A67,cdb_init,Unpredicted,Function for Setting Value to Memory Location
+423A7C,cdb_fchdir,Unpredicted,"""fchdir implementation"""
+423A97,cdb_free,P_cdb_free,"""Function to Close File Safely"""
+423AE9,cdb_advance_fd,Unpredicted,"""File Open Function"""
+423B43,find_non_slash,Unpredicted,Function name: string_search_and_offset
+423B71,chdir_long,P_chdir_long,"""Path Changer"" or ""Directory Setter"""
+423E8D,rpl_fcntl,P_rpl_fcntl,Function Prologue
+424173,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,Function Prologue.
+4241A7,rpl_fflush,Unpredicted,Function for Reading and Flushing a File.
+4241F2,rpl_fseeko,P_rpl_fseeko,"""File Seek Function"""
+4242AC,AD_compare,P_AD_compare,register allocation function.
+424301,AD_hash,Unpredicted,"""Divide function"" or ""Integer division function"""
+42432B,setup_dir,P_setup_dir,memory allocation function
+4243C5,enter_dir,P_enter_dir,Function opening or function prologue.
+4244D3,leave_dir,P_leave_dir,Function Init/Initialize/Initiate Stack Frame
+424604,free_dir,P_free_dir,Initialize and Free Memory Function.
+424652,fd_ring_clear,Unpredicted,"""Function with Stack Operations"""
+424695,fts_set_stat_required,P_fts_set_stat_required,"""Function with error checking"""
+4246D9,opendirat,P_opendirat,Function with Memory Allocation
+424775,cwd_advance_fd,P_cwd_advance_fd,Function with variable initialization.
+424801,restore_initial_cwd,P_restore_initial_cwd,"""Function name not given."""
+4248AB,diropen,P_diropen,"""Function Name"""
+424D14,fts_load,P_fts_load,"""Function Prologue"" or ""Stack Frame Setup"""
+424F5B,dirent_inode_sort_may_be_useful,P_dirent_inode_sort_may_be_useful,"""File Stat Function"""
+424FD0,leaf_optimization_applies,P_leaf_optimization_applies,initialize file descriptor (function)
+425054,LCO_hash,Unpredicted,"""Divide and Store Function"""
+42507D,LCO_compare,Unpredicted,Memory comparison function.
+4250AF,link_count_optimize_ok,P_link_count_optimize_ok,Stack overflow check and allocation function.
+425AF9,fts_compare_ino,P_fts_compare_ino,"""Comparison Function"""
+425B54,set_stat_type,Unpredicted,Function Initialization.
+4265BF,fts_stat,P_fts_stat,Function prologue
+426782,fts_compar,Unpredicted,Function Prologue with Call
+4267C3,fts_sort,P_fts_sort,"""Sort Function"""
+42692D,fts_alloc,Unpredicted,Memory allocation function.
+4269E5,fts_lfree,P_fts_lfree,"""Function prologue and epilogue"""
+426A21,fts_palloc,P_fts_palloc,"""Dynamic Memory Allocation Function"""
+426AEE,fts_padjust,P_fts_padjust,"""Stack frame initialization"""
+426C02,fts_maxarglen,P_fts_maxarglen,Function to Count String Length
+426C58,fts_safe_changedir,P_fts_safe_changedir,Function with Memory Allocation and File Operations.
+426F1C,leapyear,P_leapyear,"""Integer Division with Shift and Mask"""
+426FC4,isdst_differ,P_isdst_differ,"""Input validation function"""
+426FFC,ydhms_diff,Unpredicted,"""Initialize Stack Frame"""
+427206,time_t_avg,Unpredicted,"""calc_avg_and_parity"""
+427236,time_t_add_ok,Unpredicted,"""function with addition and comparison"" or ""add and compare function"""
+42726B,time_t_int_add_ok,Unpredicted,"""Variable addition and comparison"""
+42729F,guess_time_tm,P_guess_time_tm,Function prologue or stack setup.
+4273B2,ranged_convert,Unpredicted,Assembly function or function with no name
+4274C0,mktime_internal,Unpredicted,Function Prologue
+427B6B,rpl_mktime,Unpredicted,Function with variable initialization.
+427B8F,dev_from_mount_options,Unpredicted,Function Entry Prologue.
+427BA0,unescape_tab,P_unescape_gettext,String Parser
+42863B,free_mount_entry,Unpredicted,"""Free Memory Function"""
+4286A4,getfileconat,Unpredicted,Function name: sub_4286E9
+42892E,lgetfileconat,Unpredicted,"Function Name: ""fileDirectoryOperation"""
+428BB8,setfileconat,Unpredicted,Function name: set_file_con_or_chdir
+428E42,lsetfileconat,Unpredicted,"""File system operation function"""
+4290CC,__argmatch_die,Unpredicted,"Function name: ""ExitWithDwordValueFromCs"""
+4290DD,argmatch,P_argmatch,"""String Comparison Function"""
+42920C,argmatch_invalid,Unpredicted,Function Prologue.
+429298,argmatch_valid,P_argmatch_valid,"""Error message display function"""
+4293DD,__xargmatch_internal,Unpredicted,"""Function Setup"""
+429463,argmatch_to_argument,P_argmatch_to_argument,"""Function with Local Variables and Comparison"""
+4294EF,rotl64,Unpredicted,"""Rotate with Variable Shift"""
+42950B,rotr64,Unpredicted,"""Rotate Function"""
+429527,rotl32,Unpredicted,"""Bitwise Rotation Function"""
+42953F,proclist,Unpredicted,"""Variable assignment and rotation"""
+429557,rotl_sz,Unpredicted,Bitwise Shift and OR Function
+42958E,rotr_sz,Unpredicted,Bitwise Swap or Bit Swap
+4295C5,rotl16,Unpredicted,"""Bitwise Shift and Or Function"""
+4295F7,rotr16,Unpredicted,"""Variable Arithmetic"" or ""Bit Manipulation"""
+429629,rotl8,Unpredicted,Bitwise Shift and OR Function.
+42965A,rotr8,Unpredicted,"""Variable Initialization Function"""
+42968B,c_isalnum,P_c_isalnum,Hexadecimal Conversion Function
+4296BF,c_isalpha,P_c_isalpha,"""AlphaNumericChecker"""
+4296E9,c_isascii,Unpredicted,Check_Edi_Value.
+429709,c_isblank,Unpredicted,"""Check Input Range"" or ""Validate Input Size"""
+42972D,c_iscntrl,P_c_iscntrl,"""Check Input Range Function"""
+429753,c_isdigit,P_c_isdigit,"""Check Input Range Function"""
+429773,c_isgraph,P_c_isgraph,Comparison and Return Function.
+429793,c_islower,P_c_islower,"""Check Valid Input Range"""
+4297B3,c_isprint,P_c_isprint,Check Range of Value Function.
+4297D3,c_ispunct,P_c_ispunct,Range validation checker.
+429811,c_isspace,P_c_isspace,"""Validate_Input"""
+429838,c_isupper,P_c_isupper,"""Compare and Return Function"" or ""Range Check Function"""
+429858,c_isxdigit,Unpredicted,Function with variable input comparison.
+429884,c_tolower,P_c_tolower,Function with local variable and comparison.
+4298A3,c_toupper,P_c_toupper,"""Function with local variable manipulation"""
+4298C2,c_strcasecmp,P_c_strcasecmp,"""Compare and swap function"""
+42993A,close_stream,P_close_stream,Function to Check and Close File.
+4299C5,is_zero_or_power_of_two,Unpredicted,"""Check Input Value"" or ""Verify Input Value"""
+4299E1,cycle_check_init,Unpredicted,Function with Memory Assignment and Initialization
+429A03,cycle_check,P_cycle_check,Function for Asserting and Testing Memory Operations.
+429AD7,gettime,P_gettime,"""Initialize Time Variables"""
+429B4F,i_ring_init,Unpredicted,"""Data structure initialization."""
+429BA8,i_ring_empty,Unpredicted,GetByteValueFromStruct
+429BBA,i_ring_push,P_i_quoting_options,Variable Initialization or Variable Setup.
+429C42,i_ring_pop,P_i_ring_pop,Function prologue.
+429CC4,get_charset_aliases,Unpredicted,Function Prologue
+42A19E,locale_charset,P_locale_charset,"""Set Langinfo and Compare Strings"""
+42A26C,mmalloca,P_mmalloca,Allocate and initialize memory.
+42A32F,freea,P_freea,"""Check Value Function"""
+42A408,large_int_to_string,Unpredicted,"""Function with Push and Call"""
+42A43F,mb_copy,P_mb_copy,"""Memory Copy Function"""
+42A4E1,is_basic,P_is_basic,"""Shift and Test Function"""
+42A517,mbslen,P_mbslen,"""Function Prologue"" or ""Stack Frame Setup"""
+42A5E3,openat_safer,P_open_safer,"""File open function"" or ""open file"""
+42A71D,map_to_failure,P_map_to_failure,Function prologue.
+42A793,rpl_getfilecon,Unpredicted,"""File Access Function"""
+42A7CC,rpl_lgetfilecon,Unpredicted,"""File Context Retrieval"""
+42A805,rpl_fgetfilecon,Unpredicted,Function to Get File Context
+42A83B,openat_proc_name,P_openat_proc_name,Function Prologue
+42AA10,atexit,Unpredicted,Function with atexit call.
+42AA40,stat_0,Unpredicted,xstat function call.
+42AA50,fstat,Unpredicted,"""File Stat Shortcut"""
+42AA60,lstat,Unpredicted,"""File Stat Request"""
+42AA70,fstatat,Unpredicted,Function to set file attributes.
+401190,sub_401190,Unpredicted,"""Function to Jump to Memory Address"""
+401510,deregister_tm_clones,Unpredicted,Function to jump or return.
+401590,__do_global_dtors_aux,Unpredicted,CheckAndSetFlag
+4015B0,frame_dummy,Unpredicted,"""Memory Comparator Function"""
+4015D6,put_short,P_is_alnum,"""Push RBP and Assert Fail Function"""
+401668,prefix_length,P_prefix_p,"""Function with Memory Operations"""
+4016C3,usage,Unpredicted,print error message function
+40171F,get_seclevel,P_ipv6_static_address_set,nptr_error_check
+401864,outerr,Unpredicted,gettext error function.
+401CC4,display_findutils_version,Unpredicted,display_error_message
+401D47,close_stdout_set_file_name,Unpredicted,Save Argument and Return Address.
+401D5D,close_stdout_set_ignore_EPIPE,Unpredicted,Function prologue.
+401D73,close_stdout,P_close_stdout,Function Prologue.
+401E5F,set_program_name,P_set_program_name,"Function Name: ""abort_if_error_str_returned"""
+401F47,clone_quoting_options,P_clone_quoting_options,"""Push and errno retrieval"""
+401F93,get_quoting_style,Unpredicted,"""Function to check non-zero value"""
+401FB1,set_quoting_style,Unpredicted,Function Prologue
+401FD6,set_char_quoting,P_set_char_quoting,"""Variable Assignment and Manipulation"""
+40205E,set_quoting_flags,P_set_quoting_flags,"""Variable Initialization Function"""
+402091,set_custom_quoting,P_set_custom_quoting,Function setup or Variable initialization.
+4020EC,quoting_options_from_style,Unpredicted,"""Function Setup"" or ""Setup Procedure"""
+402184,gettext_quote,P_gettext_quote,msgID retrieval and comparison function
+402FB9,quotearg_buffer,P_quotearg_buffer,Function Prologue.
+40305B,quotearg_alloc,Unpredicted,Function prologue with callee-save register preservation.
+40308D,quotearg_alloc_mem,P_quotearg_alloc_mem,Function with local variable initialization.
+4031B9,quotearg_free,Unpredicted,Stack allocation and freeing function.
+403265,quotearg_n_options,P_quotearg_n_options,"""Function with Push and Mov Instructions"""
+403510,quotearg_n,Unpredicted,Function Setup or Stack Setup.
+40353B,quotearg_n_mem,Unpredicted,Function Prologue
+403567,quotearg,Unpredicted,function_init
+403586,quotearg_mem,Unpredicted,Function Prologue.
+4035AD,quotearg_n_style,Unpredicted,Function Prologue.
+403611,quotearg_n_style_mem,Unpredicted,Function Prologue
+403673,quotearg_style,Unpredicted,Function Prologue or Stack Frame Set-Up.
+403697,quotearg_style_mem,Unpredicted,"""Function Prologue"""
+4036C3,quotearg_char_mem,Unpredicted,Function prologue.
+40377A,quotearg_char,Unpredicted,Function Prologue.
+4037A4,quotearg_colon,Unpredicted,"""Function with Memory Allocation"""
+4037C3,quotearg_colon_mem,Unpredicted,"""Function with Variable Initialization"""
+4037ED,quotearg_n_style_colon,Unpredicted,Function Prologue
+4038AB,quotearg_n_custom,Unpredicted,Function Entry or Function Prologue
+4038E1,quotearg_n_custom_mem,Unpredicted,"""Function Setup"""
+40399B,quotearg_custom,Unpredicted,"""Function Setup and Call"""
+4039CA,quotearg_custom_mem,Unpredicted,Function Prologue.
+403A04,quote_n_mem,Unpredicted,Function with variable initialization.
+403A30,quote_mem,Unpredicted,Function setup and call.
+403A57,quote_n,Unpredicted,Function Prologue.
+403A80,quote,Unpredicted,Function prologue.
+403A9F,version_etc_arn,P_version_etc_arn,Function prologue.
+40400E,version_etc_ar,Unpredicted,Function prologue.
+40407D,version_etc_va,P_version_etc_va,"""Stack Setup Assembly Function"""
+40417F,version_etc,Unpredicted,Function Prologue.
+40425F,emit_bug_reporting_address,Unpredicted,Print Hello World in C
+4042C9,xnmalloc,P_xnmalloc,"""Function Prologue"" or ""Stack Setup Prologue"""
+404336,xnrealloc,P_xnmalloc,Function Prologue.
+4043B1,x2nrealloc,P_x2nrealloc,"""Function Setup"" or ""Variable Initialization""."
+404460,xcharalloc,Unpredicted,Function Prologue.
+40447A,xmalloc,Unpredicted,Function to allocate memory and check for errors.
+4044AF,xrealloc,P_xrealloc,Function name: allocate_or_free_ptr
+404510,x2realloc,Unpredicted,Function prologue.
+40453A,parse_num,P_read_file,Function Prologue.
+40456B,xcalloc,P_xcalloc,alloc_mem
+4045A4,xmemdup,Unpredicted,"""Function for Memory Copying"""
+4045D8,xstrdup,Unpredicted,String Length Calculation and Manipulation.
+404605,xalloc_die,P_clear_ungetc,_translate_error_and_abort
+40463A,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,Push and Retrieve Flags
+40466E,rpl_fflush,Unpredicted,"""Function Setup"""
+4046B9,rpl_fseeko,P_rpl_fseeko,File seeking function.
+404773,c_strcasecmp,P_c_strcasecmp,"""Comparison and subtraction function"""
+4047EB,close_stream,P_close_stream,Function for Closing File and Checking for Errors
+404876,get_charset_aliases,Unpredicted,Function Prologue
+404D50,locale_charset,P_locale_charset,Langinfo String Comparison Function
+404E1E,c_isalnum,P_c_isalnum,"""Check if input is alphanumeric"""
+404E52,c_isalpha,P_c_isalpha,ASCII character check function.
+404E7C,c_isascii,Unpredicted,CheckValue
+404E9C,c_isblank,Unpredicted,Function with integer comparison and return statement.
+404EC0,c_iscntrl,P_c_iscntrl,"""Check Input Range Function"""
+404EE6,c_isdigit,P_c_isdigit,"""Check Value Range"""
+404F06,c_isgraph,P_c_isgraph,"""Comparison Function"""
+404F26,c_islower,P_c_islower,Function to check value range.
+404F46,c_isprint,P_c_isprint,Function with Comparison and Return Value.
+404F66,c_ispunct,P_c_ispunct,Comparison and branching function.
+404FA4,c_isspace,P_c_isspace,"""Integer Range Checker"""
+404FCB,c_isupper,P_c_isupper,Compare Input Value to Range Function.
+404FEB,c_isxdigit,Unpredicted,"""Check Range Function"""
+405017,c_tolower,P_c_tolower,"""Function with Local Variable Check"""
+405036,c_toupper,P_c_toupper,"""Subtract and Compare Function"""
+4050E0,atexit,Unpredicted,"""atexit function with data pointer"""
+401B50,.puts,Unpredicted,"""Jump to Address in Memory"""
+402190,.strchr,Unpredicted,Compare and Jump Function
+402210,.siglongjmp,Unpredicted,Set flag and call subroutine.
+402230,.__assert_fail,Unpredicted,"""Memory Initialization and Function Jump"""
+402256,set_max_db_age,P_read_device,Function Start or Error Handling Function.
+4023A5,get_short,Unpredicted,parse_input_stream
+4023E0,.fileno,Unpredicted,strpbrk_judge or search_char_in_str.
+402413,locate_read_str,P_walk_sub,"""getdelim function"""
+40253C,visit,P_mtx_panel,"""Function with Push and Mov Instructions"""
+40259E,process_simple,Unpredicted,Function prologue.
+4025C9,process_or,P_set_mode,"""Function Entry Setup"""
+402645,process_and,P_set_mode,"""Function Prologue"""
+4026C1,add_visitor,Unpredicted,"""Function Initialization"""
+402746,visit_justprint_quoted,Unpredicted,"""Function with Push and Putchar"""
+40279A,visit_justprint_unquoted,Unpredicted,"""Print function"""
+4027D8,toolong,Unpredicted,Initialize-error-function.
+402819,extend,P_md5_to_line_start,Variable Assignment and Comparison.
+4028A1,visit_old_format,P_setup_token,"Function Name: ""process_input"""
+402B03,visit_locate02_format,P_cbuf_replay_line,"""Process Input Function"""
+402D3D,visit_basename,Unpredicted,"""Function setup and call"""
+402D6F,visit_existing_follow,P_fts_alloc,"Function name: ""sub_40D970"""
+402DDA,visit_non_existing_follow,P_fts_alloc,Function Entry or Stack Setup or Stack Frame Initialization.
+402E45,visit_existing_nofollow,P_fts_alloc,Stack Error Detection and Handling
+402EB0,EvalParen,P_grecs_parse_system,Function Prologue or Stack Frame Setup.
+402F1B,visit_substring_match_nocasefold_wide,P_until_short,Function to call sub_408BFB with test and return.
+402F5D,visit_substring_match_nocasefold_narrow,P_set_system_flags,"""String search and compare"""
+402FC3,visit_substring_match_casefold_wide,P_until_short,Function Setup or Function Initialization.
+403005,visit_substring_match_casefold_narrow,P_set_system_flags,"""String Search Function"""
+40306B,visit_globmatch_nofold,P_until_short,"""Function to Perform Pattern Matching"""
+4030B1,visit_globmatch_casefold,P_until_short,"""Function to match patterns"""
+4030F7,visit_regex,P_print_stacked_arg,"""String Search"""
+403168,visit_stats,P_convert_put,Function Name: Stack Frame Initialization
+40329F,visit_limit,P_g_string_append_fetch_case,Function Prologue.
+4032E9,visit_count,Unpredicted,"""Function to Increment Value in Structure"""
+403318,print_stats,P_sentence_set_mode,print date and time functions
+403776,looking_at_gnu_locatedb,P_next_prime,"""Compare and Return Function"""
+4037BC,looking_at_slocate_locatedb,P_pexec_hostlist_copy,Function Prologue
+4038D1,i_am_little_endian,Unpredicted,"""Stack Safety Check Function"""
+404386,usage,Unpredicted,Print Function
+4043E2,drop_privs,Unpredicted,"""Set User ID and Group ID function"""
+404539,opendb,Unpredicted,"""File Open and Close"" or ""File Operations"""
+404597,cleanup_quote_opts,Unpredicted,Free Memory Function.
+4050F8,open_secure_db,Unpredicted,Function Prologue
+4051C1,__bswap_32,Unpredicted,Swap Endianess (function swaps byte order)
+4051CF,decode_value,Unpredicted,"Function Name: ""Process Error Handling and Cleanup"""
+4052C3,getword,P_cert_var,"""Read File Function"""
+4053E4,putword,P_opt_op,"""Function with Assert and File Output"""
+40545E,display_findutils_version,Unpredicted,"""Function Prologue"""
+4054E1,print_quoted,Unpredicted,Function: print_stream
+405686,get_regex_type,Unpredicted,"""function with memory operations"""
+4057D1,get_regex_type_name,Unpredicted,"""Check and Retrieve Value"""
+4057F7,get_regex_type_flags,Unpredicted,"""Function Name: Check Value"""
+40581C,get_regex_type_context,P_string_control,"""Integer Array Lookup Function"""
+405841,get_regex_type_synonym,P_string_bin,"""Check for Valid Input"""
+40589C,field_length,P_lookup_word,Function with string manipulation
+4058F3,splitstring,P_parse_string,"""Function to Set Variable Values"""
+4059A4,to_uchar,Unpredicted,Function prologue and epilogue.
+4059B3,unibyte_qmark_chars,Unpredicted,Function Prologue
+405A2F,qmark_chars,Unpredicted,Function with Local Variables
+405C21,close_stdout_set_file_name,Unpredicted,Function Prologue.
+405C37,close_stdout_set_ignore_EPIPE,Unpredicted,"""Function with Variable Assignment"""
+405C4D,close_stdout,P_close_stdout,Function name not specified.
+405D39,last_component,P_last_component,"""Parse Path Function"""
+405DA2,base_len,P_base_len,"""String Processing"""
+405DF0,adjust_value,Unpredicted,"""Stack manipulation and comparison"""
+405ED9,group_number,P_group_number,Function name: string copy and length calculation.
+406A8F,default_block_size,Unpredicted,"""Check Environment Variable and Return Value"""
+406AB0,humblock,P_humblock,"""Function Setup"" or ""Function Initialization""."
+406C3D,human_options,P_human_options,Function initialization or memory allocation.
+406C92,knuth_morris_pratt,P_knuth_morris_pratt,_init function
+40819B,mbslen,P_mbslen,Stack frame initialization function.
+408267,knuth_morris_pratt_0,Unpredicted,Function prologue
+4093A5,quotearg_n,Unpredicted,Function name: parse_input_string
+409591,mbuiter_multi_reloc,Unpredicted,"""Function to Add Two Variables"""
+4095B7,mbuiter_multi_copy,P_mbuiter_multi_copy,"""Function Initialization"""
+40963E,set_program_name,P_set_program_name,Function with Stack Allocation
+409726,clone_quoting_options,P_clone_quoting_options,Function Name: errno_location_cmp
+409772,get_quoting_style,Unpredicted,"""Function with Local Variable and Condition Check"""
+409790,set_quoting_style,Unpredicted,"""Function with parameter storage and return"""
+4097B5,set_char_quoting,P_set_char_quoting,"""Function with Variable Manipulation"""
+40983D,set_quoting_flags,P_set_quoting_flags,"""Set parameters and return value"""
+409870,set_custom_quoting,P_set_custom_quoting,"""Function prologue"" or ""Stack setup"""
+4098CB,quoting_options_from_style,Unpredicted,Function Prologue.
+409963,gettext_quote,P_gettext_quote,"""Message processing function"""
+40A798,quotearg_buffer,P_quotearg_buffer,Function prologue.
+40A83A,quotearg_alloc,Unpredicted,Function Entry Point.
+40A86C,quotearg_alloc_mem,P_quotearg_alloc_mem,"""Function with Memory Allocation"""
+40A998,quotearg_free,Unpredicted,"""Free Memory Function"""
+40AA44,quotearg_n_options,P_quotearg_n_options,Function name: initialize/initialize_variables.
+40ACEF,quotearg_n,Unpredicted,Function prologue.
+40AD1A,quotearg_n_mem,Unpredicted,Function initialization or Stack frame initialization.
+40AD46,quotearg,Unpredicted,Function Prologue.
+40AD65,quotearg_mem,Unpredicted,Function Setup or Stack Setup.
+40AD8C,quotearg_n_style,Unpredicted,Starting Function or Stack Setup
+40ADF0,quotearg_n_style_mem,Unpredicted,Function prologue.
+40AE52,quotearg_style,Unpredicted,Function initialization or stack frame setup.
+40AE76,quotearg_style_mem,Unpredicted,Function Prologue
+40AEA2,quotearg_char_mem,Unpredicted,Initialization Function
+40AF59,quotearg_char,Unpredicted,Function setup and call
+40AF83,quotearg_colon,Unpredicted,Function Setup.
+40AFA2,quotearg_colon_mem,Unpredicted,Function Prologue.
+40AFCC,quotearg_n_style_colon,Unpredicted,Function Setup or Stack Setup.
+40B08A,quotearg_n_custom,Unpredicted,"""Function Entry"" or ""Stack Frame Setup"""
+40B0C0,quotearg_n_custom_mem,Unpredicted,Function Prologue
+40B17A,quotearg_custom,Unpredicted,Function with parameter passing.
+40B1A9,quotearg_custom_mem,Unpredicted,Function Setup or Function Initialization.
+40B1E3,quote_n_mem,Unpredicted,Function Prologue
+40B20F,quote_mem,Unpredicted,Function Prologue.
+40B236,quote_n,Unpredicted,Function prologue
+40B25F,quote,Unpredicted,Function Entry Setup or Stack Frame Initialization.
+40B27E,get_stat_atime_ns,Unpredicted,Function Prologue Retrieval
+40B290,get_stat_ctime_ns,Unpredicted,Function: GetObjectNameFromPointer
+40B2A2,get_stat_mtime_ns,Unpredicted,"""Get PE Header Offset"""
+40B2B4,get_stat_birthtime_ns,Unpredicted,"Function name: ""initializeVar"""
+40B2C3,get_stat_atime,Unpredicted,Function with stack frame and object access.
+40B2D9,get_stat_ctime,Unpredicted,Function Prologue.
+40B2EF,get_stat_mtime,Unpredicted,Function Prologue
+40B305,get_stat_birthtime,Unpredicted,Function Prologue.
+40B327,strnlen1,Unpredicted,"""Copy and compare function"""
+40B371,version_etc_arn,P_version_etc_arn,Function Prologue.
+40B8E0,version_etc_ar,Unpredicted,Function with Stack Allocation
+40B94F,version_etc_va,P_version_etc_va,Function prologue.
+40BA51,version_etc,Unpredicted,"""Function Prologue"""
+40BB31,emit_bug_reporting_address,Unpredicted,"""Print message function"""
+40BB9B,unpack,Unpredicted,Subtract and Multiply Function.
+40BC08,xnrealloc,P_xnmalloc,Function prologue.
+40BC83,x2nrealloc,P_x2nrealloc,"""Function with Stack Allocation"""
+40BD32,xcharalloc,Unpredicted,Function prologue.
+40BD4C,xmalloc,Unpredicted,"""Allocate Memory Function"""
+40BD81,xrealloc,P_xrealloc,"""Memcopy with error handling"""
+40BDE2,x2realloc,Unpredicted,Function setup or Variable initialization.
+40BE0C,xzalloc,Unpredicted,"""Memory Allocation and Initialization"""
+40BE3D,xcalloc,P_xcalloc,"""Allocate Memory Function"""
+40BE76,xmemdup,Unpredicted,Function with memcpy and push.
+40BEAA,xstrdup,Unpredicted,"""String Length Calculation"""
+40BED7,xalloc_die,P_clear_ungetc,_translate and error handling function_
+40BF0C,xstrtol_error,P_xstrtol_error,Function Initialization.
+40C010,xstrtol_fatal,P_xstrtol_fatal,Stack setup and function call.
+40C056,bkm_scale,P_bkm_scale,"""Integer Division and Store Function"""
+40C0B5,bkm_scale_by_power,Unpredicted,"""Stack-based function setup"""
+40C0F6,xstrtoumax,P_xstrtoul,Function name: parse_input_parameters.
+40C4E8,rpl_fcntl,P_rpl_fcntl,Function name cannot be determined from code fragment.
+40C7CE,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,"""Function with Stack Manipulation and Conditional Jump"""
+40C802,rpl_fflush,Unpredicted,"""Stream reading function"""
+40C84D,rpl_fseeko,P_rpl_fseeko,"""File Seek Function"""
+40C907,__argmatch_die,Unpredicted,"""Exit with Status Retrieval"""
+40C918,argmatch,P_argmatch,rbp function or stack frame setup
+40CA47,argmatch_invalid,Unpredicted,"""Function Prologue and Epilogue"""
+40CAD3,argmatch_valid,P_argmatch_valid,Function with Memory Comparison and Error Handling.
+40CC18,__xargmatch_internal,Unpredicted,Function name is not provided.
+40CC9E,argmatch_to_argument,P_argmatch_to_argument,"""Memory Comparison Function"""
+40CD2A,c_strcasecmp,P_c_strcasecmp,Function Name: compare_two_strings
+40CDA2,close_stream,P_close_stream,"""File error handling function"""
+40CE2D,get_charset_aliases,Unpredicted,"""Function Initialization"""
+40D307,locale_charset,P_locale_charset,"""Langinfo Initialization"""
+40D3D5,mmalloca,P_mmalloca,Function Initialization.
+40D498,freea,P_freea,"""Function with PUSH and MOV instructions"""
+40D571,mb_width_aux,Unpredicted,"""Set Character Width and Control Check Function"""
+40D5A8,mb_copy,P_mb_copy,Stack allocation and memcpy function
+40D64A,is_basic,P_is_basic,"""Bitwise Shift and Test"""
+40D680,c_isalnum,P_c_isalnum,"""Character validation function"""
+40D6B4,c_isalpha,P_c_isalpha,"""ValidateLetterInRange"""
+40D6DE,c_isascii,Unpredicted,Function with integer comparison and return.
+40D6FE,c_isblank,Unpredicted,"""Check input value"""
+40D722,c_iscntrl,P_c_iscntrl,"""Check if input is valid"""
+40D748,c_isdigit,P_c_isdigit,CheckHexDigit
+40D768,c_isgraph,P_c_isgraph,CheckValue.
+40D788,c_islower,P_c_islower,"""Check Input Range Function"" or ""Input Validation Function"""
+40D7A8,c_isprint,P_c_isprint,"""Check Input Range Function"""
+40D7C8,c_ispunct,P_c_ispunct,"""Character validation function"""
+40D806,c_isspace,P_c_isspace,Variable input validity check.
+40D82D,c_isupper,P_c_isupper,Subtract and Compare Function
+40D84D,c_isxdigit,Unpredicted,Function with variable initialization and jump.
+40D879,c_tolower,P_c_tolower,"""Check Range Function"""
+40D898,c_toupper,P_c_toupper,Function with variable arithmetic operations.
+40D940,atexit,Unpredicted,"""Function using unk_613328"""
+40D970,stat_0,Unpredicted,"""File_Exist_Check"""
+40D980,fstat,Unpredicted,"""FileStat Function"""
+40D990,lstat,Unpredicted,"""File Access Check Jump"""
+401970,.sigemptyset,Unpredicted,"""Jump to Stored Address"""
+401F00,.memcpy,Unpredicted,Calculation or Comparison Function.
+401F80,.putchar,Unpredicted,set_flag_or_jump_if_flag_set
+401FA0,.localtime,Unpredicted,"""Memory comparison and function call"""
+401FC6,get_char_oct_or_hex_escape,P_format_kg,Function Name: strtoul_conversion
+4021A8,get_input_delimiter,P_icmp_result_compare,Push RBP function
+402274,noop,Unpredicted,"""Function Prologue and Epilogue"" or ""Stack Frame Setup and Teardown"""
+40227B,fail_due_to_env_size,Unpredicted,_translate_error_message
+4022A3,smaller_of,Unpredicted,"""Variable comparison and return"""
+4022C5,fopen_cloexec_for_read_only,P_opendirat,"""Function Setup"" or ""File Initialization"""
+403163,read_line,Unpredicted,Function Prologue.
+40373B,read_string,P_aris_proof_to,Function Name: Push RBP and Move RSP
+403917,print_args,Unpredicted,Function Name: Unknown/Unspecified
+403AEC,extract_interval,P_mh_get_string,"""Set Environment Variable"""
+403C1E,prep_child_for_exec,P_restorecon,Function with File I/O and Error Handling
+403CE9,xargs_do_exec,P_fscmd_read,Function Prologue
+404049,exec_if_possible,Unpredicted,"""Function Prologue"""
+404095,add_proc,P_get_link_from_dirent,Function Setup.
+404198,wait_for_proc,Unpredicted,Function Prologue.
+404470,wait_for_proc_all,Unpredicted,"""Check Process Status and Exit Function"""
+4044E6,increment_proc_max,Unpredicted,Function Prologue and Epilogue
+404516,decrement_proc_max,Unpredicted,"""Decrease Counter Function"""
+40453A,parse_num,P_read_file,Stack Overflow Handler Function
+4046D7,usage,Unpredicted,"""print message function"""
+40499B,display_findutils_version,Unpredicted,Function for Writing to Error Message.
+404A1E,bc_args_complete,Unpredicted,"""Function with Stack Allocation"""
+404A63,bc_do_insert,P_expand_name,Function prologue.
+404C57,update_limit,P_checkc_query,"""Function to manipulate variables"""
+404D90,copy_args,P_merge_get_state,Function Prologue
+404EAE,bc_do_exec,P_info_buffer_ref,func_push_rbp_sub_rsp_var_assign_call_mov_jz_test_jmp_leave_retn
+405082,bc_argc_limit_reached,P_listbox_select_last,"""Check Var and Return"""
+4050E4,bc_push_arg,Unpredicted,Function Prologue or Stack Frame Initialization.
+4053FB,bc_get_arg_max,Unpredicted,"""System Configuration Retrieval Function"""
+40542A,cb_exec_noop,Unpredicted,Function Prologue
+405444,bc_size_of_environment,Unpredicted,Function name: env_var_length
+405492,bc_init_controlinfo,P_vfs_s_insert,"""Function initialization"""
+4055D6,bc_use_sensible_arg_max,P_AnnotationList,"""Bounds Check Function"""
+405631,bc_init_state,P_pa_inaddr,Function initialization or Array Initialization.
+40571C,bc_clear_args,Unpredicted,"""Save Arguments and Clear Memory"""
+405760,exceeds,P_fsysdep_find,set_env_var
+405824,bc_args_exceed_testing_limit,P_cmp,"""Push, move and compare"""
+4058A6,get_proc_max_fd,P_check_text,function_init
+405973,get_max_fd,P_rpl_fclose,"""Function Setup"" or ""Stack Frame Initialization"""
+405A04,visit_open_fds,P_muscle_info_unsigned,"""Function with push, mov, sub"""
+405BB2,fd_is_cloexec,Unpredicted,Function with Arithmetic Calculation.
+405BDC,remember_fd_if_non_cloexec,P_com_create,Function with Stack Variables and Array Access.
+405C8C,remember_non_cloexec_fds,Unpredicted,Function prologue.
+405D18,find_first_leak_callback,P_find_match,Function Set Variable and Check
+405DCA,find_first_leaked_fd,Unpredicted,Function with Memory Allocation
+405E51,o_cloexec_works,Unpredicted,Initialize file and check for error.
+405E9C,open_cloexec,P_get_node_listed,Function Prologue
+406029,forget_non_cloexec_fds,Unpredicted,"""Memory deallocation function"""
+406055,complain_about_leaky_fds,Unpredicted,Function Entry or Error Handler.
+4060D5,safe_atoi,Unpredicted,"""Convert string to integer"""
+4062B2,decide_size,P_resize_buffer,"""Variable Assignment and Comparison"""
+406300,extendbuf,P_next_file,Stack Allocation and Memory Management
+406405,xextendbuf,Unpredicted,Function prologue.
+406452,set_cloexec_flag,P_set_cloexec_flag,Function with Multiple Operations
+4064CD,dup_cloexec,Unpredicted,Function with Variable Initialization.
+4064F3,close_stdin_set_file_name,Unpredicted,Save argument and return address.
+406509,close_stdin,P_close_stdin,"""Input Validation Function"""
+406614,close_stdout_set_file_name,Unpredicted,"""Save Parameter to Memory"""
+40662A,close_stdout_set_ignore_EPIPE,Unpredicted,"Function Name: ""Save_and_Return"""
+406640,close_stdout,P_close_stdout,Function Prologue.
+40672C,opendir_safer,P_fopen_safer,dir_open
+4067E5,open_safer,P_open_safer,"""File open function"""
+40691D,knuth_morris_pratt,P_knuth_morris_pratt,Function prologue.
+407A5B,mbuiter_multi_next,P_mbuiter_multi_next,"""Function Prologue"""
+407C47,mbuiter_multi_reloc,Unpredicted,"""Addition function"""
+407C6D,mbuiter_multi_copy,P_mbuiter_multi_copy,"""Function Setup"""
+407CF4,set_program_name,P_set_program_name,Function for String Manipulation
+407DDC,clone_quoting_options,P_clone_quoting_options,"""Function with Error Handling"""
+407E28,get_quoting_style,Unpredicted,Function prologue with conditional return.
+407E46,set_quoting_style,Unpredicted,Function prologue with assignments.
+407E6B,set_char_quoting,P_set_char_quoting,"""Function name not specified"""
+407EF3,set_quoting_flags,P_set_quoting_flags,"""Function to Set a Variable"""
+407F26,rootunit,P_is_do_dir,"""Function Setup"""
+407F81,quoting_options_from_style,Unpredicted,"""Function Initialization"" or ""Stack Frame Setup"""
+408019,gettext_quote,P_gettext_quote,gettext function parameter initialization and comparison
+408E4E,quotearg_buffer,P_quotearg_buffer,Function Prologue.
+408EF0,quotearg_alloc,Unpredicted,"""Function with stack variables"""
+408F22,quotearg_alloc_mem,P_quotearg_alloc_mem,Function with Variable Initialization.
+40904E,quotearg_free,Unpredicted,"""Free Memory Function"""
+4090FA,quotearg_n_options,P_quotearg_n_options,Function Prologue.
+4093A5,quotearg_n,Unpredicted,Function prologue.
+4093D0,quotearg_n_mem,Unpredicted,Function Prologue
+4093FC,quotearg,Unpredicted,Function Prologue
+40941B,quotearg_mem,Unpredicted,Function setup and call.
+409442,quotearg_n_style,Unpredicted,Stack Setup Function.
+4094A6,quotearg_n_style_mem,Unpredicted,"""Function prologue"""
+409508,quotearg_style,Unpredicted,Function prologue.
+40952C,quotearg_style_mem,Unpredicted,Function setup with variable initialization.
+409558,quotearg_char_mem,Unpredicted,Function Prologue
+40960F,quotearg_char,Unpredicted,"""Function Prologue"""
+409639,quotearg_colon,Unpredicted,"""Function with Push, Move, Call"""
+409658,quotearg_colon_mem,Unpredicted,"""Function with local variables and function call"""
+409682,quotearg_n_style_colon,Unpredicted,Function setup prologue.
+409740,quotearg_n_custom,Unpredicted,"""Function Setup"""
+409776,quotearg_n_custom_mem,Unpredicted,Function Name: Init Stack Frame with Variables.
+409830,quotearg_custom,Unpredicted,Function Prologue.
+40985F,quotearg_custom_mem,Unpredicted,Function setup or function prologue.
+409899,quote_n_mem,Unpredicted,Function prologue.
+4098C5,quote_mem,Unpredicted,Function Setup.
+4098EC,quote_n,Unpredicted,Function Prologue.
+409915,quote,Unpredicted,Function name: sub_4098EC_wrapper
+409934,safe_read,P_safe_write,read file function or file input function
+4099A4,strnlen1,Unpredicted,"""Initiate Memory Comparison Function"""
+4099EE,dup_safer,Unpredicted,Function to Call with Arguments
+409A14,fd_safer,Unpredicted,Function to close file descriptor.
+409A64,version_etc_arn,P_version_etc_arn,Function Prologue
+409FD3,version_etc_ar,Unpredicted,Function Prologue
+40A042,version_etc_va,P_version_etc_va,Stack Frame Initialization.
+40A144,version_etc,Unpredicted,Function prologue.
+40A224,emit_bug_reporting_address,Unpredicted,print message function
+40A28E,xnmalloc,P_xnmalloc,"Function Name: ""mul_and_handle_errors"""
+40A2FB,xnrealloc,P_xnmalloc,"Function name: ""Multiplies and Calls Subroutine"""
+40A376,x2nrealloc,P_x2nrealloc,"""Function Setup"""
+40A425,xcharalloc,Unpredicted,Function Prologue.
+40A43F,xmalloc,Unpredicted,"""Allocate Memory Function"""
+40A474,xrealloc,P_xrealloc,"""Function with memory allocation and deallocation"""
+40A4D5,x2realloc,Unpredicted,Function prologue.
+40A4FF,xzalloc,Unpredicted,Function Name: setMemoryToZero
+40A530,xcalloc,P_xcalloc,Allocate memory function.
+40A569,xmemdup,Unpredicted,Function name: copy_data_from_src_to_dest.
+40A59D,xstrdup,Unpredicted,Function with String Manipulation.
+40A5CA,xalloc_die,P_clear_ungetc,"""Display Error and Abort Function"""
+40A5FF,bkm_scale,P_bkm_scale,Signed Integer Division and Modulus
+40A65E,bkm_scale_by_power,Unpredicted,"""Function to Perform Task X"""
+40A69F,xstrtoul,P_xstrtoumax,Function name: parse_input_params
+40AA91,rpl_fcntl,P_rpl_fcntl,Function setup or Entry function setup.
+40AD77,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,"""Function with stack allocation"""
+40ADAB,rpl_fflush,Unpredicted,"""Function with File I/O Operations"""
+40ADF6,freadahead,P_freadahead,"""Check if value is valid"""
+40AE64,rpl_fseeko,P_rpl_fseeko,"""File Seek Function"""
+40AF1E,c_strcasecmp,P_c_strcasecmp,"""Function Prologue"" or ""Stack Setup"""
+40AF96,close_stream,P_close_stream,"""File operations function"""
+40B021,get_charset_aliases,Unpredicted,"""Function Prologue"""
+40B4FB,locale_charset,P_locale_charset,"""langinfo initialization function"""
+40B5C9,mmalloca,P_mmalloca,Set Variable and Allocate Memory.
+40B68C,freea,P_freea,"""Function Entry"""
+40B765,mb_width_aux,Unpredicted,"""Push-Sub-Wcwidth"""
+40B79C,mb_copy,P_mb_copy,Function for copying memory or data.
+40B83E,is_basic,P_is_basic,"""shift register bit check"""
+40B874,mbslen,P_mbslen,"""Function Name"""
+40B940,c_isalnum,P_c_isalnum,Hexadecimal Conversion Function
+40B974,c_isalpha,P_c_isalpha,"""Character validation"""
+40B99E,c_isascii,Unpredicted,Function to check integer value limit.
+40B9BE,c_isblank,Unpredicted,Input validation function.
+40B9E2,c_iscntrl,P_c_iscntrl,Function name: check_value_range
+40BA08,c_isdigit,P_c_isdigit,"""Check input validity function"""
+40BA28,c_isgraph,P_c_isgraph,"""Check Value Range Function"""
+40BA48,c_islower,P_c_islower,"""Subtract and Compare Function"""
+40BA68,c_isprint,P_c_isprint,"""Check Valid Input Range"""
+40BA88,c_ispunct,P_c_ispunct,"""Compare and Modify Integer Value"""
+40BAC6,c_isspace,P_c_isspace,Function to check input value range.
+40BAED,c_isupper,P_c_isupper,"""Check if Value is in Range"""
+40BB0D,c_isxdigit,Unpredicted,"""VarCompare"" or ""VarCheck"" or ""VarValidation"""
+40BB39,c_tolower,P_c_tolower,"""Subtract and Compare Function"""
+40BB58,c_toupper,P_c_toupper,Function Prolog
+40BC00,atexit,Unpredicted,Function using atexit and unknown address.
+401A80,.perror,Unpredicted,Jump to Memory Address.
+402030,.qsort,Unpredicted,"""Compare and Jump Function"""
+4020B0,.textdomain,Unpredicted,Set flag and call function.
+4020D0,.fclose,Unpredicted,"""Memory Comparison and Function Call"""
+4020F6,banner,P_concat,"""Function Setup"""
+40234B,bind_F12,P_check,Function Prologue
+4023C3,getch_fl,P_parse_save,Terminal Input Function.
+402638,wait_user,P_read_file,"""Screen clear function"""
+40279D,display_speed,Unpredicted,Function Prologue
+402D62,do_keybind,Unpredicted,Function Name: sub_402D90
+402ED0,do_tutorial,Unpredicted,"""Stream Printing Function"""
+402FEA,do_instruction,P_save,"""Prints Screen Content"""
+4030DD,is_error_too_high,Unpredicted,Function with Push and Sprintf/Sscanf
+404621,do_clear,Unpredicted,"""Clear Screen Function"""
+404686,do_goto,P_lock,"""String Manipulation Function"""
+40472D,do_query_repeat,Unpredicted,"""Console Print Function"""
+4049D8,do_query_simple,Unpredicted,"Function Name: ""ClearLine"""
+404B62,do_query,Unpredicted,Function to clear console screen and print text.
+404DC1,do_error_max_set,Unpredicted,"Function Name: ""string_compare_and_convert"""
+40520A,do_on_failure_label_set,Unpredicted,Function Name: Assembly_Subroutine
+405436,parse_file,Unpredicted,Function Name: stream_operations
+405714,indent_to,Unpredicted,Function Prologue.
+40574B,print_usage_item,Unpredicted,parse_input_function
+405A83,print_help,Unpredicted,Function Prologue.
+405DDE,parse_cmdline,Unpredicted,Function arguments initialization.
+40641F,open_script,Unpredicted,"""File Open function"""
+406E2B,do_bell,Unpredicted,"""Print and clean up function"""
+406E4B,get_best_speed,Unpredicted,Function Setup or Memory Allocation Function
+40717C,put_best_speed,P_ipmipower_file_list,"""Function with File I/O"""
+40737F,node_new,Unpredicted,Allocate Memory Function
+4073C0,node_delete,Unpredicted,"""Allocate and free memory function"""
+4073F6,append_menu_history,P_append_strings_to_vector,"""Function Prologue"""
+407566,prepare_to_go_back,P_update_path,Stream Initialization Function.
+408199,__update_last_label,Unpredicted,"""Function with string manipulation and memory allocation"""
+408208,hash_label,P_Barcode_encode_verify,"""Function"""
+40824E,line_is_empty,P_skipws,"""Push RBP function"""
+4082A2,check_script_file_with_current_encoding,Unpredicted,"""Function Setup"""
+408346,build_label_index,Unpredicted,Initiate file stream.
+4086EE,get_script_line,Unpredicted,parse_input_stream
+4088DF,buffer_command,Unpredicted,"""Function Prologue"""
+408A07,seek_label,P_argmatch,Stream opening function.
+408B86,do_exit,Unpredicted,"""File Close and Screen Clear Function"""
+408C26,fatal_error,Unpredicted,Function to Clear and Print Error Messages.
+408CF2,widen,Unpredicted,Function setup or String conversion function.
+408D6E,convertUTF8ToCurrentEncoding,P_read_report_file,_init_iconv_function
+408F1E,convertFromUTF8,P_parse_symbols,"Function name: ""allocate_and_copy_string"""
+408FE6,mvwideaddstr,Unpredicted,"""Function to Move Cursor and Call Subroutine"""
+40901E,wideaddstr,Unpredicted,"""Function name not provided"""
+40908B,wideaddstr_rev,Unpredicted,Function name: set_screen_highlight
+4090D8,wideaddch,Unpredicted,Function with no specific name or too specific to determine.
+409194,wideaddch_rev,Unpredicted,"""wattr_on/off function"""
+4091DE,utf8len,Unpredicted,"""Function Start"" or ""Stack Frame Setup"""
+40923C,iswideupper,Unpredicted,"""Stack frame setup and character check"""
+40927E,towideupper,Unpredicted,Function with Local Variable Initialization
+4092AB,get_widech,P_pcond_conv_all,process_input or handle_input.
+401650,sub_401650,Unpredicted,"""Jump to and Push CS Address"""
+401B70,deregister_tm_clones,Unpredicted,CheckValueInRange
+401BF0,.init_proc,Unpredicted,Compare and set byte function
+401C10,sub_401C10,Unpredicted,"""Memory Check and Function Execution"""
+401C36,bi_init,Unpredicted,Set Value and Check for Non-Negative.
+401C72,send_bits,Unpredicted,"""Function with Push and Mov instructions"""
+401DDB,bi_reverse,Unpredicted,"""Bit Counting Function"""
+401E09,bi_windup,Unpredicted,"""Push and Move Function"""
+401F24,copy_block,P_dump,"""Push RBP and Variable Manipulation"""
+4020E6,lm_init,P_iso_ir,"""Function Prologue"""
+402294,longest_match,P_getcmd,"""Function Prologue"""
+4024DC,fill_window,Unpredicted,"""Memory Allocation Function"""
+4027C9,deflate_fast,Unpredicted,Function #1
+402BB6,deflate,Unpredicted,Function name not provided.
+403172,try_help,Unpredicted,Function that prints error message.
+4031A0,help,Unpredicted,Function with printf and puts
+4031F1,license,Unpredicted,Print and Compare Function
+403249,version,Unpredicted,Function prologue and epilogue.
+403269,progerror,Unpredicted,Function with error reporting.
+403A9B,input_eof,Unpredicted,"""Function with Push and Move Instructions"""
+403AFE,treat_stdin,P_utf8,"""Function with Push and Mov Instructions"""
+403E12,atdir_eq,Unpredicted,"""Memory Comparison Function"""
+403E74,atdir_set,P_edit_run_process,"""Function initialization"" or ""File operation setup"""
+4047E7,create_outfile,P_get_link_list,Function Initialization or Process Initialization.
+4049E6,get_suffix,P_print_lookup,Function prologue
+404BE2,open_and_stat,P_opendirat,"""Function with variable initialization"""
+404CCE,open_input_file,Unpredicted,Function Initialization or Initializing Function
+404F21,make_ofname,P_optionsMenu,Function Name: Push_RBP_SubESP_Call_Strcpy
+40513B,discard_input_bytes,P_print_nul,Function prologue
+405E2F,do_list,Unpredicted,"""Function Prologue"""
+406315,shorten_name,Unpredicted,"""Function"" or ""String Manipulation Function"""
+4064CE,check_ofname,Unpredicted,"""Initialize program stack"""
+4065D0,do_chown,Unpredicted,Function for changing file ownership.
+4065FD,copy_stat,P_print_header,Function Setup or Stack Setup.
+406849,treat_dir,Unpredicted,"""Directory listing function"""
+406AC5,install_signal_handlers,Unpredicted,"""sigaction function"""
+406CB8,do_exit,Unpredicted,"""Function setup and execution"""
+406D05,finish_out,Unpredicted,Function setup and call.
+406D2B,remove_output_file,Unpredicted,"""Function Setup"""
+406DC4,abort_gzip,Unpredicted,"""Function Call with Parameter Setting"""
+406DD7,abort_gzip_signal,Unpredicted,"""Function with Signal Handling"""
+407575,huft_free,P_transform_string,Function name: free_and_return
+407B2D,inflate_stored,Unpredicted,"""Function Prologue"""
+407CFD,inflate_fixed,Unpredicted,"""Function with stack allocation and loops"""
+408777,inflate_block,Unpredicted,Function Setup.
+4088AB,inflate,Unpredicted,Function prologue
+40897E,lzw,Unpredicted,"""Stack initialization and error handling"""
+4089DE,ct_init,Unpredicted,Function Entry Prologue
+408CC0,init_block,Unpredicted,"""Initialize Array Function"""
+408D82,pqdownheap,P_mpool_trim,"""var_18 to var_8 updates"""
+408F60,gen_bitlen,Unpredicted,"""Stack Frame Initialization"""
+4092F2,gen_codes,Unpredicted,"""Function Prologue"""
+4093EB,build_tree,P_ali_yy_delete_buffer,"""Function with Stack Manipulation"""
+409771,scan_tree,Unpredicted,Function to set variable values
+409914,send_tree,P_Raw,Function Prologue or Stack Frame Set-Up.
+409B1E,build_bl_tree,Unpredicted,"""Function with Memory Manipulation"""
+409BB0,send_all_trees,Unpredicted,"""Function with Memory Allocation"""
+409C5D,flush_block,Unpredicted,FunctionSetup
+409EAA,ct_tally,Unpredicted,"""Function Prologue"""
+40A0C7,compress_block,Unpredicted,"""Function Prologue"""
+40A2FF,set_file_type,Unpredicted,"""Init and Loop Function"""
+40A39A,fillbuf,Unpredicted,"""Move and modify stack"" or ""Stack manipulation"""
+40A48F,getbits,Unpredicted,"""Function with Push and Mov Instructions"""
+40A4C8,init_getbits,Unpredicted,"""Initialize variables"""
+40A4F6,make_table,Unpredicted,"""Function Setup"""
+40A9C5,read_pt_len,Unpredicted,Function x (or sub_x)
+40AB3D,read_c_len,Unpredicted,Function Push Rbp Mov Rsp
+40AD06,decode_c,Unpredicted,"""setup stack and variables"""
+40AE0A,decode_p,Unpredicted,"""Process Input Function"""
+40AECD,huf_decode_start,Unpredicted,"""Function_Setup"""
+40AEE3,decode_start,Unpredicted,Function prologue with call and initialization.
+40AF03,decode,P_find_option,"""Function Prologue with Variables Initialization"""
+40B056,unlzh,Unpredicted,"""Function Setup"""
+40B86C,read_byte,Unpredicted,"""Initiate Stack and Variables"""
+40B8C3,read_tree,Unpredicted,Function Initialization
+40BA81,build_tree_0,Unpredicted,"""Push RBP Function"""
+40BB9B,unpack,Unpredicted,Function prologue.
+40BDC0,check_zipfile,Unpredicted,"""stack frame initialization"""
+40BFC1,unzip,Unpredicted,Function Prologue.
+40C61F,copy,Unpredicted,Function with Memory Allocation and Error Handling.
+40C6F1,updcrc,P_hash,Function Name: Push RBX and XOR Operation
+40C764,clear_bufs,Unpredicted,"""Initialize Memory"""
+40C7A4,fill_inbuf,P_lex_next_text,Function setup or Prologue
+40C875,read_buffer,Unpredicted,"""Buffered Input Function"" or ""Read Input Function"""
+40C931,write_buffer,P_parser_parse_opt,"""Function with Push and Write"""
+40C967,flush_outbuf,Unpredicted,"""Function Prologue and Epilogue"""
+40C9B5,flush_window,Unpredicted,"""Function Prologue"""
+40CA1F,write_buf,Unpredicted,Function Prologue
+40CA6D,strlwr,P_lower,"""Stack Frame Initialization Function"""
+40CAE0,WriteIncludes,Unpredicted,Function prologue.
+40CB02,xunlink,Unpredicted,Function to Delete a File.
+40CB22,make_simple_name,P_init,"""String manipulation"""
+40CB7F,add_envopt,P_locale_charset,"""Function with Environmental Variables Parsing"""
+40CD07,gzip_error,Unpredicted,"""Print Error Message Function"""
+40CD44,xalloc_die,P_clear_ungetc,print_error_message
+40CD6D,warning,Unpredicted,Function with Stack Allocation and Error Output.
+40CDC6,read_error,P_xstrcoll,"""Error Printing Function"""
+40CE3A,write_error,Unpredicted,"""Error Handling Function"""
+40CE88,display_ratio,Unpredicted,"""Stream Conversion Function"""
+40CEF5,fprint_off,P_cbuf_find_block,"""ASCII to Decimal Conversion Function"""
+40D7E5,file_read,Unpredicted,"Function Name: ""Sub_Routine_Name"""
+40D855,last_component,P_last_component,"""String Parsing"" or ""Path Parser"""
+40D8BE,base_len,P_base_len,"""Stack Setup and String Check"""
+40D90C,open_safer,P_open_safer,"""File Open Function"""
+40DA44,gettime,P_gettime,"""Stack Timing Function"""
+40DABC,openat_safer,P_open_safer,File Open Function.
+40DBF6,direntry_cmp_name,Unpredicted,Function Name: Compare Two Strings
+40DC31,streamsavedir,P_streamsavedir,Function initialization or Directory reading.
+40DF90,savedir,P_internal_read_file,"""Directory function"""
+40E012,get_stat_atime_ns,Unpredicted,Function Prologue.
+40E024,get_stat_ctime_ns,Unpredicted,Function Prologue or Stack Frame Setup.
+40E036,get_stat_mtime_ns,Unpredicted,"""Get PE Header Address Function"""
+40E048,get_stat_birthtime_ns,Unpredicted,"""Function with local variable initialization"""
+40E057,get_stat_atime,Unpredicted,Function name: getDataFromStruct.
+40E06D,get_stat_ctime,Unpredicted,"""Get Object Offset"""
+40E083,get_stat_mtime,Unpredicted,"""Function Prologue"""
+40E099,get_stat_birthtime,Unpredicted,Function Prologue
+40E0BB,stat_time_normalize,Unpredicted,"""Function with Local Variables"""
+40E0CB,fd_safer,Unpredicted,"""Function to Close File Descriptor"""
+40E11B,validate_timespec,P_validate_timespec,"""Check Input Validity Function"""
+40E281,update_timespec,P_update_timespec,"""Function with Push, Mov, Sub, and Jmp"""
+40E3AA,fdutimens,P_fdutimens,Function with File Timestamps Editing.
+40E9F2,utimens,Unpredicted,Function Prologue.
+40EA19,lutimens,P_lutimens,"""RBX initialization function"""
+40ECF6,xnmalloc,P_xnmalloc,Function for Multiplication with Stack Check
+40ED6D,xnrealloc,P_xnmalloc,"""Function setup and calculation"""
+40EDF2,x2nrealloc,P_x2nrealloc,Function prologue.
+40EEF3,xcharalloc,Unpredicted,Function prologue.
+40EF0D,xmalloc,Unpredicted,"""Memory Allocation Function"" or ""Malloc Wrapper"""
+40EF42,xrealloc,P_xrealloc,"""Memory Allocation Function"""
+40EFA3,x2realloc,Unpredicted,Function Setup or Variable Initialization.
+40EFCD,xzalloc,Unpredicted,"""Function to Initialize Memory Block"""
+40EFFE,xcalloc,P_xcalloc,"""Allocate Memory Function"""
+40F086,xmemdup,Unpredicted,Function with Memory Copy and Stack Allocation.
+40F0BA,xstrdup,Unpredicted,Function with string operation.
+40F0E7,yesno,P_yesno,"""Input validation function"""
+40F132,rpl_fclose,P_rpl_fclose,"""File Error Handling Function"""
+40F1EA,rpl_fcntl,P_rpl_fcntl,"""Function Prologue"""
+40F4D0,clear_ungetc_buffer_preserving_position,P_clear_ungetc_buffer_preserving_position,Function Name: checkFlag.
+40F504,rpl_fflush,Unpredicted,"""File Input/Output Function"""
+40F54F,rpl_fseeko,P_rpl_fseeko,"""File seek function"" or ""File position seek"""
+40F609,opendir_safer,P_fopen_safer,"""Open Directory Function"""
+40F6D9,dup_safer,Unpredicted,Function with Memory Allocation and Call to sub_40F1EA.
+40F780,stat_0,Unpredicted,"""file_stat_function"""
+40F790,fstat,Unpredicted,"""FileStat Function"""
+40F7A0,lstat,Unpredicted,"""File Stat Request"""

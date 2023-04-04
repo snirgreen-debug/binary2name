@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 0
+mov     esi, 0
+mov     edi, 431E00h
+mov     eax, 0
+call    sub_417A81
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_4221F8
+mov     esi, 0
+mov     edi, 0
+call    _getcwd
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_4221F1
+mov     eax, 0
+jmp     short locret_42220F
+mov     eax, 0FFFFFFFFh
+jmp     short locret_42220F
+mov     rax, [rbp-8]
+mov     eax, [rax]
+mov     esi, 1
+mov     edi, eax
+call    sub_41754F
+mov     eax, 0
+leave
+retn

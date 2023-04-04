@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+p], rdi
+mov     [rbp+ent], rsi
+mov     [rbp+pstat], rdx
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax+70h]
+cmp     ax, 0Ah
+jz      short loc_403650
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax+70h]
+cmp     ax, 0Bh
+jz      short loc_403650
+mov     eax, 1
+jmp     short loc_403655
+mov     eax, 0
+and     eax, 1
+mov     cs:state_0.have_stat, al
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     cs:state_0.rel_pathname, rax
+mov     rax, [rbp-18h]
+mov     eax, [rax+2Ch]
+mov     cs:state_0.cwd_dir_fd, eax
+call    get_eval_tree
+mov     [rbp+eval_tree], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax+38h]
+mov     rdx, [rbp-8]
+mov     rcx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    apply_predicate
+movzx   eax, cs:state_0.stop_at_current_level
+test    al, al
+jz      short loc_4036C1
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     edx, 4
+mov     rsi, rcx
+mov     rdi, rax
+call    fts_set
+nop
+leave
+retn

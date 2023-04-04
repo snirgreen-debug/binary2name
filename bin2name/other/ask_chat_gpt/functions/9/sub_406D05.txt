@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:stdout
+mov     rdi, rax
+call    sub_40F132
+test    eax, eax
+jz      short loc_406D21
+call    sub_40CE3A
+mov     edi, 0
+call    sub_406CB8

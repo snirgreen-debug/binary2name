@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+line], rdi
+mov     [rbp+first], rsi
+mov     [rbp+second], rdx
+mov     rax, [rbp-18h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-8]
+lea     rsi, delim
+mov     rdi, rax
+call    _strtok
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4031C2
+lea     rsi, asc_413958
+mov     edi, 0
+call    _strtok
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4031C2
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    removespaces
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4031C2
+mov     rax, [rbp-18h]
+mov     qword ptr [rax], 0
+nop
+leave
+retn

@@ -1,0 +1,42 @@
+push    rbp
+push    rbx
+sub     rsp, 8
+mov     rcx, [pvm+8]
+cmp     rcx, 6192A0h
+jz      short loc_40F7B0
+test    pvmDyn, pvmDyn
+mov     pfile, pvmDyn
+mov     rbx, pvm
+jz      short loc_40F790
+mov     pvm, [pvm]
+xor     ebp, ebp
+call    GetVarPTR
+test    rax, rax
+setnz   bpl
+jz      short loc_40F7C0
+add     rsp, 8
+mov     eax, ebp
+pop     pvm
+pop     iReturn
+retn
+xor     ebp, ebp
+test    rcx, rcx
+setnz   bpl
+jnz     short loc_40F781
+mov     pvmDyn, [rsi]
+xor     edi, edi
+mov     esi, 108h
+call    ReportError
+jmp     short loc_40F781
+xor     ebp, ebp
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     iReturn
+retn
+mov     rdx, [pvm]
+xor     ecx, ecx
+mov     esi, 107h
+xor     edi, edi
+call    ReportError
+jmp     short loc_40F781

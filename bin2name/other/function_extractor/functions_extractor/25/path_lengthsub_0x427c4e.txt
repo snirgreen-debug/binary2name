@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+url], rdi
+mov     rax, [rbp-18h]
+mov     esi, 437445h
+mov     rdi, rax
+call    _strpbrk
+mov     [rbp+SOE_p], rax
+cmp     [rbp+SOE_p], 0
+jnz     short loc_427C90
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     [rbp+SOE_p], rax
+mov     rax, [rbp-10h]
+mov     [rbp+q], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+leave
+retn

@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     [rbp+s], rsi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _getenv
+mov     [rbp+name], rax
+cmp     [rbp+name], 0
+jnz     short loc_4058D6
+mov     eax, 2
+jmp     short locret_40592E
+mov     rax, [rbp-20h]
+lea     rsi, delim
+mov     rdi, rax
+call    _strtok
+mov     [rbp+s2], rax
+jmp     short loc_405922
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40590D
+mov     eax, 1
+jmp     short locret_40592E
+lea     rsi, delim
+mov     edi, 0
+call    _strtok
+mov     [rbp+s2], rax
+cmp     [rbp+s2], 0
+jnz     short loc_4058EF
+mov     eax, 0
+leave
+retn

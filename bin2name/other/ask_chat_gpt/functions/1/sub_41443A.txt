@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_414456
+mov     rax, [rbp-8]
+mov     rax, [rax+30h]
+jmp     short loc_41445A
+mov     rax, [rbp-8]
+pop     rbp
+retn

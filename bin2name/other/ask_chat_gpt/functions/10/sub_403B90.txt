@@ -1,0 +1,10 @@
+test    rsi, rsi
+setz    cl
+test    rdx, rdx
+setz    al
+or      cl, al
+jnz     short locret_403BB0
+test    rdi, rdi
+jz      short locret_403BB0
+jmp     sub_402640
+rep retn

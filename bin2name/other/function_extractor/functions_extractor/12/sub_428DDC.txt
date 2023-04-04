@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-30h]
+mov     [rbp+file_times.modtime], rax
+mov     rax, [rbp-18h]
+mov     [rbp+file_times.actime], rax
+lea     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _utime
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_428E52
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 4375C7h
+mov     edi, 1
+mov     eax, 0
+call    sub_41CD55
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_428E67
+call    ___stack_chk_fail
+leave
+retn

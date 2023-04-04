@@ -1,0 +1,40 @@
+push    rbp
+push    rbx
+mov     rbx, rdi
+sub     rsp, 438h
+mov     rcx, fs:28h
+mov     [rsp+448h+var_20], rcx
+xor     ecx, ecx
+test    rdx, rdx
+mov     [rsp+448h+var_440], rdx
+mov     [rsp+448h+var_42C], 0
+mov     [rsp+448h+var_428], 0
+jz      short loc_403460
+mov     rbp, rsi
+lea     rdx, [rsp+1Ch]
+lea     rsi, [rsp+20h]
+lea     rdi, [rsp+8]
+call    sub_402510
+cmp     [rsp+448h+var_428], 0
+jz      short loc_403460
+lea     r8, [rsp+1Ch]
+lea     rcx, [rsp+20h]
+lea     rdx, [rsp+8]
+mov     rsi, rbp
+mov     rdi, rbx
+call    sub_4029C0
+mov     rbx, [rsp+428h]
+xor     rbx, fs:28h
+jnz     short loc_40347B
+add     rsp, 438h
+pop     rbx
+pop     rbp
+retn
+mov     rdx, [rsp+8]
+mov     ecx, 412530h
+mov     esi, 8011h
+mov     rdi, rbx
+call    sub_405040
+xor     eax, eax
+jmp     short loc_40343E
+call    ___stack_chk_fail

@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-10h]
+mov     edx, [rax]
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     edx, eax
+jnz     short loc_41325C
+mov     rax, [rbp-10h]
+mov     edx, [rax+4]
+mov     rax, [rbp-8]
+mov     eax, [rax+4]
+cmp     edx, eax
+jnz     short loc_41325C
+mov     rax, [rbp-10h]
+mov     eax, [rax+4]
+cdqe
+mov     rdx, [rbp-8]
+lea     rsi, [rdx+8]
+mov     rdx, [rbp-10h]
+lea     rcx, [rdx+8]
+mov     rdx, rax
+mov     rdi, rcx
+call    _memcmp
+test    eax, eax
+jnz     short loc_41325C
+mov     rax, [rbp-10h]
+mov     eax, [rax+4]
+cdqe
+mov     rdx, [rbp-8]
+lea     rsi, [rdx+18h]
+mov     rdx, [rbp-10h]
+lea     rcx, [rdx+18h]
+mov     rdx, rax
+mov     rdi, rcx
+call    _memcmp
+test    eax, eax
+jz      short loc_413263
+mov     eax, 1
+jmp     short locret_413268
+mov     eax, 0
+leave
+retn

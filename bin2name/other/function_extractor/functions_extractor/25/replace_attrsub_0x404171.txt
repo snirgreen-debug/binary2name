@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+p], rdi
+mov     [rbp+size], esi
+mov     [rbp+fp], rdx
+mov     [rbp+new_text], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+quote_flag], 0
+mov     [rbp+quote_char], 22h
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jz      short loc_4041B8
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+cmp     al, 27h
+jnz     short loc_4041D2
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+mov     [rbp+quote_char], al
+mov     [rbp+quote_flag], 1
+add     [rbp+p], 1
+sub     [rbp+size], 2
+movsx   eax, byte ptr [rbp-1Dh]
+mov     rdx, [rbp-38h]
+mov     rsi, rdx
+mov     edi, eax
+call    __IO_putc
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+lea     rcx, [rbp-10h]
+lea     rdx, [rbp-18h]
+mov     esi, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    find_fragment
+test    eax, eax
+jz      short loc_404241
+mov     rax, [rbp-10h]
+mov     rdx, rax
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+mov     rsi, rax
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-38h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 1
+mov     rdi, rax
+call    _fwrite
+mov     eax, [rbp-2Ch]
+cdqe
+add     [rbp+p], rax
+cmp     [rbp+quote_flag], 0
+jz      short loc_404255
+add     [rbp+p], 1
+movsx   eax, byte ptr [rbp-1Dh]
+mov     rdx, [rbp-38h]
+mov     rsi, rdx
+mov     edi, eax
+call    __IO_putc
+mov     rax, [rbp-28h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40427F
+call    ___stack_chk_fail
+leave
+retn

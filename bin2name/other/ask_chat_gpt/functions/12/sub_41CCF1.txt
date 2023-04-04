@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     eax, cs:dword_63F2E0
+cmp     [rbp+var_4], eax
+jz      short loc_41CD34
+cmp     [rbp+var_4], 0
+jnz     short loc_41CD19
+mov     cs:dword_63F2E0, 0
+jmp     short locret_41CD35
+mov     eax, cs:dword_6420D8
+test    eax, eax
+jz      short loc_41CD28
+call    sub_41CCC0
+mov     cs:dword_63F2E0, 1
+jmp     short locret_41CD35
+nop
+leave
+retn

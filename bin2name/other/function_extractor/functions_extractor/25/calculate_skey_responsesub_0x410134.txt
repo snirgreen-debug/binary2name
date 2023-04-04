@@ -1,0 +1,127 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 68h
+mov     [rbp+sequence], edi
+mov     [rbp+seed], rsi
+mov     [rbp+pass], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    gen_md5_context_size
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+ctx], rax
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _strlen
+mov     rbx, rax
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+add     rax, 1
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ecx, 10h
+mov     edx, 0
+div     rcx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+feed], rax
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rdx, [rbp-68h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcat
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    gen_md5_init
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-48h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    gen_md5_finish
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-30h]
+xor     rax, rdx
+mov     [rbp+results], rax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-28h]
+xor     rax, rdx
+mov     [rbp+results+8], rax
+mov     rax, [rbp-40h]
+mov     qword ptr [rbp+key], rax
+jmp     short loc_4102D5
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    gen_md5_init
+mov     rdx, [rbp-50h]
+lea     rax, [rbp-20h]
+mov     esi, 8
+mov     rdi, rax
+call    gen_md5_update
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    gen_md5_finish
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-30h]
+xor     rax, rdx
+mov     [rbp+results], rax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-28h]
+xor     rax, rdx
+mov     [rbp+results+8], rax
+mov     rax, [rbp-40h]
+mov     qword ptr [rbp+key], rax
+mov     eax, [rbp-54h]
+lea     edx, [rax-1]
+mov     [rbp+sequence], edx
+test    eax, eax
+jg      short loc_41027B
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 640040h
+call    btoe
+mov     eax, 640040h
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_41030C
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

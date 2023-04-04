@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 9
+mov     esi, 1
+mov     edi, 424E3Ch
+call    _fwrite
+jmp     short loc_41B186
+mov     rax, [rbp-18h]
+movzx   eax, word ptr [rax]
+cwde
+mov     [rbp+var_4], eax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     edx, [rbp-4]
+mov     esi, 424E46h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+var_18], 2
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-20h]
+jbe     short loc_41B15A
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+nop
+leave
+retn

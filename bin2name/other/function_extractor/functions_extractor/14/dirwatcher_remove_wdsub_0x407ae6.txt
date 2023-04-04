@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_54], edi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:dwtab
+test    rax, rax
+jz      short loc_407B32
+mov     eax, [rbp-54h]
+mov     [rbp+var_3C], eax
+lea     rax, [rbp-40h]
+mov     [rbp+var_48], rax
+mov     rax, cs:dwtab
+lea     rdx, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hashtab_remove
+jmp     short loc_407B33
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_407B47
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+fts_options], rdi
+mov     edx, cs:ftsoptions
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     eax, 1
+pop     rbp
+retn

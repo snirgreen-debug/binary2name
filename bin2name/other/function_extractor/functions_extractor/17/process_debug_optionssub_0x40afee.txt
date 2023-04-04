@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+arg], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+token_context], 0
+mov     word ptr [rbp+delimiters], 2Ch
+mov     [rbp+empty], 1
+lea     rdx, [rbp-38h]
+lea     rcx, [rbp-20h]
+mov     rax, [rbp-48h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtok_r
+mov     [rbp+p], rax
+jmp     loc_40B10E
+mov     [rbp+empty], 0
+mov     [rbp+i], 0
+jmp     short loc_40B0AA
+mov     rdx, [rbp-28h]
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63AA60h
+mov     rax, [rax]
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B0A5
+mov     rcx, cs:options_0.debug_options
+mov     rdx, [rbp-28h]
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63AA68h
+mov     eax, [rax]
+cdqe
+or      rax, rcx
+mov     cs:options_0.debug_options, rax
+jmp     short loc_40B0B1
+add     [rbp+i], 1
+cmp     [rbp+i], 6
+jbe     short loc_40B04A
+cmp     [rbp+i], 6
+jbe     short loc_40B0F5
+mov     eax, cs:options_0.err_quoting_style
+mov     rdx, [rbp-48h]
+mov     esi, eax
+mov     edi, 0
+call    quotearg_n_style
+mov     rbx, rax
+mov     edi, 42C3A0h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+lea     rdx, [rbp-38h]
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 0
+call    _strtok_r
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     loc_40B03C
+cmp     [rbp+empty], 0
+jz      short loc_40B142
+mov     edi, 42C3C8h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_40B16F
+mov     rax, cs:options_0.debug_options
+and     eax, 10h
+test    rax, rax
+jz      short loc_40B16F
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     esi, 1
+mov     rdi, rax
+call    show_valid_debug_options
+mov     edi, 0
+call    _exit
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40B184
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

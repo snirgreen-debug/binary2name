@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, edi
+mov     [rbp+var_14], al
+mov     [rbp+var_1], 0
+movsx   eax, byte ptr [rbp-14h]
+sub     eax, 5Ch
+cmp     eax, 1Ah
+ja      short def_40C250
+mov     eax, eax
+mov     rax, [rax*8+42C9B8h]
+jmp     rax
+mov     [rbp+var_1], 7
+jmp     short def_40C250
+mov     [rbp+var_1], 8
+jmp     short def_40C250
+mov     [rbp+var_1], 0Ch
+jmp     short def_40C250
+mov     [rbp+var_1], 0Ah
+jmp     short def_40C250
+mov     [rbp+var_1], 0Dh
+jmp     short def_40C250
+mov     [rbp+var_1], 9
+jmp     short def_40C250
+mov     [rbp+var_1], 0Bh
+jmp     short def_40C250
+mov     [rbp+var_1], 5Ch
+nop
+movsx   eax, byte ptr [rbp-1]
+pop     rbp
+retn

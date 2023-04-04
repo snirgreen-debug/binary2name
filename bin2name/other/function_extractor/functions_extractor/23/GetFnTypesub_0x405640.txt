@@ -1,0 +1,22 @@
+push    rbp
+push    rbx
+mov     rbp, szName
+mov     ebx, 619240h
+sub     rsp, 8
+mov     rsi, cs:vrgifmMap.szName
+cmp     byte ptr [rsi], 0
+jnz     short loc_40566C
+jmp     short loc_405678
+add     pifm, 10h
+mov     rsi, [pifm]
+cmp     byte ptr [rsi], 0
+jz      short loc_405678
+mov     rdi, szName
+call    MyStrcmp
+test    eax, eax
+jnz     short loc_405660
+mov     eax, [rbx+8]
+add     rsp, 8
+pop     rbx
+pop     szName
+retn

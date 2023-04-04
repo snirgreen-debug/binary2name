@@ -1,0 +1,135 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+oldmode], edi
+mov     eax, esi
+mov     [rbp+umask_value], edx
+mov     [rbp+changes], rcx
+mov     [rbp+pmode_bits], r8
+mov     [rbp+dir], al
+mov     eax, [rbp-24h]
+and     eax, 0FFFh
+mov     [rbp+newmode], eax
+mov     [rbp+mode_bits], 0
+jmp     loc_41C946
+mov     rax, [rbp-38h]
+mov     eax, [rax+4]
+mov     [rbp+affected], eax
+cmp     [rbp+dir], 0
+jz      short loc_41C819
+mov     edx, 0C00h
+jmp     short loc_41C81E
+mov     edx, 0
+mov     rax, [rbp-38h]
+mov     eax, [rax+0Ch]
+not     eax
+and     eax, edx
+mov     [rbp+omit_change], eax
+mov     rax, [rbp-38h]
+mov     eax, [rax+8]
+mov     [rbp+value], eax
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax+1]
+movsx   eax, al
+cmp     eax, 2
+jz      short loc_41C8A5
+cmp     eax, 3
+jz      short loc_41C850
+cmp     eax, 1
+jmp     short loc_41C8BC
+mov     eax, [rbp-18h]
+and     [rbp+value], eax
+mov     eax, [rbp-10h]
+and     eax, 124h
+test    eax, eax
+jz      short loc_41C869
+mov     edx, 124h
+jmp     short loc_41C86E
+mov     edx, 0
+mov     eax, [rbp-10h]
+and     eax, 92h
+test    eax, eax
+jz      short loc_41C881
+mov     eax, 92h
+jmp     short loc_41C886
+mov     eax, 0
+or      edx, eax
+mov     eax, [rbp-10h]
+and     eax, 49h
+test    eax, eax
+jz      short loc_41C899
+mov     eax, 49h
+jmp     short loc_41C89E
+mov     eax, 0
+or      eax, edx
+or      [rbp+value], eax
+jmp     short loc_41C8BC
+mov     eax, [rbp-18h]
+and     eax, 49h
+mov     edx, eax
+movzx   eax, byte ptr [rbp-28h]
+or      eax, edx
+test    eax, eax
+jz      short loc_41C8BB
+or      [rbp+value], 49h
+nop
+cmp     [rbp+affected], 0
+jnz     short loc_41C8C9
+mov     eax, [rbp-2Ch]
+not     eax
+jmp     short loc_41C8CC
+mov     eax, [rbp-0Ch]
+mov     edx, [rbp-8]
+not     edx
+and     eax, edx
+and     [rbp+value], eax
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+cmp     eax, 2Dh
+jz      short loc_41C932
+cmp     eax, 3Dh
+jz      short loc_41C8F1
+cmp     eax, 2Bh
+jz      short loc_41C924
+jmp     short loc_41C941
+cmp     [rbp+affected], 0
+jz      short loc_41C8FE
+mov     eax, [rbp-0Ch]
+not     eax
+jmp     short loc_41C903
+mov     eax, 0
+or      eax, [rbp-8]
+mov     [rbp+preserved], eax
+mov     eax, [rbp-4]
+not     eax
+and     eax, 0FFFh
+or      [rbp+mode_bits], eax
+mov     eax, [rbp-18h]
+and     eax, [rbp-4]
+or      eax, [rbp-10h]
+mov     [rbp+newmode], eax
+jmp     short loc_41C941
+mov     eax, [rbp-10h]
+or      [rbp+mode_bits], eax
+mov     eax, [rbp-10h]
+or      [rbp+newmode], eax
+jmp     short loc_41C941
+mov     eax, [rbp-10h]
+or      [rbp+mode_bits], eax
+mov     eax, [rbp-10h]
+not     eax
+and     [rbp+newmode], eax
+nop
+add     [rbp+changes], 10h
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax+1]
+test    al, al
+jnz     loc_41C802
+cmp     [rbp+pmode_bits], 0
+jz      short loc_41C966
+mov     rax, [rbp-40h]
+mov     edx, [rbp-14h]
+mov     [rax], edx
+mov     eax, [rbp-18h]
+pop     rbp
+retn

@@ -1,0 +1,1 @@
+extrn add_history:near

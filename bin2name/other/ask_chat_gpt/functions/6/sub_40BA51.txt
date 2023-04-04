@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0F0h
+mov     [rbp+var_D8], rdi
+mov     [rbp+var_E0], rsi
+mov     [rbp+var_E8], rdx
+mov     [rbp+var_F0], rcx
+mov     [rbp+var_90], r8
+mov     [rbp+var_88], r9
+test    al, al
+jz      short loc_40BAAA
+movaps  [rbp+var_80], xmm0
+movaps  [rbp+var_70], xmm1
+movaps  [rbp+var_60], xmm2
+movaps  [rbp+var_50], xmm3
+movaps  [rbp+var_40], xmm4
+movaps  [rbp+var_30], xmm5
+movaps  [rbp+var_20], xmm6
+movaps  [rbp+var_10], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_B8], rax
+xor     eax, eax
+mov     [rbp+var_D0], 20h
+mov     [rbp+var_CC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_C8], rax
+lea     rax, [rbp-0B0h]
+mov     [rbp+var_C0], rax
+lea     rdi, [rbp-0D0h]
+mov     rcx, [rbp-0F0h]
+mov     rdx, [rbp-0E8h]
+mov     rsi, [rbp-0E0h]
+mov     rax, [rbp-0D8h]
+mov     r8, rdi
+mov     rdi, rax
+call    sub_40B94F
+nop
+mov     rax, [rbp-0B8h]
+xor     rax, fs:28h
+jz      short locret_40BB2F
+call    ___stack_chk_fail
+leave
+retn

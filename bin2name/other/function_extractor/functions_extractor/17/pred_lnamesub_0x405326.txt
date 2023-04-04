@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rdx, [rbp-18h]
+mov     rsi, [rbp-10h]
+mov     rax, [rbp-8]
+mov     ecx, 0
+mov     rdi, rax
+call    match_lname
+leave
+retn

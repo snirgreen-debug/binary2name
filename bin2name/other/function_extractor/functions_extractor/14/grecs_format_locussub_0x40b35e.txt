@@ -1,0 +1,151 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+var_28], 0
+jz      loc_40B56E
+mov     [rbp+ptr], 0
+mov     [rbp+var_10], 0
+mov     rax, [rbp-28h]
+mov     eax, [rax+0Ch]
+test    eax, eax
+jnz     short loc_40B3D6
+mov     rax, [rbp-28h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+lea     rsi, [rbp-10h]
+lea     rax, [rbp-18h]
+mov     r8d, ecx
+mov     rcx, rdx
+mov     edx, 423D9Ah
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+jmp     loc_40B547
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_40B453
+mov     rax, [rbp-28h]
+mov     r8d, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     edi, [rax+18h]
+mov     rax, [rbp-28h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     r9d, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     r10d, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+lea     rsi, [rbp-10h]
+lea     rax, [rbp-18h]
+sub     rsp, 8
+push    r8
+push    rdi
+push    rcx
+mov     r8d, r10d
+mov     rcx, rdx
+mov     edx, 423DA0h
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+add     rsp, 20h
+jmp     loc_40B547
+mov     rax, [rbp-28h]
+mov     edx, [rax+8]
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+cmp     edx, eax
+jz      short loc_40B4B2
+mov     rax, [rbp-28h]
+mov     edi, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     ecx, [rax+18h]
+mov     rax, [rbp-28h]
+mov     r9d, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     r8d, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+lea     rsi, [rbp-10h]
+lea     rax, [rbp-18h]
+push    rdi
+push    rcx
+mov     rcx, rdx
+mov     edx, 423DB2h
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+add     rsp, 10h
+jmp     loc_40B547
+mov     rax, [rbp-28h]
+mov     edx, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     eax, [rax+1Ch]
+cmp     edx, eax
+jz      short loc_40B50F
+mov     rax, [rbp-28h]
+mov     ecx, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     r8d, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     edi, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+lea     rsi, [rbp-10h]
+lea     rax, [rbp-18h]
+sub     rsp, 8
+push    rcx
+mov     r9d, r8d
+mov     r8d, edi
+mov     rcx, rdx
+mov     edx, 423DC1h
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+add     rsp, 10h
+jmp     short loc_40B547
+mov     rax, [rbp-28h]
+mov     edi, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+lea     rsi, [rbp-10h]
+lea     rax, [rbp-18h]
+mov     r9d, edi
+mov     r8d, ecx
+mov     rcx, rdx
+mov     edx, 423DCDh
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdx, [rbp-30h]
+mov     rcx, [rdx+8]
+mov     rdx, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40B583
+call    ___stack_chk_fail
+leave
+retn

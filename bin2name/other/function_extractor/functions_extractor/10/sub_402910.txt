@@ -1,0 +1,45 @@
+push    rbx
+mov     rbx, rdx
+sub     rsp, 10h
+mov     edx, [r8]
+cmp     edx, 1
+jz      short loc_402998
+cmp     edx, 2
+jnz     short loc_402978
+xor     esi, esi
+mov     rdi, rcx
+mov     edx, 0Ah
+mov     [rsp+18h+var_10], r8
+mov     [rsp+18h+var_18], rcx
+call    _strtol
+mov     r8, [rsp+8]
+mov     rcx, [rsp]
+mov     dword ptr [r8], 0
+mov     byte ptr [rcx], 0
+cmp     qword ptr [rbx], 0
+jz      short loc_40298C
+mov     rdi, rbx
+mov     rdx, r8
+mov     rsi, rcx
+mov     [rsp+18h+var_18], rax
+call    sub_402510
+mov     rax, [rsp]
+add     rsp, 10h
+pop     rbx
+retn
+mov     rdx, [rbx]
+mov     ecx, 412530h
+mov     esi, 8011h
+call    sub_405040
+xor     eax, eax
+add     rsp, 10h
+pop     rbx
+retn
+mov     dword ptr [r8], 0
+mov     byte ptr [rcx], 0
+mov     rax, rsi
+cmp     qword ptr [rbx], 0
+jnz     short loc_402956
+add     rsp, 10h
+pop     rbx
+retn

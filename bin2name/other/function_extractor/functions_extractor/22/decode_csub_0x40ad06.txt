@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     eax, cs:blocksize
+test    eax, eax
+jnz     short loc_40AD69
+mov     edi, 10h
+call    getbits
+mov     cs:blocksize, eax
+mov     eax, cs:blocksize
+test    eax, eax
+jnz     short loc_40AD3C
+mov     eax, 1FEh
+jmp     locret_40AE08
+mov     edx, 3
+mov     esi, 5
+mov     edi, 13h
+call    read_pt_len
+call    read_c_len
+mov     edx, 0FFFFFFFFh
+mov     esi, 4
+mov     edi, 0Eh
+call    read_pt_len
+mov     eax, cs:blocksize
+sub     eax, 1
+mov     cs:blocksize, eax
+movzx   eax, cs:bitbuf
+shr     ax, 4
+movzx   eax, ax
+cdqe
+movzx   eax, word ptr [rax+rax+6386E0h]
+movzx   eax, ax
+mov     [rbp+j], eax
+cmp     [rbp+j], 1FDh
+jbe     short loc_40ADF1
+mov     [rbp+mask], 8
+movzx   eax, cs:bitbuf
+movzx   eax, ax
+and     eax, [rbp-4]
+test    eax, eax
+jz      short loc_40ADD4
+mov     eax, [rbp-8]
+add     rax, 8000h
+add     rax, rax
+add     rax, 6186E0h
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+mov     [rbp+j], eax
+jmp     short loc_40ADE5
+mov     eax, [rbp-8]
+movzx   eax, word ptr [rax+rax+6186E0h]
+movzx   eax, ax
+mov     [rbp+j], eax
+shr     [rbp+mask], 1
+cmp     [rbp+j], 1FDh
+ja      short loc_40ADA6
+mov     eax, [rbp-8]
+movzx   eax, byte ptr [rax+648700h]
+movzx   eax, al
+mov     edi, eax
+call    fillbuf
+mov     eax, [rbp-8]
+leave
+retn

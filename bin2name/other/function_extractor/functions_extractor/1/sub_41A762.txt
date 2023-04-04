@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_4], 0
+jmp     short loc_41A790
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     edx, [rbp-1Ch]
+mov     [rax], dl
+shr     [rbp+var_1C], 8
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 3
+jle     short loc_41A776
+nop
+pop     rbp
+retn

@@ -1,0 +1,54 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_28], rdi
+mov     rbx, rsi
+mov     rax, [rbx+60h]
+mov     [rbx+48h], rax
+mov     r13, [rbx+48h]
+lea     rdx, [r13+1]
+lea     rcx, [rbx+108h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memmove
+lea     rax, [rbx+108h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     r12, rax
+test    r12, r12
+jz      short loc_424DAF
+lea     rax, [rbx+108h]
+cmp     rax, r12
+jnz     short loc_424D86
+lea     rax, [r12+1]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_424DAF
+add     r12, 1
+mov     rdi, r12
+call    _strlen
+mov     r13, rax
+lea     rdx, [r13+1]
+lea     rax, [rbx+108h]
+mov     rsi, r12
+mov     rdi, rax
+call    _memmove
+mov     [rbx+60h], r13
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     [rbx+38h], rax
+mov     rax, [rbx+38h]
+mov     [rbx+30h], rax
+nop
+add     rsp, 18h
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

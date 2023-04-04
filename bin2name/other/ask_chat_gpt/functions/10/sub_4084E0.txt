@@ -1,0 +1,138 @@
+push    r15
+push    r14
+mov     r15d, ecx
+push    r13
+push    r12
+mov     r13, rdx
+push    rbp
+push    rbx
+mov     rcx, rsi
+mov     r12, rsi
+mov     esi, 1
+mov     rbp, rdi
+sub     rsp, 1C38h
+mov     r14, [rdi+30h]
+lea     r9, [rsp+18h]
+lea     r8, [rsp+10h]
+lea     rdx, [rsp+0Ch]
+mov     rax, fs:28h
+mov     [rsp+1C68h+var_40], rax
+xor     eax, eax
+mov     [rsp+1C68h+var_1C5C], 1
+call    sub_404B00
+test    eax, eax
+jz      loc_408710
+lea     rsi, [rsp+20h]
+mov     edx, 3Dh
+mov     rdi, rbp
+call    sub_404330
+test    eax, eax
+jz      loc_408690
+cmp     [rsp+1C68h+var_1C50], 0FFFFFFFFFFFFFFFFh
+jz      loc_4086B0
+mov     rsi, r13
+mov     rdi, rbp
+call    sub_404770
+mov     rbx, [rsp+10h]
+cmp     rbx, [rsp+18h]
+jge     loc_40863F
+nop     dword ptr [rax+00000000h]
+lea     rdi, [rsp+420h]
+mov     r9, rbx
+mov     r8, r12
+mov     ecx, 413386h
+mov     edx, 3FFh
+mov     esi, 1
+xor     eax, eax
+call    ___sprintf_chk
+mov     rdi, [r14+20h]
+lea     rsi, [rsp+420h]
+call    sub_406DA0
+cmp     eax, 10000h
+jz      short loc_4085FF
+lea     rdi, [rsp+420h]
+mov     ecx, 41338Fh
+mov     edx, 3FFh
+mov     esi, 1
+mov     r9, rbx
+mov     r8, r12
+xor     eax, eax
+call    ___sprintf_chk
+lea     rdx, [rsp+420h]
+xor     ecx, ecx
+mov     esi, 8105h
+mov     rdi, rbp
+call    sub_405040
+lea     rcx, [rsp+820h]
+mov     rsi, rbx
+mov     rdx, r13
+mov     rdi, rbp
+add     rbx, 1
+call    sub_404DC0
+lea     rdx, [rsp+820h]
+lea     rsi, [rsp+420h]
+mov     ecx, r15d
+mov     rdi, rbp
+call    sub_407AA0
+cmp     [rsp+1C68h+var_1C50], rbx
+jg      loc_408588
+mov     edx, 3Bh
+mov     rsi, r12
+mov     rdi, rbp
+call    sub_404330
+test    eax, eax
+jnz     short loc_408667
+xor     ecx, ecx
+mov     edx, 4133ADh
+mov     esi, 8013h
+mov     rdi, rbp
+call    sub_405040
+mov     rax, [rsp+1C28h]
+xor     rax, fs:28h
+jnz     loc_408727
+add     rsp, 1C38h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+xor     ecx, ecx
+mov     edx, 41338Dh
+mov     esi, 14h
+mov     rdi, rbp
+call    sub_405040
+cmp     [rsp+1C68h+var_1C50], 0FFFFFFFFFFFFFFFFh
+jnz     loc_408566
+mov     rdi, [r14+20h]
+mov     rsi, r12
+call    sub_406DA0
+cmp     eax, 10000h
+jz      short loc_4086D5
+xor     ecx, ecx
+mov     rdx, r12
+mov     esi, 8105h
+mov     rdi, rbp
+call    sub_405040
+mov     rsi, r13
+mov     rdi, rbp
+call    sub_404770
+lea     rcx, [rsp+820h]
+mov     rdx, r13
+xor     esi, esi
+mov     rdi, rbp
+call    sub_404DC0
+lea     rdx, [rsp+820h]
+mov     ecx, r15d
+mov     rsi, r12
+mov     rdi, rbp
+call    sub_407AA0
+jmp     loc_40863F
+xor     ecx, ecx
+mov     rdx, r12
+mov     esi, 8105h
+mov     rdi, rbp
+call    sub_405040
+jmp     loc_408540
+call    ___stack_chk_fail

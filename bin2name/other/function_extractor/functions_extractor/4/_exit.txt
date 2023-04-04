@@ -1,0 +1,1 @@
+extrn _exit:near

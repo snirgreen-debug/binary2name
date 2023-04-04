@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+progress], rdi
+mov     [rbp+howmuch], rsi
+movsd   [rbp+dltime], xmm0
+mov     rax, cs:current_impl
+mov     rax, [rax+10h]
+mov     rsi, [rbp-18h]
+mov     rcx, [rbp-10h]
+mov     rdx, [rbp-8]
+mov     [rbp+var_20], rsi
+movsd   xmm0, qword ptr [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+nop
+leave
+retn

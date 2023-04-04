@@ -1,0 +1,170 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, [rbp-28h]
+mov     eax, [rax+20h]
+and     eax, 400000h
+test    eax, eax
+jz      short loc_419C37
+mov     rax, [rbp-28h]
+mov     rdx, [rax+0A0h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     ecx, 4
+mov     rdi, rax
+call    wordsplit_add_segm
+test    eax, eax
+jz      short loc_419C97
+mov     rax, [rbp-28h]
+mov     eax, [rax+0B0h]
+jmp     loc_419E2F
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    skip_delim
+mov     [rbp+var_30], rax
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    scan_word
+mov     [rbp+var_1C], eax
+cmp     [rbp+var_1C], 1
+jz      short loc_419C27
+mov     rax, [rbp-28h]
+mov     rax, [rax+0C8h]
+test    rax, rax
+jz      short loc_419C82
+mov     rax, [rbp-28h]
+mov     rax, [rax+0C8h]
+mov     rdx, [rbp-28h]
+mov     rdx, [rdx+0C8h]
+mov     edx, [rdx+10h]
+and     edx, 0FFFFFFEFh
+mov     [rax+10h], edx
+cmp     [rbp+var_1C], 2
+jnz     short loc_419C97
+mov     rax, [rbp-28h]
+mov     eax, [rax+0B0h]
+jmp     loc_419E2F
+mov     rax, [rbp-28h]
+mov     eax, [rax+20h]
+and     eax, 200000h
+test    eax, eax
+jz      short loc_419CE0
+mov     rax, [rbp-28h]
+mov     rbx, [rax+58h]
+mov     edi, 4246BCh
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     eax, [rax+0D0h]
+mov     esi, eax
+mov     edi, 4246CAh
+mov     eax, 0
+call    rbx
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    wordsplit_dump_nodes
+mov     [rbp+var_18], 62D400h
+jmp     loc_419E0F
+mov     rax, [rbp-18h]
+mov     eax, [rax+0Ch]
+and     eax, 1
+test    eax, eax
+jz      short loc_419D12
+mov     rax, [rbp-28h]
+mov     edx, [rax+20h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+and     eax, edx
+test    eax, eax
+setz    al
+jmp     short loc_419D27
+mov     rax, [rbp-28h]
+mov     edx, [rax+20h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+and     eax, edx
+test    eax, eax
+setnz   al
+test    al, al
+jz      loc_419E0A
+mov     rax, [rbp-18h]
+mov     eax, [rax+0Ch]
+and     eax, 2
+test    eax, eax
+jz      short loc_419D9A
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    wsnode_coalesce
+test    eax, eax
+jnz     loc_419E21
+mov     rax, [rbp-28h]
+mov     eax, [rax+20h]
+and     eax, 200000h
+test    eax, eax
+jz      short loc_419D9A
+mov     rax, [rbp-28h]
+mov     rbx, [rax+58h]
+mov     edi, 4246D4h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     eax, [rax+0D0h]
+mov     esi, eax
+mov     edi, 4246CAh
+mov     eax, 0
+call    rbx
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    wordsplit_dump_nodes
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+test    rax, rax
+jz      short loc_419E0A
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-28h]
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jnz     short loc_419E24
+mov     rax, [rbp-28h]
+mov     eax, [rax+20h]
+and     eax, 200000h
+test    eax, eax
+jz      short loc_419E0A
+mov     rax, [rbp-28h]
+mov     rbx, [rax+58h]
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     eax, [rax+0D0h]
+mov     esi, eax
+mov     edi, 4246CAh
+mov     eax, 0
+call    rbx
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    wordsplit_dump_nodes
+add     [rbp+var_18], 18h
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_419CED
+jmp     short loc_419E25
+nop
+jmp     short loc_419E25
+nop
+mov     rax, [rbp-28h]
+mov     eax, [rax+0B0h]
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

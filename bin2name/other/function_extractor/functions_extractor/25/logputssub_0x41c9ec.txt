@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+o], edi
+mov     [rbp+s], rsi
+call    check_redirect_output
+call    get_log_fp
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jz      loc_41CAA0
+mov     eax, [rbp-14h]
+cmp     eax, 1
+jz      short loc_41CA2B
+cmp     eax, 1
+jb      short loc_41CA4D
+cmp     eax, 2
+jz      short loc_41CA37
+cmp     eax, 3
+jmp     short loc_41CA59
+mov     eax, cs:opt.quiet
+test    eax, eax
+jz      short loc_41CA59
+jmp     short locret_41CAA7
+mov     eax, cs:opt.verbose
+test    eax, eax
+jnz     short loc_41CAA3
+mov     eax, cs:opt.quiet
+test    eax, eax
+jz      short loc_41CA59
+jmp     short loc_41CAA3
+mov     eax, cs:opt.verbose
+test    eax, eax
+jz      short loc_41CAA6
+jmp     short loc_41CA5A
+nop
+mov     rdx, [rbp-8]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     eax, cs:save_context_p
+test    eax, eax
+jz      short loc_41CA83
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    saved_append
+mov     eax, cs:flush_log_p
+test    eax, eax
+jz      short loc_41CA94
+call    logflush
+jmp     short locret_41CAA7
+mov     cs:needs_flushing, 1
+jmp     short locret_41CAA7
+nop
+jmp     short locret_41CAA7
+nop
+jmp     short locret_41CAA7
+nop
+leave
+retn

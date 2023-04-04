@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+mov     eax, cs:status
+cmp     eax, [rbp-4]
+jge     short loc_40B890
+mov     eax, [rbp-4]
+mov     cs:status, eax
+nop
+pop     rbp
+retn

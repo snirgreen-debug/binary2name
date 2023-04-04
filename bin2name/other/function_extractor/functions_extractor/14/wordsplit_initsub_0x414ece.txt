@@ -1,0 +1,181 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_1C], ecx
+mov     rax, [rbp-8]
+mov     edx, [rbp-1Ch]
+mov     [rax+20h], edx
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 10000h
+test    eax, eax
+jnz     short loc_414F0B
+mov     rax, [rbp-8]
+mov     qword ptr [rax+48h], 414A89h
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 20000h
+test    eax, eax
+jnz     short loc_414F27
+mov     rax, [rbp-8]
+mov     qword ptr [rax+50h], 414AB7h
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 40h
+test    eax, eax
+jnz     short loc_414F5D
+mov     rax, [rbp-8]
+mov     qword ptr [rax+78h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+78h]
+mov     rax, [rbp-8]
+mov     [rax+70h], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+68h], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 4
+test    eax, eax
+jnz     short loc_414FA6
+mov     rax, [rbp-8]
+mov     rax, [rax+90h]
+test    rax, rax
+jnz     short loc_414FA6
+mov     rax, [rbp-8]
+mov     esi, 3
+mov     rdi, rax
+call    _wsplt_seterr
+call    ___errno_location
+mov     dword ptr [rax], 16h
+mov     rax, [rbp-8]
+mov     eax, [rax+0B0h]
+jmp     locret_41518C
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 200000h
+test    eax, eax
+jz      short loc_415019
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 40000h
+test    eax, eax
+jnz     short loc_415019
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 20000h
+test    eax, eax
+jz      short loc_414FE8
+mov     rax, [rbp-8]
+mov     rdx, [rax+50h]
+mov     rax, [rbp-8]
+mov     [rax+58h], rdx
+jmp     short loc_415019
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 10h
+test    eax, eax
+jz      short loc_415004
+mov     rax, [rbp-8]
+mov     qword ptr [rax+58h], 414AB7h
+jmp     short loc_415019
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 0FFDFFFFFh
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+20h], edx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     [rax+98h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax+0A0h], rdx
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 2
+test    eax, eax
+jnz     short loc_415051
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 4000h
+test    eax, eax
+jnz     short loc_41506D
+mov     rax, [rbp-8]
+mov     qword ptr [rax+28h], 424531h
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 8000h
+test    eax, eax
+jnz     short loc_415089
+mov     rax, [rbp-8]
+mov     qword ptr [rax+30h], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 4000000h
+test    eax, eax
+jnz     short loc_4150A8
+mov     rax, [rbp-8]
+mov     qword ptr [rax+88h], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+test    eax, eax
+js      short loc_4150BE
+mov     rax, [rbp-8]
+mov     dword ptr [rax+24h], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 10000000h
+test    eax, eax
+jz      short loc_415102
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+test    rax, rax
+jnz     short loc_4150E7
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 424535h
+mov     rax, [rbp-8]
+mov     rax, [rax+40h]
+test    rax, rax
+jnz     short loc_41516C
+mov     rax, [rbp-8]
+mov     qword ptr [rax+40h], 424535h
+jmp     short loc_41516C
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 2000000h
+test    eax, eax
+jz      short loc_415141
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 62D3E0h
+mov     rax, [rbp-8]
+mov     qword ptr [rax+40h], 62D3E0h
+mov     rax, [rbp-8]
+mov     eax, [rax+24h]
+or      eax, 660h
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+24h], edx
+jmp     short loc_41516C
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 424535h
+mov     rax, [rbp-8]
+mov     qword ptr [rax+40h], 424536h
+mov     rax, [rbp-8]
+mov     eax, [rax+24h]
+or      ah, 1
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+24h], edx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+0A8h], 0
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wordsplit_init0
+mov     eax, 0
+leave
+retn

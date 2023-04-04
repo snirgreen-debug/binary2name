@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fname], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    suffix
+mov     [rbp+suf], rax
+cmp     [rbp+suf], 0
+jnz     short loc_429953
+mov     eax, 0
+jmp     short locret_4299BB
+mov     rax, [rbp-8]
+mov     esi, 437616h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_42996F
+mov     eax, 1
+jmp     short locret_4299BB
+mov     rax, [rbp-8]
+mov     esi, 43761Bh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_42998B
+mov     eax, 1
+jmp     short locret_4299BB
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4299B6
+mov     rax, [rbp-8]
+add     rax, 1
+mov     esi, 437616h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_4299B6
+mov     eax, 1
+jmp     short locret_4299BB
+mov     eax, 0
+leave
+retn

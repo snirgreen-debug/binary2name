@@ -1,0 +1,18 @@
+mov     r8, bDelays
+mov     ecx, 0Ah
+mov     bDelays, sz
+mov     esi, 412E06h
+repe cmpsb
+setnbe  dl
+setb    al
+sub     edx, eax
+xor     eax, eax
+movsx   edx, dl
+test    edx, edx
+setz    al
+jnz     short locret_406834
+mov     edx, [bDelays]
+test    edx, edx
+jnz     short locret_406834
+mov     dword ptr [bDelays], 1
+rep retn

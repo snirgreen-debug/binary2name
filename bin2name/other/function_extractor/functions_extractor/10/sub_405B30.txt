@@ -1,0 +1,182 @@
+push    r15
+push    r14
+push    r13
+push    r12
+mov     r13, rdx
+push    rbp
+push    rbx
+mov     edx, 28h
+mov     rbp, rdi
+mov     rbx, rsi
+sub     rsp, 8
+call    sub_404390
+test    eax, eax
+jz      short loc_405B88
+mov     rcx, cs:stderr
+mov     edx, 46h
+mov     esi, 1
+mov     edi, 4129C8h
+call    _fwrite
+xor     eax, eax
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+mov     edx, 2
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_4042B0
+test    eax, eax
+jnz     short loc_405B55
+xor     esi, esi
+mov     edx, 0Ah
+mov     rdi, rbx
+call    _strtol
+test    eax, eax
+mov     [r13+68h], eax
+jle     loc_405CD0
+cdqe
+lea     r12, [rax*8+0]
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+mov     [r13+70h], rax
+jz      loc_405C70
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+mov     [r13+78h], rax
+jz      loc_405C70
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+mov     [r13+80h], rax
+jz      short loc_405C70
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_404660
+mov     r15d, [r13+68h]
+mov     r12, [r13+80h]
+test    r15d, r15d
+jle     loc_405CEA
+xor     r14d, r14d
+nop     word ptr [rax+rax+00000000h]
+mov     edx, 6
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_4042B0
+test    eax, eax
+jz      short loc_405C90
+mov     rsi, rbx
+mov     rdi, rbp
+mov     edx, 2Ch
+call    sub_404660
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_404660
+jmp     loc_405B55
+xor     ecx, ecx
+mov     edx, 412A38h
+mov     esi, 8004h
+mov     rdi, rbp
+call    sub_405040
+jmp     loc_405BFF
+xor     esi, esi
+mov     rdi, rbx
+add     r14d, 1
+call    _strtod
+cmp     r15d, r14d
+movsd   qword ptr [r12], xmm0
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+jle     loc_405DFF
+call    sub_404660
+add     r12, 8
+jmp     loc_405C30
+mov     rcx, rbx
+mov     edx, 412A27h
+mov     esi, 14h
+mov     rdi, rbp
+call    sub_405040
+jmp     loc_405B55
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_404660
+mov     r15d, [r13+68h]
+mov     r12, [r13+70h]
+test    r15d, r15d
+jle     short loc_405D73
+xor     r14d, r14d
+nop     word ptr [rax+rax+00h]
+mov     edx, 6
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_4042B0
+test    eax, eax
+jz      short loc_405D40
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_404660
+jmp     loc_405B55
+xor     esi, esi
+mov     rdi, rbx
+add     r14d, 1
+call    _strtod
+cmp     r15d, r14d
+movsd   qword ptr [r12], xmm0
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+jle     loc_405E09
+call    sub_404660
+add     r12, 8
+jmp     short loc_405D10
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_404660
+mov     r12, [r13+78h]
+mov     r13d, [r13+68h]
+test    r13d, r13d
+jle     short loc_405DDD
+xor     r14d, r14d
+jmp     short loc_405DAC
+mov     edx, 2Ch
+mov     rsi, rbx
+mov     rdi, rbp
+add     r12, 8
+call    sub_404660
+mov     edx, 6
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_4042B0
+test    eax, eax
+jnz     loc_405B55
+xor     esi, esi
+mov     rdi, rbx
+add     r14d, 1
+call    _strtod
+cmp     r13d, r14d
+movsd   qword ptr [r12], xmm0
+jg      short loc_405D98
+mov     edx, 29h
+mov     rsi, rbx
+mov     rdi, rbp
+call    sub_404390
+test    eax, eax
+jnz     loc_405B55
+mov     eax, 1
+jmp     loc_405B72
+call    sub_404660
+jmp     loc_405CFA
+call    sub_404660
+jmp     loc_405D83

@@ -1,0 +1,69 @@
+push    r13
+push    r12
+mov     r13, szLex
+push    rbp
+push    rbx
+mov     rbx, pibIn
+mov     r12d, edx
+sub     rsp, 18h
+mov     rax, fs:28h
+mov     [rsp+38h+var_30], rax
+xor     eax, eax
+call    SkipWhitespace
+test    pibIn, pibIn
+mov     ebp, eax
+jz      loc_404720
+mov     iReturn, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4046C8
+cmp     r12b, al
+jz      short loc_404700
+mov     rcx, [rsp+8]
+xor     rcx, fs:28h
+mov     eax, ebp
+jnz     loc_40475C
+add     rsp, 18h
+pop     pibIn
+pop     iReturn
+pop     r12
+pop     szLex
+retn
+mov     rcx, [pibIn]
+test    rcx, rcx
+jz      short loc_40469E
+mov     rdi, [pibIn+8]
+test    rdi, rdi
+jz      short loc_40469E
+mov     edx, 1000h
+mov     esi, 1
+call    _fread
+test    eax, eax
+jz      short loc_404730
+mov     rdx, [pibIn+8]
+cmp     eax, 0FFFFFFFFh
+mov     [pibIn+18h], rdx
+jz      short loc_404720
+movzx   eax, byte ptr [rdx]
+jmp     short loc_40469E
+lea     rdx, [rsp+4]
+mov     rsi, szLex
+mov     rdi, pibIn
+mov     ebp, 1
+call    NextLex
+jmp     short loc_4046A3
+xor     eax, eax
+jmp     loc_40469E
+mov     rdi, [pibIn]
+call    _feof
+test    eax, eax
+jnz     short loc_404720
+mov     ecx, 4123F5h
+xor     edx, edx
+mov     esi, 8000h
+mov     rdi, pibIn
+call    ReportError
+mov     rax, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+jmp     loc_40469E
+call    ___stack_chk_fail

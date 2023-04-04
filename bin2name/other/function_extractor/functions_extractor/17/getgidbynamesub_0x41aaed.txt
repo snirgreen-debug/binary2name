@@ -1,0 +1,90 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+group], rdi
+mov     rax, cs:group_alist
+mov     [rbp+tail], rax
+jmp     short loc_41AB49
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+10h]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_41AB3D
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcmp
+test    eax, eax
+jnz     short loc_41AB3D
+mov     rax, [rbp-10h]
+jmp     locret_41AC3E
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+tail], rax
+cmp     [rbp+tail], 0
+jnz     short loc_41AB06
+mov     rax, cs:nogroup_alist
+mov     [rbp+tail], rax
+jmp     short loc_41ABA1
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+10h]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_41AB95
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcmp
+test    eax, eax
+jnz     short loc_41AB95
+mov     eax, 0
+jmp     locret_41AC3E
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+tail], rax
+cmp     [rbp+tail], 0
+jnz     short loc_41AB5D
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _getgrnam
+mov     [rbp+grent], rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+add     rax, 11h
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+tail], rax
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+cmp     [rbp+grent], 0
+jz      short loc_41AC1F
+mov     rax, [rbp-8]
+mov     edx, [rax+10h]
+mov     rax, [rbp-10h]
+mov     [rax], edx
+mov     rdx, cs:group_alist
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     cs:group_alist, rax
+mov     rax, [rbp-10h]
+jmp     short locret_41AC3E
+mov     rdx, cs:nogroup_alist
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     cs:nogroup_alist, rax
+mov     eax, 0
+leave
+retn

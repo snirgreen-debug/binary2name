@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41C2BB
+mov     rax, [rbp-20h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_41C2FB
+mov     rbx, cs:qword_6475A0
+mov     edi, 433B04h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+jmp     short loc_41C313
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_4288AF
+mov     cs:src, rax
+mov     eax, 1
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

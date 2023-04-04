@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+tab], 0
+mov     [rbp+idx], 0
+mov     [rbp+ol], 0
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    init_string
+jmp     loc_402534
+mov     edx, [rbp-28h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+movsx   eax, al
+cmp     eax, 28h
+jz      short loc_4024A8
+cmp     eax, 29h
+jz      loc_4024E1
+cmp     eax, 0Ah
+jnz     loc_402503
+lea     rax, [rbp-20h]
+mov     esi, 40392Ah
+mov     rdi, rax
+call    cattext
+add     [rbp+idx], 1
+cmp     [rbp+tab], 0
+jz      short loc_40249C
+mov     edx, [rbp-28h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jz      short loc_40249C
+lea     rax, [rbp-20h]
+mov     esi, 40392Ch
+mov     rdi, rax
+call    cattext
+mov     [rbp+ol], 0
+jmp     loc_402534
+add     [rbp+tab], 1
+cmp     [rbp+ol], 0
+jnz     short loc_4024C3
+lea     rax, [rbp-20h]
+mov     esi, 403931h
+mov     rdi, rax
+call    cattext
+add     [rbp+idx], 1
+lea     rax, [rbp-20h]
+mov     esi, 403935h
+mov     rdi, rax
+call    cattext
+mov     [rbp+ol], 1
+jmp     short loc_402534
+sub     [rbp+tab], 1
+lea     rax, [rbp-20h]
+mov     esi, 403937h
+mov     rdi, rax
+call    cattext
+add     [rbp+idx], 1
+mov     [rbp+ol], 1
+jmp     short loc_402534
+mov     edx, [rbp-28h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+movsx   edx, al
+lea     rax, [rbp-20h]
+mov     esi, edx
+mov     rdi, rax
+call    catchar
+mov     [rbp+ol], 1
+add     [rbp+idx], 1
+nop
+mov     edx, [rbp-28h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     loc_40242A
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+mov     rax, cs:tos
+mov     rdi, rax
+call    delete_string
+mov     rax, cs:tos
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+10h], rdx
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4025A4
+call    ___stack_chk_fail
+leave
+retn

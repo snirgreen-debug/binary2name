@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:grecs_preprocessor
+test    rax, rax
+jz      short loc_42011C
+mov     eax, cs:grecs_preproc_pid
+mov     edi, eax
+call    grecs_preproc_extrn_shutdown
+mov     rax, cs:grecs_grecs_in
+mov     rdi, rax
+call    _fclose
+jmp     short loc_420121
+call    grecs_preproc_done
+mov     cs:grecs_current_locus_point, 0
+mov     eax, 1
+pop     rbp
+retn

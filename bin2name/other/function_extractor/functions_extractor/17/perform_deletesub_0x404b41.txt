@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+flags], edi
+mov     rcx, cs:state_0.rel_pathname
+mov     eax, cs:state_0.cwd_dir_fd
+mov     edx, [rbp-4]
+mov     rsi, rcx
+mov     edi, eax
+call    _unlinkat
+test    eax, eax
+setz    al
+leave
+retn

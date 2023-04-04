@@ -1,0 +1,87 @@
+push    r13
+push    r12
+mov     rax, szName
+push    rbp
+push    rbx
+mov     r9, pibIn
+mov     r11, pvm
+mov     szName, szEqn
+mov     pvm, szName
+sub     rsp, 8
+mov     ecx, 7
+mov     r10, [pibIn+30h]
+mov     edi, 412E24h
+repe cmpsb
+lea     rdi, [pinfo+20h]
+mov     ecx, 0A0000h
+jz      short loc_406EFE
+cmp     hType, 20000h
+jz      short loc_406F28
+jbe     short loc_406EF0
+cmp     hType, 30000h
+jz      short loc_406F28
+cmp     hType, 40000h
+jnz     short loc_406F19
+xor     ecx, ecx
+mov     szEqn, rax
+mov     esi, 4103h
+add     rsp, 8
+mov     rdi, pibIn
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+jmp     ReportError
+test    hType, hType
+lea     rdi, [pinfo+20h]
+mov     ecx, 40000h
+jnz     short loc_406F10
+mov     rsi, rax
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+jmp     AddEquation
+cmp     hType, 10000h
+jz      short loc_406F28
+xor     ecx, ecx
+mov     szEqn, rax
+mov     esi, 101h
+jmp     short loc_406EDB
+test    pvm, pvm
+mov     rcx, hType
+mov     rbx, szEqn
+mov     rsi, rax
+mov     r13, pvm
+mov     rbp, pibIn
+jz      short loc_406F95
+cmp     qword ptr [pvm+8], 0
+jnz     short loc_406ED1
+cmp     r8, 20000h
+jz      short loc_406F60
+mov     qword ptr [pvm+8], 6192A0h
+lea     rdi, [pinfo+20h]
+jmp     short loc_406F01
+mov     edi, 88h
+call    _malloc
+mov     rsi, szEqn
+mov     rdi, pibIn
+mov     rdx, rax
+mov     r12, rax
+call    GetInputFn
+test    eax, eax
+mov     eax, 0
+cmovz   pifn, rax
+mov     [pvm+8], r12
+add     rsp, 8
+pop     szEqn
+pop     pibIn
+pop     r12
+pop     pvm
+retn
+mov     ecx, 4131B0h
+mov     edx, 17Ah
+mov     esi, 412E2Bh
+mov     edi, 412E32h
+call    ___assert_fail

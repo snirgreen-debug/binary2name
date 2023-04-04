@@ -1,0 +1,241 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4216276,
+                "src": 4216261
+            },
+            {
+                "dst": 4216291,
+                "src": 4216261
+            },
+            {
+                "dst": 4216299,
+                "src": 4216276
+            },
+            {
+                "dst": 4216281,
+                "src": 4216276
+            },
+            {
+                "dst": 4216311,
+                "src": 4216299
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4216311
+            },
+            {
+                "dst": 4216299,
+                "src": 4216291
+            },
+            {
+                "dst": 4216306,
+                "src": 4216291
+            },
+            {
+                "dst": 4216311,
+                "src": 4216306
+            },
+            {
+                "dst": 4216306,
+                "src": 4216281
+            },
+            {
+                "dst": 4216289,
+                "src": 4216281
+            },
+            {
+                "dst": 4216299,
+                "src": 4216289
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4216261,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |mov|dword|ptr|rbp|-|4|edi|    |mov|eax|dword|ptr|rbp|-|4|    |cmp|eax|0x5a|    |jg|target_0|    "
+            },
+            {
+                "block_addr": 4216276,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3455_64), 0x5a)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3455_64), 0x5a)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3455_64), 0x5a)>"
+                        ]
+                    ]
+                ],
+                "instructions": "cmp|eax|0x41|    |jge|0x4055eb|    "
+            },
+            {
+                "block_addr": 4216299,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool SGE(Extract(31, 0, reg_48_3455_64), 0x41)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool __le__(__sub__(Extract(31, 0, reg_48_3455_64), 0x61), 0x19)>"
+                        ]
+                    ],
+                    [
+                        4,
+                        []
+                    ]
+                ],
+                "instructions": "mov|eax|1|    |jmp|0x4055f7|    "
+            },
+            {
+                "block_addr": 4216311,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        4,
+                        []
+                    ],
+                    [
+                        5,
+                        []
+                    ]
+                ],
+                "instructions": "pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        4,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ],
+                    [
+                        5,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ],
+                    [
+                        6,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4216291,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3455_64), 0x5a)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3455_64), 0x5a)>"
+                        ]
+                    ]
+                ],
+                "instructions": "sub|eax|0x61|    |cmp|eax|0x19|    |ja|0x4055f2|    "
+            },
+            {
+                "block_addr": 4216306,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool __gt__(__sub__(Extract(31, 0, reg_48_3455_64), 0x61), 0x19)>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<Bool __gt__(__sub__(Extract(31, 0, reg_48_3455_64), 0x30), 0x9)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|0|    |pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": 4216281,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool SLT(Extract(31, 0, reg_48_3455_64), 0x41)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool SLT(Extract(31, 0, reg_48_3455_64), 0x41)>"
+                        ]
+                    ]
+                ],
+                "instructions": "sub|eax|0x30|    |cmp|eax|9|    |ja|0x4055f2|    "
+            },
+            {
+                "block_addr": 4216289,
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<Bool __le__(__sub__(Extract(31, 0, reg_48_3455_64), 0x30), 0x9)>"
+                        ]
+                    ]
+                ],
+                "instructions": "jmp|0x4055eb|    "
+            }
+        ]
+    },
+    "func_name": "4216261"
+}

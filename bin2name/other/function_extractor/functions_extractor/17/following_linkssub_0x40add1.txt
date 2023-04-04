@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:options_0.symlink_handling
+cmp     eax, 1
+jz      short loc_40ADE7
+cmp     eax, 2
+jz      short loc_40ADEE
+jmp     short loc_40ADFB
+mov     eax, 1
+jmp     short loc_40AE00
+mov     eax, cs:state_0.curdepth
+test    eax, eax
+setz    al
+jmp     short loc_40AE00
+mov     eax, 0
+pop     rbp
+retn

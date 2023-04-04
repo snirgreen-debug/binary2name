@@ -1,0 +1,74 @@
+push    r15
+push    r14
+push    r13
+push    r12
+push    rbp
+push    rbx
+sub     rsp, 8
+test    rsi, rsi
+jz      loc_40C580
+xor     ebp, ebp
+test    rcx, rcx
+mov     r13, rdi
+mov     rbx, rsi
+mov     r12, rdx
+mov     r15, rcx
+mov     r14, r8
+jz      short loc_40C510
+test    rdx, rdx
+jz      loc_40C558
+nop     word ptr [rax+rax+00000000h]
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, r15
+jnz     short loc_40C4EC
+mov     rdx, r14
+mov     rsi, rbx
+mov     rdi, r13
+call    r12
+add     ebp, eax
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_40C4D0
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+test    rdx, rdx
+jz      short loc_40C538
+nop     dword ptr [rax]
+mov     rsi, rbx
+mov     rdx, r14
+mov     rdi, r13
+call    r12
+mov     rbx, [rbx+18h]
+add     ebp, eax
+test    rbx, rbx
+jnz     short loc_40C518
+jmp     short loc_40C4F5
+mov     rbx, [rbx+18h]
+add     ebp, 1
+test    rbx, rbx
+jz      short loc_40C4F5
+mov     rbx, [rbx+18h]
+add     ebp, 1
+test    rbx, rbx
+jnz     short loc_40C538
+jmp     short loc_40C4F5
+mov     rax, [rbx+10h]
+mov     rbx, [rbx+18h]
+and     eax, 0F0000h
+cmp     r15, rax
+setz    al
+movzx   eax, al
+add     ebp, eax
+test    rbx, rbx
+jnz     short loc_40C558
+jmp     loc_40C4F5
+xor     ebp, ebp
+jmp     loc_40C4F5

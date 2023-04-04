@@ -1,0 +1,168 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+p], rdi
+mov     [rbp+reason], 0
+mov     rax, [rbp-38h]
+mov     eax, [rax+10h]
+cmp     eax, 3
+jz      short loc_407D07
+mov     [rbp+reason], 42B7D8h
+cmp     [rbp+reason], 0
+jnz     short loc_407D36
+mov     rax, [rbp-38h]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_407D2E
+mov     rax, [rbp-38h]
+mov     rax, [rax+118h]
+test    rax, rax
+jnz     short loc_407D36
+mov     [rbp+reason], 42B7EFh
+cmp     [rbp+reason], 0
+jnz     short loc_407D5C
+mov     rax, [rbp-38h]
+mov     rax, [rax+110h]
+mov     rax, [rax+118h]
+test    rax, rax
+jnz     short loc_407D5C
+mov     [rbp+reason], 42B805h
+mov     rax, [rbp-38h]
+add     rax, 118h
+mov     [rbp+pr], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax+110h]
+add     rax, 118h
+mov     [rbp+pl], rax
+cmp     [rbp+reason], 0
+jnz     short loc_407DA1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    subtree_has_side_effects
+test    al, al
+jz      short loc_407DA1
+mov     [rbp+reason], 42B822h
+cmp     [rbp+reason], 0
+jnz     short loc_407DC3
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdi, rax
+call    subtree_has_side_effects
+test    al, al
+jz      short loc_407DC3
+mov     [rbp+reason], 42B840h
+cmp     [rbp+reason], 0
+jnz     short loc_407DFE
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    worst_cost
+mov     [rbp+left_cost], eax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdi, rax
+call    worst_cost
+mov     [rbp+right_cost], eax
+mov     eax, [rbp-28h]
+cmp     eax, [rbp-24h]
+jge     short loc_407DFE
+mov     [rbp+reason], 42B85Fh
+cmp     [rbp+reason], 0
+jnz     loc_407F42
+mov     eax, [rbp-28h]
+cmp     eax, [rbp-24h]
+jnz     loc_407EDD
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movss   xmm0, dword ptr [rax+24h]
+movss   [rbp+succ_rate_l], xmm0
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+movss   xmm0, dword ptr [rax+24h]
+movss   [rbp+succ_rate_r], xmm0
+mov     rax, cs:options_0.debug_options
+and     eax, 8
+test    rax, rax
+jz      short loc_407E69
+cvtss2sd xmm1, dword ptr [rbp-1Ch]
+cvtss2sd xmm0, dword ptr [rbp-20h]
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 42B86Fh
+mov     rdi, rax
+mov     eax, 2
+call    _fprintf
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+cmp     rax, 4058E6h
+jnz     short loc_407E9C
+movss   xmm0, dword ptr [rbp-20h]
+ucomiss xmm0, dword ptr [rbp-1Ch]
+setnbe  al
+mov     [rbp+want_swap], al
+movzx   eax, byte ptr [rbp-29h]
+xor     eax, 1
+test    al, al
+jz      short loc_407EE1
+mov     [rbp+reason], 42B890h
+jmp     short loc_407EE1
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+cmp     rax, 404895h
+jnz     short loc_407ECF
+movss   xmm0, dword ptr [rbp-1Ch]
+ucomiss xmm0, dword ptr [rbp-20h]
+setnbe  al
+mov     [rbp+want_swap], al
+movzx   eax, byte ptr [rbp-29h]
+xor     eax, 1
+test    al, al
+jz      short loc_407EE1
+mov     [rbp+reason], 42B8C0h
+jmp     short loc_407EE1
+mov     [rbp+want_swap], 0
+mov     [rbp+reason], 42B8EDh
+jmp     short loc_407EE1
+mov     [rbp+want_swap], 1
+cmp     [rbp+want_swap], 0
+jz      short loc_407F42
+mov     rax, cs:options_0.debug_options
+and     eax, 8
+test    rax, rax
+jz      short loc_407F2F
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 18h
+mov     esi, 1
+mov     edi, 42B8FFh
+call    _fwrite
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-38h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    print_tree
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    perform_arm_swap
+mov     eax, 1
+jmp     short locret_407F8E
+mov     rax, cs:options_0.debug_options
+and     eax, 8
+test    rax, rax
+jz      short loc_407F89
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-18h]
+mov     esi, 42B918h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-38h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    print_tree
+mov     eax, 0
+leave
+retn

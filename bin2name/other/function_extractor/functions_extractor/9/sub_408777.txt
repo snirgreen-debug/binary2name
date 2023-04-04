@@ -1,0 +1,88 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+var_28], rdi
+mov     r12, cs:qword_614DF8
+mov     ebx, cs:dword_614E00
+mov     eax, cs:dword_65D340
+mov     [rbp+var_18], eax
+jmp     short loc_4087EC
+mov     edx, cs:dword_6486E4
+mov     eax, cs:dword_65D344
+cmp     edx, eax
+jnb     short loc_4087CB
+mov     eax, cs:dword_6486E4
+lea     edx, [rax+1]
+mov     cs:dword_6486E4, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_4087E1
+mov     eax, [rbp-18h]
+mov     cs:dword_65D340, eax
+mov     edi, 0
+call    sub_40C7A4
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      r12, rax
+add     ebx, 8
+test    ebx, ebx
+jz      short loc_40879E
+mov     eax, r12d
+and     eax, 1
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax], edx
+shr     r12, 1
+sub     ebx, 1
+jmp     short loc_408854
+mov     edx, cs:dword_6486E4
+mov     eax, cs:dword_65D344
+cmp     edx, eax
+jnb     short loc_408833
+mov     eax, cs:dword_6486E4
+lea     edx, [rax+1]
+mov     cs:dword_6486E4, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_408849
+mov     eax, [rbp-18h]
+mov     cs:dword_65D340, eax
+mov     edi, 0
+call    sub_40C7A4
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      r12, rax
+add     ebx, 8
+cmp     ebx, 1
+jbe     short loc_408806
+mov     eax, r12d
+and     eax, 3
+mov     [rbp+var_14], eax
+shr     r12, 2
+sub     ebx, 2
+mov     cs:qword_614DF8, r12
+mov     cs:dword_614E00, ebx
+cmp     [rbp+var_14], 2
+jnz     short loc_408883
+call    sub_407F26
+jmp     short loc_4088A2
+cmp     [rbp+var_14], 0
+jnz     short loc_408890
+call    sub_407B2D
+jmp     short loc_4088A2
+cmp     [rbp+var_14], 1
+jnz     short loc_40889D
+call    sub_407CFD
+jmp     short loc_4088A2
+mov     eax, 2
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

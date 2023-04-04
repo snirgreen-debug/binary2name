@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_2C], 0
+mov     [rbp+var_28], 0
+mov     [rbp+var_24], 0
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_400A74
+jmp     loc_402534
+mov     edx, [rbp-28h]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movsx   eax, al
+cmp     eax, 28h
+jz      short loc_4024A8
+cmp     eax, 29h
+jz      loc_4024E1
+cmp     eax, 0Ah
+jnz     loc_402503
+lea     rax, [rbp-20h]
+mov     esi, 40392Ah
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_28], 1
+cmp     [rbp+var_2C], 0
+jz      short loc_40249C
+mov     edx, [rbp-28h]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jz      short loc_40249C
+lea     rax, [rbp-20h]
+mov     esi, 40392Ch
+mov     rdi, rax
+call    sub_400D5C
+mov     [rbp+var_24], 0
+jmp     loc_402534
+add     [rbp+var_2C], 1
+cmp     [rbp+var_24], 0
+jnz     short loc_4024C3
+lea     rax, [rbp-20h]
+mov     esi, 403931h
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_28], 1
+lea     rax, [rbp-20h]
+mov     esi, 403935h
+mov     rdi, rax
+call    sub_400D5C
+mov     [rbp+var_24], 1
+jmp     short loc_402534
+sub     [rbp+var_2C], 1
+lea     rax, [rbp-20h]
+mov     esi, 403937h
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_28], 1
+mov     [rbp+var_24], 1
+jmp     short loc_402534
+mov     edx, [rbp-28h]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movsx   edx, al
+lea     rax, [rbp-20h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400BCA
+mov     [rbp+var_24], 1
+add     [rbp+var_28], 1
+nop
+mov     edx, [rbp-28h]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jnz     loc_40242A
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+mov     rax, cs:qword_605100
+mov     rdi, rax
+call    sub_400B5E
+mov     rax, cs:qword_605100
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+10h], rdx
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4025A4
+call    ___stack_chk_fail
+leave
+retn

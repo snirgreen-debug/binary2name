@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+string], rdi
+mov     [rbp+n_buckets], rsi
+mov     [rbp+value], 0
+jmp     short loc_41850B
+mov     rdx, [rbp-8]
+mov     rax, rdx
+shl     rax, 5
+sub     rax, rdx
+mov     rdx, rax
+movzx   eax, byte ptr [rbp-9]
+add     rax, rdx
+mov     edx, 0
+div     qword ptr [rbp-20h]
+mov     [rbp+value], rdx
+add     [rbp+string], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+mov     [rbp+ch_0], al
+cmp     [rbp+ch_0], 0
+jnz     short loc_4184E1
+mov     rax, [rbp-8]
+pop     rbp
+retn

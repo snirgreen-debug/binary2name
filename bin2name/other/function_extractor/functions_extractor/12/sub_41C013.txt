@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     edx, 6475DCh
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41AD6C
+test    eax, eax
+jnz     short loc_41C04A
+mov     eax, 0
+jmp     short locret_41C06D
+mov     eax, cs:dword_6475DC
+test    eax, eax
+jz      short loc_41C068
+mov     eax, cs:dword_6475F4
+test    eax, eax
+jnz     short loc_41C068
+mov     cs:dword_6475F0, 1
+mov     eax, 1
+leave
+retn

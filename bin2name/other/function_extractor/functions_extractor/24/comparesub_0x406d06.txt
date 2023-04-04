@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+item1], rdi
+mov     [rbp+item2], rsi
+mov     rax, [rbp-10h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+leave
+retn

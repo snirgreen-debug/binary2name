@@ -1,0 +1,62 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 8
+mov     rax, cs:initial_wd
+mov     rdi, rax
+call    restore_cwd
+test    eax, eax
+jnz     short loc_40A8F0
+mov     rax, cs:initial_wd
+mov     rdi, rax
+call    free_cwd
+mov     rax, cs:initial_wd
+mov     rdi, rax
+call    _free
+mov     cs:initial_wd, 0
+jmp     loc_40A982
+mov     rax, cs:initial_wd
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_40A91A
+mov     rax, cs:initial_wd
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_40A91A
+mov     rax, cs:initial_wd
+mov     rbx, [rax+8]
+jmp     short loc_40A91F
+mov     ebx, 42C12Dh
+mov     rax, cs:initial_wd
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_40A944
+mov     rax, cs:initial_wd
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_40A944
+mov     r12d, 42C1F6h
+jmp     short loc_40A94A
+mov     r12d, 42C12Dh
+mov     edi, 42C230h
+call    _gettext
+mov     r13, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     r8, rbx
+mov     rcx, r12
+mov     rdx, r13
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     edi, 1
+call    __exit
+add     rsp, 8
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

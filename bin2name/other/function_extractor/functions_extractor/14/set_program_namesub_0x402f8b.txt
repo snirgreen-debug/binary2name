@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_402FC4
+mov     rax, [rbp-8]
+add     rax, 1
+mov     cs:program_name, rax
+jmp     short loc_402FCF
+mov     rax, [rbp-18h]
+mov     cs:program_name, rax
+nop
+leave
+retn

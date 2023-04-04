@@ -1,0 +1,39 @@
+sub     rsp, 8
+test    rsi, rsi
+jz      short loc_410B0A
+mov     rax, [rsi+10h]
+and     eax, 0F0000h
+cmp     rax, 30000h
+jz      short loc_410B65
+cmp     rax, 10000h
+jz      short loc_410B7E
+cmp     rax, 40000h
+jz      short loc_410B40
+mov     rcx, [rsi]
+mov     r8, cs:qword_619CA0
+mov     edx, 4148C3h
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+add     cs:qword_619CA0, 1
+mov     eax, 1
+add     rsp, 8
+retn
+mov     rcx, [rsi]
+mov     r8, cs:qword_619CA8
+mov     edx, 4148ACh
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+add     cs:qword_619CA8, 1
+jmp     short loc_410B2D
+mov     ecx, 415AC0h
+mov     edx, 52Fh
+mov     esi, 414065h
+mov     edi, 414298h
+call    ___assert_fail
+mov     ecx, 415AC0h
+mov     edx, 530h
+mov     esi, 414065h
+mov     edi, 4142AFh
+call    ___assert_fail

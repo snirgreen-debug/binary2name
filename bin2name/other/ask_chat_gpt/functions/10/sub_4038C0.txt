@@ -1,0 +1,14 @@
+push    rbx
+mov     rbx, [rdi+8]
+movsx   edi, byte ptr [rbx]
+test    dil, dil
+jz      short loc_4038E1
+nop     dword ptr [rax]
+add     rbx, 1
+call    _putchar
+movsx   edi, byte ptr [rbx]
+test    dil, dil
+jnz     short loc_4038D0
+pop     rbx
+mov     edi, 10h
+jmp     _putchar

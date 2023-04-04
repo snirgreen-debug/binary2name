@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], 42FDF0h
+mov     [rbp+var_24], 0FFFFFFFFh
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_417708
+mov     [rbp+dirp], rax
+cmp     [rbp+dirp], 0
+jz      loc_4164E8
+mov     [rbp+var_20], 0
+jmp     short loc_4164BA
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+13h]
+cmp     al, 2Eh
+jnz     short loc_41648D
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+13h]
+test    al, al
+jz      short loc_4164BA
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+14h]
+test    al, al
+jz      short loc_4164BA
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+14h]
+cmp     al, 2Eh
+jz      short loc_4164BA
+mov     rax, [rbp-8]
+add     rax, 13h
+mov     esi, 0
+mov     rdi, rax
+call    sub_416C51
+mov     [rbp+var_1C], eax
+mov     eax, [rbp-1Ch]
+cmp     eax, [rbp-24h]
+jle     short loc_4164B3
+mov     eax, [rbp-1Ch]
+mov     [rbp+var_24], eax
+mov     [rbp+var_20], 1
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _readdir
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_41645D
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _closedir
+cmp     [rbp+var_20], 0
+jz      short loc_4164E8
+mov     eax, [rbp-24h]
+jmp     short locret_4164ED
+mov     eax, 0FFFFFFFFh
+leave
+retn

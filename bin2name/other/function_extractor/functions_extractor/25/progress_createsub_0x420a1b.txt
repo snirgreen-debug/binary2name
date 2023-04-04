@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+initial], rdi
+mov     [rbp+total], rsi
+mov     eax, cs:output_redirected
+test    eax, eax
+jz      short loc_420A53
+mov     eax, cs:current_impl_locked
+test    eax, eax
+jnz     short loc_420A49
+mov     edi, 436368h
+call    set_progress_implementation
+mov     cs:output_redirected, 0
+mov     rax, cs:current_impl
+mov     rax, [rax+8]
+mov     rcx, [rbp-10h]
+mov     rdx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+leave
+retn

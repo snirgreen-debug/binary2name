@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], 1
+mov     rdx, cs:qword_611530
+mov     rax, cs:ptr
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_405DCA
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+js      short loc_4060B3
+mov     [rbp+var_8], 0
+mov     edi, 40DB90h
+call    _gettext
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     ecx, eax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+cmp     [rbp+var_8], 0
+jnz     short loc_4060D2
+mov     ecx, 40DC40h
+mov     edx, 17Eh
+mov     esi, 40DC28h
+mov     edi, 40DC31h
+call    ___assert_fail
+nop
+leave
+retn

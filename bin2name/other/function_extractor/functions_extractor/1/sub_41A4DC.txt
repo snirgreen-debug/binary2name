@@ -1,0 +1,108 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+var_58], rdi
+mov     [rbp+var_60], rsi
+mov     [rbp+format], rdx
+mov     [rbp+var_70], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     rax, [rax]
+mov     [rbp+s], rax
+mov     rax, [rbp-60h]
+mov     rax, [rax]
+mov     [rbp+size], rax
+mov     [rbp+var_4C], 0
+cmp     [rbp+s], 0
+jnz     short loc_41A55C
+cmp     [rbp+size], 0
+jnz     short loc_41A536
+mov     [rbp+size], 200h
+mov     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 1
+call    _calloc
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jnz     short loc_41A55C
+mov     eax, 0Ch
+jmp     loc_41A66B
+lea     rax, [rbp-20h]
+mov     rdx, [rbp-70h]
+mov     rcx, [rdx]
+mov     [rax], rcx
+mov     rcx, [rdx+8]
+mov     [rax+8], rcx
+mov     rdx, [rdx+10h]
+mov     [rax+10h], rdx
+lea     rcx, [rbp-20h]
+mov     rdx, [rbp-68h]
+mov     rsi, [rbp-40h]
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _vsnprintf
+cdqe
+mov     [rbp+var_38], rax
+cmp     [rbp+var_38], 0
+js      short loc_41A5CA
+mov     rax, [rbp-38h]
+cmp     rax, [rbp-40h]
+jnb     short loc_41A5CA
+mov     rax, [rbp-38h]
+add     rax, 1
+mov     rdx, rax
+mov     rax, [rbp-48h]
+mov     esi, 0
+mov     rdi, rax
+call    _memchr
+test    rax, rax
+jnz     short loc_41A624
+mov     rax, [rbp-40h]
+add     rax, rax
+mov     [rbp+var_30], rax
+mov     rax, [rbp-30h]
+cmp     rax, [rbp-40h]
+jnb     short loc_41A5E8
+mov     [rbp+var_4C], 0Ch
+jmp     short loc_41A624
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_41A60F
+mov     [rbp+var_4C], 0Ch
+jmp     short loc_41A624
+mov     rax, [rbp-30h]
+mov     [rbp+size], rax
+mov     rax, [rbp-28h]
+mov     [rbp+s], rax
+jmp     loc_41A55C
+cmp     [rbp+var_4C], 0
+jz      short loc_41A652
+mov     rax, [rbp-58h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_41A652
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _free
+mov     [rbp+s], 0
+mov     [rbp+size], 0
+mov     rax, [rbp-58h]
+mov     rdx, [rbp-48h]
+mov     [rax], rdx
+mov     rax, [rbp-60h]
+mov     rdx, [rbp-40h]
+mov     [rax], rdx
+mov     eax, [rbp-4Ch]
+mov     rdi, [rbp-8]
+xor     rdi, fs:28h
+jz      short locret_41A67F
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+filename], rdi
+mov     rax, [rbp-18h]
+lea     rsi, aR
+mov     rdi, rax
+call    _fopen
+mov     [rbp+stream], rax
+cmp     [rbp+stream], 0
+jz      short loc_40CA54
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+mov     eax, 1
+jmp     short locret_40CA59
+mov     eax, 0
+leave
+retn

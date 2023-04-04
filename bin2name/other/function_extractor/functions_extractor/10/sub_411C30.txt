@@ -1,0 +1,28 @@
+push    rbx
+mov     rcx, rdi
+mov     rbx, rdi
+mov     edx, 0Fh
+mov     esi, 1
+mov     edi, 414AA2h
+call    _fwrite
+mov     eax, cs:dword_619780
+test    eax, eax
+jnz     short loc_411C60
+pop     rbx
+retn
+mov     rcx, rbx
+mov     edx, 18h
+mov     esi, 1
+mov     edi, 414AB2h
+call    _fwrite
+mov     rcx, rbx
+mov     edx, 16h
+mov     esi, 1
+mov     edi, 414ACBh
+call    _fwrite
+mov     rcx, rbx
+mov     edx, 1Ch
+mov     esi, 1
+pop     rbx
+mov     edi, 414AE2h
+jmp     _fwrite

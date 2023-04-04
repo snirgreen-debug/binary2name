@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0B0h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-0A8h]
+mov     rax, [rax+10h]
+lea     rdx, [rbp-0A0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+jz      short loc_402DBF
+mov     eax, 4
+jmp     short loc_402DC4
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_402DD8
+call    ___stack_chk_fail
+leave
+retn

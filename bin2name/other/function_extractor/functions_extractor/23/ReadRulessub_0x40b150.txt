@@ -1,0 +1,17 @@
+cmp     esi, 1
+jz      short loc_40B180
+push    rbx
+mov     rbx, pibIn
+jmp     short loc_40B168
+mov     rdi, pibIn
+call    ReadRule
+mov     edx, 10h
+mov     esi, 0Fh
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40B160
+pop     pibIn
+retn
+mov     edi, 413C88h
+jmp     _puts

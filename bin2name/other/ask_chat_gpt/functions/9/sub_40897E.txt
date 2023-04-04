@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     [rbp+var_8], esi
+mov     eax, cs:dword_614E08
+test    eax, eax
+jz      short loc_40899D
+mov     eax, 1
+jmp     short locret_4089DC
+mov     cs:dword_614E08, 1
+mov     rax, cs:stderr
+mov     rcx, rax
+mov     edx, 2Bh
+mov     esi, 1
+mov     edi, 411330h
+call    _fwrite
+mov     eax, [rbp-4]
+cmp     eax, [rbp-8]
+jz      short loc_4089D7
+mov     cs:dword_614870, 1
+mov     eax, 1
+leave
+retn

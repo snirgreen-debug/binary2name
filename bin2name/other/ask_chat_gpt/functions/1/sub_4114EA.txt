@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_4], edi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     eax, [rbp-4]
+cmp     eax, 1
+jz      short loc_411529
+cmp     eax, 1
+jb      short loc_41150F
+cmp     eax, 2
+jnz     short loc_41152A
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_41126A
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_41148A
+jmp     short loc_41152A
+nop
+mov     eax, 0
+leave
+retn

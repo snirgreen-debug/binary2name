@@ -1,0 +1,80 @@
+push    r13
+push    r12
+mov     r13d, edx
+push    rbp
+push    rbx
+mov     r12, pibIn
+mov     rbp, szLex
+sub     rsp, 838h
+mov     rax, fs:28h
+mov     [rsp+858h+var_30], rax
+xor     eax, eax
+nop     dword ptr [rax+00000000h]
+lea     rdx, [rsp+0Ch]
+mov     rsi, szLex
+mov     rdi, pibIn
+call    NextLex
+test    byte ptr [rsp+858h+iLexType], 1
+jnz     short loc_408408
+movzx   eax, byte ptr [szLex+0]
+cmp     al, 2Ch
+jz      short loc_4083D7
+cmp     al, 7Dh
+jnz     loc_408490
+cmp     al, 7Dh
+jnz     short loc_4083B0
+nop     dword ptr [rax+rax+00h]
+mov     rax, [rsp+828h]
+xor     rax, fs:28h
+jnz     loc_4084D5
+add     rsp, 838h
+pop     rbx
+pop     szLex
+pop     pibIn
+pop     iKWCode
+retn
+lea     rsi, [rsp+20h]
+mov     edx, 5Bh
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      loc_4084B8
+lea     rdx, [rsp+18h]
+lea     rsi, [rsp+10h]
+mov     rdi, pibIn
+call    GetArrayBounds
+mov     rbx, [rsp+10h]
+cmp     i, [rsp+18h]
+jge     short loc_408482
+lea     rdi, [rsp+420h]
+mov     r9, i
+mov     r8, szLex
+mov     ecx, 413386h
+mov     edx, 3FFh
+mov     esi, 1
+xor     eax, eax
+add     i, 1
+call    ___sprintf_chk
+lea     rsi, [rsp+420h]
+mov     edx, r13d
+mov     rdi, pibIn
+call    DeclareModelVar
+cmp     [rsp+858h+iUB], i
+jg      short loc_408440
+movzx   eax, byte ptr [szLex+0]
+jmp     loc_4083D7
+lea     rdx, [rsp+20h]
+mov     ecx, 413438h
+mov     esi, 8013h
+mov     rdi, pibIn
+mov     [rsp+858h+szPunct+1], 7Dh
+call    ReportError
+jmp     loc_4083E0
+sub     qword ptr [pibIn+18h], 1
+mov     edx, r13d
+mov     rsi, szLex
+mov     rdi, pibIn
+call    DeclareModelVar
+movzx   eax, byte ptr [szLex+0]
+jmp     loc_4083D7
+call    ___stack_chk_fail

@@ -1,0 +1,116 @@
+test    rsi, rsi
+push    r12
+mov     r12, rdi
+push    rbp
+push    rbx
+jz      loc_40D478
+mov     rax, [rsi+10h]
+mov     rbx, rsi
+mov     edx, eax
+mov     ebp, eax
+and     edx, 0D0000h
+and     ebp, 0F0000h
+cmp     edx, 50000h
+jz      loc_40D5C2
+test    ebp, ebp
+jz      loc_40D5C2
+cmp     ebp, 60000h
+jz      loc_40D5C2
+cmp     qword ptr [rsi+8], 6192A0h
+jz      short loc_40D48F
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40D540
+jbe     loc_40D578
+cmp     rax, 30000h
+jz      short loc_40D4A0
+cmp     rax, 90000h
+jnz     loc_40D598
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+mov     rcx, rdi
+mov     edx, 1Fh
+mov     esi, 1
+mov     edi, 414DF8h
+call    _fwrite
+pop     rbx
+xor     eax, eax
+pop     rbp
+pop     r12
+retn
+mov     eax, cs:dword_619884
+test    eax, eax
+jnz     loc_40D5B8
+mov     r9, [rbx]
+mov     r8d, 6197E0h
+mov     ecx, 414409h
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+mov     rcx, [rbx]
+mov     r8d, 619CC0h
+xor     eax, eax
+mov     edx, 414424h
+mov     esi, 1
+mov     rdi, r12
+call    ___fprintf_chk
+cmp     ebp, 40000h
+mov     r8, [rbx]
+mov     ecx, 41441Fh
+jz      short loc_40D520
+cmp     ebp, 20000h
+mov     ecx, 414292h
+jz      short loc_40D520
+cmp     ebp, 30000h
+mov     ecx, 4142BFh
+mov     eax, 4142A8h
+cmovz   rcx, rax
+mov     rdi, r12
+mov     edx, 414439h
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+pop     rbx
+mov     eax, 1
+pop     rbp
+pop     r12
+retn
+mov     esi, cs:dword_619884
+test    esi, esi
+jnz     short loc_40D598
+mov     r8, [rbx]
+mov     ecx, 41402Bh
+nop     word ptr [rax+rax+00h]
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+jmp     loc_40D4D2
+cmp     rax, 10000h
+jnz     short loc_40D598
+mov     ecx, cs:dword_619884
+test    ecx, ecx
+jz      loc_40D4AE
+mov     edx, cs:dword_619880
+test    edx, edx
+jz      short loc_40D5A8
+mov     r8, [rbx]
+mov     ecx, 4140BDh
+jmp     short loc_40D558
+mov     r8, [rsi]
+mov     ecx, 41403Ch
+jmp     short loc_40D558
+mov     r8, [rsi]
+mov     ecx, 414059h
+jmp     short loc_40D558
+mov     ecx, 415AE0h
+mov     edx, 199h
+mov     esi, 414065h
+mov     edi, 414DA0h
+call    ___assert_fail

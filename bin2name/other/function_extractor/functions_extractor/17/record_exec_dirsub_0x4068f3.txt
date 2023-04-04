@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+execp], rdi
+mov     rax, [rbp-18h]
+mov     eax, [rax+98h]
+test    eax, eax
+jnz     loc_4069AC
+mov     rax, [rbp-18h]
+mov     eax, [rax+98h]
+test    eax, eax
+jz      short loc_406938
+mov     ecx, 42B4C0h
+mov     edx, 54h
+mov     esi, 42B390h
+mov     edi, 42B397h
+call    ___assert_fail
+mov     rax, cs:state_0.rel_pathname
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_406991
+mov     rax, cs:state_0.rel_pathname
+mov     rdi, rax
+call    mdir_name
+mov     [rbp+dir], rax
+mov     ecx, cs:state_0.cwd_dir_fd
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     esi, ecx
+mov     rdi, rax
+call    initialize_wd_for_exec
+mov     [rbp+result], al
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+movzx   eax, byte ptr [rbp-9]
+jmp     short locret_4069B1
+mov     ecx, cs:state_0.cwd_dir_fd
+mov     rax, [rbp-18h]
+mov     edx, 42B3AAh
+mov     esi, ecx
+mov     rdi, rax
+call    initialize_wd_for_exec
+jmp     short locret_4069B1
+mov     eax, 1
+leave
+retn

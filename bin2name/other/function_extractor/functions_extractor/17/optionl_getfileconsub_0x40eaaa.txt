@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fd], edi
+mov     [rbp+name], rsi
+mov     [rbp+p], rdx
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    getfileconat
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jnz     short loc_40EAE2
+mov     eax, 0
+jmp     short locret_40EAF7
+mov     ecx, [rbp-4]
+mov     rdx, [rbp-28h]
+mov     rsi, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    fallback_getfilecon
+leave
+retn

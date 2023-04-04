@@ -1,0 +1,207 @@
+test    pibIn, pibIn
+mov     dword ptr [piLexType], 0
+jz      short locret_403FDC
+test    szLex, szLex
+jz      short locret_403FDC
+push    r14
+push    r13
+mov     r13, piLexType
+push    r12
+push    rbp
+mov     r12, szLex
+push    rbx
+cmp     qword ptr [pibIn+18h], 0
+mov     rbp, pibIn
+jz      short loc_403FD4
+mov     rdi, pibIn
+call    SkipWhitespace
+mov     rbx, [pibIn+18h]
+test    rbx, rbx
+jz      short loc_403FC2
+movzx   r14d, byte ptr [rbx]
+test    r14b, r14b
+jnz     short loc_403FE8
+mov     rdi, [pibIn+0]
+test    rdi, rdi
+jz      short loc_403FD4
+call    _feof
+test    eax, eax
+jz      short loc_403FE0
+pop     rbx
+pop     pibIn
+pop     szLex
+pop     piLexType
+pop     r14
+rep retn
+mov     rbx, [pibIn+18h]
+movzx   r14d, byte ptr [rbx]
+cmp     r14b, 23h
+jz      loc_404099
+call    ___ctype_b_loc
+mov     rdx, [rax]
+movsx   rcx, r14b
+movzx   ecx, word ptr [rdx+rcx*2]
+test    ch, 4
+jnz     loc_4040D0
+cmp     r14b, 5Fh
+jz      loc_4040D0
+and     ch, 8
+jnz     loc_404100
+cmp     r14b, 2Eh
+jz      loc_404100
+lea     eax, [r14-2Bh]
+test    al, 0FDh
+jz      loc_4041A0
+cmp     r14b, 22h
+jz      loc_404210
+movsx   esi, r14b
+mov     edi, 619180h
+call    _strchr
+test    rax, rax
+jz      loc_4041BF
+lea     rax, [rbx+1]
+mov     dword ptr [piLexType+0], 20h
+mov     [pibIn+18h], rax
+movzx   eax, byte ptr [rbx]
+mov     [szLex], al
+mov     rdx, [pibIn+18h]
+cmp     byte ptr [rdx], 3Dh
+jz      loc_4041DB
+mov     byte ptr [szLex+1], 0
+jmp     loc_403FD4
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+mov     rbx, [pibIn+18h]
+jz      short loc_4040B4
+add     rbx, 1
+jmp     short loc_4040AA
+add     rbx, 1
+cmp     byte ptr [rbx-1], 0
+jz      short loc_404088
+mov     [pibIn+18h], rbx
+cmp     byte ptr [rbx-1], 0Ah
+jnz     short loc_4040A0
+add     dword ptr [pibIn+20h], 1
+cmp     byte ptr [rbx], 0
+jnz     loc_403FA8
+mov     rdi, pibIn
+call    FillBuffer_0
+jmp     loc_403FA8
+mov     dword ptr [piLexType+0], 1
+movsx   rcx, byte ptr [rbx]
+test    byte ptr [rdx+rcx*2+1], 4
+mov     rsi, rcx
+jnz     short loc_404140
+xor     ecx, ecx
+cmp     sil, 5Fh
+jz      short loc_404140
+mov     byte ptr [szLex+rcx], 0
+jmp     loc_403FD4
+mov     rdx, piLexType
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetNumber_0
+lea     eax, [r14-2Bh]
+test    al, 0FDh
+jnz     loc_403FD4
+mov     eax, [piLexType+0]
+test    eax, eax
+jnz     loc_403FD4
+mov     [szLex], r14b
+mov     byte ptr [szLex+1], 0
+mov     dword ptr [piLexType+0], 20h
+jmp     loc_403FD4
+mov     rdi, szLex
+xor     ecx, ecx
+jmp     short loc_404174
+mov     r8, [rax]
+movsx   rdx, sil
+test    byte ptr [r8+rdx*2], 8
+jnz     short loc_404164
+cmp     sil, 5Fh
+jnz     short loc_404190
+add     rdi, 1
+cmp     ecx, 3FEh
+jz      loc_404206
+lea     rdx, [rbx+1]
+add     ecx, 1
+mov     [pibIn+18h], rdx
+movzx   edx, byte ptr [rbx]
+mov     [rdi], dl
+mov     rbx, [pibIn+18h]
+movzx   esi, byte ptr [rbx]
+test    sil, sil
+jnz     short loc_404150
+movsxd  rcx, ecx
+jmp     loc_4040EE
+mov     rdx, piLexType
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetNumber_0
+mov     eax, [piLexType+0]
+test    eax, eax
+jnz     loc_403FD4
+jmp     loc_404126
+lea     rax, [rbx+1]
+mov     dword ptr [piLexType+0], 8
+mov     [pibIn+18h], rax
+movzx   eax, byte ptr [rbx]
+mov     [szLex], al
+jmp     loc_404079
+lea     ecx, [rax-3Ch]
+cmp     cl, 2
+jbe     short loc_4041EB
+cmp     al, 21h
+jnz     loc_403FD4
+lea     rax, [rdx+1]
+mov     [pibIn+18h], rax
+movzx   eax, byte ptr [rdx]
+mov     byte ptr [szLex+2], 0
+mov     [szLex+1], al
+jmp     loc_403FD4
+mov     ecx, 3FEh
+jmp     loc_4040EE
+mov     dword ptr [piLexType+0], 10h
+cmp     byte ptr [rbx], 22h
+mov     rsi, szLex
+jz      short loc_404228
+mov     byte ptr [rsi], 0
+jmp     loc_403FD4
+mov     rax, r12
+xor     edx, edx
+jmp     short loc_404240
+cmp     cl, 22h
+jz      short loc_40425F
+add     rax, 1
+cmp     edx, 3FEh
+jz      short loc_404276
+lea     rcx, [rbx+1]
+add     edx, 1
+mov     rsi, rax
+mov     [pibIn+18h], rcx
+movzx   ecx, byte ptr [rbx+1]
+mov     [rax], cl
+mov     rbx, [pibIn+18h]
+movzx   ecx, byte ptr [rbx]
+test    cl, cl
+jnz     short loc_40422F
+cmp     edx, 3FEh
+jz      short loc_404276
+cmp     cl, 22h
+jnz     short loc_40429B
+add     rbx, 1
+mov     [pibIn+18h], rbx
+jmp     short loc_404220
+mov     rdx, szLex
+mov     esi, 412558h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     edi, 412418h
+call    _puts
+xor     edi, edi
+call    _exit
+movsxd  rdx, edx
+lea     rsi, [szLex+rdx]
+jmp     loc_404220

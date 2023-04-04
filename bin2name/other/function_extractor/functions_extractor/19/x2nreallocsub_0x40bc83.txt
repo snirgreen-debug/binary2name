@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+p], rdi
+mov     [rbp+pn], rsi
+mov     [rbp+s], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     [rbp+n], rax
+cmp     [rbp+p], 0
+jnz     short loc_40BCD3
+cmp     [rbp+n], 0
+jnz     short loc_40BD0A
+mov     eax, 80h
+mov     edx, 0
+div     qword ptr [rbp-28h]
+mov     [rbp+n], rax
+cmp     [rbp+n], 0
+setz    al
+movzx   eax, al
+add     [rbp+n], rax
+jmp     short loc_40BD0A
+mov     rax, 0AAAAAAAAAAAAAAAAh
+mov     edx, 0
+div     qword ptr [rbp-28h]
+cmp     rax, [rbp-8]
+ja      short loc_40BCF1
+call    xalloc_die
+mov     rax, [rbp-8]
+shr     rax, 1
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rax, rdx
+add     rax, 1
+mov     [rbp+n], rax
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+imul    rax, [rbp-28h]
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc
+leave
+retn

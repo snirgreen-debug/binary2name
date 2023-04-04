@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+cookie], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_404E00
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+test    rax, rax
+jz      short loc_404E1D
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+test    rax, rax
+jz      short loc_404E3A
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+40h]
+test    rax, rax
+jz      short loc_404E57
+mov     rax, [rbp-8]
+mov     rax, [rax+40h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

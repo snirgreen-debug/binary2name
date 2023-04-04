@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+au], rdi
+mov     [rbp+user], rsi
+mov     [rbp+passwd], rdx
+mov     [rbp+method], rcx
+mov     [rbp+path], r8
+mov     [rbp+wwwauth], 0
+mov     rax, [rbp-18h]
+mov     edx, 5
+mov     esi, 432B98h
+mov     rdi, rax
+call    _strncasecmp
+test    eax, eax
+jnz     short loc_41A230
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     edx, 4328A3h
+mov     rsi, rcx
+mov     rdi, rax
+call    basic_authentication_encode
+mov     [rbp+wwwauth], rax
+mov     rax, [rbp-18h]
+mov     edx, 4
+mov     esi, 4332DCh
+mov     rdi, rax
+call    _strncasecmp
+test    eax, eax
+jnz     short loc_41A268
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     edx, 4328A3h
+mov     rsi, rcx
+mov     rdi, rax
+call    basic_authentication_encode
+mov     [rbp+wwwauth], rax
+jmp     short loc_41A2A5
+mov     rax, [rbp-18h]
+mov     edx, 6
+mov     esi, 4332D5h
+mov     rdi, rax
+call    _strncasecmp
+test    eax, eax
+jnz     short loc_41A2A5
+mov     rdi, [rbp-38h]
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-28h]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     r8, rdi
+mov     rdi, rax
+call    digest_authentication_encode
+mov     [rbp+wwwauth], rax
+mov     rax, [rbp-8]
+leave
+retn

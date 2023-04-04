@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_4], 0
+jmp     short loc_405740
+mov     rax, cs:stdout
+mov     rsi, rax
+mov     edi, 20h
+call    _fputc
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cmp     eax, [rbp-14h]
+jl      short loc_405728
+nop
+leave
+retn

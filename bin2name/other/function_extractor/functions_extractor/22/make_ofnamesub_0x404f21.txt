@@ -1,0 +1,129 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     esi, 6182C0h
+mov     edi, 64CF20h
+call    _strcpy
+mov     edi, 64CF20h
+call    get_suffix
+mov     [rbp+suff], rax
+mov     eax, cs:decompress
+test    eax, eax
+jz      loc_405047
+cmp     [rbp+suff], 0
+jnz     loc_404FF2
+mov     eax, cs:recursive
+test    eax, eax
+jnz     short loc_404F87
+mov     eax, cs:list
+test    eax, eax
+jnz     short loc_404F7D
+mov     eax, cs:test
+test    eax, eax
+jz      short loc_404F87
+mov     eax, 0
+jmp     locret_405139
+mov     eax, cs:verbose
+test    eax, eax
+jnz     short loc_404FA5
+mov     eax, cs:recursive
+test    eax, eax
+jnz     short loc_404FE8
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_404FE8
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_404FD4
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 6182C0h
+mov     esi, 410880h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_404FE8
+mov     cs:exit_code, 2
+mov     eax, 2
+jmp     locret_405139
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    strlwr
+mov     rax, [rbp-8]
+mov     esi, 4108A3h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_405028
+mov     rax, [rbp-8]
+mov     esi, 4108A8h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40503B
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 7261742Eh
+mov     byte ptr [rax+4], 0
+jmp     loc_4050E9
+mov     rax, [rbp-8]
+mov     byte ptr [rax], 0
+jmp     loc_4050E9
+cmp     [rbp+suff], 0
+jz      short loc_4050AC
+mov     eax, cs:force
+test    eax, eax
+jnz     short loc_4050AC
+mov     eax, cs:verbose
+test    eax, eax
+jnz     short loc_405076
+mov     eax, cs:recursive
+test    eax, eax
+jnz     short loc_4050A2
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_4050A2
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-8]
+mov     r8, rcx
+mov     ecx, 6182C0h
+mov     esi, 4108B0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 2
+jmp     locret_405139
+mov     cs:save_orig_name, 0
+mov     edi, 64CF20h
+call    _strlen
+mov     rdx, rax
+mov     rax, cs:z_len
+add     rax, rdx
+cmp     rax, 3FFh
+ja      short loc_4050F0
+mov     rax, cs:z_suffix
+mov     rsi, rax
+mov     edi, 64CF20h
+call    _strcat
+mov     eax, 0
+jmp     short locret_405139
+nop
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_405120
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 6182C0h
+mov     esi, 410861h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_405134
+mov     cs:exit_code, 2
+mov     eax, 2
+leave
+retn

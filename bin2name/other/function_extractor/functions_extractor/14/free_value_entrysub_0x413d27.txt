@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_value_free
+nop
+leave
+retn

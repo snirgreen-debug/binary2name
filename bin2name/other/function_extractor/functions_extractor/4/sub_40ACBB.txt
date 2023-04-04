@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+filename], rdi
+mov     [rbp+stat_buf], rsi
+mov     eax, cs:fildes
+test    eax, eax
+jns     short loc_40ACF9
+mov     eax, cs:fildes
+cmp     eax, 0FFFFFF9Ch
+jz      short loc_40ACF9
+mov     ecx, 42C630h
+mov     edx, 288h
+mov     esi, 42C0E8h
+mov     edi, 42C2E8h
+call    ___assert_fail
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_40A2AF
+mov     eax, cs:fildes
+mov     rdx, [rbp-10h]
+mov     rsi, [rbp-8]
+mov     ecx, 100h
+mov     edi, eax
+call    sub_42AA70
+leave
+retn

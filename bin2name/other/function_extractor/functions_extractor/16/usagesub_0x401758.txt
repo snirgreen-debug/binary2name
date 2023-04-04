@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     [rbp+stream], rdi
+mov     r12, cs:program_name
+mov     rbx, cs:program_name
+mov     edi, 405388h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-18h]
+mov     rcx, r12
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 4053E8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+nop
+add     rsp, 10h
+pop     rbx
+pop     r12
+pop     rbp
+retn

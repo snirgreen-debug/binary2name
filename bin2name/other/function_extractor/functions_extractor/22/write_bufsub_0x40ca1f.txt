@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fd], edi
+mov     [rbp+buf], rsi
+mov     [rbp+cnt], edx
+jmp     short loc_40CA4B
+cmp     [rbp+n], 0FFFFFFFFh
+jnz     short loc_40CA3E
+call    write_error
+mov     eax, [rbp-4]
+sub     [rbp+cnt], eax
+mov     eax, [rbp-4]
+add     [rbp+buf], rax
+mov     edx, [rbp-18h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    write_buffer
+mov     [rbp+n], eax
+mov     eax, [rbp-4]
+cmp     eax, [rbp-18h]
+jnz     short loc_40CA33
+nop
+leave
+retn

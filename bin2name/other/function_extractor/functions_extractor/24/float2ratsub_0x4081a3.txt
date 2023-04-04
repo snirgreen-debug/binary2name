@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0A0h
+movsd   [rbp+y], xmm0
+mov     [rbp+p], rdi
+mov     [rbp+q], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+movsd   xmm0, qword ptr [rbp-88h]
+movsd   [rbp+x], xmm0
+mov     [rbp+termcount], 0
+mov     rax, [rbp-70h]
+mov     [rbp+var_A0], rax
+movsd   xmm0, qword ptr [rbp-0A0h]
+call    _floor
+cvttsd2si edx, xmm0
+mov     eax, [rbp-78h]
+cdqe
+mov     [rbp+rax*4+coef], edx
+mov     eax, [rbp-78h]
+cdqe
+mov     eax, [rbp+rax*4-60h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+movsd   xmm1, qword ptr [rbp-70h]
+subsd   xmm1, xmm0
+movapd  xmm0, xmm1
+movsd   [rbp+fracpart], xmm0
+movsd   xmm0, cs:qword_416DA8
+ucomisd xmm0, qword ptr [rbp-68h]
+ja      short loc_40825C
+cmp     [rbp+termcount], 13h
+jz      short loc_40825C
+movsd   xmm0, cs:qword_416DA0
+divsd   xmm0, qword ptr [rbp-68h]
+movsd   [rbp+x], xmm0
+add     [rbp+termcount], 1
+jmp     short loc_4081E7
+mov     rax, [rbp-90h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-98h]
+mov     dword ptr [rax], 1
+mov     eax, [rbp-78h]
+mov     [rbp+i], eax
+jmp     short loc_4082C3
+mov     rax, [rbp-98h]
+mov     eax, [rax]
+mov     [rbp+saveq], eax
+mov     eax, [rbp-7Ch]
+cdqe
+mov     edx, [rbp+rax*4-60h]
+mov     rax, [rbp-98h]
+mov     eax, [rax]
+imul    edx, eax
+mov     rax, [rbp-90h]
+mov     eax, [rax]
+add     edx, eax
+mov     rax, [rbp-98h]
+mov     [rax], edx
+mov     rax, [rbp-90h]
+mov     edx, [rbp-74h]
+mov     [rax], edx
+sub     [rbp+i], 1
+cmp     [rbp+i], 0
+jg      short loc_40827E
+mov     rax, [rbp-90h]
+mov     edx, [rax]
+mov     rax, [rbp-98h]
+mov     ecx, [rax]
+mov     eax, [rbp-60h]
+imul    eax, ecx
+add     edx, eax
+mov     rax, [rbp-90h]
+mov     [rax], edx
+mov     rax, [rbp-98h]
+mov     eax, [rax]
+cmp     eax, 63h
+jg      short loc_408349
+mov     rax, [rbp-90h]
+mov     eax, [rax]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+mov     rax, [rbp-98h]
+mov     eax, [rax]
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, eax
+divsd   xmm0, xmm1
+subsd   xmm0, qword ptr [rbp-88h]
+movsd   xmm1, cs:qword_416DB0
+andpd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DC0
+ucomisd xmm1, xmm0
+jbe     short loc_408349
+mov     eax, 1
+jmp     short loc_40834E
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_408362
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 8
+mov     edi, 10h
+call    xmalloc
+mov     cs:initial_wd, rax
+mov     rax, cs:initial_wd
+mov     rdi, rax
+call    save_cwd
+test    eax, eax
+jz      loc_40A896
+mov     rax, cs:initial_wd
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_40A838
+mov     rax, cs:initial_wd
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_40A838
+mov     rax, cs:initial_wd
+mov     rbx, [rax+8]
+jmp     short loc_40A83D
+mov     ebx, 42C12Dh
+mov     rax, cs:initial_wd
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_40A862
+mov     rax, cs:initial_wd
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_40A862
+mov     r12d, 42C1F6h
+jmp     short loc_40A868
+mov     r12d, 42C12Dh
+mov     edi, 42C200h
+call    _gettext
+mov     r13, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     r8, rbx
+mov     rcx, r12
+mov     rdx, r13
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+nop
+add     rsp, 8
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

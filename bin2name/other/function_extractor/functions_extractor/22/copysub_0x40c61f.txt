@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+in], edi
+mov     [rbp+out], esi
+call    ___errno_location
+mov     dword ptr [rax], 0
+jmp     loc_40C6D6
+mov     edx, cs:insize
+mov     eax, cs:inptr
+sub     edx, eax
+mov     eax, cs:inptr
+mov     eax, eax
+lea     rcx, [rax+65D360h]
+mov     eax, [rbp-18h]
+mov     rsi, rcx
+mov     edi, eax
+call    write_buf
+mov     edx, cs:insize
+mov     eax, cs:inptr
+sub     edx, eax
+mov     eax, edx
+mov     edx, eax
+mov     rax, cs:bytes_out
+add     rax, rdx
+mov     cs:bytes_out, rax
+mov     eax, [rbp-14h]
+mov     edx, 8000h
+mov     esi, 65D360h
+mov     edi, eax
+call    read_buffer
+mov     [rbp+got], eax
+cmp     [rbp+got], 0FFFFFFFFh
+jnz     short loc_40C6AC
+call    read_error
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, cs:bytes_in
+add     rax, rdx
+mov     cs:bytes_in, rax
+mov     eax, [rbp-4]
+mov     cs:insize, eax
+mov     cs:inptr, 0
+mov     edx, cs:insize
+mov     eax, cs:inptr
+cmp     edx, eax
+ja      loc_40C63D
+mov     eax, 0
+leave
+retn

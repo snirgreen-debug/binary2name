@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+file], rdi
+mov     [rbp+mode], rsi
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jz      loc_417F3E
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fileno
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      loc_417F3E
+cmp     [rbp+fd], 2
+jg      loc_417F3E
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    dup_safer
+mov     [rbp+f], eax
+cmp     [rbp+f], 0
+jns     short loc_417EEA
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-10h]
+mov     [rdx], eax
+mov     eax, 0
+jmp     short locret_417F42
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+test    eax, eax
+jnz     short loc_417F16
+mov     rdx, [rbp-30h]
+mov     eax, [rbp-14h]
+mov     rsi, rdx
+mov     edi, eax
+call    _fdopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jnz     short loc_417F3E
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e_0], eax
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _close
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0Ch]
+mov     [rdx], eax
+mov     eax, 0
+jmp     short locret_417F42
+mov     rax, [rbp-8]
+leave
+retn

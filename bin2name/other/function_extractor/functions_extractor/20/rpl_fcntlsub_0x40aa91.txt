@@ -1,0 +1,155 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 100h
+mov     [rbp+fd], edi
+mov     [rbp+action], esi
+mov     [rbp+var_A0], rdx
+mov     [rbp+var_98], rcx
+mov     [rbp+var_90], r8
+mov     [rbp+var_88], r9
+test    al, al
+jz      short loc_40AAE8
+movaps  [rbp+var_80], xmm0
+movaps  [rbp+var_70], xmm1
+movaps  [rbp+var_60], xmm2
+movaps  [rbp+var_50], xmm3
+movaps  [rbp+var_40], xmm4
+movaps  [rbp+var_30], xmm5
+movaps  [rbp+var_20], xmm6
+movaps  [rbp+var_10], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_B8], rax
+xor     eax, eax
+mov     [rbp+result], 0FFFFFFFFh
+mov     [rbp+var_D0], 10h
+mov     [rbp+var_CC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_C8], rax
+lea     rax, [rbp-0B0h]
+mov     [rbp+var_C0], rax
+mov     eax, [rbp-0F8h]
+cmp     eax, 406h
+jnz     loc_40ACE1
+mov     eax, [rbp-0D0h]
+cmp     eax, 30h
+jnb     short loc_40AB70
+mov     rax, [rbp-0C0h]
+mov     edx, [rbp-0D0h]
+mov     edx, edx
+add     rax, rdx
+mov     edx, [rbp-0D0h]
+add     edx, 8
+mov     [rbp+var_D0], edx
+jmp     short loc_40AB82
+mov     rax, [rbp-0C8h]
+lea     rdx, [rax+8]
+mov     [rbp+var_C8], rdx
+mov     eax, [rax]
+mov     [rbp+target], eax
+mov     eax, cs:have_dupfd_cloexec_2940
+test    eax, eax
+js      loc_40AC1B
+mov     edx, [rbp-0E4h]
+mov     ecx, [rbp-0F8h]
+mov     eax, [rbp-0F4h]
+mov     esi, ecx
+mov     edi, eax
+mov     eax, 0
+call    _fcntl
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+jns     short loc_40ABD3
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 16h
+jz      short loc_40ABDF
+mov     cs:have_dupfd_cloexec_2940, 1
+jmp     short loc_40AC3E
+mov     edx, [rbp-0E4h]
+mov     eax, [rbp-0F4h]
+mov     esi, 0
+mov     edi, eax
+mov     eax, 0
+call    rpl_fcntl
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+js      loc_40AD54
+mov     cs:have_dupfd_cloexec_2940, 0FFFFFFFFh
+jmp     short loc_40AC3E
+mov     edx, [rbp-0E4h]
+mov     eax, [rbp-0F4h]
+mov     esi, 0
+mov     edi, eax
+mov     eax, 0
+call    rpl_fcntl
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+js      loc_40AD57
+mov     eax, cs:have_dupfd_cloexec_2940
+cmp     eax, 0FFFFFFFFh
+jnz     loc_40AD57
+mov     eax, [rbp-0E8h]
+mov     esi, 1
+mov     edi, eax
+mov     eax, 0
+call    _fcntl
+mov     [rbp+flags], eax
+cmp     [rbp+flags], 0
+js      short loc_40ACAB
+mov     eax, [rbp-0E0h]
+or      eax, 1
+mov     edx, eax
+mov     eax, [rbp-0E8h]
+mov     esi, 2
+mov     edi, eax
+mov     eax, 0
+call    _fcntl
+cmp     eax, 0FFFFFFFFh
+jnz     loc_40AD57
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+mov     eax, [rbp-0E8h]
+mov     edi, eax
+call    _close
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0DCh]
+mov     [rdx], eax
+mov     [rbp+result], 0FFFFFFFFh
+jmp     short loc_40AD57
+mov     eax, [rbp-0D0h]
+cmp     eax, 30h
+jnb     short loc_40AD0F
+mov     rax, [rbp-0C0h]
+mov     edx, [rbp-0D0h]
+mov     edx, edx
+add     rax, rdx
+mov     edx, [rbp-0D0h]
+add     edx, 8
+mov     [rbp+var_D0], edx
+jmp     short loc_40AD21
+mov     rax, [rbp-0C8h]
+lea     rdx, [rax+8]
+mov     [rbp+var_C8], rdx
+mov     rax, [rax]
+mov     [rbp+p], rax
+mov     rdx, [rbp-0D8h]
+mov     ecx, [rbp-0F8h]
+mov     eax, [rbp-0F4h]
+mov     esi, ecx
+mov     edi, eax
+mov     eax, 0
+call    _fcntl
+mov     [rbp+result], eax
+jmp     short loc_40AD58
+nop
+jmp     short loc_40AD58
+nop
+mov     eax, [rbp-0E8h]
+mov     rcx, [rbp-0B8h]
+xor     rcx, fs:28h
+jz      short locret_40AD75
+call    ___stack_chk_fail
+leave
+retn

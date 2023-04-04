@@ -1,0 +1,131 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+initial], rdi
+mov     [rbp+total], rsi
+mov     edi, 28h
+call    xmalloc_real
+mov     [rbp+dp], rax
+mov     rax, [rbp-28h]
+mov     edx, 28h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-48h]
+mov     [rax], rdx
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-50h]
+mov     [rax+8], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      loc_420CC0
+mov     rax, cs:opt.dot_bytes
+mov     [rbp+dot_bytes], eax
+mov     rdx, cs:opt.dot_bytes
+mov     eax, cs:opt.dots_in_line
+cdqe
+imul    rax, rdx
+mov     [rbp+row_bytes], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+cqo
+idiv    qword ptr [rbp-20h]
+mov     rax, rdx
+mov     [rbp+remainder], eax
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+mov     eax, [rbp-38h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+skipped], rax
+cmp     [rbp+skipped], 0
+jz      short loc_420BF7
+mov     rax, [rbp-18h]
+lea     rdx, [rax+3FFh]
+test    rax, rax
+cmovs   rax, rdx
+sar     rax, 0Ah
+mov     [rbp+skipped_k], eax
+mov     eax, [rbp-2Ch]
+cdqe
+mov     rdi, rax
+call    numdigit
+mov     [rbp+skipped_k_len], eax
+cmp     [rbp+skipped_k_len], 4
+jg      short loc_420BC8
+mov     [rbp+skipped_k_len], 5
+mov     eax, [rbp-34h]
+lea     ebx, [rax+2]
+mov     edi, 436370h
+call    _gettext
+mov     rsi, rax
+mov     eax, [rbp-2Ch]
+mov     r8d, eax
+mov     ecx, 436385h
+mov     edx, ebx
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-18h]
+lea     rdx, [rax+3FFh]
+test    rax, rax
+cmovs   rax, rdx
+sar     rax, 0Ah
+mov     rdx, rax
+mov     esi, 436386h
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+jmp     short loc_420C71
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+mov     ecx, cs:opt.dot_spacing
+cdq
+idiv    ecx
+mov     eax, edx
+test    eax, eax
+jnz     short loc_420C4B
+mov     esi, 43638Dh
+mov     edi, 0
+call    logputs
+mov     esi, 43638Fh
+mov     edi, 0
+call    logputs
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+lea     edx, [rax+1]
+mov     rax, [rbp-28h]
+mov     [rax+18h], edx
+mov     eax, [rbp-30h]
+sub     [rbp+remainder], eax
+mov     eax, [rbp-38h]
+cmp     eax, [rbp-30h]
+jge     short loc_420C26
+mov     rax, [rbp-28h]
+mov     edx, [rax+18h]
+mov     eax, cs:opt.dots_in_line
+cmp     edx, eax
+jl      short loc_420CA3
+mov     ecx, 4364E0h
+mov     edx, 0F6h
+mov     esi, 436391h
+mov     edi, 43639Ch
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     edx, [rbp-38h]
+mov     [rax+10h], edx
+mov     rax, [rbp-18h]
+cqo
+idiv    qword ptr [rbp-20h]
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+14h], edx
+mov     rax, [rbp-28h]
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

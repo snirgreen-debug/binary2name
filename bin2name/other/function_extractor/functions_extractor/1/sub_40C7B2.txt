@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_10], edx
+mov     eax, [rbp-10h]
+cdqe
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+mov     rcx, rdx
+shl     rcx, 5
+mov     rdx, [rbp-8]
+lea     rdi, [rcx+rdx]
+mov     ecx, 40C703h
+mov     edx, 20h
+mov     rsi, rax
+call    _qsort
+nop
+leave
+retn

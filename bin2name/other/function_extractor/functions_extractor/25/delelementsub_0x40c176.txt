@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+f], rdi
+mov     [rbp+start], rsi
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     [rbp+prev], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+38h]
+mov     [rbp+next], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_40C1CB
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+next], 0
+jz      short loc_40C1EA
+mov     rax, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     [rax+30h], rdx
+cmp     [rbp+prev], 0
+jz      short loc_40C1FF
+mov     rax, [rbp-10h]
+mov     rdx, [rbp-8]
+mov     [rax+38h], rdx
+jmp     short loc_40C20A
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+leave
+retn

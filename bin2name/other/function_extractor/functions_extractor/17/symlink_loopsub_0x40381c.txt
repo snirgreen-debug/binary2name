@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0C0h
+mov     [rbp+name], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:options_0.xstat
+lea     rcx, [rbp-0A0h]
+mov     rdx, [rbp-0B8h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jz      short loc_40387C
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 28h
+jnz     short loc_40387C
+mov     eax, 1
+jmp     short loc_403881
+mov     eax, 0
+and     eax, 1
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_403898
+call    ___stack_chk_fail
+leave
+retn

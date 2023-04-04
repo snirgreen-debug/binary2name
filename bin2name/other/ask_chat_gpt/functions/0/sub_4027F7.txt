@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     edx, cs:dword_6050EC
+mov     rax, cs:qword_605450
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    sub_400E5F
+mov     cs:dword_6050EC, eax
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

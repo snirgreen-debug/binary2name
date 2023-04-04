@@ -1,0 +1,42 @@
+push    rbp
+push    rbx
+sub     rsp, 8
+mov     rcx, [rsi+8]
+cmp     rcx, 6192A0h
+jz      short loc_40F7B0
+test    rdx, rdx
+mov     rdi, rdx
+mov     rbx, rsi
+jz      short loc_40F790
+mov     rsi, [rsi]
+xor     ebp, ebp
+call    sub_406D60
+test    rax, rax
+setnz   bpl
+jz      short loc_40F7C0
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     rbp
+retn
+xor     ebp, ebp
+test    rcx, rcx
+setnz   bpl
+jnz     short loc_40F781
+mov     rdx, [rsi]
+xor     edi, edi
+mov     esi, 108h
+call    sub_405040
+jmp     short loc_40F781
+xor     ebp, ebp
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     rbp
+retn
+mov     rdx, [rbx]
+xor     ecx, ecx
+mov     esi, 107h
+xor     edi, edi
+call    sub_405040
+jmp     short loc_40F781

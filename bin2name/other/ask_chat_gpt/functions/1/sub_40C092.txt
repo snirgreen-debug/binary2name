@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     edi, 18h
+call    sub_40C49E
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+10h], rdx
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     ecx, 0
+mov     esi, 0
+mov     rdi, rax
+call    sub_40BDED
+nop
+leave
+retn

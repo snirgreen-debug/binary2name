@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+host], rdi
+mov     [rbp+no_proxy], rsi
+cmp     [rbp+no_proxy], 0
+jnz     short loc_4257AC
+mov     eax, 1
+jmp     short locret_4257C7
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sufmatch
+test    eax, eax
+setz    al
+movzx   eax, al
+leave
+retn

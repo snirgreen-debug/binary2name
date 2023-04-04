@@ -1,0 +1,127 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+progress], rdi
+mov     [rbp+howmuch], rsi
+movsd   [rbp+dltime], xmm0
+mov     rax, [rbp-28h]
+mov     [rbp+dp], rax
+mov     rax, cs:opt.dot_bytes
+mov     [rbp+dot_bytes], eax
+mov     rdx, cs:opt.dot_bytes
+mov     eax, cs:opt.dots_in_line
+cdqe
+imul    rax, rdx
+mov     [rbp+row_bytes], rax
+mov     edi, 0
+call    log_set_flush
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+mov     edx, eax
+mov     rax, [rbp-30h]
+add     eax, edx
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     [rax+10h], edx
+jmp     loc_420F38
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+test    eax, eax
+jnz     short loc_420E29
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+cdqe
+imul    rax, [rbp-8]
+lea     rdx, [rax+3FFh]
+test    rax, rax
+cmovs   rax, rdx
+sar     rax, 0Ah
+mov     rdx, rax
+mov     esi, 436386h
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+mov     ecx, cs:opt.dot_spacing
+cdq
+idiv    ecx
+mov     eax, edx
+test    eax, eax
+jnz     short loc_420E4E
+mov     esi, 43638Dh
+mov     edi, 0
+call    logputs
+mov     esi, 4363C2h
+mov     edi, 0
+call    logputs
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+lea     edx, [rax+1]
+mov     rax, [rbp-10h]
+mov     [rax+18h], edx
+mov     rax, [rbp-10h]
+mov     edx, [rax+18h]
+mov     eax, cs:opt.dots_in_line
+cmp     edx, eax
+jl      loc_420F25
+mov     rax, [rbp-8]
+mov     [rbp+row_qty], rax
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+movsxd  rcx, eax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+cqo
+idiv    qword ptr [rbp-8]
+cmp     rcx, rax
+jnz     short loc_420EBB
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+cqo
+idiv    qword ptr [rbp-8]
+mov     rax, rdx
+sub     [rbp+row_qty], rax
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+lea     edx, [rax+1]
+mov     rax, [rbp-10h]
+mov     [rax+14h], edx
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+18h], 0
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_420F05
+mov     rax, [rbp-10h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+cdqe
+imul    rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    print_percentage
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     [rbp+var_40], rcx
+movsd   xmm0, qword ptr [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    print_download_speed
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+sub     eax, [rbp-1Ch]
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     [rax+10h], edx
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+cmp     eax, [rbp-1Ch]
+jge     loc_420DE7
+mov     edi, 1
+call    log_set_flush
+nop
+leave
+retn

@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:isp
+mov     rax, [rax]
+mov     rdx, rax
+mov     rax, cs:isp
+mov     rax, [rax-8]
+mov     [rdx], rax
+mov     rax, cs:isp
+sub     rax, 10h
+mov     cs:isp, rax
+mov     eax, 0
+call    icheck_range
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

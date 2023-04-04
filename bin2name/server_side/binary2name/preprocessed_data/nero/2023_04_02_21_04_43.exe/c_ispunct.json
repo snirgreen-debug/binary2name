@@ -1,0 +1,343 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4216604,
+                "src": 4216589
+            },
+            {
+                "dst": 4216619,
+                "src": 4216589
+            },
+            {
+                "dst": 4216637,
+                "src": 4216604
+            },
+            {
+                "dst": 4216609,
+                "src": 4216604
+            },
+            {
+                "dst": 4216649,
+                "src": 4216637
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4216649
+            },
+            {
+                "dst": 4216644,
+                "src": 4216619
+            },
+            {
+                "dst": 4216624,
+                "src": 4216619
+            },
+            {
+                "dst": 4216649,
+                "src": 4216644
+            },
+            {
+                "dst": 4216644,
+                "src": 4216609
+            },
+            {
+                "dst": 4216617,
+                "src": 4216609
+            },
+            {
+                "dst": 4216637,
+                "src": 4216624
+            },
+            {
+                "dst": 4216629,
+                "src": 4216624
+            },
+            {
+                "dst": 4216637,
+                "src": 4216617
+            },
+            {
+                "dst": 4216637,
+                "src": 4216629
+            },
+            {
+                "dst": 4216644,
+                "src": 4216629
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4216589,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |mov|dword|ptr|rbp|-|4|edi|    |mov|eax|dword|ptr|rbp|-|4|    |cmp|eax|0x40|    |jg|target_0|    "
+            },
+            {
+                "block_addr": 4216604,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ]
+                ],
+                "instructions": "cmp|eax|0x3a|    |jge|0x40573d|    "
+            },
+            {
+                "block_addr": 4216637,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool SGE(Extract(31, 0, reg_48_3968_64), 0x3a)>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<Bool SLE(Extract(31, 0, reg_48_3968_64), 0x60)>"
+                        ]
+                    ],
+                    [
+                        4,
+                        []
+                    ],
+                    [
+                        4,
+                        [
+                            "<Bool __le__(__sub__(Extract(31, 0, reg_48_3968_64), 0x7b), 0x3)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|1|    |jmp|0x405749|    "
+            },
+            {
+                "block_addr": 4216649,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        4,
+                        []
+                    ],
+                    [
+                        4,
+                        []
+                    ],
+                    [
+                        5,
+                        []
+                    ],
+                    [
+                        5,
+                        []
+                    ],
+                    [
+                        5,
+                        []
+                    ]
+                ],
+                "instructions": "pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        4,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ],
+                    [
+                        5,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ],
+                    [
+                        5,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        6,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        6,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        6,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4216619,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3968_64), 0x40)>"
+                        ]
+                    ]
+                ],
+                "instructions": "cmp|eax|0x5b|    |jl|0x405744|    "
+            },
+            {
+                "block_addr": 4216644,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool SLT(Extract(31, 0, reg_48_3968_64), 0x5b)>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<Bool __gt__(__sub__(Extract(31, 0, reg_48_3968_64), 0x21), 0xe)>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<Bool __gt__(__sub__(Extract(31, 0, reg_48_3968_64), 0x7b), 0x3)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|0|    |pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": 4216609,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool SLT(Extract(31, 0, reg_48_3968_64), 0x3a)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool SLT(Extract(31, 0, reg_48_3968_64), 0x3a)>"
+                        ]
+                    ]
+                ],
+                "instructions": "sub|eax|0x21|    |cmp|eax|0xe|    |ja|0x405744|    "
+            },
+            {
+                "block_addr": 4216624,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool SGE(Extract(31, 0, reg_48_3968_64), 0x5b)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool SGE(Extract(31, 0, reg_48_3968_64), 0x5b)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool SGE(Extract(31, 0, reg_48_3968_64), 0x5b)>"
+                        ]
+                    ]
+                ],
+                "instructions": "cmp|eax|0x60|    |jle|0x40573d|    "
+            },
+            {
+                "block_addr": 4216617,
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<Bool __le__(__sub__(Extract(31, 0, reg_48_3968_64), 0x21), 0xe)>"
+                        ]
+                    ]
+                ],
+                "instructions": "jmp|0x40573d|    "
+            },
+            {
+                "block_addr": 4216629,
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3968_64), 0x60)>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<Bool SGT(Extract(31, 0, reg_48_3968_64), 0x60)>"
+                        ]
+                    ]
+                ],
+                "instructions": "sub|eax|0x7b|    |cmp|eax|3|    |ja|0x405744|    "
+            }
+        ]
+    },
+    "func_name": "4216589"
+}

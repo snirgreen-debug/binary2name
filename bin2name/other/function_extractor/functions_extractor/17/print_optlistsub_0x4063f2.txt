@@ -1,0 +1,124 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fp], rdi
+mov     [rbp+p], rsi
+cmp     [rbp+p], 0
+jz      loc_4065DC
+mov     rax, [rbp-20h]
+mov     rdx, [rax+110h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    print_parenthesised
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+1Ch]
+test    al, al
+jz      short loc_40643A
+mov     esi, 42B13Bh
+jmp     short loc_40643F
+mov     esi, 42B148h
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+1Bh]
+test    al, al
+jz      short loc_406452
+mov     ecx, 42B149h
+jmp     short loc_406457
+mov     ecx, 42B148h
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+1Ah]
+test    al, al
+jz      short loc_40646A
+mov     edx, 42B156h
+jmp     short loc_40646F
+mov     edx, 42B148h
+mov     rax, [rbp-18h]
+mov     r8, rsi
+mov     esi, 42B163h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    print_predicate
+mov     rax, [rbp-20h]
+movss   xmm0, dword ptr [rax+24h]
+cvtss2sd xmm0, xmm0
+mov     rax, [rbp-18h]
+mov     esi, 42B16Ah
+mov     rdi, rax
+mov     eax, 1
+call    _fprintf
+mov     rax, cs:options_0.debug_options
+and     eax, 40h
+test    rax, rax
+jz      loc_4065C2
+mov     rax, [rbp-20h]
+mov     rcx, [rax+120h]
+mov     rax, [rbp-20h]
+mov     rdx, [rax+128h]
+mov     rax, [rbp-18h]
+mov     esi, 42B171h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-20h]
+mov     rax, [rax+120h]
+test    rax, rax
+jz      loc_4065A7
+mov     rax, [rbp-20h]
+mov     rax, [rax+128h]
+test    rax, rax
+js      short loc_40652C
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+jmp     short loc_406545
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rdx
+addsd   xmm0, xmm0
+mov     rax, [rbp-20h]
+mov     rax, [rax+120h]
+test    rax, rax
+js      short loc_406560
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, rax
+jmp     short loc_406579
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, rdx
+addsd   xmm1, xmm1
+divsd   xmm0, xmm1
+movsd   [rbp+real_rate], xmm0
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     esi, 42B17Ah
+mov     rdi, rax
+mov     eax, 1
+call    _fprintf
+jmp     short loc_4065C2
+mov     rax, [rbp-18h]
+mov     rcx, rax
+mov     edx, 4
+mov     esi, 1
+mov     edi, 42B180h
+call    _fwrite
+mov     rax, [rbp-20h]
+mov     rdx, [rax+118h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    print_parenthesised
+nop
+leave
+retn

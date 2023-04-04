@@ -1,0 +1,22 @@
+push    rbp
+push    rbx
+mov     rbp, rdi
+mov     ebx, 6195A0h
+sub     rsp, 8
+mov     rsi, cs:off_6195A0
+cmp     byte ptr [rsi], 0
+jnz     short loc_409B0C
+jmp     short loc_409B18
+add     rbx, 10h
+mov     rsi, [rbx]
+cmp     byte ptr [rsi], 0
+jz      short loc_409B18
+mov     rdi, rbp
+call    _strcmp
+test    eax, eax
+jnz     short loc_409B00
+mov     eax, [rbx+8]
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

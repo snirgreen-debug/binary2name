@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:off_6050B0
+mov     rdx, cs:off_6050B0
+mov     rdx, [rdx]
+mov     rdx, [rdx]
+mov     [rax], rdx
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

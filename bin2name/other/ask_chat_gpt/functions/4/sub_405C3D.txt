@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-28h]
+mov     edx, [rdx+3Ch]
+movsxd  rdi, edx
+cqo
+idiv    rdi
+mov     rsi, rax
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-28h]
+mov     edx, [rdx+3Ch]
+movsxd  rcx, edx
+cqo
+idiv    rcx
+mov     rax, rdx
+test    rax, rax
+setnz   al
+movzx   eax, al
+add     rax, rsi
+mov     [rbp+var_8], rax
+mov     rax, [rbp-28h]
+mov     eax, [rax+38h]
+cmp     eax, 1
+jz      short loc_405CBE
+cmp     eax, 1
+jb      short loc_405CA9
+cmp     eax, 2
+jz      short loc_405CD3
+jmp     short loc_405CEF
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+cmp     rax, [rbp-8]
+jnb     short loc_405CE8
+mov     eax, 1
+jmp     short loc_405CF4
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+cmp     rax, [rbp-8]
+jbe     short loc_405CEB
+mov     eax, 1
+jmp     short loc_405CF4
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+cmp     rax, [rbp-8]
+jnz     short loc_405CEE
+mov     eax, 1
+jmp     short loc_405CF4
+nop
+jmp     short loc_405CEF
+nop
+jmp     short loc_405CEF
+nop
+mov     eax, 0
+pop     rbp
+retn

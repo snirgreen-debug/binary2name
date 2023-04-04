@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-8]
+mov     rcx, [rax+10h]
+movzx   eax, cs:byte_613530
+movzx   edx, al
+mov     rsi, cs:ptr
+mov     rax, cs:stdout
+mov     r8, rcx
+mov     ecx, 40DA7Bh
+mov     rdi, rax
+call    sub_4054E1
+mov     eax, cs:c
+mov     edi, eax
+call    _putchar
+mov     eax, 1
+leave
+retn

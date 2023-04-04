@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:eval_tree
+pop     rbp
+retn

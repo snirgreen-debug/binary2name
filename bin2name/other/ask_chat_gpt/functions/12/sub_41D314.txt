@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     eax, cs:dword_6420C0
+test    eax, eax
+jnz     short loc_41D33A
+mov     eax, cs:dword_6420D4
+test    eax, eax
+jz      short loc_41D33A
+mov     cs:dword_6420C0, 1
+mov     rax, [rbp-8]
+mov     cs:qword_642F28, rax
+nop
+pop     rbp
+retn

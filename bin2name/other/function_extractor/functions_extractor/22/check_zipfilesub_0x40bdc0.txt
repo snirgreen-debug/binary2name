@@ -1,0 +1,128 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+in], edi
+mov     eax, cs:inptr
+mov     eax, eax
+add     rax, 65D360h
+mov     [rbp+h], rax
+mov     eax, [rbp-14h]
+mov     cs:ifd, eax
+mov     rax, [rbp-8]
+add     rax, 1Ah
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+mov     rdx, [rbp-8]
+add     rdx, 1Bh
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+shl     edx, 8
+or      eax, edx
+lea     ecx, [rax+1Eh]
+mov     rax, [rbp-8]
+add     rax, 1Ch
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+mov     rdx, [rbp-8]
+add     rdx, 1Dh
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+shl     edx, 8
+or      eax, edx
+add     eax, ecx
+mov     edx, eax
+mov     eax, cs:inptr
+add     eax, edx
+mov     cs:inptr, eax
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+ja      short loc_40BE9F
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+mov     rdx, [rbp-8]
+add     rdx, 1
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+shl     edx, 8
+or      eax, edx
+cdqe
+mov     rdx, [rbp-8]
+add     rdx, 2
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+mov     rcx, [rbp-8]
+add     rcx, 3
+movzx   ecx, byte ptr [rcx]
+movzx   ecx, cl
+shl     ecx, 8
+or      edx, ecx
+movsxd  rdx, edx
+shl     rdx, 10h
+or      rax, rdx
+cmp     rax, 4034B50h
+jz      short loc_40BED8
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 6182C0h
+mov     esi, 4114F0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     cs:exit_code, 1
+mov     eax, 1
+jmp     locret_40BFBF
+mov     rax, [rbp-8]
+add     rax, 8
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+mov     cs:method, eax
+mov     eax, cs:method
+test    eax, eax
+jz      short loc_40BF3A
+mov     eax, cs:method
+cmp     eax, 8
+jz      short loc_40BF3A
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 6182C0h
+mov     esi, 411510h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     cs:exit_code, 1
+mov     eax, 1
+jmp     locret_40BFBF
+mov     rax, [rbp-8]
+add     rax, 6
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+and     eax, 1
+mov     cs:decrypt, eax
+mov     eax, cs:decrypt
+test    eax, eax
+jz      short loc_40BF91
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     ecx, 6182C0h
+mov     esi, 411550h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     cs:exit_code, 1
+mov     eax, 1
+jmp     short locret_40BFBF
+mov     rax, [rbp-8]
+add     rax, 6
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+and     eax, 8
+test    eax, eax
+setnz   al
+movzx   eax, al
+mov     cs:ext_header, eax
+mov     cs:pkzip, 1
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+no_leaks], 1
+mov     rdx, cs:num_cloexec_fds
+mov     rax, cs:non_cloexec_fds
+mov     rsi, rdx
+mov     rdi, rax
+call    find_first_leaked_fd
+mov     [rbp+leaking_fd], eax
+cmp     [rbp+leaking_fd], 0
+js      short loc_416C2F
+mov     [rbp+no_leaks], 0
+mov     edi, 42FE00h
+call    _gettext
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     ecx, eax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+cmp     [rbp+no_leaks], 0
+jnz     short loc_416C4E
+mov     ecx, 42FEB0h
+mov     edx, 17Eh
+mov     esi, 42FE98h
+mov     edi, 42FEA1h
+call    ___assert_fail
+nop
+leave
+retn

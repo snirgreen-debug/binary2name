@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    sub_416422
+cdqe
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+js      short loc_41651E
+mov     rax, [rbp-28h]
+jmp     short loc_41656A
+mov     edi, 4
+call    _sysconf
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_41653B
+mov     [rbp+var_28], 14h
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 7
+call    _getrlimit
+test    eax, eax
+jnz     short loc_416566
+mov     rax, [rbp-20h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_416560
+mov     rax, [rbp-28h]
+jmp     short loc_41656A
+mov     rax, [rbp-20h]
+jmp     short loc_41656A
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_41657E
+call    ___stack_chk_fail
+leave
+retn

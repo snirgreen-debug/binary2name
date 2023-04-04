@@ -1,0 +1,73 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+script], rdi
+mov     rax, cs:start_node
+mov     [rbp+mn], rax
+mov     rax, cs:start_node
+test    rax, rax
+jnz     short loc_407595
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    do_exit
+mov     rax, cs:start_node
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_4075BF
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    do_exit
+jmp     short loc_4075BF
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     [rbp+mn], rax
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, cs:last_node
+cmp     rdx, rax
+jnz     short loc_4075B3
+mov     rax, cs:start_node
+mov     rax, [rax+10h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4075F4
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    do_exit
+mov     rax, cs:last_node
+mov     rdi, rax
+call    node_delete
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-8]
+mov     cs:last_node, rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_407640
+mov     cs:global_line_counter, 0
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _rewind
+jmp     short loc_40765B
+mov     rax, [rbp-8]
+mov     rcx, [rax]
+mov     rax, [rbp-18h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    seek_label
+mov     rax, cs:start_node
+cmp     [rbp+mn], rax
+jnz     short loc_407690
+mov     rax, cs:start_node
+mov     rdi, rax
+call    node_delete
+mov     cs:last_node, 0
+mov     rax, cs:last_node
+mov     cs:start_node, rax
+nop
+leave
+retn

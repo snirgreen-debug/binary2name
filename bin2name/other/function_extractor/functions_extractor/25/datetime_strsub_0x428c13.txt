@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+tm], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _time
+mov     [rbp+secs], rax
+mov     rax, [rbp-18h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_428C56
+mov     cs:output_5025, 0
+mov     eax, 647480h
+jmp     short loc_428CBD
+lea     rax, [rbp-18h]
+mov     rdi, rax
+call    _localtime
+mov     [rbp+ptm], rax
+mov     rax, [rbp-10h]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+mov     eax, [rax+4]
+mov     rcx, [rbp-10h]
+mov     r9d, [rcx+8]
+mov     rcx, [rbp-10h]
+mov     r8d, [rcx+0Ch]
+mov     rcx, [rbp-10h]
+mov     ecx, [rcx+10h]
+lea     edi, [rcx+1]
+mov     rcx, [rbp-10h]
+mov     ecx, [rcx+14h]
+lea     esi, [rcx+76Ch]
+push    rdx
+push    rax
+mov     ecx, edi
+mov     edx, esi
+mov     esi, 437541h
+mov     edi, 647480h
+mov     eax, 0
+call    _sprintf
+add     rsp, 10h
+mov     eax, 647480h
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_428CD1
+call    ___stack_chk_fail
+leave
+retn

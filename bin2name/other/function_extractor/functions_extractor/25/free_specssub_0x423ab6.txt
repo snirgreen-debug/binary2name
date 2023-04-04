@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+specs], rdi
+mov     [rbp+i], 0
+jmp     short loc_423AEF
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+add     [rbp+i], 1
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+cmp     eax, [rbp-4]
+jg      short loc_423ACB
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_423B17
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

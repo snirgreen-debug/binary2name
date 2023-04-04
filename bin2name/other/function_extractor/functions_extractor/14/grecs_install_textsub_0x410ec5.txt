@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_24], 1
+mov     rax, cs:text_table
+test    rax, rax
+jnz     short loc_410F15
+mov     edi, 8
+call    grecs_symtab_create_default
+mov     cs:text_table, rax
+mov     rax, cs:text_table
+test    rax, rax
+jnz     short loc_410F15
+call    grecs_alloc_die
+mov     rax, [rbp-38h]
+mov     [rbp+var_20], rax
+mov     rax, cs:text_table
+lea     rdx, [rbp-24h]
+lea     rcx, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    grecs_symtab_lookup_or_install
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_410F47
+call    grecs_alloc_die
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_410F62
+call    ___stack_chk_fail
+leave
+retn

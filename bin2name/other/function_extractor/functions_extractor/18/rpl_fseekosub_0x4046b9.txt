@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fp], rdi
+mov     [rbp+offset], rsi
+mov     [rbp+whence], edx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rdx, rax
+jnz     short loc_40475B
+mov     rax, [rbp-18h]
+mov     rdx, [rax+28h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+20h]
+cmp     rdx, rax
+jnz     short loc_40475B
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+test    rax, rax
+jnz     short loc_40475B
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fileno
+mov     ecx, eax
+mov     edx, [rbp-24h]
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, ecx
+call    _lseek
+mov     [rbp+pos], rax
+cmp     [rbp+pos], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_404734
+mov     eax, 0FFFFFFFFh
+jmp     short locret_404771
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+and     eax, 0FFFFFFEFh
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-8]
+mov     [rax+90h], rdx
+mov     eax, 0
+jmp     short locret_404771
+mov     edx, [rbp-24h]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _fseeko
+leave
+retn

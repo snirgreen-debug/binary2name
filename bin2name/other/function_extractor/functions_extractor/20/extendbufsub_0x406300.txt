@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+existing], rdi
+mov     [rbp+wanted], rsi
+mov     [rbp+allocated], rdx
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+cmp     [rbp+wanted], 0
+jnz     short loc_40633E
+mov     ecx, 40DCC0h
+mov     edx, 47h
+mov     esi, 40DC90h
+mov     edi, 40DC9Ch
+call    ___assert_fail
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    decide_size
+mov     [rbp+newsize], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_4063A1
+cmp     [rbp+existing], 0
+jz      short loc_406384
+mov     ecx, 40DCC0h
+mov     edx, 4Fh
+mov     esi, 40DC90h
+mov     edi, 40DCA8h
+call    ___assert_fail
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _malloc
+mov     [rbp+result], rax
+jmp     short loc_4063EB
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+cmp     rax, [rbp-8]
+jz      short loc_4063E3
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rdx, [rbp-8]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     [rbp+result], rax
+cmp     [rbp+result], 0
+jnz     short loc_4063EB
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+jmp     short loc_4063EB
+mov     rax, [rbp-28h]
+mov     [rbp+result], rax
+cmp     [rbp+result], 0
+jz      short loc_4063FF
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     rax, [rbp-10h]
+leave
+retn

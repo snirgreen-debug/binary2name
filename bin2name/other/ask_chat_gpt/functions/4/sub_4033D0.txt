@@ -1,0 +1,14 @@
+mov     eax, 63AD67h
+push    rbp
+sub     rax, 63AD60h
+cmp     rax, 0Eh
+mov     rbp, rsp
+jbe     short loc_403400
+mov     eax, 0
+test    rax, rax
+jz      short loc_403400
+pop     rbp
+mov     edi, 63AD60h
+jmp     rax
+pop     rbp
+retn

@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+cmp     [rbp+var_18], 0
+jz      short loc_429EAC
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+jmp     short loc_429E94
+mov     rax, [rbp-8]
+lea     rdx, [rax+8]
+mov     [rbp+var_8], rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_429E7D
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

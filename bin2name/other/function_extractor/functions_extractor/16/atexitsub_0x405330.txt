@@ -1,0 +1,9 @@
+lea     rax, __dso_handle
+test    rax, rax
+jz      short loc_405350
+mov     rdx, [rax]
+xor     esi, esi
+jmp     ___cxa_atexit
+xor     edx, edx
+xor     esi, esi
+jmp     ___cxa_atexit

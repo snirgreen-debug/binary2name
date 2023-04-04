@@ -1,0 +1,54 @@
+push    rbp
+mov     rbp, rsp
+push    len
+push    cp
+push    p
+sub     rsp, 18h
+mov     [rbp+sp_0], rdi
+mov     p, rsi
+mov     rax, [p+60h]
+mov     [p+48h], rax
+mov     len, [p+48h]
+lea     rdx, [len+1]
+lea     rcx, [p+108h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memmove
+lea     rax, [p+108h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     cp, rax
+test    cp, cp
+jz      short loc_424DAF
+lea     rax, [p+108h]
+cmp     rax, cp
+jnz     short loc_424D86
+lea     rax, [cp+1]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_424DAF
+add     cp, 1
+mov     rdi, cp
+call    _strlen
+mov     len, rax
+lea     rdx, [len+1]
+lea     rax, [p+108h]
+mov     rsi, cp
+mov     rdi, rax
+call    _memmove
+mov     [p+60h], len
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     [p+38h], rax
+mov     rax, [p+38h]
+mov     [p+30h], rax
+nop
+add     rsp, 18h
+pop     p
+pop     cp
+pop     len
+pop     rbp
+retn

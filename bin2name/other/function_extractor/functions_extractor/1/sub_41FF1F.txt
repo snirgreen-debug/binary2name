@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_62D8A0
+pop     rbp
+retn

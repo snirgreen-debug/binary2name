@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+theunit], rdi
+mov     [rbp+count], 0
+mov     rax, [rbp-18h]
+mov     [rbp+ptr], rax
+jmp     short loc_406D57
+add     [rbp+ptr], 8
+add     [rbp+count], 1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406D4E
+mov     eax, [rbp-0Ch]
+movsxd  rsi, eax
+mov     rax, [rbp-18h]
+lea     rdx, compare
+mov     rcx, rdx
+mov     edx, 8
+mov     rdi, rax
+call    _qsort
+mov     [rbp+count], 0
+mov     rax, [rbp-18h]
+add     rax, 320h
+mov     [rbp+ptr], rax
+jmp     short loc_406DA4
+add     [rbp+ptr], 8
+add     [rbp+count], 1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406D9B
+mov     eax, [rbp-0Ch]
+cdqe
+mov     rdx, [rbp-18h]
+lea     rdi, [rdx+320h]
+lea     rdx, compare
+mov     rcx, rdx
+mov     edx, 8
+mov     rsi, rax
+call    _qsort
+nop
+leave
+retn

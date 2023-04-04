@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+call    grecs_line_acc_free
+nop
+leave
+retn

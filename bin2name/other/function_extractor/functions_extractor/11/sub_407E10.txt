@@ -1,0 +1,85 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_24], edi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     [rbp+var_1C], 0
+jmp     short loc_407E32
+add     [rbp+var_30], 8
+mov     rax, [rbp-30h]
+mov     rdx, [rax]
+lea     rax, off_6194F8
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_407E2D
+mov     rax, [rbp-30h]
+mov     [rbp+var_18], rax
+jmp     loc_407F03
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+lea     rax, off_6194F8
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_407E8C
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_407E9F
+add     [rbp+var_1C], 1
+add     [rbp+var_18], 8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_407E55
+jmp     short loc_407EA0
+nop
+mov     eax, [rbp-1Ch]
+cdq
+idiv    dword ptr [rbp-24h]
+mov     eax, edx
+test    eax, eax
+jz      short loc_407EC7
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40781D
+test    eax, eax
+jnz     short loc_407EFB
+mov     eax, 6
+jmp     short loc_407F1F
+mov     eax, [rbp-1Ch]
+cdq
+idiv    dword ptr [rbp-24h]
+mov     [rbp+var_1C], eax
+jmp     short loc_407EF5
+mov     rbx, [rbp-38h]
+lea     rax, [rbx+8]
+mov     [rbp+var_38], rax
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402AA1
+mov     [rbx], rax
+sub     [rbp+var_1C], 1
+cmp     [rbp+var_1C], 0
+jg      short loc_407ED3
+mov     rax, [rbp-18h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_407E91
+mov     rax, [rbp-38h]
+mov     qword ptr [rax], 0
+mov     eax, 0
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

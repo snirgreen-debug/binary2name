@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     [rbp+var_58], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strlen
+mov     ebx, eax
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _strlen
+add     eax, ebx
+add     eax, 1
+mov     [rbp+var_38], eax
+mov     eax, [rbp-38h]
+lea     ecx, [rax+2]
+mov     edx, 55555556h
+mov     eax, ecx
+imul    edx
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+shl     eax, 2
+mov     [rbp+var_34], eax
+mov     eax, [rbp-38h]
+add     eax, 1
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+var_30], rax
+mov     rcx, [rbp-50h]
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-30h]
+mov     esi, 433258h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     eax, [rbp-34h]
+add     eax, 1
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     esi, 10h
+mov     edx, 0
+div     rsi
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+var_28], rax
+mov     edx, [rbp-38h]
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_419457
+mov     eax, [rbp-34h]
+add     eax, 0Bh
+movsxd  rbx, eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+mov     rdi, rax
+call    sub_428825
+mov     [rbp+var_20], rax
+mov     rcx, [rbp-28h]
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-20h]
+mov     esi, 43325Eh
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rax, [rbp-20h]
+mov     rsi, [rbp-18h]
+xor     rsi, fs:28h
+jz      short loc_419712
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

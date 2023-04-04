@@ -1,0 +1,143 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+s], rdi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_48], 0
+cmp     [rbp+var_48], 0
+jnz     short loc_40CB74
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    sub_40597F
+test    eax, eax
+jnz     short loc_40CB64
+mov     rax, [rbp-58h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_40CB74
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    sub_402AA1
+mov     [rbp+var_48], rax
+cmp     [rbp+var_48], 0
+jnz     loc_40CCD5
+lea     rdi, name
+call    _getenv
+mov     [rbp+var_30], rax
+cmp     [rbp+var_30], 0
+jz      loc_40CCD5
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+mov     ebx, eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+add     eax, ebx
+add     eax, 2
+lea     rsi, aGetprogdir
+mov     edi, eax
+call    sub_402A3E
+mov     [rbp+dest], rax
+mov     rax, [rbp-30h]
+mov     [rbp+src], rax
+jmp     loc_40CCAB
+mov     rax, [rbp-40h]
+mov     esi, 3Ah
+mov     rdi, rax
+call    _strchr
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     short loc_40CC05
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_4C], eax
+jmp     short loc_40CC16
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-40h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_4C], eax
+mov     eax, [rbp-4Ch]
+movsxd  rdx, eax
+mov     rcx, [rbp-40h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strncpy
+cmp     [rbp+var_4C], 0
+jle     short loc_40CC4B
+mov     eax, [rbp-4Ch]
+lea     edx, [rax+1]
+mov     [rbp+var_4C], edx
+movsxd  rdx, eax
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     byte ptr [rax], 2Fh
+mov     eax, [rbp-4Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-28h]
+add     rdx, rax
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rax, [rbp-28h]
+lea     rsi, aR
+mov     rdi, rax
+call    _fopen
+mov     [rbp+stream], rax
+cmp     [rbp+stream], 0
+jz      short loc_40CC97
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_402AA1
+mov     [rbp+var_48], rax
+jmp     short loc_40CCB6
+mov     rax, [rbp-20h]
+mov     [rbp+src], rax
+cmp     [rbp+src], 0
+jz      short loc_40CCAB
+add     [rbp+src], 1
+cmp     [rbp+src], 0
+jnz     loc_40CBD8
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+stream], 0
+jz      short loc_40CCD5
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _fclose
+cmp     [rbp+var_48], 0
+jnz     short loc_40CD08
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     rdx, [rbp-58h]
+lea     rsi, aSCannotFindPro
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    sub_402AA1
+mov     rdx, rax
+mov     rax, [rbp-60h]
+mov     [rax], rdx
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    sub_405930
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+mov     byte ptr [rax], 0
+mov     rax, [rbp-48h]
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

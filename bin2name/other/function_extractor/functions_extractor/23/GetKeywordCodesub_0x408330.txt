@@ -1,0 +1,27 @@
+push    r12
+mov     r12, pfContext
+mov     pfContext, cs:vrgkmKeywordMap.szKeyword
+push    rbp
+push    rbx
+mov     rbp, szKeyword
+mov     ebx, 619460h
+cmp     byte ptr [rsi], 0
+jnz     short loc_40835C
+jmp     short loc_408368
+add     pkm, 10h
+mov     rsi, [pkm]
+cmp     byte ptr [rsi], 0
+jz      short loc_408368
+mov     rdi, szKeyword
+call    _strcmp
+test    eax, eax
+jnz     short loc_408350
+test    pfContext, pfContext
+jz      short loc_408374
+mov     eax, [rbx+0Ch]
+mov     [pfContext], eax
+mov     eax, [rbx+8]
+pop     rbx
+pop     szKeyword
+pop     pfContext
+retn

@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_19], 0
+mov     rax, cs:stdin
+mov     rdi, rax
+call    sub_40ADF6
+test    rax, rax
+jz      short loc_40655E
+mov     rax, cs:stdin
+mov     edx, 1
+mov     esi, 0
+mov     rdi, rax
+call    sub_40AE64
+test    eax, eax
+jnz     short loc_40655E
+mov     rax, cs:stdin
+mov     rdi, rax
+call    sub_40ADAB
+test    eax, eax
+jz      short loc_40655E
+mov     [rbp+var_19], 1
+mov     rax, cs:stdin
+mov     rdi, rax
+call    sub_40AF96
+test    eax, eax
+jz      short loc_406575
+mov     [rbp+var_19], 1
+cmp     [rbp+var_19], 0
+jz      short loc_4065F4
+mov     edi, 40DCCAh
+call    _gettext
+mov     [rbp+var_18], rax
+mov     rax, cs:qword_611540
+test    rax, rax
+jz      short loc_4065D0
+mov     rax, cs:qword_611540
+mov     rdi, rax
+call    sub_409639
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     r8, rdx
+mov     rcx, rbx
+mov     edx, 40DCDDh
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+jmp     short loc_4065F4
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     rcx, rdx
+mov     edx, 40DCE4h
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+call    sub_406640
+cmp     [rbp+var_19], 0
+jz      short loc_40660C
+mov     eax, cs:dword_6112F0
+mov     edi, eax
+call    __exit
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

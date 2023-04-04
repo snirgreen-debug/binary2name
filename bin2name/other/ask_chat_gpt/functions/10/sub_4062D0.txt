@@ -1,0 +1,130 @@
+push    r15
+push    r14
+mov     r15, r8
+push    r13
+push    r12
+mov     r13, rsi
+push    rbp
+push    rbx
+mov     ebp, edi
+mov     r14, rdx
+mov     r12, rcx
+sub     rsp, 8
+mov     cs:opterr, 1
+mov     qword ptr [rcx], 0
+mov     qword ptr [rdx], 0
+mov     edx, 619298h
+mov     rsi, r13
+mov     edi, ebp
+call    sub_4020F0
+cmp     eax, 0FFFFFFFFh
+mov     ebx, eax
+jz      loc_4063D0
+cmp     eax, 48h
+jz      short loc_406345
+jle     short loc_406340
+cmp     eax, 52h
+jnz     short loc_406345
+mov     edi, 412CD8h
+call    _puts
+mov     dword ptr [r15+8], 1
+jmp     short loc_406304
+cmp     eax, 44h
+jz      short loc_4063B0
+mov     edi, 412DE6h
+call    _puts
+mov     edi, 412B90h
+call    _puts
+mov     edi, 412DECh
+call    _puts
+mov     edi, 412BC0h
+call    _puts
+mov     edi, 412BE0h
+call    _puts
+mov     edi, 412DF5h
+call    _puts
+mov     edi, 412C00h
+call    _puts
+mov     edi, 412C30h
+call    _puts
+mov     edi, 412C68h
+call    _puts
+xor     edi, edi
+call    _exit
+mov     rdx, cs:optarg
+mov     esi, 412C98h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_406304
+movsxd  rax, cs:optind
+sub     ebp, eax
+cmp     ebp, 1
+jz      loc_406463
+cmp     ebp, 2
+jz      short loc_40645A
+test    ebp, ebp
+jz      loc_40648C
+mov     edi, 412D10h
+call    _puts
+mov     edi, 412DE6h
+call    _puts
+mov     edi, 412B90h
+call    _puts
+mov     edi, 412DECh
+call    _puts
+mov     edi, 412BC0h
+call    _puts
+mov     edi, 412BE0h
+call    _puts
+mov     edi, 412DF5h
+call    _puts
+mov     edi, 412C00h
+call    _puts
+mov     edi, 412C30h
+call    _puts
+mov     edi, 412C68h
+call    _puts
+mov     edi, ebx
+call    _exit
+mov     rdx, [r13+rax*8+8]
+mov     [r12], rdx
+mov     rdi, [r13+rax*8+0]
+mov     [r14], rdi
+jmp     short loc_40649A
+cmp     byte ptr [rdi], 0
+jz      short loc_40649F
+mov     rsi, [r12]
+call    sub_412180
+test    eax, eax
+jnz     short loc_4064B3
+mov     edi, 412D40h
+call    _puts
+mov     rdi, r14
+mov     rsi, r12
+call    sub_406080
+mov     rdi, [r14]
+test    rdi, rdi
+jnz     short loc_406470
+mov     edi, 412D78h
+call    _puts
+mov     edi, 0FFFFFFFFh
+call    _exit
+mov     rax, [r14]
+test    rax, rax
+jz      short loc_40649F
+cmp     byte ptr [rax], 0
+jz      short loc_40649F
+mov     [r15+10h], rax
+cmp     qword ptr [r12], 0
+jz      short loc_4064DA
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+mov     qword ptr [r12], 619290h
+jmp     short loc_4064CB

@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+len], 0
+mov     rax, cs:environ@@GLIBC_2_2_5
+mov     [rbp+envp], rax
+jmp     short loc_405480
+mov     rax, [rbp-8]
+lea     rdx, [rax+8]
+mov     [rbp+envp], rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+add     [rbp+len], rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_405461
+mov     rax, [rbp-10h]
+leave
+retn

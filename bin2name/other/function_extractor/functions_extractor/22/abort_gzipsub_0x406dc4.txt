@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+call    remove_output_file
+mov     edi, 1
+call    do_exit

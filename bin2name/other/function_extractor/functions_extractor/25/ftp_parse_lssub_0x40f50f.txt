@@ -1,0 +1,82 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+file], rdi
+mov     [rbp+system_type], esi
+mov     eax, [rbp-1Ch]
+cmp     eax, 1
+jz      loc_40F5F5
+cmp     eax, 1
+jb      short loc_40F542
+cmp     eax, 2
+jz      short loc_40F558
+cmp     eax, 3
+jz      loc_40F603
+jmp     loc_40F616
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    ftp_parse_unix_ls
+jmp     locret_40F643
+mov     rax, [rbp-18h]
+mov     esi, 431698h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jnz     short loc_40F5AD
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 43169Bh
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     eax, 0
+jmp     locret_40F643
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fgetc
+mov     [rbp+c], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+cmp     [rbp+c], 2Fh
+jle     short loc_40F5E2
+cmp     [rbp+c], 39h
+jg      short loc_40F5E2
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    ftp_parse_winnt_ls
+jmp     short locret_40F643
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    ftp_parse_unix_ls
+jmp     short locret_40F643
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    ftp_parse_vms_ls
+jmp     short locret_40F643
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    ftp_parse_unix_ls
+jmp     short locret_40F643
+mov     edi, 431B38h
+call    _gettext
+mov     rsi, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    ftp_parse_unix_ls
+leave
+retn

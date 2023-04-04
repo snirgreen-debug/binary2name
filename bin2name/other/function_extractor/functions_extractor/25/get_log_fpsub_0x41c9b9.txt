@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:inhibit_logging
+test    eax, eax
+jz      short loc_41C9CE
+mov     eax, 0
+jmp     short loc_41C9EA
+mov     rax, cs:logfp
+test    rax, rax
+jz      short loc_41C9E3
+mov     rax, cs:logfp
+jmp     short loc_41C9EA
+mov     rax, cs:stderr@@GLIBC_2_2_5
+pop     rbp
+retn

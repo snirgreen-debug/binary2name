@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+sa], rdi
+mov     eax, esi
+mov     [rbp+port], ax
+mov     rax, [rbp-8]
+movzx   eax, word ptr [rax]
+cmp     ax, 2
+jnz     short loc_411698
+movzx   eax, word ptr [rbp-0Ch]
+mov     edi, eax
+call    _htons
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+2], dx
+jmp     short locret_41169D
+call    _abort
+leave
+retn

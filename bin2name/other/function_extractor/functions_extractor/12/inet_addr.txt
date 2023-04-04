@@ -1,0 +1,1 @@
+extrn inet_addr:near

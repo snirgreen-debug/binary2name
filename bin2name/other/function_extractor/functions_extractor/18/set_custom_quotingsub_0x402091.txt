@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+o], rdi
+mov     [rbp+left_quote], rsi
+mov     [rbp+right_quote], rdx
+cmp     [rbp+o], 0
+jnz     short loc_4020B4
+mov     [rbp+o], 6082E0h
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 0Ah
+cmp     [rbp+left_quote], 0
+jz      short loc_4020CC
+cmp     [rbp+right_quote], 0
+jnz     short loc_4020D1
+call    _abort
+mov     rax, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax+30h], rdx
+nop
+leave
+retn

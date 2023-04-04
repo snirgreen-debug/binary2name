@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+url], rdi
+mov     [rbp+file], rsi
+mov     rax, [rbp-18h]
+mov     esi, 4369E2h
+mov     rdi, rax
+call    uri_merge
+mov     [rbp+robots_url], rax
+mov     edi, 4369F0h
+call    _gettext
+mov     rsi, rax
+mov     edi, 0
+call    logputs
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-8]
+mov     r8d, 0
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    retrieve_url
+mov     [rbp+err], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+cmp     [rbp+err], 22h
+jz      short loc_42419E
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_42419E
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+cmp     [rbp+err], 22h
+setz    al
+movzx   eax, al
+leave
+retn

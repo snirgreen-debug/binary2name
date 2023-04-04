@@ -1,0 +1,86 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_24], 0
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_400A74
+jmp     loc_401557
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 7Bh
+jnz     short loc_4014E4
+mov     eax, [rbp-24h]
+lea     edx, [rax+1]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Ah
+jnz     short loc_4014E4
+lea     rax, [rbp-20h]
+mov     esi, 4038CBh
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_24], 2
+jmp     short loc_401557
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Ah
+jnz     short loc_40152E
+mov     eax, [rbp-24h]
+lea     edx, [rax+1]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 7Dh
+jnz     short loc_40152E
+lea     rax, [rbp-20h]
+mov     esi, 4038CEh
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_24], 2
+jmp     short loc_401557
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movsx   edx, al
+lea     rax, [rbp-20h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_24], 1
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jnz     loc_40149A
+mov     rax, cs:qword_605100
+lea     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_400C4C
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4015B0
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rdx, [rbp-18h]
+mov     rsi, [rbp-10h]
+mov     rax, [rbp-8]
+mov     ecx, 63BFC8h
+mov     rdi, rax
+call    sub_4105E1
+leave
+retn

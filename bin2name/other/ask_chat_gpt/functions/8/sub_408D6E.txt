@@ -1,0 +1,86 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 860h
+mov     [rbp+s], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:tocode
+mov     esi, 40B064h
+mov     rdi, rax
+call    _iconv_open
+mov     [rbp+cd], rax
+cmp     [rbp+cd], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_408DC3
+call    _endwin
+mov     edi, 40B06Ah
+call    _puts
+mov     rax, [rbp-858h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+inbytesleft], rax
+mov     rax, [rbp-858h]
+mov     [rbp+inbuf], rax
+mov     rax, [rbp-848h]
+mov     [rbp+outbytesleft], rax
+mov     rax, [rbp-838h]
+add     rax, 1
+mov     rdi, rax
+call    _malloc
+mov     [rbp+outbuf], rax
+mov     rax, [rbp-830h]
+mov     [rbp+var_820], rax
+lea     rdi, [rbp-838h]
+lea     rcx, [rbp-830h]
+lea     rdx, [rbp-848h]
+lea     rsi, [rbp-840h]
+mov     rax, [rbp-828h]
+mov     r8, rdi
+mov     rdi, rax
+call    _iconv
+mov     [rbp+var_818], rax
+cmp     [rbp+var_818], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_408EBA
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+errnum], eax
+mov     eax, [rbp-850h]
+mov     edi, eax
+call    _strerror
+mov     rcx, rax
+mov     rdx, [rbp-858h]
+lea     rax, [rbp-810h]
+mov     esi, 40B080h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+lea     rax, [rbp-810h]
+mov     rdi, rax
+call    _gettext
+mov     esi, 40B062h
+mov     rdi, rax
+mov     eax, 0
+call    sub_408C26
+mov     rax, [rbp-828h]
+mov     rdi, rax
+call    _iconv_close
+mov     rax, [rbp-858h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     rax, [rbp-838h]
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+var_84C], eax
+mov     eax, [rbp-84Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-820h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-820h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_408F1C
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:bitbuf, 0
+mov     cs:subbitbuf, 0
+mov     cs:bitcount, 0
+mov     edi, 10h
+call    fillbuf
+nop
+pop     rbp
+retn

@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+file], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:dl_file_url_map
+test    rax, rax
+jnz     short loc_4049F3
+mov     edi, 0
+call    make_string_hash_table
+mov     cs:dl_file_url_map, rax
+mov     rax, cs:dl_url_file_map
+test    rax, rax
+jnz     short loc_404A10
+mov     edi, 0
+call    make_string_hash_table
+mov     cs:dl_url_file_map, rax
+mov     rax, cs:dl_file_url_map
+lea     rcx, [rbp-18h]
+lea     rdx, [rbp-10h]
+mov     rsi, [rbp-28h]
+mov     rdi, rax
+call    hash_table_get_pair
+test    eax, eax
+jz      short loc_404A6B
+mov     rax, cs:dl_file_url_map
+mov     rdx, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_remove
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    dissociate_urls_from_file
+jmp     short loc_404A6C
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_404A80
+call    ___stack_chk_fail
+leave
+retn

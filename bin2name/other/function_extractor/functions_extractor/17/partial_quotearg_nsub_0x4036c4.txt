@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+n], edi
+mov     [rbp+s], rsi
+mov     [rbp+len], rdx
+mov     [rbp+style], ecx
+cmp     [rbp+len], 0
+jnz     short loc_4036F7
+mov     ecx, [rbp-18h]
+mov     eax, [rbp-14h]
+mov     edx, 42ABF0h
+mov     esi, ecx
+mov     edi, eax
+call    quotearg_n_style
+jmp     short locret_403742
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+saved], al
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rdx, [rbp-20h]
+mov     ecx, [rbp-18h]
+mov     eax, [rbp-14h]
+mov     esi, ecx
+mov     edi, eax
+call    quotearg_n_style
+mov     [rbp+result], rax
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+add     rdx, rax
+movzx   eax, byte ptr [rbp-9]
+mov     [rdx], al
+mov     rax, [rbp-8]
+leave
+retn

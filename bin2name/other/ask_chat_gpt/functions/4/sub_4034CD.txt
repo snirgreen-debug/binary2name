@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     eax, cs:dword_63A4D0
+and     eax, 200h
+test    eax, eax
+jz      loc_403576
+cmp     [rbp+var_4], 0FFFFFF9Ch
+jz      short loc_403510
+cmp     [rbp+var_4], 0
+jns     short loc_403510
+mov     ecx, 42AF90h
+mov     edx, 78h
+mov     esi, 42AAB0h
+mov     edi, 42AAC0h
+call    ___assert_fail
+mov     eax, [rbp-4]
+mov     cs:fildes, eax
+mov     eax, cs:fd
+test    eax, eax
+jns     short loc_403576
+cmp     [rbp+var_4], 0FFFFFF9Ch
+jnz     short loc_403535
+mov     cs:fd, 0FFFFFF9Ch
+jmp     short loc_403576
+cmp     [rbp+var_4], 0
+js      short loc_40354D
+mov     eax, [rbp-4]
+mov     edi, eax
+call    sub_4175CA
+mov     cs:fd, eax
+jmp     short loc_403576
+mov     eax, cs:fd
+test    eax, eax
+jns     short loc_403576
+cmp     [rbp+var_4], 0
+jns     short loc_403576
+mov     ecx, 42AF90h
+mov     edx, 8Ah
+mov     esi, 42AAB0h
+mov     edi, 42AAE2h
+call    ___assert_fail
+nop
+leave
+retn

@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_18], edx
+mov     [rbp+var_4], 0
+jmp     loc_40358A
+movsd   xmm0, cs:qword_647720
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_40351F
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jnz     short loc_40351F
+jmp     short loc_403549
+mov     rdx, cs:qword_647720
+mov     eax, [rbp-14h]
+mov     esi, 1
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     edi, eax
+call    sub_4030C7
+test    eax, eax
+jg      short loc_403549
+mov     eax, 0FFFFFFFFh
+jmp     short locret_40359A
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    _write
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0FFFFFFFFh
+jnz     short loc_403575
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 4
+jz      short loc_403549
+cmp     [rbp+var_4], 0
+jle     short loc_403596
+mov     eax, [rbp-4]
+cdqe
+add     [rbp+var_20], rax
+mov     eax, [rbp-4]
+sub     [rbp+var_18], eax
+cmp     [rbp+var_18], 0
+jg      loc_403501
+jmp     short loc_403597
+nop
+mov     eax, [rbp-4]
+leave
+retn

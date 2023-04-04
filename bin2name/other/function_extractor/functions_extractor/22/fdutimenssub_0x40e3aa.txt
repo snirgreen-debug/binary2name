@@ -1,0 +1,331 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 168h
+mov     [rbp+fd], edi
+mov     [rbp+file], rsi
+mov     [rbp+timespec], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+cmp     [rbp+timespec], 0
+jz      short loc_40E3EC
+lea     rax, [rbp-110h]
+jmp     short loc_40E3F1
+mov     eax, 0
+mov     [rbp+ts], rax
+mov     [rbp+adjustment_needed], 0
+mov     rax, [rbp-138h]
+test    rax, rax
+jz      short loc_40E45C
+mov     rax, [rbp-168h]
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     [rbp+adjusted_timespec.tv_sec], rax
+mov     [rbp+adjusted_timespec.tv_nsec], rdx
+mov     rax, [rbp-168h]
+mov     rdx, [rax+18h]
+mov     rax, [rax+10h]
+mov     [rbp+adjusted_timespec.tv_sec+10h], rax
+mov     [rbp+adjusted_timespec.tv_nsec+10h], rdx
+mov     rax, [rbp-138h]
+mov     rdi, rax
+call    validate_timespec
+mov     [rbp+adjustment_needed], eax
+cmp     [rbp+adjustment_needed], 0
+jns     short loc_40E46F
+mov     eax, 0FFFFFFFFh
+jmp     loc_40E9D4
+cmp     [rbp+fd], 0
+jns     short loc_40E497
+cmp     [rbp+file], 0
+jnz     short loc_40E497
+call    ___errno_location
+mov     dword ptr [rax], 9
+mov     eax, 0FFFFFFFFh
+jmp     loc_40E9D4
+mov     eax, cs:utimensat_works_really
+test    eax, eax
+js      loc_40E647
+cmp     [rbp+adjustment_needed], 2
+jnz     loc_40E576
+cmp     [rbp+fd], 0
+jns     short loc_40E4DB
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-160h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+setnz   al
+jmp     short loc_40E4F7
+lea     rdx, [rbp-0B0h]
+mov     eax, [rbp-154h]
+mov     rsi, rdx
+mov     edi, eax
+call    fstat
+test    eax, eax
+setnz   al
+test    al, al
+jz      short loc_40E505
+mov     eax, 0FFFFFFFFh
+jmp     loc_40E9D4
+mov     rax, [rbp-138h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E537
+mov     rbx, [rbp-138h]
+lea     rax, [rbp-0B0h]
+mov     rdi, rax
+call    get_stat_atime
+mov     [rbx], rax
+mov     [rbx+8], rdx
+jmp     short loc_40E56F
+mov     rax, [rbp-138h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E56F
+mov     rax, [rbp-138h]
+lea     rbx, [rax+10h]
+lea     rax, [rbp-0B0h]
+mov     rdi, rax
+call    get_stat_mtime
+mov     [rbx], rax
+mov     [rbx+8], rdx
+add     [rbp+adjustment_needed], 1
+cmp     [rbp+fd], 0
+jns     short loc_40E5E3
+mov     rdx, [rbp-138h]
+mov     rax, [rbp-160h]
+mov     ecx, 0
+mov     rsi, rax
+mov     edi, 0FFFFFF9Ch
+call    _utimensat
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+jle     short loc_40E5B9
+call    ___errno_location
+mov     dword ptr [rax], 26h
+cmp     [rbp+result], 0
+jz      short loc_40E5CE
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 26h
+jz      short loc_40E5E3
+mov     cs:utimensat_works_really, 1
+mov     eax, [rbp-13Ch]
+jmp     loc_40E9D4
+cmp     [rbp+fd], 0
+js      short loc_40E647
+mov     rdx, [rbp-138h]
+mov     eax, [rbp-154h]
+mov     rsi, rdx
+mov     edi, eax
+call    _futimens
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+jle     short loc_40E61D
+call    ___errno_location
+mov     dword ptr [rax], 26h
+cmp     [rbp+result], 0
+jz      short loc_40E632
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 26h
+jz      short loc_40E647
+mov     cs:utimensat_works_really, 1
+mov     eax, [rbp-13Ch]
+jmp     loc_40E9D4
+mov     cs:utimensat_works_really, 0FFFFFFFFh
+mov     cs:lutimensat_works_really, 0FFFFFFFFh
+cmp     [rbp+adjustment_needed], 0
+jz      loc_40E6F7
+cmp     [rbp+adjustment_needed], 3
+jz      short loc_40E6C4
+cmp     [rbp+fd], 0
+jns     short loc_40E69A
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-160h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+setnz   al
+jmp     short loc_40E6B6
+lea     rdx, [rbp-0B0h]
+mov     eax, [rbp-154h]
+mov     rsi, rdx
+mov     edi, eax
+call    fstat
+test    eax, eax
+setnz   al
+test    al, al
+jz      short loc_40E6C4
+mov     eax, 0FFFFFFFFh
+jmp     loc_40E9D4
+mov     rax, [rbp-138h]
+test    rax, rax
+jz      short loc_40E6F7
+lea     rdx, [rbp-138h]
+lea     rax, [rbp-0B0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    update_timespec
+test    al, al
+jz      short loc_40E6F7
+mov     eax, 0
+jmp     loc_40E9D4
+mov     rax, [rbp-138h]
+test    rax, rax
+jz      loc_40E7A7
+mov     rax, [rbp-138h]
+mov     rax, [rax]
+mov     [rbp+timeval.tv_sec], rax
+mov     rax, [rbp-138h]
+mov     rcx, [rax+8]
+mov     rdx, 20C49BA5E353F7CFh
+mov     rax, rcx
+imul    rdx
+sar     rdx, 7
+mov     rax, rcx
+sar     rax, 3Fh
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+timeval.tv_usec], rax
+mov     rax, [rbp-138h]
+add     rax, 10h
+mov     rax, [rax]
+mov     [rbp+timeval.tv_sec+10h], rax
+mov     rax, [rbp-138h]
+add     rax, 10h
+mov     rcx, [rax+8]
+mov     rdx, 20C49BA5E353F7CFh
+mov     rax, rcx
+imul    rdx
+sar     rdx, 7
+mov     rax, rcx
+sar     rax, 3Fh
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+timeval.tv_usec+10h], rax
+lea     rax, [rbp-0F0h]
+mov     [rbp+t], rax
+jmp     short loc_40E7B2
+mov     [rbp+t], 0
+cmp     [rbp+fd], 0
+jns     short loc_40E7DB
+mov     rdx, [rbp-130h]
+mov     rax, [rbp-160h]
+mov     rsi, rax
+mov     edi, 0FFFFFF9Ch
+call    _futimesat
+jmp     loc_40E9D4
+mov     rdx, [rbp-130h]
+mov     eax, [rbp-154h]
+mov     esi, 0
+mov     edi, eax
+call    _futimesat
+test    eax, eax
+jnz     loc_40E9AA
+cmp     [rbp+t], 0
+jz      loc_40E9A3
+mov     rax, [rbp-130h]
+mov     rax, [rax+8]
+cmp     rax, 7A11Fh
+setnle  al
+mov     [rbp+abig], al
+mov     rax, [rbp-130h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 7A11Fh
+setnle  al
+mov     [rbp+mbig], al
+movzx   eax, byte ptr [rbp-142h]
+or      al, [rbp-141h]
+test    al, al
+jz      loc_40E9A3
+lea     rdx, [rbp-0B0h]
+mov     eax, [rbp-154h]
+mov     rsi, rdx
+mov     edi, eax
+call    fstat
+test    eax, eax
+jnz     loc_40E9A3
+mov     rdx, [rbp-68h]
+mov     rax, [rbp-130h]
+mov     rax, [rax]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+adiff], rax
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-130h]
+add     rax, 10h
+mov     rax, [rax]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+mdiff], rax
+mov     [rbp+tt], 0
+mov     rax, [rbp-130h]
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     [rbp+truncated_timeval.tv_sec], rax
+mov     [rbp+truncated_timeval.tv_usec], rdx
+mov     rax, [rbp-130h]
+mov     rdx, [rax+18h]
+mov     rax, [rax+10h]
+mov     [rbp+truncated_timeval.tv_sec+10h], rax
+mov     [rbp+truncated_timeval.tv_usec+10h], rdx
+cmp     [rbp+abig], 0
+jz      short loc_40E938
+cmp     [rbp+adiff], 1
+jnz     short loc_40E938
+lea     rax, [rbp-0B0h]
+mov     rdi, rax
+call    get_stat_atime_ns
+test    rax, rax
+jnz     short loc_40E938
+lea     rax, [rbp-0D0h]
+mov     [rbp+tt], rax
+mov     rax, [rbp-128h]
+mov     qword ptr [rax+8], 0
+cmp     [rbp+mbig], 0
+jz      short loc_40E980
+cmp     [rbp+mdiff], 1
+jnz     short loc_40E980
+lea     rax, [rbp-0B0h]
+mov     rdi, rax
+call    get_stat_mtime_ns
+test    rax, rax
+jnz     short loc_40E980
+lea     rax, [rbp-0D0h]
+mov     [rbp+tt], rax
+mov     rax, [rbp-128h]
+add     rax, 10h
+mov     qword ptr [rax+8], 0
+cmp     [rbp+tt], 0
+jz      short loc_40E9A3
+mov     rdx, [rbp-128h]
+mov     eax, [rbp-154h]
+mov     esi, 0
+mov     edi, eax
+call    _futimesat
+mov     eax, 0
+jmp     short loc_40E9D4
+cmp     [rbp+file], 0
+jnz     short loc_40E9BB
+mov     eax, 0FFFFFFFFh
+jmp     short loc_40E9D4
+mov     rdx, [rbp-130h]
+mov     rax, [rbp-160h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _utimes
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40E9E8
+call    ___stack_chk_fail
+add     rsp, 168h
+pop     rbx
+pop     rbp
+retn

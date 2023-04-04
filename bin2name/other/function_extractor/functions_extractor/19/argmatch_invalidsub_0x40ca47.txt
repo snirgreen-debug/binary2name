@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+context], rdi
+mov     [rbp+value], rsi
+mov     [rbp+problem], rdx
+cmp     [rbp+problem], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_40CA6F
+mov     edi, 40FD83h
+call    _gettext
+jmp     short loc_40CA79
+mov     edi, 40FD9Eh
+call    _gettext
+mov     [rbp+format], rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     edi, 1
+call    quote_n
+mov     rbx, rax
+mov     rax, [rbp-30h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     r8, rbx
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+nop
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

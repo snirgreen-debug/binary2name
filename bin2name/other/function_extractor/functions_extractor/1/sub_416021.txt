@@ -1,0 +1,96 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+mov     [rbp+var_38], r8
+mov     [rbp+var_C], 0
+mov     [rbp+var_8], 1
+jmp     loc_416155
+mov     eax, [rbp-0Ch]
+cmp     eax, 1
+jz      loc_4160FD
+cmp     eax, 1
+jb      short loc_41606C
+cmp     eax, 2
+jz      loc_416118
+jmp     loc_416150
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+cmp     eax, 22h
+jz      short loc_4160E5
+cmp     eax, 27h
+jz      short loc_4160EE
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   edx, byte ptr [rax]
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_4160A7
+add     [rbp+var_8], 1
+jmp     short loc_4160FB
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   edx, byte ptr [rax]
+mov     rax, [rbp-38h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_4160F7
+sub     [rbp+var_8], 1
+cmp     [rbp+var_8], 0
+jnz     short loc_4160FA
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     eax, 0
+jmp     loc_416168
+mov     [rbp+var_C], 2
+jmp     short loc_4160FB
+mov     [rbp+var_C], 1
+jmp     short loc_4160FB
+nop
+jmp     short loc_416150
+nop
+jmp     short loc_416150
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 27h
+jnz     short loc_41614C
+mov     [rbp+var_C], 0
+jmp     short loc_41614C
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jnz     short loc_416131
+add     [rbp+var_20], 1
+jmp     short loc_41614F
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_41614F
+mov     [rbp+var_C], 0
+jmp     short loc_41614F
+nop
+jmp     short loc_416150
+nop
+add     [rbp+var_20], 1
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-28h]
+jb      loc_41604D
+mov     eax, 1
+pop     rbp
+retn

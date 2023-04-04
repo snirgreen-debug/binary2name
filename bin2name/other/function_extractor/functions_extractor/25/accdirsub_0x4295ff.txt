@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+directory], rdi
+mov     [rbp+flags], esi
+mov     eax, [rbp-0Ch]
+and     eax, 1
+test    eax, eax
+jz      short loc_429628
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_429628
+add     [rbp+directory], 1
+mov     rax, cs:opt.includes
+test    rax, rax
+jz      short loc_429659
+mov     rax, cs:opt.includes
+mov     edx, [rbp-0Ch]
+mov     rcx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    proclist
+test    rax, rax
+jnz     short loc_429659
+mov     eax, 0
+jmp     short locret_42968F
+mov     rax, cs:opt.excludes
+test    rax, rax
+jz      short loc_42968A
+mov     rax, cs:opt.excludes
+mov     edx, [rbp-0Ch]
+mov     rcx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    proclist
+test    rax, rax
+jz      short loc_42968A
+mov     eax, 0
+jmp     short locret_42968F
+mov     eax, 1
+leave
+retn

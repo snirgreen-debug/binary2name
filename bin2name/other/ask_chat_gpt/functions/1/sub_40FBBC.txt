@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_62D708
+mov     rdi, rax
+call    sub_410DA3
+mov     cs:qword_62D708, 0
+mov     rax, cs:qword_62D668
+mov     rdi, rax
+call    sub_40C47F
+mov     cs:qword_62D668, 0
+mov     cs:qword_62D670, 0
+mov     rax, cs:dest
+mov     rdi, rax
+call    sub_40C47F
+mov     cs:dest, 0
+mov     cs:qword_62D688, 0
+mov     rax, cs:qword_62D688
+mov     cs:qword_62D680, rax
+mov     rax, cs:src
+mov     rdi, rax
+call    _free
+mov     cs:src, 0
+mov     cs:qword_62D660, 0
+nop
+pop     rbp
+retn

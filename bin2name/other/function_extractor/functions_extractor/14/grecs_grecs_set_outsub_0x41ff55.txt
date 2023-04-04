@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     cs:grecs_grecs_out, rax
+nop
+pop     rbp
+retn

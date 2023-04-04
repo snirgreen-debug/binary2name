@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+word], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     cs:pc, rax
+jmp     short loc_400F97
+mov     rax, cs:pc
+mov     rdx, [rax]
+mov     eax, 0
+call    rdx
+mov     rax, cs:pc
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_400F86
+nop
+leave
+retn

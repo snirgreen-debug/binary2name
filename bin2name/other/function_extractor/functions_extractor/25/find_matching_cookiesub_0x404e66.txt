@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+jar], rdi
+mov     [rbp+cookie], rsi
+mov     [rbp+prevptr], rdx
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+chain], rax
+cmp     [rbp+chain], 0
+jz      loc_404F2A
+mov     [rbp+prev], 0
+jmp     short loc_404F21
+mov     rax, [rbp-10h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_404F0D
+mov     rax, [rbp-10h]
+mov     rdx, [rax+38h]
+mov     rax, [rbp-20h]
+mov     rax, [rax+38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_404F0D
+mov     rax, [rbp-20h]
+mov     edx, [rax+8]
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+cmp     edx, eax
+jnz     short loc_404F0D
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+jmp     short locret_404F3B
+mov     rax, [rbp-10h]
+mov     [rbp+prev], rax
+mov     rax, [rbp-10h]
+mov     rax, [rax+48h]
+mov     [rbp+chain], rax
+cmp     [rbp+chain], 0
+jnz     short loc_404EAC
+jmp     short nomatch
+nop
+mov     rax, [rbp-28h]
+mov     qword ptr [rax], 0
+mov     eax, 0
+leave
+retn

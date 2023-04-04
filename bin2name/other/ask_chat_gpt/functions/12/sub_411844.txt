@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, cs:qword_640068
+test    rax, rax
+jnz     short loc_411871
+mov     edi, 0
+call    sub_410C8B
+mov     cs:qword_640068, rax
+mov     rax, [rbp-20h]
+mov     eax, [rax+14h]
+lea     edx, [rax+1]
+mov     rax, [rbp-20h]
+mov     [rax+14h], edx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_4288E2
+mov     rcx, rax
+mov     rax, cs:qword_640068
+mov     rdx, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41080A
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_41191D
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 432026h
+mov     eax, 0
+call    sub_41CEC0
+mov     [rbp+var_4], 0
+jmp     short loc_411903
+mov     rax, [rbp-20h]
+mov     rax, [rax+8]
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+shl     rdx, 2
+add     rax, rdx
+mov     rdi, rax
+call    sub_41182B
+mov     rsi, rax
+mov     edi, 432034h
+mov     eax, 0
+call    sub_41CEC0
+add     [rbp+var_4], 1
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+cmp     eax, [rbp-4]
+jg      short loc_4118D0
+mov     edi, 432038h
+mov     eax, 0
+call    sub_41CEC0
+nop
+leave
+retn

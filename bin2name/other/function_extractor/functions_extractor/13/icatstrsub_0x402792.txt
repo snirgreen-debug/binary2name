@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:tos
+sub     rax, 18h
+mov     cs:tos, rax
+mov     eax, 0
+call    check_range
+mov     rax, cs:tos
+lea     rdx, [rax+18h]
+mov     rax, cs:tos
+mov     rsi, rdx
+mov     rdi, rax
+call    catstr
+mov     rax, cs:tos
+add     rax, 18h
+mov     rdi, rax
+call    delete_string
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

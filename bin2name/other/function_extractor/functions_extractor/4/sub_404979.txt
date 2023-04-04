@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_4222C3
+mov     rsi, [rbp-28h]
+mov     rcx, rax
+mov     rbx, rdx
+mov     rdi, rcx
+mov     rax, rdx
+mov     ecx, 15180h
+mov     rdx, rsi
+mov     rsi, rax
+call    sub_40474C
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

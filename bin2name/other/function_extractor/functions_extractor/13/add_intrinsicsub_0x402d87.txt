@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     [rbp+func], rsi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    newentry
+mov     [rbp+new_d], rax
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    add_to_definition
+mov     rax, [rbp-8]
+mov     esi, 0
+mov     rdi, rax
+call    add_to_definition
+nop
+leave
+retn

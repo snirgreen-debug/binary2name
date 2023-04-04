@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+file], rdi
+mov     [rbp+appendp], esi
+cmp     [rbp+file], 0
+jz      short loc_41D03C
+cmp     [rbp+appendp], 0
+jz      short loc_41CFFC
+mov     edx, 433B98h
+jmp     short loc_41D001
+mov     edx, 433B9Ah
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fopen
+mov     cs:logfp, rax
+mov     rax, cs:logfp
+test    rax, rax
+jnz     short loc_41D06E
+mov     rax, cs:opt.lfilename
+mov     rdi, rax
+call    _perror
+mov     edi, 1
+call    _exit
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     cs:logfp, rax
+mov     rax, cs:logfp
+mov     rdi, rax
+call    _fileno
+mov     edi, eax
+call    _isatty
+test    eax, eax
+jz      short loc_41D06E
+mov     cs:save_context_p, 1
+nop
+leave
+retn

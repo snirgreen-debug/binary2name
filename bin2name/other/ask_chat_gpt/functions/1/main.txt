@@ -1,0 +1,195 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_24], edi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     esi, 422E63h
+mov     edi, 6
+call    _setlocale
+mov     esi, 422E68h
+mov     edi, 422CBCh
+call    _bindtextdomain
+mov     edi, 422CBCh
+call    _textdomain
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402F8B
+mov     rax, cs:qword_62D7C8
+mov     rdi, rax
+call    sub_402CD9
+mov     cs:ident, rax
+mov     eax, 0
+call    sub_4034B1
+call    sub_4058B7
+lea     rdx, [rbp-1Ch]
+mov     rcx, [rbp-30h]
+mov     eax, [rbp-24h]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_403766
+mov     eax, [rbp-1Ch]
+sub     [rbp+var_24], eax
+mov     eax, [rbp-1Ch]
+cdqe
+shl     rax, 3
+add     [rbp+var_30], rax
+mov     eax, [rbp-24h]
+test    eax, eax
+jz      short loc_403AEB
+cmp     eax, 1
+jz      short loc_403ADB
+mov     edi, 422EB7h
+call    _gettext
+mov     rsi, rax
+mov     edi, 2
+mov     eax, 0
+call    sub_402A42
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     cs:off_62C3E0, rax
+jmp     short loc_403AEC
+nop
+mov     rax, cs:off_62C3E0
+mov     rdi, rax
+call    sub_4058D7
+mov     eax, cs:dword_62D5A8
+test    eax, eax
+jz      short loc_403B0F
+mov     eax, 0
+jmp     loc_403D2C
+mov     eax, cs:dword_62D58C
+test    eax, eax
+jz      short loc_403B2D
+mov     edx, cs:dword_62D7B0
+mov     eax, cs:dword_62D58C
+add     eax, edx
+mov     cs:dword_62D7B0, eax
+mov     eax, cs:dword_62D590
+test    eax, eax
+jz      short loc_403B43
+mov     eax, cs:dword_62D590
+mov     cs:dword_62D7B4, eax
+mov     rax, cs:qword_62D598
+test    rax, rax
+jz      short loc_403B5D
+mov     rax, cs:qword_62D598
+mov     cs:qword_62D570, rax
+mov     eax, cs:dword_62C3F0
+cmp     eax, 0FFFFFFFFh
+jz      short loc_403B74
+mov     eax, cs:dword_62C3F0
+mov     cs:facility, eax
+mov     eax, cs:dword_62D7B4
+test    eax, eax
+jnz     short loc_403B92
+mov     eax, cs:facility
+test    eax, eax
+jg      short loc_403B92
+mov     cs:facility, 18h
+mov     rax, cs:name
+test    rax, rax
+jz      short loc_403BAC
+mov     rax, cs:name
+mov     cs:qword_62D578, rax
+mov     eax, cs:facility
+test    eax, eax
+jle     short loc_403BDA
+mov     edx, cs:facility
+mov     rax, cs:ident
+mov     esi, 1
+mov     rdi, rax
+call    _openlog
+mov     cs:dword_62D210, 0
+mov     eax, cs:dword_62D7B4
+test    eax, eax
+jz      short loc_403BEB
+call    sub_4082F5
+jmp     short loc_403C32
+mov     edi, 4082F5h
+call    sub_40A567
+test    eax, eax
+jz      short loc_403C28
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 422ECAh
+mov     edi, 2
+mov     eax, 0
+call    sub_402A42
+mov     edi, 1
+call    _exit
+mov     cs:dword_62C3EC, 0FFFFFFFFh
+mov     rbx, cs:qword_62D7C8
+mov     edi, 422ED5h
+call    _gettext
+mov     ecx, 422D0Bh
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 6
+mov     eax, 0
+call    sub_402A42
+mov     rax, cs:qword_62D570
+test    rax, rax
+jz      short loc_403C78
+mov     rax, cs:qword_62D570
+mov     rdi, rax
+call    sub_402FFC
+mov     rax, cs:qword_62D578
+test    rax, rax
+jz      short loc_403C9C
+call    _getuid
+test    eax, eax
+jnz     short loc_403C9C
+mov     rax, cs:qword_62D578
+mov     rdi, rax
+call    sub_403277
+mov     edi, 403518h
+call    sub_402FD2
+mov     rax, cs:qword_62D7A8
+test    rax, rax
+jz      short loc_403CCD
+mov     eax, 0
+call    sub_403548
+jmp     short loc_403CCD
+call    sub_408BB7
+mov     edi, 0
+call    sub_408942
+mov     eax, cs:dword_62D584
+test    eax, eax
+jnz     short loc_403CE0
+call    sub_40A417
+test    eax, eax
+jz      short loc_403CBE
+mov     rbx, cs:qword_62D7C8
+mov     edi, 422EE3h
+call    _gettext
+mov     ecx, 422D0Bh
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 6
+mov     eax, 0
+call    sub_402A42
+mov     rax, cs:qword_62D570
+test    rax, rax
+jz      short loc_403D26
+mov     rax, cs:qword_62D570
+mov     rdi, rax
+call    _unlink
+mov     eax, cs:dword_62D588
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_403D40
+call    ___stack_chk_fail
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

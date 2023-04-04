@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     eax, cs:dword_62D7B0
+test    eax, eax
+jle     short loc_4083C7
+mov     rax, [rbp-18h]
+mov     rbx, [rax+10h]
+mov     edi, 4237B1h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    sub_402B11
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40A0D8
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+mov     edi, eax
+call    sub_407AE6
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    sub_407836
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

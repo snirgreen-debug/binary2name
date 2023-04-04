@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+script], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     esi, 0
+mov     rdi, rax
+call    _wbkgdset
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclear
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wrefresh
+call    _endwin
+mov     eax, cs:isUTF8Locale
+test    eax, eax
+jz      short loc_408BF8
+mov     edi, 40B00Bh
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+jmp     short loc_408C1C
+mov     edi, 40B00Bh
+call    _gettext
+mov     rdi, rax
+call    convertUTF8ToCurrentEncoding
+mov     rsi, rax
+mov     edi, 40B01Bh
+mov     eax, 0
+call    _printf
+mov     edi, 0
+call    _exit

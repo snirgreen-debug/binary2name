@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    get_max_fd
+mov     [rbp+max_fd], eax
+mov     [rbp+cb_data.buf], 0
+mov     [rbp+cb_data.allocated], 0
+mov     rax, [rbp-10h]
+mov     [rbp+cb_data.used], rax
+cmp     [rbp+max_fd], 7FFFFFFFh
+jz      short loc_41684C
+add     [rbp+max_fd], 1
+lea     rdx, [rbp-20h]
+mov     eax, [rbp-24h]
+mov     rcx, rdx
+mov     edx, 416758h
+mov     esi, eax
+mov     edi, 0
+call    visit_open_fds
+mov     rax, [rbp-20h]
+mov     cs:non_cloexec_fds, rax
+mov     rax, [rbp-18h]
+mov     cs:num_cloexec_fds, rax
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_416892
+call    ___stack_chk_fail
+leave
+retn

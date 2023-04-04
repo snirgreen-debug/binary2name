@@ -1,0 +1,106 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+argc], edi
+mov     [rbp+argv], rsi
+mov     [rbp+end_of_leading_options], 0
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4044C2
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdi, rax
+call    set_program_name
+jmp     short loc_4044CC
+mov     edi, 42AECFh
+call    set_program_name
+call    record_initial_cwd
+mov     cs:state_0.already_issued_stat_error_msg, 0
+mov     cs:state_0.exit_status, 0
+mov     cs:state_0.execdirs_outstanding, 0
+mov     cs:state_0.cwd_dir_fd, 0FFFFFF9Ch
+call    fd_leak_check_is_enabled
+test    al, al
+jz      short loc_404501
+call    remember_non_cloexec_fds
+mov     edi, 42AED4h
+call    sharefile_init
+mov     cs:state_0.shared_files, rax
+mov     rax, cs:state_0.shared_files
+test    rax, rax
+jnz     short loc_404546
+mov     edi, 42AED8h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     edi, 63BFC0h
+call    set_option_defaults
+mov     esi, 42ABF0h
+mov     edi, 6
+call    _setlocale
+mov     esi, 42AF08h
+mov     edi, 42AF5Ah
+call    _bindtextdomain
+mov     edi, 42AF5Ah
+call    _textdomain
+mov     edi, 41761Ch
+call    atexit
+test    eax, eax
+jz      short loc_4045AE
+mov     edi, 42AF68h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rdx, [rbp-30h]
+mov     eax, [rbp-24h]
+mov     rsi, rdx
+mov     edi, eax
+call    process_leading_options
+mov     [rbp+end_of_leading_options], eax
+mov     rax, cs:options_0.debug_options
+and     eax, 2
+test    rax, rax
+jz      short loc_4045DC
+mov     cs:options_0.xstat, 40AD21h
+mov     edx, [rbp-1Ch]
+mov     rcx, [rbp-30h]
+mov     eax, [rbp-24h]
+mov     rsi, rcx
+mov     edi, eax
+call    build_expression_tree
+mov     [rbp+eval_tree], rax
+mov     eax, [rbp-1Ch]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-30h]
+add     rdx, rax
+mov     eax, [rbp-24h]
+sub     eax, [rbp-1Ch]
+mov     rsi, rdx
+mov     edi, eax
+call    process_all_startpoints
+test    al, al
+jz      short loc_40462D
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    show_success_rates
+call    cleanup
+mov     eax, cs:state_0.exit_status
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

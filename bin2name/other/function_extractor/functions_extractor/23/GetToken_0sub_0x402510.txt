@@ -1,0 +1,77 @@
+push    r15
+push    r14
+mov     r14, szExp
+push    r13
+push    r12
+mov     r15, szToken
+push    rbp
+push    rbx
+mov     r12, piType
+sub     rsp, 8
+call    ___ctype_b_loc
+mov     rdx, [szExp]
+jmp     short loc_40253B
+mov     [szExp], rdx
+movsx   rsi, byte ptr [rdx]
+mov     rcx, [rax]
+mov     r13, rdx
+add     rdx, 1
+movzx   ebp, word ptr [rcx+rsi*2]
+mov     rbx, rsi
+test    bp, 2000h
+jnz     short loc_402538
+movsx   esi, sil
+mov     edi, 4123EEh
+call    _strchr
+test    rax, rax
+jz      short loc_4025A0
+mov     dword ptr [piType], 20h
+movzx   eax, byte ptr [r13+0]
+add     szToken, 1
+mov     [r15-1], al
+add     qword ptr [szExp], 1
+mov     byte ptr [cTmp], 0
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     piType
+pop     r13
+pop     szExp
+pop     cTmp
+retn
+cmp     bl, 69h
+jz      short loc_4025ED
+test    bp, 800h
+jz      short loc_402583
+mov     dword ptr [piType], 2
+jmp     short loc_4025D6
+test    rax, rax
+jnz     short loc_402583
+mov     [cTmp], bl
+mov     rax, [szExp]
+add     cTmp, 1
+lea     r13, [rax+1]
+mov     [szExp], r13
+movsx   esi, byte ptr [r13+0]
+mov     edi, 4123EEh
+mov     ebx, esi
+call    _strchr
+test    bl, bl
+jnz     short loc_4025C0
+jmp     short loc_402583
+mov     dword ptr [piType], 1
+jmp     short loc_40261A
+test    rax, rax
+jnz     loc_402583
+mov     [cTmp], bl
+mov     rax, [szExp]
+add     cTmp, 1
+lea     r13, [rax+1]
+mov     [szExp], r13
+movsx   esi, byte ptr [r13+0]
+mov     edi, 4123EEh
+mov     ebx, esi
+call    _strchr
+test    bl, bl
+jnz     short loc_402600
+jmp     loc_402583

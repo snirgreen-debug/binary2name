@@ -1,0 +1,71 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0D8h
+mov     [rbp+var_C8], rdi
+mov     [rbp+var_D0], rsi
+mov     [rbp+var_D8], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    sub_40ADD1
+test    al, al
+jz      short loc_405FDB
+mov     [rbp+var_B8], 40ACBBh
+jmp     short loc_405FE6
+mov     [rbp+var_B8], 40AC2Fh
+lea     rax, [rbp-0B0h]
+mov     rdi, rax
+call    sub_40A2AF
+mov     rdx, cs:s1
+lea     rcx, [rbp-0B0h]
+mov     rax, [rbp-0B8h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jz      short loc_406095
+call    sub_40ADD1
+test    al, al
+jz      short loc_40604D
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_40604D
+mov     rdx, [rbp-0D8h]
+mov     rcx, [rbp-0D0h]
+mov     rax, [rbp-0C8h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_405DA9
+jmp     short loc_4060B5
+mov     rax, [rbp-0C8h]
+mov     rsi, rax
+mov     edi, 0
+call    sub_40B84E
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 42B00Ah
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     cs:status, 1
+mov     eax, 0
+jmp     short loc_4060B5
+mov     rdx, [rbp-0D8h]
+lea     rcx, [rbp-0B0h]
+mov     rax, [rbp-0C8h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_405DA9
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_4060C9
+call    ___stack_chk_fail
+add     rsp, 0D8h
+pop     rbx
+pop     rbp
+retn

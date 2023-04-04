@@ -1,0 +1,95 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4216575,
+                "src": 4216557
+            },
+            {
+                "dst": 4216582,
+                "src": 4216557
+            },
+            {
+                "dst": 4216587,
+                "src": 4216575
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4216587
+            },
+            {
+                "dst": 4216587,
+                "src": 4216582
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4216557,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |mov|dword|ptr|rbp|-|4|edi|    |mov|eax|dword|ptr|rbp|-|4|    |sub|eax|0x20|    |cmp|eax|0x5e|    |ja|target_0|    "
+            },
+            {
+                "block_addr": 4216575,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool __le__(__sub__(Extract(31, 0, reg_48_3911_64), 0x20), 0x5e)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|1|    |jmp|0x40570b|    "
+            },
+            {
+                "block_addr": 4216587,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ],
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4216582,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool __gt__(__sub__(Extract(31, 0, reg_48_3911_64), 0x20), 0x5e)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|0|    |pop|rbp|    |ret|    "
+            }
+        ]
+    },
+    "func_name": "4216557"
+}

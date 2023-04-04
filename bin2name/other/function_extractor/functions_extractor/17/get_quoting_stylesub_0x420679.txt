@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+o], rdi
+cmp     [rbp+o], 0
+jz      short loc_42068E
+mov     rax, [rbp-8]
+jmp     short loc_420693
+mov     eax, 63B600h
+mov     eax, [rax]
+pop     rbp
+retn

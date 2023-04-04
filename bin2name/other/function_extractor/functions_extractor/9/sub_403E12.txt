@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s2], rdi
+mov     [rbp+n], rsi
+cmp     [rbp+n], 0
+jnz     short loc_403E39
+mov     [rbp+s2], 4106D9h
+mov     [rbp+n], 1
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 614960h
+call    _memcmp
+test    eax, eax
+jnz     short loc_403E6A
+mov     rax, [rbp-10h]
+add     rax, 614960h
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_403E6A
+mov     eax, 1
+jmp     short loc_403E6F
+mov     eax, 0
+and     eax, 1
+leave
+retn

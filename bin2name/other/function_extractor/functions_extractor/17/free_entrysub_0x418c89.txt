@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+table], rdi
+mov     [rbp+entry], rsi
+mov     rax, [rbp-10h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     [rax+48h], rdx
+nop
+pop     rbp
+retn

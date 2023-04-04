@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, [rbp-14h]
+mov     [rbp+var_9], al
+mov     rax, cs:line_acc
+lea     rcx, [rbp-9]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    grecs_txtacc_grow
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_420ED1
+call    ___stack_chk_fail
+leave
+retn

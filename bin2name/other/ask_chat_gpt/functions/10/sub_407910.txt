@@ -1,0 +1,107 @@
+push    r15
+push    r14
+mov     r15, rdx
+push    r13
+push    r12
+mov     r12d, 70000h
+push    rbp
+push    rbx
+mov     rax, rcx
+mov     r13, rdi
+mov     rbp, rsi
+sub     rsp, 18h
+test    rcx, rcx
+mov     edx, [rdi+20h]
+cmovnz  r12, rcx
+sub     edx, [rdi+24h]
+mov     r14, [rdi+30h]
+mov     rcx, r12
+mov     edi, 412E24h
+or      ch, 0F0h
+cmp     edx, 1
+cmovnz  r12, rcx
+mov     ecx, 7
+repe cmpsb
+jz      loc_407A50
+test    rax, rax
+jz      short loc_4079E0
+test    eax, 70000h
+jnz     short loc_4079C8
+mov     rbx, [r14+50h]
+test    rbx, rbx
+jnz     short loc_407989
+jmp     short loc_4079C8
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_4079C8
+mov     rsi, [rbx]
+mov     rdi, rbp
+call    _strcmp
+test    eax, eax
+jnz     short loc_407980
+mov     ecx, 412E3Eh
+mov     rdx, rbp
+mov     esi, 4103h
+mov     rdi, r13
+call    sub_405040
+mov     eax, [r13+20h]
+mov     [r13+24h], eax
+add     rsp, 18h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+lea     rdi, [r14+50h]
+mov     rcx, r12
+mov     rdx, r15
+mov     rsi, rbp
+call    sub_406B10
+jmp     short loc_4079AD
+cmp     r14, 0FFFFFFFFFFFFFFE0h
+jz      short loc_40796C
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     rbx, rax
+jz      short loc_407A69
+mov     rdi, rbp
+call    _strlen
+lea     rdx, [rax+1]
+mov     rdi, rdx
+mov     [rsp+48h+n], rdx
+call    _malloc
+test    rax, rax
+jz      short loc_407A82
+mov     rdx, [rsp+8]
+mov     rsi, rbp
+mov     rdi, rax
+call    _memcpy
+mov     [rbx], rax
+mov     qword ptr [rbx+8], 0
+mov     rax, [r14+20h]
+mov     [rbx+10h], r12
+mov     [rbx+18h], rax
+mov     [r14+20h], rbx
+jmp     loc_40796C
+lea     rdi, [r14+50h]
+mov     ecx, 0A0000h
+mov     rdx, r15
+mov     rsi, rbp
+call    sub_406B10
+jmp     loc_4079AD
+mov     ecx, 4131E8h
+mov     rdx, rbp
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+jmp     loc_40796C
+mov     ecx, 4131C0h
+mov     rdx, rbp
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+xor     eax, eax
+jmp     short loc_407A26

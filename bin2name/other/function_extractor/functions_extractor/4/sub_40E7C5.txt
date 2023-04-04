@@ -1,0 +1,70 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_38], 0
+mov     [rbp+var_40], 0
+mov     [rbp+var_30], 0
+mov     edi, 0
+call    sub_40E68F
+mov     [rbp+var_20], rax
+mov     rax, [rbp-20h]
+mov     [rbp+var_28], rax
+jmp     loc_40E8A7
+mov     rax, [rbp-28h]
+mov     rax, [rax+18h]
+mov     esi, 42D285h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_40E89A
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+mov     [rbp+var_18], rax
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-18h]
+lea     rcx, [rdx+rax]
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_414E92
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jz      short loc_40E8B4
+mov     rax, [rbp-10h]
+mov     [rbp+var_38], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-30h]
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rax, [rbp-18h]
+add     [rbp+var_30], rax
+jmp     short loc_40E89B
+nop
+mov     rax, [rbp-28h]
+mov     rax, [rax+30h]
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     loc_40E80F
+jmp     short loc_40E8B5
+nop
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_40E4EA
+mov     rax, [rbp-38h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_40E8D9
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+mov     [rbp+var_C], 0
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+jmp     short loc_40EB04
+mov     rax, [rbp-8]
+mov     rsi, [rax+10h]
+mov     rdx, [rbp-30h]
+mov     ecx, [rbp-1Ch]
+mov     rax, [rbp-28h]
+mov     edi, ecx
+call    rax
+mov     [rbp+var_C], eax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_C], 0
+jnz     short loc_40EB11
+cmp     [rbp+var_8], 0
+jnz     short loc_40EADF
+mov     eax, [rbp-0Ch]
+leave
+retn

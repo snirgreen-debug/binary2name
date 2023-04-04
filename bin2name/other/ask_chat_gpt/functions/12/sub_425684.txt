@@ -1,0 +1,70 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_10], 0
+mov     eax, cs:dword_6476D4
+test    eax, eax
+jnz     short loc_4256AC
+mov     eax, 0
+jmp     locret_42578C
+mov     rdx, cs:qword_6476F8
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42578E
+test    eax, eax
+jnz     short loc_4256D4
+mov     eax, 0
+jmp     locret_42578C
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+cmp     eax, 1
+jz      short loc_42570F
+cmp     eax, 1
+jb      short loc_4256EA
+cmp     eax, 2
+jmp     short loc_425733
+mov     rax, cs:qword_6476E0
+test    rax, rax
+jz      short loc_4256FF
+mov     rax, cs:qword_6476E0
+jmp     short loc_425709
+mov     edi, 436BF9h
+call    _getenv
+mov     [rbp+var_10], rax
+jmp     short loc_425733
+mov     rax, cs:qword_6476E8
+test    rax, rax
+jz      short loc_425724
+mov     rax, cs:qword_6476E8
+jmp     short loc_42572E
+mov     edi, 436C04h
+call    _getenv
+mov     [rbp+var_10], rax
+nop
+cmp     [rbp+var_10], 0
+jz      short loc_425745
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_42574C
+mov     eax, 0
+jmp     short locret_42578C
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_4261A1
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_425788
+mov     rax, [rbp-8]
+mov     edx, 400h
+mov     rsi, rax
+mov     edi, 646FA0h
+call    _strncpy
+mov     cs:byte_64739F, 0
+mov     [rbp+var_10], 646FA0h
+mov     rax, [rbp-10h]
+leave
+retn

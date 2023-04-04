@@ -1,0 +1,117 @@
+push    r15
+push    r14
+mov     r14, rdx
+push    r13
+push    r12
+mov     r13, rsi
+push    rbp
+push    rbx
+mov     rbx, rdi
+sub     rsp, 538h
+mov     r12, [rdi+18h]
+mov     rax, fs:28h
+mov     [rsp+568h+var_40], rax
+xor     eax, eax
+lea     rbp, [rsp+20h]
+nop     word ptr [rax+rax+00000000h]
+mov     rsi, rbp
+mov     rdi, rbx
+call    sub_4038F0
+add     qword ptr [r13+0], 1
+lea     rdx, [rsp+1Ch]
+lea     rsi, [rsp+120h]
+mov     rdi, rbx
+call    sub_403F80
+mov     rdi, rbx
+call    sub_403E30
+test    [rsp+568h+var_54C], 1
+movzx   eax, byte ptr [rsp+120h]
+jnz     loc_40B8E8
+cmp     al, 2Ch
+jz      loc_40B8E8
+cmp     al, 7Dh
+jz      loc_40B8E8
+mov     [rsp+568h+var_447], 7Dh
+mov     r15, [r13+0]
+lea     rdi, [r15*8+0]
+call    _malloc
+test    rax, rax
+mov     [r14], rax
+jz      loc_40B90D
+mov     [rbx+18h], r12
+xor     r12d, r12d
+test    r15, r15
+jle     loc_40B8C0
+nop     dword ptr [rax]
+mov     rsi, rbp
+mov     rdi, rbx
+lea     r15, [r12*8+0]
+call    sub_4038F0
+lea     rdx, [rsp+1Ch]
+lea     rsi, [rsp+120h]
+mov     rdi, rbx
+call    sub_403F80
+mov     rdi, rbx
+call    sub_403E30
+mov     rcx, r15
+add     rcx, [r14]
+mov     rdi, rbp
+mov     edx, [rdi]
+add     rdi, 4
+lea     eax, [rdx-1010101h]
+not     edx
+and     eax, edx
+and     eax, 80808080h
+jz      short loc_40B851
+mov     edx, eax
+mov     [rsp+568h+var_560], rcx
+shr     edx, 10h
+test    eax, 8080h
+cmovz   eax, edx
+lea     rdx, [rdi+2]
+mov     ecx, eax
+cmovz   rdi, rdx
+add     cl, al
+sbb     rdi, 3
+sub     rdi, rbp
+add     rdi, 1
+call    _malloc
+mov     rcx, [rsp+8]
+test    rax, rax
+mov     [rcx], rax
+jz      short loc_40B8F8
+mov     rax, [r14]
+mov     rsi, rbp
+mov     rdi, [rax+r15]
+call    _strcpy
+add     r12, 1
+cmp     [r13+0], r12
+jg      loc_40B818
+mov     rax, [rsp+528h]
+xor     rax, fs:28h
+jnz     short loc_40B929
+add     rsp, 538h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+cmp     al, 7Dh
+jnz     loc_40B790
+jmp     loc_40B7E8
+xor     ecx, ecx
+mov     edx, 413A2Eh
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+jmp     short loc_40B8B2
+xor     ecx, ecx
+mov     edx, 413A22h
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+mov     r15, [r13+0]
+jmp     loc_40B805
+call    ___stack_chk_fail

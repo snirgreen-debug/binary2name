@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 28h
+call    sub_40C49E
+mov     [rbp+s], rax
+mov     rax, [rbp-8]
+mov     edx, 28h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+leave
+retn

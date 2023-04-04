@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+n], rdi
+mov     [rbp+s], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     ecx, 0
+mov     rax, [rbp-28h]
+mul     qword ptr [rbp-30h]
+jno     short loc_40F031
+mov     ecx, 1
+test    rax, rax
+jns     short loc_40F03B
+mov     ecx, 1
+mov     [rbp+__xalloc_count], rax
+mov     rax, rcx
+and     eax, 1
+test    al, al
+jnz     short loc_40F067
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _calloc
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     short loc_40F06C
+call    xalloc_die
+mov     rax, [rbp-10h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_40F084
+call    ___stack_chk_fail
+leave
+retn

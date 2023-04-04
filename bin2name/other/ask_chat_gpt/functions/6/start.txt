@@ -1,0 +1,12 @@
+xor     ebp, ebp
+mov     r9, rdx
+pop     rsi
+mov     rdx, rsp
+and     rsp, 0FFFFFFFFFFFFFFF0h
+push    rax
+push    rsp
+mov     r8, 40D930h
+mov     rcx, 40D8C0h
+mov     rdi, 40518Fh
+call    ___libc_start_main
+hlt

@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     esi, 432759h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_41564D
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 1
+mov     eax, 1
+leave
+retn

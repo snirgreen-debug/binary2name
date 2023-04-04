@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rdx, [rbp-28h]
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42A4E6
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_42A284
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_42A406
+call    ___stack_chk_fail
+leave
+retn

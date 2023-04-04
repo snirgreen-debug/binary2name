@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 1A0h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-190h]
+mov     rdi, rax
+call    _uname
+test    eax, eax
+jnz     loc_40A5A7
+mov     [rbp+conversion], 402BF0h
+lea     rax, [rbp-190h]
+lea     rdx, [rax+82h]
+mov     rax, [rbp-198h]
+mov     rdi, rdx
+call    rax
+cvtsd2ss xmm1, xmm0
+movss   [rbp+release], xmm1
+lea     rax, [rbp-190h]
+mov     rsi, rax
+mov     edi, 42C1CDh
+call    _strcmp
+test    eax, eax
+jnz     short loc_40A57A
+cvtss2sd xmm0, dword ptr [rbp-19Ch]
+ucomisd xmm0, cs:qword_42C650
+setnb   al
+jmp     short loc_40A5AC
+lea     rax, [rbp-190h]
+mov     rsi, rax
+mov     edi, 42C1D3h
+call    _strcmp
+test    eax, eax
+jnz     short loc_40A5A7
+cvtss2sd xmm0, dword ptr [rbp-19Ch]
+ucomisd xmm0, cs:qword_42C658
+setnb   al
+jmp     short loc_40A5AC
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40A5C0
+call    ___stack_chk_fail
+leave
+retn

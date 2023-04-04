@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+ptr], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+and     eax, 2
+test    eax, eax
+jz      short loc_415500
+mov     rax, [rbp-8]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

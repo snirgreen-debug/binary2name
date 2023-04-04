@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_2C], 1
+mov     rax, cs:qword_62D7D8
+test    rax, rax
+jnz     short loc_4079DF
+mov     r9d, 407632h
+mov     r8d, 0
+mov     ecx, 407907h
+mov     edx, 4078CBh
+mov     esi, 40789Ch
+mov     edi, 10h
+call    sub_4072C6
+mov     cs:qword_62D7D8, rax
+mov     rax, cs:qword_62D7D8
+test    rax, rax
+jnz     short loc_4079DF
+mov     edi, 423678h
+call    _gettext
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+mov     edi, 1
+call    _exit
+lea     rax, [rbp-20h]
+mov     edx, 10h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-38h]
+mov     [rbp+var_18], rax
+mov     rax, cs:qword_62D7D8
+lea     rdx, [rbp-2Ch]
+lea     rcx, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_407141
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_407A48
+mov     edi, 423678h
+call    _gettext
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+mov     edi, 1
+call    _exit
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_407A5D
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+movsd   [rbp+var_20], xmm0
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+test    rax, rax
+jle     short loc_4214C2
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rdx, rax
+jle     short loc_4214C2
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rdi, rax
+call    sub_4216B0
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    sub_421FA7
+mov     esi, 4363C4h
+mov     edi, 0
+call    sub_41C9EC
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

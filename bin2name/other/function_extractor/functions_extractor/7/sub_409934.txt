@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fd], edi
+mov     [rbp+buf], rsi
+mov     [rbp+nbytes], rdx
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    _read
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+js      short loc_40996D
+mov     rax, [rbp-8]
+jmp     short locret_4099A2
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 4
+jz      short loc_40999F
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 16h
+jnz     short loc_409999
+cmp     [rbp+nbytes], 7FFFE000h
+jbe     short loc_409999
+mov     [rbp+nbytes], 7FFFE000h
+jmp     short loc_4099A0
+mov     rax, [rbp-8]
+jmp     short locret_4099A2
+nop
+jmp     short loc_409947
+leave
+retn

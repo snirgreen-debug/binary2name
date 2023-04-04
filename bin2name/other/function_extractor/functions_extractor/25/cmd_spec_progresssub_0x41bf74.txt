@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    valid_progress_implementation_p
+test    eax, eax
+jnz     short loc_41BFD9
+mov     rbx, cs:exec_name
+mov     edi, 433A88h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+jmp     short loc_41C00C
+mov     rax, cs:opt.progress_type
+test    rax, rax
+jz      short loc_41BFF4
+mov     rax, cs:opt.progress_type
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+mov     cs:opt.progress_type, rax
+mov     eax, 1
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     [rbp+accept], rsi
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4058E5
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strpbrk
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_4058E5
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+jmp     short locret_4058F1
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+leave
+retn

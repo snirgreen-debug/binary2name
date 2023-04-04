@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+UTF8Text], rdi
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, 40000h
+mov     rdi, rax
+call    _wattr_on
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wideaddstr
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, 40000h
+mov     rdi, rax
+call    _wattr_off
+nop
+leave
+retn

@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+new_iter], rdi
+mov     [rbp+old_iter], rsi
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax]
+mov     rax, [rbp-8]
+mov     [rax], dl
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41C28A
+mov     rax, [rbp-10h]
+add     rax, 4
+mov     rdx, [rbp-8]
+add     rdx, 4
+mov     rax, [rax]
+mov     [rdx], rax
+jmp     short loc_41C2A4
+mov     rax, [rbp-8]
+add     rax, 4
+mov     edx, 8
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+0Ch]
+mov     rax, [rbp-8]
+mov     [rax+0Ch], dl
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-8]
+add     rax, 10h
+mov     rsi, rdx
+mov     rdi, rax
+call    mb_copy
+nop
+leave
+retn

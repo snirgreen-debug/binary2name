@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-0Ch]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    cmd_boolean
+test    eax, eax
+jnz     short loc_41BF16
+mov     eax, 0
+jmp     short loc_41BF5E
+mov     eax, [rbp-0Ch]
+test    eax, eax
+jz      short loc_41BF59
+mov     cs:opt.recursive, 1
+mov     eax, cs:opt.no_dirstruct
+test    eax, eax
+jnz     short loc_41BF3B
+mov     cs:opt.dirstruct, 1
+mov     cs:opt.timestamping, 1
+mov     cs:opt.reclevel, 0FFFFFFFFh
+mov     cs:opt.remove_listing, 0
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41BF72
+call    ___stack_chk_fail
+leave
+retn

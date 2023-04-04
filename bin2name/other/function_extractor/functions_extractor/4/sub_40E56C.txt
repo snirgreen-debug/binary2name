@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, cs:qword_63B568
+test    rax, rax
+jz      short loc_40E5BD
+mov     eax, cs:dword_63B560
+test    eax, eax
+jz      short loc_40E5AE
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, cs:qword_63B570
+cmp     rdx, rax
+jnz     short loc_40E5AE
+mov     rax, cs:qword_63B568
+jmp     short locret_40E5EC
+mov     rax, cs:qword_63B568
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     cs:qword_63B570, rax
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40E6D9
+mov     cs:qword_63B568, rax
+mov     rax, cs:qword_63B568
+leave
+retn

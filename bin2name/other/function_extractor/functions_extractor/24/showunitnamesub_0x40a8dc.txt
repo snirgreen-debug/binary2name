@@ -1,0 +1,127 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+movsd   [rbp+value], xmm0
+mov     [rbp+unitstr], rdi
+mov     [rbp+printnum], esi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-14h]
+mov     rax, [rbp-28h]
+mov     rdi, rdx
+mov     [rbp+var_40], rax
+movsd   xmm0, qword ptr [rbp-40h]
+call    round_to_displayed
+movq    rax, xmm0
+mov     [rbp+rnd_value], rax
+cmp     [rbp+printnum], 0
+jz      short loc_40A97E
+movsd   xmm0, cs:qword_416DA0
+ucomisd xmm0, qword ptr [rbp-10h]
+jp      short loc_40A95A
+movsd   xmm0, cs:qword_416DA0
+ucomisd xmm0, qword ptr [rbp-10h]
+jnz     short loc_40A95A
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    isdecimal
+test    eax, eax
+jnz     short loc_40A97E
+lea     rax, num_format
+mov     rax, [rax]
+mov     rdx, [rbp-28h]
+mov     [rbp+var_40], rdx
+movsd   xmm0, qword ptr [rbp-40h]
+mov     rdi, rax
+mov     eax, 1
+call    logprintf
+mov     rax, [rbp-30h]
+lea     rsi, asc_414C7C
+mov     rdi, rax
+call    _strpbrk
+test    rax, rax
+jz      short loc_40A9B3
+mov     rax, [rbp-30h]
+mov     rsi, rax
+lea     rdi, aS_3
+mov     eax, 0
+call    logprintf
+jmp     loc_40AAB7
+cmp     [rbp+printnum], 0
+jz      short loc_40AA2D
+lea     rax, flags
+mov     eax, [rax+10h]
+test    eax, eax
+jnz     short loc_40AA2D
+mov     rax, [rbp-30h]
+mov     edx, 2
+lea     rsi, a1_0
+mov     rdi, rax
+call    _strncmp
+test    eax, eax
+jnz     short loc_40AA2D
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    isfract
+test    eax, eax
+jz      short loc_40AA2D
+movsd   xmm0, cs:qword_416DA0
+ucomisd xmm0, qword ptr [rbp-10h]
+jp      short loc_40AA11
+movsd   xmm0, cs:qword_416DA0
+ucomisd xmm0, qword ptr [rbp-10h]
+jz      short loc_40AA2D
+mov     eax, [rbp-14h]
+test    eax, eax
+jnz     short loc_40AA2D
+mov     rax, [rbp-30h]
+add     rax, 1
+mov     rdi, rax
+call    logputs
+jmp     loc_40AAB7
+movsd   xmm0, cs:qword_416DA0
+ucomisd xmm0, qword ptr [rbp-10h]
+jp      short loc_40AA6E
+movsd   xmm0, cs:qword_416DA0
+ucomisd xmm0, qword ptr [rbp-10h]
+jnz     short loc_40AA6E
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    isdecimal
+test    eax, eax
+jz      short loc_40AA6E
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    logputs
+jmp     short loc_40AAB7
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    isdecimal
+test    eax, eax
+jz      short loc_40AA9D
+mov     rax, [rbp-30h]
+mov     rsi, rax
+lea     rdi, aS_4
+mov     eax, 0
+call    logprintf
+jmp     short loc_40AAB7
+mov     rax, [rbp-30h]
+mov     rsi, rax
+lea     rdi, aS
+mov     eax, 0
+call    logprintf
+jmp     short $+2
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40AACC
+call    ___stack_chk_fail
+leave
+retn

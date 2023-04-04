@@ -1,0 +1,165 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+host], rdi
+mov     [rbp+silent], esi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+al_0], 0
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _inet_addr
+mov     [rbp+addr_ipv4], eax
+mov     eax, [rbp-3Ch]
+cmp     eax, 0FFFFFFFFh
+jz      short loc_411982
+lea     rdx, [rbp-20h]
+lea     rax, [rbp-3Ch]
+mov     rsi, rdx
+mov     rdi, rax
+call    map_ipv4_to_ip
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    address_list_from_single
+jmp     loc_411B84
+mov     rax, cs:host_name_addresses_map
+test    rax, rax
+jz      short loc_4119ED
+mov     rax, cs:host_name_addresses_map
+mov     rdx, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+al_0], rax
+cmp     [rbp+al_0], 0
+jz      short loc_4119ED
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4119D3
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 432040h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-30h]
+mov     eax, [rax+14h]
+lea     edx, [rax+1]
+mov     rax, [rbp-30h]
+mov     [rax+14h], edx
+mov     rax, [rbp-30h]
+jmp     loc_411B84
+cmp     [rbp+silent], 0
+jnz     short loc_411A19
+mov     edi, 43206Ah
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-48h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     rdx, cs:opt.dns_timeout
+mov     rax, [rbp-48h]
+mov     [rbp+var_58], rdx
+movsd   xmm0, qword ptr [rbp-58h]
+mov     rdi, rax
+call    gethostbyname_with_timeout
+mov     [rbp+hptr], rax
+cmp     [rbp+hptr], 0
+jnz     short loc_411AA5
+cmp     [rbp+silent], 0
+jnz     short loc_411A9B
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 6Eh
+jz      short loc_411A84
+call    ___h_errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    herrmsg
+mov     rbx, rax
+mov     edi, 43207Bh
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+jmp     short loc_411A9B
+mov     edi, 432088h
+call    _gettext
+mov     rsi, rax
+mov     edi, 0
+call    logputs
+mov     eax, 0
+jmp     loc_411B84
+mov     rax, [rbp-28h]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    address_list_from_vector
+mov     [rbp+al_0], rax
+cmp     [rbp+silent], 0
+jnz     loc_411B63
+mov     rax, [rbp-30h]
+mov     eax, [rax]
+mov     edx, 3
+cmp     eax, 3
+cmovg   eax, edx
+mov     [rbp+printmax], eax
+mov     [rbp+i], 0
+jmp     short loc_411B32
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+mov     edx, [rbp-38h]
+movsxd  rdx, edx
+shl     rdx, 2
+add     rax, rdx
+mov     rdi, rax
+call    pretty_print_address
+mov     rdx, rax
+mov     esi, 43209Ch
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     eax, [rbp-34h]
+sub     eax, 1
+cmp     eax, [rbp-38h]
+jle     short loc_411B2E
+mov     esi, 43209Fh
+mov     edi, 0
+call    logputs
+add     [rbp+i], 1
+mov     eax, [rbp-38h]
+cmp     eax, [rbp-34h]
+jl      short loc_411AE0
+mov     rax, [rbp-30h]
+mov     eax, [rax]
+cmp     eax, [rbp-34h]
+jz      short loc_411B54
+mov     esi, 4320A2h
+mov     edi, 0
+call    logputs
+mov     esi, 432038h
+mov     edi, 0
+call    logputs
+mov     eax, cs:opt.dns_cache
+test    eax, eax
+jz      short loc_411B80
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    cache_host_lookup
+mov     rax, [rbp-30h]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_411B98
+call    ___stack_chk_fail
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

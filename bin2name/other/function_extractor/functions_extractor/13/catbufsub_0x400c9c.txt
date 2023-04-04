@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+buffer], rdi
+mov     [rbp+buf], rsi
+mov     [rbp+len], edx
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     eax, [rbp-14h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+cmp     rdx, rax
+jb      short loc_400D1F
+jmp     short loc_400CE0
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+lea     rdx, [rax+rax]
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     eax, [rbp-14h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+cmp     rdx, rax
+jnb     short loc_400CCC
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     edx, [rbp-14h]
+mov     rax, [rbp-8]
+mov     rcx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+add     rcx, rax
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     eax, [rbp-14h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+nop
+leave
+retn

@@ -1,0 +1,98 @@
+push    rbp
+mov     rbp, rsp
+add     rsp, 0FFFFFFFFFFFFFF80h
+mov     [rbp+filename], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-78h]
+lea     rsi, modes
+mov     rdi, rax
+call    _fopen
+mov     [rbp+map], rax
+cmp     [rbp+map], 0
+jnz     loc_40FFD0
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     rcx, [rbp-78h]
+lea     rsi, aSCannotOpenLoc_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 0
+call    _perror
+jmp     loc_40FFF3
+mov     rdx, [rbp-70h]
+lea     rax, [rbp-60h]
+mov     esi, 50h
+mov     rdi, rax
+call    _fgets
+test    rax, rax
+jz      loc_40FFE6
+lea     rax, [rbp-60h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+lea     rax, [rbp-60h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+lea     rax, [rbp-60h]
+mov     esi, 23h
+mov     rdi, rax
+call    _strchr
+mov     [rbp+value], rax
+cmp     [rbp+value], 0
+jz      short loc_40FF55
+mov     rax, [rbp-68h]
+mov     byte ptr [rax], 0
+lea     rax, [rbp-60h]
+mov     esi, 9
+mov     rdi, rax
+call    _strchr
+mov     [rbp+value], rax
+cmp     [rbp+value], 0
+jnz     short loc_40FF73
+jmp     short loc_40FFD0
+mov     rax, [rbp-68h]
+lea     rdx, [rax+1]
+mov     [rbp+value], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    removespaces
+lea     rax, [rbp-60h]
+mov     rdi, rax
+call    removespaces
+lea     rax, mylocale
+mov     rdx, [rax]
+lea     rax, [rbp-60h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40FFD0
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+lea     rax, mylocale
+mov     [rax], rdx
+mov     rax, [rbp-70h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jz      loc_40FEFA
+jmp     short loc_40FFE7
+nop
+mov     rax, [rbp-70h]
+mov     rdi, rax
+call    _fclose
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_410008
+call    ___stack_chk_fail
+leave
+retn

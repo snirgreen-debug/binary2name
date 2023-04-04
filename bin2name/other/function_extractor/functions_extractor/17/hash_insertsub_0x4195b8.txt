@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+table], rdi
+mov     [rbp+entry], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-10h]
+mov     rcx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    hash_insert_if_absent
+mov     [rbp+err], eax
+cmp     [rbp+err], 0FFFFFFFFh
+jz      short loc_419609
+cmp     [rbp+err], 0
+jnz     short loc_419603
+mov     rax, [rbp-10h]
+jmp     short loc_41960E
+mov     rax, [rbp-30h]
+jmp     short loc_41960E
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_419622
+call    ___stack_chk_fail
+leave
+retn

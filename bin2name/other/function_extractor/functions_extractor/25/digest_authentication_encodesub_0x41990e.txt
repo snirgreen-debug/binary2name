@@ -1,0 +1,427 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0F8h
+mov     [rbp+au], rdi
+mov     [rbp+user], rsi
+mov     [rbp+passwd], rdx
+mov     [rbp+method], rcx
+mov     [rbp+path], r8
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     cs:nonce_5639, 0
+mov     rax, cs:nonce_5639
+mov     cs:opaque_5638, rax
+mov     rax, cs:opaque_5638
+mov     cs:realm_5637, rax
+add     [rbp+au], 6
+jmp     loc_419B7E
+mov     rax, [rbp-0D8h]
+mov     rdi, rax
+call    skip_lws
+cdqe
+add     [rbp+au], rax
+mov     [rbp+i], 0
+jmp     loc_419A6E
+mov     eax, [rbp-0D0h]
+cdqe
+shl     rax, 4
+add     rax, 63EA08h
+mov     rdx, [rax]
+mov     eax, [rbp-0D0h]
+cdqe
+shl     rax, 4
+add     rax, 63EA00h
+mov     rcx, [rax]
+mov     rax, [rbp-0D8h]
+mov     rsi, rcx
+mov     rdi, rax
+call    extract_header_attr
+mov     [rbp+skip], eax
+cmp     [rbp+skip], 0
+jns     short loc_419A4D
+mov     rax, cs:realm_5637
+test    rax, rax
+jz      short loc_419A0D
+mov     rax, cs:realm_5637
+mov     rdi, rax
+call    _free
+mov     rax, cs:opaque_5638
+test    rax, rax
+jz      short loc_419A28
+mov     rax, cs:opaque_5638
+mov     rdi, rax
+call    _free
+mov     rax, cs:nonce_5639
+test    rax, rax
+jz      short loc_419A43
+mov     rax, cs:nonce_5639
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     loc_41A0B0
+cmp     [rbp+skip], 0
+jz      short loc_419A67
+mov     eax, [rbp-0CCh]
+cdqe
+add     [rbp+au], rax
+jmp     short loc_419A7D
+add     [rbp+i], 1
+mov     eax, [rbp-0D0h]
+cmp     eax, 2
+jbe     loc_4199A7
+cmp     [rbp+i], 3
+jnz     loc_419B4C
+jmp     short loc_419A94
+add     [rbp+au], 1
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_419AB0
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+cmp     al, 3Dh
+jnz     short loc_419A8C
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_419B4C
+add     [rbp+au], 1
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_419B4C
+mov     rax, [rbp-0D8h]
+mov     rdi, rax
+call    skip_lws
+cdqe
+add     [rbp+au], rax
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_419B4C
+add     [rbp+au], 1
+jmp     short loc_419B10
+add     [rbp+au], 1
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_419B2C
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_419B08
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_419B4C
+add     [rbp+au], 1
+jmp     short loc_419B4C
+add     [rbp+au], 1
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_419B68
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Ch
+jnz     short loc_419B44
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_419B7E
+add     [rbp+au], 1
+mov     rax, [rbp-0D8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_419980
+mov     rax, cs:realm_5637
+test    rax, rax
+jz      short loc_419BD0
+mov     rax, cs:nonce_5639
+test    rax, rax
+jz      short loc_419BD0
+cmp     [rbp+user], 0
+jz      short loc_419BD0
+cmp     [rbp+passwd], 0
+jz      short loc_419BD0
+cmp     [rbp+path], 0
+jz      short loc_419BD0
+cmp     [rbp+method], 0
+jnz     short loc_419C2B
+mov     rax, cs:realm_5637
+test    rax, rax
+jz      short loc_419BEB
+mov     rax, cs:realm_5637
+mov     rdi, rax
+call    _free
+mov     rax, cs:opaque_5638
+test    rax, rax
+jz      short loc_419C06
+mov     rax, cs:opaque_5638
+mov     rdi, rax
+call    _free
+mov     rax, cs:nonce_5639
+test    rax, rax
+jz      short loc_419C21
+mov     rax, cs:nonce_5639
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     loc_41A0B0
+call    gen_md5_context_size
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+ctx], rax
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    gen_md5_init
+mov     rax, [rbp-0E0h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-0C8h]
+mov     rax, [rbp-0E0h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+mov     rax, [rbp-0C8h]
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 43327Eh
+call    gen_md5_update
+mov     rax, cs:realm_5637
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rax, cs:realm_5637
+mov     rdx, [rbp-0C8h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+mov     rax, [rbp-0C8h]
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 43327Eh
+call    gen_md5_update
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-0C8h]
+mov     rax, [rbp-0E8h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-0C8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    gen_md5_finish
+lea     rdx, [rbp-0B0h]
+lea     rax, [rbp-0A0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    dump_hash
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    gen_md5_init
+mov     rax, [rbp-0F0h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-0C8h]
+mov     rax, [rbp-0F0h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+mov     rax, [rbp-0C8h]
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 43327Eh
+call    gen_md5_update
+mov     rax, [rbp-0F8h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-0C8h]
+mov     rax, [rbp-0F8h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-0C8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    gen_md5_finish
+lea     rdx, [rbp-0B0h]
+lea     rax, [rbp-70h]
+mov     rsi, rdx
+mov     rdi, rax
+call    dump_hash
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    gen_md5_init
+mov     rdx, [rbp-0C8h]
+lea     rax, [rbp-0A0h]
+mov     esi, 20h
+mov     rdi, rax
+call    gen_md5_update
+mov     rax, [rbp-0C8h]
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 43327Eh
+call    gen_md5_update
+mov     rax, cs:nonce_5639
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rax, cs:nonce_5639
+mov     rdx, [rbp-0C8h]
+mov     esi, ecx
+mov     rdi, rax
+call    gen_md5_update
+mov     rax, [rbp-0C8h]
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 43327Eh
+call    gen_md5_update
+mov     rdx, [rbp-0C8h]
+lea     rax, [rbp-70h]
+mov     esi, 20h
+mov     rdi, rax
+call    gen_md5_update
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-0C8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    gen_md5_finish
+lea     rdx, [rbp-0B0h]
+lea     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    dump_hash
+mov     rax, [rbp-0E0h]
+mov     rdi, rax
+call    _strlen
+mov     rbx, rax
+mov     rax, [rbp-0E0h]
+mov     rdi, rax
+call    _strlen
+add     rbx, rax
+mov     rax, cs:realm_5637
+mov     rdi, rax
+call    _strlen
+add     rbx, rax
+mov     rax, cs:nonce_5639
+mov     rdi, rax
+call    _strlen
+add     rbx, rax
+mov     rax, [rbp-0F8h]
+mov     rdi, rax
+call    _strlen
+add     rbx, rax
+mov     rax, cs:opaque_5638
+test    rax, rax
+jz      short loc_419F46
+mov     rax, cs:opaque_5638
+mov     rdi, rax
+call    _strlen
+jmp     short loc_419F4B
+mov     eax, 0
+add     rax, rbx
+add     rax, 0A0h
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+res], rax
+mov     rdi, cs:nonce_5639
+mov     rcx, cs:realm_5637
+mov     r8, [rbp-0F8h]
+mov     rdx, [rbp-0E0h]
+mov     rax, [rbp-0C0h]
+sub     rsp, 8
+lea     rsi, [rbp-40h]
+push    rsi
+mov     r9, r8
+mov     r8, rdi
+mov     esi, 433280h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+add     rsp, 10h
+mov     rax, cs:opaque_5638
+test    rax, rax
+jz      loc_41A071
+mov     rax, [rbp-0C0h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-0C0h]
+add     rax, rdx
+mov     [rbp+p], rax
+mov     rax, [rbp-0B8h]
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rdx, rax
+mov     eax, 0
+mov     rdi, rdx
+repne scasb
+mov     rax, rcx
+not     rax
+lea     rdx, [rax-1]
+mov     rax, [rbp-0B8h]
+add     rax, rdx
+mov     rbx, 65757161706F202Ch
+mov     [rax], rbx
+mov     word ptr [rax+8], 223Dh
+mov     byte ptr [rax+0Ah], 0
+mov     rdx, cs:opaque_5638
+mov     rax, [rbp-0B8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcat
+mov     rax, [rbp-0B8h]
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rdx, rax
+mov     eax, 0
+mov     rdi, rdx
+repne scasb
+mov     rax, rcx
+not     rax
+lea     rdx, [rax-1]
+mov     rax, [rbp-0B8h]
+add     rax, rdx
+mov     word ptr [rax], 22h
+mov     rax, [rbp-0C0h]
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rdx, rax
+mov     eax, 0
+mov     rdi, rdx
+repne scasb
+mov     rax, rcx
+not     rax
+lea     rdx, [rax-1]
+mov     rax, [rbp-0C0h]
+add     rax, rdx
+mov     word ptr [rax], 0A0Dh
+mov     byte ptr [rax+2], 0
+mov     rax, [rbp-0C0h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_41A0C4
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

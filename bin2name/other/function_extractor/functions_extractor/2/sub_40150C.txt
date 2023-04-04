@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     cs:qword_606250, rax
+nop
+pop     rbp
+retn

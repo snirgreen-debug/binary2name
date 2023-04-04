@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+1Ch], 1
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+14h], 0
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+18h], 0
+mov     [rbp+var_4], 0
+jmp     short loc_429B95
+mov     rax, [rbp-18h]
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+mov     ecx, [rbp-1Ch]
+mov     [rax+rdx*4], ecx
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 3
+jle     short loc_429B81
+mov     rax, [rbp-18h]
+mov     edx, [rbp-1Ch]
+mov     [rax+10h], edx
+nop
+pop     rbp
+retn

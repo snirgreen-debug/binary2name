@@ -1,0 +1,84 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 240h
+mov     [rbp+fd_min], edi
+mov     [rbp+fd_max], esi
+mov     [rbp+callback], rdx
+mov     [rbp+cb_context], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+rv], 0
+jmp     loc_405B85
+mov     eax, [rbp-228h]
+sub     eax, [rbp-224h]
+mov     [rbp+limit], eax
+cmp     [rbp+limit], 40h
+jle     short loc_405A6C
+mov     [rbp+limit], 40h
+mov     [rbp+i], 0
+jmp     short loc_405AC0
+mov     eax, [rbp-220h]
+cdqe
+mov     [rbp+rax*8+pf_0.events], 5
+mov     eax, [rbp-220h]
+cdqe
+mov     [rbp+rax*8+pf_0.revents], 0
+mov     edx, [rbp-224h]
+mov     eax, [rbp-220h]
+add     edx, eax
+mov     eax, [rbp-220h]
+cdqe
+mov     [rbp+rax*8+pf_0.fd], edx
+add     [rbp+i], 1
+mov     eax, [rbp-220h]
+cmp     eax, [rbp-21Ch]
+jl      short loc_405A78
+mov     eax, [rbp-21Ch]
+movsxd  rcx, eax
+lea     rax, [rbp-210h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    _poll
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0FFFFFFFFh
+jnz     short loc_405B07
+mov     eax, 0FFFFFFFFh
+jmp     loc_405B9C
+mov     [rbp+j], 0
+jmp     short loc_405B6B
+mov     eax, [rbp-218h]
+cdqe
+movzx   eax, word ptr [rbp+rax*8-20Ah]
+cmp     ax, 20h
+jz      short loc_405B64
+mov     eax, [rbp-218h]
+cdqe
+mov     edx, [rbp+rax*8-210h]
+mov     rcx, [rbp-238h]
+mov     rax, [rbp-230h]
+mov     rsi, rcx
+mov     edi, edx
+call    rax
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jz      short loc_405B64
+mov     eax, [rbp-214h]
+jmp     short loc_405B9C
+add     [rbp+j], 1
+mov     eax, [rbp-218h]
+cmp     eax, [rbp-21Ch]
+jl      short loc_405B13
+mov     eax, [rbp-21Ch]
+add     [rbp+fd_min], eax
+mov     eax, [rbp-224h]
+cmp     eax, [rbp-228h]
+jl      loc_405A47
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_405BB0
+call    ___stack_chk_fail
+leave
+retn

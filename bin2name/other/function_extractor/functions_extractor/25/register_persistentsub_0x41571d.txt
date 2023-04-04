@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+host], rdi
+mov     eax, esi
+mov     [rbp+fd], edx
+mov     [rbp+port], ax
+mov     eax, cs:pc_active_p
+test    eax, eax
+jz      short loc_41577E
+mov     eax, cs:pc_last_fd
+cmp     eax, [rbp-10h]
+jz      loc_41581E
+mov     eax, cs:pc_last_fd
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_415779
+mov     eax, cs:pc_last_fd
+mov     esi, eax
+mov     edi, 4327A8h
+mov     eax, 0
+call    debug_logprintf
+call    invalidate_persistent
+mov     rax, cs:pc_last_host_ip
+test    rax, rax
+jz      short loc_4157A3
+mov     ecx, 433320h
+mov     edx, 1B8h
+mov     esi, 4326D6h
+mov     edi, 4327B7h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     esi, 1
+mov     rdi, rax
+call    lookup_host
+mov     cs:pc_last_host_ip, rax
+mov     rax, cs:pc_last_host_ip
+test    rax, rax
+jnz     short loc_4157E0
+mov     ecx, 433320h
+mov     edx, 1BDh
+mov     esi, 4326D6h
+mov     edi, 4327CFh
+call    ___assert_fail
+movzx   eax, word ptr [rbp-0Ch]
+mov     cs:pc_last_port, ax
+mov     eax, [rbp-10h]
+mov     cs:pc_last_fd, eax
+mov     cs:pc_active_p, 1
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short locret_41581F
+mov     eax, [rbp-10h]
+mov     esi, eax
+mov     edi, 4327E8h
+mov     eax, 0
+call    debug_logprintf
+jmp     short locret_41581F
+nop
+leave
+retn

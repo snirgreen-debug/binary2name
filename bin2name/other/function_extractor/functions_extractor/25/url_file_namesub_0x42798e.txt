@@ -1,0 +1,190 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 68h
+mov     [rbp+u], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+fnres.base], 0
+mov     [rbp+fnres.size], 0
+mov     [rbp+fnres.tail], 0
+mov     rax, cs:opt.dir_prefix
+test    rax, rax
+jz      short loc_4279E2
+mov     rax, cs:opt.dir_prefix
+lea     rdx, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    append_string
+mov     eax, cs:opt.dirstruct
+test    eax, eax
+jz      loc_427AAA
+mov     eax, cs:opt.add_hostdir
+test    eax, eax
+jz      loc_427A97
+mov     eax, [rbp-34h]
+test    eax, eax
+jz      short loc_427A16
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 2Fh
+call    append_char
+mov     rax, [rbp-68h]
+mov     rax, [rax+10h]
+lea     rdx, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    append_string
+mov     rax, [rbp-68h]
+mov     ebx, [rax+18h]
+mov     rax, [rbp-68h]
+mov     eax, [rax+8]
+mov     edi, eax
+call    scheme_default_port
+cmp     ebx, eax
+jz      short loc_427A97
+mov     rax, [rbp-68h]
+mov     eax, [rax+18h]
+movsxd  rdx, eax
+lea     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    number_to_string
+mov     eax, cs:opt.restrict_files_os
+cmp     eax, 1
+jz      short loc_427A71
+mov     edx, 3Ah
+jmp     short loc_427A76
+mov     edx, 2Bh
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, edx
+call    append_char
+lea     rdx, [rbp-40h]
+lea     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    append_string
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-68h]
+mov     rsi, rdx
+mov     rdi, rax
+call    append_dir_structure
+mov     eax, [rbp-34h]
+test    eax, eax
+jz      short loc_427AC2
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 2Fh
+call    append_char
+mov     rax, [rbp-68h]
+mov     rax, [rax+48h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_427ADB
+mov     rax, [rbp-68h]
+mov     rax, [rax+48h]
+jmp     short loc_427AE0
+mov     eax, 43743Ah
+mov     [rbp+u_file], rax
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-60h]
+lea     rsi, [rdx+rax]
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-60h]
+mov     rcx, rdx
+mov     edx, 0
+mov     rdi, rax
+call    append_uri_pathel
+mov     rax, [rbp-68h]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_427B39
+mov     rax, [rbp-68h]
+mov     rax, [rax+30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_427B39
+mov     rax, [rbp-68h]
+mov     rax, [rax+30h]
+jmp     short loc_427B3E
+mov     eax, 0
+mov     [rbp+u_query], rax
+cmp     [rbp+u_query], 0
+jz      short loc_427B9D
+mov     eax, cs:opt.restrict_files_os
+cmp     eax, 1
+jz      short loc_427B5B
+mov     edx, 3Fh
+jmp     short loc_427B60
+mov     edx, 40h
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, edx
+call    append_char
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-58h]
+lea     rsi, [rdx+rax]
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     rcx, rdx
+mov     edx, 1
+mov     rdi, rax
+call    append_uri_pathel
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 0
+call    append_char
+mov     rax, [rbp-40h]
+mov     [rbp+fname], rax
+mov     eax, cs:opt.noclobber
+test    eax, eax
+jnz     short loc_427BDE
+mov     eax, cs:opt.always_rest
+test    eax, eax
+jnz     short loc_427BDE
+mov     eax, cs:opt.timestamping
+test    eax, eax
+jnz     short loc_427BDE
+mov     eax, cs:opt.dirstruct
+test    eax, eax
+jz      short loc_427C04
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jz      short loc_427BFE
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    file_non_directory_p
+test    eax, eax
+jz      short loc_427C04
+mov     rax, [rbp-50h]
+jmp     short loc_427C33
+mov     rax, [rbp-50h]
+mov     esi, 1
+mov     rdi, rax
+call    unique_name
+mov     [rbp+unique], rax
+mov     rax, [rbp-48h]
+cmp     rax, [rbp-50h]
+jz      short loc_427C2F
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-48h]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_427C47
+call    ___stack_chk_fail
+add     rsp, 68h
+pop     rbx
+pop     rbp
+retn

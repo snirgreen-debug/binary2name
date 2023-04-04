@@ -1,0 +1,19 @@
+sub     rsp, 18h
+mov     rax, fs:28h
+mov     [rsp+18h+var_10], rax
+xor     eax, eax
+test    rdi, rdi
+mov     eax, 2
+jz      short loc_410D23
+mov     rsi, rsp
+call    _strtod
+mov     rax, [rsp]
+cmp     byte ptr [rax], 0
+setz    al
+movzx   eax, al
+mov     rdx, [rsp+8]
+xor     rdx, fs:28h
+jnz     short loc_410D38
+add     rsp, 18h
+retn
+call    ___stack_chk_fail

@@ -1,0 +1,123 @@
+push    r13
+push    r12
+mov     r12, pfile
+push    rbp
+push    rbx
+mov     rbp, pibDum
+mov     pibDum, szLex
+mov     rbx, szLex
+mov     r13d, ecx
+sub     rsp, 28h
+mov     pfile, rsp
+mov     rax, fs:28h
+mov     [rsp+48h+var_30], rax
+xor     eax, eax
+call    GetKeywordCode
+test    eax, eax
+jz      loc_40E068
+cmp     eax, 14h
+jz      short loc_40E020
+xor     ecx, ecx
+mov     rdx, szLex
+mov     esi, 8101h
+mov     rdi, pibDum
+call    ReportError
+mov     rax, [rsp+18h]
+xor     rax, fs:28h
+jnz     loc_40E1B0
+add     rsp, 28h
+pop     rbx
+pop     rbp
+pop     pfile
+pop     iEqType
+retn
+lea     r9, [rsp+10h]
+lea     r8, [rsp+8]
+lea     rdx, [rsp+4]
+mov     rcx, szLex
+mov     esi, 1
+mov     rdi, pibDum
+mov     [rsp+48h+iArg], 1
+call    GetFuncArgs
+test    eax, eax
+jnz     loc_40E0F0
+xor     edx, edx
+xor     ecx, ecx
+mov     esi, 8105h
+mov     rdi, pibDum
+call    ReportError
+jmp     short loc_40E000
+mov     rdi, cs:vpvmGloVarList
+mov     rsi, szLex
+call    GetVarPTR
+test    rax, rax
+mov     pibDum, rax
+jz      loc_40E150
+xor     ecx, ecx
+xor     edx, edx
+xor     esi, esi
+cmp     r13d, 5
+jz      short loc_40E094
+mov     esi, 414606h
+mov     rdi, rbp
+call    GetName
+mov     rsi, pfile
+mov     rdi, rax
+call    _fputs
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jnz     loc_40E000
+mov     eax, cs:bForR
+test    eax, eax
+jnz     loc_40E000
+mov     rcx, pfile
+mov     edx, 5
+mov     esi, 1
+mov     edi, 414612h
+call    _fwrite
+jmp     loc_40E000
+mov     rdi, cs:vpvmGloVarList
+mov     rsi, szLex
+call    GetVarPTR
+test    pvm, pvm
+jz      loc_40E04F
+mov     rcx, [pvm+10h]
+mov     rdx, szLex
+and     ecx, 0F0000h
+cmp     rcx, 10000h
+jnz     loc_40E051
+xor     esi, esi
+mov     ecx, 90000h
+mov     edx, 4145FDh
+mov     rdi, pvm
+call    GetName
+mov     rsi, pfile
+mov     rdi, rax
+call    _fputs
+jmp     loc_40E000
+lea     eax, [iEqType-4]
+cmp     eax, 1
+jbe     short loc_40E15F
+cmp     r13d, 7
+jnz     short loc_40E1A0
+cmp     byte ptr [__s2], 74h
+jnz     short loc_40E16A
+cmp     byte ptr [__s2+1], 0
+jz      short loc_40E17B
+mov     edi, 412E10h
+mov     ecx, 5
+mov     rsi, __s2
+repe cmpsb
+jnz     short loc_40E1A0
+mov     rcx, pfile
+mov     edx, 9
+mov     esi, 1
+mov     edi, 414648h
+call    _fwrite
+jmp     loc_40E000
+mov     rsi, pfile
+mov     rdi, rbx
+call    _fputs
+jmp     loc_40E000
+call    ___stack_chk_fail

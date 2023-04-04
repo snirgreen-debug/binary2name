@@ -1,0 +1,123 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     edi, 15h
+call    make_nocase_string_hash_table
+mov     cs:interesting_tags, rax
+mov     [rbp+i], 0
+jmp     short loc_413D11
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+lea     rsi, [rax+63E580h]
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63E588h
+mov     rcx, [rax]
+mov     rax, cs:interesting_tags
+mov     rdx, rsi
+mov     rsi, rcx
+mov     rdi, rax
+call    hash_table_put
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+cmp     eax, 14h
+jbe     short loc_413CC2
+mov     rax, cs:opt.ignore_tags
+test    rax, rax
+jz      short loc_413D5C
+mov     rax, cs:opt.ignore_tags
+mov     [rbp+ignored], rax
+jmp     short loc_413D50
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, cs:interesting_tags
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_remove
+add     [rbp+ignored], 8
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_413D32
+mov     rax, cs:opt.follow_tags
+test    rax, rax
+jz      loc_413DF3
+mov     edi, 0
+call    make_nocase_string_hash_table
+mov     [rbp+intersect], rax
+mov     rax, cs:opt.follow_tags
+mov     [rbp+followed], rax
+jmp     short loc_413DCD
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, cs:interesting_tags
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+t], rax
+cmp     [rbp+t], 0
+jz      short loc_413DC7
+mov     rax, [rbp-18h]
+mov     rcx, [rax]
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rax
+call    hash_table_put
+jmp     short loc_413DC8
+nop
+add     [rbp+followed], 8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_413D87
+mov     rax, cs:interesting_tags
+mov     rdi, rax
+call    hash_table_destroy
+mov     rax, [rbp-10h]
+mov     cs:interesting_tags, rax
+mov     edi, 0Ah
+call    make_nocase_string_hash_table
+mov     cs:interesting_attributes, rax
+mov     [rbp+i], 0
+jmp     short loc_413E30
+mov     eax, [rbp-24h]
+cdqe
+mov     rdx, [rax*8+63E960h]
+mov     rax, cs:interesting_attributes
+mov     rsi, rdx
+mov     rdi, rax
+call    string_set_add
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+cmp     eax, 4
+jbe     short loc_413E0D
+mov     [rbp+i], 0
+jmp     short loc_413E73
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63E788h
+mov     rdx, [rax]
+mov     rax, cs:interesting_attributes
+mov     rsi, rdx
+mov     rdi, rax
+call    string_set_add
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+cmp     eax, 13h
+jbe     short loc_413E41
+nop
+leave
+retn

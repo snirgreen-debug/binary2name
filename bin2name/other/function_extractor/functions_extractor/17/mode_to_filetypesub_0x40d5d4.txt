@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+m], edi
+cmp     [rbp+m], 8000h
+jnz     short loc_40D5EB
+mov     eax, 42CDE3h
+jmp     short loc_40D650
+cmp     [rbp+m], 4000h
+jnz     short loc_40D5FB
+mov     eax, 42CDE5h
+jmp     short loc_40D650
+cmp     [rbp+m], 0A000h
+jnz     short loc_40D60B
+mov     eax, 42CDE7h
+jmp     short loc_40D650
+cmp     [rbp+m], 0C000h
+jnz     short loc_40D61B
+mov     eax, 42CDE9h
+jmp     short loc_40D650
+cmp     [rbp+m], 6000h
+jnz     short loc_40D62B
+mov     eax, 42CDEBh
+jmp     short loc_40D650
+cmp     [rbp+m], 2000h
+jnz     short loc_40D63B
+mov     eax, 42CDEDh
+jmp     short loc_40D650
+cmp     [rbp+m], 1000h
+jnz     short loc_40D64B
+mov     eax, 42CDEFh
+jmp     short loc_40D650
+mov     eax, 42CDF1h
+pop     rbp
+retn

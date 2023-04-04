@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+verbose], edi
+lea     rax, firstalias
+mov     rax, [rax]
+mov     [rbp+aliasptr], rax
+jmp     loc_40EBCD
+cmp     [rbp+verbose], 0
+jz      short loc_40EB2F
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aDoingUnitListS
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     esi, 0FFFFFFFEh
+mov     rdi, rax
+call    checkunitlist
+test    eax, eax
+jz      short loc_40EB63
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitListSConta
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    ulookup
+test    rax, rax
+jz      short loc_40EB92
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitListSHides
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    fnlookup
+test    rax, rax
+jz      short loc_40EBC1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitListSHides_0
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     [rbp+aliasptr], rax
+cmp     [rbp+aliasptr], 0
+jnz     loc_40EB0E
+nop
+leave
+retn

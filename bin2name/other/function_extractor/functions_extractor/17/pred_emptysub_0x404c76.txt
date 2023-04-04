@@ -1,0 +1,130 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-40h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     loc_404E3A
+mov     [rbp+empty], 1
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     rcx, cs:state_0.rel_pathname
+mov     eax, cs:state_0.cwd_dir_fd
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+mov     eax, 0
+call    _openat
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+jns     short loc_404D23
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 42B00Ah
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     cs:state_0.exit_status, 1
+mov     eax, 0
+jmp     loc_404E62
+mov     eax, [rbp-24h]
+mov     edi, eax
+call    _fdopendir
+mov     [rbp+d], rax
+cmp     [rbp+d], 0
+jnz     short loc_404D80
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 42B00Ah
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     cs:state_0.exit_status, 1
+mov     eax, 0
+jmp     loc_404E62
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _readdir
+mov     [rbp+dp], rax
+jmp     short loc_404DD8
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+13h]
+cmp     al, 2Eh
+jnz     short loc_404DC2
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+14h]
+test    al, al
+jz      short loc_404DC8
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+14h]
+cmp     al, 2Eh
+jnz     short loc_404DC2
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+15h]
+test    al, al
+jz      short loc_404DC8
+mov     [rbp+empty], 0
+jmp     short loc_404DDF
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _readdir
+mov     [rbp+dp], rax
+cmp     [rbp+dp], 0
+jnz     short loc_404D92
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _closedir
+test    eax, eax
+jz      short loc_404E34
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 42B00Ah
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     cs:state_0.exit_status, 1
+mov     eax, 0
+jmp     short loc_404E62
+movzx   eax, byte ptr [rbp-25h]
+jmp     short loc_404E62
+mov     rax, [rbp-40h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_404E5D
+mov     rax, [rbp-40h]
+mov     rax, [rax+30h]
+test    rax, rax
+setz    al
+jmp     short loc_404E62
+mov     eax, 0
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

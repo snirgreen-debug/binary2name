@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+movsd   [rbp+var_10], xmm0
+mov     rax, cs:qword_642F38
+mov     rax, [rax+18h]
+mov     rcx, [rbp-10h]
+mov     rdx, [rbp-8]
+mov     [rbp+var_18], rcx
+movsd   xmm0, qword ptr [rbp-18h]
+mov     rdi, rdx
+call    rax
+nop
+leave
+retn

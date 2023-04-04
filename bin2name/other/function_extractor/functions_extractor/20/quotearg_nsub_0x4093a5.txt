@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+n], edi
+mov     [rbp+arg], rsi
+mov     rsi, [rbp-10h]
+mov     eax, [rbp-4]
+mov     ecx, 611560h
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     edi, eax
+call    quotearg_n_options
+leave
+retn

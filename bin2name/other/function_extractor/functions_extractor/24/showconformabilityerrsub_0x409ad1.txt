@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+havestr], rdi
+mov     [rbp+have], rsi
+mov     [rbp+wantstr], rdx
+mov     [rbp+want], rcx
+lea     rdi, aConformability_0
+call    logputs
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409B1E
+mov     rax, [rbp-8]
+mov     rsi, rax
+lea     rdi, aS_1
+mov     eax, 0
+call    logprintf
+jmp     short loc_409B37
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_409B37
+mov     edi, 9
+call    logputchar
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    showunit
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409B6C
+mov     rax, [rbp-18h]
+mov     rsi, rax
+lea     rdi, aS_2
+mov     eax, 0
+call    logprintf
+jmp     short loc_409B93
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_409B89
+lea     rdi, asc_4147E1
+call    logputs
+jmp     short loc_409B93
+mov     edi, 0Ah
+call    logputchar
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    showunit
+mov     edi, 0Ah
+call    logputchar
+nop
+leave
+retn

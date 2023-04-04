@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+cmp     [rbp+var_8], 0
+jz      short loc_41F84C
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_41F7FC
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_41F801
+mov     eax, 0
+cmp     rax, [rbp-8]
+jnz     short loc_41F823
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     qword ptr [rax], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+24h]
+test    eax, eax
+jz      short loc_41F83E
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    grecs_grecs_free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_grecs_free
+jmp     short locret_41F84D
+nop
+leave
+retn

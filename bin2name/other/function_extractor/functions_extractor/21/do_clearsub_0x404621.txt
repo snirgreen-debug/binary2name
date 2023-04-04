@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+script], rdi
+mov     [rbp+line], rsi
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, 0
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtobot
+mov     rax, [rbp-10h]
+add     rax, 2
+mov     rdi, rax
+call    banner
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    get_script_line
+mov     byte ptr cs:global_prior_command, 42h
+nop
+leave
+retn

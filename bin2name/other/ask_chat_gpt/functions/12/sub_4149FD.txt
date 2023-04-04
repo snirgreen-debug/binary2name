@@ -1,0 +1,113 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+var_58], rdi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_68], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    sub_429AC3
+mov     [rbp+var_48], rax
+cmp     [rbp+var_48], 0
+jnz     short loc_414A70
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-58h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 43264Fh
+mov     edi, 1
+mov     eax, 0
+call    sub_41CD55
+mov     eax, 0
+jmp     loc_414BA9
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_414A98
+mov     rax, [rbp-48h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     edi, 432657h
+mov     eax, 0
+call    sub_41CEC0
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     [rbp+var_40], rax
+mov     [rbp+var_10], 0
+mov     rax, [rbp-10h]
+mov     [rbp+var_18], rax
+mov     [rbp+var_38], 0
+cmp     [rbp+var_60], 0
+jnz     short loc_414ACB
+mov     rax, cs:qword_647700
+jmp     short loc_414ACF
+mov     rax, [rbp-60h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-58h]
+mov     [rbp+var_28], rax
+mov     [rbp+var_20], 0
+mov     rax, cs:ptr
+test    rax, rax
+jnz     short loc_414AF3
+call    sub_413CA0
+mov     [rbp+var_4C], 2
+mov     eax, cs:dword_647808
+test    eax, eax
+jz      short loc_414B08
+or      [rbp+var_4C], 1
+mov     rcx, cs:qword_647580
+mov     rdi, cs:ptr
+mov     rax, [rbp-48h]
+mov     rax, [rax+8]
+mov     r10d, eax
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     esi, [rbp-4Ch]
+lea     rdx, [rbp-40h]
+sub     rsp, 8
+push    rcx
+mov     r9, rdi
+mov     r8d, esi
+mov     rcx, rdx
+mov     edx, 41498Bh
+mov     esi, r10d
+mov     rdi, rax
+call    sub_412EF0
+add     rsp, 10h
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_414B74
+mov     edx, [rbp-20h]
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     edi, 43266Eh
+mov     eax, 0
+call    sub_41CEC0
+cmp     [rbp+var_68], 0
+jz      short loc_414B84
+mov     edx, [rbp-20h]
+mov     rax, [rbp-68h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+test    rax, rax
+jz      short loc_414B99
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    sub_429E0C
+mov     rax, [rbp-18h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_414BBD
+call    ___stack_chk_fail
+leave
+retn

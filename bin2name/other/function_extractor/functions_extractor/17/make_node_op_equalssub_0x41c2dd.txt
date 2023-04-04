@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+new_mode], edi
+mov     [rbp+mentioned], esi
+mov     edi, 20h
+call    xmalloc
+mov     [rbp+p], rax
+mov     rax, [rbp-8]
+mov     byte ptr [rax], 3Dh
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1], 1
+mov     rax, [rbp-8]
+mov     dword ptr [rax+4], 0FFFh
+mov     rax, [rbp-8]
+mov     edx, [rbp-14h]
+mov     [rax+8], edx
+mov     rax, [rbp-8]
+mov     edx, [rbp-18h]
+mov     [rax+0Ch], edx
+mov     rax, [rbp-8]
+add     rax, 10h
+mov     byte ptr [rax+1], 0
+mov     rax, [rbp-8]
+leave
+retn

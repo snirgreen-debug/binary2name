@@ -1,0 +1,62 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:bi_valid
+cmp     eax, 8
+jle     loc_401ED4
+mov     eax, cs:outcnt
+cmp     eax, 3FFDh
+ja      short loc_401E6E
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+movzx   edx, cs:bi_buf
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+movzx   edx, cs:bi_buf
+shr     dx, 8
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+jmp     loc_401F0E
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+movzx   edx, cs:bi_buf
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_401E9E
+call    flush_outbuf
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+movzx   edx, cs:bi_buf
+shr     dx, 8
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_401F0E
+call    flush_outbuf
+jmp     short loc_401F0E
+mov     eax, cs:bi_valid
+test    eax, eax
+jle     short loc_401F0E
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+movzx   edx, cs:bi_buf
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_401F0E
+call    flush_outbuf
+mov     cs:bi_buf, 0
+mov     cs:bi_valid, 0
+nop
+pop     rbp
+retn

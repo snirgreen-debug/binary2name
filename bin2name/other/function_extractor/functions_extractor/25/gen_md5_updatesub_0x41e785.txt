@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+buffer], rdi
+mov     [rbp+len], esi
+mov     [rbp+ctx], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+ctx_imp], rax
+mov     eax, [rbp-1Ch]
+movsxd  rcx, eax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    md5_process_bytes
+nop
+leave
+retn

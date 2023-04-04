@@ -1,0 +1,68 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+str], rdi
+mov     [rbp+dest], rsi
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+l], eax
+mov     rax, [rbp-30h]
+mov     [rbp+G_], rax
+mov     rax, [rbp-10h]
+mov     edx, [rax+0Ch]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+cdqe
+mov     [rbp+do_realloc_needed_size], rax
+mov     [rbp+do_realloc_newsize], 0
+jmp     short loc_427430
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+add     eax, eax
+cdqe
+mov     [rbp+do_realloc_newsize], rax
+cmp     [rbp+do_realloc_newsize], 1Fh
+jg      short loc_427423
+mov     [rbp+do_realloc_newsize], 20h
+mov     rax, [rbp-18h]
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     [rax+8], edx
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+cdqe
+cmp     rax, [rbp-8]
+jl      short loc_427405
+cmp     [rbp+do_realloc_newsize], 0
+jz      short loc_427466
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-30h]
+mov     rcx, [rax]
+mov     rax, [rbp-30h]
+mov     eax, [rax+0Ch]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-30h]
+mov     edx, [rax+0Ch]
+mov     eax, [rbp-1Ch]
+add     edx, eax
+mov     rax, [rbp-30h]
+mov     [rax+0Ch], edx
+nop
+leave
+retn

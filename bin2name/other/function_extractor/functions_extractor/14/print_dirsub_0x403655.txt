@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+stream], rax
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+mov     esi, 422D70h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+leave
+retn

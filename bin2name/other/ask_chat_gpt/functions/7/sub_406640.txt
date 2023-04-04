@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     rax, cs:stdout
+mov     rdi, rax
+call    sub_40AF96
+test    eax, eax
+jz      loc_406704
+movzx   eax, cs:byte_611550
+xor     eax, 1
+test    al, al
+jnz     short loc_40667E
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 20h
+jz      loc_406704
+mov     edi, 40DCE7h
+call    _gettext
+mov     [rbp+var_18], rax
+mov     rax, cs:qword_611548
+test    rax, rax
+jz      short loc_4066D3
+mov     rax, cs:qword_611548
+mov     rdi, rax
+call    sub_409639
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     r8, rdx
+mov     rcx, rbx
+mov     edx, 40DCF3h
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+jmp     short loc_4066F7
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     rcx, rdx
+mov     edx, 40DCFAh
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     eax, cs:dword_6112F0
+mov     edi, eax
+call    __exit
+mov     rax, cs:stderr
+mov     rdi, rax
+call    sub_40AF96
+test    eax, eax
+jz      short loc_406724
+mov     eax, cs:dword_6112F0
+mov     edi, eax
+call    __exit
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

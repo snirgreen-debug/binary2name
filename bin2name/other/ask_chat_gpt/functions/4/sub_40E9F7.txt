@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_4], edi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_8], ecx
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jz      short loc_40EA1E
+cmp     eax, 14h
+jnz     short loc_40EA35
+mov     rdx, [rbp-18h]
+mov     rcx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_42892E
+jmp     short locret_40EA38
+mov     eax, [rbp-8]
+leave
+retn

@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 405F6Fh
+call    _gettext
+mov     rdx, rax
+mov     eax, cs:status
+mov     rcx, rdx
+mov     edx, 405F80h
+mov     esi, 0
+mov     edi, eax
+mov     eax, 0
+call    _error
+call    _abort

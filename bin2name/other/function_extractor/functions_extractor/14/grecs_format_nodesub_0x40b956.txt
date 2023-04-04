@@ -1,0 +1,148 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_10], 0
+mov     eax, [rbp-1Ch]
+and     eax, 0F00h
+test    eax, eax
+jnz     short loc_40B992
+call    ___errno_location
+mov     dword ptr [rax], 16h
+mov     eax, 1
+jmp     locret_40BB5E
+cmp     [rbp+var_18], 0
+jnz     short loc_40B9BC
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-28h]
+mov     rdx, [rdx+8]
+mov     rsi, rdx
+mov     edi, 423DD6h
+call    rax
+mov     eax, 0
+jmp     locret_40BB5E
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+cmp     eax, 1
+jz      short loc_40BA42
+cmp     eax, 1
+jb      short loc_40B9D5
+cmp     eax, 2
+jnz     loc_40BB59
+mov     eax, [rbp-1Ch]
+and     eax, 1000h
+test    eax, eax
+jz      short loc_40BA42
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     [rbp+var_18], rax
+jmp     short loc_40BA36
+mov     rdx, [rbp-28h]
+mov     ecx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, ecx
+mov     rdi, rax
+call    grecs_format_node
+mov     rax, [rbp-18h]
+mov     rax, [rax+38h]
+test    rax, rax
+jz      short loc_40BA2A
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-28h]
+mov     rdx, [rdx+8]
+mov     rsi, rdx
+mov     edi, 423DE8h
+call    rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+38h]
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jnz     short loc_40B9EF
+jmp     loc_40BB59
+mov     eax, [rbp-1Ch]
+and     eax, 2000h
+test    eax, eax
+jz      short loc_40BAC7
+mov     eax, [rbp-1Ch]
+and     eax, 100h
+test    eax, eax
+jz      short loc_40BA82
+mov     eax, [rbp-1Ch]
+and     eax, 200h
+test    eax, eax
+jz      short loc_40BA74
+mov     rax, [rbp-18h]
+add     rax, 8
+mov     [rbp+var_8], rax
+jmp     short loc_40BAAC
+mov     rax, [rbp-18h]
+add     rax, 50h
+mov     [rbp+var_8], rax
+jmp     short loc_40BAAC
+mov     eax, [rbp-1Ch]
+and     eax, 200h
+test    eax, eax
+jz      short loc_40BAA0
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+add     rax, 8
+mov     [rbp+var_8], rax
+jmp     short loc_40BAAC
+mov     rax, [rbp-18h]
+add     rax, 8
+mov     [rbp+var_8], rax
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_format_locus
+mov     [rbp+var_10], 423DEAh
+mov     eax, [rbp-1Ch]
+and     eax, 100h
+test    eax, eax
+jz      short loc_40BB12
+cmp     [rbp+var_10], 0
+jz      short loc_40BAF5
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-28h]
+mov     rcx, [rdx+8]
+mov     rdx, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     rdx, [rbp-28h]
+mov     ecx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, ecx
+mov     rdi, rax
+call    grecs_format_node_path
+mov     [rbp+var_10], 423DEAh
+mov     eax, [rbp-1Ch]
+and     eax, 200h
+test    eax, eax
+jz      short loc_40BB59
+cmp     [rbp+var_10], 0
+jz      short loc_40BB40
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-28h]
+mov     rcx, [rdx+8]
+mov     rdx, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+70h]
+mov     rdx, [rbp-28h]
+mov     ecx, [rbp-1Ch]
+mov     esi, ecx
+mov     rdi, rax
+call    grecs_format_value
+mov     eax, 0
+leave
+retn

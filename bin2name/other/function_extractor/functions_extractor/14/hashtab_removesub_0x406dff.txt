@@ -1,0 +1,133 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, [rbp-28h]
+mov     rax, [rax+18h]
+mov     rdx, [rbp-28h]
+mov     edx, [rdx+4]
+mov     edx, edx
+mov     edx, [rdx*4+62D0A0h]
+mov     ecx, edx
+mov     rdx, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+var_14], eax
+mov     eax, [rbp-14h]
+mov     [rbp+var_18], eax
+jmp     short loc_406E8E
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jz      short loc_406EB0
+add     [rbp+var_18], 1
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+mov     eax, eax
+mov     eax, [rax*4+62D0A0h]
+cmp     [rbp+var_18], eax
+jb      short loc_406E7C
+mov     [rbp+var_18], 0
+mov     eax, [rbp-18h]
+cmp     eax, [rbp-14h]
+jnz     short loc_406E8E
+mov     eax, 2
+jmp     locret_406FC9
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     edx, [rbp-18h]
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_406E40
+jmp     short loc_406EB1
+nop
+mov     rdx, [rbp-8]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hashent_free
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     edx, [rbp-18h]
+shl     rdx, 3
+add     rax, rdx
+mov     qword ptr [rax], 0
+mov     eax, [rbp-18h]
+mov     [rbp+var_10], eax
+add     [rbp+var_18], 1
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+mov     eax, eax
+mov     eax, [rax*4+62D0A0h]
+cmp     [rbp+var_18], eax
+jb      short loc_406F03
+mov     [rbp+var_18], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     edx, [rbp-18h]
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406F27
+mov     eax, 0
+jmp     locret_406FC9
+mov     rax, [rbp-28h]
+mov     rax, [rax+18h]
+mov     rdx, [rbp-28h]
+mov     edx, [rdx+4]
+mov     edx, edx
+mov     edx, [rdx*4+62D0A0h]
+mov     esi, edx
+mov     rdx, [rbp-28h]
+mov     rdx, [rdx+10h]
+mov     ecx, [rbp-18h]
+shl     rcx, 3
+add     rdx, rcx
+mov     rdx, [rdx]
+mov     rdi, rdx
+call    rax
+mov     [rbp+var_C], eax
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-0Ch]
+jnb     short loc_406F72
+mov     eax, [rbp-0Ch]
+cmp     eax, [rbp-18h]
+jbe     loc_406EE3
+mov     eax, [rbp-18h]
+cmp     eax, [rbp-10h]
+jnb     short loc_406F86
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-0Ch]
+jb      loc_406EE3
+mov     eax, [rbp-0Ch]
+cmp     eax, [rbp-18h]
+ja      short loc_406F9A
+mov     eax, [rbp-18h]
+cmp     eax, [rbp-10h]
+jb      loc_406EE3
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     edx, [rbp-10h]
+shl     rdx, 3
+add     rdx, rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     ecx, [rbp-18h]
+shl     rcx, 3
+add     rax, rcx
+mov     rax, [rax]
+mov     [rdx], rax
+jmp     loc_406EC4
+leave
+retn

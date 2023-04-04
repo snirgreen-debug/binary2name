@@ -1,0 +1,152 @@
+push    rbp
+push    rbx
+mov     rbx, rdi
+sub     rsp, 8
+mov     rax, [rdi+20h]
+test    rax, rax
+jz      short loc_4065A6
+nop     word ptr [rax+rax+00h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+20h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+20h]
+call    _free
+test    rbp, rbp
+mov     [rbx+20h], rbp
+mov     rax, rbp
+jnz     short loc_406578
+mov     rax, [rbx+28h]
+test    rax, rax
+jz      short loc_4065DE
+nop
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+28h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+28h]
+call    _free
+test    rbp, rbp
+mov     [rbx+28h], rbp
+mov     rax, rbp
+jnz     short loc_4065B0
+mov     rax, [rbx+30h]
+test    rax, rax
+jz      short loc_40661E
+nop     word ptr [rax+rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+30h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+30h]
+call    _free
+test    rbp, rbp
+mov     [rbx+30h], rbp
+mov     rax, rbp
+jnz     short loc_4065F0
+mov     rax, [rbx+38h]
+test    rax, rax
+jz      short loc_40665E
+nop     word ptr [rax+rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+38h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+38h]
+call    _free
+test    rbp, rbp
+mov     [rbx+38h], rbp
+mov     rax, rbp
+jnz     short loc_406630
+mov     rax, [rbx+40h]
+test    rax, rax
+jz      short loc_40669E
+nop     word ptr [rax+rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+40h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+40h]
+call    _free
+test    rbp, rbp
+mov     [rbx+40h], rbp
+mov     rax, rbp
+jnz     short loc_406670
+mov     rax, [rbx+48h]
+test    rax, rax
+jz      short loc_4066DE
+nop     word ptr [rax+rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+48h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+48h]
+call    _free
+test    rbp, rbp
+mov     [rbx+48h], rbp
+mov     rax, rbp
+jnz     short loc_4066B0
+mov     rax, [rbx+50h]
+test    rax, rax
+jz      short loc_40671E
+nop     word ptr [rax+rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+50h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+50h]
+call    _free
+test    rbp, rbp
+mov     [rbx+50h], rbp
+mov     rax, rbp
+jnz     short loc_4066F0
+mov     rax, [rbx+58h]
+test    rax, rax
+jz      short loc_40675E
+nop     word ptr [rax+rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+58h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+58h]
+call    _free
+test    rbp, rbp
+mov     [rbx+58h], rbp
+mov     rax, rbp
+jnz     short loc_406730
+cmp     qword ptr [rbx+60h], 0
+jz      short loc_4067A0
+mov     rax, [rbx+38h]
+nop     dword ptr [rax+00000000h]
+mov     rdi, [rax]
+mov     rbp, [rax+18h]
+call    _free
+mov     rax, [rbx+38h]
+mov     rdi, [rax+8]
+call    _free
+mov     rdi, [rbx+38h]
+call    _free
+cmp     qword ptr [rbx+60h], 0
+mov     [rbx+38h], rbp
+mov     rax, rbp
+jnz     short loc_406770
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

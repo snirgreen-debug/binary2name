@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     eax, [rbp-14h]
+cdqe
+mov     rdi, rax
+call    _malloc
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_402A9B
+lea     rax, unk_61A8C8
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     rcx, [rbp-20h]
+lea     rsi, aSMemoryAllocat_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-8]
+leave
+retn

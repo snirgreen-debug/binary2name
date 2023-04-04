@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, rdi
+mov     r8, rsi
+mov     rsi, rax
+mov     rdi, rdx
+mov     rdi, r8
+mov     [rbp+ts.tv_sec], rsi
+mov     [rbp+ts.tv_nsec], rdi
+mov     [rbp+pred_ptr], rdx
+mov     [rbp+window], ecx
+mov     rax, [rbp-28h]
+mov     eax, [rax+3Ch]
+cmp     eax, 1
+jz      short loc_4047B6
+cmp     eax, 1
+jb      short loc_40478D
+cmp     eax, 2
+jz      short loc_4047DA
+jmp     loc_404832
+mov     rax, [rbp-28h]
+mov     rdx, [rax+48h]
+mov     rax, [rax+40h]
+mov     rdi, [rbp-20h]
+mov     rsi, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rax
+call    compare_ts
+test    eax, eax
+setnle  al
+jmp     locret_40484B
+mov     rax, [rbp-28h]
+mov     rdx, [rax+48h]
+mov     rax, [rax+40h]
+mov     rdi, [rbp-20h]
+mov     rsi, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rax
+call    compare_ts
+shr     eax, 1Fh
+jmp     short locret_40484B
+mov     rax, [rbp-28h]
+mov     rdx, [rax+48h]
+mov     rax, [rax+40h]
+mov     rdi, [rbp-20h]
+mov     rsi, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rax
+call    ts_difference
+movq    rax, xmm0
+mov     [rbp+delta], rax
+movsd   xmm0, qword ptr [rbp-8]
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jbe     short loc_404828
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-2Ch]
+ucomisd xmm0, qword ptr [rbp-8]
+jb      short loc_404828
+mov     eax, 1
+jmp     short loc_40482D
+mov     eax, 0
+and     eax, 1
+jmp     short locret_40484B
+mov     ecx, 42B2F0h
+mov     edx, 0DEh
+mov     esi, 42AFC0h
+mov     edi, 42AFC7h
+call    ___assert_fail
+leave
+retn

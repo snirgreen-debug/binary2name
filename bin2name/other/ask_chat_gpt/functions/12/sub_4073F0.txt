@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, [rbp-38h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-28h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-30h]
+mov     [rbp+var_18], rax
+jmp     loc_407555
+mov     rax, [rbp-18h]
+mov     eax, [rax+20h]
+test    eax, eax
+jz      loc_407545
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_407455
+mov     rax, [rbp-18h]
+mov     rdx, [rax+28h]
+mov     rax, cs:qword_6474E8
+cmp     rdx, rax
+jl      loc_407548
+mov     rax, [rbp-18h]
+mov     eax, [rax+1Ch]
+test    eax, eax
+jnz     short loc_407471
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     edi, 2Eh
+call    _fputc
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+cmp     eax, 0FFFFFFFFh
+jz      short loc_4074AD
+mov     rax, [rbp-18h]
+mov     edx, [rax+8]
+mov     rax, [rbp-10h]
+mov     esi, 430340h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-18h]
+mov     rcx, [rax+40h]
+mov     rax, [rbp-18h]
+mov     rsi, [rax+38h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+test    eax, eax
+jz      short loc_4074E1
+mov     r8d, 43033Bh
+jmp     short loc_4074E7
+mov     r8d, 430344h
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+1Ch]
+test    eax, eax
+jz      short loc_407501
+mov     edi, 430344h
+jmp     short loc_407506
+mov     edi, 43033Bh
+mov     rax, [rbp-10h]
+sub     rsp, 8
+push    rcx
+mov     r9, rsi
+mov     rcx, rdx
+mov     rdx, rdi
+mov     esi, 43034Ah
+mov     rdi, rax
+mov     eax, 1
+call    _fprintf
+add     rsp, 10h
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _ferror
+test    eax, eax
+jz      short loc_407549
+mov     eax, 1
+jmp     short locret_407565
+nop
+jmp     short loc_407549
+nop
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jnz     loc_407421
+mov     eax, 0
+leave
+retn

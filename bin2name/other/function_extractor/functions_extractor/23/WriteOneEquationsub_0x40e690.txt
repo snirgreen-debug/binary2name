@@ -1,0 +1,137 @@
+push    r12
+push    rbp
+mov     r12, pfile
+push    rbx
+mov     rax, [pvm+10h]
+mov     rbx, pvm
+mov     rbp, pInfo
+test    ah, 0F0h
+jnz     loc_40E7E0
+cmp     iType, 9
+ja      short loc_40E6C6
+mov     edx, 1
+mov     ecx, ebp
+shl     rdx, cl
+test    edx, 3D0h
+jnz     loc_40E750
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40E8CA
+cmp     rax, 0A0000h
+jz      loc_40E7B8
+mov     ecx, cs:bForR
+test    ecx, ecx
+jz      loc_40E820
+mov     edx, cs:bForInits
+test    edx, edx
+jz      loc_40E800
+cmp     rax, 10000h
+jz      loc_40E890
+cmp     rax, 20000h
+jz      loc_40E850
+jbe     loc_40E850
+cmp     rax, 30000h
+jz      loc_40E8C0
+cmp     rax, 90000h
+jnz     loc_40E850
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_40E7B8
+xor     ecx, ecx
+mov     edx, 4145FDh
+mov     esi, 414606h
+mov     rdi, pvm
+call    GetName
+mov     rcx, rax
+mov     edx, 414662h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_40E7B8
+mov     rsi, [pvm+8]
+mov     rdx, iType
+mov     rdi, pfile
+call    TranslateEquation
+pop     pvm
+mov     eax, 1
+pop     iType
+pop     pfile
+retn
+mov     rcx, [pvm+8]
+mov     rdi, pfile
+mov     edx, 41459Ah
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+pop     pvm
+mov     eax, 1
+pop     iType
+pop     pfile
+retn
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [pvm+10h]
+jmp     loc_40E6AA
+cmp     rax, 20000h
+jz      short loc_40E850
+ja      loc_40E71D
+cmp     rax, 10000h
+jnz     short loc_40E850
+mov     r8, [pvm]
+mov     ecx, 41403Ch
+jmp     short loc_40E858
+cmp     rax, 20000h
+jz      short loc_40E880
+jbe     short loc_40E840
+cmp     rax, 30000h
+jnz     loc_40E729
+mov     r8, [pvm]
+mov     ecx, 414045h
+jmp     short loc_40E858
+cmp     rax, 10000h
+jz      short loc_40E836
+nop     dword ptr [rax+rax+00000000h]
+mov     r8, [pvm]
+mov     ecx, 4140BDh
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+mov     ecx, 619CC0h
+jmp     loc_40E774
+mov     r8, [pvm]
+mov     ecx, 41402Bh
+jmp     short loc_40E858
+xor     ecx, ecx
+xor     edx, edx
+xor     esi, esi
+mov     rdi, pvm
+call    GetName
+mov     edx, 414652h
+mov     rcx, rax
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     loc_40E788
+mov     r8, [pvm]
+mov     ecx, 414059h
+jmp     short loc_40E858
+mov     rdx, [pvm]
+mov     edi, 1
+mov     esi, 414F68h
+xor     eax, eax
+call    ___printf_chk
+xor     edi, edi
+call    _exit

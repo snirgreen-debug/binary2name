@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 8
+mov     edi, 4320C8h
+call    _gettext
+mov     esi, 4320DDh
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 4320F3h
+call    _gettext
+mov     edx, 432108h
+mov     esi, 43212Fh
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     rbx, cs:stdout
+mov     edi, 432140h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+nop
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

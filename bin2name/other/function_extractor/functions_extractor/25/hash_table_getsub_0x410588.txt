@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+ht], rdi
+mov     [rbp+key], rsi
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_mapping
+mov     [rbp+mp], rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4105C5
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+jmp     short locret_4105CA
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,89 @@
+push    rbp
+mov     rbp, rsp
+push    new_pred
+sub     rsp, 18h
+mov     [rbp+entry], rdi
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_40988E
+mov     ecx, 42BF48h
+mov     edx, 5D4h
+mov     esi, 42B9B7h
+mov     edi, 42BCC6h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_4098B2
+mov     ecx, 42BF48h
+mov     edx, 5D5h
+mov     esi, 42B9B7h
+mov     edi, 42BCE0h
+call    ___assert_fail
+mov     rax, cs:predicates
+test    rax, rax
+jnz     short loc_4098DF
+mov     edi, 138h
+call    xmalloc
+mov     cs:predicates, rax
+mov     rax, cs:predicates
+mov     cs:last_pred, rax
+jmp     short loc_409901
+mov     edi, 138h
+call    xmalloc
+mov     new_pred, rax
+mov     rax, cs:last_pred
+mov     [rax+108h], new_pred
+mov     cs:last_pred, new_pred
+mov     rax, cs:last_pred
+mov     rdx, [rbp-18h]
+mov     [rax+130h], rdx
+mov     rax, cs:last_pred
+mov     qword ptr [rax], 0
+mov     rax, cs:last_pred
+mov     qword ptr [rax+8], 0
+mov     rax, cs:last_pred
+mov     dword ptr [rax+10h], 0
+mov     rax, cs:last_pred
+mov     dword ptr [rax+14h], 0
+mov     rax, cs:last_pred
+mov     byte ptr [rax+18h], 0
+mov     rax, cs:last_pred
+mov     byte ptr [rax+19h], 0
+mov     rax, cs:last_pred
+mov     byte ptr [rax+1Ah], 1
+mov     rax, cs:last_pred
+mov     byte ptr [rax+1Bh], 1
+mov     rax, cs:last_pred
+mov     byte ptr [rax+1Ch], 0
+mov     rax, cs:last_pred
+mov     dword ptr [rax+20h], 0Ah
+mov     rax, cs:last_pred
+mov     qword ptr [rax+30h], 42BD08h
+mov     rax, cs:last_pred
+mov     qword ptr [rax+38h], 0
+mov     rax, cs:last_pred
+mov     qword ptr [rax+38h], 0
+mov     rax, cs:last_pred
+mov     qword ptr [rax+108h], 0
+mov     rax, cs:last_pred
+mov     qword ptr [rax+110h], 0
+mov     rax, cs:last_pred
+mov     qword ptr [rax+118h], 0
+mov     rax, cs:last_pred
+movzx   edx, cs:options_0.literal_control_chars
+mov     [rax+28h], dl
+mov     rax, cs:last_pred
+mov     byte ptr [rax+29h], 0
+mov     rax, cs:last_pred
+movss   xmm0, cs:dword_42BF74
+movss   dword ptr [rax+24h], xmm0
+mov     rax, cs:last_pred
+mov     rdi, rax
+call    init_pred_perf
+mov     rax, cs:last_pred
+add     rsp, 18h
+pop     new_pred
+pop     rbp
+retn

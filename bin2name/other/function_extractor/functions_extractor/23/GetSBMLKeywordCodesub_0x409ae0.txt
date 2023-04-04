@@ -1,0 +1,22 @@
+push    rbp
+push    rbx
+mov     rbp, szKeyword
+mov     ebx, 6195A0h
+sub     rsp, 8
+mov     rsi, cs:vrgSBMLKW.szKeyword
+cmp     byte ptr [rsi], 0
+jnz     short loc_409B0C
+jmp     short loc_409B18
+add     pkm, 10h
+mov     rsi, [pkm]
+cmp     byte ptr [rsi], 0
+jz      short loc_409B18
+mov     rdi, szKeyword
+call    _strcmp
+test    eax, eax
+jnz     short loc_409B00
+mov     eax, [rbx+8]
+add     rsp, 8
+pop     rbx
+pop     szKeyword
+retn

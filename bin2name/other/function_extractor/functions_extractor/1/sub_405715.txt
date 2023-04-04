@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_34], edi
+mov     [rbp+var_40], rsi
+mov     [rbp+var_48], rdx
+mov     [rbp+var_50], rcx
+mov     rax, [rbp-40h]
+mov     rax, [rax+70h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-48h]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_34], 2
+jz      short loc_405777
+mov     edi, 422FE1h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-40h]
+add     rax, 8
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    sub_40AA55
+mov     eax, 1
+jmp     locret_405877
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_4057A5
+call    sub_40BD9B
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+20h], 406908h
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+jmp     short loc_4057B0
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+cmp     eax, 1
+jz      short loc_405830
+cmp     eax, 2
+jz      short loc_4057E0
+test    eax, eax
+jnz     loc_405872
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40540C
+jmp     loc_405872
+mov     [rbp+var_24], 0
+jmp     short loc_405818
+mov     rax, [rbp-10h]
+mov     rax, [rax+30h]
+mov     edx, [rbp-24h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40540C
+test    eax, eax
+jnz     short loc_40582D
+add     [rbp+var_24], 1
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+mov     rax, [rax+28h]
+cmp     rdx, rax
+jb      short loc_4057E9
+jmp     short loc_405872
+nop
+jmp     short loc_405872
+mov     rax, [rbp-10h]
+mov     rax, [rax+28h]
+mov     rax, [rax]
+mov     [rbp+var_20], rax
+jmp     short loc_405867
+mov     rax, [rbp-20h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40540C
+test    eax, eax
+jnz     short loc_405870
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     short loc_405841
+jmp     short loc_405871
+nop
+nop
+mov     eax, 0
+leave
+retn

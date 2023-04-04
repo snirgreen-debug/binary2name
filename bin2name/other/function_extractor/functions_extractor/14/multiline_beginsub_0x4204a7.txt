@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Dh
+jnz     short loc_4204ED
+add     [rbp+s], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     short loc_4204E0
+mov     cs:char_to_strip, 420484h
+add     [rbp+s], 1
+jmp     short loc_4204F8
+mov     cs:char_to_strip, 42046Fh
+jmp     short loc_4204F8
+mov     cs:char_to_strip, 0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jnz     short loc_42052C
+add     [rbp+s], 1
+mov     cs:multiline_unescape, 0
+mov     rax, [rbp-18h]
+mov     esi, 426723h
+mov     rdi, rax
+call    _strcspn
+mov     cs:multiline_delimiter_len, rax
+jmp     short loc_420594
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_420572
+add     [rbp+s], 1
+mov     cs:multiline_unescape, 0
+mov     rax, [rbp-18h]
+mov     esi, 22h
+mov     rdi, rax
+call    _strchr
+mov     [rbp+var_8], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+mov     cs:multiline_delimiter_len, rax
+jmp     short loc_420594
+mov     rax, [rbp-18h]
+mov     esi, 426723h
+mov     rdi, rax
+call    _strcspn
+mov     cs:multiline_delimiter_len, rax
+mov     cs:multiline_unescape, 1
+mov     rax, cs:multiline_delimiter_len
+sub     rax, 1
+mov     cs:multiline_delimiter_len, rax
+mov     rax, cs:multiline_delimiter_len
+add     rax, 1
+mov     rdi, rax
+call    grecs_malloc
+mov     cs:multiline_delimiter, rax
+mov     rdx, cs:multiline_delimiter_len
+mov     rax, cs:multiline_delimiter
+mov     rcx, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, cs:multiline_delimiter
+mov     rax, cs:multiline_delimiter_len
+add     rax, rdx
+mov     byte ptr [rax], 0
+call    grecs_line_begin
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+mov     rax, cs:grecs_current_locus_point
+mov     rdx, cs:qword_62D8B8
+mov     cs:grecs_grecs_lloc, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+nop
+leave
+retn

@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+dir], rdi
+mov     [rbp+option], esi
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    opendir_safer
+mov     [rbp+dirp], rax
+cmp     [rbp+dirp], 0
+jnz     short loc_40DFBD
+mov     eax, 0
+jmp     short locret_40E010
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-10h]
+mov     esi, edx
+mov     rdi, rax
+call    streamsavedir
+mov     [rbp+name_space], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _closedir
+test    eax, eax
+jz      short loc_40E00C
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+closedir_errno], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     eax, 0
+jmp     short locret_40E010
+mov     rax, [rbp-8]
+leave
+retn

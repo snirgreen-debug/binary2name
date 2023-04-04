@@ -1,0 +1,66 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_8], 0
+jmp     short loc_4040AD
+add     [rbp+var_8], 1
+mov     edx, [rbp-8]
+mov     rax, cs:qword_6114E0
+cmp     rdx, rax
+jnb     short loc_4040D3
+mov     rax, cs:qword_6114D8
+mov     edx, [rbp-8]
+shl     rdx, 2
+add     rax, rdx
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_4040A9
+mov     edx, [rbp-8]
+mov     rax, cs:qword_6114E0
+cmp     rdx, rax
+jnz     short loc_404134
+mov     rax, cs:qword_6114D8
+mov     edx, 4
+mov     esi, 6114E0h
+mov     rdi, rax
+call    sub_40A376
+mov     cs:qword_6114D8, rax
+mov     eax, [rbp-8]
+mov     [rbp+var_4], eax
+jmp     short loc_404125
+mov     rax, cs:qword_6114D8
+mov     edx, [rbp-4]
+shl     rdx, 2
+add     rax, rdx
+mov     dword ptr [rax], 0
+add     [rbp+var_4], 1
+mov     edx, [rbp-4]
+mov     rax, cs:qword_6114E0
+cmp     rdx, rax
+jb      short loc_40410A
+mov     rax, cs:qword_6114D8
+mov     edx, [rbp-8]
+shl     rdx, 2
+add     rax, rdx
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_404164
+mov     ecx, 40D8A8h
+mov     edx, 58Ch
+mov     esi, 40BF40h
+mov     edi, 40CC75h
+call    ___assert_fail
+mov     rax, cs:qword_6114D8
+mov     edx, [rbp-8]
+shl     rdx, 2
+add     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     rax, cs:qword_6114D0
+add     rax, 1
+mov     cs:qword_6114D0, rax
+mov     cs:byte_6114C8, 1
+mov     eax, [rbp-8]
+leave
+retn

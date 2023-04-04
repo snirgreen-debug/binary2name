@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_62D8C4
+pop     rbp
+retn

@@ -1,0 +1,124 @@
+push    r15
+push    r14
+xor     r15d, r15d
+push    r13
+push    r12
+mov     r13, pibIn
+push    rbp
+push    rbx
+mov     r12, szLex
+xor     ebp, ebp
+sub     rsp, 18h
+mov     r14, [pibIn+18h]
+mov     dword ptr [piLexType_0], 0
+mov     [rsp+48h+piLexType], piLexType_0
+mov     [rsp+48h+bLeadingDigits], 0
+mov     [rsp+48h+bHasSign], 0
+movsx   rbx, byte ptr [r14]
+nop     dword ptr [rax+rax+00h]
+test    bl, bl
+jz      short loc_4026BD
+cmp     r15d, 3FDh
+jg      short loc_4026BD
+cmp     ebp, 7
+jz      short loc_4026BD
+cmp     ebp, 6
+ja      short def_402699
+mov     eax, ebp
+jmp     ds:jpt_402699[rax*8]
+call    ___ctype_b_loc
+mov     r8, [rax]
+movsx   rsi, bl
+test    byte ptr [r8+rsi*2+1], 8
+jnz     short def_402699
+test    bl, bl
+mov     ebp, 7
+jnz     short loc_402684
+movsxd  rdx, r15d
+mov     byte ptr [szLex+rdx], 0
+add     rsp, 18h
+pop     rbx
+pop     eState
+pop     szLex
+pop     pibIn
+pop     r14
+pop     i
+retn
+cmp     bl, 2Eh
+jz      loc_4027E8
+mov     eax, ebx
+and     eax, 0FFFFFFDFh
+cmp     al, 45h
+jnz     short loc_4026A0
+mov     ebp, 4
+nop
+lea     rax, [r14+1]
+mov     [pibIn+18h], rax
+movzx   ecx, byte ptr [r14]
+movsxd  rax, r15d
+add     r15d, 1
+mov     [szLex+rax], cl
+mov     r14, [pibIn+18h]
+movsx   rbx, byte ptr [r14]
+jmp     loc_402680
+call    ___ctype_b_loc
+mov     rax, [rax]
+test    byte ptr [rax+rbx*2+1], 8
+jz      loc_402810
+mov     ebp, 6
+jmp     short def_402699
+mov     rax, [rsp]
+mov     dword ptr [rax], 4
+lea     eax, [rbx-2Bh]
+test    al, 0FDh
+jnz     short loc_402718
+mov     ebp, 5
+jmp     short def_402699
+cmp     bl, 2Eh
+jz      loc_4027E8
+mov     edx, [rsp+0Ch]
+test    edx, edx
+jnz     short loc_4027B0
+lea     eax, [rbx-2Bh]
+test    al, 0FDh
+jnz     short loc_4027B0
+mov     [rsp+48h+bHasSign], 1
+jmp     def_402699
+mov     rax, [rsp]
+mov     dword ptr [rax], 4
+mov     eax, [rsp+8]
+test    eax, eax
+jz      short loc_4027F8
+mov     eax, ebx
+and     eax, 0FFFFFFDFh
+cmp     al, 45h
+jz      loc_4026EA
+call    ___ctype_b_loc
+mov     rax, [rax]
+test    byte ptr [rax+rbx*2+1], 8
+jnz     short loc_402823
+movsx   rbx, byte ptr [r14]
+jmp     loc_4026B4
+call    ___ctype_b_loc
+mov     r8, [rax]
+movsx   rsi, bl
+test    byte ptr [r8+rsi*2+1], 8
+jz      loc_4026B4
+mov     rax, [rsp]
+mov     ebp, 1
+mov     [rsp+48h+bLeadingDigits], 2
+mov     dword ptr [rax], 2
+jmp     def_402699
+mov     ebp, 2
+jmp     def_402699
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     ebp, 3
+test    byte ptr [rax+rbx*2+1], 8
+jnz     def_402699
+mov     rax, [rsp]
+mov     dword ptr [rax], 0
+movsx   rbx, byte ptr [r14]
+jmp     loc_4026B4
+mov     ebp, 3
+jmp     def_402699

@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 430h
+mov     [rbp+stream], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4086EE
+jmp     short loc_40831C
+lea     rax, [rbp-410h]
+mov     rdi, rax
+call    sub_408F1E
+mov     [rbp+ptr], rax
+mov     rax, [rbp-418h]
+mov     rdi, rax
+call    _free
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4086EE
+mov     rax, [rbp-428h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jz      short loc_4082DE
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_408344
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,112 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 50h
+mov     [rbp+var_58], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     esi, 4337B2h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_41A6AB
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     r12, rax
+mov     rbx, cs:qword_6475A0
+mov     edi, 4337B5h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     rdx, [rbp-58h]
+mov     r8, r12
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     loc_41A7CC
+mov     cs:dword_6420B8, 1
+mov     [rbp+var_40], 1
+jmp     loc_41A79B
+lea     rcx, [rbp-44h]
+lea     rdx, [rbp-30h]
+lea     rsi, [rbp-38h]
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_41A8F4
+mov     [rbp+var_3C], eax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+var_3C], 1
+jnz     short loc_41A759
+mov     rdx, [rbp-30h]
+mov     rcx, [rbp-38h]
+mov     eax, [rbp-44h]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_41ABD2
+test    eax, eax
+jnz     short loc_41A73F
+mov     rbx, cs:qword_6475A0
+mov     edi, 4337CFh
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     ecx, [rbp-40h]
+mov     rdx, [rbp-58h]
+mov     r8d, ecx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _free
+jmp     short loc_41A797
+cmp     [rbp+var_3C], 0
+jnz     short loc_41A797
+mov     rbx, cs:qword_6475A0
+mov     edi, 4337CFh
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     ecx, [rbp-40h]
+mov     rdx, [rbp-58h]
+mov     r8d, ecx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+var_40], 1
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_4299BD
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     loc_41A6C1
+mov     cs:dword_6420B8, 0
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _fclose
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_41A7E0
+call    ___stack_chk_fail
+add     rsp, 50h
+pop     rbx
+pop     r12
+pop     rbp
+retn

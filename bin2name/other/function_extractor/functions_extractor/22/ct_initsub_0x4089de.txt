@@ -1,0 +1,186 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+attr], rdi
+mov     [rbp+methodp], rsi
+mov     rax, [rbp-28h]
+mov     cs:file_type, rax
+mov     rax, [rbp-30h]
+mov     cs:file_method, rax
+mov     cs:input_len, 0
+mov     rax, cs:input_len
+mov     cs:compressed_len, rax
+movzx   eax, word ptr cs:static_dtree._dl
+test    ax, ax
+jnz     loc_408CBD
+mov     [rbp+length], 0
+mov     [rbp+code], 0
+jmp     short loc_408A8D
+mov     eax, [rbp-8]
+cdqe
+mov     edx, [rbp-0Ch]
+mov     ds:base_length[rax*4], edx
+mov     [rbp+n], 0
+jmp     short loc_408A6D
+mov     eax, [rbp-0Ch]
+lea     edx, [rax+1]
+mov     [rbp+length], edx
+mov     edx, [rbp-8]
+cdqe
+mov     ds:length_code[rax], dl
+add     [rbp+n], 1
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+6145A0h]
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cmp     eax, [rbp-14h]
+jg      short loc_408A55
+add     [rbp+code], 1
+cmp     [rbp+code], 1Bh
+jle     short loc_408A3D
+mov     eax, [rbp-0Ch]
+lea     edx, [rax-1]
+mov     eax, [rbp-8]
+mov     ecx, eax
+movsxd  rax, edx
+mov     ds:length_code[rax], cl
+mov     [rbp+dist], 0
+mov     [rbp+code], 0
+jmp     short loc_408B07
+mov     eax, [rbp-8]
+cdqe
+mov     edx, [rbp-4]
+mov     ds:base_dist[rax*4], edx
+mov     [rbp+n], 0
+jmp     short loc_408AE7
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     [rbp+dist], edx
+mov     edx, [rbp-8]
+cdqe
+mov     ds:dist_code[rax], dl
+add     [rbp+n], 1
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+614620h]
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cmp     eax, [rbp-14h]
+jg      short loc_408ACF
+add     [rbp+code], 1
+cmp     [rbp+code], 0Fh
+jle     short loc_408AB7
+sar     [rbp+dist], 7
+jmp     short loc_408B74
+mov     eax, [rbp-4]
+shl     eax, 7
+mov     edx, eax
+mov     eax, [rbp-8]
+cdqe
+mov     ds:base_dist[rax*4], edx
+mov     [rbp+n], 0
+jmp     short loc_408B51
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     [rbp+dist], edx
+lea     edx, [rax+100h]
+mov     eax, [rbp-8]
+mov     ecx, eax
+movsxd  rax, edx
+mov     ds:dist_code[rax], cl
+add     [rbp+n], 1
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+614620h]
+sub     eax, 7
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cmp     eax, [rbp-14h]
+jg      short loc_408B30
+add     [rbp+code], 1
+cmp     [rbp+code], 1Dh
+jle     short loc_408B13
+mov     [rbp+bits], 0
+jmp     short loc_408B96
+mov     eax, [rbp-10h]
+cdqe
+mov     ds:bl_count[rax+rax], 0
+add     [rbp+bits], 1
+cmp     [rbp+bits], 0Fh
+jle     short loc_408B83
+mov     [rbp+n], 0
+jmp     short loc_408BCB
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+n], edx
+cdqe
+mov     word ptr ds:static_ltree._dl[rax*4], 8
+movzx   eax, cs:bl_count+10h
+add     eax, 1
+mov     cs:bl_count+10h, ax
+cmp     [rbp+n], 8Fh
+jle     short loc_408BA5
+jmp     short loc_408BFC
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+n], edx
+cdqe
+mov     word ptr ds:static_ltree._dl[rax*4], 9
+movzx   eax, cs:bl_count+12h
+add     eax, 1
+mov     cs:bl_count+12h, ax
+cmp     [rbp+n], 0FFh
+jle     short loc_408BD6
+jmp     short loc_408C2D
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+n], edx
+cdqe
+mov     word ptr ds:static_ltree._dl[rax*4], 7
+movzx   eax, cs:bl_count+0Eh
+add     eax, 1
+mov     cs:bl_count+0Eh, ax
+cmp     [rbp+n], 117h
+jle     short loc_408C07
+jmp     short loc_408C5E
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+n], edx
+cdqe
+mov     word ptr ds:static_ltree._dl[rax*4], 8
+movzx   eax, cs:bl_count+10h
+add     eax, 1
+mov     cs:bl_count+10h, ax
+cmp     [rbp+n], 11Fh
+jle     short loc_408C38
+mov     esi, 11Fh
+mov     edi, 615820h
+call    gen_codes
+mov     [rbp+n], 0
+jmp     short loc_408CB0
+mov     eax, [rbp-14h]
+cdqe
+mov     word ptr ds:static_dtree._dl[rax*4], 5
+mov     eax, [rbp-14h]
+mov     esi, 5
+mov     edi, eax
+call    bi_reverse
+mov     edx, eax
+mov     eax, [rbp-14h]
+cdqe
+mov     word ptr ds:static_dtree.fc[rax*4], dx
+add     [rbp+n], 1
+cmp     [rbp+n], 1Dh
+jle     short loc_408C7F
+call    init_block
+jmp     short locret_408CBE
+nop
+leave
+retn

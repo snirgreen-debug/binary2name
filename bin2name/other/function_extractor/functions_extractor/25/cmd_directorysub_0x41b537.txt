@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    cmd_file
+test    eax, eax
+jnz     short loc_41B56D
+mov     eax, 0
+jmp     short locret_41B5BA
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+s], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     [rbp+t], rax
+jmp     short loc_41B59B
+mov     rax, [rbp-10h]
+mov     byte ptr [rax], 0
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-8]
+jbe     short loc_41B5B5
+sub     [rbp+t], 1
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_41B594
+mov     eax, 1
+leave
+retn

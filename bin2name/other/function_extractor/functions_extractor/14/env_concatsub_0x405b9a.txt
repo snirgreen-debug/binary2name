@@ -1,0 +1,133 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+s], rdx
+mov     [rbp+src], rcx
+cmp     [rbp+s], 0
+jz      short loc_405C2D
+cmp     [rbp+src], 0
+jz      short loc_405C2D
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-30h]
+lea     rbx, [rdx+rax]
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+add     rax, 2
+mov     rdi, rax
+call    emalloc
+mov     [rbp+dest], rax
+mov     rax, [rbp-30h]
+lea     rdx, [rax+1]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcat
+jmp     loc_405D4B
+cmp     [rbp+s], 0
+jz      loc_405CD7
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+n], rax
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+lea     rcx, [rdx-1]
+mov     rdx, [rbp-38h]
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+movsx   rdx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      short loc_405C7E
+sub     [rbp+n], 1
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-18h]
+add     rax, rdx
+add     rax, 2
+mov     rdi, rax
+call    emalloc
+mov     [rbp+dest], rax
+mov     rax, [rbp-30h]
+lea     rdx, [rax+1]
+mov     rax, [rbp-20h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-18h]
+add     rax, rdx
+lea     rdx, [rax+1]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+jmp     short loc_405D4B
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+movsx   rax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      short loc_405D02
+add     [rbp+src], 1
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+n], rax
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-18h]
+add     rax, rdx
+add     rax, 2
+mov     rdi, rax
+call    emalloc
+mov     [rbp+dest], rax
+mov     rax, [rbp-30h]
+lea     rdx, [rax+1]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     rax, [rbp-40h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rdx, [rbp-30h]
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     byte ptr [rax], 3Dh
+mov     rax, [rbp-20h]
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

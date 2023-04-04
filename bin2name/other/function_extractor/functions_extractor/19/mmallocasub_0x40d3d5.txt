@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+n], rdi
+mov     rax, [rbp-28h]
+add     rax, 10h
+mov     [rbp+nplus], rax
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-28h]
+jb      loc_40D491
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _malloc
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jz      short loc_40D491
+mov     rax, [rbp-18h]
+mov     [rbp+h], rax
+mov     rax, [rbp-10h]
+add     rax, 10h
+mov     [rbp+p], rax
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+0Ch], 1415FB4Ah
+mov     rcx, [rbp-18h]
+mov     rdx, 0FF00FF00FF00FF01h
+mov     rax, rcx
+mul     rdx
+mov     rax, rdx
+shr     rax, 8
+mov     [rbp+slot], rax
+mov     rdx, [rbp-8]
+mov     rax, rdx
+shl     rax, 8
+add     rax, rdx
+sub     rcx, rax
+mov     rax, rcx
+mov     [rbp+slot], rax
+mov     rax, [rbp-8]
+mov     rdx, [rax*8+613740h]
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     ds:mmalloca_results[rax*8], rdx
+mov     rax, [rbp-18h]
+jmp     short locret_40D496
+mov     eax, 0
+leave
+retn

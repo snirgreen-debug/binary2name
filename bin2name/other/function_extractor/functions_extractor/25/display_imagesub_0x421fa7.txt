@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+buf], rdi
+mov     edi, 0
+call    log_set_save_context
+mov     [rbp+old], eax
+mov     esi, 4364C8h
+mov     edi, 0
+call    logputs
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 0
+call    logputs
+mov     eax, [rbp-4]
+mov     edi, eax
+call    log_set_save_context
+nop
+leave
+retn

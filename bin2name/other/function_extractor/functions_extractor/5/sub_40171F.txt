@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+nptr], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rcx, [rbp-28h]
+mov     rax, [rbp-38h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtol
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     short loc_4017A6
+mov     rdx, [rbp-28h]
+mov     rax, cs:optarg
+cmp     rdx, rax
+jnz     short loc_4017A6
+mov     edi, 405260h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     loc_401849
+mov     rax, 8000000000000000h
+cmp     [rbp+var_20], rax
+jz      short loc_4017C6
+mov     rax, 7FFFFFFFFFFFFFFFh
+cmp     [rbp+var_20], rax
+jnz     short loc_401802
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_401802
+mov     edi, 4052A0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-38h]
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     short loc_401849
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_401845
+mov     rbx, [rbp-28h]
+mov     edi, 4052D8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-38h]
+mov     r8, rbx
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     short loc_401849
+mov     rax, [rbp-20h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40185D
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:incl_sources
+mov     rdi, rax
+call    grecs_symtab_free
+mov     cs:incl_sources, 0
+mov     rax, cs:linebuf
+mov     rdi, rax
+call    grecs_free
+mov     cs:linebuf, 0
+mov     cs:bufsize, 0
+mov     rax, cs:putback_buffer
+mov     rdi, rax
+call    grecs_free
+mov     cs:putback_buffer, 0
+mov     cs:putback_max, 0
+mov     rax, cs:putback_max
+mov     cs:putback_size, rax
+mov     rax, cs:linebufbase
+mov     rdi, rax
+call    _free
+mov     cs:linebufbase, 0
+mov     cs:linebufsize, 0
+nop
+pop     rbp
+retn

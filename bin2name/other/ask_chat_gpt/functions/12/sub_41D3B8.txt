@@ -1,0 +1,77 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 8
+mov     rbx, cs:off_63FF60
+mov     edi, 433C70h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+call    sub_41D386
+mov     rbx, cs:stdout
+mov     edi, 433CA8h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 433CF8h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 433DF0h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 434020h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 434608h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 434768h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 434BE0h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 434D00h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 434F58h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     rbx, cs:stdout
+mov     edi, 4352F0h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+nop
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,99 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     [rbp+var_3C], esi
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40BDCD
+test    rax, rax
+jz      short loc_4148B7
+cmp     rax, 1
+jz      short loc_4148C1
+jmp     short loc_41490D
+mov     eax, 0
+jmp     locret_4149F6
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rax, [rax]
+mov     rax, [rax+10h]
+mov     [rbp+ptr], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rax, [rax]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_4145F9
+mov     rax, [rbp-38h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40BF93
+jmp     loc_4149B6
+mov     [rbp+var_18], 0
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rax, [rax]
+mov     [rbp+var_28], rax
+jmp     short loc_414948
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     [rbp+ptr], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+add     [rbp+var_18], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_414925
+mov     rax, [rbp-38h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4144C4
+mov     [rbp+ptr], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rax, [rax]
+mov     [rbp+var_28], rax
+jmp     short loc_4149AF
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-10h]
+mov     rcx, [rax]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_4145A5
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_41497A
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40C17B
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_3C], 0
+jz      short loc_4149F2
+mov     rax, [rbp-38h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    sub_40C126
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+leave
+retn

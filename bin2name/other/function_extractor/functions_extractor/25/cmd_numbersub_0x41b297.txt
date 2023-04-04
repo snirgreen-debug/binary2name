@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-20h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    simple_atoi
+test    eax, eax
+jnz     short loc_41B31A
+mov     rbx, cs:exec_name
+mov     edi, 433956h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+jmp     short loc_41B31F
+mov     eax, 1
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

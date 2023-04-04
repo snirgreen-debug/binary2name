@@ -1,0 +1,8 @@
+cmp     cs:__bss_start, 0
+jnz     short locret_4021BA
+push    rbp
+mov     rbp, rsp
+call    deregister_tm_clones
+pop     rbp
+mov     cs:__bss_start, 1
+rep retn

@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+level], edi
+mov     eax, cs:state_0.exit_status
+cmp     eax, [rbp-4]
+jge     short loc_40B890
+mov     eax, [rbp-4]
+mov     cs:state_0.exit_status, eax
+nop
+pop     rbp
+retn

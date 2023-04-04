@@ -1,0 +1,43 @@
+push    rbx
+mov     rcx, pfile
+mov     rbx, pfile
+mov     edx, 15h
+mov     esi, 1
+mov     edi, 4141DBh
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 13h
+mov     esi, 1
+mov     edi, 4141F1h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 12h
+mov     esi, 1
+mov     edi, 414205h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 14h
+mov     esi, 1
+mov     edi, 414218h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 13h
+mov     esi, 1
+mov     edi, 41422Dh
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 14h
+mov     esi, 1
+mov     edi, 414241h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 14h
+mov     esi, 1
+mov     edi, 414256h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 16h
+mov     esi, 1
+pop     pfile
+mov     edi, 41426Bh
+jmp     _fwrite

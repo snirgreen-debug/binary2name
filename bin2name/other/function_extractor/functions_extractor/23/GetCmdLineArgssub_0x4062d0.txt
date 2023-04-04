@@ -1,0 +1,130 @@
+push    r15
+push    r14
+mov     r15, pinfo
+push    r13
+push    r12
+mov     r13, rgszArg
+push    rbp
+push    rbx
+mov     ebp, edi
+mov     r14, pszFileIn
+mov     r12, pszFileOut
+sub     rsp, 8
+mov     cs:opterr, 1
+mov     qword ptr [pszFileOut], 0
+mov     qword ptr [pszFileIn], 0
+mov     edx, 619298h
+mov     rsi, rgszArg
+mov     edi, ebp
+call    _getopt
+cmp     eax, 0FFFFFFFFh
+mov     ebx, eax
+jz      loc_4063D0
+cmp     eax, 48h
+jz      short loc_406345
+jle     short loc_406340
+cmp     eax, 52h
+jnz     short loc_406345
+mov     edi, 412CD8h
+call    _puts
+mov     dword ptr [pinfo+8], 1
+jmp     short loc_406304
+cmp     eax, 44h
+jz      short loc_4063B0
+mov     edi, 412DE6h
+call    _puts
+mov     edi, 412B90h
+call    _puts
+mov     edi, 412DECh
+call    _puts
+mov     edi, 412BC0h
+call    _puts
+mov     edi, 412BE0h
+call    _puts
+mov     edi, 412DF5h
+call    _puts
+mov     edi, 412C00h
+call    _puts
+mov     edi, 412C30h
+call    _puts
+mov     edi, 412C68h
+call    _puts
+xor     edi, edi
+call    _exit
+mov     rdx, cs:optarg
+mov     esi, 412C98h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_406304
+movsxd  c, cs:optind
+sub     ebp, eax
+cmp     ebp, 1
+jz      loc_406463
+cmp     ebp, 2
+jz      short loc_40645A
+test    ebp, ebp
+jz      loc_40648C
+mov     edi, 412D10h
+call    _puts
+mov     edi, 412DE6h
+call    _puts
+mov     edi, 412B90h
+call    _puts
+mov     edi, 412DECh
+call    _puts
+mov     edi, 412BC0h
+call    _puts
+mov     edi, 412BE0h
+call    _puts
+mov     edi, 412DF5h
+call    _puts
+mov     edi, 412C00h
+call    _puts
+mov     edi, 412C30h
+call    _puts
+mov     edi, 412C68h
+call    _puts
+mov     edi, ebx
+call    _exit
+mov     rdx, [rgszArg+rax*8+8]
+mov     [pszFileOut], rdx
+mov     rdi, [rgszArg+rax*8+0]
+mov     [pszFileIn], rdi
+jmp     short loc_40649A
+cmp     byte ptr [rdi], 0
+jz      short loc_40649F
+mov     rsi, [pszFileOut]
+call    MyStrcmp
+test    eax, eax
+jnz     short loc_4064B3
+mov     edi, 412D40h
+call    _puts
+mov     rdi, pszFileIn
+mov     rsi, pszFileOut
+call    PromptFilenames
+mov     rdi, [pszFileIn]
+test    rdi, rdi
+jnz     short loc_406470
+mov     edi, 412D78h
+call    _puts
+mov     edi, 0FFFFFFFFh
+call    _exit
+mov     rax, [pszFileIn]
+test    rax, rax
+jz      short loc_40649F
+cmp     byte ptr [rax], 0
+jz      short loc_40649F
+mov     [pinfo+10h], rax
+cmp     qword ptr [pszFileOut], 0
+jz      short loc_4064DA
+add     rsp, 8
+pop     c
+pop     rbp
+pop     pszFileOut
+pop     rgszArg
+pop     pszFileIn
+pop     pinfo
+retn
+mov     qword ptr [pszFileOut], 619290h
+jmp     short loc_4064CB

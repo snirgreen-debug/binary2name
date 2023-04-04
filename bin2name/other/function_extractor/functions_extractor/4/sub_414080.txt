@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+stream], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     edx, [rax]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     esi, 42F9F8h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+js      short loc_4140D8
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, [rbp-4]
+jge     short loc_4140D1
+mov     rax, [rbp-28h]
+mov     edx, [rbp-4]
+mov     [rax], edx
+mov     eax, 1
+jmp     short locret_4140DD
+mov     eax, 0
+leave
+retn

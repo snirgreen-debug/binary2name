@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 90h
+mov     [rbp+n], edi
+mov     [rbp+s], esi
+mov     [rbp+arg], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-90h]
+mov     edx, [rbp-48h]
+mov     esi, edx
+mov     rdi, rax
+call    quoting_options_from_style
+mov     rax, [rbp-90h]
+mov     qword ptr [rbp+options.style], rax
+mov     rax, [rbp-88h]
+mov     qword ptr [rbp+options.quote_these_too], rax
+mov     rax, [rbp-80h]
+mov     qword ptr [rbp+options.quote_these_too+8], rax
+mov     rax, [rbp-78h]
+mov     qword ptr [rbp+options.quote_these_too+10h], rax
+mov     rax, [rbp-70h]
+mov     qword ptr [rbp+options.quote_these_too+18h], rax
+mov     rax, [rbp-68h]
+mov     [rbp+options.left_quote], rax
+mov     rax, [rbp-60h]
+mov     [rbp+options.right_quote], rax
+lea     rax, [rbp-40h]
+mov     edx, 1
+mov     esi, 3Ah
+mov     rdi, rax
+call    set_char_quoting
+lea     rdx, [rbp-40h]
+mov     rsi, [rbp-50h]
+mov     eax, [rbp-44h]
+mov     rcx, rdx
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     edi, eax
+call    quotearg_n_options
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40306E
+call    ___stack_chk_fail
+leave
+retn

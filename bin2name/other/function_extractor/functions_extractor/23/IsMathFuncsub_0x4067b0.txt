@@ -1,0 +1,29 @@
+push    r12
+mov     r12, sz
+mov     sz, cs:vrgszMathFuncs
+push    rbp
+push    rbx
+mov     ebx, 6192C8h
+movzx   ebp, byte ptr [rdi]
+test    bpl, bpl
+jnz     short loc_4067DF
+jmp     short loc_4067F8
+mov     rdi, [rbx]
+add     rbx, 8
+movzx   ebp, byte ptr [rdi]
+test    bpl, bpl
+jz      short loc_4067F8
+mov     rsi, sz
+call    _strcmp
+test    eax, eax
+jnz     short loc_4067D0
+movsx   eax, bpl
+pop     rbx
+pop     rbp
+pop     sz
+retn
+pop     rbx
+xor     eax, eax
+pop     rbp
+pop     sz
+retn

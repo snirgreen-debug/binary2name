@@ -1,0 +1,27 @@
+push    r12
+mov     r12, rsi
+mov     rsi, cs:off_619460
+push    rbp
+push    rbx
+mov     rbp, rdi
+mov     ebx, 619460h
+cmp     byte ptr [rsi], 0
+jnz     short loc_40835C
+jmp     short loc_408368
+add     rbx, 10h
+mov     rsi, [rbx]
+cmp     byte ptr [rsi], 0
+jz      short loc_408368
+mov     rdi, rbp
+call    _strcmp
+test    eax, eax
+jnz     short loc_408350
+test    r12, r12
+jz      short loc_408374
+mov     eax, [rbx+0Ch]
+mov     [r12], eax
+mov     eax, [rbx+8]
+pop     rbx
+pop     rbp
+pop     r12
+retn

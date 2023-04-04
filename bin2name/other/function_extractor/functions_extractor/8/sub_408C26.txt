@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, cs:stdscr
+mov     esi, 0
+mov     rdi, rax
+call    _wbkgdset
+mov     rax, cs:stdscr
+mov     rdi, rax
+call    _wclear
+mov     rax, cs:stdscr
+mov     rdi, rax
+call    _wrefresh
+call    _endwin
+mov     ebx, cs:dword_60C738
+mov     edi, 40B01Eh
+call    _gettext
+mov     rsi, rax
+mov     rdx, cs:qword_60C748
+mov     rax, cs:stderr
+mov     rcx, [rbp-18h]
+mov     r9, rcx
+mov     r8d, ebx
+mov     rcx, rsi
+mov     esi, 40B023h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+cmp     [rbp+var_20], 0
+jz      short loc_408CD4
+mov     rax, cs:stderr
+mov     rdx, [rbp-20h]
+mov     esi, 40B031h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_408CE8
+mov     rax, cs:stderr
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+mov     edi, 1
+call    _exit

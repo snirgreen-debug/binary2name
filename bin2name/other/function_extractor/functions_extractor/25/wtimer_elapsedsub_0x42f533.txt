@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+wt], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    wtimer_sys_set
+mov     rax, [rbp-38h]
+movsd   xmm1, qword ptr [rax+18h]
+movsd   [rbp+var_40], xmm1
+mov     rdx, [rbp-38h]
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    wtimer_sys_diff
+addsd   xmm0, qword ptr [rbp-40h]
+movsd   [rbp+elapsed], xmm0
+mov     rax, [rbp-38h]
+movsd   xmm0, qword ptr [rax+10h]
+ucomisd xmm0, qword ptr [rbp-28h]
+jbe     short loc_42F5C8
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     rax, [rbp-38h]
+movsd   xmm0, qword ptr [rax+10h]
+mov     rax, [rbp-38h]
+movsd   qword ptr [rax+18h], xmm0
+mov     rax, [rbp-38h]
+movsd   xmm0, qword ptr [rax+10h]
+movsd   [rbp+elapsed], xmm0
+mov     rax, [rbp-38h]
+movsd   xmm0, qword ptr [rbp-28h]
+movsd   qword ptr [rax+10h], xmm0
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_42F5EF
+call    ___stack_chk_fail
+leave
+retn

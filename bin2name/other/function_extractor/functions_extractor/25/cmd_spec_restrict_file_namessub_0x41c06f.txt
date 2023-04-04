@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     eax, cs:opt.restrict_files_os
+mov     [rbp+restrict_os], eax
+mov     eax, cs:opt.restrict_files_ctrl
+mov     [rbp+restrict_ctrl], eax
+mov     rax, [rbp-30h]
+mov     esi, 2Ch
+mov     rdi, rax
+call    _strchr
+mov     [rbp+end], rax
+cmp     [rbp+end], 0
+jnz     short loc_41C0CC
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     [rbp+end], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 4
+jnz     short loc_41C106
+mov     rax, [rbp-30h]
+mov     edx, 4
+mov     esi, 433AADh
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_41C106
+mov     [rbp+restrict_os], 0
+jmp     loc_41C1B5
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 7
+jnz     short loc_41C13D
+mov     rax, [rbp-30h]
+mov     edx, 7
+mov     esi, 433AB2h
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_41C13D
+mov     [rbp+restrict_os], 1
+jmp     short loc_41C1B5
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 9
+jnz     short err
+mov     rax, [rbp-30h]
+mov     edx, 9
+mov     esi, 433ABAh
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short err
+mov     [rbp+restrict_ctrl], 0
+jmp     short loc_41C1B5
+nop
+mov     rbx, cs:exec_name
+mov     edi, 433AC8h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-28h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+jmp     short loc_41C1F7
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41C1E0
+mov     rax, [rbp-18h]
+add     rax, 1
+mov     esi, 433ABAh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_41C174
+mov     [rbp+restrict_ctrl], 0
+mov     eax, [rbp-20h]
+mov     cs:opt.restrict_files_os, eax
+mov     eax, [rbp-1Ch]
+mov     cs:opt.restrict_files_ctrl, eax
+mov     eax, 1
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

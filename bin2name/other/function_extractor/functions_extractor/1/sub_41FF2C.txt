@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+mov     eax, [rbp-4]
+mov     cs:dword_62D50C, eax
+nop
+pop     rbp
+retn

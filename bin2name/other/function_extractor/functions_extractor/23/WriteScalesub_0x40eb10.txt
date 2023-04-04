@@ -1,0 +1,180 @@
+test    pvmScale, pvmScale
+push    r12
+mov     r12, pfile
+push    rbp
+mov     rbp, pvmScale
+push    rbx
+mov     rbx, pvmGlo
+jz      loc_40EDDA
+mov     rcx, pfile
+mov     edx, 1Ah
+mov     esi, 1
+mov     edi, 4146B8h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415050h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 2
+mov     esi, 1
+mov     edi, 4145C9h
+call    _fwrite
+test    pvmGlo, pvmGlo
+jnz     short loc_40EB81
+jmp     short loc_40EBC0
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40EBB0
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 60000h
+jnz     short loc_40EB78
+xor     edx, edx
+mov     rsi, rbx
+mov     rdi, pfile
+call    WriteOneDecl
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_40EB81
+nop     dword ptr [rax+rax+00000000h]
+test    pvmScale, pvmScale
+jz      loc_40ECBB
+nop     dword ptr [rax+00000000h]
+mov     rax, [rbp+10h]
+test    ah, 0F0h
+jnz     loc_40ECE0
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40EE40
+cmp     rax, 0A0000h
+jz      loc_40ED30
+mov     ecx, cs:bForR
+test    ecx, ecx
+jz      loc_40ED50
+mov     edx, cs:bForInits
+test    edx, edx
+jz      loc_40ED00
+cmp     rax, 10000h
+jz      loc_40EDB0
+cmp     rax, 20000h
+jz      short loc_40EC50
+jbe     short loc_40EC50
+cmp     rax, 30000h
+jz      loc_40EDA0
+cmp     rax, 90000h
+jnz     short loc_40EC50
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+mov     r8, [rbp+0]
+mov     ecx, 4140BDh
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+mov     ecx, 619CC0h
+mov     edx, 414662h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      loc_40ED30
+mov     rsi, [rbp+8]
+mov     edx, 5
+mov     rdi, pfile
+call    TranslateEquation
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jnz     loc_40EBC0
+pop     rbx
+mov     rcx, pfile
+mov     edx, 16h
+mov     esi, 1
+pop     rbp
+pop     pfile
+mov     edi, 4146D3h
+jmp     _fwrite
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp+10h]
+jmp     loc_40EBCD
+cmp     rax, 20000h
+jz      loc_40EC50
+ja      loc_40EC1C
+cmp     rax, 10000h
+jnz     loc_40EC50
+mov     r8, [rbp+0]
+mov     ecx, 41403Ch
+jmp     loc_40EC59
+mov     rcx, [rbp+8]
+mov     edx, 41459Ah
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     loc_40ECAE
+cmp     rax, 20000h
+jz      short loc_40ED90
+jbe     short loc_40ED70
+cmp     rax, 30000h
+jnz     loc_40EC28
+jmp     short loc_40ED7C
+cmp     rax, 10000h
+jnz     loc_40EC50
+mov     r8, [rbp+0]
+mov     ecx, 414045h
+jmp     loc_40EC59
+mov     r8, [rbp+0]
+mov     ecx, 41402Bh
+jmp     loc_40EC59
+mov     r8, [rbp+0]
+mov     ecx, 414059h
+jmp     loc_40EC59
+xor     ecx, ecx
+xor     edx, edx
+xor     esi, esi
+mov     rdi, rbp
+call    GetName
+mov     edx, 414652h
+mov     rcx, rax
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     loc_40EC88
+mov     edi, 415020h
+call    _puts
+mov     rcx, pfile
+mov     edx, 1Ah
+mov     esi, 1
+mov     edi, 4146B8h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415050h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 2
+mov     esi, 1
+mov     edi, 4145C9h
+call    _fwrite
+test    pvmGlo, pvmGlo
+jz      loc_40ECBB
+jmp     loc_40EB81
+mov     rdx, [rbp+0]
+mov     edi, 1
+mov     esi, 414F68h
+xor     eax, eax
+call    ___printf_chk
+xor     edi, edi
+call    _exit

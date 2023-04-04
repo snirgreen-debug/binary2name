@@ -1,0 +1,32 @@
+test    pibIn, pibIn
+jz      short locret_403C8E
+push    rbx
+mov     rax, [pibIn+18h]
+mov     rbx, pibIn
+cmp     byte ptr [rax], 0
+jz      short loc_403CB8
+add     rax, 1
+jmp     short loc_403C7A
+add     rax, 1
+cmp     byte ptr [rax-1], 0
+jz      short loc_403C90
+mov     [pibIn+18h], rax
+cmp     byte ptr [rax-1], 0Ah
+jnz     short loc_403C70
+add     dword ptr [pibIn+20h], 1
+cmp     byte ptr [rax], 0
+jz      short loc_403CA8
+pop     pibIn
+rep retn
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+mov     rax, [pibIn+18h]
+jnz     short loc_403C62
+jmp     short loc_403C84
+mov     rdi, pibIn
+pop     pibIn
+jmp     FillBuffer_0
+call    FillBuffer_0
+mov     rax, [pibIn+18h]
+jmp     short loc_403C62

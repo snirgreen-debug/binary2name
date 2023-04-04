@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+specs], rdi
+mov     [rbp+path], rsi
+cmp     [rbp+specs], 0
+jnz     short loc_423DAA
+mov     eax, 1
+jmp     locret_423E66
+mov     [rbp+i], 0
+jmp     loc_423E52
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     edx, [rbp-8]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    matches
+test    eax, eax
+jz      short loc_423E4E
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     edx, [rbp-8]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     eax, [rax+8]
+mov     [rbp+allowedp], eax
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_423E49
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     edx, [rbp-8]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax]
+cmp     [rbp+allowedp], 0
+jz      short loc_423E2B
+mov     esi, 4369ADh
+jmp     short loc_423E30
+mov     esi, 4369B6h
+mov     rax, [rbp-20h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     edi, 4369C0h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, [rbp-4]
+jmp     short locret_423E66
+add     [rbp+i], 1
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+cmp     eax, [rbp-8]
+jg      loc_423DB6
+mov     eax, 1
+leave
+retn

@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+bits], edi
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_417BD9
+mov     eax, 2Dh
+jmp     loc_417C62
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     short loc_417BEF
+mov     eax, 64h
+jmp     short loc_417C62
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 6000h
+jnz     short loc_417C05
+mov     eax, 62h
+jmp     short loc_417C62
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 2000h
+jnz     short loc_417C1B
+mov     eax, 63h
+jmp     short loc_417C62
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     short loc_417C31
+mov     eax, 6Ch
+jmp     short loc_417C62
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 1000h
+jnz     short loc_417C47
+mov     eax, 70h
+jmp     short loc_417C62
+mov     eax, [rbp-4]
+and     eax, 0F000h
+cmp     eax, 0C000h
+jnz     short loc_417C5D
+mov     eax, 73h
+jmp     short loc_417C62
+mov     eax, 3Fh
+pop     rbp
+retn

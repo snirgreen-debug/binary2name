@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+beg_list], rdi
+mov     [rbp+end_list], rsi
+mov     [rbp+last_p], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-10h]
+mov     [rax+110h], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+nop
+pop     rbp
+retn

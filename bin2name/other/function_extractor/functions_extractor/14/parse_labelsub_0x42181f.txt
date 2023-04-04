@@ -1,0 +1,154 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 128h
+mov     [rbp+s], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+var_118], 0
+mov     rax, [rbp-128h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_108], rax
+cmp     [rbp+var_108], 1
+jbe     loc_4219A5
+mov     rax, [rbp-128h]
+movzx   eax, byte ptr [rax]
+cmp     al, 28h
+jnz     loc_4219A5
+mov     rax, [rbp-108h]
+lea     rdx, [rax-1]
+mov     rax, [rbp-128h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 29h
+jnz     loc_4219A5
+mov     [rbp+var_C8], 426797h
+mov     rax, [rbp-108h]
+lea     rsi, [rax-2]
+mov     rax, [rbp-128h]
+lea     rdi, [rax+1]
+lea     rax, [rbp-0F0h]
+mov     ecx, 2004F44h
+mov     rdx, rax
+call    wordsplit_len
+test    eax, eax
+jz      short loc_4218E5
+mov     eax, 0
+jmp     loc_421B25
+call    grecs_value_list_create
+mov     [rbp+var_100], rax
+mov     [rbp+var_110], 0
+jmp     short loc_421960
+mov     edi, 38h
+call    grecs_zalloc
+mov     [rbp+var_F8], rax
+mov     rax, [rbp-0F8h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-0E8h]
+mov     rdx, [rbp-110h]
+shl     rdx, 3
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, [rbp-0F8h]
+mov     [rax+28h], rdx
+mov     rdx, [rbp-0F8h]
+mov     rax, [rbp-100h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_list_append
+add     [rbp+var_110], 1
+mov     rax, [rbp-0F0h]
+cmp     rax, [rbp-110h]
+ja      short loc_4218FE
+mov     edi, 38h
+call    grecs_malloc
+mov     [rbp+var_118], rax
+mov     rax, [rbp-118h]
+mov     dword ptr [rax], 1
+mov     rax, [rbp-118h]
+mov     rdx, [rbp-100h]
+mov     [rax+28h], rdx
+jmp     loc_421B04
+lea     rcx, [rbp-0F0h]
+mov     rax, [rbp-128h]
+mov     edx, 2000E44h
+mov     rsi, rcx
+mov     rdi, rax
+call    wordsplit
+test    eax, eax
+jz      short loc_4219D1
+mov     eax, 0
+jmp     loc_421B25
+mov     edi, 38h
+call    grecs_zalloc
+mov     [rbp+var_118], rax
+mov     rax, [rbp-0F0h]
+cmp     rax, 1
+jnz     short loc_421A16
+mov     rax, [rbp-118h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-0E8h]
+mov     rdx, [rax]
+mov     rax, [rbp-118h]
+mov     [rax+28h], rdx
+jmp     loc_421B04
+mov     rax, [rbp-118h]
+mov     dword ptr [rax], 2
+mov     rdx, [rbp-0F0h]
+mov     rax, [rbp-118h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-0F0h]
+mov     esi, 8
+mov     rdi, rax
+call    grecs_calloc
+mov     rdx, rax
+mov     rax, [rbp-118h]
+mov     [rax+30h], rdx
+mov     [rbp+var_110], 0
+jmp     loc_421AF0
+mov     rax, [rbp-118h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-110h]
+shl     rdx, 3
+lea     rbx, [rax+rdx]
+mov     edi, 38h
+call    grecs_zalloc
+mov     [rbx], rax
+mov     rax, [rbp-118h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-110h]
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-118h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-110h]
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rbp-0E8h]
+mov     rcx, [rbp-110h]
+shl     rcx, 3
+add     rdx, rcx
+mov     rdx, [rdx]
+mov     [rax+28h], rdx
+add     [rbp+var_110], 1
+mov     rax, [rbp-0F0h]
+cmp     rax, [rbp-110h]
+ja      loc_421A67
+mov     [rbp+var_F0], 0
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    wordsplit_free
+mov     rax, [rbp-118h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_421B39
+call    ___stack_chk_fail
+add     rsp, 128h
+pop     rbx
+pop     rbp
+retn

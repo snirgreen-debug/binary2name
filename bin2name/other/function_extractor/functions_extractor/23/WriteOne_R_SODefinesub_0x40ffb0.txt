@@ -1,0 +1,44 @@
+xor     eax, eax
+cmp     qword ptr [pvm+8], 6192A0h
+jz      short locret_410035
+push    rbp
+push    rbx
+mov     rcx, pfile
+mov     rbx, pvm
+mov     rbp, pfile
+mov     edx, 8
+sub     rsp, 8
+mov     esi, 1
+mov     edi, 4142E0h
+call    _fwrite
+mov     rcx, [pvm]
+xor     eax, eax
+mov     edx, 4142E9h
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jz      short loc_410040
+mov     rcx, cs:iOutputs_4512
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+add     cs:iOutputs_4512, 1
+mov     eax, 1
+add     rsp, 8
+pop     pvm
+pop     pfile
+rep retn
+mov     rcx, cs:iStates_4511
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+add     cs:iStates_4511, 1
+mov     eax, 1
+jmp     short loc_41002F

@@ -1,0 +1,111 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+jar], rdi
+mov     [rbp+host], rsi
+mov     [rbp+port], edx
+mov     [rbp+path], rcx
+mov     [rbp+set_cookie], r8
+mov     edi, 0
+call    _time
+mov     cs:cookies_now, rax
+mov     rax, [rbp-38h]
+mov     edx, 0
+mov     esi, 4052A0h
+mov     rdi, rax
+call    parse_set_cookies
+mov     [rbp+cookie], rax
+cmp     [rbp+cookie], 0
+jz      loc_406368
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406278
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     edx, [rbp-24h]
+mov     [rax+8], edx
+jmp     short loc_4062C8
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    check_domain_match
+test    eax, eax
+jnz     short loc_4062C8
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-20h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 430298h
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+jmp     short copy_domain
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_4062EE
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+jmp     short loc_406333
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    check_path_match
+test    eax, eax
+jnz     short loc_406333
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40636B
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-30h]
+mov     rsi, rax
+mov     edi, 4302D0h
+mov     eax, 0
+call    debug_logprintf
+jmp     short loc_40636B
+mov     rax, [rbp-8]
+mov     eax, [rax+30h]
+test    eax, eax
+jz      short loc_406353
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    discard_matching_cookie
+jmp     short out
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    store_cookie
+jmp     short locret_40637F
+nop
+jmp     short out
+nop
+cmp     [rbp+cookie], 0
+jz      short locret_40637F
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    delete_cookie
+leave
+retn

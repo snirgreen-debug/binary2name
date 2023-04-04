@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fn], rdi
+mov     [rbp+context], rsi
+mov     edi, 18h
+call    xmalloc
+mov     [rbp+p], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+mov     rax, cs:lastinspector
+test    rax, rax
+jnz     short loc_402729
+mov     rax, [rbp-8]
+mov     cs:inspectors, rax
+mov     rax, cs:inspectors
+mov     cs:lastinspector, rax
+jmp     short loc_402743
+mov     rax, cs:lastinspector
+mov     rdx, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     cs:lastinspector, rax
+nop
+leave
+retn

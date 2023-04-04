@@ -1,0 +1,174 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+record_path], rdi
+mov     [rbp+url_path], rsi
+mov     rax, [rbp-28h]
+mov     [rbp+rp], rax
+mov     rax, [rbp-30h]
+mov     [rbp+up], rax
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+mov     [rbp+rc], al
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+mov     [rbp+uc], al
+cmp     [rbp+rc], 0
+jnz     short loc_423B66
+mov     eax, 1
+jmp     loc_423D87
+cmp     [rbp+uc], 0
+jnz     short loc_423B76
+mov     eax, 0
+jmp     loc_423D87
+cmp     [rbp+rc], 25h
+jnz     loc_423C6F
+mov     rax, [rbp-10h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jz      loc_423C6F
+mov     rax, [rbp-10h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jz      loc_423C6F
+mov     rax, [rbp-10h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 40h
+jg      short loc_423BFA
+mov     rax, [rbp-10h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+sub     eax, 30h
+shl     eax, 4
+mov     edx, eax
+jmp     short loc_423C1C
+mov     rax, [rbp-10h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+sub     eax, 37h
+shl     eax, 4
+mov     edx, eax
+mov     rax, [rbp-10h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+cmp     al, 40h
+jg      short loc_423C3B
+mov     rax, [rbp-10h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+sub     eax, 30h
+jmp     short loc_423C58
+mov     rax, [rbp-10h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+sub     eax, 37h
+add     eax, edx
+mov     [rbp+decoded], al
+cmp     [rbp+decoded], 2Fh
+jz      short loc_423C6F
+movzx   eax, byte ptr [rbp-12h]
+mov     [rbp+rc], al
+add     [rbp+rp], 2
+cmp     [rbp+uc], 25h
+jnz     loc_423D68
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jz      loc_423D68
+mov     rax, [rbp-8]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jz      loc_423D68
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 40h
+jg      short loc_423CF3
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+sub     eax, 30h
+shl     eax, 4
+mov     edx, eax
+jmp     short loc_423D15
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+sub     eax, 37h
+shl     eax, 4
+mov     edx, eax
+mov     rax, [rbp-8]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+cmp     al, 40h
+jg      short loc_423D34
+mov     rax, [rbp-8]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+sub     eax, 30h
+jmp     short loc_423D51
+mov     rax, [rbp-8]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+sub     eax, 37h
+add     eax, edx
+mov     [rbp+decoded_0], al
+cmp     [rbp+decoded_0], 2Fh
+jz      short loc_423D68
+movzx   eax, byte ptr [rbp-11h]
+mov     [rbp+uc], al
+add     [rbp+up], 2
+movzx   eax, byte ptr [rbp-14h]
+cmp     al, [rbp-13h]
+jz      short loc_423D78
+mov     eax, 0
+jmp     short loc_423D87
+add     [rbp+rp], 1
+add     [rbp+up], 1
+jmp     loc_423B42
+pop     rbp
+retn

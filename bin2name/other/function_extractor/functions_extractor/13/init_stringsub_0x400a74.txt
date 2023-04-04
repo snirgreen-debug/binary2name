@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+buffer], rdi
+mov     rax, [rbp-8]
+mov     esi, 1388h
+mov     rdi, rax
+call    init_string_with_size
+nop
+leave
+retn

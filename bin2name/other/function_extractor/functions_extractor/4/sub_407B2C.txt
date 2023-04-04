@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+mov     [rbp+var_38], r8
+mov     cs:qword_63ADF8, 4078F9h
+mov     rax, cs:qword_63ADF8
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax 
+mov     rax, cs:qword_63ADF8
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax 
+mov     [rbp+var_4], 0
+jmp     short loc_407BB4
+mov     rax, cs:qword_63ADF8
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+mov     rcx, rdx
+shl     rcx, 4
+mov     rdx, [rbp-18h]
+add     rcx, rdx
+mov     rdx, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rcx
+call    rax 
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cmp     eax, [rbp-1Ch]
+jl      short loc_407B89
+nop
+leave
+retn

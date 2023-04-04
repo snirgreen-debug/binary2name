@@ -1,0 +1,78 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E2CB
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E2CB
+mov     eax, 1
+jmp     loc_40E3A3
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jnz     short loc_40E304
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jnz     short loc_40E304
+mov     rax, [rbp-30h]
+mov     qword ptr [rax], 0
+mov     eax, 0
+jmp     loc_40E3A3
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E32D
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_40E057
+mov     rcx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+jmp     short loc_40E349
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jnz     short loc_40E349
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40DA44
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E37A
+mov     rax, [rbp-18h]
+lea     rbx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_40E083
+mov     [rbx], rax
+mov     [rbx+8], rdx
+jmp     short loc_40E39E
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jnz     short loc_40E39E
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rdi, rax
+call    sub_40DA44
+mov     eax, 0
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

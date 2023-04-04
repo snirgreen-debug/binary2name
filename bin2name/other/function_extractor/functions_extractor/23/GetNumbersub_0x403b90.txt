@@ -1,0 +1,10 @@
+test    szLex, szLex
+setz    cl
+test    piLexType, piLexType
+setz    al
+or      cl, al
+jnz     short locret_403BB0
+test    pibIn, pibIn
+jz      short locret_403BB0
+jmp     GetNumber_0
+rep retn

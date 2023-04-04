@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+tuning], rdi
+mov     rax, [rbp-8]
+pxor    xmm0, xmm0
+movss   dword ptr [rax], xmm0
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42FFB0
+movss   dword ptr [rax+4], xmm0
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42FFB4
+movss   dword ptr [rax+8], xmm0
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42FFB8
+movss   dword ptr [rax+0Ch], xmm0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+10h], 0
+nop
+pop     rbp
+retn

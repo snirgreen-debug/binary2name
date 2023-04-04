@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fd], edi
+cmp     [rbp+fd], 0
+js      short loc_40E116
+cmp     [rbp+fd], 2
+jg      short loc_40E116
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    dup_safer
+mov     [rbp+f], eax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _close
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     [rdx], eax
+mov     eax, [rbp-8]
+mov     [rbp+fd], eax
+mov     eax, [rbp-14h]
+leave
+retn

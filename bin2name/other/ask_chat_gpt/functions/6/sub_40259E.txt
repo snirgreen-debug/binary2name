@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, cs:qword_613590
+mov     rdx, [rbp-8]
+mov     ecx, 0
+mov     esi, 3
+mov     rdi, rax
+call    sub_40253C
+leave
+retn

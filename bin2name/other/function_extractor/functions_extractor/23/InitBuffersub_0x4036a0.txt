@@ -1,0 +1,121 @@
+test    pibIn, pibIn
+push    r14
+push    r13
+push    r12
+push    rbp
+push    rbx
+jz      loc_403830
+test    lSize, lSize
+mov     r13, szFileIn
+mov     r12, lSize
+mov     rbx, pibIn
+js      loc_4037C0
+mov     [rbx+10h], lSize
+mov     dword ptr [pibIn+20h], 1
+mov     dword ptr [pibIn+24h], 0
+mov     esi, 4124B5h
+mov     dword ptr [pibIn+28h], 0
+mov     qword ptr [pibIn+30h], 0
+mov     rdi, szFileIn
+mov     qword ptr [pibIn+38h], 0
+mov     qword ptr [pibIn+18h], 0
+call    _fopen
+test    rax, rax
+mov     rbp, rax
+mov     [pibIn], rax
+jz      loc_4037A0
+mov     szFileIn, [pibIn+10h]
+mov     rdi, r13
+call    _malloc
+test    rax, rax
+mov     [pibIn+8], rax
+jz      loc_403810
+mov     rcx, rbp
+mov     rdx, r13
+mov     esi, 1
+mov     rdi, rax
+call    _fread
+test    eax, eax
+mov     ebp, eax
+jz      short loc_403760
+mov     rax, [pibIn+8]
+mov     [pibIn+18h], rax
+test    lSize, lSize
+js      short loc_403789
+pop     pibIn
+mov     eax, ebp
+pop     bReturn
+pop     lSize
+pop     r13
+pop     r14
+retn
+mov     rdi, [pibIn]
+call    _feof
+test    eax, eax
+jnz     loc_403860
+xor     edx, edx
+mov     ecx, 4123F5h
+mov     esi, 8000h
+mov     rdi, pibIn
+call    ReportError
+test    lSize, lSize
+jns     short loc_40374F
+mov     rdi, [pibIn]
+call    _fclose
+pop     pibIn
+mov     eax, ebp
+pop     bReturn
+pop     lSize
+pop     r13
+pop     r14
+retn
+xor     ecx, ecx
+mov     rdx, szFileIn
+mov     esi, 8002h
+mov     rdi, pibIn
+xor     ebp, ebp
+call    ReportError
+jmp     short loc_40374A
+mov     esi, 4124B5h
+mov     rdi, szFileIn
+call    _fopen
+test    rax, rax
+mov     r14, rax
+mov     [pibIn], rax
+jz      short loc_403840
+xor     ebp, ebp
+jmp     short loc_4037E4
+add     rbp, 1
+mov     rdi, r14
+call    __IO_getc
+cmp     al, 0FFh
+jnz     short loc_4037E0
+mov     rdi, r14
+call    _rewind
+mov     rdi, [pibIn]
+mov     [pibIn+10h], rbp
+call    _fclose
+jmp     loc_4036C7
+xor     ecx, ecx
+mov     edx, 41240Dh
+mov     esi, 8004h
+mov     rdi, pibIn
+xor     ebp, ebp
+call    ReportError
+jmp     loc_40374A
+xor     ebp, ebp
+pop     rbx
+mov     eax, ebp
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+xor     ecx, ecx
+mov     rdx, szFileIn
+mov     esi, 8002h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_4036C7
+mov     ebp, 0FFFFFFFFh
+jmp     loc_40374A

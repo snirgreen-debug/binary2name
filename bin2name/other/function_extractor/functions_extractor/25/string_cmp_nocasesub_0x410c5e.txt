@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s1], rdi
+mov     [rbp+s2], rsi
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+setz    al
+movzx   eax, al
+leave
+retn

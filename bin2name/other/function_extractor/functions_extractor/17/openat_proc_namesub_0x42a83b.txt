@@ -1,0 +1,85 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+buf], rdi
+mov     [rbp+fd], esi
+mov     [rbp+file], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-68h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_42A878
+mov     rax, [rbp-58h]
+mov     byte ptr [rax], 0
+mov     rax, [rbp-58h]
+jmp     loc_42A970
+mov     eax, cs:proc_status_4504
+test    eax, eax
+jnz     short loc_42A8FA
+mov     esi, 10900h
+mov     edi, 432AEAh
+mov     eax, 0
+call    _open
+mov     [rbp+proc_self_fd], eax
+cmp     [rbp+proc_self_fd], 0
+jns     short loc_42A8AB
+mov     cs:proc_status_4504, 0FFFFFFFFh
+jmp     short loc_42A8FA
+mov     edx, [rbp-44h]
+lea     rax, [rbp-30h]
+mov     ecx, 432AF8h
+mov     esi, 432AFEh
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+lea     rax, [rbp-30h]
+mov     esi, 0
+mov     rdi, rax
+call    _access
+test    eax, eax
+jz      short loc_42A8E5
+mov     eax, 0FFFFFFFFh
+jmp     short loc_42A8EA
+mov     eax, 1
+mov     cs:proc_status_4504, eax
+mov     eax, [rbp-44h]
+mov     edi, eax
+call    _close
+mov     eax, cs:proc_status_4504
+test    eax, eax
+jns     short loc_42A90B
+mov     eax, 0
+jmp     short loc_42A970
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _strlen
+add     rax, 1Bh
+mov     [rbp+bufsize], rax
+mov     rax, [rbp-58h]
+mov     [rbp+result], rax
+cmp     [rbp+bufsize], 0FC0h
+jbe     short loc_42A94F
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _malloc
+mov     [rbp+result], rax
+cmp     [rbp+result], 0
+jnz     short loc_42A94F
+mov     eax, 0
+jmp     short loc_42A970
+mov     rcx, [rbp-68h]
+mov     edx, [rbp-5Ch]
+mov     rax, [rbp-40h]
+mov     esi, 432AFEh
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rax, [rbp-40h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_42A984
+call    ___stack_chk_fail
+leave
+retn

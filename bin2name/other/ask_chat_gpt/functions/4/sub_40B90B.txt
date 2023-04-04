@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     [rbp+var_10], rsi
+mov     rdx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     rcx, rdx
+mov     edx, 1
+mov     esi, eax
+mov     edi, 0
+call    sub_40B893
+nop
+leave
+retn

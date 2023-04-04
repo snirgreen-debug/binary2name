@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 8
+test    eax, eax
+jz      short loc_414E75
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 1
+test    eax, eax
+jnz     short loc_414E67
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_41A188
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_41A2CF
+jmp     short loc_414E98
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+18h], 0
+mov     rax, [rbp-8]
+mov     dword ptr [rax+0B0h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+0C8h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+0C8h]
+mov     rax, [rbp-8]
+mov     [rax+0C0h], rdx
+nop
+leave
+retn

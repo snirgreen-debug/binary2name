@@ -1,0 +1,208 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 1130h
+mov     [rbp+u], rdi
+mov     [rbp+dt], rsi
+mov     [rbp+proxy], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-1120h]
+mov     dword ptr [rax], 0
+lea     rax, [rbp-1060h]
+mov     edx, 1050h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+lea     rax, [rbp-1060h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_uninitialize
+mov     [rbp+con.st], 1
+mov     [rbp+con.rs], 0
+mov     [rbp+con.id], 0
+mov     rax, [rbp-1128h]
+mov     [rbp+con.proxy], rax
+mov     [rbp+res], 22h
+mov     rax, [rbp-1118h]
+mov     rax, [rax+48h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_40C004
+mov     eax, cs:opt.recursive
+test    eax, eax
+jnz     loc_40C004
+lea     rdx, [rbp-1108h]
+lea     rcx, [rbp-1060h]
+mov     rax, [rbp-1118h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ftp_get_listing
+mov     [rbp+res], eax
+cmp     [rbp+res], 22h
+jnz     loc_40C0A7
+mov     eax, cs:opt.htmlify
+test    eax, eax
+jz      loc_40BFF0
+mov     eax, cs:opt.spider
+test    eax, eax
+jnz     loc_40BFF0
+mov     rax, cs:opt.output_document
+test    rax, rax
+jz      short loc_40BED4
+mov     rax, cs:opt.output_document
+mov     rdi, rax
+call    xstrdup_real
+jmp     short loc_40BEFA
+mov     rax, [rbp-20h]
+test    rax, rax
+jz      short loc_40BEEB
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+jmp     short loc_40BEFA
+mov     rax, [rbp-1118h]
+mov     rdi, rax
+call    url_file_name
+mov     [rbp+filename], rax
+mov     rdx, [rbp-1108h]
+mov     rcx, [rbp-1118h]
+mov     rax, [rbp-10F8h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ftp_index
+mov     [rbp+res], eax
+cmp     [rbp+res], 0Fh
+jnz     loc_40BFE1
+mov     eax, cs:opt.verbose
+test    eax, eax
+jz      loc_40BFE1
+mov     rax, cs:opt.output_document
+test    rax, rax
+jnz     short loc_40BFB8
+lea     rdx, [rbp-10F0h]
+mov     rax, [rbp-10F8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+jnz     short loc_40BF7B
+mov     rax, [rbp-10C0h]
+mov     [rbp+sz], rax
+jmp     short loc_40BF86
+mov     [rbp+sz], 0FFFFFFFFFFFFFFFFh
+mov     edi, 431558h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-1100h]
+mov     rax, [rbp-10F8h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+jmp     short loc_40BFE1
+mov     edi, 431580h
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-10F8h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-10F8h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-1108h]
+mov     rdi, rax
+call    freefileinfo
+jmp     loc_40C0A7
+mov     rax, [rbp-1118h]
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    has_wildcards_p
+mov     [rbp+wild], eax
+mov     eax, cs:opt.ftp_glob
+test    eax, eax
+jz      short loc_40C030
+cmp     [rbp+wild], 0
+jnz     short loc_40C044
+mov     eax, cs:opt.recursive
+test    eax, eax
+jnz     short loc_40C044
+mov     eax, cs:opt.timestamping
+test    eax, eax
+jz      short loc_40C084
+mov     eax, cs:opt.ftp_glob
+test    eax, eax
+jz      short loc_40C05E
+cmp     [rbp+wild], 0
+jz      short loc_40C05E
+mov     edx, 0
+jmp     short loc_40C063
+mov     edx, 2
+lea     rcx, [rbp-1060h]
+mov     rax, [rbp-1118h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ftp_retrieve_glob
+mov     [rbp+res], eax
+jmp     short loc_40C0A8
+lea     rdx, [rbp-1060h]
+mov     rax, [rbp-1118h]
+mov     esi, 0
+mov     rdi, rax
+call    ftp_loop_internal
+mov     [rbp+res], eax
+jmp     short loc_40C0A8
+nop
+cmp     [rbp+res], 0Fh
+jnz     short loc_40C0BB
+mov     [rbp+res], 22h
+cmp     [rbp+res], 22h
+jnz     short loc_40C0DB
+mov     rax, [rbp-1120h]
+mov     eax, [rax]
+or      eax, 2
+mov     edx, eax
+mov     rax, [rbp-1120h]
+mov     [rax], edx
+lea     rax, [rbp-1060h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_initialized_p
+test    eax, eax
+jz      short loc_40C120
+mov     eax, [rbp-1058h]
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40C120
+mov     eax, [rbp-1058h]
+mov     esi, eax
+mov     edi, 4305B7h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-28h]
+test    rax, rax
+jz      short loc_40C135
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+mov     [rbp+con.id], 0
+mov     rax, [rbp-20h]
+test    rax, rax
+jz      short loc_40C152
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+mov     [rbp+con.target], 0
+mov     eax, [rbp-1110h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40C174
+call    ___stack_chk_fail
+leave
+retn

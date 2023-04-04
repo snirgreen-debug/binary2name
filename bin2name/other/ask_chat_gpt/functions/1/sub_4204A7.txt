@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Dh
+jnz     short loc_4204ED
+add     [rbp+s], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     short loc_4204E0
+mov     cs:qword_62D790, 420484h
+add     [rbp+s], 1
+jmp     short loc_4204F8
+mov     cs:qword_62D790, 42046Fh
+jmp     short loc_4204F8
+mov     cs:qword_62D790, 0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jnz     short loc_42052C
+add     [rbp+s], 1
+mov     cs:dword_62D788, 0
+mov     rax, [rbp-18h]
+mov     esi, 426723h
+mov     rdi, rax
+call    _strcspn
+mov     cs:n, rax
+jmp     short loc_420594
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_420572
+add     [rbp+s], 1
+mov     cs:dword_62D788, 0
+mov     rax, [rbp-18h]
+mov     esi, 22h
+mov     rdi, rax
+call    _strchr
+mov     [rbp+var_8], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+mov     cs:n, rax
+jmp     short loc_420594
+mov     rax, [rbp-18h]
+mov     esi, 426723h
+mov     rdi, rax
+call    _strcspn
+mov     cs:n, rax
+mov     cs:dword_62D788, 1
+mov     rax, cs:n
+sub     rax, 1
+mov     cs:n, rax
+mov     rax, cs:n
+add     rax, 1
+mov     rdi, rax
+call    sub_40C49E
+mov     cs:qword_62D778, rax
+mov     rdx, cs:n
+mov     rax, cs:qword_62D778
+mov     rcx, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, cs:qword_62D778
+mov     rax, cs:n
+add     rax, rdx
+mov     byte ptr [rax], 0
+call    sub_420FE2
+mov     eax, dword ptr cs:qword_62D8B8
+add     eax, 1
+mov     dword ptr cs:qword_62D8B8, eax
+mov     dword ptr cs:qword_62D8B8+4, 0
+mov     rax, cs:qword_62D8B0
+mov     rdx, cs:qword_62D8B8
+mov     cs:qword_62D820, rax
+mov     cs:qword_62D828, rdx
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+nop
+leave
+retn

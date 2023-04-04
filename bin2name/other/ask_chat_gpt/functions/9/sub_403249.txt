@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+call    sub_4031F1
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 40FE10h
+call    _puts
+nop
+pop     rbp
+retn

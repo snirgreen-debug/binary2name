@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     rax, [rbp-8]
+mov     edx, [rbp-0Ch]
+mov     [rax+0B0h], edx
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 10h
+test    eax, eax
+jz      short loc_414BD3
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wordsplit_perror
+mov     eax, [rbp-0Ch]
+leave
+retn

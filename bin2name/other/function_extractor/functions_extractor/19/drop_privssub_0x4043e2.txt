@@ -1,0 +1,90 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+what], 40E680h
+call    _geteuid
+mov     [rbp+orig_euid], eax
+call    _getuid
+mov     [rbp+uid], eax
+call    _getgid
+mov     [rbp+gid], eax
+cmp     [rbp+orig_euid], 0
+jnz     short loc_40444E
+mov     eax, [rbp-2Ch]
+mov     [rbp+groups], eax
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 1
+call    _setgroups
+test    eax, eax
+jz      short loc_40444E
+mov     edi, 40E688h
+call    _gettext
+mov     [rbp+what], rax
+jmp     fail
+mov     eax, [rbp-30h]
+cmp     eax, [rbp-34h]
+jz      short loc_4044B0
+cmp     [rbp+uid], 0
+jz      short loc_4044B0
+call    ___errno_location
+mov     dword ptr [rax], 0
+call    _getuid
+mov     edi, eax
+call    _setuid
+test    eax, eax
+jz      short loc_404487
+mov     edi, 40E6A8h
+call    _gettext
+mov     [rbp+what], rax
+jmp     short fail
+mov     edi, 0
+call    _setuid
+test    eax, eax
+jnz     short loc_4044B0
+mov     edi, 40E6D0h
+call    _gettext
+mov     [rbp+what], rax
+call    ___errno_location
+mov     dword ptr [rax], 0
+jmp     short fail
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     eax, [rbp-2Ch]
+mov     edi, eax
+call    _setgid
+test    eax, eax
+jz      short loc_4044D9
+mov     edi, 40E6F0h
+call    _gettext
+mov     [rbp+what], rax
+jmp     short fail
+mov     eax, 0
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_404532
+jmp     short loc_40452D
+mov     rax, [rbp-28h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 40DA7Bh
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+call    _abort
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

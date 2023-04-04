@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+argv], rdi
+mov     [rbp+arg_ptr], rsi
+mov     [rbp+collected_arg], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-10h]
+mov     rcx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg_nonconst
+mov     [rbp+result], al
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-38h]
+mov     [rax], rdx
+movzx   eax, byte ptr [rbp-11h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40F0EF
+call    ___stack_chk_fail
+leave
+retn

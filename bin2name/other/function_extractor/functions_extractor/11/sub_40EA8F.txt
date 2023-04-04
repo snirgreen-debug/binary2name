@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+s], rsi
+mov     [rbp+var_14], edx
+lea     rax, unk_61BBA0
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_40EAD8
+mov     rax, [rbp-10h]
+mov     esi, 3Bh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_40EAD8
+mov     edx, [rbp-14h]
+mov     rax, [rbp-10h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_40E633
+jmp     short locret_40EAEE
+mov     edx, [rbp-14h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40E428
+leave
+retn

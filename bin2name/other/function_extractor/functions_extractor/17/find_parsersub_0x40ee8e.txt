@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+search_name], rdi
+mov     rax, [rbp-18h]
+mov     [rbp+original_arg], rax
+mov     rax, [rbp-18h]
+mov     edx, 6
+mov     rsi, rax
+mov     edi, 42E15Eh
+call    _strncmp
+test    eax, eax
+jnz     short loc_40EEE1
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+cmp     rax, 8
+jnz     short loc_40EEE1
+mov     rax, [rbp-8]
+mov     esi, 42D2C0h
+mov     rdi, rax
+call    found_parser
+jmp     short locret_40EF60
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Dh
+jnz     short loc_40EEF1
+add     [rbp+search_name], 1
+mov     [rbp+i], 0
+jmp     short loc_40EF44
+mov     eax, [rbp-0Ch]
+cdqe
+shl     rax, 5
+add     rax, 42D508h
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40EF40
+mov     eax, [rbp-0Ch]
+cdqe
+shl     rax, 5
+lea     rdx, [rax+42D500h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    found_parser
+jmp     short locret_40EF60
+add     [rbp+i], 1
+mov     eax, [rbp-0Ch]
+cdqe
+shl     rax, 5
+add     rax, 42D508h
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40EEFA
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+tag], rdi
+mov     [rbp+arg], rsi
+mov     rax, [rbp-20h]
+mov     [rbp+ctx], rax
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, cs:interesting_tags
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+t], rax
+cmp     [rbp+t], 0
+jnz     short loc_4149E0
+mov     ecx, 4326B0h
+mov     edx, 242h
+mov     esi, 4325F8h
+mov     edi, 432645h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-8]
+mov     ecx, [rdx]
+mov     rdx, [rbp-10h]
+mov     rsi, [rbp-18h]
+mov     edi, ecx
+call    rax
+nop
+leave
+retn

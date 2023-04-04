@@ -1,0 +1,97 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0B0h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_A4], 6
+mov     edi, 6148C0h
+call    _sigemptyset
+mov     [rbp+var_A8], 0
+jmp     short loc_406B50
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+lea     rdx, [rbp-0A0h]
+mov     esi, 0
+mov     edi, eax
+call    _sigaction
+mov     rax, [rbp-0A0h]
+cmp     rax, 1
+jz      short loc_406B49
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+mov     esi, eax
+mov     edi, 6148C0h
+call    _sigaddset
+add     [rbp+var_A8], 1
+mov     eax, [rbp-0A8h]
+cmp     eax, [rbp-0A4h]
+jl      short loc_406AFF
+mov     [rbp+var_A0], 406DD7h
+mov     rax, cs:set.__val
+mov     [rbp+var_98], rax
+mov     rax, cs:set.__val+8
+mov     [rbp+var_90], rax
+mov     rax, cs:set.__val+10h
+mov     [rbp+var_88], rax
+mov     rax, cs:set.__val+18h
+mov     [rbp+var_80], rax
+mov     rax, cs:set.__val+20h
+mov     [rbp+var_78], rax
+mov     rax, cs:set.__val+28h
+mov     [rbp+var_70], rax
+mov     rax, cs:set.__val+30h
+mov     [rbp+var_68], rax
+mov     rax, cs:set.__val+38h
+mov     [rbp+var_60], rax
+mov     rax, cs:set.__val+40h
+mov     [rbp+var_58], rax
+mov     rax, cs:set.__val+48h
+mov     [rbp+var_50], rax
+mov     rax, cs:set.__val+50h
+mov     [rbp+var_48], rax
+mov     rax, cs:set.__val+58h
+mov     [rbp+var_40], rax
+mov     rax, cs:set.__val+60h
+mov     [rbp+var_38], rax
+mov     rax, cs:set.__val+68h
+mov     [rbp+var_30], rax
+mov     rax, cs:set.__val+70h
+mov     [rbp+var_28], rax
+mov     rax, cs:set.__val+78h
+mov     [rbp+var_20], rax
+mov     [rbp+var_18], 0
+mov     [rbp+var_A8], 0
+jmp     short loc_406C93
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+mov     esi, eax
+mov     edi, 6148C0h
+call    _sigismember
+test    eax, eax
+jz      short loc_406C8C
+cmp     [rbp+var_A8], 0
+jnz     short loc_406C67
+mov     cs:dword_614898, 1
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+lea     rcx, [rbp-0A0h]
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+call    _sigaction
+add     [rbp+var_A8], 1
+mov     eax, [rbp-0A8h]
+cmp     eax, [rbp-0A4h]
+jl      short loc_406C35
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_406CB6
+call    ___stack_chk_fail
+leave
+retn

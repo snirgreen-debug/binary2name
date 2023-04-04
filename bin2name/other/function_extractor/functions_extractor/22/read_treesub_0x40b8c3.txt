@@ -1,0 +1,115 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+max_leaves], 1
+mov     cs:orig_len, 0
+mov     [rbp+n], 1
+jmp     short loc_40B90B
+mov     rax, cs:orig_len
+shl     rax, 8
+mov     rbx, rax
+call    read_byte
+movzx   eax, al
+or      rax, rbx
+mov     cs:orig_len, rax
+add     [rbp+n], 1
+cmp     [rbp+n], 4
+jle     short loc_40B8E7
+call    read_byte
+movzx   eax, al
+mov     cs:max_len, eax
+mov     eax, cs:max_len
+test    eax, eax
+jle     short loc_40B934
+mov     eax, cs:max_len
+cmp     eax, 19h
+jle     short loc_40B93E
+mov     edi, 411448h
+call    gzip_error
+mov     [rbp+n], 0
+mov     [rbp+len], 1
+jmp     short loc_40B9C1
+call    read_byte
+movzx   edx, al
+mov     eax, [rbp-20h]
+cdqe
+mov     ds:leaves[rax*4], edx
+mov     eax, cs:max_len
+cmp     [rbp+len], eax
+setz    al
+movzx   eax, al
+mov     edx, [rbp-14h]
+sub     edx, eax
+mov     eax, [rbp-20h]
+cdqe
+mov     eax, [rax*4+618160h]
+cmp     edx, eax
+jge     short loc_40B990
+mov     edi, 411488h
+call    gzip_error
+mov     eax, [rbp-20h]
+cdqe
+mov     eax, [rax*4+618160h]
+mov     edx, [rbp-14h]
+sub     edx, eax
+mov     eax, edx
+add     eax, 1
+add     eax, eax
+sub     eax, 1
+mov     [rbp+max_leaves], eax
+mov     eax, [rbp-20h]
+cdqe
+mov     eax, [rax*4+618160h]
+add     [rbp+n], eax
+add     [rbp+len], 1
+mov     eax, cs:max_len
+cmp     [rbp+len], eax
+jle     short loc_40B94E
+cmp     [rbp+n], 0FFh
+jle     short loc_40B9DF
+mov     edi, 411488h
+call    gzip_error
+mov     eax, cs:max_len
+movsxd  rdx, eax
+mov     edx, [rdx*4+618160h]
+add     edx, 1
+cdqe
+mov     ds:leaves[rax*4], edx
+mov     [rbp+base], 0
+mov     [rbp+len], 1
+jmp     short loc_40BA52
+mov     eax, [rbp-20h]
+cdqe
+mov     edx, [rbp-1Ch]
+mov     ds:lit_base[rax*4], edx
+mov     eax, [rbp-20h]
+cdqe
+mov     eax, [rax*4+618160h]
+mov     [rbp+n], eax
+jmp     short loc_40BA48
+mov     ebx, [rbp-1Ch]
+lea     eax, [rbx+1]
+mov     [rbp+base], eax
+call    read_byte
+mov     edx, eax
+movsxd  rax, ebx
+mov     ds:literal[rax], dl
+sub     [rbp+n], 1
+cmp     [rbp+n], 0
+jg      short loc_40BA2B
+add     [rbp+len], 1
+mov     eax, cs:max_len
+cmp     [rbp+len], eax
+jle     short loc_40BA0B
+mov     eax, cs:max_len
+movsxd  rdx, eax
+mov     edx, [rdx*4+618160h]
+add     edx, 1
+cdqe
+mov     ds:leaves[rax*4], edx
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

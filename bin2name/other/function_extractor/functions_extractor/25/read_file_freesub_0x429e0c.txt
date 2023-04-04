@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+fm], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+test    eax, eax
+jz      short loc_429E42
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _munmap
+jmp     short loc_429E51
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

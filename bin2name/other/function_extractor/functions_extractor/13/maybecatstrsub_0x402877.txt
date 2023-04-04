@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+mov     edx, cs:internal_wanted
+mov     eax, cs:internal_mode
+cmp     edx, eax
+jnz     short loc_4028A8
+mov     rax, cs:tos
+mov     rdx, cs:tos
+sub     rdx, 18h
+mov     rsi, rax
+mov     rdi, rdx
+call    catstr
+mov     rax, cs:tos
+mov     rdi, rax
+call    delete_string
+mov     rax, cs:tos
+sub     rax, 18h
+mov     cs:tos, rax
+mov     eax, 0
+call    check_range
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

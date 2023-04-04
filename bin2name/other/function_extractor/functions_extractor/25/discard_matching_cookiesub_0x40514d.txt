@@ -1,0 +1,88 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+jar], rdi
+mov     [rbp+cookie], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdi, rax
+call    hash_table_count
+test    eax, eax
+jz      loc_405289
+lea     rdx, [rbp-20h]
+mov     rcx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rsi, rcx
+mov     rdi, rax
+call    find_matching_cookie
+mov     [rbp+victim], rax
+cmp     [rbp+victim], 0
+jz      loc_40528A
+mov     rax, [rbp-20h]
+test    rax, rax
+jz      short loc_4051C7
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-10h]
+mov     rdx, [rdx+48h]
+mov     [rax+48h], rdx
+jmp     loc_405262
+mov     [rbp+chain_key], 0
+mov     rax, [rbp-10h]
+mov     rsi, [rax]
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+lea     rdx, [rbp-18h]
+mov     ecx, 0
+mov     rdi, rax
+call    hash_table_get_pair
+mov     [rbp+res], eax
+cmp     [rbp+res], 0
+jnz     short loc_405210
+mov     ecx, 430410h
+mov     edx, 129h
+mov     esi, 430162h
+mov     edi, 43016Ch
+call    ___assert_fail
+mov     rax, [rbp-10h]
+mov     rax, [rax+48h]
+test    rax, rax
+jnz     short loc_405244
+mov     rax, [rbp-10h]
+mov     rdx, [rax]
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_remove
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+jmp     short loc_405262
+mov     rax, [rbp-10h]
+mov     rdx, [rax+48h]
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rsi, rcx
+mov     rdi, rax
+call    hash_table_put
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    delete_cookie
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40528A
+mov     edi, 430175h
+mov     eax, 0
+call    debug_logprintf
+jmp     short loc_40528A
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40529E
+call    ___stack_chk_fail
+leave
+retn

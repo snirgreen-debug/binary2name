@@ -1,0 +1,184 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 78h
+mov     [rbp+n], edi
+mov     [rbp+arg], rsi
+mov     [rbp+argsize], rdx
+mov     [rbp+options], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     eax, [rbp-64h]
+mov     [rbp+n0], eax
+mov     rax, cs:slotvec_0
+mov     [rbp+sv], rax
+cmp     [rbp+n], 0
+jns     short loc_421998
+call    _abort
+mov     eax, cs:nslots
+cmp     eax, [rbp-50h]
+ja      loc_421A79
+mov     eax, [rbp-50h]
+add     eax, 1
+mov     eax, eax
+mov     [rbp+n1], rax
+cmp     [rbp+sv], 63ACF0h
+setz    al
+mov     [rbp+preallocated], al
+mov     edx, 0
+mov     rax, [rbp-30h]
+shl     rax, 4
+mov     [rbp+__xalloc_size], rax
+mov     rax, rdx
+and     eax, 1
+test    al, al
+jz      short loc_4219E1
+call    xalloc_die
+mov     rax, [rbp-30h]
+shl     rax, 4
+mov     rdx, rax
+cmp     [rbp+preallocated], 0
+jz      short loc_4219F9
+mov     eax, 0
+jmp     short loc_4219FD
+mov     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc
+mov     [rbp+sv], rax
+mov     rax, [rbp-40h]
+mov     cs:slotvec_0, rax
+cmp     [rbp+preallocated], 0
+jz      short loc_421A36
+mov     rcx, [rbp-40h]
+mov     rax, cs:slotvec0.size
+mov     rdx, cs:slotvec0.val
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     eax, cs:nslots
+mov     edx, eax
+mov     rax, [rbp-30h]
+sub     rax, rdx
+shl     rax, 4
+mov     rdx, rax
+mov     eax, cs:nslots
+mov     eax, eax
+shl     rax, 4
+mov     rcx, rax
+mov     rax, [rbp-40h]
+add     rax, rcx
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-30h]
+mov     cs:nslots, eax
+mov     eax, [rbp-64h]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-40h]
+add     rax, rdx
+mov     rax, [rax]
+mov     [rbp+size], rax
+mov     eax, [rbp-64h]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-40h]
+add     rax, rdx
+mov     rax, [rax+8]
+mov     [rbp+val], rax
+mov     rax, [rbp-80h]
+mov     eax, [rax+4]
+or      eax, 1
+mov     [rbp+flags], eax
+mov     rax, [rbp-80h]
+mov     r8, [rax+30h]
+mov     rax, [rbp-80h]
+mov     rdi, [rax+28h]
+mov     rax, [rbp-80h]
+lea     r11, [rax+8]
+mov     rax, [rbp-80h]
+mov     r10d, [rax]
+mov     r9d, [rbp-4Ch]
+mov     rcx, [rbp-78h]
+mov     rdx, [rbp-70h]
+mov     rsi, [rbp-28h]
+mov     rax, [rbp-38h]
+sub     rsp, 8
+push    r8
+push    rdi
+push    r11
+mov     r8d, r10d
+mov     rdi, rax
+call    quotearg_buffer_restyled
+add     rsp, 20h
+mov     [rbp+qsize], rax
+mov     rax, [rbp-28h]
+cmp     rax, [rbp-20h]
+ja      loc_421BCB
+mov     eax, [rbp-64h]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-20h]
+add     rax, 1
+mov     [rbp+size], rax
+mov     rax, [rbp-28h]
+mov     [rdx], rax
+cmp     [rbp+val], 63B640h
+jz      short loc_421B54
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-64h]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-40h]
+lea     rbx, [rdx+rax]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    xcharalloc
+mov     [rbp+val], rax
+mov     rax, [rbp-38h]
+mov     [rbx+8], rax
+mov     rax, [rbp-80h]
+mov     r8, [rax+30h]
+mov     rax, [rbp-80h]
+mov     rdi, [rax+28h]
+mov     rax, [rbp-80h]
+lea     r11, [rax+8]
+mov     rax, [rbp-80h]
+mov     r10d, [rax]
+mov     r9d, [rbp-4Ch]
+mov     rcx, [rbp-78h]
+mov     rdx, [rbp-70h]
+mov     rsi, [rbp-28h]
+mov     rax, [rbp-38h]
+sub     rsp, 8
+push    r8
+push    rdi
+push    r11
+mov     r8d, r10d
+mov     rdi, rax
+call    quotearg_buffer_restyled
+add     rsp, 20h
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-54h]
+mov     [rdx], eax
+mov     rax, [rbp-38h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_421BF0
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

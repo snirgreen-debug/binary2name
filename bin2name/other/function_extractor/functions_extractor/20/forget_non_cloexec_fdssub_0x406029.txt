@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:non_cloexec_fds
+mov     rdi, rax
+call    _free
+mov     cs:non_cloexec_fds, 0
+mov     cs:num_cloexec_fds, 0
+nop
+pop     rbp
+retn

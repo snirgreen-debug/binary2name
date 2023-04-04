@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+stream], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    ___fpending
+test    rax, rax
+setnz   al
+mov     [rbp+some_pending], al
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _ferror
+test    eax, eax
+setnz   al
+mov     [rbp+prev_fail], al
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fclose
+test    eax, eax
+setnz   al
+mov     [rbp+fclose_fail], al
+cmp     [rbp+prev_fail], 0
+jnz     short loc_40AFFD
+cmp     [rbp+fclose_fail], 0
+jz      short loc_40B01A
+cmp     [rbp+some_pending], 0
+jnz     short loc_40AFFD
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 9
+jz      short loc_40B01A
+movzx   eax, byte ptr [rbp-1]
+xor     eax, 1
+test    al, al
+jz      short loc_40B013
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     eax, 0FFFFFFFFh
+jmp     short locret_40B01F
+mov     eax, 0
+leave
+retn

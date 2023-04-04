@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_18], esi
+call    ___errno_location
+mov     dword ptr [rax], 0
+jmp     loc_40C6D6
+mov     edx, cs:dword_65D344
+mov     eax, cs:dword_6486E4
+sub     edx, eax
+mov     eax, cs:dword_6486E4
+mov     eax, eax
+lea     rcx, [rax+65D360h]
+mov     eax, [rbp-18h]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_40CA1F
+mov     edx, cs:dword_65D344
+mov     eax, cs:dword_6486E4
+sub     edx, eax
+mov     eax, edx
+mov     edx, eax
+mov     rax, cs:qword_65D320
+add     rax, rdx
+mov     cs:qword_65D320, rax
+mov     eax, [rbp-14h]
+mov     edx, 8000h
+mov     esi, 65D360h
+mov     edi, eax
+call    sub_40C875
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0FFFFFFFFh
+jnz     short loc_40C6AC
+call    sub_40CDC6
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, cs:qword_6186C0
+add     rax, rdx
+mov     cs:qword_6186C0, rax
+mov     eax, [rbp-4]
+mov     cs:dword_65D344, eax
+mov     cs:dword_6486E4, 0
+mov     edx, cs:dword_65D344
+mov     eax, cs:dword_6486E4
+cmp     edx, eax
+ja      loc_40C63D
+mov     eax, 0
+leave
+retn

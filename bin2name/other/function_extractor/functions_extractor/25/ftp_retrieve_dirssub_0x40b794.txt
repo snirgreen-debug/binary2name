@@ -1,0 +1,179 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+u], rdi
+mov     [rbp+f], rsi
+mov     [rbp+con], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+container], 0
+mov     [rbp+container_size], 0
+jmp     loc_40B9EB
+mov     rax, cs:opt.quota
+test    rax, rax
+jz      short loc_40B7EF
+mov     rdx, cs:opt.quota
+mov     rax, cs:total_downloaded_bytes
+cmp     rdx, rax
+jl      loc_40B9F8
+mov     rax, [rbp-50h]
+mov     eax, [rax]
+cmp     eax, 1
+jnz     loc_40B9DE
+mov     rax, [rbp-48h]
+mov     rax, [rax+40h]
+mov     rdi, rax
+call    _strlen
+mov     ebx, eax
+mov     rax, [rbp-50h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _strlen
+add     eax, ebx
+add     eax, 2
+mov     [rbp+size], eax
+mov     eax, [rbp-34h]
+cmp     eax, [rbp-38h]
+jle     short loc_40B86C
+mov     eax, [rbp-34h]
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+container], rax
+mov     rax, [rbp-30h]
+mov     [rbp+newdir], rax
+mov     rax, [rbp-48h]
+mov     rax, [rax+40h]
+mov     [rbp+odir], rax
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40B8A5
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_40B8C9
+mov     rax, [rbp-20h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40B8C9
+mov     rax, [rbp-50h]
+mov     rcx, [rax+8]
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     esi, 43146Ch
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+jmp     short loc_40B8EB
+mov     rax, [rbp-50h]
+mov     rcx, [rax+8]
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     esi, 431471h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40B904
+mov     edi, 431478h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40B930
+mov     rax, [rbp-50h]
+mov     rdx, [rax+8]
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 4314B0h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-28h]
+mov     esi, 1
+mov     rdi, rax
+call    accdir
+test    eax, eax
+jnz     short loc_40B96D
+mov     edi, 4314E8h
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-28h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+jmp     short loc_40B9DF
+mov     rax, [rbp-58h]
+mov     eax, [rax]
+and     eax, 0FFFFFFFDh
+mov     edx, eax
+mov     rax, [rbp-58h]
+mov     [rax], edx
+mov     rax, [rbp-48h]
+mov     rax, [rax+40h]
+mov     rdi, rax
+call    xstrdup_real
+mov     [rbp+odir], rax
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    url_set_dir
+mov     rcx, [rbp-58h]
+mov     rax, [rbp-48h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    ftp_retrieve_glob
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    url_set_dir
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+jmp     short loc_40B9DF
+nop
+mov     rax, [rbp-50h]
+mov     rax, [rax+38h]
+mov     [rbp+f], rax
+cmp     [rbp+f], 0
+jnz     loc_40B7CC
+jmp     short loc_40B9F9
+nop
+mov     rax, cs:opt.quota
+test    rax, rax
+jz      short loc_40BA1F
+mov     rdx, cs:opt.quota
+mov     rax, cs:total_downloaded_bytes
+cmp     rdx, rax
+jge     short loc_40BA1F
+mov     eax, 36h
+jmp     short loc_40BA24
+mov     eax, 22h
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40BA38
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

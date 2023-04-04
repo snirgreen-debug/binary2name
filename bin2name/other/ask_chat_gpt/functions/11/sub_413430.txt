@@ -1,0 +1,9 @@
+lea     rax, unk_619288
+test    rax, rax
+jz      short loc_413450
+mov     rdx, [rax]
+xor     esi, esi
+jmp     ___cxa_atexit
+xor     edx, edx
+xor     esi, esi
+jmp     ___cxa_atexit

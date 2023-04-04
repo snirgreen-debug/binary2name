@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    _open
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_404592
+mov     eax, [rbp-4]
+mov     edx, 1
+mov     esi, 2
+mov     edi, eax
+mov     eax, 0
+call    rpl_fcntl
+test    eax, eax
+jz      short loc_404592
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+mov     [rbp+fd], 0FFFFFFFFh
+mov     eax, [rbp-4]
+leave
+retn

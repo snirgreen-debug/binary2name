@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+p], rdi
+mov     eax, esi
+mov     [rbp+ret], rdx
+mov     [rbp+what], al
+movsx   eax, byte ptr [rbp-0Ch]
+cmp     eax, 61h
+jz      short loc_40EC63
+cmp     eax, 61h
+jg      short loc_40EC54
+cmp     eax, 42h
+jz      short loc_40EC84
+jmp     loc_40ECEB
+cmp     eax, 63h
+jz      short loc_40ECAF
+cmp     eax, 6Dh
+jz      short loc_40ECCD
+jmp     loc_40ECEB
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    get_stat_atime
+mov     rcx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     eax, 1
+jmp     locret_40ED04
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    get_stat_birthtime
+mov     rcx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+not     rax
+shr     rax, 3Fh
+movzx   eax, al
+jmp     short locret_40ED04
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    get_stat_ctime
+mov     rcx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     eax, 1
+jmp     short locret_40ED04
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    get_stat_mtime
+mov     rcx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     eax, 1
+jmp     short locret_40ED04
+mov     ecx, 42F8F8h
+mov     edx, 1F3h
+mov     esi, 42E06Ch
+mov     edi, 42E075h
+call    ___assert_fail
+leave
+retn

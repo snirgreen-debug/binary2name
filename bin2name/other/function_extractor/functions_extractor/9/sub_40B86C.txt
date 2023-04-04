@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edx, cs:dword_6486E4
+mov     eax, cs:dword_65D344
+cmp     edx, eax
+jnb     short loc_40B8A1
+mov     eax, cs:dword_6486E4
+lea     edx, [rax+1]
+mov     cs:dword_6486E4, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_40B8AB
+mov     edi, 0
+call    sub_40C7A4
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jns     short loc_40B8BE
+mov     edi, 411410h
+call    sub_40CD07
+mov     eax, [rbp-4]
+leave
+retn

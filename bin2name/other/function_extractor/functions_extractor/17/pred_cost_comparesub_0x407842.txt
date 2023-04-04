@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+p1], rdi
+mov     [rbp+p2], rsi
+mov     eax, edx
+mov     [rbp+wantfailure], al
+mov     rax, [rbp-8]
+mov     edx, [rax+20h]
+mov     rax, [rbp-10h]
+mov     eax, [rax+20h]
+cmp     edx, eax
+jnz     short loc_4078D8
+mov     rax, [rbp-8]
+movss   xmm0, dword ptr [rax+24h]
+mov     rax, [rbp-10h]
+movss   xmm1, dword ptr [rax+24h]
+ucomiss xmm0, xmm1
+jp      short loc_407888
+ucomiss xmm0, xmm1
+jnz     short loc_407888
+mov     eax, 0
+jmp     short loc_4078F7
+cmp     [rbp+wantfailure], 0
+jz      short loc_4078B3
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+24h]
+mov     rax, [rbp-10h]
+movss   xmm0, dword ptr [rax+24h]
+ucomiss xmm0, xmm1
+jbe     short loc_4078AC
+mov     eax, 0FFFFFFFFh
+jmp     short loc_4078F7
+mov     eax, 1
+jmp     short loc_4078F7
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+24h]
+mov     rax, [rbp-10h]
+movss   xmm0, dword ptr [rax+24h]
+ucomiss xmm0, xmm1
+jbe     short loc_4078D1
+mov     eax, 1
+jmp     short loc_4078F7
+mov     eax, 0FFFFFFFFh
+jmp     short loc_4078F7
+mov     rax, [rbp-8]
+mov     edx, [rax+20h]
+mov     rax, [rbp-10h]
+mov     eax, [rax+20h]
+cmp     edx, eax
+jnb     short loc_4078F1
+mov     eax, 0FFFFFFFFh
+jmp     short loc_4078F6
+mov     eax, 1
+nop
+pop     rbp
+retn

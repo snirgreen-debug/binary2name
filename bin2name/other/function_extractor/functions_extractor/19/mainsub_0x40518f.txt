@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+argc], edi
+mov     [rbp+argv], rsi
+call    open_secure_db
+mov     [rbp+dbfd], eax
+call    drop_privs
+mov     edx, [rbp-4]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    dolocate
+leave
+retn

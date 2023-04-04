@@ -1,0 +1,84 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+curr], rdi
+mov     [rbp+high_prec], esi
+mov     [rbp+prevp], rdx
+mov     edi, 138h
+call    xmalloc
+mov     [rbp+new_parent], rax
+mov     rax, [rbp-8]
+mov     dword ptr [rax+10h], 3
+mov     rax, [rbp-8]
+mov     edx, [rbp-1Ch]
+mov     [rax+14h], edx
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Ah], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Ch], 0
+mov     rax, [rbp-8]
+mov     dword ptr [rax+20h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+30h], 0
+mov     eax, [rbp-1Ch]
+cmp     eax, 2
+jz      short loc_408733
+cmp     eax, 3
+jz      short loc_40876B
+cmp     eax, 1
+jnz     loc_4087A2
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 404A97h
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 42B9AFh
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42BF74
+movss   dword ptr [rax+24h], xmm0
+jmp     short loc_4087A2
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 4058E6h
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 42B9B1h
+mov     rax, [rbp-18h]
+mov     eax, [rax+24h]
+mov     [rbp+var_2C], eax
+movss   xmm0, dword ptr [rbp-2Ch]
+call    constrain_rate
+movd    edx, xmm0
+mov     rax, [rbp-8]
+mov     [rax+24h], edx
+jmp     short loc_4087A2
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 404895h
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 42B9B4h
+mov     rax, [rbp-18h]
+mov     eax, [rax+24h]
+mov     [rbp+var_2C], eax
+movss   xmm0, dword ptr [rbp-2Ch]
+call    constrain_rate
+movd    edx, xmm0
+mov     rax, [rbp-8]
+mov     [rax+24h], edx
+nop
+mov     rax, [rbp-8]
+mov     byte ptr [rax+18h], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+19h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+108h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+110h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax+118h], rdx
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+leave
+retn

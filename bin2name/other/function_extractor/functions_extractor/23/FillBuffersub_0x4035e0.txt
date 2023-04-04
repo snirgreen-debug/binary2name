@@ -1,0 +1,48 @@
+push    rbp
+push    rbx
+sub     rsp, 8
+test    pibIn, pibIn
+jz      short loc_403660
+mov     rcx, [pibIn]
+test    rcx, rcx
+jz      short loc_403660
+mov     rax, [pibIn+8]
+test    rax, rax
+jz      short loc_403660
+mov     rdx, lBuffer_size
+mov     rbx, pibIn
+mov     esi, 1
+mov     pibIn, rax
+call    _fread
+test    eax, eax
+mov     ebp, eax
+jz      short loc_403630
+mov     iOffset, [pibIn+8]
+mov     [pibIn+18h], rax
+add     rsp, 8
+mov     eax, ebp
+pop     pibIn
+pop     iReturn
+retn
+mov     rdi, [pibIn]
+call    _feof
+test    eax, eax
+jnz     short loc_403670
+mov     rdi, pibIn
+mov     ecx, 4123F5h
+xor     edx, edx
+mov     esi, 8000h
+call    ReportError
+add     rsp, 8
+mov     eax, ebp
+pop     pibIn
+pop     iReturn
+retn
+xor     ebp, ebp
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     iReturn
+retn
+mov     ebp, 0FFFFFFFFh
+jmp     short loc_40361D

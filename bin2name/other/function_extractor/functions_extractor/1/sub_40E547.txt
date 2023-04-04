@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:qword_62D650
+mov     rcx, [rax+30h]
+mov     rax, cs:qword_62D650
+mov     rdx, [rax+8]
+mov     rax, cs:qword_62D650
+mov     eax, [rax+10h]
+mov     eax, eax
+mov     r9, rcx
+mov     r8, rdx
+mov     rcx, rax
+mov     edx, 424050h
+mov     esi, 62D660h
+mov     edi, 62D658h
+mov     eax, 0
+call    sub_41A681
+test    eax, eax
+jz      short loc_40E59C
+call    sub_40C5A4
+mov     rax, cs:src
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_10], rax
+mov     rdx, cs:qword_62D680
+mov     rax, [rbp-10h]
+add     rax, rdx
+add     rax, 1
+mov     [rbp+var_8], rax
+mov     rax, cs:qword_62D688
+cmp     [rbp+var_8], rax
+jbe     short loc_40E5FD
+mov     rax, [rbp-8]
+mov     cs:qword_62D688, rax
+mov     rdx, cs:qword_62D688
+mov     rax, cs:dest
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40C52A
+mov     cs:dest, rax
+mov     rax, cs:qword_62D650
+mov     rdx, [rax+30h]
+add     rdx, 1
+mov     [rax+30h], rdx
+mov     rax, cs:src
+mov     rcx, cs:dest
+mov     rdx, cs:qword_62D680
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rdx, cs:qword_62D680
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     cs:qword_62D680, rax
+nop
+leave
+retn

@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:pc_active_p, 0
+mov     rax, cs:pc_last_host_ip
+test    rax, rax
+jz      short loc_4156F9
+mov     rax, cs:pc_last_host_ip
+mov     rdi, rax
+call    address_list_release
+mov     cs:pc_last_host_ip, 0
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_41571A
+mov     eax, cs:pc_last_fd
+mov     esi, eax
+mov     edi, 432780h
+mov     eax, 0
+call    debug_logprintf
+nop
+pop     rbp
+retn

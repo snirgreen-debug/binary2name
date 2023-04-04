@@ -1,0 +1,18 @@
+push    rbp
+push    rbx
+mov     rbp, pFileIn
+xor     ebx, ebx
+sub     rsp, 8
+jmp     short loc_4028E4
+add     nChars, 1
+mov     rdi, pFileIn
+call    __IO_getc
+cmp     al, 0FFh
+jnz     short loc_4028E0
+mov     rdi, pFileIn
+call    _rewind
+add     rsp, 8
+mov     rax, nChars
+pop     nChars
+pop     pFileIn
+retn

@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-8]
+mov     dword ptr [rax+18h], 95F616h
+nop
+pop     rbp
+retn

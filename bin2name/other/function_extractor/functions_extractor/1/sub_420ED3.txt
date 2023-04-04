@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+cmp     [rbp+var_14], 0Ah
+jz      short loc_420F12
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    sub_41965C
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jz      short loc_420EFC
+mov     eax, [rbp-4]
+jmp     short loc_420EFF
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    sub_420E81
+cmp     [rbp+var_4], 0
+setz    al
+movzx   eax, al
+jmp     short locret_420F17
+mov     eax, 0
+leave
+retn

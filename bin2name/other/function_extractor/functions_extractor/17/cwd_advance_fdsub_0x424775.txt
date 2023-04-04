@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+sp_0], rdi
+mov     [rbp+fd], esi
+mov     eax, edx
+mov     [rbp+chdir_down_one], al
+mov     rax, [rbp-18h]
+mov     eax, [rax+2Ch]
+mov     [rbp+old], eax
+mov     eax, [rbp-8]
+cmp     eax, [rbp-1Ch]
+jnz     short loc_4247A6
+cmp     [rbp+old], 0FFFFFF9Ch
+jz      short loc_4247A6
+call    _abort
+cmp     [rbp+chdir_down_one], 0
+jz      short loc_4247D6
+mov     rax, [rbp-18h]
+lea     rdx, [rax+60h]
+mov     eax, [rbp-8]
+mov     esi, eax
+mov     rdi, rdx
+call    i_ring_push
+mov     [rbp+prev_fd_in_slot], eax
+cmp     [rbp+prev_fd_in_slot], 0
+js      short loc_4247F4
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+jmp     short loc_4247F4
+mov     rax, [rbp-18h]
+mov     eax, [rax+48h]
+and     eax, 4
+test    eax, eax
+jnz     short loc_4247F4
+cmp     [rbp+old], 0
+js      short loc_4247F4
+mov     eax, [rbp-8]
+mov     edi, eax
+call    _close
+mov     rax, [rbp-18h]
+mov     edx, [rbp-1Ch]
+mov     [rax+2Ch], edx
+nop
+leave
+retn

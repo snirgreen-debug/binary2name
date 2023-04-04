@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+add     rdx, 18h
+cmp     rax, rdx
+jnz     short loc_40D600
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-10h]
+lea     rsi, [rdx+18h]
+mov     rdx, [rbp-8]
+lea     rcx, [rdx+18h]
+mov     rdx, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+lea     rdx, [rax+18h]
+mov     rax, [rbp-8]
+mov     [rax], rdx
+jmp     short loc_40D60E
+mov     rax, [rbp-10h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+10h]
+mov     rax, [rbp-8]
+mov     [rax+10h], dl
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+10h]
+test    al, al
+jz      short loc_40D647
+mov     rax, [rbp-10h]
+mov     edx, [rax+14h]
+mov     rax, [rbp-8]
+mov     [rax+14h], edx
+nop
+leave
+retn

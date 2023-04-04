@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_24], edx
+cmp     [rbp+var_20], 0
+jz      short loc_403EF7
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_403F31
+mov     rax, [rbp-20h]
+mov     rax, [rax+28h]
+test    rax, rax
+jnz     short loc_403F31
+mov     eax, [rbp-24h]
+mov     edi, eax
+call    sub_40AD0E
+mov     rbx, rax
+mov     edi, 422FBBh
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rcx, rbx
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    sub_40AA55
+mov     eax, 1
+jmp     short loc_403F8E
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+cmp     eax, [rbp-24h]
+jz      short loc_403F89
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+mov     edi, eax
+call    sub_40AD0E
+mov     r12, rax
+mov     eax, [rbp-24h]
+mov     edi, eax
+call    sub_40AD0E
+mov     rbx, rax
+mov     edi, 422FC7h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     r8, r12
+mov     rcx, rbx
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    sub_40AA55
+mov     eax, 1
+jmp     short loc_403F8E
+mov     eax, 0
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

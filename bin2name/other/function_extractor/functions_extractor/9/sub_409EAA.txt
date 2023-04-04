@@ -1,0 +1,132 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_24], edi
+mov     [rbp+var_28], esi
+mov     eax, cs:dword_617D20
+lea     edx, [rax+1]
+mov     cs:dword_617D20, edx
+mov     edx, [rbp-28h]
+mov     eax, eax
+mov     ds:byte_65D360[rax], dl
+cmp     [rbp+var_24], 0
+jnz     short loc_409EF6
+mov     eax, [rbp-28h]
+cdqe
+movzx   eax, word ptr [rax*4+614E20h]
+lea     edx, [rax+1]
+mov     eax, [rbp-28h]
+cdqe
+mov     ds:word_614E20[rax*4], dx
+jmp     loc_409FA1
+sub     [rbp+var_24], 1
+mov     eax, [rbp-28h]
+cdqe
+movzx   eax, byte ptr [rax+616920h]
+movzx   eax, al
+add     eax, 101h
+movsxd  rdx, eax
+movzx   edx, word ptr [rdx*4+614E20h]
+add     edx, 1
+cdqe
+mov     ds:word_614E20[rax*4], dx
+cmp     [rbp+var_24], 0FFh
+jg      short loc_409F40
+mov     eax, [rbp-24h]
+cdqe
+movzx   eax, byte ptr [rax+616A20h]
+movzx   eax, al
+jmp     short loc_409F57
+mov     eax, [rbp-24h]
+sar     eax, 7
+add     eax, 100h
+cdqe
+movzx   eax, byte ptr [rax+616A20h]
+movzx   eax, al
+movsxd  rdx, eax
+movzx   edx, word ptr [rdx*4+615720h]
+add     edx, 1
+cdqe
+mov     ds:word_615720[rax*4], dx
+mov     eax, cs:dword_617D24
+lea     edx, [rax+1]
+mov     cs:dword_617D24, edx
+mov     edx, [rbp-24h]
+mov     eax, eax
+mov     ds:word_6386E0[rax+rax], dx
+movzx   edx, cs:byte_617D2C
+movzx   eax, cs:byte_617D2D
+or      eax, edx
+mov     cs:byte_617D2C, al
+movzx   eax, cs:byte_617D2D
+add     eax, eax
+mov     cs:byte_617D2D, al
+mov     eax, cs:dword_617D20
+and     eax, 7
+test    eax, eax
+jnz     short loc_409FE9
+mov     eax, cs:dword_617D28
+lea     edx, [rax+1]
+mov     cs:dword_617D28, edx
+movzx   edx, cs:byte_617D2C
+mov     eax, eax
+mov     ds:byte_616D20[rax], dl
+mov     cs:byte_617D2C, 0
+mov     cs:byte_617D2D, 1
+mov     eax, cs:dword_614330
+cmp     eax, 2
+jle     loc_40A09E
+mov     eax, cs:dword_617D20
+and     eax, 0FFFh
+test    eax, eax
+jnz     loc_40A09E
+mov     eax, cs:dword_617D20
+mov     eax, eax
+shl     rax, 3
+mov     [rbp+var_10], rax
+mov     eax, cs:dword_618288
+mov     edx, eax
+mov     rax, cs:qword_618290
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_8], rax
+mov     [rbp+var_14], 0
+jmp     short loc_40A06B
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*4+615720h]
+movzx   edx, ax
+mov     eax, [rbp-14h]
+cdqe
+mov     eax, [rax*4+614620h]
+cdqe
+add     rax, 5
+imul    rax, rdx
+add     [rbp+var_10], rax
+add     [rbp+var_14], 1
+cmp     [rbp+var_14], 1Dh
+jle     short loc_40A03D
+shr     [rbp+var_10], 3
+mov     eax, cs:dword_617D20
+shr     eax, 1
+mov     edx, eax
+mov     eax, cs:dword_617D24
+cmp     edx, eax
+jbe     short loc_40A09E
+mov     rax, [rbp-8]
+shr     rax, 1
+cmp     rax, [rbp-10h]
+jbe     short loc_40A09E
+mov     eax, 1
+jmp     short loc_40A0C5
+mov     eax, cs:dword_617D20
+cmp     eax, 7FFFh
+jz      short loc_40A0B8
+mov     eax, cs:dword_617D24
+cmp     eax, 8000h
+jnz     short loc_40A0BF
+mov     eax, 1
+jmp     short loc_40A0C4
+mov     eax, 0
+nop
+pop     rbp
+retn

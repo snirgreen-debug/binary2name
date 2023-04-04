@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 40E8CFh
+call    _gettext
+mov     rdx, rax
+mov     eax, cs:dword_6112F0
+mov     rcx, rdx
+mov     edx, 40E8E0h
+mov     esi, 0
+mov     edi, eax
+mov     eax, 0
+call    _error
+call    _abort

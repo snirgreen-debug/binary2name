@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-18h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      short loc_40F9D2
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-10h]
+lea     rdx, [rax+38h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    open_output_file
+mov     rax, [rbp-10h]
+mov     byte ptr [rax+19h], 1
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+19h]
+mov     rax, [rbp-10h]
+mov     [rax+18h], dl
+mov     rax, [rbp-10h]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-10h]
+mov     [rax+1Ah], dl
+mov     rax, [rbp-10h]
+movss   xmm0, cs:dword_42F964
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+jmp     short loc_40F9D7
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40F9EB
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+stream], rdi
+mov     [rbp+var_10], rsi
+jmp     short loc_40311D
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     edi, eax
+call    _fputc
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jz      short loc_403112
+add     [rbp+var_10], 1
+jmp     short loc_40311D
+add     [rbp+var_10], 1
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jz      short loc_40310D
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4030E3
+nop
+leave
+retn

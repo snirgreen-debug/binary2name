@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+40h]
+test    rax, rax
+jz      short loc_411295
+mov     rax, [rbp-8]
+mov     rax, [rax+40h]
+mov     rdx, [rbp-8]
+mov     rdx, [rdx+38h]
+mov     [rax+38h], rdx
+jmp     short loc_4112BF
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_4112B8
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rdx, [rbp-8]
+mov     rdx, [rdx+38h]
+mov     [rax+30h], rdx
+jmp     short loc_4112BF
+mov     eax, 1
+jmp     short loc_4112E5
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+test    rax, rax
+jz      short loc_4112E0
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+mov     rdx, [rbp-8]
+mov     rdx, [rdx+40h]
+mov     [rax+40h], rdx
+mov     eax, 0
+pop     rbp
+retn

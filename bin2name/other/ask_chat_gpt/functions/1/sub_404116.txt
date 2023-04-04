@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edx, 48h
+mov     esi, 0
+mov     edi, 62D5E0h
+call    _memset
+mov     cs:dword_62D618, 5
+nop
+pop     rbp
+retn

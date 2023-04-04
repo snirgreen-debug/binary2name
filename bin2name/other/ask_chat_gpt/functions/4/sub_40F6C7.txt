@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40A0EB
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42F960
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+leave
+retn

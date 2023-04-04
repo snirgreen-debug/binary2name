@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fd], edi
+mov     [rbp+name], rsi
+mov     [rbp+p], rdx
+mov     rdx, [rbp-18h]
+mov     rcx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     rsi, rcx
+mov     edi, eax
+call    lgetfileconat
+leave
+retn

@@ -1,0 +1,71 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_24], edx
+mov     [rbp+var_30], rcx
+mov     [rbp+var_28], r8d
+mov     [rbp+var_38], r9
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_406508
+mov     rax, [rbp-18h]
+mov     rdx, [rax+28h]
+mov     rax, cs:qword_6474E8
+cmp     rdx, rax
+jge     short loc_406508
+mov     eax, 0
+jmp     locret_4065AA
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+test    eax, eax
+jz      short loc_406523
+cmp     [rbp+var_28], 0
+jnz     short loc_406523
+mov     eax, 0
+jmp     locret_4065AA
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+cmp     eax, 0FFFFFFFFh
+jz      short loc_406542
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+cmp     eax, [rbp-24h]
+jz      short loc_406542
+mov     eax, 0
+jmp     short locret_4065AA
+mov     rax, [rbp-18h]
+mov     eax, [rax+1Ch]
+test    eax, eax
+jz      short loc_40656E
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jz      short loc_40656E
+mov     eax, 0
+jmp     short locret_4065AA
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40645C
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jnz     short loc_406595
+mov     eax, 0
+jmp     short locret_4065AA
+cmp     [rbp+var_38], 0
+jz      short loc_4065A5
+mov     rax, [rbp-38h]
+mov     edx, [rbp-4]
+mov     [rax], edx
+mov     eax, 1
+leave
+retn

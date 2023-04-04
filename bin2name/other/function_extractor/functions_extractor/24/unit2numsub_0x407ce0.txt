@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 670h
+mov     [rbp+input], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    initializeunit
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    completereduce
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_407D36
+mov     eax, [rbp-654h]
+jmp     short loc_407D75
+lea     rcx, [rbp-650h]
+mov     rax, [rbp-668h]
+lea     rdx, ignore_nothing
+mov     rsi, rcx
+mov     rdi, rax
+call    compareunits
+test    eax, eax
+jz      short loc_407D61
+mov     eax, 5
+jmp     short loc_407D75
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    freeunit
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_407D89
+call    ___stack_chk_fail
+leave
+retn

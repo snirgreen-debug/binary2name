@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+wc], edi
+mov     eax, cs:dword_60C788
+test    eax, eax
+jz      short loc_40929F
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _towupper
+jmp     short locret_4092A9
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _toupper
+leave
+retn

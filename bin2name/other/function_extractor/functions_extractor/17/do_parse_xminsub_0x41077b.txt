@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+add     rsp, 0FFFFFFFFFFFFFF80h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     [rbp+xv], ecx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-68h]
+mov     eax, [rax]
+mov     [rbp+saved_argc], eax
+lea     rdx, [rbp-40h]
+mov     rcx, [rbp-68h]
+mov     rax, [rbp-60h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      loc_410885
+mov     rax, cs:options_0.cur_day_start.tv_sec
+mov     rdx, cs:options_0.cur_day_start.tv_nsec
+mov     [rbp+origin.tv_sec], rax
+mov     [rbp+origin.tv_nsec], rdx
+mov     eax, [rbp-6Ch]
+mov     [rbp+tval.xval], eax
+mov     rax, [rbp-30h]
+add     rax, 15180h
+mov     [rbp+origin.tv_sec], rax
+mov     rdi, [rbp-40h]
+mov     rcx, 404E000000000000h
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-28h]
+lea     rsi, [rbp-20h]
+mov     r8d, 42EB40h
+mov     [rbp+var_78], rcx
+movsd   xmm0, qword ptr [rbp-78h]
+mov     rcx, rdx
+mov     rdx, rax
+call    get_relative_timestamp
+test    al, al
+jz      short loc_41087C
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-20h]
+mov     [rax+38h], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+40h], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+48h], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    estimate_timestamp_success_rate
+movd    edx, xmm0
+mov     rax, [rbp-38h]
+mov     [rax+24h], edx
+mov     eax, 1
+jmp     short loc_41088A
+mov     rax, [rbp-68h]
+mov     edx, [rbp-44h]
+mov     [rax], edx
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41089E
+call    ___stack_chk_fail
+leave
+retn

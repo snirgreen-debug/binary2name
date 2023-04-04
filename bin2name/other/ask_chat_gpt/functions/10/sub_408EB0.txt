@@ -1,0 +1,10 @@
+test    rdi, rdi
+jz      short locret_408ED0
+test    rsi, rsi
+jz      short locret_408ED0
+cmp     byte ptr [rsi], 0
+jz      short locret_408ED0
+test    rdx, rdx
+jz      short locret_408ED0
+jmp     sub_408A00
+rep retn

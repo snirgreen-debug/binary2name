@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_41A188
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 0
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_41A21B
+nop
+leave
+retn

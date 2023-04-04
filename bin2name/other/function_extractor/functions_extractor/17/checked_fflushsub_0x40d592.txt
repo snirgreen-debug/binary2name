@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+dest], rdi
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    rpl_fflush
+test    eax, eax
+jz      short loc_40D5CC
+mov     rax, [rbp-18h]
+mov     rbx, [rax+10h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    nonfatal_nontarget_file_error
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

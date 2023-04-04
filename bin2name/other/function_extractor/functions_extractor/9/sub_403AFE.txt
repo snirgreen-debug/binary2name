@@ -1,0 +1,179 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_614884
+test    eax, eax
+jnz     loc_403BB2
+mov     eax, cs:dword_614890
+test    eax, eax
+jnz     loc_403BB2
+movzx   eax, cs:byte_614878
+test    al, al
+jnz     short loc_403B42
+mov     eax, cs:dword_614880
+test    eax, eax
+setz    al
+movzx   eax, al
+mov     edi, eax
+call    _isatty
+test    eax, eax
+jz      short loc_403BB2
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_403BA8
+mov     rcx, cs:qword_65D328
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_403B64
+mov     edi, 410648h
+jmp     short loc_403B69
+mov     edi, 41064Bh
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_403B7A
+mov     esi, 41064Ch
+jmp     short loc_403B7F
+mov     esi, 410656h
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     r9, rcx
+mov     r8, rdi
+mov     rcx, rsi
+mov     esi, 410668h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 1
+call    sub_406CB8
+mov     eax, cs:dword_614880
+test    eax, eax
+mov     eax, cs:dword_61486C
+test    eax, eax
+jnz     short loc_403BD6
+mov     eax, cs:dword_614890
+test    eax, eax
+jnz     short loc_403BD6
+mov     eax, cs:dword_614880
+test    eax, eax
+mov     cs:dest, 69647473h
+mov     cs:word_6182C4, 6Eh
+mov     cs:dword_64CF20, 6F647473h
+mov     cs:word_64CF24, 7475h
+mov     cs:byte_64CF26, 0
+mov     esi, 614D60h
+mov     edi, 0
+call    sub_40F790
+test    eax, eax
+jz      short loc_403C2A
+mov     edi, 4106C5h
+call    sub_403269
+mov     edi, 1
+call    sub_406CB8
+mov     eax, cs:stat_buf.st_mode
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_403C45
+mov     rax, cs:stat_buf.st_size
+jmp     short loc_403C4C
+mov     rax, 0FFFFFFFFFFFFFFFFh
+mov     cs:qword_6486F0, rax
+mov     cs:qword_65D338, 0FFFFFFFFFFFFFFFFh
+mov     eax, cs:dword_614324
+test    eax, eax
+jz      short loc_403C72
+mov     eax, cs:dword_614890
+test    eax, eax
+jz      short loc_403CA8
+mov     eax, cs:stat_buf.st_mode
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_403C9E
+mov     edi, 614D60h
+call    sub_40E083
+mov     cs:timer, rax
+mov     cs:qword_65D338, rdx
+jmp     short loc_403CA8
+mov     edi, 65D330h
+call    sub_40DA44
+call    sub_40C764
+mov     cs:dword_614860, 1
+mov     cs:dword_6148A0, 0
+mov     cs:dword_64CF00, 0
+mov     cs:byte_614944, 1
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_403D06
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    sub_4051E4
+mov     cs:dword_61432C, eax
+mov     eax, cs:dword_61432C
+test    eax, eax
+jns     short loc_403D06
+mov     eax, cs:dword_614870
+mov     edi, eax
+call    sub_406CB8
+mov     eax, cs:dword_614890
+test    eax, eax
+jz      short loc_403D2A
+mov     edx, cs:dword_61432C
+mov     eax, cs:dword_64CF00
+mov     esi, edx
+mov     edi, eax
+call    sub_405E2F
+jmp     loc_403E10
+mov     rax, cs:off_614358
+mov     esi, 1
+mov     edi, 0
+call    rax 
+test    eax, eax
+jnz     loc_403E0C
+call    sub_403A9B
+test    eax, eax
+jnz     short loc_403D7C
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    sub_4051E4
+mov     cs:dword_61432C, eax
+mov     eax, cs:dword_61432C
+test    eax, eax
+js      loc_403E0F
+mov     cs:qword_65D320, 0
+jmp     short loc_403D2A
+nop
+mov     eax, cs:dword_614864
+test    eax, eax
+jz      loc_403E10
+mov     eax, cs:dword_61486C
+test    eax, eax
+jz      short loc_403DB5
+mov     rax, cs:stderr
+mov     rcx, rax
+mov     edx, 4
+mov     esi, 1
+mov     edi, 4106D4h
+call    _fwrite
+jmp     short loc_403E10
+mov     eax, cs:dword_614880
+test    eax, eax
+jnz     short loc_403E10
+mov     rdx, cs:stderr
+mov     rax, cs:qword_6186C0
+mov     rcx, cs:qword_6186C0
+mov     rdi, cs:qword_65D320
+mov     rsi, cs:qword_6653A0
+sub     rdi, rsi
+mov     rsi, rdi
+sub     rcx, rsi
+mov     rsi, rax
+mov     rdi, rcx
+call    sub_40CE88
+mov     rax, cs:stderr
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+jmp     short loc_403E10
+nop
+jmp     short loc_403E10
+nop
+pop     rbp
+retn

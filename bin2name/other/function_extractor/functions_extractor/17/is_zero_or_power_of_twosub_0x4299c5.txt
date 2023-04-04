@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+i], rdi
+mov     rax, [rbp-8]
+sub     rax, 1
+and     rax, [rbp-8]
+test    rax, rax
+setz    al
+pop     rbp
+retn

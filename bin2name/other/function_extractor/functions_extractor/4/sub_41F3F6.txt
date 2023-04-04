@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+timer], rdx
+mov     rax, [rbp-18h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_41F432
+lea     rax, [rbp-18h]
+mov     rdi, rax
+call    _localtime
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_41F432
+mov     eax, 0
+jmp     short locret_41F4A1
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+mov     ecx, edx
+xor     ecx, eax
+mov     rax, [rbp-8]
+mov     edx, [rax+4]
+mov     rax, [rbp-10h]
+mov     eax, [rax+4]
+xor     eax, edx
+or      ecx, eax
+mov     rax, [rbp-8]
+mov     edx, [rax+8]
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+xor     eax, edx
+or      ecx, eax
+mov     rax, [rbp-8]
+mov     edx, [rax+0Ch]
+mov     rax, [rbp-10h]
+mov     eax, [rax+0Ch]
+xor     eax, edx
+or      ecx, eax
+mov     rax, [rbp-8]
+mov     edx, [rax+10h]
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+xor     eax, edx
+or      ecx, eax
+mov     rax, [rbp-8]
+mov     edx, [rax+14h]
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+xor     eax, edx
+or      eax, ecx
+test    eax, eax
+setz    al
+leave
+retn

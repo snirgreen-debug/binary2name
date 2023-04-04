@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    j
+sub     rsp, 18h
+mov     [rbp+pack_level], edi
+mov     [rbp+flags], rsi
+cmp     [rbp+pack_level], 0
+jle     short loc_402102
+cmp     [rbp+pack_level], 9
+jle     short loc_40210C
+mov     edi, 40F7C4h
+call    gzip_error
+mov     eax, [rbp-14h]
+mov     cs:compr_level, eax
+mov     eax, 6286E0h
+mov     edx, 10000h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     eax, 0FFFFFFFFh
+mov     cs:rsync_chunk_end, rax
+mov     cs:rsync_sum, 0
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C2h]
+movzx   eax, ax
+mov     cs:max_lazy_match, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C0h]
+movzx   eax, ax
+mov     cs:good_match, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C4h]
+movzx   eax, ax
+mov     cs:nice_match, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C6h]
+movzx   eax, ax
+mov     cs:max_chain_length, eax
+cmp     [rbp+pack_level], 1
+jnz     short loc_4021B6
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax]
+or      eax, 4
+mov     edx, eax
+mov     rax, [rbp-20h]
+mov     [rax], dx
+jmp     short loc_4021CF
+cmp     [rbp+pack_level], 9
+jnz     short loc_4021CF
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax]
+or      eax, 2
+mov     edx, eax
+mov     rax, [rbp-20h]
+mov     [rax], dx
+mov     cs:strstart, 0
+mov     cs:block_start, 0
+mov     rax, cs:read_buf
+mov     esi, 10000h
+mov     edi, 64D320h
+call    rax 
+mov     cs:lookahead, eax
+mov     eax, cs:lookahead
+test    eax, eax
+jz      short loc_402212
+mov     eax, cs:lookahead
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_402228
+mov     cs:eofile, 1
+mov     cs:lookahead, 0
+jmp     short loc_40228D
+mov     cs:eofile, 0
+jmp     short loc_402239
+call    fill_window
+mov     eax, cs:lookahead
+cmp     eax, 105h
+ja      short loc_402250
+mov     eax, cs:eofile
+test    eax, eax
+jz      short loc_402234
+mov     cs:ins_h, 0
+mov     ebx, 0
+jmp     short loc_402288
+mov     eax, cs:ins_h
+shl     eax, 5
+mov     edx, eax
+mov     eax, ebx
+movzx   eax, byte ptr [rax+64D320h]
+movzx   eax, al
+xor     eax, edx
+and     eax, 7FFFh
+mov     cs:ins_h, eax
+add     ebx, 1
+cmp     ebx, 1
+jbe     short loc_402261
+add     rsp, 18h
+pop     j
+pop     rbp
+retn

@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, [rbp-30h]
+mov     rdx, [rax]
+mov     [rbp+var_20], rdx
+mov     rdx, [rax+8]
+mov     [rbp+var_18], rdx
+mov     rdx, [rax+10h]
+mov     [rbp+var_10], rdx
+mov     rax, [rax+18h]
+mov     [rbp+var_8], rax
+jmp     short loc_4220FB
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-20h]
+mov     [rax+50h], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+58h], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+60h], rdx
+mov     rdx, [rbp-8]
+mov     [rax+68h], rdx
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-20h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+10h], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+18h], rdx
+mov     rdx, [rbp-8]
+mov     [rax+20h], rdx
+cmp     [rbp+var_38], 0
+jz      short loc_4220EF
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-38h]
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     [rcx+18h], rax
+mov     [rcx+20h], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+30h]
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_422089
+nop
+pop     rbp
+retn

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+initial_args], edi
+mov     [rbp+ctl], rsi
+mov     [rbp+state], rdx
+cmp     [rbp+initial_args], 0
+jnz     short loc_4050CA
+mov     rax, [rbp-10h]
+mov     rax, [rax+50h]
+test    rax, rax
+jz      short loc_4050CA
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-10h]
+mov     rax, [rax+38h]
+sub     rdx, rax
+mov     rax, [rbp-10h]
+mov     rax, [rax+50h]
+cmp     rdx, rax
+jnz     short loc_4050CA
+mov     eax, 1
+jmp     short loc_4050E2
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-10h]
+mov     rax, [rax+20h]
+cmp     rdx, rax
+setz    al
+movzx   eax, al
+pop     rbp
+retn

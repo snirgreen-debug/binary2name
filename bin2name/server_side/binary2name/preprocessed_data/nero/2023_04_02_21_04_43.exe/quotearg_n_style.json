@@ -1,0 +1,77 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4208721,
+                "src": 4208671
+            },
+            {
+                "dst": 4208749,
+                "src": 4208721
+            },
+            {
+                "dst": 4208769,
+                "src": 4208749
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4208769
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4208671,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |sub|rsp|0x50|    |mov|dword|ptr|rbp|-|0x44|edi|    |mov|dword|ptr|rbp|-|0x48|esi|    |mov|qword|ptr|rbp|-|0x50|rdx|    |mov|rax|qword|ptr|fs:0x28|    |mov|qword|ptr|rbp|-|8|rax|    |xor|eax|eax|    |lea|rax|rbp|-|0x40|    |mov|edx|dword|ptr|rbp|-|0x48|    |mov|esi|edx|    |mov|rdi|rax|    |call|0x40235e|    "
+            },
+            {
+                "block_addr": 4208721,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "lea|rdx|rbp|-|0x40|    |mov|rsi|qword|ptr|rbp|-|0x50|    |mov|eax|dword|ptr|rbp|-|0x44|    |mov|rcx|rdx|    |mov|rdx|-1|    |mov|edi|eax|    |call|0x4034d7|    "
+            },
+            {
+                "block_addr": 4208749,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "mov|rcx|qword|ptr|rbp|-|8|    |xor|rcx|qword|ptr|fs:0x28|    |je|0x403881|    "
+            },
+            {
+                "block_addr": 4208769,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ]
+                ],
+                "instructions": "leave|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        4,
+                        [
+                            "<BV32 Extract(31, 0, fake_ret_value_2188_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            }
+        ]
+    },
+    "func_name": "4208671"
+}

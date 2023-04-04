@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, cs:grecs_malloc_fun
+mov     rdx, [rbp-18h]
+mov     rdi, rdx
+call    rax 
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_40C4CA
+call    grecs_alloc_die
+mov     rax, [rbp-8]
+leave
+retn

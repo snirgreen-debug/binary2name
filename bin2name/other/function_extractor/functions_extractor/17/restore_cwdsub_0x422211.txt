@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+cwd], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+js      short loc_422236
+mov     rax, [rbp-8]
+mov     eax, [rax]
+mov     edi, eax
+call    _fchdir
+jmp     short locret_422246
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    chdir_long
+leave
+retn

@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fd], edi
+mov     [rbp+buf], rsi
+mov     [rbp+len], edx
+mov     [rbp+res], 0
+jmp     loc_40358A
+movsd   xmm0, cs:opt.read_timeout
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_40351F
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jnz     short loc_40351F
+jmp     short loc_403549
+mov     rdx, cs:opt.read_timeout
+mov     eax, [rbp-14h]
+mov     esi, 1
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     edi, eax
+call    select_fd
+test    eax, eax
+jg      short loc_403549
+mov     eax, 0FFFFFFFFh
+jmp     short locret_40359A
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    _write
+mov     [rbp+res], eax
+cmp     [rbp+res], 0FFFFFFFFh
+jnz     short loc_403575
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 4
+jz      short loc_403549
+cmp     [rbp+res], 0
+jle     short loc_403596
+mov     eax, [rbp-4]
+cdqe
+add     [rbp+buf], rax
+mov     eax, [rbp-4]
+sub     [rbp+len], eax
+cmp     [rbp+len], 0
+jg      loc_403501
+jmp     short loc_403597
+nop
+mov     eax, [rbp-4]
+leave
+retn

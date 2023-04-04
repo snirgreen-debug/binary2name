@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:quote_opts
+mov     rdi, rax
+call    _free
+nop
+pop     rbp
+retn

@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_605100
+sub     rax, 18h
+mov     cs:qword_605100, rax
+mov     eax, 0
+call    sub_400EF3
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

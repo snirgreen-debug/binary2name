@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+ptr], rdi
+mov     [rbp+idx], esi
+mov     [rbp+len], 0
+jmp     loc_401FFD
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+movzx   eax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jnz     short loc_401FC3
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 20h
+jz      short loc_401FC3
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 5Fh
+jnz     short loc_401FCD
+add     [rbp+len], 1
+add     [rbp+idx], 1
+jmp     short loc_401FFD
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_401FF6
+cmp     [rbp+len], 3
+jbe     short loc_401FEF
+mov     eax, 1
+jmp     short loc_40201B
+mov     eax, 0
+jmp     short loc_40201B
+mov     eax, 0
+jmp     short loc_40201B
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     loc_401F68
+mov     eax, 0
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

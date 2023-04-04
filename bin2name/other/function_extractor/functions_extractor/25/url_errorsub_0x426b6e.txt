@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+error_code], edi
+cmp     [rbp+error_code], 0
+js      short loc_426B87
+mov     eax, [rbp-4]
+cmp     eax, 7
+jbe     short loc_426BA0
+mov     ecx, 4374B8h
+mov     edx, 402h
+mov     esi, 4371A0h
+mov     edi, 4372A8h
+call    ___assert_fail
+mov     eax, [rbp-4]
+cdqe
+mov     rax, [rax*8+63FF20h]
+mov     rdi, rax
+call    _gettext
+leave
+retn

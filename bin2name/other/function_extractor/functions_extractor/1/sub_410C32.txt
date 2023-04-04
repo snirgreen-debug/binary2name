@@ -1,0 +1,81 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+mov     [rbp+var_38], r8
+mov     [rbp+var_40], r9
+mov     edi, 40h
+call    _malloc
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jz      loc_410D68
+mov     rax, [rbp-8]
+mov     edx, 40h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax+8], rdx
+cmp     [rbp+var_20], 0
+jz      short loc_410C9A
+mov     rax, [rbp-20h]
+jmp     short loc_410C9F
+mov     eax, 4103A2h
+mov     rdx, [rbp-8]
+mov     [rdx+18h], rax
+cmp     [rbp+var_28], 0
+jz      short loc_410CB4
+mov     rax, [rbp-28h]
+jmp     short loc_410CB9
+mov     eax, 4103D2h
+mov     rdx, [rbp-8]
+mov     [rdx+20h], rax
+cmp     [rbp+var_30], 0
+jz      short loc_410CCE
+mov     rax, [rbp-30h]
+jmp     short loc_410CD3
+mov     eax, 41040Dh
+mov     rdx, [rbp-8]
+mov     [rdx+28h], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-38h]
+mov     [rax+30h], rdx
+cmp     [rbp+var_40], 0
+jz      short loc_410CFC
+mov     rax, [rbp-8]
+mov     rdx, [rbp-40h]
+mov     [rax+38h], rdx
+jmp     short loc_410D1D
+cmp     [rbp+var_30], 0
+jnz     short loc_410D11
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 410458h
+jmp     short loc_410D1D
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 0
+mov     rax, [rbp-8]
+mov     eax, [rax+4]
+mov     eax, eax
+mov     eax, [rax*4+62D220h]
+mov     eax, eax
+mov     esi, 8
+mov     rdi, rax
+call    _calloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_410D68
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     [rbp+s], 0
+mov     rax, [rbp-8]
+leave
+retn

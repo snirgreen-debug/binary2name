@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:grecs_alloc_die_fun
+test    rax, rax
+jz      short loc_40C5BD
+mov     rax, cs:grecs_alloc_die_fun
+call    rax 
+mov     edx, 423DEDh
+mov     esi, 0Ch
+mov     edi, 0
+mov     eax, 0
+call    grecs_error
+mov     edi, 46h
+call    _exit

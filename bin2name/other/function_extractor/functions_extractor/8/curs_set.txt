@@ -1,0 +1,1 @@
+extrn curs_set:near

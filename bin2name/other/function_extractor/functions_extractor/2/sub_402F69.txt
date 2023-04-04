@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     esi, 3Ah
+mov     rdi, rax
+call    sub_402F3F
+leave
+retn

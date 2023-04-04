@@ -1,0 +1,106 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     [rbp+var_58], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rdx, [rbp-38h]
+mov     rcx, [rbp-58h]
+mov     rax, [rbp-50h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40F08F
+test    al, al
+jz      loc_41280D
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _getpwnam
+mov     [rbp+var_30], rax
+call    _endpwent
+cmp     [rbp+var_30], 0
+jz      short loc_412705
+mov     rax, [rbp-30h]
+mov     eax, [rax+10h]
+mov     [rbp+var_3C], eax
+jmp     loc_4127BE
+mov     rax, [rbp-38h]
+mov     esi, 42E223h
+mov     rdi, rax
+call    _strspn
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jz      short loc_41274C
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-28h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_41274C
+mov     edx, cs:dword_63C02C
+mov     rax, [rbp-38h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_416C51
+mov     [rbp+var_3C], eax
+jmp     short loc_4127BE
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_412796
+mov     rdx, [rbp-38h]
+mov     eax, cs:dword_63C02C
+mov     esi, eax
+mov     edi, 0
+call    sub_421C93
+mov     rbx, rax
+mov     edi, 42F188h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_4127B7
+mov     edi, 42F1B0h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_412812
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40A098
+mov     [rbp+var_20], rax
+mov     rax, [rbp-20h]
+mov     edx, [rbp-3Ch]
+mov     [rax+38h], edx
+mov     rax, [rbp-20h]
+mov     eax, [rax+38h]
+cmp     eax, 63h
+ja      short loc_4127F5
+movss   xmm0, cs:dword_42F978
+jmp     short loc_4127FD
+movss   xmm0, cs:dword_42F97C
+mov     rax, [rbp-20h]
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+jmp     short loc_412812
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_412826
+call    ___stack_chk_fail
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

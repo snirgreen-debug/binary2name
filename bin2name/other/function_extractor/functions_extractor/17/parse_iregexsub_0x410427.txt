@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     eax, cs:options_0.regex_options
+or      eax, 400000h
+mov     ecx, eax
+mov     rdx, [rbp-8]
+mov     rsi, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    insert_regex
+leave
+retn

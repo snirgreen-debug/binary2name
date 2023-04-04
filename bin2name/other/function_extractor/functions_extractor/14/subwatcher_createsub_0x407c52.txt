@@ -1,0 +1,73 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_34], edx
+mov     [rbp+var_38], ecx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-14h]
+mov     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    dirwatcher_install
+mov     [rbp+var_10], rax
+mov     eax, [rbp-14h]
+test    eax, eax
+jnz     short loc_407C9F
+mov     eax, 0FFFFFFFFh
+jmp     loc_407D39
+mov     rax, [rbp-28h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-10h]
+mov     [rax+18h], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_407CD7
+mov     rax, [rbp-28h]
+mov     edx, [rax+28h]
+mov     rax, [rbp-10h]
+mov     [rax+28h], edx
+jmp     short loc_407D00
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+test    eax, eax
+jz      short loc_407CF5
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+lea     edx, [rax-1]
+mov     rax, [rbp-10h]
+mov     [rax+28h], edx
+jmp     short loc_407D00
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+28h], 0
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    dirwatcher_init
+test    eax, eax
+jz      short loc_407D17
+mov     eax, 0FFFFFFFFh
+jmp     short loc_407D39
+cmp     [rbp+var_34], 0
+jz      short loc_407D33
+mov     edx, [rbp-38h]
+mov     rax, [rbp-10h]
+mov     esi, edx
+mov     rdi, rax
+call    watch_subdirs
+add     eax, 1
+jmp     short loc_407D39
+mov     eax, 1
+nop
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_407D4D
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_10], edx
+mov     [rbp+stream], rcx
+cmp     [rbp+var_8], 0
+jz      short loc_40B35B
+jmp     short loc_40B34D
+mov     rax, [rbp-8]
+mov     eax, [rax+1Ch]
+and     eax, 10h
+test    eax, eax
+jnz     short loc_40B343
+cmp     [rbp+var_C], 0
+jz      short loc_40B309
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cmp     eax, 0Fh
+jnz     short loc_40B32C
+mov     rdx, [rbp-18h]
+mov     ecx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     esi, ecx
+mov     rdi, rax
+call    grecs_print_block_statement
+jmp     short loc_40B344
+mov     rdx, [rbp-18h]
+mov     ecx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     esi, ecx
+mov     rdi, rax
+call    grecs_print_simple_statement
+jmp     short loc_40B344
+nop
+add     [rbp+var_8], 48h
+add     [rbp+var_C], 1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40B2E4
+jmp     short locret_40B35C
+nop
+leave
+retn

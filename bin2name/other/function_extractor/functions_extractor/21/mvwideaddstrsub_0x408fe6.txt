@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+y], edi
+mov     [rbp+x], esi
+mov     [rbp+UTF8Text], rdx
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, [rbp-8]
+mov     ecx, [rbp-4]
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    wideaddstr
+nop
+leave
+retn

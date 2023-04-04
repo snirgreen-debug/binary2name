@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+candidate], rdi
+mov     [rbp+divisor], 3
+mov     rax, [rbp-10h]
+imul    rax, [rbp-10h]
+mov     [rbp+square], rax
+jmp     short loc_418556
+add     [rbp+divisor], 1
+mov     rax, [rbp-10h]
+shl     rax, 2
+add     [rbp+square], rax
+add     [rbp+divisor], 1
+mov     rax, [rbp-8]
+cmp     rax, [rbp-18h]
+jnb     short loc_418575
+mov     rax, [rbp-18h]
+mov     edx, 0
+div     qword ptr [rbp-10h]
+mov     rax, rdx
+test    rax, rax
+jnz     short loc_418540
+mov     rax, [rbp-18h]
+mov     edx, 0
+div     qword ptr [rbp-10h]
+mov     rax, rdx
+test    rax, rax
+setnz   al
+pop     rbp
+retn

@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 411F1Ch
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+cmp     [rbp+e], 0
+jz      short loc_40CE17
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     [rdx], eax
+mov     edi, 6182C0h
+call    _perror
+jmp     short loc_40CE35
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     edx, 6182C0h
+mov     esi, 411F22h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    abort_gzip

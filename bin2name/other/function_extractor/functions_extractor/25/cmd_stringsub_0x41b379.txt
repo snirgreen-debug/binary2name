@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+pstring], rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41B3B0
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     eax, 1
+leave
+retn

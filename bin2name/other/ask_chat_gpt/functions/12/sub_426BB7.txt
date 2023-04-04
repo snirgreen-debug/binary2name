@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-18h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_426C13
+mov     edi, 4372DFh
+call    sub_4288AF
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_4288AF
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+jmp     short loc_426C4A
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42897F
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+add     rax, 1
+mov     rdi, rax
+call    sub_4288AF
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_4257C9
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_4257C9
+nop
+leave
+retn

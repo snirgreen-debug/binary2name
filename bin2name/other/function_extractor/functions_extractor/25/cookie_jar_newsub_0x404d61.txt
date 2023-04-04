@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 10h
+call    xmalloc_real
+mov     [rbp+jar], rax
+mov     edi, 0
+call    make_nocase_string_hash_table
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     dword ptr [rax+8], 0
+mov     rax, [rbp-8]
+leave
+retn

@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+jmp     short loc_40C601
+mov     edi, 20h
+call    _putchar
+add     [rbp+var_8], 1
+mov     rax, [rbp-8]
+cmp     rax, [rbp-10h]
+jb      short loc_40C5F2
+nop
+leave
+retn

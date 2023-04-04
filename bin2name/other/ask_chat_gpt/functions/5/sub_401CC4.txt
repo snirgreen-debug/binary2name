@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     [rbp+var_18], rdi
+mov     rax, cs:stderr
+mov     rdi, rax
+call    sub_40466E
+mov     edi, 4053B8h
+call    _gettext
+mov     rbx, rax
+mov     edi, 4053C5h
+call    _gettext
+mov     r12, rax
+mov     edi, 4053D4h
+call    _gettext
+mov     rcx, rax
+mov     rdx, cs:off_6081D0
+mov     rax, cs:stdout
+mov     rsi, [rbp-18h]
+push    0
+push    rbx
+mov     r9, r12
+mov     r8, rcx
+mov     rcx, rdx
+mov     edx, 4053E3h
+mov     rdi, rax
+mov     eax, 0
+call    sub_40417F
+add     rsp, 10h
+nop
+lea     rsp, [rbp-10h]
+pop     rbx
+pop     r12
+pop     rbp
+retn

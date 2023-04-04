@@ -1,0 +1,130 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+movsd   [rbp+value], xmm0
+mov     [rbp+hasnondigits], rdi
+movsd   xmm1, qword ptr [rbp-38h]
+movsd   xmm0, cs:qword_416DB0
+andpd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DD8
+ucomisd xmm1, xmm0
+jnb     short loc_40A725
+cmp     [rbp+hasnondigits], 0
+jz      short loc_40A71B
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 1
+movsd   xmm0, qword ptr [rbp-38h]
+jmp     loc_40A8D5
+lea     rax, num_format
+mov     eax, [rax+0Ch]
+add     eax, 9
+mov     [rbp+buflen], eax
+lea     rax, num_format
+mov     eax, [rax+8]
+cmp     eax, [rbp-28h]
+jle     short loc_40A751
+lea     rax, num_format
+mov     eax, [rax+8]
+mov     [rbp+buflen], eax
+lea     rax, num_format
+movzx   eax, byte ptr [rax+10h]
+movsx   eax, al
+mov     esi, eax
+lea     rdi, aFf
+call    _strchr
+test    rax, rax
+jz      short loc_40A7D4
+lea     rax, num_format
+mov     eax, [rax+0Ch]
+add     eax, 2
+mov     [rbp+len], eax
+movsd   xmm1, qword ptr [rbp-38h]
+movsd   xmm0, cs:qword_416DB0
+andpd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DA0
+ucomisd xmm0, xmm1
+jbe     short loc_40A7C6
+movsd   xmm1, qword ptr [rbp-38h]
+movsd   xmm0, cs:qword_416DB0
+andpd   xmm0, xmm1
+call    _log10
+call    _floor
+cvttsd2si eax, xmm0
+add     eax, 1
+add     [rbp+len], eax
+mov     eax, [rbp-24h]
+cmp     eax, [rbp-28h]
+jle     short loc_40A7D4
+mov     eax, [rbp-24h]
+mov     [rbp+buflen], eax
+lea     rax, num_format
+mov     rax, [rax]
+mov     esi, 27h
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_40A826
+lea     rax, num_format
+movzx   eax, byte ptr [rax+10h]
+movsx   eax, al
+mov     esi, eax
+lea     rdi, aFfgg
+call    _strchr
+test    rax, rax
+jz      short loc_40A826
+mov     edx, [rbp-28h]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+mov     edx, eax
+shr     edx, 1Fh
+add     eax, edx
+sar     eax, 1
+mov     [rbp+buflen], eax
+mov     eax, [rbp-28h]
+lea     rsi, aRoundToDisplay
+mov     edi, eax
+call    mymalloc
+mov     [rbp+buf], rax
+lea     rax, num_format
+mov     rdx, [rax]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-20h]
+mov     [rbp+var_48], rcx
+movsd   xmm0, qword ptr [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+mov     eax, 1
+call    _sprintf
+cmp     [rbp+hasnondigits], 0
+jz      short loc_40A8AA
+mov     rax, [rbp-20h]
+lea     rsi, a1234567890
+mov     rdi, rax
+call    _strspn
+mov     rbx, rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+cmp     rbx, rax
+jz      short loc_40A8A0
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 1
+jmp     short loc_40A8AA
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     esi, 0
+mov     rdi, rax
+call    _strtod
+movq    rax, xmm0
+mov     [rbp+rounded], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+movsd   xmm0, qword ptr [rbp-18h]
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

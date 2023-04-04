@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, cs:off_62D1F8
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax 
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_40C561
+call    sub_40C5A4
+mov     rax, [rbp-8]
+leave
+retn

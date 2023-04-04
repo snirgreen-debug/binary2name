@@ -1,0 +1,202 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+rbuf], rdi
+mov     [rbp+line], rsi
+mov     [rbp+bufsize], 28h
+mov     eax, [rbp-8]
+cdqe
+mov     rdi, rax
+call    xmalloc_real
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     [rbp+i], 0
+mov     eax, [rbp-8]
+sub     eax, 1
+cmp     eax, [rbp-0Ch]
+jge     short loc_40C2DA
+shl     [rbp+bufsize], 1
+mov     eax, [rbp-8]
+movsxd  rdx, eax
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+1010h]
+test    rax, rax
+jz      short loc_40C33D
+mov     rax, [rbp-18h]
+mov     rax, [rax+1010h]
+lea     rdx, [rax-1]
+mov     rax, [rbp-18h]
+mov     [rax+1010h], rdx
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+cdqe
+lea     rsi, [rdx+rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax+1008h]
+lea     rcx, [rax+1]
+mov     rdx, [rbp-18h]
+mov     [rdx+1008h], rcx
+movzx   eax, byte ptr [rax]
+mov     [rsi], al
+mov     eax, 1
+jmp     loc_40C3D1
+mov     rax, [rbp-18h]
+lea     rdx, [rax+4]
+mov     rax, [rbp-18h]
+mov     [rax+1008h], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    rbuf_read_bufferful
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax+1018h], edx
+mov     rax, [rbp-18h]
+mov     eax, [rax+1018h]
+test    eax, eax
+jg      short loc_40C382
+mov     rax, [rbp-18h]
+mov     eax, [rax+1018h]
+jmp     short loc_40C3D1
+mov     rax, [rbp-18h]
+mov     eax, [rax+1018h]
+sub     eax, 1
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     [rax+1010h], rdx
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+cdqe
+lea     rsi, [rdx+rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax+1008h]
+lea     rcx, [rax+1]
+mov     rdx, [rbp-18h]
+mov     [rdx+1008h], rcx
+movzx   eax, byte ptr [rax]
+mov     [rsi], al
+mov     eax, 1
+mov     [rbp+res], eax
+cmp     [rbp+res], 1
+jnz     short loc_40C43C
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+jnz     short loc_40C446
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+cmp     [rbp+i], 0
+jle     short loc_40C44F
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+sub     rdx, 1
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 0Dh
+jnz     short loc_40C44F
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+sub     rdx, 1
+add     rax, rdx
+mov     byte ptr [rax], 0
+jmp     short loc_40C44F
+mov     eax, 16h
+jmp     locret_40C562
+add     [rbp+i], 1
+jmp     loc_40C2AA
+nop
+mov     eax, cs:opt.server_response
+test    eax, eax
+jz      short loc_40C47A
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rdx, rax
+mov     esi, 4315C2h
+mov     edi, 3
+mov     eax, 0
+call    logprintf
+jmp     short loc_40C49D
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40C49D
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 4315C2h
+mov     eax, 0
+call    debug_logprintf
+cmp     [rbp+i], 2
+jle     loc_40C2A3
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      loc_40C2A3
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      loc_40C2A3
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      loc_40C2A3
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     loc_40C2A3
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     edx, 80h
+mov     rsi, rax
+mov     edi, 647500h
+call    _strncpy
+mov     cs:ftp_last_respline+7Fh, 0
+mov     eax, 0Fh
+leave
+retn

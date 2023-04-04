@@ -1,0 +1,97 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+dest], rdi
+mov     [rbp+src], rsi
+mov     rax, [rbp-10h]
+mov     edx, [rax+28h]
+mov     rax, [rbp-8]
+mov     [rax+28h], edx
+mov     rax, [rbp-10h]
+mov     edx, [rax+2Ch]
+mov     rax, [rbp-8]
+mov     [rax+2Ch], edx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+20h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-8]
+mov     [rax+18h], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_403CC1
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_403CE9
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax+10h]
+test    rax, rax
+jz      short loc_403D11
+mov     rax, [rbp-10h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_403D52
+lea     rsi, aCopyfunctype
+mov     edi, 8
+call    mymalloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+18h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+18h]
+mov     rdx, [rbp-10h]
+mov     rdx, [rdx+18h]
+movsd   xmm0, qword ptr [rdx]
+movsd   qword ptr [rax], xmm0
+mov     rax, [rbp-10h]
+mov     rax, [rax+20h]
+test    rax, rax
+jz      short loc_403D93
+lea     rsi, aCopyfunctype
+mov     edi, 8
+call    mymalloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+20h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+20h]
+mov     rdx, [rbp-10h]
+mov     rdx, [rdx+20h]
+movsd   xmm0, qword ptr [rdx]
+movsd   qword ptr [rax], xmm0
+nop
+leave
+retn

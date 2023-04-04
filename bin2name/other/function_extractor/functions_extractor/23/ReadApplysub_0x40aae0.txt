@@ -1,0 +1,223 @@
+push    r15
+push    r14
+mov     r15, pibIn
+push    r13
+push    r12
+mov     r12, szEqn
+push    rbp
+push    rbx
+sub     rsp, 828h
+mov     r14, [pibIn+30h]
+mov     edi, [bInited_0]
+mov     rcx, fs:28h
+mov     [rsp+858h+var_40], rcx
+xor     ecx, ecx
+mov     [rsp+858h+bInited], bInited_0
+test    edi, edi
+jz      loc_40AE59
+mov     r8, szEqn
+mov     ecx, 4139D1h
+mov     szEqn, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___sprintf_chk
+mov     rdx, [pibIn+18h]
+jmp     short loc_40AB4B
+mov     rdx, rax
+lea     rax, [rdx+1]
+mov     [pibIn+18h], rax
+cmp     byte ptr [rax-1], 3Ch
+jnz     short loc_40AB48
+cmp     byte ptr [rdx+1], 21h
+jz      loc_40AE6F
+lea     rsi, [rsp+10h]
+mov     rdi, pibIn
+lea     rbx, [rsp+410h]
+xor     ebp, ebp
+call    GetIdentifier
+lea     rdi, [rsp+10h]
+call    TranscribeOpSymbol
+nop     dword ptr [rax+00h]
+mov     rdx, [pibIn+18h]
+jmp     short loc_40AB93
+mov     rdx, rax
+lea     rax, [rdx+1]
+mov     [pibIn+18h], rax
+cmp     byte ptr [rax-1], 3Ch
+jnz     short loc_40AB90
+cmp     byte ptr [rdx+1], 2Fh
+jz      loc_40AD48
+mov     rsi, rbx
+mov     rdi, pibIn
+call    GetIdentifier
+mov     edi, 4139D5h
+mov     ecx, 6
+mov     rsi, rbx
+repe cmpsb
+jnz     loc_40AC9D
+add     ebp, 1
+cmp     [rsp+858h+szOp], 70h
+jnz     loc_40AD10
+cmp     [rsp+858h+szOp+1], 6Fh
+jnz     loc_40AD10
+cmp     [rsp+858h+szOp+2], 77h
+jnz     loc_40AD10
+cmp     [rsp+858h+szOp+3], 0
+jnz     loc_40AD10
+cmp     ebp, 1
+jz      loc_40AE20
+mov     r8, szEqn
+mov     ecx, 4139E4h
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, szEqn
+xor     eax, eax
+call    ___sprintf_chk
+mov     rsi, [rsp+8]
+mov     rdx, szEqn
+mov     rdi, pibIn
+call    ReadApply
+jmp     loc_40AB88
+cmp     [rsp+858h+szOp+1], 6Fh
+jnz     loc_40ACCF
+cmp     [rsp+858h+szOp+2], 77h
+jnz     short loc_40ACCF
+cmp     [rsp+858h+szOp+3], 0
+jnz     short loc_40ACCF
+cmp     ebp, 1
+jz      loc_40AE42
+mov     r9, rbx
+mov     r8, szEqn
+mov     ecx, 4139E2h
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___sprintf_chk
+mov     edx, 3Fh
+mov     esi, 3Eh
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jz      loc_40AD99
+add     qword ptr [pibIn+18h], 1
+mov     rdi, pibIn
+call    SkipWhitespace
+mov     rsi, rbx
+mov     rdi, pibIn
+call    GetIdentifier
+mov     ecx, [pinfo+0Ch]
+test    ecx, ecx
+jnz     loc_40ADE0
+add     ebp, 1
+cmp     [rsp+858h+szOp], 70h
+jz      loc_40AC40
+cmp     ebp, 1
+jz      loc_40AE32
+sub     rsp, 8
+mov     r8, szEqn
+mov     ecx, 413904h
+push    rbx
+lea     r9, [rsp+20h]
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___sprintf_chk
+pop     rax
+pop     rdx
+jmp     loc_40AC83
+cmp     ebp, 1
+jz      loc_40AC21
+lea     r9, [rsp+10h]
+mov     r8, szEqn
+mov     ecx, 413906h
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___sprintf_chk
+jmp     loc_40AC21
+add     rdx, 2
+mov     rsi, rbx
+mov     rdi, pibIn
+mov     [pibIn+18h], rdx
+mov     r13d, 6195A0h
+call    GetIdentifier
+mov     rsi, cs:vrgSBMLKW.szKeyword
+cmp     byte ptr [rsi], 0
+jnz     short loc_40AD7D
+jmp     short loc_40AD89
+add     r13, 10h
+mov     rsi, [r13+0]
+cmp     byte ptr [rsi], 0
+jz      short loc_40AD89
+mov     rdi, rbx
+call    _strcmp
+test    eax, eax
+jnz     short loc_40AD70
+mov     eax, [r13+8]
+sub     eax, 3Dh
+cmp     eax, 1
+ja      loc_40ABB6
+xor     eax, eax
+mov     r8, szEqn
+mov     ecx, 4139E4h
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, szEqn
+call    ___sprintf_chk
+mov     rax, [rsp+818h]
+xor     rax, fs:28h
+jnz     loc_40AE8B
+add     rsp, 828h
+pop     rbx
+pop     ithTerm
+pop     szEqn
+pop     r13
+pop     pinfo
+pop     pibIn
+retn
+mov     rdi, [pinfo+20h]
+mov     rsi, rbx
+call    GetVarPTR
+test    rax, rax
+jnz     loc_40ACC1
+mov     rax, [pinfo+60h]
+mov     r8, rbx
+mov     ecx, 413948h
+mov     edx, 3FFh
+mov     esi, 1
+mov     rdi, rbx
+mov     r9, [rax]
+xor     eax, eax
+call    ___sprintf_chk
+jmp     loc_40ACC1
+lea     r9, [rsp+10h]
+mov     r8, szEqn
+mov     ecx, 4139DBh
+jmp     loc_40AD26
+mov     r9, rbx
+mov     r8, szEqn
+mov     ecx, 413906h
+jmp     loc_40AC6D
+sub     rsp, 8
+mov     r8, szEqn
+mov     ecx, 4139E8h
+push    rbx
+lea     r9, [rsp+20h]
+jmp     loc_40ACEA
+mov     rax, bInited_0
+mov     esi, 28h
+mov     [szEqn], si
+mov     dword ptr [rax], 1
+jmp     loc_40AB3B
+add     rdx, 2
+nop     dword ptr [rax+rax+00h]
+mov     [pibIn+18h], rdx
+add     rdx, 1
+cmp     byte ptr [rdx-2], 3Ch
+jnz     short loc_40AE78
+jmp     loc_40AB63
+call    ___stack_chk_fail

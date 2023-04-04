@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:history_length_ptr
+mov     edx, [rax]
+lea     rax, unk_61B268
+mov     eax, [rax]
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+var_8], eax
+mov     rax, cs:history_max_entries_ptr
+mov     eax, [rax]
+test    eax, eax
+jle     short loc_402247
+mov     rax, cs:history_base_ptr
+mov     edx, [rax]
+lea     rax, unk_61A8A4
+mov     eax, [rax]
+sub     edx, eax
+mov     eax, edx
+add     [rbp+var_8], eax
+mov     rax, cs:history_max_entries_ptr
+mov     eax, [rax]
+cmp     [rbp+var_8], eax
+jle     short loc_402247
+mov     rax, cs:history_max_entries_ptr
+mov     eax, [rax]
+mov     [rbp+var_8], eax
+lea     rax, unk_61B270
+mov     rdx, [rax]
+mov     eax, [rbp-8]
+mov     rsi, rdx
+mov     edi, eax
+call    _append_history
+mov     [rbp+errnum], eax
+cmp     [rbp+errnum], 0
+jz      short loc_4022B5
+cmp     [rbp+errnum], 2
+jnz     short loc_402282
+lea     rax, unk_61B270
+mov     rax, [rax]
+mov     rdi, rax
+call    _write_history
+mov     [rbp+errnum], eax
+cmp     [rbp+errnum], 0
+jz      short loc_4022B5
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+lea     rax, unk_61B270
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, format
+mov     eax, 0
+call    _printf
+jmp     short locret_4022CC
+lea     rax, unk_61B270
+mov     rax, [rax]
+mov     esi, 1388h
+mov     rdi, rax
+call    _history_truncate_file
+leave
+retn

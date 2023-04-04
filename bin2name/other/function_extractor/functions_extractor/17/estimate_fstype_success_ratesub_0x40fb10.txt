@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0C0h
+mov     [rbp+fsname], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+the_root_dir], 42E1E9h
+lea     rdx, [rbp-0A0h]
+mov     rax, [rbp-0B0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+jnz     short loc_40FBAA
+mov     rdx, [rbp-0B0h]
+lea     rax, [rbp-0A0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    filesystem_type
+mov     [rbp+fstype], rax
+mov     rdx, [rbp-0A8h]
+mov     rax, [rbp-0B8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40FBA0
+movss   xmm0, cs:dword_42F974
+jmp     short loc_40FBB2
+movss   xmm0, cs:dword_42F968
+jmp     short loc_40FBB2
+movss   xmm0, cs:dword_42F964
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40FBC6
+call    ___stack_chk_fail
+leave
+retn

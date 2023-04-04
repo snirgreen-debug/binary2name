@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+p], rdi
+mov     [rbp+predicates], 0
+jmp     short loc_40EB6F
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 404B6Dh
+jnz     short loc_40EB4D
+or      [rbp+predicates], 1
+jmp     short loc_40EB60
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 405B54h
+jnz     short loc_40EB60
+or      [rbp+predicates], 2
+mov     rax, [rbp-18h]
+mov     rax, [rax+108h]
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     short loc_40EB38
+mov     eax, [rbp-4]
+and     eax, 2
+test    eax, eax
+jz      short loc_40EBB9
+mov     eax, [rbp-4]
+and     eax, 1
+test    eax, eax
+jz      short loc_40EBB9
+movzx   eax, cs:options_0.explicit_depth
+xor     eax, 1
+test    al, al
+jz      short loc_40EBB9
+mov     edi, 42DFC0h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+nop
+leave
+retn

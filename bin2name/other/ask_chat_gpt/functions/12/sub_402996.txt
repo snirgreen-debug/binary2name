@@ -1,0 +1,192 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 70h
+mov     [rbp+var_68], rdi
+mov     eax, esi
+mov     [rbp+var_70], edx
+mov     [rbp+var_6C], ax
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+movzx   edx, word ptr [rbp-6Ch]
+mov     esi, cs:domain
+mov     rcx, [rbp-68h]
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    sub_4115AA
+cmp     [rbp+var_70], 0
+jnz     loc_402A77
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    sub_41182B
+mov     [rbp+var_48], rax
+mov     rax, cs:s1
+test    rax, rax
+jz      short loc_402A4E
+mov     rax, cs:s1
+mov     rdx, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_402A4E
+movzx   r12d, word ptr [rbp-6Ch]
+mov     rbx, cs:s1
+mov     edi, 42FD32h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-48h]
+mov     r8d, r12d
+mov     rcx, rax
+mov     rdx, rbx
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+jmp     short loc_402A77
+movzx   ebx, word ptr [rbp-6Ch]
+mov     edi, 42FD4Fh
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-48h]
+mov     ecx, ebx
+mov     rdx, rax
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+mov     eax, cs:domain
+mov     edx, 0
+mov     esi, 1
+mov     edi, eax
+call    _socket
+mov     [rbp+var_50], eax
+cmp     [rbp+var_50], 0
+js      loc_402BD1
+mov     rax, cs:qword_647758
+test    rax, rax
+jz      short loc_402AF2
+mov     rax, cs:qword_647758
+cmp     rax, 1FFFh
+jg      short loc_402AF2
+mov     rax, cs:qword_647758
+mov     [rbp+optval], eax
+mov     eax, [rbp-54h]
+cmp     eax, 1FFh
+jg      short loc_402AD1
+mov     [rbp+optval], 200h
+lea     rdx, [rbp-54h]
+mov     eax, [rbp-50h]
+mov     r8d, 4
+mov     rcx, rdx
+mov     edx, 8
+mov     esi, 1
+mov     edi, eax
+call    _setsockopt
+call    sub_4027A6
+mov     eax, cs:dword_63FFDC
+test    eax, eax
+jz      short loc_402B6F
+mov     esi, cs:domain
+lea     rax, [rbp-30h]
+mov     ecx, 63FFD8h
+mov     edx, 0
+mov     rdi, rax
+call    sub_4115AA
+mov     eax, 0
+call    sub_4116FD
+mov     edx, eax
+lea     rcx, [rbp-30h]
+mov     eax, [rbp-50h]
+mov     rsi, rcx
+mov     edi, eax
+call    _bind
+test    eax, eax
+jz      short loc_402B6F
+mov     eax, [rbp-50h]
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_402B66
+mov     eax, [rbp-50h]
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    sub_41CEC0
+mov     [rbp+var_50], 0FFFFFFFFh
+jmp     short loc_402BD2
+mov     rbx, cs:qword_647730
+mov     eax, 0
+call    sub_4116FD
+mov     edx, eax
+lea     rcx, [rbp-40h]
+mov     eax, [rbp-50h]
+mov     [rbp+var_78], rbx
+movsd   xmm0, qword ptr [rbp-78h]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_402885
+test    eax, eax
+jns     short loc_402BD2
+mov     eax, [rbp-50h]
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_402BC8
+mov     eax, [rbp-50h]
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    sub_41CEC0
+mov     [rbp+var_50], 0FFFFFFFFh
+jmp     short loc_402BD2
+nop
+cmp     [rbp+var_50], 0
+js      short loc_402C1A
+cmp     [rbp+var_70], 0
+jnz     short loc_402BFA
+mov     edi, 42FD77h
+call    _gettext
+mov     rsi, rax
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_402C5C
+mov     eax, [rbp-50h]
+mov     esi, eax
+mov     edi, 42FD83h
+mov     eax, 0
+call    sub_41CEC0
+jmp     short loc_402C5C
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_4C], eax
+cmp     [rbp+var_70], 0
+jnz     short loc_402C4F
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 42FD97h
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4Ch]
+mov     [rdx], eax
+mov     eax, [rbp-50h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_402C73
+call    ___stack_chk_fail
+add     rsp, 70h
+pop     rbx
+pop     r12
+pop     rbp
+retn

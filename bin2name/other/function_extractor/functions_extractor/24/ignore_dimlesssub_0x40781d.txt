@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+cmp     [rbp+name], 0
+jnz     short loc_407837
+mov     eax, 0
+jmp     short locret_407875
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    ulookup
+mov     [rbp+ul], rax
+cmp     [rbp+ul], 0
+jz      short loc_407870
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+lea     rsi, aDimensionless
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_407870
+mov     eax, 1
+jmp     short locret_407875
+mov     eax, 0
+leave
+retn

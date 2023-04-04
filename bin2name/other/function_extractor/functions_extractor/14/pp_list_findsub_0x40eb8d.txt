@@ -1,0 +1,91 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+cmp     [rbp+var_28], 0
+jnz     short loc_40EBAE
+mov     eax, 0
+jmp     locret_40ECDA
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+var_18], rax
+jmp     loc_40ECBD
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     [rbp+s], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+add     rax, rdx
+add     rax, 2
+mov     [rbp+var_8], rax
+mov     rax, [rbp-30h]
+mov     rax, [rax+18h]
+cmp     rax, [rbp-8]
+jnb     short loc_40EC2C
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-8]
+mov     [rax+18h], rdx
+mov     rax, [rbp-30h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_realloc
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     [rax+10h], rdx
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp-30h]
+mov     rdx, [rax+10h]
+mov     rax, rdx
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rsi, rax
+mov     eax, 0
+mov     rdi, rsi
+repne scasb
+mov     rax, rcx
+not     rax
+sub     rax, 1
+add     rax, rdx
+mov     word ptr [rax], 2Fh
+mov     rax, [rbp-30h]
+mov     rdx, [rax]
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcat
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+mov     esi, 0
+mov     rdi, rax
+call    _access
+test    eax, eax
+setz    al
+movzx   edx, al
+mov     rax, [rbp-30h]
+mov     [rax+20h], edx
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-30h]
+mov     eax, [rax+20h]
+test    eax, eax
+jnz     short loc_40ECD3
+cmp     [rbp+var_18], 0
+jnz     loc_40EBBE
+mov     rax, [rbp-30h]
+mov     eax, [rax+20h]
+leave
+retn

@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     esi, 432754h
+mov     rdi, rax
+call    _strstr
+test    rax, rax
+jz      short loc_41555D
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 1
+jmp     short loc_415567
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 0
+mov     eax, 1
+leave
+retn

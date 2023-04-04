@@ -1,0 +1,15 @@
+test    pBuf, pBuf
+mov     qword ptr [pbufStr], 0
+mov     [pbufStr+8], sz
+mov     [pbufStr+18h], sz
+mov     dword ptr [pbufStr+20h], 0
+mov     dword ptr [pbufStr+24h], 0
+jz      short loc_4038B0
+mov     rax, [pBuf+30h]
+mov     [pbufStr+30h], rax
+mov     eax, [pBuf+20h]
+mov     dword ptr [pbufStr+24h], 1
+mov     [pbufStr+20h], eax
+retn
+mov     qword ptr [pbufStr+30h], 0
+retn

@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_63ACD0
+mov     edi, eax
+call    _exit

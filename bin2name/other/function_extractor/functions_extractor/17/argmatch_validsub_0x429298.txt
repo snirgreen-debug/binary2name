@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+arglist], rdi
+mov     [rbp+vallist], rsi
+mov     [rbp+valsize], rdx
+mov     [rbp+last_val], 0
+mov     rbx, cs:stderr@@GLIBC_2_2_5
+mov     edi, 432818h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     [rbp+i], 0
+jmp     loc_4293A2
+cmp     [rbp+i], 0
+jz      short loc_429310
+mov     rax, [rbp-38h]
+imul    rax, [rbp-20h]
+mov     rdx, rax
+mov     rax, [rbp-30h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jz      short loc_429363
+mov     rax, [rbp-20h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    quote
+mov     rdx, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 43282Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-38h]
+imul    rax, [rbp-20h]
+mov     rdx, rax
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     [rbp+last_val], rax
+jmp     short loc_42939D
+mov     rax, [rbp-20h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    quote
+mov     rdx, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 432835h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+i], 1
+mov     rax, [rbp-20h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_4292DE
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+nop
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

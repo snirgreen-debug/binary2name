@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+call    license
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 40FE10h
+call    _puts
+nop
+pop     rbp
+retn

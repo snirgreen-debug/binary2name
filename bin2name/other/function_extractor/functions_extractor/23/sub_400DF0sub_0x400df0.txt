@@ -1,0 +1,2 @@
+push    cs:qword_619008
+jmp     cs:qword_619010

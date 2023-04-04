@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+nptr], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+endptr], 0
+mov     [rbp+var_10], 0
+jmp     short loc_409BDE
+add     [rbp+nptr], 1
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+movsx   rax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jnz     short loc_409BD9
+mov     rax, [rbp-28h]
+lea     rdx, [rax+1]
+mov     [rbp+nptr], rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 7Ch
+jnz     short loc_409C58
+lea     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strtod
+lea     rcx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtol
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+cmp     rdx, rax
+jnz     short loc_409C58
+mov     eax, 1
+jmp     short loc_409C5D
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_409C71
+call    ___stack_chk_fail
+leave
+retn

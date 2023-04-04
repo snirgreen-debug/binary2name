@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     ecx, 0
+mov     rax, [rbp-20h]
+mul     qword ptr [rbp-28h]
+jno     short loc_40A332
+mov     ecx, 1
+mov     [rbp+var_10], rax
+mov     rax, rcx
+and     eax, 1
+test    al, al
+jz      short loc_40A345
+call    sub_40A5CA
+mov     rax, [rbp-20h]
+imul    rax, [rbp-28h]
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40A474
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_40A374
+call    ___stack_chk_fail
+leave
+retn

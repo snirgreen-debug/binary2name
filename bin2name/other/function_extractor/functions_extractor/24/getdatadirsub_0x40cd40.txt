@@ -1,0 +1,100 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+lea     rax, progdir
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+progdirlen], eax
+mov     eax, [rbp-0Ch]
+add     eax, 10h
+lea     rsi, aGetdatadir
+mov     edi, eax
+call    mymalloc
+mov     rdx, rax
+lea     rax, datadir
+mov     [rax], rdx
+lea     rax, progdir
+mov     rdx, [rax]
+lea     rax, datadir
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+lea     rax, progdir
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+sub     rdx, 1
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_40CDD5
+lea     rax, datadir
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+sub     rdx, 1
+add     rax, rdx
+mov     byte ptr [rax], 0
+lea     rax, datadir
+mov     rax, [rax]
+mov     rdi, rax
+call    pathend
+mov     [rbp+p], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+cmp     rax, 3
+jnz     loc_40CEAC
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    _tolower
+cmp     eax, 62h
+jnz     loc_40CEAC
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    _tolower
+cmp     eax, 69h
+jnz     short loc_40CEAC
+mov     rax, [rbp-8]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    _tolower
+cmp     eax, 6Eh
+jnz     short loc_40CEAC
+lea     rax, aShareUnits
+mov     [rbp+p], rax
+jmp     short loc_40CE61
+add     [rbp+p], 1
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jz      short loc_40CE5C
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_40CE7C
+add     [rbp+p], 1
+lea     rax, datadir
+mov     rax, [rax]
+mov     rdi, rax
+call    pathend
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+lea     rax, datadir
+mov     rax, [rax]
+jmp     short locret_40CEB1
+mov     eax, 0
+leave
+retn

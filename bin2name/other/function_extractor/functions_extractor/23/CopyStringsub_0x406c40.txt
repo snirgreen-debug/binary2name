@@ -1,0 +1,31 @@
+test    szOrg, szOrg
+jz      short loc_406C80
+push    rbp
+push    rbx
+mov     rbx, szOrg
+sub     rsp, 8
+call    _strlen
+lea     rbp, [rax+1]
+mov     rdi, rbp
+call    _malloc
+test    szBuf, szBuf
+jz      short loc_406C88
+add     rsp, 8
+mov     rdx, rbp
+mov     rsi, szOrg
+pop     szOrg
+pop     rbp
+mov     rdi, szBuf
+jmp     _memcpy
+xor     eax, eax
+retn
+mov     rdx, szOrg
+mov     ecx, 4131C0h
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+add     rsp, 8
+xor     eax, eax
+pop     szOrg
+pop     rbp
+retn

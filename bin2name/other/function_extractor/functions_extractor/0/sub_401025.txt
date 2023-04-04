@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 8
+jmp     short loc_401043
+mov     rax, cs:qword_605100
+mov     rdx, [rax+8]
+sub     rdx, 1
+mov     [rax+8], rdx
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     rax, cs:qword_605100
+mov     rax, [rax+8]
+lea     edx, [rax-1]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movzx   eax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     short loc_4010A5
+mov     rax, cs:qword_605100
+mov     rax, [rax+8]
+lea     edx, [rax-1]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 0Ah
+jnz     short loc_4010B9
+mov     rax, cs:qword_605100
+mov     rax, [rax+8]
+test    rax, rax
+jnz     loc_401030
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

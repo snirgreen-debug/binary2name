@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+buffer], rdi
+mov     [rbp+bufsize], rsi
+mov     [rbp+query], rdx
+mov     [rbp+valid], 0
+jmp     loc_40C2C6
+mov     rax, cs:stdout_ptr
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, cs:stdin_ptr
+mov     rdx, [rax]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     ecx, 0
+mov     rdi, rax
+call    fgetslong
+test    rax, rax
+jnz     short loc_40C279
+lea     rax, flags
+mov     eax, [rax+8]
+test    eax, eax
+jnz     short loc_40C26F
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 0
+call    _exit
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    replacectrlchars
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    strwidth
+not     eax
+shr     eax, 1Fh
+movzx   eax, al
+mov     [rbp+valid], eax
+cmp     [rbp+valid], 0
+jnz     short loc_40C2C6
+lea     rax, invalid_utf8
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorS
+mov     eax, 0
+call    _printf
+cmp     [rbp+valid], 0
+jz      loc_40C21A
+nop
+leave
+retn

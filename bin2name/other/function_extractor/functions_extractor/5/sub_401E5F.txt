@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+cmp     [rbp+s], 0
+jnz     short loc_401E95
+mov     rax, cs:stderr
+mov     rcx, rax
+mov     edx, 37h
+mov     esi, 1
+mov     edi, 405408h
+call    _fwrite
+call    _abort
+mov     rax, [rbp-18h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jz      short loc_401EBB
+mov     rax, [rbp-10h]
+add     rax, 1
+jmp     short loc_401EBF
+mov     rax, [rbp-18h]
+mov     [rbp+s1], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 6
+jle     short loc_401F2E
+mov     rax, [rbp-8]
+sub     rax, 7
+mov     edx, 7
+mov     esi, 405440h
+mov     rdi, rax
+call    _strncmp
+test    eax, eax
+jnz     short loc_401F2E
+mov     rax, [rbp-8]
+mov     [rbp+s], rax
+mov     rax, [rbp-8]
+mov     edx, 3
+mov     esi, 405448h
+mov     rdi, rax
+call    _strncmp
+test    eax, eax
+jnz     short loc_401F2E
+mov     rax, [rbp-8]
+add     rax, 3
+mov     [rbp+s], rax
+mov     rax, [rbp-18h]
+mov     cs:program_invocation_short_name, rax
+mov     rax, [rbp-18h]
+mov     cs:qword_6082C0, rax
+mov     rax, [rbp-18h]
+mov     cs:program_invocation_name, rax
+nop
+leave
+retn

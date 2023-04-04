@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+file], rdi
+mov     [rbp+timespec], rsi
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 0FFFFFFFFh
+call    fdutimens
+leave
+retn

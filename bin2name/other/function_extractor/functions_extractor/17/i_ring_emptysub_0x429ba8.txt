@@ -1,0 +1,7 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ir], rdi
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+1Ch]
+pop     rbp
+retn

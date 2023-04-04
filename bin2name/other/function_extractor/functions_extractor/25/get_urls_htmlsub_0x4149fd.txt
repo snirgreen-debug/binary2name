@@ -1,0 +1,113 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+file], rdi
+mov     [rbp+url], rsi
+mov     [rbp+meta_disallow_follow], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    read_file
+mov     [rbp+fm], rax
+cmp     [rbp+fm], 0
+jnz     short loc_414A70
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-58h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 43264Fh
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     eax, 0
+jmp     loc_414BA9
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_414A98
+mov     rax, [rbp-48h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     edi, 432657h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     [rbp+ctx.text], rax
+mov     [rbp+ctx.tail], 0
+mov     rax, [rbp-10h]
+mov     [rbp+ctx.head], rax
+mov     [rbp+ctx.base], 0
+cmp     [rbp+url], 0
+jnz     short loc_414ACB
+mov     rax, cs:opt.base_href
+jmp     short loc_414ACF
+mov     rax, [rbp-60h]
+mov     [rbp+ctx.parent_base], rax
+mov     rax, [rbp-58h]
+mov     [rbp+ctx.document_file], rax
+mov     [rbp+ctx.nofollow], 0
+mov     rax, cs:interesting_tags
+test    rax, rax
+jnz     short loc_414AF3
+call    init_interesting
+mov     [rbp+flags], 2
+mov     eax, cs:opt.strict_comments
+test    eax, eax
+jz      short loc_414B08
+or      [rbp+flags], 1
+mov     rcx, cs:interesting_attributes
+mov     rdi, cs:interesting_tags
+mov     rax, [rbp-48h]
+mov     rax, [rax+8]
+mov     r10d, eax
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     esi, [rbp-4Ch]
+lea     rdx, [rbp-40h]
+sub     rsp, 8
+push    rcx
+mov     r9, rdi
+mov     r8d, esi
+mov     rcx, rdx
+mov     edx, 41498Bh
+mov     esi, r10d
+mov     rdi, rax
+call    map_html_tags
+add     rsp, 10h
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_414B74
+mov     edx, [rbp-20h]
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     edi, 43266Eh
+mov     eax, 0
+call    debug_logprintf
+cmp     [rbp+meta_disallow_follow], 0
+jz      short loc_414B84
+mov     edx, [rbp-20h]
+mov     rax, [rbp-68h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+test    rax, rax
+jz      short loc_414B99
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    read_file_free
+mov     rax, [rbp-18h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_414BBD
+call    ___stack_chk_fail
+leave
+retn

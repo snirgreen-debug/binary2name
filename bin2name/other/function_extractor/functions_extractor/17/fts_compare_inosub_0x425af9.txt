@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+a], rdi
+mov     [rbp+b], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rax+80h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rax, [rax+80h]
+cmp     rdx, rax
+jb      short loc_425B4D
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdx, [rax+80h]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rax, [rax+80h]
+cmp     rdx, rax
+setb    al
+movzx   eax, al
+jmp     short loc_425B52
+mov     eax, 0FFFFFFFFh
+pop     rbp
+retn

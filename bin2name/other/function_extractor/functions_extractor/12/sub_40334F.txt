@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 0FFFFFFFFh
+jz      short loc_403388
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_403388
+mov     eax, [rbp-4]
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    sub_41CEC0
+mov     eax, cs:fd
+cmp     eax, 0FFFFFFFFh
+jz      short loc_4033C1
+mov     eax, cs:fd
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_4033C1
+mov     eax, cs:fd
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    sub_41CEC0
+mov     cs:fd, 0FFFFFFFFh
+nop
+leave
+retn

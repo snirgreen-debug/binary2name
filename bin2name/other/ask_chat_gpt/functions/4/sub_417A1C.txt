@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_417965
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_417A4B
+mov     rax, [rbp-28h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_4179CE
+mov     rdx, rax
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+setnz   al
+mov     [rbp+var_11], al
+mov     rax, [rbp-8]
+mov     byte ptr [rax], 0
+movzx   eax, byte ptr [rbp-11h]
+leave
+retn

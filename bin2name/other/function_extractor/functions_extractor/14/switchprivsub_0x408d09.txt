@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     eax, [rax+28h]
+test    eax, eax
+jz      short loc_408D31
+mov     rax, [rbp-18h]
+mov     ebx, [rax+28h]
+call    _getuid
+cmp     ebx, eax
+jnz     short loc_408D3B
+mov     eax, 0
+jmp     loc_408E5E
+mov     rax, [rbp-18h]
+mov     rdx, [rax+30h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _setgroups
+test    eax, eax
+jns     short loc_408D89
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 42391Ah
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     eax, 1
+jmp     loc_408E5E
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     edx, [rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     eax, [rax]
+mov     esi, edx
+mov     edi, eax
+call    _setregid
+test    eax, eax
+jns     short loc_408DF7
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rcx, rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     eax, [rax]
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     eax, [rax]
+mov     eax, eax
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 423928h
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     eax, 1
+jmp     short loc_408E5E
+mov     rax, [rbp-18h]
+mov     edx, [rax+28h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+28h]
+mov     esi, edx
+mov     edi, eax
+call    _setreuid
+test    eax, eax
+jns     short loc_408E59
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rcx, rax
+mov     rax, [rbp-18h]
+mov     eax, [rax+28h]
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     eax, [rax+28h]
+mov     eax, eax
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 42393Eh
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     eax, 1
+jmp     short loc_408E5E
+mov     eax, 0
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

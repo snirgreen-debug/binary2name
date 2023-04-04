@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     edx, 6477A0h
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41AD6C
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jz      short loc_41BECC
+mov     eax, cs:dword_6477A0
+test    eax, eax
+jnz     short loc_41BECC
+mov     cs:dword_64779C, 0
+mov     eax, [rbp-4]
+leave
+retn

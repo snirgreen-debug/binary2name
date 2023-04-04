@@ -1,0 +1,144 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 50h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     eax, [rax]
+mov     [rbp+saved_argc], eax
+lea     rdx, [rbp-30h]
+mov     rcx, [rbp-58h]
+mov     rax, [rbp-50h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      loc_40FFC4
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _getgrnam
+mov     [rbp+cur_gr], rax
+call    _endgrent
+cmp     [rbp+cur_gr], 0
+jz      short loc_40FE37
+mov     rax, [rbp-28h]
+mov     eax, [rax+10h]
+mov     [rbp+gid], eax
+jmp     loc_40FF73
+mov     rax, [rbp-30h]
+mov     esi, 42E223h
+mov     rdi, rax
+call    _strspn
+mov     [rbp+gid_len], eax
+cmp     [rbp+gid_len], 0
+jz      loc_40FEF8
+mov     rdx, [rbp-30h]
+mov     eax, [rbp-34h]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40FE84
+mov     edx, cs:options_0.err_quoting_style
+mov     rax, [rbp-30h]
+mov     esi, edx
+mov     rdi, rax
+call    safe_atoi
+mov     [rbp+gid], eax
+jmp     loc_40FF73
+mov     rdx, [rbp-30h]
+mov     eax, [rbp-34h]
+cdqe
+add     rdx, rax
+mov     eax, cs:options_0.err_quoting_style
+mov     esi, eax
+mov     edi, 1
+call    quotearg_n_style
+mov     r12, rax
+mov     rdx, [rbp-30h]
+mov     eax, cs:options_0.err_quoting_style
+mov     esi, eax
+mov     edi, 0
+call    quotearg_n_style
+mov     rbx, rax
+mov     edi, 42E230h
+call    _gettext
+mov     r8, r12
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-58h]
+mov     edx, [rbp-38h]
+mov     [rax], edx
+mov     eax, 0
+jmp     loc_40FFC9
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FF42
+mov     rdx, [rbp-30h]
+mov     eax, cs:options_0.err_quoting_style
+mov     esi, eax
+mov     edi, 0
+call    quotearg_n_style
+mov     rbx, rax
+mov     edi, 42E2B0h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_40FF63
+mov     edi, 42E2D8h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-58h]
+mov     edx, [rbp-38h]
+mov     [rax], edx
+mov     eax, 0
+jmp     short loc_40FFC9
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-20h]
+mov     edx, [rbp-3Ch]
+mov     [rax+38h], edx
+mov     rax, [rbp-20h]
+mov     rax, [rax+40h]
+cmp     rax, 63h
+ja      short loc_40FFAC
+movss   xmm0, cs:dword_42F978
+jmp     short loc_40FFB4
+movss   xmm0, cs:dword_42F97C
+mov     rax, [rbp-20h]
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+jmp     short loc_40FFC9
+mov     eax, 0
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_40FFDD
+call    ___stack_chk_fail
+add     rsp, 50h
+pop     rbx
+pop     r12
+pop     rbp
+retn

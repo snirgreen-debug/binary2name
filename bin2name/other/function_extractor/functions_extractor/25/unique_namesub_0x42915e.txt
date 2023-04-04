@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+file], rdi
+mov     [rbp+allow_passthrough], esi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jnz     short loc_429197
+cmp     [rbp+allow_passthrough], 0
+jnz     short loc_429191
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    xstrdup_real
+jmp     short locret_4291A3
+mov     rax, [rbp-8]
+jmp     short locret_4291A3
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    unique_name_1
+leave
+retn

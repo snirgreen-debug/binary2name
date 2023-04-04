@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+c], edi
+mov     eax, [rbp-4]
+cmp     eax, 40h
+jg      short loc_403DE6
+cmp     eax, 3Ah
+jge     short loc_403DF8
+sub     eax, 21h
+cmp     eax, 0Eh
+ja      short loc_403DFF
+jmp     short loc_403DF8
+cmp     eax, 5Bh
+jl      short loc_403DFF
+cmp     eax, 60h
+jle     short loc_403DF8
+sub     eax, 7Bh
+cmp     eax, 3
+ja      short loc_403DFF
+mov     eax, 1
+jmp     short loc_403E04
+mov     eax, 0
+pop     rbp
+retn

@@ -1,0 +1,1 @@
+extrn clock_gettime:near

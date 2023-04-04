@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:registered_specs
+test    rax, rax
+jz      short loc_424220
+mov     rax, cs:registered_specs
+mov     edx, 0
+mov     esi, 4241AAh
+mov     rdi, rax
+call    hash_table_map
+mov     rax, cs:registered_specs
+mov     rdi, rax
+call    hash_table_destroy
+mov     cs:registered_specs, 0
+nop
+pop     rbp
+retn

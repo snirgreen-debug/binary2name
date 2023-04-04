@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+dest], rdi
+mov     [rbp+source], rsi
+mov     rax, [rbp-10h]
+movsd   xmm0, qword ptr [rax+640h]
+mov     rax, [rbp-8]
+movsd   qword ptr [rax+640h], xmm0
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    copyproduct
+mov     rax, [rbp-10h]
+lea     rdx, [rax+320h]
+mov     rax, [rbp-8]
+add     rax, 320h
+mov     rsi, rdx
+mov     rdi, rax
+call    copyproduct
+nop
+leave
+retn

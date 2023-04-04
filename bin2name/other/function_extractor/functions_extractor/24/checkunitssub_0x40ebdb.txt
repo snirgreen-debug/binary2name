@@ -1,0 +1,282 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 1348h
+mov     [rbp+verbosecheck], edi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rax, [rbp-660h]
+mov     rdi, rax
+call    initializeunit
+mov     [rbp+i], 0
+jmp     short loc_40EC71
+lea     rax, ftab
+mov     edx, [rbp-1338h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8]
+mov     [rbp+funcptr], rax
+jmp     short loc_40EC60
+mov     edx, [rbp-1344h]
+mov     rax, [rbp-1320h]
+mov     esi, edx
+mov     rdi, rax
+call    checkfunc
+mov     rax, [rbp-1320h]
+mov     rax, [rax+80h]
+mov     [rbp+funcptr], rax
+cmp     [rbp+funcptr], 0
+jnz     short loc_40EC34
+add     [rbp+i], 1
+cmp     [rbp+i], 7Fh
+jle     short loc_40EC17
+mov     eax, [rbp-1344h]
+mov     edi, eax
+call    checkallaliases
+mov     [rbp+i], 0
+jmp     loc_40EE9E
+lea     rax, utab
+mov     edx, [rbp-1338h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8]
+mov     [rbp+uptr], rax
+jmp     loc_40EE89
+cmp     [rbp+verbosecheck], 0
+jz      short loc_40ECDD
+mov     rax, [rbp-1330h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aDoingS
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-1330h]
+mov     rsi, [rax]
+lea     rax, [rbp-1300h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+test    eax, eax
+jnz     short loc_40ED3B
+lea     rax, [rbp-1300h]
+mov     rdi, rax
+call    completereduce
+test    eax, eax
+jnz     short loc_40ED3B
+lea     rcx, [rbp-660h]
+lea     rax, [rbp-1300h]
+lea     rdx, ignore_primitive
+mov     rsi, rcx
+mov     rdi, rax
+call    compareunits
+test    eax, eax
+jz      short loc_40EDAD
+mov     rax, [rbp-1330h]
+mov     rax, [rax]
+mov     rdi, rax
+call    fnlookup
+test    rax, rax
+jz      short loc_40ED7F
+mov     rax, [rbp-1330h]
+mov     rdx, [rax]
+mov     rax, [rbp-1330h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitSHiddenByF
+mov     eax, 0
+call    _printf
+jmp     loc_40EE68
+mov     rax, [rbp-1330h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-1330h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aSDefinedAsSIrr
+mov     eax, 0
+call    _printf
+jmp     loc_40EE68
+lea     rax, parserflags
+mov     eax, [rax+4]
+test    eax, eax
+setz    al
+movzx   edx, al
+lea     rax, parserflags
+mov     [rax+4], edx
+mov     rax, [rbp-1330h]
+mov     rsi, [rax]
+lea     rax, [rbp-0CB0h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+lea     rax, [rbp-0CB0h]
+mov     rdi, rax
+call    completereduce
+lea     rcx, [rbp-0CB0h]
+lea     rax, [rbp-1300h]
+lea     rdx, ignore_nothing
+mov     rsi, rcx
+mov     rdi, rax
+call    compareunits
+test    eax, eax
+jz      short loc_40EE3D
+mov     rax, [rbp-1330h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aSReplaceWithFo
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-0CB0h]
+mov     rdi, rax
+call    freeunit
+lea     rax, parserflags
+mov     eax, [rax+4]
+test    eax, eax
+setz    al
+movzx   edx, al
+lea     rax, parserflags
+mov     [rax+4], edx
+lea     rax, [rbp-1300h]
+mov     rdi, rax
+call    freeunit
+mov     rax, [rbp-1330h]
+mov     rax, [rax+20h]
+mov     [rbp+uptr], rax
+cmp     [rbp+uptr], 0
+jnz     loc_40ECB6
+add     [rbp+i], 1
+cmp     [rbp+i], 64h
+jle     loc_40EC96
+lea     rax, aMeter
+mov     [rbp+testunit], rax
+mov     [rbp+i], 0
+jmp     loc_40F0FC
+lea     rax, ptab
+mov     edx, [rbp-1338h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8]
+mov     [rbp+pptr], rax
+jmp     loc_40F0E7
+cmp     [rbp+verbosecheck], 0
+jz      short loc_40EF10
+mov     rax, [rbp-1328h]
+mov     rax, [rax+8]
+mov     rsi, rax
+lea     rdi, aDoingS_0
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-1328h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _strlen
+mov     ebx, eax
+mov     rax, [rbp-1310h]
+mov     rdi, rax
+call    _strlen
+add     eax, ebx
+add     eax, 1
+lea     rsi, aCheckunits
+mov     edi, eax
+call    mymalloc
+mov     [rbp+prefixbuf], rax
+mov     rax, [rbp-1328h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-1308h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rdx, [rbp-1310h]
+mov     rax, [rbp-1308h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcat
+mov     rsi, [rbp-1308h]
+lea     rax, [rbp-1300h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+test    eax, eax
+jnz     short loc_40EFDF
+lea     rax, [rbp-1300h]
+mov     rdi, rax
+call    completereduce
+test    eax, eax
+jnz     short loc_40EFDF
+lea     rcx, [rbp-660h]
+lea     rax, [rbp-1300h]
+lea     rdx, ignore_primitive
+mov     rsi, rcx
+mov     rdi, rax
+call    compareunits
+test    eax, eax
+jz      short loc_40F00E
+mov     rax, [rbp-1328h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-1328h]
+mov     rax, [rax+8]
+mov     rsi, rax
+lea     rdi, aSDefinedAsSIrr_0
+mov     eax, 0
+call    _printf
+jmp     loc_40F0B7
+mov     [rbp+plevel], 0
+mov     rax, [rbp-1328h]
+mov     rax, [rax+10h]
+mov     [rbp+ch_0], rax
+jmp     short loc_40F0A5
+mov     rax, [rbp-1318h]
+movzx   eax, byte ptr [rax]
+cmp     al, 29h
+jnz     short loc_40F043
+sub     [rbp+plevel], 1
+jmp     short loc_40F09D
+mov     rax, [rbp-1318h]
+movzx   eax, byte ptr [rax]
+cmp     al, 28h
+jnz     short loc_40F05A
+add     [rbp+plevel], 1
+jmp     short loc_40F09D
+cmp     [rbp+plevel], 0
+jnz     short loc_40F09D
+mov     rax, [rbp-1318h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_40F09D
+mov     rax, [rbp-1328h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-1328h]
+mov     rax, [rax+8]
+mov     rsi, rax
+lea     rdi, aSDefinedAsSCon
+mov     eax, 0
+call    _printf
+jmp     short loc_40F0B7
+add     [rbp+ch_0], 1
+mov     rax, [rbp-1318h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_40F02C
+lea     rax, [rbp-1300h]
+mov     rdi, rax
+call    freeunit
+mov     rax, [rbp-1308h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-1328h]
+mov     rax, [rax+28h]
+mov     [rbp+pptr], rax
+cmp     [rbp+pptr], 0
+jnz     loc_40EEE8
+add     [rbp+i], 1
+cmp     [rbp+i], 7Fh
+jle     loc_40EEC8
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40F11E
+call    ___stack_chk_fail
+add     rsp, 1348h
+pop     rbx
+pop     rbp
+retn

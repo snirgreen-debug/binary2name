@@ -1,0 +1,1 @@
+extrn log10:near

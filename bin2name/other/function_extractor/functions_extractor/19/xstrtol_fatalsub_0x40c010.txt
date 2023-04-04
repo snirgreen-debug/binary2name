@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+err], edi
+mov     [rbp+opt_idx], esi
+mov     eax, edx
+mov     [rbp+long_options], rcx
+mov     [rbp+arg], r8
+mov     [rbp+c], al
+mov     r8d, cs:exit_failure
+movsx   edx, byte ptr [rbp-0Ch]
+mov     rdi, [rbp-20h]
+mov     rcx, [rbp-18h]
+mov     esi, [rbp-8]
+mov     eax, [rbp-4]
+mov     r9d, r8d
+mov     r8, rdi
+mov     edi, eax
+call    xstrtol_error
+call    _abort

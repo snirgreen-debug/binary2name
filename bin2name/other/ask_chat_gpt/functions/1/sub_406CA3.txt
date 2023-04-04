@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     rax, [rbp-38h]
+mov     rax, [rax+10h]
+mov     [rbp+ptr], rax
+mov     rax, [rbp-38h]
+mov     eax, [rax+4]
+add     eax, 1
+mov     [rbp+var_20], eax
+mov     eax, cs:dword_62D0E8
+cmp     [rbp+var_20], eax
+jb      short loc_406CDD
+mov     eax, 7
+jmp     locret_406DB0
+mov     eax, [rbp-20h]
+mov     eax, [rax*4+62D0A0h]
+mov     eax, eax
+mov     esi, 8
+mov     rdi, rax
+call    _calloc
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_406D0B
+mov     eax, 0Ch
+jmp     locret_406DB0
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-10h]
+mov     [rax+10h], rdx
+cmp     [rbp+ptr], 0
+jz      loc_406DAB
+mov     rax, [rbp-38h]
+mov     edx, [rbp-20h]
+mov     [rax+4], edx
+mov     [rbp+var_24], 0
+jmp     short loc_406D8B
+mov     eax, [rbp-24h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_406D87
+mov     rdx, [rbp-8]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_406B31
+mov     [rbp+var_1C], eax
+mov     eax, [rbp-1Ch]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-10h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rdx], rax
+add     [rbp+var_24], 1
+mov     eax, [rbp-20h]
+sub     eax, 1
+mov     eax, eax
+mov     eax, [rax*4+62D0A0h]
+cmp     eax, [rbp-24h]
+ja      short loc_406D35
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+leave
+retn

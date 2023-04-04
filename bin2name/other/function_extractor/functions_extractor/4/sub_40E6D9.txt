@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_18], 0
+mov     edi, 1
+call    sub_40E68F
+mov     [rbp+var_8], rax
+mov     [rbp+var_10], 0
+mov     rax, [rbp-8]
+mov     [rbp+var_20], rax
+jmp     short loc_40E765
+mov     rax, [rbp-20h]
+mov     rax, [rax+18h]
+mov     esi, 42D285h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_40E758
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_40E5EE
+test    eax, eax
+jnz     short loc_40E759
+mov     rax, [rbp-20h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+cmp     rdx, rax
+jnz     short loc_40E759
+mov     rax, [rbp-20h]
+mov     [rbp+var_18], rax
+jmp     short loc_40E759
+nop
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     short loc_40E711
+cmp     [rbp+var_18], 0
+jz      short loc_40E787
+mov     rax, [rbp-18h]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    sub_422F20
+mov     [rbp+var_10], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_40E4EA
+cmp     [rbp+var_10], 0
+setnz   al
+movzx   eax, al
+mov     cs:dword_63B560, eax
+cmp     [rbp+var_10], 0
+jnz     short loc_40E7BF
+mov     edi, 42D28Ch
+call    _gettext
+mov     rdi, rax
+call    sub_422F20
+jmp     short locret_40E7C3
+mov     rax, [rbp-10h]
+leave
+retn

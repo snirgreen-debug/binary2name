@@ -1,0 +1,223 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+desc], rdi
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     [rbp+tree], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax+8]
+mov     [rbp+stree], rax
+mov     rax, [rbp-38h]
+mov     eax, [rax+1Ch]
+mov     [rbp+elems], eax
+mov     [rbp+max_code], 0FFFFFFFFh
+mov     eax, [rbp-1Ch]
+mov     [rbp+node], eax
+mov     cs:heap_len, 0
+mov     cs:heap_max, 23Dh
+mov     [rbp+n], 0
+jmp     short loc_4094B2
+mov     eax, [rbp-28h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-10h]
+add     rax, rdx
+movzx   eax, word ptr [rax]
+test    ax, ax
+jz      short loc_409494
+mov     eax, cs:heap_len
+add     eax, 1
+mov     cs:heap_len, eax
+mov     edx, cs:heap_len
+mov     eax, [rbp-28h]
+mov     [rbp+max_code], eax
+movsxd  rax, edx
+mov     edx, [rbp-24h]
+mov     ds:heap[rax*4], edx
+mov     eax, [rbp-28h]
+cdqe
+mov     ds:depth[rax], 0
+jmp     short loc_4094AE
+mov     eax, [rbp-28h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     word ptr [rax+2], 0
+add     [rbp+n], 1
+mov     eax, [rbp-28h]
+cmp     eax, [rbp-1Ch]
+jl      short loc_409442
+jmp     loc_40956B
+mov     eax, cs:heap_len
+add     eax, 1
+mov     cs:heap_len, eax
+mov     eax, cs:heap_len
+cmp     [rbp+max_code], 1
+jg      short loc_4094E3
+add     [rbp+max_code], 1
+mov     edx, [rbp-24h]
+jmp     short loc_4094E8
+mov     edx, 0
+movsxd  rcx, eax
+mov     ds:heap[rcx*4], edx
+cdqe
+mov     eax, [rax*4+615DE0h]
+mov     [rbp+new], eax
+mov     eax, [rbp-18h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     word ptr [rax], 1
+mov     eax, [rbp-18h]
+cdqe
+mov     ds:depth[rax], 0
+mov     rax, cs:opt_len
+sub     rax, 1
+mov     cs:opt_len, rax
+cmp     [rbp+stree], 0
+jz      short loc_40956B
+mov     rdx, cs:static_len
+mov     eax, [rbp-18h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-8]
+add     rax, rcx
+movzx   eax, word ptr [rax+2]
+movzx   eax, ax
+sub     rdx, rax
+mov     rax, rdx
+mov     cs:static_len, rax
+mov     eax, cs:heap_len
+cmp     eax, 1
+jle     loc_4094BF
+mov     rax, [rbp-38h]
+mov     edx, [rbp-24h]
+mov     [rax+24h], edx
+mov     eax, cs:heap_len
+mov     edx, eax
+shr     edx, 1Fh
+add     eax, edx
+sar     eax, 1
+mov     [rbp+n], eax
+jmp     short loc_4095AD
+mov     edx, [rbp-28h]
+mov     rax, [rbp-10h]
+mov     esi, edx
+mov     rdi, rax
+call    pqdownheap
+sub     [rbp+n], 1
+cmp     [rbp+n], 0
+jg      short loc_409598
+mov     eax, cs:heap+4
+mov     [rbp+n], eax
+mov     eax, cs:heap_len
+lea     edx, [rax-1]
+mov     cs:heap_len, edx
+cdqe
+mov     eax, [rax*4+615DE0h]
+mov     cs:heap+4, eax
+mov     rax, [rbp-10h]
+mov     esi, 1
+mov     rdi, rax
+call    pqdownheap
+mov     eax, cs:heap+4
+mov     [rbp+m], eax
+mov     eax, cs:heap_max
+sub     eax, 1
+mov     cs:heap_max, eax
+mov     eax, cs:heap_max
+cdqe
+mov     edx, [rbp-28h]
+mov     ds:heap[rax*4], edx
+mov     eax, cs:heap_max
+sub     eax, 1
+mov     cs:heap_max, eax
+mov     eax, cs:heap_max
+cdqe
+mov     edx, [rbp-14h]
+mov     ds:heap[rax*4], edx
+mov     eax, [rbp-20h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     edx, [rbp-28h]
+movsxd  rdx, edx
+lea     rcx, [rdx*4+0]
+mov     rdx, [rbp-10h]
+add     rdx, rcx
+movzx   ecx, word ptr [rdx]
+mov     edx, [rbp-14h]
+movsxd  rdx, edx
+lea     rsi, [rdx*4+0]
+mov     rdx, [rbp-10h]
+add     rdx, rsi
+movzx   edx, word ptr [rdx]
+add     edx, ecx
+mov     [rax], dx
+mov     eax, [rbp-28h]
+cdqe
+movzx   edx, byte ptr [rax+6166E0h]
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, byte ptr [rax+6166E0h]
+cmp     dl, al
+jb      short loc_4096AC
+mov     eax, [rbp-28h]
+cdqe
+movzx   eax, byte ptr [rax+6166E0h]
+add     eax, 1
+jmp     short loc_4096BB
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, byte ptr [rax+6166E0h]
+add     eax, 1
+mov     edx, [rbp-20h]
+movsxd  rdx, edx
+mov     ds:depth[rdx], al
+mov     eax, [rbp-28h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-10h]
+add     rdx, rax
+mov     eax, [rbp-14h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-10h]
+add     rax, rcx
+mov     ecx, [rbp-20h]
+mov     [rax+2], cx
+movzx   eax, word ptr [rax+2]
+mov     [rdx+2], ax
+mov     eax, [rbp-20h]
+lea     edx, [rax+1]
+mov     [rbp+node], edx
+mov     cs:heap+4, eax
+mov     rax, [rbp-10h]
+mov     esi, 1
+mov     rdi, rax
+call    pqdownheap
+mov     eax, cs:heap_len
+cmp     eax, 1
+jg      loc_4095B3
+mov     eax, cs:heap_max
+sub     eax, 1
+mov     cs:heap_max, eax
+mov     eax, cs:heap_max
+mov     edx, cs:heap+4
+cdqe
+mov     ds:heap[rax*4], edx
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    gen_bitlen
+mov     edx, [rbp-24h]
+mov     rax, [rbp-10h]
+mov     esi, edx
+mov     rdi, rax
+call    gen_codes
+nop
+leave
+retn

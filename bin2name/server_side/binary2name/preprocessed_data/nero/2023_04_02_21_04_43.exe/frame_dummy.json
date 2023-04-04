@@ -1,0 +1,77 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4200203,
+                "src": 4200192
+            },
+            {
+                "dst": 4200096,
+                "src": 4200203
+            },
+            {
+                "dst": 4200152,
+                "src": 4200096
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4200152
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4200192,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "mov|edi|0x607e20|    |cmp|qword|ptr|rdi|0|    |jne|target_0|    "
+            },
+            {
+                "block_addr": 4200203,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "jmp|0x4016a0|    "
+            },
+            {
+                "block_addr": 4200096,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "mov|esi|0x608278|    |push|rbp|    |sub|rsi|0x608278|    |sar|rsi|3|    |mov|rbp|rsp|    |mov|rax|rsi|    |shr|rax|0x3f|    |add|rsi|rax|    |sar|rsi|1|    |je|0x4016d8|    "
+            },
+            {
+                "block_addr": 4200152,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ]
+                ],
+                "instructions": "pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        4,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            }
+        ]
+    },
+    "func_name": "4200192"
+}

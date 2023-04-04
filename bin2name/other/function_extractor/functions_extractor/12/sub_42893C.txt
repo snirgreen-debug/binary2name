@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     eax, esi
+mov     [rbp+var_1C], al
+mov     [rbp+var_C], 0
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+jmp     short loc_42896F
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, [rbp-1Ch]
+jnz     short loc_42896A
+add     [rbp+var_C], 1
+add     [rbp+var_8], 1
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_42895A
+mov     eax, [rbp-0Ch]
+pop     rbp
+retn

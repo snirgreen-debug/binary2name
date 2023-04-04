@@ -1,0 +1,1 @@
+extrn wadd_wch:near

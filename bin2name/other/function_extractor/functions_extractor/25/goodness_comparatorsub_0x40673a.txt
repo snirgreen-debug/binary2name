@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+p1], rdi
+mov     [rbp+p2], rsi
+mov     rax, [rbp-28h]
+mov     [rbp+wc1], rax
+mov     rax, [rbp-30h]
+mov     [rbp+wc2], rax
+mov     rax, [rbp-8]
+mov     edx, [rax+8]
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+dgdiff], eax
+mov     rax, [rbp-8]
+mov     edx, [rax+0Ch]
+mov     rax, [rbp-10h]
+mov     eax, [rax+0Ch]
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+pgdiff], eax
+cmp     [rbp+dgdiff], 0
+jz      short loc_40678B
+mov     eax, [rbp-18h]
+jmp     short loc_40678E
+mov     eax, [rbp-14h]
+pop     rbp
+retn

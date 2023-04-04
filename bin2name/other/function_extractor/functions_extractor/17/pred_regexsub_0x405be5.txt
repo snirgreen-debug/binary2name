@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+len], eax
+mov     rax, [rbp-28h]
+mov     rax, [rax+38h]
+mov     edx, [rbp-4]
+mov     rsi, [rbp-18h]
+mov     r8d, 0
+mov     ecx, 0
+mov     rdi, rax
+call    _re_match
+cmp     eax, [rbp-4]
+jnz     short loc_405C36
+mov     eax, 1
+jmp     short locret_405C3B
+mov     eax, 0
+leave
+retn

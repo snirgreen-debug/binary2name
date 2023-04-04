@@ -1,0 +1,5 @@
+mov     ecx, esi
+mov     edx, 414098h
+mov     esi, 1
+xor     eax, eax
+jmp     ___fprintf_chk

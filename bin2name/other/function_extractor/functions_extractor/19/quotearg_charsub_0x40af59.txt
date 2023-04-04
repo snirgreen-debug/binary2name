@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+arg], rdi
+mov     eax, esi
+mov     [rbp+ch_0], al
+movsx   edx, byte ptr [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     rsi, 0FFFFFFFFFFFFFFFFh
+mov     rdi, rax
+call    quotearg_char_mem
+leave
+retn

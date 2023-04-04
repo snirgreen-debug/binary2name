@@ -1,0 +1,181 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+stream], rdi
+mov     rbx, cs:program_name
+mov     edi, 40CDD0h
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-18h]
+mov     rdx, rbx
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 40CE08h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40CE58h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40CED0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40CFA8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40CFF8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D0E8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D1D0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D268h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D2A0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D360h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D3E0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D480h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D4D0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D520h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D560h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D5B0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D688h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D6D8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D720h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D768h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D7B0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D7F0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     edi, 40D838h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    wtimer_allocate
+mov     [rbp+wt], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wtimer_reset
+mov     rax, [rbp-8]
+leave
+retn

@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+mov     eax, [rbp-4]
+shl     rax, 4
+add     rax, 63FEE8h
+mov     eax, [rax]
+pop     rbp
+retn

@@ -1,0 +1,175 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fun], rdi
+mov     [rbp+inverse], esi
+lea     rax, deftext
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aSinterpolatedT
+mov     eax, 0
+call    logprintf
+cmp     [rbp+inverse], 0
+jz      loc_409598
+mov     rax, [rbp-18h]
+mov     rax, [rax+68h]
+movsd   xmm0, qword ptr [rax+8]
+mov     rax, [rbp-18h]
+mov     rdx, [rax+68h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+70h]
+cdqe
+shl     rax, 4
+sub     rax, 10h
+add     rax, rdx
+movsd   xmm1, qword ptr [rax+8]
+ucomisd xmm0, xmm1
+setnbe  al
+movzx   eax, al
+mov     [rbp+reverse], eax
+mov     [rbp+i], 0
+jmp     loc_409583
+cmp     [rbp+reverse], 0
+jz      short loc_40947C
+mov     rax, [rbp-18h]
+mov     eax, [rax+70h]
+sub     eax, [rbp-0Ch]
+sub     eax, 1
+mov     [rbp+j], eax
+jmp     short loc_409482
+mov     eax, [rbp-0Ch]
+mov     [rbp+j], eax
+lea     rax, flags
+mov     eax, [rax+1Ch]
+test    eax, eax
+jle     short loc_40949C
+lea     rdi, asc_41475A
+call    logputs
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aS_0
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-18h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-8]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax+8]
+lea     rax, num_format
+mov     rax, [rax]
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rdi, rax
+mov     eax, 1
+call    logprintf
+mov     rax, [rbp-18h]
+mov     rax, [rax+78h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    isdecimal
+test    eax, eax
+jz      short loc_409515
+lea     rdi, asc_4146F1
+call    logputs
+mov     rax, [rbp-18h]
+mov     rax, [rax+78h]
+mov     rsi, rax
+lea     rdi, aS
+mov     eax, 0
+call    logprintf
+lea     rdi, asc_414766
+call    logputs
+mov     rax, [rbp-18h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-8]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax]
+lea     rax, num_format
+mov     rax, [rax]
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rdi, rax
+mov     eax, 1
+call    logprintf
+mov     edi, 0Ah
+call    logputchar
+add     [rbp+i], 1
+mov     rax, [rbp-18h]
+mov     eax, [rax+70h]
+cmp     eax, [rbp-0Ch]
+jg      loc_409464
+jmp     loc_4096AB
+mov     [rbp+i], 0
+jmp     loc_40969B
+lea     rax, flags
+mov     eax, [rax+1Ch]
+test    eax, eax
+jle     short loc_4095BE
+lea     rdi, asc_41475A
+call    logputs
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aS_10
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-18h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax]
+lea     rax, num_format
+mov     rax, [rax]
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rdi, rax
+mov     eax, 1
+call    logprintf
+lea     rdi, asc_414766
+call    logputs
+mov     rax, [rbp-18h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax+8]
+lea     rax, num_format
+mov     rax, [rax]
+mov     [rbp+var_28], rdx
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rdi, rax
+mov     eax, 1
+call    logprintf
+mov     rax, [rbp-18h]
+mov     rax, [rax+78h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    isdecimal
+test    eax, eax
+jz      short loc_40967B
+lea     rdi, asc_4146F1
+call    logputs
+mov     rax, [rbp-18h]
+mov     rax, [rax+78h]
+mov     rsi, rax
+lea     rdi, aS_11
+mov     eax, 0
+call    logprintf
+add     [rbp+i], 1
+mov     rax, [rbp-18h]
+mov     eax, [rax+70h]
+cmp     eax, [rbp-0Ch]
+jg      loc_4095A4
+nop
+leave
+retn

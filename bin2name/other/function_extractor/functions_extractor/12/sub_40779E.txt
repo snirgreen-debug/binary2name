@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rbp-8]
+mov     esi, 407720h
+mov     rdi, rax
+call    sub_410A8E
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_410490
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

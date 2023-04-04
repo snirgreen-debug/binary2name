@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], rdi
+mov     [rbp+stream], rsi
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     esi, 42FA4Ch
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+not     eax
+shr     eax, 1Fh
+leave
+retn

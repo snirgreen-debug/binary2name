@@ -1,0 +1,73 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+stream], rdi
+mov     rax, cs:qword_60C728
+mov     [rbp+var_8], rax
+mov     rax, cs:qword_60C728
+test    rax, rax
+jnz     short loc_407595
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_408B86
+mov     rax, cs:qword_60C728
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_4075BF
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_408B86
+jmp     short loc_4075BF
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, cs:qword_60C730
+cmp     rdx, rax
+jnz     short loc_4075B3
+mov     rax, cs:qword_60C728
+mov     rax, [rax+10h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4075F4
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_408B86
+mov     rax, cs:qword_60C730
+mov     rdi, rax
+call    sub_4073C0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-8]
+mov     cs:qword_60C730, rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_407640
+mov     cs:dword_60C738, 0
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _rewind
+jmp     short loc_40765B
+mov     rax, [rbp-8]
+mov     rcx, [rax]
+mov     rax, [rbp-18h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_408A07
+mov     rax, cs:qword_60C728
+cmp     [rbp+var_8], rax
+jnz     short loc_407690
+mov     rax, cs:qword_60C728
+mov     rdi, rax
+call    sub_4073C0
+mov     cs:qword_60C730, 0
+mov     rax, cs:qword_60C730
+mov     cs:qword_60C728, rax
+nop
+leave
+retn

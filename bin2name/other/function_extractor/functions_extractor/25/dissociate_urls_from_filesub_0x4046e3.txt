@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+file], rdi
+mov     rax, cs:dl_url_file_map
+mov     rdx, [rbp-8]
+mov     esi, 40466Bh
+mov     rdi, rax
+call    hash_table_map
+nop
+leave
+retn

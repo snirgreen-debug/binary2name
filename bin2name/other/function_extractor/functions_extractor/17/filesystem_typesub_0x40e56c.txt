@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+statp], rdi
+mov     [rbp+path], rsi
+mov     rax, cs:current_fstype_6077
+test    rax, rax
+jz      short loc_40E5BD
+mov     eax, cs:fstype_known
+test    eax, eax
+jz      short loc_40E5AE
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, cs:current_dev_6078
+cmp     rdx, rax
+jnz     short loc_40E5AE
+mov     rax, cs:current_fstype_6077
+jmp     short locret_40E5EC
+mov     rax, cs:current_fstype_6077
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     cs:current_dev_6078, rax
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    file_system_type_uncached
+mov     cs:current_fstype_6077, rax
+mov     rax, cs:current_fstype_6077
+leave
+retn

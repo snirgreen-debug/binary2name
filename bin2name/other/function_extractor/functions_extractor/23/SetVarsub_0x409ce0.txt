@@ -1,0 +1,114 @@
+push    r14
+push    r13
+mov     r14, pibIn
+push    r12
+push    rbp
+mov     r13, szVal
+push    rbx
+mov     rbx, [pibIn+30h]
+mov     rbp, szName
+mov     r12, hType
+mov     pibIn, [pinfo+20h]
+call    GetVarPTR
+test    rax, rax
+jz      short loc_409D10
+pop     pinfo
+pop     szName
+pop     hType
+pop     szVal
+pop     pibIn
+retn
+cmp     hType, 10000h
+jz      short loc_409D80
+cmp     hType, 20000h
+jz      loc_409E38
+cmp     hType, 30000h
+jz      loc_409E48
+cmp     hType, 40000h
+jz      loc_409DF8
+cmp     hType, 5F000h
+jz      loc_409DF8
+lea     rax, [hType-6F000h]
+test    rax, 0FFFFFFFFFFFDFFFFh
+jnz     loc_409E68
+lea     rdi, [pinfo+20h]
+mov     rcx, hType
+mov     rdx, szVal
+pop     pinfo
+mov     rsi, szName
+pop     szName
+pop     hType
+pop     szVal
+pop     pibIn
+jmp     AddEquation
+mov     edx, 1
+mov     rsi, szName
+mov     rdi, pibIn
+call    DeclareModelVar
+mov     rdi, [pinfo+20h]
+mov     rsi, szName
+call    GetVarPTR
+mov     r8, hType
+mov     rcx, szVal
+mov     rdx, szName
+mov     rsi, pvm
+mov     rdi, pibIn
+call    DefineGlobalVar
+cmp     hType, 10000h
+jz      loc_409E58
+cmp     hType, 20000h
+jz      short loc_409E24
+cmp     hType, 30000h
+jnz     loc_409D06
+mov     rcx, szVal
+mov     rdx, szName
+mov     esi, 41398Fh
+pop     pinfo
+pop     rbp
+pop     hType
+pop     r13
+pop     pibIn
+mov     edi, 1
+xor     eax, eax
+jmp     ___printf_chk
+lea     rdi, [pinfo+20h]
+mov     rcx, hType
+mov     rdx, szVal
+mov     rsi, szName
+call    AddEquation
+cmp     hType, 40000h
+jnz     loc_409D06
+mov     rcx, szVal
+mov     rdx, szName
+mov     esi, 413959h
+jmp     short loc_409DDE
+mov     rcx, szVal
+mov     rdx, szName
+mov     esi, 41397Dh
+jmp     short loc_409DDE
+mov     edx, 2
+jmp     loc_409D85
+mov     edx, 3
+jmp     loc_409D85
+mov     rcx, szVal
+mov     rdx, szName
+mov     esi, 41396Bh
+jmp     loc_409DDE
+xor     edx, edx
+mov     rsi, szName
+mov     rdi, pibIn
+call    DeclareModelVar
+mov     rdi, [pinfo+20h]
+mov     rsi, szName
+call    GetVarPTR
+pop     pinfo
+mov     r8, hType
+mov     rcx, szVal
+mov     rdx, szName
+mov     rdi, pibIn
+mov     rsi, pvm
+pop     szName
+pop     hType
+pop     szVal
+pop     pibIn
+jmp     DefineGlobalVar

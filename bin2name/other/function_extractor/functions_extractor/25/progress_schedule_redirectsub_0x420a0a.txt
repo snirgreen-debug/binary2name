@@ -1,0 +1,6 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:output_redirected, 1
+nop
+pop     rbp
+retn

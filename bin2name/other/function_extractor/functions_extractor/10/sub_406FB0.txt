@@ -1,0 +1,146 @@
+push    r15
+push    r14
+push    r13
+push    r12
+mov     r13, rdx
+push    rbp
+push    rbx
+mov     r12, rsi
+mov     rbx, rdi
+sub     rsp, 8
+test    rcx, rcx
+jz      short loc_407030
+mov     r14, rcx
+mov     rax, rcx
+mov     rbp, [rdi+30h]
+mov     ecx, 7
+mov     edi, 412E24h
+or      r14, 0F000h
+repe cmpsb
+jz      short loc_407042
+cmp     rax, 40000h
+jz      loc_407180
+jbe     short loc_407070
+cmp     rax, 90000h
+jz      short loc_407015
+cmp     rax, 0C0000h
+jz      loc_407110
+cmp     rax, 50000h
+jnz     short loc_407056
+lea     rdi, [rbp+28h]
+mov     rcx, r14
+mov     rdx, r13
+mov     rsi, r12
+call    sub_406B10
+jmp     short loc_407056
+mov     rbp, [rdi+30h]
+mov     ecx, 7
+mov     edi, 412E24h
+repe cmpsb
+jnz     short loc_407090
+lea     rdi, [rbp+28h]
+mov     ecx, 0A0000h
+mov     rdx, r13
+mov     rsi, r12
+call    sub_406B10
+mov     eax, [rbx+20h]
+mov     [rbx+24h], eax
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+cmp     rax, 20000h
+jz      loc_407180
+cmp     rax, 30000h
+jz      short loc_407015
+cmp     rax, 10000h
+jnz     short loc_407056
+jmp     short loc_407015
+cmp     rbp, 0FFFFFFFFFFFFFFE0h
+mov     r14d, 5F000h
+jz      loc_407015
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     r15, rax
+jz      loc_4071A0
+mov     rdi, r12
+call    _strlen
+lea     r14, [rax+1]
+mov     rdi, r14
+call    _malloc
+test    rax, rax
+jz      loc_4071D9
+mov     rdx, r14
+mov     rsi, r12
+mov     rdi, rax
+call    _memcpy
+mov     [r15], rax
+mov     qword ptr [r15+8], 0
+mov     r14d, 5F000h
+mov     rax, [rbp+20h]
+mov     qword ptr [r15+10h], 5F000h
+mov     [r15+18h], rax
+mov     [rbp+20h], r15
+jmp     loc_407015
+cmp     rbp, 0FFFFFFFFFFFFFFE0h
+jz      loc_407056
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     r13, rax
+jz      loc_4071C0
+mov     rdi, r12
+call    _strlen
+lea     r15, [rax+1]
+mov     rdi, r15
+call    _malloc
+test    rax, rax
+jz      loc_4071F4
+mov     rdx, r15
+mov     rsi, r12
+mov     rdi, rax
+call    _memcpy
+mov     [r13+0], rax
+mov     qword ptr [r13+8], 0
+mov     rax, [rbp+20h]
+mov     [r13+10h], r14
+mov     [r13+18h], rax
+mov     [rbp+20h], r13
+jmp     loc_407056
+mov     ecx, 413218h
+mov     rdx, r12
+mov     esi, 4103h
+mov     rdi, rbx
+call    sub_405040
+jmp     loc_407056
+mov     ecx, 4131E8h
+mov     rdx, r12
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+jmp     loc_407015
+mov     ecx, 4131E8h
+mov     rdx, r12
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+jmp     loc_407056
+mov     ecx, 4131C0h
+mov     rdx, r12
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+xor     eax, eax
+jmp     loc_4070E1
+mov     ecx, 4131C0h
+mov     rdx, r12
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+xor     eax, eax
+jmp     loc_40715B

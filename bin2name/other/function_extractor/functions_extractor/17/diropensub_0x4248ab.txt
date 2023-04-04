@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+sp_0], rdi
+mov     [rbp+dir], rsi
+mov     rax, [rbp-18h]
+mov     eax, [rax+48h]
+and     eax, 10h
+test    eax, eax
+jz      short loc_4248D0
+mov     edx, 30900h
+jmp     short loc_4248D5
+mov     edx, 10900h
+mov     rax, [rbp-18h]
+mov     eax, [rax+48h]
+and     eax, 800h
+test    eax, eax
+jz      short loc_4248EC
+mov     eax, 40000h
+jmp     short loc_4248F1
+mov     eax, 0
+or      eax, edx
+mov     [rbp+open_flags], eax
+mov     rax, [rbp-18h]
+mov     eax, [rax+48h]
+and     eax, 200h
+test    eax, eax
+jz      short loc_424925
+mov     rax, [rbp-18h]
+mov     eax, [rax+2Ch]
+mov     edx, [rbp-8]
+mov     rcx, [rbp-20h]
+mov     rsi, rcx
+mov     edi, eax
+mov     eax, 0
+call    openat_safer
+jmp     short loc_42493B
+mov     edx, [rbp-8]
+mov     rax, [rbp-20h]
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    open_safer
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_424953
+mov     eax, [rbp-4]
+mov     esi, 1
+mov     edi, eax
+call    set_cloexec_flag
+mov     eax, [rbp-4]
+leave
+retn

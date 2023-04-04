@@ -1,0 +1,137 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+tree], rdi
+mov     [rbp+max_code], esi
+mov     [rbp+prevlen], 0FFFFFFFFh
+mov     rax, [rbp-28h]
+movzx   eax, word ptr [rax+2]
+movzx   eax, ax
+mov     [rbp+nextlen], eax
+mov     [rbp+count], 0
+mov     [rbp+max_count], 7
+mov     [rbp+min_count], 4
+cmp     [rbp+nextlen], 0
+jnz     short loc_409961
+mov     [rbp+max_count], 8Ah
+mov     [rbp+min_count], 3
+mov     [rbp+n], 0
+jmp     loc_409B0F
+mov     eax, [rbp-14h]
+mov     [rbp+curlen], eax
+mov     eax, [rbp-1Ch]
+cdqe
+add     rax, 1
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+movzx   eax, word ptr [rax+2]
+movzx   eax, ax
+mov     [rbp+nextlen], eax
+add     [rbp+count], 1
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-0Ch]
+jge     short loc_4099AD
+mov     eax, [rbp-4]
+cmp     eax, [rbp-14h]
+jz      loc_409B0A
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-8]
+jge     short loc_4099ED
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, word ptr [rax*4+615D22h]
+movzx   edx, ax
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, word ptr [rax*4+615D20h]
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+sub     [rbp+count], 1
+cmp     [rbp+count], 0
+jnz     short loc_4099B5
+jmp     loc_409ABF
+cmp     [rbp+curlen], 0
+jz      short loc_409A59
+mov     eax, [rbp-4]
+cmp     eax, [rbp-18h]
+jz      short loc_409A28
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, word ptr [rax*4+615D22h]
+movzx   edx, ax
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, word ptr [rax*4+615D20h]
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+sub     [rbp+count], 1
+movzx   eax, word ptr cs:bl_tree._dl+40h
+movzx   edx, ax
+movzx   eax, word ptr cs:bl_tree.fc+40h
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-10h]
+sub     eax, 3
+mov     esi, 2
+mov     edi, eax
+call    send_bits
+jmp     short loc_409ABF
+cmp     [rbp+count], 0Ah
+jg      short loc_409A90
+movzx   eax, word ptr cs:bl_tree._dl+44h
+movzx   edx, ax
+movzx   eax, word ptr cs:bl_tree.fc+44h
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-10h]
+sub     eax, 3
+mov     esi, 3
+mov     edi, eax
+call    send_bits
+jmp     short loc_409ABF
+movzx   eax, word ptr cs:bl_tree._dl+48h
+movzx   edx, ax
+movzx   eax, word ptr cs:bl_tree.fc+48h
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-10h]
+sub     eax, 0Bh
+mov     esi, 7
+mov     edi, eax
+call    send_bits
+mov     [rbp+count], 0
+mov     eax, [rbp-4]
+mov     [rbp+prevlen], eax
+cmp     [rbp+nextlen], 0
+jnz     short loc_409AE2
+mov     [rbp+max_count], 8Ah
+mov     [rbp+min_count], 3
+jmp     short loc_409B0B
+mov     eax, [rbp-4]
+cmp     eax, [rbp-14h]
+jnz     short loc_409AFA
+mov     [rbp+max_count], 6
+mov     [rbp+min_count], 3
+jmp     short loc_409B0B
+mov     [rbp+max_count], 7
+mov     [rbp+min_count], 4
+jmp     short loc_409B0B
+nop
+add     [rbp+n], 1
+mov     eax, [rbp-1Ch]
+cmp     eax, [rbp-2Ch]
+jle     loc_40996D
+nop
+leave
+retn

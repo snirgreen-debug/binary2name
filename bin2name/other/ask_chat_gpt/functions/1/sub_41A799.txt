@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, [rbp-14h]
+cmp     eax, 2
+jz      short loc_41A7CA
+cmp     eax, 0Ah
+jz      short loc_41A7EB
+jmp     short loc_41A808
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+mov     [rbp+var_C], eax
+mov     edx, [rbp-0Ch]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_41A762
+mov     eax, 4
+jmp     short loc_41A80D
+mov     rax, [rbp-20h]
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     rcx, [rbp-28h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     eax, 10h
+jmp     short loc_41A80D
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41A821
+call    ___stack_chk_fail
+leave
+retn

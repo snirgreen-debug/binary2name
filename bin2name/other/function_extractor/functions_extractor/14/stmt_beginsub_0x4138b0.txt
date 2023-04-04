@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_list_push
+cmp     [rbp+var_20], 0
+jz      loc_413970
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_413902
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rax, [rax+38h]
+jmp     short loc_413907
+mov     eax, 0
+mov     rdx, [rbp-20h]
+mov     rsi, rax
+mov     rdi, rdx
+call    target_ptr
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_413962
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-20h]
+lea     rcx, [rdx+38h]
+mov     rdx, [rbp-8]
+mov     rsi, [rbp-28h]
+mov     edi, 0
+call    rax
+test    eax, eax
+jz      short loc_41397B
+mov     rax, [rbp-18h]
+mov     qword ptr [rax], 62D260h
+jmp     short loc_41397B
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-8]
+mov     [rax+38h], rdx
+jmp     short loc_41397B
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+nop
+leave
+retn

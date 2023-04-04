@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rax, [rax+0C0h]
+mov     [rbp+var_10], rax
+jmp     short loc_417AF6
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+and     eax, 40h
+test    eax, eax
+jz      short loc_417AC1
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_417AC1
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+mov     rdx, [rdx]
+mov     edx, [rdx+10h]
+and     edx, 0FFFFFFEFh
+mov     [rax+10h], edx
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+and     eax, 1
+test    eax, eax
+jz      short loc_417AEE
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    wsnode_remove
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    wsnode_free
+mov     rax, [rbp-8]
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_417A84
+nop
+leave
+retn

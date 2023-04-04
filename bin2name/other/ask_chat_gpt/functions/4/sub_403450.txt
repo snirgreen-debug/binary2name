@@ -1,0 +1,8 @@
+cmp     cs:byte_63ADA8, 0
+jnz     short locret_40346A
+push    rbp
+mov     rbp, rsp
+call    sub_4033D0
+pop     rbp
+mov     cs:byte_63ADA8, 1
+rep retn

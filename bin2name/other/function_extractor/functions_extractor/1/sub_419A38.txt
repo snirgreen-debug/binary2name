@@ -1,0 +1,115 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+dest], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_34], edx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+jmp     loc_419BAD
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_419A93
+mov     rax, [rbp-28h]
+lea     rdx, [rax+1]
+mov     [rbp+dest], rdx
+mov     byte ptr [rax], 5Ch
+mov     rax, [rbp-28h]
+lea     rdx, [rax+1]
+mov     [rbp+dest], rdx
+mov     rdx, [rbp-30h]
+movzx   edx, byte ptr [rdx]
+mov     [rax], dl
+jmp     loc_419BA8
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jz      short loc_419AD9
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jz      short loc_419AD9
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 1Fh
+jbe     short loc_419AD9
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+js      short loc_419AD9
+mov     rax, [rbp-28h]
+lea     rdx, [rax+1]
+mov     [rbp+dest], rdx
+mov     rdx, [rbp-30h]
+movzx   edx, byte ptr [rdx]
+mov     [rax], dl
+jmp     loc_419BA8
+cmp     [rbp+var_34], 0
+jz      short loc_419B28
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+movzx   edx, al
+lea     rax, [rbp-10h]
+mov     ecx, edx
+mov     edx, 424641h
+mov     esi, 4
+mov     rdi, rax
+mov     eax, 0
+call    _snprintf
+lea     rcx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     edx, 3
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+add     [rbp+dest], 3
+jmp     loc_419BA8
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    sub_419678
+mov     [rbp+var_14], eax
+mov     rax, [rbp-28h]
+lea     rdx, [rax+1]
+mov     [rbp+dest], rdx
+mov     byte ptr [rax], 5Ch
+cmp     [rbp+var_14], 0
+jz      short loc_419B64
+mov     rax, [rbp-28h]
+lea     rdx, [rax+1]
+mov     [rbp+dest], rdx
+mov     edx, [rbp-14h]
+mov     [rax], dl
+jmp     short loc_419BA8
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+movzx   edx, al
+lea     rax, [rbp-10h]
+mov     ecx, edx
+mov     edx, 424648h
+mov     esi, 4
+mov     rdi, rax
+mov     eax, 0
+call    _snprintf
+lea     rcx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     edx, 3
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+add     [rbp+dest], 3
+add     [rbp+var_30], 1
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_419A5F
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_419BD1
+call    ___stack_chk_fail
+leave
+retn

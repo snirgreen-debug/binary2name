@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:qword_6420C8
+test    rax, rax
+jz      short loc_41D094
+mov     rax, cs:qword_6420C8
+mov     rdi, rax
+call    _fclose
+mov     cs:qword_6420C8, 0
+mov     cs:dword_6420D0, 1
+mov     cs:dword_6420D4, 0
+mov     [rbp+var_4], 0
+jmp     short loc_41D0CA
+mov     eax, [rbp-4]
+mov     edi, eax
+call    sub_41C5A0
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 17h
+jle     short loc_41D0BC
+mov     cs:dword_63F2E4, 0FFFFFFFFh
+mov     cs:dword_642F20, 0
+nop
+leave
+retn

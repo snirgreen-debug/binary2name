@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:dword_65D340, 0
+mov     cs:dword_6486E4, 0
+mov     eax, cs:dword_6486E4
+mov     cs:dword_65D344, eax
+mov     cs:qword_65D320, 0
+mov     rax, cs:qword_65D320
+mov     cs:qword_6186C0, rax
+nop
+pop     rbp
+retn

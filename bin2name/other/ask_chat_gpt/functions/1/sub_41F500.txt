@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     rax, cs:qword_62D748
+test    rax, rax
+jz      short loc_41F536
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_41F568
+call    sub_41FB93
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+lea     rbx, [rax+rdx]
+mov     rax, cs:stream
+mov     esi, 4000h
+mov     rdi, rax
+call    sub_41F72D
+mov     [rbx], rax
+mov     rax, cs:qword_62D748
+test    rax, rax
+jz      short loc_41F58E
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_41F593
+mov     eax, 0
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41F84F
+call    sub_41F6A2
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

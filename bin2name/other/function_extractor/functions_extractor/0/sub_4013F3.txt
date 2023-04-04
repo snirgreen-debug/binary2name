@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_400A74
+mov     rdx, cs:qword_605100
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_400D90
+mov     rax, cs:qword_605100
+lea     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_400C4C
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_401469
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+result], 0
+mov     esi, 80000h
+mov     edi, 40DB8Eh
+mov     eax, 0
+call    open_safer
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_405E96
+mov     eax, [rbp-4]
+mov     edi, eax
+call    fd_is_cloexec
+test    eax, eax
+setnz   al
+mov     [rbp+result], al
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+movzx   eax, byte ptr [rbp-5]
+leave
+retn

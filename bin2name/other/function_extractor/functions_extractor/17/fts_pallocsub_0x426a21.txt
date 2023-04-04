@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+sp_0], rdi
+mov     [rbp+more], rsi
+mov     rax, [rbp-18h]
+mov     rdx, [rax+30h]
+mov     rax, [rbp-20h]
+add     rax, rdx
+add     rax, 100h
+mov     [rbp+new_len], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+cmp     rax, [rbp-10h]
+jbe     short loc_426A86
+mov     rax, [rbp-18h]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+20h], 0
+call    ___errno_location
+mov     dword ptr [rax], 24h
+mov     eax, 0
+jmp     short locret_426AEC
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-10h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+30h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     short loc_426ADB
+mov     rax, [rbp-18h]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+20h], 0
+mov     eax, 0
+jmp     short locret_426AEC
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-8]
+mov     [rax+20h], rdx
+mov     eax, 1
+leave
+retn

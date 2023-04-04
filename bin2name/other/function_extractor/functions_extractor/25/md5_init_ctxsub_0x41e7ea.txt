@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ctx], rdi
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 67452301h
+mov     rax, [rbp-8]
+mov     dword ptr [rax+4], 0EFCDAB89h
+mov     rax, [rbp-8]
+mov     dword ptr [rax+8], 98BADCFEh
+mov     rax, [rbp-8]
+mov     dword ptr [rax+0Ch], 10325476h
+mov     rax, [rbp-8]
+mov     dword ptr [rax+14h], 0
+mov     rax, [rbp-8]
+mov     edx, [rax+14h]
+mov     rax, [rbp-8]
+mov     [rax+10h], edx
+mov     rax, [rbp-8]
+mov     dword ptr [rax+18h], 0
+nop
+pop     rbp
+retn

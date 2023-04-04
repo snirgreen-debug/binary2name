@@ -1,0 +1,232 @@
+push    rbx
+mov     rbx, pvmGlo
+sub     rsp, 10h
+mov     rax, fs:28h
+mov     [rsp+18h+var_10], rax
+xor     eax, eax
+test    pvmGlo, pvmGlo
+mov     [rsp+18h+iMax], 0F000h
+jz      loc_40F5B8
+mov     rax, pvmGlo
+xor     esi, esi
+jmp     short loc_40F219
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F244
+mov     rdx, [rax+10h]
+and     edx, 0F0000h
+cmp     rdx, 10000h
+jnz     short loc_40F210
+xor     edx, edx
+cmp     qword ptr [rax+8], 6192A0h
+mov     rax, [rax+18h]
+setnz   dl
+add     esi, edx
+test    rax, rax
+jnz     short loc_40F219
+mov     cs:vnStates, esi
+mov     rax, pvmGlo
+xor     ecx, ecx
+jmp     short loc_40F261
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F28C
+mov     rdx, [rax+10h]
+and     edx, 0F0000h
+cmp     rdx, 30000h
+jnz     short loc_40F258
+xor     edx, edx
+cmp     qword ptr [rax+8], 6192A0h
+mov     rax, [rax+18h]
+setnz   dl
+add     ecx, edx
+test    rax, rax
+jnz     short loc_40F261
+mov     cs:vnOutputs, ecx
+mov     rax, pvmGlo
+add     ecx, esi
+xor     edi, edi
+jmp     short loc_40F2A9
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F2D4
+mov     rdx, [rax+10h]
+and     edx, 0F0000h
+cmp     rdx, 20000h
+jnz     short loc_40F2A0
+xor     edx, edx
+cmp     qword ptr [rax+8], 6192A0h
+mov     rax, [rax+18h]
+setnz   dl
+add     edi, edx
+test    rax, rax
+jnz     short loc_40F2A9
+mov     cs:vnInputs, edi
+mov     rax, pvmGlo
+xor     edi, edi
+jmp     short loc_40F2F1
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F31C
+mov     rdx, [rax+10h]
+and     edx, 0F0000h
+cmp     rdx, 40000h
+jnz     short loc_40F2E8
+xor     edx, edx
+cmp     qword ptr [rax+8], 6192A0h
+mov     rax, [rax+18h]
+setnz   dl
+add     edi, edx
+test    rax, rax
+jnz     short loc_40F2F1
+cmp     esi, 0F000h
+mov     cs:vnParms, edi
+mov     cs:vnModelVars, ecx
+jg      loc_40F598
+cmp     cs:vnOutputs, 0F000h
+jg      loc_40F578
+cmp     cs:vnInputs, 0F000h
+jg      loc_40F558
+mov     eax, 0F000h
+sub     eax, cs:vnModelVars
+cmp     eax, cs:vnParms
+mov     [rsp+18h+iMax], eax
+jl      loc_40F538
+cmp     cs:vnStates, 0F000h
+jg      short loc_40F38B
+cmp     cs:vnInputs, 0F000h
+jle     loc_40F510
+xor     ecx, ecx
+xor     edx, edx
+mov     esi, 8000h
+xor     edi, edi
+call    ReportError
+test    pvmGlo, pvmGlo
+jz      loc_40F4F0
+mov     rax, pvmGlo
+xor     esi, esi
+jmp     short loc_40F3B9
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F3F0
+mov     rdx, [rax+10h]
+mov     rcx, rdx
+and     ecx, 0F0000h
+cmp     rcx, 10000h
+jnz     short loc_40F3B0
+cmp     qword ptr [rax+8], 6192A0h
+jz      short loc_40F3B0
+movsxd  rcx, esi
+add     esi, 1
+or      rdx, rcx
+mov     [rax+10h], rdx
+mov     rax, [rax+18h]
+test    rax, rax
+jnz     short loc_40F3B9
+nop
+mov     rax, pvmGlo
+jmp     short loc_40F401
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F440
+mov     rdx, [rax+10h]
+mov     rcx, rdx
+and     ecx, 0F0000h
+cmp     rcx, 30000h
+jnz     short loc_40F3F8
+cmp     qword ptr [rax+8], 6192A0h
+jz      short loc_40F3F8
+movsxd  rcx, esi
+add     esi, 1
+or      rdx, rcx
+mov     [rax+10h], rdx
+mov     rax, [rax+18h]
+test    rax, rax
+jnz     short loc_40F401
+nop     word ptr [rax+rax+00000000h]
+mov     rax, pvmGlo
+xor     esi, esi
+jmp     short loc_40F459
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40F490
+mov     rdx, [rax+10h]
+mov     rcx, rdx
+and     ecx, 0F0000h
+cmp     rcx, 20000h
+jnz     short loc_40F450
+cmp     qword ptr [rax+8], 6192A0h
+jz      short loc_40F450
+movsxd  rcx, esi
+add     esi, 1
+or      rdx, rcx
+mov     [rax+10h], rdx
+mov     rax, [rax+18h]
+test    rax, rax
+jnz     short loc_40F459
+nop
+mov     ecx, cs:vnOutputs
+add     ecx, cs:vnStates
+add     ecx, cs:vnInputs
+jmp     short loc_40F4B1
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40F4F0
+mov     rax, [rbx+10h]
+mov     rdx, rax
+and     edx, 0F0000h
+cmp     rdx, 40000h
+jnz     short loc_40F4A8
+cmp     qword ptr [rbx+8], 6192A0h
+jz      short loc_40F4A8
+movsxd  rdx, ecx
+add     ecx, 1
+or      rax, rdx
+mov     [rbx+10h], rax
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_40F4B1
+nop     word ptr [rax+rax+00000000h]
+mov     rax, [rsp+8]
+xor     rax, fs:28h
+jnz     loc_40F5EF
+add     rsp, 10h
+pop     rbx
+retn
+cmp     cs:vnOutputs, 0F000h
+jg      loc_40F38B
+mov     eax, [rsp+4]
+cmp     cs:vnParms, eax
+jle     loc_40F39B
+jmp     loc_40F38B
+lea     rcx, [rsp+4]
+mov     edx, 413AE1h
+mov     esi, 109h
+xor     edi, edi
+call    ReportError
+jmp     loc_40F36F
+lea     rcx, [rsp+4]
+mov     edx, 414621h
+mov     esi, 109h
+xor     edi, edi
+call    ReportError
+jmp     loc_40F354
+lea     rcx, [rsp+4]
+mov     edx, 414719h
+mov     esi, 109h
+xor     edi, edi
+call    ReportError
+jmp     loc_40F344
+lea     rcx, [rsp+4]
+mov     edx, 414628h
+mov     esi, 109h
+xor     edi, edi
+call    ReportError
+jmp     loc_40F334
+mov     cs:vnStates, 0
+mov     cs:vnOutputs, 0
+mov     cs:vnInputs, 0
+mov     cs:vnParms, 0
+mov     cs:vnModelVars, 0
+jmp     loc_40F334
+call    ___stack_chk_fail

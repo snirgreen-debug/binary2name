@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     cs:dword_65D344, 0
+mov     eax, cs:dword_65D344
+mov     edx, 8000h
+sub     edx, eax
+mov     eax, cs:dword_65D344
+mov     eax, eax
+lea     rcx, [rax+65D360h]
+mov     eax, cs:dword_64CF00
+mov     rsi, rcx
+mov     edi, eax
+call    sub_40C875
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jz      short loc_40C819
+cmp     [rbp+var_4], 0FFFFFFFFh
+jnz     short loc_40C7F9
+call    sub_40CDC6
+mov     edx, cs:dword_65D344
+mov     eax, [rbp-4]
+add     eax, edx
+mov     cs:dword_65D344, eax
+mov     eax, cs:dword_65D344
+cmp     eax, 7FFFh
+jbe     short loc_40C7B9
+jmp     short loc_40C81A
+nop
+mov     eax, cs:dword_65D344
+test    eax, eax
+jnz     short loc_40C846
+cmp     [rbp+var_14], 0
+jz      short loc_40C831
+mov     eax, 0FFFFFFFFh
+jmp     short locret_40C873
+call    sub_40C9B5
+call    ___errno_location
+mov     dword ptr [rax], 0
+call    sub_40CDC6
+mov     eax, cs:dword_65D344
+mov     edx, eax
+mov     rax, cs:qword_6186C0
+add     rax, rdx
+mov     cs:qword_6186C0, rax
+mov     cs:dword_6486E4, 1
+movzx   eax, cs:byte_65D360
+movzx   eax, al
+leave
+retn

@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+buf], rdi
+mov     [rbp+siz], rsi
+mov     [rbp+fp], rdx
+mov     [rbp+delimiter], ecx
+mov     [rbp+offs], r8d
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+p], 0
+mov     [rbp+sz], 0
+mov     rcx, [rbp-48h]
+mov     edx, [rbp-4Ch]
+lea     rsi, [rbp-20h]
+lea     rax, [rbp-28h]
+mov     rdi, rax
+call    _getdelim
+mov     [rbp+nread], eax
+cmp     [rbp+nread], 0
+js      loc_402523
+mov     rax, [rbp-28h]
+test    rax, rax
+jnz     short loc_402493
+mov     ecx, 40EB90h
+mov     edx, 107h
+mov     esi, 40DA68h
+mov     edi, 40DA71h
+call    ___assert_fail
+mov     edx, [rbp-50h]
+mov     eax, [rbp-2Ch]
+add     eax, edx
+add     eax, 1
+mov     eax, eax
+mov     [rbp+needed], rax
+mov     rax, [rbp-40h]
+mov     rax, [rax]
+cmp     rax, [rbp-18h]
+jnb     short loc_4024EF
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     [rbp+pnew], rax
+cmp     [rbp+pnew], 0
+jnz     short loc_4024D9
+mov     eax, 0FFFFFFFFh
+jmp     short loc_402526
+mov     rax, [rbp-40h]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-10h]
+mov     [rax], rdx
+mov     eax, [rbp-2Ch]
+add     eax, 1
+movsxd  rdx, eax
+mov     rax, [rbp-28h]
+mov     rcx, [rbp-38h]
+mov     rsi, [rcx]
+mov     ecx, [rbp-50h]
+movsxd  rcx, ecx
+add     rcx, rsi
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-2Ch]
+mov     rdi, [rbp-8]
+xor     rdi, fs:28h
+jz      short locret_40253A
+call    ___stack_chk_fail
+leave
+retn

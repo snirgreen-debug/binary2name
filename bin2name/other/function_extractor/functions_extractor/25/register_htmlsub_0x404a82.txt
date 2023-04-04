@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+url], rdi
+mov     [rbp+file], rsi
+mov     rax, cs:downloaded_html_set
+test    rax, rax
+jnz     short loc_404AB1
+mov     edi, 0
+call    make_string_hash_table
+mov     cs:downloaded_html_set, rax
+jmp     short loc_404ACB
+mov     rax, cs:downloaded_html_set
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_contains
+test    eax, eax
+jnz     short loc_404B00
+mov     rax, cs:downloaded_html_set
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    string_set_add
+mov     rax, cs:downloaded_html_list
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    slist_prepend
+mov     cs:downloaded_html_list, rax
+jmp     short locret_404B01
+nop
+leave
+retn

@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+redirected], rdi
+mov     [rbp+original], rsi
+mov     [rbp+depth], edx
+mov     [rbp+start_url_parsed], rcx
+mov     [rbp+blacklist], r8
+mov     rax, [rbp-30h]
+mov     esi, 0
+mov     rdi, rax
+call    url_parse
+mov     [rbp+orig_parsed], rax
+cmp     [rbp+orig_parsed], 0
+jnz     short loc_4231C3
+mov     ecx, 436900h
+mov     edx, 25Bh
+mov     esi, 4365FFh
+mov     edi, 43689Fh
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     esi, 0
+mov     rdi, rax
+call    url_parse
+mov     [rbp+new_parsed], rax
+cmp     [rbp+new_parsed], 0
+jnz     short loc_4231F8
+mov     ecx, 436900h
+mov     edx, 25Eh
+mov     esi, 4365FFh
+mov     edi, 4368B3h
+call    ___assert_fail
+mov     edi, 30h
+call    xmalloc_real
+mov     [rbp+upos], rax
+mov     rax, [rbp-8]
+mov     edx, 30h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     [rax], rdx
+mov     rdi, [rbp-48h]
+mov     rcx, [rbp-40h]
+mov     edx, [rbp-34h]
+mov     rsi, [rbp-18h]
+mov     rax, [rbp-8]
+mov     r8, rdi
+mov     rdi, rax
+call    download_child_p
+mov     [rbp+success], eax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+cmp     [rbp+success], 0
+jnz     short loc_423292
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_423292
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     edi, 4368C8h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, [rbp-1Ch]
+leave
+retn

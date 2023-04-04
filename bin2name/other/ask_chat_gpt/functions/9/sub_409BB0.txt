@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_18], esi
+mov     [rbp+var_1C], edx
+mov     eax, [rbp-14h]
+sub     eax, 101h
+mov     esi, 5
+mov     edi, eax
+call    sub_401C72
+mov     eax, [rbp-18h]
+sub     eax, 1
+mov     esi, 5
+mov     edi, eax
+call    sub_401C72
+mov     eax, [rbp-1Ch]
+sub     eax, 4
+mov     esi, 4
+mov     edi, eax
+call    sub_401C72
+mov     [rbp+var_4], 0
+jmp     short loc_409C2E
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, byte ptr [rax+6147B0h]
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax*4+615D22h]
+movzx   eax, ax
+mov     esi, 3
+mov     edi, eax
+call    sub_401C72
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cmp     eax, [rbp-1Ch]
+jl      short loc_409C02
+mov     eax, [rbp-14h]
+sub     eax, 1
+mov     esi, eax
+mov     edi, 614E20h
+call    sub_409914
+mov     eax, [rbp-18h]
+sub     eax, 1
+mov     esi, eax
+mov     edi, 615720h
+call    sub_409914
+nop
+leave
+retn

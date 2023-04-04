@@ -1,0 +1,8 @@
+sub     rsp, 8
+mov     edi, 412A70h
+call    _puts
+mov     edi, 412AA0h
+call    _puts
+mov     edi, 412AD0h
+add     rsp, 8
+jmp     _puts

@@ -1,0 +1,104 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+nptr], rdi
+mov     [rbp+var_3C], esi
+mov     [rbp+var_48], rdx
+mov     [rbp+var_50], rcx
+mov     [rbp+var_40], r8d
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rcx, [rbp-28h]
+mov     rax, [rbp-38h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtol
+mov     [rbp+var_20], rax
+mov     rax, [rbp-28h]
+cmp     rax, [rbp-38h]
+jz      short loc_404596
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4045DF
+mov     rbx, cs:qword_611558
+mov     edi, 40CD48h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     edx, [rbp-3Ch]
+mov     ecx, edx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:stderr
+mov     rdi, rax
+call    sub_4046D7
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-48h]
+jge     short loc_404649
+mov     rbx, cs:qword_611558
+mov     edi, 40CD70h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     rcx, [rbp-48h]
+mov     edx, [rbp-3Ch]
+mov     r8, rcx
+mov     ecx, edx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+cmp     [rbp+var_40], 0
+jz      short loc_40463F
+mov     rax, cs:stderr
+mov     rdi, rax
+call    sub_4046D7
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-48h]
+mov     [rbp+var_20], rax
+jmp     short loc_4046B8
+cmp     [rbp+var_50], 0
+js      short loc_4046B8
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-50h]
+jle     short loc_4046B8
+mov     rbx, cs:qword_611558
+mov     edi, 40CDA0h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     rcx, [rbp-50h]
+mov     edx, [rbp-3Ch]
+mov     r8, rcx
+mov     ecx, edx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+cmp     [rbp+var_40], 0
+jz      short loc_4046B0
+mov     rax, cs:stderr
+mov     rdi, rax
+call    sub_4046D7
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-50h]
+mov     [rbp+var_20], rax
+mov     rax, [rbp-20h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_4046D0
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

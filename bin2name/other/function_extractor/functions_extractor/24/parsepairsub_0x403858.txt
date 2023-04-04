@@ -1,0 +1,172 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+input], rdi
+mov     [rbp+first], rsi
+mov     [rbp+second], rdx
+mov     [rbp+firstopen], rcx
+mov     [rbp+secondopen], r8
+mov     eax, r9d
+mov     [rbp+delimiter], al
+cmp     [rbp+checkopen], 0
+jz      short loc_403889
+lea     rax, accept
+jmp     short loc_403890
+lea     rax, asc_413BFD
+mov     rdx, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strpbrk
+mov     [rbp+start], rax
+cmp     [rbp+start], 0
+jnz     short loc_40390D
+cmp     [rbp+errfile], 0
+jz      short loc_403903
+cmp     [rbp+checkopen], 0
+jz      short loc_4038C0
+lea     rax, aOr
+jmp     short loc_4038C7
+lea     rax, locale
+lea     rdx, progname
+mov     rdx, [rdx]
+mov     r8, [rbp+28h]
+mov     rsi, [rbp+18h]
+mov     rdi, [rbp+30h]
+sub     rsp, 8
+mov     ecx, [rbp+20h]
+push    rcx
+mov     r9, r8
+mov     r8, rsi
+mov     rcx, rax
+lea     rsi, aSExpectingSInD
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+mov     eax, 0
+jmp     locret_403AEA
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 28h
+jnz     short loc_403924
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 1
+jmp     short loc_40392E
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-18h]
+lea     rdx, [rax+1]
+mov     [rbp+start], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    removespaces
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4039BC
+cmp     [rbp+errfile], 0
+jz      short loc_4039B2
+mov     rax, [rbp-40h]
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_40396D
+mov     r10d, 28h
+jmp     short loc_403973
+mov     r10d, 5Bh
+lea     rax, progname
+mov     rdx, [rax]
+mov     rdi, [rbp+28h]
+mov     rsi, [rbp+18h]
+mov     rax, [rbp+30h]
+sub     rsp, 8
+mov     ecx, [rbp+20h]
+push    rcx
+mov     r9, rdi
+mov     r8, rsi
+mov     ecx, r10d
+lea     rsi, aSUnexpectedCha
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+mov     eax, 0
+jmp     locret_403AEA
+cmp     [rbp+checkopen], 0
+jz      short loc_4039CB
+lea     rax, asc_413C95
+jmp     short loc_4039D2
+lea     rax, asc_413C98
+mov     rdx, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strpbrk
+mov     [rbp+end], rax
+cmp     [rbp+end], 0
+jnz     short loc_403A4F
+cmp     [rbp+errfile], 0
+jz      short loc_403A45
+cmp     [rbp+checkopen], 0
+jz      short loc_403A02
+lea     rax, aOr_0
+jmp     short loc_403A09
+lea     rax, locale
+lea     rdx, progname
+mov     rdx, [rdx]
+mov     r8, [rbp+28h]
+mov     rsi, [rbp+18h]
+mov     rdi, [rbp+30h]
+sub     rsp, 8
+mov     ecx, [rbp+20h]
+push    rcx
+mov     r9, r8
+mov     r8, rsi
+mov     rcx, rax
+lea     rsi, aSExpectingSInD_0
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+mov     eax, 0
+jmp     locret_403AEA
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+cmp     al, 29h
+jnz     short loc_403A66
+mov     rax, [rbp-48h]
+mov     dword ptr [rax], 1
+jmp     short loc_403A70
+mov     rax, [rbp-48h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+end], rdx
+mov     byte ptr [rax], 0
+movsx   edx, byte ptr [rbp-4Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    _strchr
+mov     [rbp+middle], rax
+cmp     [rbp+middle], 0
+jz      short loc_403AC4
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+middle], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    removespaces
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+jmp     short loc_403ACF
+mov     rax, [rbp-38h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    removespaces
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+leave
+retn

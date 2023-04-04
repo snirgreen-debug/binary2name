@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jz      loc_40A722
+movzx   eax, cs:state_0.execdirs_outstanding
+test    al, al
+jnz     short loc_40A6AA
+mov     ecx, 42C5F0h
+mov     edx, 17Bh
+mov     esi, 42C0E8h
+mov     edi, 42C1DBh
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    do_complete_pending_execdirs
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 404E96h
+jz      short loc_40A6DB
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 405877h
+jnz     short loc_40A70D
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+38h]
+test    al, al
+jz      short loc_40A70D
+mov     rax, [rbp-18h]
+add     rax, 38h
+mov     [rbp+execp], rax
+mov     rax, [rbp-8]
+mov     eax, [rax+98h]
+test    eax, eax
+jz      short loc_40A70D
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    do_exec
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    do_complete_pending_execdirs
+jmp     short locret_40A723
+nop
+leave
+retn

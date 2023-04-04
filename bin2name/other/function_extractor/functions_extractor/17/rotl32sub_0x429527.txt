@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+x], edi
+mov     [rbp+n], esi
+mov     eax, [rbp-8]
+mov     edx, [rbp-4]
+mov     ecx, eax
+rol     edx, cl
+mov     eax, edx
+pop     rbp
+retn

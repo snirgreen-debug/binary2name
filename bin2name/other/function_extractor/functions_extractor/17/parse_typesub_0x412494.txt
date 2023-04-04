@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rdx, [rbp-8]
+mov     rsi, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     ecx, 405DA9h
+mov     rdi, rax
+call    insert_type
+leave
+retn

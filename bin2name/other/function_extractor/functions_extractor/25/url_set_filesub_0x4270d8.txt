@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+url], rdi
+mov     [rbp+newfile], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+48h], rdx
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sync_path
+nop
+leave
+retn

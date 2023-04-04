@@ -1,0 +1,110 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rax, [rbp-48h]
+mov     [rbp+pstring], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41B405
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     eax, cs:enable_tilde_expansion
+test    eax, eax
+jz      short noexpand
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+cmp     al, 7Eh
+jnz     short noexpand
+mov     rax, [rbp-40h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_41B447
+jmp     short noexpand
+nop
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+jmp     loc_41B52B
+call    home_dir
+mov     [rbp+home], rax
+cmp     [rbp+home], 0
+jz      short loc_41B42B
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+homelen], eax
+jmp     short loc_41B47C
+sub     [rbp+homelen], 1
+mov     eax, [rbp-2Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+cmp     [rbp+homelen], 0
+jz      short loc_41B499
+mov     eax, [rbp-2Ch]
+cdqe
+lea     rdx, [rax-1]
+mov     rax, [rbp-20h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_41B468
+add     [rbp+val], 1
+jmp     short loc_41B4A5
+add     [rbp+val], 1
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_41B4A0
+mov     eax, [rbp-2Ch]
+add     eax, 1
+movsxd  rbx, eax
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+add     rax, 1
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+result], rax
+mov     eax, [rbp-2Ch]
+movsxd  rdx, eax
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-2Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     byte ptr [rax], 2Fh
+mov     eax, [rbp-2Ch]
+cdqe
+lea     rdx, [rax+1]
+mov     rax, [rbp-18h]
+add     rdx, rax
+mov     rax, [rbp-40h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+mov     eax, 1
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

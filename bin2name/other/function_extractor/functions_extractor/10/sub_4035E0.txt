@@ -1,0 +1,48 @@
+push    rbp
+push    rbx
+sub     rsp, 8
+test    rdi, rdi
+jz      short loc_403660
+mov     rcx, [rdi]
+test    rcx, rcx
+jz      short loc_403660
+mov     rax, [rdi+8]
+test    rax, rax
+jz      short loc_403660
+mov     rdx, rsi
+mov     rbx, rdi
+mov     esi, 1
+mov     rdi, rax
+call    _fread
+test    eax, eax
+mov     ebp, eax
+jz      short loc_403630
+mov     rax, [rbx+8]
+mov     [rbx+18h], rax
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     rbp
+retn
+mov     rdi, [rbx]
+call    _feof
+test    eax, eax
+jnz     short loc_403670
+mov     rdi, rbx
+mov     ecx, 4123F5h
+xor     edx, edx
+mov     esi, 8000h
+call    sub_405040
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     rbp
+retn
+xor     ebp, ebp
+add     rsp, 8
+mov     eax, ebp
+pop     rbx
+pop     rbp
+retn
+mov     ebp, 0FFFFFFFFh
+jmp     short loc_40361D

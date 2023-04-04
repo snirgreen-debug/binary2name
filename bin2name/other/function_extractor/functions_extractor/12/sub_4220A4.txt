@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+call    sub_42F84F
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jz      short loc_4220CC
+cmp     [rbp+var_4], 2Ch
+jle     short loc_4220CC
+mov     eax, [rbp-4]
+mov     cs:dword_63FE70, eax
+mov     esi, 4220A4h
+mov     edi, 1Ch
+call    _signal
+nop
+leave
+retn

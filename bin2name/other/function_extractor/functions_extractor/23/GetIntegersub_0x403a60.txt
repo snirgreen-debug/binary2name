@@ -1,0 +1,79 @@
+test    szLex, szLex
+setz    cl
+test    piLexType_0, piLexType_0
+setz    al
+or      cl, al
+jnz     locret_403B07
+test    pibIn, pibIn
+jz      locret_403B07
+push    r15
+push    r14
+mov     r15, pibIn
+push    r13
+push    r12
+mov     r13, szLex
+push    rbp
+push    rbx
+xor     r12d, r12d
+xor     ebx, ebx
+sub     rsp, 18h
+mov     rbp, [pibIn+18h]
+mov     dword ptr [piLexType_0], 0
+mov     [rsp+48h+piLexType], piLexType_0
+mov     [rsp+48h+bHasSign], 0
+movzx   r14d, byte ptr [rbp+0]
+nop     word ptr [rax+rax+00h]
+test    r14b, r14b
+jz      short loc_403AF0
+cmp     ebx, 3FDh
+jg      short loc_403AF0
+cmp     r12d, 2
+jz      short loc_403AF0
+cmp     r12d, 1
+jnz     short loc_403B10
+call    ___ctype_b_loc
+mov     rsi, [rax]
+movsx   rcx, r14b
+test    byte ptr [rsi+rcx*2+1], 8
+jnz     short loc_403B4E
+test    r14b, r14b
+mov     r12d, 2
+jnz     short loc_403ABD
+nop
+movsxd  i, ebx
+mov     byte ptr [szLex+i+0], 0
+add     rsp, 18h
+pop     i
+pop     rbp
+pop     eState
+pop     szLex
+pop     r14
+pop     pibIn
+rep retn
+mov     eax, [rsp+4]
+test    eax, eax
+jnz     short loc_403B20
+lea     eax, [r14-2Bh]
+test    al, 0FDh
+jz      short loc_403B78
+call    ___ctype_b_loc
+mov     rsi, [rax]
+movsx   rcx, r14b
+mov     r12d, 2
+test    byte ptr [rsi+rcx*2+1], 8
+jz      loc_403AB8
+mov     rax, [rsp+8]
+mov     r12d, 1
+mov     dword ptr [rax], 2
+lea     rax, [rbp+1]
+mov     [pibIn+18h], rax
+movzx   edx, byte ptr [rbp+0]
+movsxd  rax, ebx
+add     ebx, 1
+mov     [szLex+rax+0], dl
+mov     rbp, [pibIn+18h]
+movzx   r14d, byte ptr [rbp+0]
+jmp     loc_403AB8
+xor     r12d, r12d
+mov     [rsp+48h+bHasSign], 1
+jmp     short loc_403B4E

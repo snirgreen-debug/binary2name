@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 2740h
+mov     [rbp+var_2738], rdi
+mov     [rbp+stream], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rdx, [rbp-2740h]
+lea     rax, [rbp-2720h]
+mov     rcx, rdx
+mov     edx, 2710h
+mov     esi, 1
+mov     rdi, rax
+call    _fread
+mov     [rbp+var_2724], eax
+mov     edx, [rbp-2724h]
+lea     rcx, [rbp-2720h]
+mov     rax, [rbp-2738h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_400C9C
+cmp     [rbp+var_2724], 0
+jnz     short loc_403272
+mov     [rbp+ptr], 0
+lea     rcx, [rbp-2720h]
+mov     rax, [rbp-2738h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_400C9C
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4032FD
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,114 @@
+push    r14
+push    r13
+mov     r14, rdi
+push    r12
+push    rbp
+mov     r13, rdx
+push    rbx
+mov     rbx, [rdi+30h]
+mov     rbp, rsi
+mov     r12, rcx
+mov     rdi, [rbx+20h]
+call    sub_406D60
+test    rax, rax
+jz      short loc_409D10
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+cmp     r12, 10000h
+jz      short loc_409D80
+cmp     r12, 20000h
+jz      loc_409E38
+cmp     r12, 30000h
+jz      loc_409E48
+cmp     r12, 40000h
+jz      loc_409DF8
+cmp     r12, 5F000h
+jz      loc_409DF8
+lea     rax, [r12-6F000h]
+test    rax, 0FFFFFFFFFFFDFFFFh
+jnz     loc_409E68
+lea     rdi, [rbx+20h]
+mov     rcx, r12
+mov     rdx, r13
+pop     rbx
+mov     rsi, rbp
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+jmp     sub_406B10
+mov     edx, 1
+mov     rsi, rbp
+mov     rdi, r14
+call    sub_408040
+mov     rdi, [rbx+20h]
+mov     rsi, rbp
+call    sub_406D60
+mov     r8, r12
+mov     rcx, r13
+mov     rdx, rbp
+mov     rsi, rax
+mov     rdi, r14
+call    sub_406E80
+cmp     r12, 10000h
+jz      loc_409E58
+cmp     r12, 20000h
+jz      short loc_409E24
+cmp     r12, 30000h
+jnz     loc_409D06
+mov     rcx, r13
+mov     rdx, rbp
+mov     esi, 41398Fh
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+mov     edi, 1
+xor     eax, eax
+jmp     ___printf_chk
+lea     rdi, [rbx+20h]
+mov     rcx, r12
+mov     rdx, r13
+mov     rsi, rbp
+call    sub_406B10
+cmp     r12, 40000h
+jnz     loc_409D06
+mov     rcx, r13
+mov     rdx, rbp
+mov     esi, 413959h
+jmp     short loc_409DDE
+mov     rcx, r13
+mov     rdx, rbp
+mov     esi, 41397Dh
+jmp     short loc_409DDE
+mov     edx, 2
+jmp     loc_409D85
+mov     edx, 3
+jmp     loc_409D85
+mov     rcx, r13
+mov     rdx, rbp
+mov     esi, 41396Bh
+jmp     loc_409DDE
+xor     edx, edx
+mov     rsi, rbp
+mov     rdi, r14
+call    sub_408040
+mov     rdi, [rbx+20h]
+mov     rsi, rbp
+call    sub_406D60
+pop     rbx
+mov     r8, r12
+mov     rcx, r13
+mov     rdx, rbp
+mov     rdi, r14
+mov     rsi, rax
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+jmp     sub_406E80

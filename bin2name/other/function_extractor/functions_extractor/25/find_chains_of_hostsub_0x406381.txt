@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+jar], rdi
+mov     [rbp+host], rsi
+mov     [rbp+dest], rdx
+mov     [rbp+dest_count], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    hash_table_count
+test    eax, eax
+jnz     short loc_4063B9
+mov     eax, 0
+jmp     locret_40645A
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    numeric_address_p
+test    eax, eax
+jz      short loc_4063D2
+mov     [rbp+passes], 1
+jmp     short loc_4063E6
+mov     rax, [rbp-30h]
+mov     esi, 2Eh
+mov     rdi, rax
+call    count_char
+mov     [rbp+passes], eax
+mov     [rbp+passcnt], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+chain], rax
+cmp     [rbp+chain], 0
+jz      short loc_40642F
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+dest_count], edx
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-38h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rdx], rax
+add     [rbp+passcnt], 1
+mov     eax, [rbp-0Ch]
+cmp     eax, [rbp-10h]
+jge     short loc_406456
+mov     rax, [rbp-30h]
+mov     esi, 2Eh
+mov     rdi, rax
+call    _strchr
+add     rax, 1
+mov     [rbp+host], rax
+jmp     short loc_4063ED
+nop
+mov     eax, [rbp-14h]
+leave
+retn

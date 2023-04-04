@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 0
+call    grecs_line_acc_grow_char
+mov     rax, cs:line_acc
+mov     esi, 1
+mov     rdi, rax
+call    grecs_txtacc_finish
+pop     rbp
+retn

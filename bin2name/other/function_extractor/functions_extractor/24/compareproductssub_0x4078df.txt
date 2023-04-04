@@ -1,0 +1,89 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+one], rdi
+mov     [rbp+two], rsi
+mov     [rbp+isdimless], rdx
+jmp     loc_4079E7
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+lea     rax, NULLUNIT
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_407922
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jz      short loc_407929
+mov     eax, 1
+jmp     short loc_40792E
+mov     eax, 0
+mov     [rbp+oneblank], eax
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+lea     rax, NULLUNIT
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_40795B
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jz      short loc_407962
+mov     eax, 1
+jmp     short loc_407967
+mov     eax, 0
+mov     [rbp+twoblank], eax
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_407986
+cmp     [rbp+twoblank], 0
+jnz     short loc_407986
+mov     eax, 1
+jmp     locret_407A0C
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40799F
+cmp     [rbp+oneblank], 0
+jnz     short loc_40799F
+mov     eax, 1
+jmp     short locret_407A0C
+cmp     [rbp+oneblank], 0
+jz      short loc_4079AC
+add     [rbp+one], 8
+jmp     short loc_4079E7
+cmp     [rbp+twoblank], 0
+jz      short loc_4079B9
+add     [rbp+two], 8
+jmp     short loc_4079E7
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_4079DD
+mov     eax, 1
+jmp     short locret_407A0C
+add     [rbp+one], 8
+add     [rbp+two], 8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_4078F8
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_4078F8
+mov     eax, 0
+leave
+retn

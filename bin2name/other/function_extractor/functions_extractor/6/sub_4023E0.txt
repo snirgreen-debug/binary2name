@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     edx, 40DA5Ah
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strpbrk
+test    rax, rax
+jnz     short loc_40240C
+mov     eax, 0
+jmp     short locret_402411
+mov     eax, 1
+leave
+retn

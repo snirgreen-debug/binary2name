@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_4048DB
+mov     rax, [rbp-18h]
+mov     rdx, [rax+110h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    apply_predicate
+test    al, al
+jz      short loc_4048FB
+mov     rax, [rbp-18h]
+mov     rdx, [rax+118h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    apply_predicate
+jmp     short locret_404900
+mov     eax, 0
+leave
+retn

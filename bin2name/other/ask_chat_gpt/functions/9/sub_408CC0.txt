@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], 0
+jmp     short loc_408CE0
+mov     eax, [rbp-4]
+cdqe
+mov     ds:word_614E20[rax*4], 0
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 11Dh
+jle     short loc_408CCD
+mov     [rbp+var_4], 0
+jmp     short loc_408D05
+mov     eax, [rbp-4]
+cdqe
+mov     ds:word_615720[rax*4], 0
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 1Dh
+jle     short loc_408CF2
+mov     [rbp+var_4], 0
+jmp     short loc_408D27
+mov     eax, [rbp-4]
+cdqe
+mov     ds:word_615D20[rax*4], 0
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 12h
+jle     short loc_408D14
+mov     cs:word_615220, 1
+mov     cs:qword_617D38, 0
+mov     rax, cs:qword_617D38
+mov     cs:qword_617D30, rax
+mov     cs:dword_617D28, 0
+mov     eax, cs:dword_617D28
+mov     cs:dword_617D24, eax
+mov     eax, cs:dword_617D24
+mov     cs:dword_617D20, eax
+mov     cs:byte_617D2C, 0
+mov     cs:byte_617D2D, 1
+nop
+pop     rbp
+retn

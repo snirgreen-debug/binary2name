@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+sig], edi
+lea     rax, unk_61B270
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41015E
+call    sub_4021E6
+call    sub_41000A
+mov     eax, [rbp-4]
+mov     esi, 0
+mov     edi, eax
+call    ___sysv_signal
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _raise
+nop
+leave
+retn

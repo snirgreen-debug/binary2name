@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jz      short loc_408BD5
+mov     rax, [rbp-8]
+movss   xmm0, dword ptr [rax+24h]
+jmp     short loc_408BDD
+movss   xmm0, cs:dword_42BF74
+pop     rbp
+retn

@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+cdb], rdi
+mov     rax, [rbp-8]
+mov     dword ptr [rax], 0FFFFFF9Ch
+nop
+pop     rbp
+retn

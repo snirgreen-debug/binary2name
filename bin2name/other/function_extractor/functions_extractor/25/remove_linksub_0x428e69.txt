@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0C8h
+mov     [rbp+file], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+err], 0
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-0C8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    lstat
+test    eax, eax
+jnz     loc_428F43
+mov     eax, [rbp-98h]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     short loc_428F43
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_428EEB
+mov     rax, [rbp-0C8h]
+mov     rsi, rax
+mov     edi, 4375D6h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    _unlink
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_428F43
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 4375F0h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-0C8h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     eax, [rbp-0B4h]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_428F5D
+call    ___stack_chk_fail
+add     rsp, 0C8h
+pop     rbx
+pop     rbp
+retn

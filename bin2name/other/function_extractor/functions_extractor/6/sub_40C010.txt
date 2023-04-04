@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_4], edi
+mov     [rbp+var_8], esi
+mov     eax, edx
+mov     [rbp+var_18], rcx
+mov     [rbp+var_20], r8
+mov     [rbp+var_C], al
+mov     r8d, cs:status
+movsx   edx, byte ptr [rbp-0Ch]
+mov     rdi, [rbp-20h]
+mov     rcx, [rbp-18h]
+mov     esi, [rbp-8]
+mov     eax, [rbp-4]
+mov     r9d, r8d
+mov     r8, rdi
+mov     edi, eax
+call    sub_40BF0C
+call    _abort

@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:outcnt, 0
+mov     cs:inptr, 0
+mov     eax, cs:inptr
+mov     cs:insize, eax
+mov     cs:bytes_out, 0
+mov     rax, cs:bytes_out
+mov     cs:bytes_in, rax
+nop
+pop     rbp
+retn

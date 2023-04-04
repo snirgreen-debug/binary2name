@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rcx, [rbp-8]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+50h]
+movzx   edx, al
+mov     rax, [rbp-18h]
+mov     rsi, [rax+58h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+mov     r8, rcx
+mov     ecx, 42B00Dh
+mov     rdi, rax
+call    sub_415E6C
+mov     eax, 1
+leave
+retn

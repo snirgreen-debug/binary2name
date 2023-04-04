@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+arg], rdi
+mov     eax, esi
+mov     [rbp+foldcase], al
+mov     rax, [rbp-18h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     [rbp+last], rax
+cmp     [rbp+last], 0
+jz      short loc_4113CD
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4113CD
+movzx   edx, byte ptr [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    matches_start_point
+test    al, al
+jz      short loc_4113C6
+mov     eax, 1
+jmp     short locret_4113D2
+mov     eax, 0
+jmp     short locret_4113D2
+mov     eax, 1
+leave
+retn

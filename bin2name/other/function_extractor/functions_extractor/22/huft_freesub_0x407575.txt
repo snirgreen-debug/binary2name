@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+push    q
+push    p
+sub     rsp, 10h
+mov     [rbp+t], rdi
+mov     p, [rbp-18h]
+jmp     short loc_40759D
+sub     p, 10h
+mov     q, [p+8]
+mov     rdi, p
+call    _free
+mov     p, q
+test    p, p
+jnz     short loc_40758A
+mov     eax, 0
+add     rsp, 10h
+pop     p
+pop     q
+pop     rbp
+retn

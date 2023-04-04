@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:text_table
+mov     rdi, rax
+call    grecs_symtab_free
+nop
+pop     rbp
+retn

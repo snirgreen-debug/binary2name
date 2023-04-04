@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     [rbp+var_8], esi
+mov     [rbp+var_10], rdx
+mov     rax, cs:stdscr
+mov     edx, [rbp-8]
+mov     ecx, [rbp-4]
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_40901E
+nop
+leave
+retn

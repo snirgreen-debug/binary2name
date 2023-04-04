@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_411BD1
+mov     ecx, 432150h
+mov     edx, 2CAh
+mov     esi, 431FA0h
+mov     edi, 4320A8h
+call    ___assert_fail
+mov     rax, cs:qword_647648
+test    rax, rax
+jz      short loc_411C02
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, cs:qword_647648
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_411C3A
+test    eax, eax
+jnz     short loc_411C02
+mov     eax, 0
+jmp     short locret_411C38
+mov     rax, cs:qword_647650
+test    rax, rax
+jz      short loc_411C33
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, cs:qword_647650
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_411C3A
+test    eax, eax
+jz      short loc_411C33
+mov     eax, 0
+jmp     short locret_411C38
+mov     eax, 1
+leave
+retn

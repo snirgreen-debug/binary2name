@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rax, [rax+0C0h]
+mov     [rbp+var_8], rax
+jmp     short loc_415D2B
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+and     eax, 10h
+test    eax, eax
+jz      short loc_415D1F
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    coalesce_segment
+test    eax, eax
+jz      short loc_415D1F
+mov     eax, 1
+jmp     short locret_415D37
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_415CF3
+mov     eax, 0
+leave
+retn

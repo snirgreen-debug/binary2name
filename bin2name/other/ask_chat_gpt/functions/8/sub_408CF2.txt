@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_4091DE
+mov     [rbp+var_10], eax
+mov     eax, [rbp-10h]
+add     eax, 1
+cdqe
+shl     rax, 2
+mov     rdi, rax
+call    _malloc
+mov     [rbp+pwcs], rax
+mov     eax, [rbp-10h]
+add     eax, 1
+movsxd  rdx, eax
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _mbstowcs
+mov     [rbp+var_C], eax
+mov     eax, [rbp-0Ch]
+cmp     eax, [rbp-10h]
+jz      short loc_408D68
+mov     edi, 40B038h
+call    _gettext
+mov     esi, 40B062h
+mov     rdi, rax
+mov     eax, 0
+call    sub_408C26
+mov     rax, [rbp-8]
+leave
+retn

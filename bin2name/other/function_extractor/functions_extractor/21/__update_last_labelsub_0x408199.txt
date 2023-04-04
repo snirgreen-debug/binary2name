@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+label], rdi
+mov     rax, cs:__last_label
+test    rax, rax
+jz      short loc_4081C0
+mov     rax, cs:__last_label
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strdup
+mov     cs:__last_label, rax
+mov     rax, cs:__last_label
+test    rax, rax
+jnz     short loc_408205
+mov     edi, 40AF20h
+call    _perror
+mov     edi, 40AF27h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+nop
+leave
+retn

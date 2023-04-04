@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 30h
+mov     [rbp+var_38], rdi
+mov     dword ptr [rbp+var_20], 0
+mov     dword ptr [rbp+var_20+4], 0
+mov     eax, cs:debug_level
+test    eax, eax
+jle     short loc_407B92
+mov     rax, [rbp-38h]
+mov     rbx, [rax+10h]
+mov     edi, 42368Ah
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    debugprt
+mov     rax, [rbp-38h]
+mov     rax, [rax+18h]
+mov     [rbp+var_18], rax
+jmp     short loc_407BC9
+mov     edx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     eax, [rax+0Ch]
+or      eax, edx
+mov     dword ptr [rbp+var_20+4], eax
+mov     edx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+or      eax, edx
+mov     dword ptr [rbp+var_20], eax
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jnz     short loc_407BA0
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sysev_add_watch
+mov     [rbp+var_24], eax
+cmp     [rbp+var_24], 0FFFFFFFFh
+jnz     short loc_407C2E
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     r12, rax
+mov     rax, [rbp-38h]
+mov     rbx, [rax+10h]
+mov     edi, 42369Eh
+call    _gettext
+mov     rcx, r12
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    diag
+mov     eax, 1
+jmp     short loc_407C49
+mov     rax, [rbp-38h]
+mov     edx, [rbp-24h]
+mov     [rax+4], edx
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    dirwatcher_register
+mov     eax, 0
+add     rsp, 30h
+pop     rbx
+pop     r12
+pop     rbp
+retn

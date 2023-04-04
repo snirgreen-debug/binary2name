@@ -1,0 +1,96 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+directory], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+quit], 0
+mov     [rbp+ret], 0
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ecx, 10h
+mov     edx, 0
+div     rcx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+dir], rax
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+setz    al
+movzx   eax, al
+mov     [rbp+i], eax
+jmp     short loc_429240
+add     [rbp+i], 1
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_429268
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_42923C
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_429283
+mov     [rbp+quit], 1
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jnz     short loc_4292B9
+mov     rax, [rbp-10h]
+mov     esi, 1FFh
+mov     rdi, rax
+call    _mkdir
+mov     [rbp+ret], eax
+jmp     short loc_4292C0
+mov     [rbp+ret], 0
+cmp     [rbp+quit], 0
+jnz     short loc_4292DF
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     byte ptr [rax], 2Fh
+add     [rbp+i], 1
+jmp     loc_42923A
+nop
+mov     eax, [rbp-14h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4292F7
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+a], rdi
+mov     [rbp+b], rsi
+mov     rax, [rbp-18h]
+mov     [rbp+dea], rax
+mov     rax, [rbp-20h]
+mov     [rbp+deb], rax
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+leave
+retn

@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 2030h
+mov     [rbp+var_2024], edi
+mov     [rbp+var_2028], esi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+movss   xmm0, cs:dword_60C330
+cvtss2sd xmm0, xmm0
+movsd   [rbp+var_2020], xmm0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-2028h]
+movsd   xmm1, cs:qword_40AE58
+mulsd   xmm0, xmm1
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, dword ptr [rbp-2024h]
+divsd   xmm0, xmm1
+movsd   [rbp+var_2018], xmm0
+mov     rdx, [rbp-2020h]
+lea     rax, [rbp-2010h]
+mov     [rbp+var_2030], rdx
+movsd   xmm0, qword ptr [rbp-2030h]
+mov     esi, 409516h
+mov     rdi, rax
+mov     eax, 1
+call    _sprintf
+lea     rdx, [rbp-2020h]
+lea     rax, [rbp-2010h]
+mov     esi, 40951Bh
+mov     rdi, rax
+mov     eax, 0
+call    _sscanf
+mov     rdx, [rbp-2018h]
+lea     rax, [rbp-2010h]
+mov     [rbp+var_2030], rdx
+movsd   xmm0, qword ptr [rbp-2030h]
+mov     esi, 409516h
+mov     rdi, rax
+mov     eax, 1
+call    _sprintf
+lea     rdx, [rbp-2018h]
+lea     rax, [rbp-2010h]
+mov     esi, 40951Bh
+mov     rdi, rax
+mov     eax, 0
+call    _sscanf
+movsd   xmm0, qword ptr [rbp-2018h]
+movsd   xmm1, qword ptr [rbp-2020h]
+ucomisd xmm0, xmm1
+setnbe  al
+movzx   eax, al
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_403213
+call    ___stack_chk_fail
+leave
+retn

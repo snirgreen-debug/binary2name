@@ -1,0 +1,101 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+stream], rdx
+mov     [rbp+var_40], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+cmp     [rbp+var_40], 0
+jnz     short loc_40291A
+lea     rax, [rbp-1Ch]
+mov     [rbp+var_40], rax
+mov     rax, [rbp-30h]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_402937
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4022CE
+mov     rax, [rbp-30h]
+mov     esi, [rax]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rcx, [rbp-40h]
+mov     rdx, [rbp-38h]
+mov     rdi, rax
+call    sub_402764
+test    rax, rax
+jnz     short loc_4029D3
+mov     eax, 0
+jmp     loc_402A21
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4022CE
+mov     rax, [rbp-30h]
+mov     eax, [rax]
+mov     ebx, eax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+sub     ebx, eax
+mov     eax, ebx
+mov     r12d, eax
+mov     rax, [rbp-28h]
+mov     rbx, [rax]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+lea     rdi, [rbx+rax]
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, r12d
+call    sub_402764
+mov     rax, [rbp-40h]
+mov     eax, [rax]
+lea     edx, [rax-1]
+mov     rax, [rbp-40h]
+mov     [rax], edx
+mov     rax, [rbp-28h]
+mov     rbx, [rax]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+sub     rax, 1
+add     rax, rbx
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+jz      short loc_402A0B
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jz      loc_402963
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402716
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_402A35
+call    ___stack_chk_fail
+add     rsp, 30h
+pop     rbx
+pop     r12
+pop     rbp
+retn

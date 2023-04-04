@@ -1,0 +1,77 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+jmp     loc_40C6F1
+mov     [rbp+var_C], 0
+mov     rax, [rbp-28h]
+sub     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     [rbp+var_10], 0
+mov     eax, [rbp-10h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40C67D
+mov     eax, [rbp-10h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jz      short loc_40C67D
+mov     eax, [rbp-10h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_40C6A2
+mov     eax, [rbp-10h]
+cdqe
+cmp     rax, [rbp-8]
+ja      short loc_40C6A8
+mov     eax, [rbp-10h]
+mov     [rbp+var_C], eax
+mov     eax, [rbp-10h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40C6AB
+add     [rbp+var_10], 1
+jmp     short loc_40C641
+nop
+jmp     short loc_40C6AC
+nop
+mov     rcx, [rbp-18h]
+mov     edx, [rbp-0Ch]
+mov     eax, [rbp-0Ch]
+mov     esi, eax
+mov     edi, 423E00h
+mov     eax, 0
+call    _printf
+mov     eax, [rbp-0Ch]
+cdqe
+add     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40C6F1
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 0
+call    indent
+add     [rbp+var_18], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_40C627
+nop
+leave
+retn

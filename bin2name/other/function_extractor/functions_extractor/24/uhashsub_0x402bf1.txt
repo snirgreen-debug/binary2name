@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+str], rdi
+mov     [rbp+hashval], 0
+jmp     short loc_402C20
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   ecx, al
+mov     edx, [rbp-4]
+mov     eax, edx
+shl     eax, 5
+sub     eax, edx
+add     eax, ecx
+mov     [rbp+hashval], eax
+add     [rbp+str], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_402C02
+mov     ecx, [rbp-4]
+mov     edx, 446F8657h
+mov     eax, ecx
+mul     edx
+mov     eax, ecx
+sub     eax, edx
+shr     eax, 1
+add     eax, edx
+shr     eax, 6
+imul    eax, 65h
+sub     ecx, eax
+mov     eax, ecx
+pop     rbp
+retn

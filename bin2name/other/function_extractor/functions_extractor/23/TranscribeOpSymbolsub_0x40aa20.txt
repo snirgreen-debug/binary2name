@@ -1,0 +1,58 @@
+push    rbp
+push    rbx
+mov     rbp, szOp
+mov     ebx, 6195A0h
+sub     rsp, 8
+mov     rsi, cs:vrgSBMLKW.szKeyword
+cmp     byte ptr [rsi], 0
+jnz     short loc_40AA4C
+jmp     short loc_40AA58
+add     rbx, 10h
+mov     rsi, [rbx]
+cmp     byte ptr [rsi], 0
+jz      short loc_40AA58
+mov     rdi, szOp
+call    _strcmp
+test    eax, eax
+jnz     short loc_40AA40
+mov     eax, [rbx+8]
+sub     eax, 40h
+cmp     eax, 4
+ja      short def_40AA63
+jmp     ds:jpt_40AA63[rax*8]
+mov     eax, 2Fh
+mov     [szOp+0], ax
+add     rsp, 8
+pop     rbx
+pop     szOp
+retn
+mov     dword ptr [szOp+0], 776F70h
+add     rsp, 8
+pop     rbx
+pop     szOp
+retn
+mov     esi, 2Bh
+mov     [szOp+0], si
+add     rsp, 8
+pop     rbx
+pop     szOp
+retn
+mov     ecx, 2Dh
+mov     [szOp+0], cx
+add     rsp, 8
+pop     rbx
+pop     szOp
+retn
+mov     edx, 2Ah
+mov     [szOp+0], dx
+add     rsp, 8
+pop     rbx
+pop     szOp
+retn
+mov     edi, 1
+mov     rdx, szOp
+mov     esi, 413C18h
+xor     eax, eax
+call    ___printf_chk
+xor     edi, edi
+call    _exit

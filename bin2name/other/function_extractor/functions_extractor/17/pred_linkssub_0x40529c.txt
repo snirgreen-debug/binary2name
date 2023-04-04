@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-18h]
+mov     eax, [rax+38h]
+cmp     eax, 1
+jz      short loc_4052E0
+cmp     eax, 1
+jb      short loc_4052C4
+cmp     eax, 2
+jz      short loc_4052FC
+jmp     short loc_40531F
+mov     rax, [rbp-10h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+cmp     rdx, rax
+jbe     short loc_405318
+mov     eax, 1
+jmp     short loc_405324
+mov     rax, [rbp-10h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+cmp     rdx, rax
+jnb     short loc_40531B
+mov     eax, 1
+jmp     short loc_405324
+mov     rax, [rbp-10h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+cmp     rdx, rax
+jnz     short loc_40531E
+mov     eax, 1
+jmp     short loc_405324
+nop
+jmp     short loc_40531F
+nop
+jmp     short loc_40531F
+nop
+mov     eax, 0
+pop     rbp
+retn

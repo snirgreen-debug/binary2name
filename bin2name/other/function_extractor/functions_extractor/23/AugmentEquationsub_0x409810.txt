@@ -1,0 +1,10 @@
+test    szEqn, szEqn
+setz    r8b
+test    szStoi, szStoi
+setz    al
+or      r8b, al
+jnz     short locret_409830
+test    pvm, pvm
+jz      short locret_409830
+jmp     AugmentEquation_0
+rep retn

@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+48h]
+and     eax, 102h
+test    eax, eax
+jz      short loc_424385
+mov     r8d, 402A80h
+mov     ecx, 4242ACh
+mov     edx, 424301h
+mov     esi, 0
+mov     edi, 1Fh
+call    sub_4188A1
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+58h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+58h]
+test    rax, rax
+jnz     short loc_4243BE
+mov     eax, 0
+jmp     short locret_4243C3
+mov     edi, 20h
+call    _malloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+58h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+58h]
+test    rax, rax
+jnz     short loc_4243AE
+mov     eax, 0
+jmp     short locret_4243C3
+mov     rax, [rbp-8]
+mov     rax, [rax+58h]
+mov     rdi, rax
+call    sub_4299E1
+mov     eax, 1
+leave
+retn

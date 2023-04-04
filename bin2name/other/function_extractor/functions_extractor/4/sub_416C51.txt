@@ -1,0 +1,125 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 38h
+mov     [rbp+nptr], rdi
+mov     [rbp+var_4C], esi
+mov     rax, fs:28h
+mov     [rbp+var_28], rax
+xor     eax, eax
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rcx, [rbp-38h]
+mov     rax, [rbp-48h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtol
+mov     [rbp+var_30], rax
+mov     rax, 7FFFFFFFFFFFFFFFh
+cmp     [rbp+var_30], rax
+jz      short loc_416CBB
+mov     rax, 8000000000000000h
+cmp     [rbp+var_30], rax
+jnz     short loc_416D11
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 22h
+jnz     short loc_416CED
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-48h]
+mov     rcx, rdx
+mov     edx, 42FEC9h
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_416D11
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-48h]
+mov     rcx, rdx
+mov     edx, 42FEC9h
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+cmp     [rbp+var_30], 7FFFFFFFh
+jg      short loc_416D25
+cmp     [rbp+var_30], 0FFFFFFFF80000000h
+jge     short loc_416D59
+call    ___errno_location
+mov     dword ptr [rax], 22h
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-48h]
+mov     rcx, rdx
+mov     edx, 42FEC9h
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_416E0B
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_416DC0
+mov     rdx, [rbp-48h]
+mov     eax, [rbp-4Ch]
+mov     esi, eax
+mov     edi, 1
+call    sub_421C93
+mov     r13, rax
+mov     rdx, [rbp-38h]
+mov     eax, [rbp-4Ch]
+mov     esi, eax
+mov     edi, 0
+call    sub_421C93
+mov     r12, rax
+mov     edi, 42FECCh
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     r8, r13
+mov     rcx, r12
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_416E0B
+mov     rax, [rbp-38h]
+cmp     rax, [rbp-48h]
+jnz     short loc_416E0B
+mov     rdx, [rbp-48h]
+mov     eax, [rbp-4Ch]
+mov     esi, eax
+mov     edi, 0
+call    sub_421C93
+mov     r12, rax
+mov     edi, 42FEE7h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, r12
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-30h]
+mov     rbx, [rbp-28h]
+xor     rbx, fs:28h
+jz      short loc_416E23
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:dword_640084, 0
+mov     rax, cs:qword_640088
+test    rax, rax
+jz      short loc_4156F9
+mov     rax, cs:qword_640088
+mov     rdi, rax
+call    sub_41152C
+mov     cs:qword_640088, 0
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_41571A
+mov     eax, cs:dword_640094
+mov     esi, eax
+mov     edi, 432780h
+mov     eax, 0
+call    sub_41CEC0
+nop
+pop     rbp
+retn

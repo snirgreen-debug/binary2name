@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+error], edi
+cmp     [rbp+error], 1
+jz      short loc_411D5B
+cmp     [rbp+error], 3
+jz      short loc_411D5B
+cmp     [rbp+error], 4
+jz      short loc_411D5B
+cmp     [rbp+error], 4
+jz      short loc_411D5B
+cmp     [rbp+error], 2
+jnz     short loc_411D67
+mov     edi, 4320B8h
+call    _gettext
+jmp     short locret_411D71
+mov     edi, 4320C7h
+call    _gettext
+leave
+retn

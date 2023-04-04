@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_407CE0
+mov     cs:dword_61A88C, eax
+mov     eax, cs:dword_61A88C
+test    eax, eax
+jz      short loc_4110B6
+mov     eax, cs:dword_61A88C
+jmp     short locret_411112
+mov     rax, [rbp-8]
+mov     rax, [rax+640h]
+mov     [rbp+x], rax
+movsd   xmm0, qword ptr [rbp-18h]
+call    _log
+movsd   [rbp+x], xmm0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-0Ch]
+call    _log
+movsd   xmm1, qword ptr [rbp-18h]
+divsd   xmm1, xmm0
+movapd  xmm0, xmm1
+mov     rax, [rbp-8]
+movsd   qword ptr [rax+640h], xmm0
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_41110D
+mov     eax, 8
+jmp     short locret_411112
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+lineptr], 0
+mov     [rbp+n], 0
+mov     rdx, cs:stdin
+lea     rcx, [rbp-18h]
+lea     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _getline
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jg      short loc_423A05
+mov     [rbp+var_21], 0
+jmp     short loc_423A41
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-10h]
+sub     rdx, 1
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+jnz     short loc_423A2D
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-10h]
+sub     rdx, 1
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _rpmatch
+test    eax, eax
+setnle  al
+mov     [rbp+var_21], al
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+movzx   eax, byte ptr [rbp-21h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_423A65
+call    ___stack_chk_fail
+leave
+retn

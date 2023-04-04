@@ -1,0 +1,253 @@
+push    r15
+push    r14
+push    r13
+push    r12
+mov     r13d, esi
+push    rbp
+push    rbx
+mov     rbx, pibIn
+sub     rsp, 2048h
+mov     rbp, [pibIn+30h]
+mov     r12, [pibIn+38h]
+mov     rax, fs:28h
+mov     [rsp+2078h+var_40], rax
+xor     eax, eax
+mov     rax, [pibIn+18h]
+mov     dword ptr [pinfo+0], 1
+add     rax, 1
+nop     dword ptr [rax+00000000h]
+mov     [rbx+18h], rax
+add     rax, 1
+cmp     byte ptr [rax-2], 22h
+jnz     short loc_40B308
+lea     bProcessPK_ODEs, [rsp+30h]
+mov     pibIn, rbx
+call    GetIdentifier
+mov     rax, [pibIn+18h]
+add     rax, 2
+nop     dword ptr [rax+rax+00h]
+mov     [pibIn+18h], rax
+add     rax, 1
+cmp     byte ptr [rax-2], 22h
+jnz     short loc_40B330
+lea     r14, [rsp+430h]
+mov     rdi, pibIn
+mov     rsi, r14
+call    GetIdentifier
+mov     rax, [pibIn+18h]
+mov     rsi, r14
+mov     edi, 413A1Dh
+mov     ecx, 5
+repe cmpsb
+lea     rdx, [rax+1]
+setnbe  r14b
+mov     [pibIn+18h], rdx
+setb    dl
+add     rax, 2
+sub     r14d, edx
+movsx   r14d, r14b
+xchg    ax, ax
+mov     [pibIn+18h], rax
+add     rax, 1
+cmp     byte ptr [rax-2], 22h
+jnz     short loc_40B380
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+0C30h]
+mov     rdi, pibIn
+call    GetNumber
+mov     ecx, [pinfo+0Ch]
+test    ecx, ecx
+jnz     loc_40B470
+mov     eax, [rsp+0Ch]
+test    eax, eax
+jz      loc_40B5D8
+test    r14d, r14d
+jz      short loc_40B420
+mov     pinfo, [pibIn+30h]
+lea     rsi, [rsp+30h]
+mov     rdi, [rbp+20h]
+call    GetVarPTR
+test    rax, rax
+jz      loc_40B641
+mov     rax, [pibIn+18h]
+add     rax, 1
+nop     word ptr [rax+rax+00h]
+mov     [pibIn+18h], rax
+add     rax, 1
+cmp     byte ptr [rax-2], 3Eh
+jnz     short loc_40B3E8
+mov     rax, [rsp+2038h]
+xor     rax, fs:28h
+jnz     loc_40B6CC
+add     rsp, 2048h
+pop     pibIn
+pop     rbp
+pop     ptempinfo
+pop     bProcessPK_ODEs
+pop     r14
+pop     r15
+retn
+mov     rdi, [pinfo+20h]
+lea     rsi, [rsp+30h]
+call    GetVarType
+test    eax, eax
+jnz     short loc_40B3DA
+lea     rcx, [rsp+0C30h]
+lea     rdx, [rsp+30h]
+xor     esi, esi
+mov     rdi, pibIn
+xor     r8d, r8d
+call    DefineGlobalVar
+lea     rcx, [rsp+0C30h]
+lea     rdx, [rsp+30h]
+mov     esi, 413D78h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_40B3DA
+mov     rax, [pibIn+18h]
+mov     edx, 30h
+mov     word ptr [rsp+2078h+szEqn], dx
+add     rax, 2
+nop     dword ptr [rax]
+mov     [pibIn+18h], rax
+add     rax, 1
+cmp     byte ptr [rax-2], 22h
+jnz     short loc_40B488
+lea     r15, [rsp+830h]
+mov     rdi, pibIn
+mov     rsi, r15
+call    GetIdentifier
+mov     edi, 4139A1h
+mov     ecx, 0Ch
+mov     rsi, r15
+repe cmpsb
+jnz     loc_40B605
+test    r14d, r14d
+jz      loc_40B6D1
+lea     rax, [rsp+30h]
+mov     rsi, [ptempinfo+20h]
+lea     r8, [rsp+10h]
+xor     ecx, ecx
+xor     edi, edi
+mov     edx, 409EA0h
+mov     [rsp+2078h+sVar.szName], rax
+lea     rax, [rsp+0C30h]
+mov     [rsp+2078h+sVar.pibIn], pibIn
+mov     [rsp+2078h+sVar.szVal], rax
+call    ForAllVar
+mov     rax, [pinfo+28h]
+mov     rsi, [ptempinfo+20h]
+lea     r8, [rsp+10h]
+xor     edi, edi
+mov     dword ptr [pinfo+0], 2
+mov     ecx, 50000h
+mov     edx, 409EA0h
+mov     [rsp+2078h+sVar.pTarget], rax
+call    ForAllVar
+mov     rsi, [ptempinfo+28h]
+lea     r8, [rsp+10h]
+xor     ecx, ecx
+xor     edi, edi
+mov     edx, 4091C0h
+call    ForAllVar
+test    r13d, r13d
+jnz     loc_40B5E8
+mov     rax, [pinfo+30h]
+mov     rsi, [ptempinfo+20h]
+lea     r8, [rsp+10h]
+mov     dword ptr [pinfo+0], 3
+xor     edi, edi
+mov     ecx, 60000h
+mov     edx, 409EA0h
+mov     [rsp+2078h+sVar.pTarget], rax
+call    ForAllVar
+mov     rsi, [ptempinfo+30h]
+lea     r8, [rsp+10h]
+xor     ecx, ecx
+xor     edi, edi
+mov     edx, 4091C0h
+call    ForAllVar
+mov     rax, [pinfo+40h]
+mov     rsi, [ptempinfo+20h]
+lea     r8, [rsp+10h]
+mov     dword ptr [pinfo+0], 5
+xor     edi, edi
+mov     ecx, 80000h
+mov     edx, 409EA0h
+mov     [rsp+2078h+sVar.pTarget], rax
+call    ForAllVar
+mov     rsi, [ptempinfo+40h]
+lea     r8, [rsp+10h]
+xor     ecx, ecx
+mov     edx, 4091C0h
+xor     edi, edi
+call    ForAllVar
+jmp     loc_40B3DA
+mov     dword ptr [rsp+2078h+szEqn], 302E30h
+jmp     loc_40B3BA
+mov     rsi, [ptempinfo+28h]
+lea     r8, [rsp+10h]
+xor     ecx, ecx
+mov     edx, 409430h
+xor     edi, edi
+call    ForAllVar
+jmp     loc_40B547
+mov     rdi, [ptempinfo+58h]
+mov     rsi, r15
+call    GetVarPTR
+test    rax, rax
+jz      loc_40B6A2
+lea     r8, [rsp+30h]
+mov     r9, r15
+mov     ecx, 413948h
+mov     edx, 3FFh
+mov     esi, 1
+xor     eax, eax
+mov     rdi, r8
+call    ___sprintf_chk
+jmp     loc_40B3BA
+lea     rsi, [rsp+30h]
+mov     edx, 1
+mov     rdi, pibIn
+call    DeclareModelVar
+mov     rdi, [rbp+20h]
+lea     rsi, [rsp+30h]
+call    GetVarPTR
+lea     rcx, [rsp+0C30h]
+lea     rdx, [rsp+30h]
+mov     rsi, rax
+mov     rdi, pibIn
+mov     r8d, 10000h
+call    DefineGlobalVar
+lea     rcx, [rsp+0C30h]
+lea     rdx, [rsp+30h]
+mov     esi, 41396Bh
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_40B3DA
+mov     esi, 413D28h
+mov     edi, 1
+call    ___printf_chk
+mov     edi, 1
+mov     rdx, r15
+mov     esi, 413D50h
+xor     eax, eax
+call    ___printf_chk
+xor     edi, edi
+call    _exit
+call    ___stack_chk_fail
+lea     rdx, [rsp+30h]
+mov     esi, 413DA8h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     esi, 413DD8h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     edi, 413A5Eh
+call    _puts
+xor     edi, edi
+call    _exit

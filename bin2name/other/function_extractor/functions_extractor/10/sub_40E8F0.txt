@@ -1,0 +1,132 @@
+test    rdx, rdx
+push    r12
+mov     r12, rdi
+push    rbp
+mov     rbp, rdx
+push    rbx
+mov     rbx, rsi
+jz      loc_40EA7E
+mov     rcx, rdi
+mov     edx, 1Dh
+mov     esi, 1
+mov     edi, 414684h
+call    _fwrite
+mov     rcx, r12
+mov     edx, 27h
+mov     esi, 1
+mov     edi, 414F98h
+call    _fwrite
+mov     rcx, r12
+mov     edx, 26h
+mov     esi, 1
+mov     edi, 414FC0h
+call    _fwrite
+test    rbx, rbx
+jnz     short loc_40E961
+jmp     loc_40EAF2
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40E990
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 50000h
+jnz     short loc_40E958
+xor     edx, edx
+mov     rsi, rbx
+mov     rdi, r12
+call    sub_40CBA0
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_40E961
+nop     dword ptr [rax+rax+00000000h]
+mov     rcx, r12
+mov     edx, 32h
+mov     esi, 1
+mov     edi, 414FE8h
+call    _fwrite
+test    rbp, rbp
+jnz     short loc_40EA1B
+jmp     loc_40EA63
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_40EA42
+xor     ecx, ecx
+mov     edx, 4145FDh
+mov     esi, 414606h
+mov     rdi, rbp
+call    sub_40D280
+mov     edx, 414662h
+mov     rcx, rax
+mov     esi, 1
+xor     eax, eax
+mov     rdi, r12
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_40EA42
+mov     rsi, [rbp+8]
+mov     edx, 4
+mov     rdi, r12
+call    sub_40E1C0
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      short loc_40EA63
+mov     rax, [rbp+10h]
+test    ah, 0F0h
+jz      short loc_40E9B8
+mov     rsi, r12
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jnz     short loc_40E9C5
+mov     rcx, [rbp+8]
+xor     eax, eax
+mov     edx, 41459Ah
+mov     esi, 1
+mov     rdi, r12
+call    ___fprintf_chk
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jnz     short loc_40EA1B
+pop     rbx
+mov     rcx, r12
+mov     edx, 15h
+mov     esi, 1
+pop     rbp
+pop     r12
+mov     edi, 4146A2h
+jmp     _fwrite
+mov     edi, 41466Ah
+call    _puts
+mov     rcx, r12
+mov     edx, 1Dh
+mov     esi, 1
+mov     edi, 414684h
+call    _fwrite
+mov     rcx, r12
+mov     edx, 27h
+mov     esi, 1
+mov     edi, 414F98h
+call    _fwrite
+mov     rcx, r12
+mov     edx, 26h
+mov     esi, 1
+mov     edi, 414FC0h
+call    _fwrite
+test    rbx, rbx
+jnz     loc_40E961
+mov     rcx, r12
+mov     edx, 32h
+mov     esi, 1
+mov     edi, 414FE8h
+call    _fwrite
+jmp     loc_40EA63
+mov     rcx, r12
+mov     edx, 32h
+mov     esi, 1
+mov     edi, 414FE8h
+call    _fwrite
+jmp     loc_40EA1B

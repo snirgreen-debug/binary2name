@@ -1,0 +1,71 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+var_38], rdi
+mov     [rbp+var_3C], esi
+mov     [rbp+var_48], rdx
+mov     [rbp+var_50], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+var_20], 0
+mov     rax, [rbp-38h]
+mov     eax, [rax]
+mov     [rbp+var_20], eax
+mov     eax, [rbp-20h]
+mov     edi, eax
+call    sub_401C79
+mov     [rbp+var_24], eax
+mov     rax, [rbp-48h]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_401D4D
+mov     eax, [rbp-20h]
+cmp     eax, [rbp-3Ch]
+jg      short loc_401CF4
+mov     eax, [rbp-24h]
+cmp     eax, [rbp-3Ch]
+jle     short loc_401CEF
+mov     rax, [rbp-48h]
+mov     dword ptr [rax], 1
+mov     eax, [rbp-20h]
+jmp     short loc_401D60
+mov     eax, [rbp-24h]
+cmp     eax, [rbp-3Ch]
+jg      short loc_401D48
+mov     rax, [rbp-50h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    sub_4037FF
+mov     rbx, rax
+mov     edi, 405468h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     rax, [rbp-48h]
+mov     dword ptr [rax], 2
+mov     eax, [rbp-24h]
+jmp     short loc_401D60
+mov     eax, [rbp-20h]
+jmp     short loc_401D60
+mov     rax, [rbp-48h]
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_401D5D
+mov     eax, [rbp-24h]
+jmp     short loc_401D60
+mov     eax, [rbp-20h]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_401D74
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     eax, [rax]
+mov     [rbp+saved_argc], eax
+lea     rdx, [rbp-18h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      loc_4109F8
+call    fnmatch_sanitycheck
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 42EB87h
+call    check_name_arg
+test    al, al
+jz      short loc_4109EF
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-10h]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-10h]
+mov     [rax+1Ah], dl
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     [rax+38h], rdx
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    estimate_pattern_match_rate
+movd    edx, xmm0
+mov     rax, [rbp-10h]
+mov     [rax+24h], edx
+mov     eax, 1
+jmp     short loc_4109FD
+mov     rax, [rbp-38h]
+mov     edx, [rbp-1Ch]
+mov     [rax], edx
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_410A11
+call    ___stack_chk_fail
+leave
+retn

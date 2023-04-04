@@ -1,0 +1,94 @@
+push    r15
+push    r14
+xor     r14d, r14d
+push    r13
+push    r12
+mov     r15, pibIn
+push    rbp
+push    rbx
+mov     r13, szExp
+mov     rbx, index
+mov     rbp, szToken
+mov     r12, piType
+sub     rsp, 8
+cmp     dword ptr [piType], 20h
+jz      loc_403578
+cmp     byte ptr [szToken+0], 28h
+jnz     loc_403550
+mov     dword ptr [piType], 0
+mov     byte ptr [szToken+0], 0
+cmp     qword ptr [szExp+0], 0
+jz      short loc_4034D5
+mov     rdx, piType
+mov     rsi, szToken
+mov     rdi, szExp
+call    GetToken_0
+mov     rsi, index
+mov     r8, piType
+mov     rcx, szToken
+mov     rdx, szExp
+mov     rdi, pibIn
+call    EvalSum
+cmp     byte ptr [szToken+0], 29h
+mov     index, rax
+jz      short loc_403508
+mov     rdx, [szExp+0]
+mov     ecx, 412530h
+mov     esi, 8011h
+mov     rdi, pibIn
+call    ReportError
+mov     dword ptr [piType], 0
+mov     byte ptr [szToken+0], 0
+cmp     qword ptr [szExp+0], 0
+jz      short loc_403529
+mov     rdx, piType
+mov     rsi, szToken
+mov     rdi, szExp
+call    GetToken_0
+mov     rax, rbx
+neg     rax
+cmp     r14b, 2Dh
+cmovz   rbx, rax
+add     rsp, 8
+mov     rax, rbx
+pop     rbx
+pop     szToken
+pop     piType
+pop     szExp
+pop     r14
+pop     pibIn
+retn
+mov     eax, [piType]
+cmp     eax, 1
+jz      short loc_403508
+cmp     eax, 2
+jnz     short loc_4035C0
+mov     edx, 0Ah
+xor     esi, esi
+mov     rdi, szToken
+call    _strtol
+mov     index, rax
+jmp     short loc_403508
+movzx   r14d, byte ptr [szToken]
+lea     eax, [r14-2Bh]
+test    al, 0FDh
+jnz     short loc_4035B0
+mov     dword ptr [piType], 0
+mov     byte ptr [szToken], 0
+cmp     qword ptr [szExp], 0
+jz      short loc_403550
+mov     szExp, piType
+mov     rsi, szToken
+mov     pibIn, szExp
+call    GetToken_0
+jmp     loc_4034AA
+cmp     r14b, 28h
+mov     r14d, 0
+jz      loc_4034B4
+mov     rdx, [szExp+0]
+mov     ecx, 412530h
+mov     esi, 8011h
+mov     rdi, pibIn
+xor     ebx, ebx
+call    ReportError
+jmp     loc_403529

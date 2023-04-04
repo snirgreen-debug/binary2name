@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 42D4C9h
+call    find_parser
+mov     [rbp+entry_false], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    insert_primary_noarg
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-8]
+mov     [rax+1Ah], dl
+mov     rax, [rbp-8]
+mov     byte ptr [rax+19h], 0
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+19h]
+mov     rax, [rbp-8]
+mov     [rax+18h], dl
+mov     rax, [rbp-8]
+pxor    xmm0, xmm0
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+leave
+retn

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+ptr], rdi
+mov     [rbp+size], rsi
+mov     [rbp+n], rdx
+mov     [rbp+var_40], rcx
+mov     rax, [rbp-40h]
+mov     rcx, [rax+8]
+mov     rdx, [rbp-38h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _fwrite
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-38h]
+jnb     short loc_40D58A
+mov     rax, [rbp-40h]
+mov     rbx, [rax+10h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    sub_40B967
+nop
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

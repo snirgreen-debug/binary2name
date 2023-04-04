@@ -1,0 +1,175 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 468h
+mov     [rbp+op], rdi
+mov     [rbp+lop], rsi
+mov     [rbp+help], rdx
+mov     [rbp+col_op], ecx
+mov     [rbp+col_lop], r8d
+mov     [rbp+col_help], r9d
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+col], 0
+mov     word ptr [rbp+delimiters], 20h
+cmp     [rbp+op], 0
+jz      short loc_4057C0
+cmp     [rbp+lop], 0
+jz      short loc_4057C0
+cmp     [rbp+help], 0
+jnz     short loc_4057D9
+mov     ecx, 40AD60h
+mov     edx, 671h
+mov     esi, 409858h
+mov     edi, 409868h
+call    ___assert_fail
+cmp     [rbp+col_op], 0
+js      short loc_405809
+mov     eax, [rbp-45Ch]
+cmp     eax, [rbp-460h]
+jge     short loc_405809
+mov     eax, [rbp-460h]
+cmp     eax, [rbp-464h]
+jge     short loc_405809
+mov     eax, [rbp-464h]
+cmp     eax, [rbp+10h]
+jl      short loc_405822
+mov     ecx, 40AD60h
+mov     edx, 673h
+mov     esi, 409858h
+mov     edi, 409890h
+call    ___assert_fail
+mov     eax, [rbp-45Ch]
+mov     edi, eax
+call    indent_to
+mov     rax, [rbp-448h]
+mov     rsi, rax
+mov     edi, 4098D5h
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-448h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-45Ch]
+add     edx, eax
+mov     eax, [rbp-43Ch]
+add     eax, edx
+mov     [rbp+col], eax
+mov     eax, [rbp-460h]
+sub     eax, [rbp-43Ch]
+mov     edi, eax
+call    indent_to
+mov     rax, [rbp-450h]
+mov     rsi, rax
+mov     edi, 4098D5h
+mov     eax, 0
+call    _printf
+mov     eax, [rbp-460h]
+sub     eax, [rbp-43Ch]
+mov     edx, 0
+test    eax, eax
+cmovs   eax, edx
+mov     ebx, eax
+mov     rax, [rbp-450h]
+mov     rdi, rax
+call    _strlen
+lea     edx, [rbx+rax]
+mov     eax, [rbp-43Ch]
+add     eax, edx
+mov     [rbp+col], eax
+mov     eax, [rbp-464h]
+sub     eax, [rbp-43Ch]
+mov     edi, eax
+call    indent_to
+mov     eax, [rbp-464h]
+sub     eax, [rbp-43Ch]
+mov     edx, 0
+test    eax, eax
+cmovs   eax, edx
+add     [rbp+col], eax
+mov     rdx, [rbp-458h]
+lea     rax, [rbp-420h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+lea     rdx, [rbp-430h]
+lea     rax, [rbp-420h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strtok
+mov     [rbp+token], rax
+jmp     loc_405A42
+mov     eax, [rbp-43Ch]
+movsxd  rbx, eax
+mov     rax, [rbp-438h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rbx+rax]
+mov     eax, [rbp+10h]
+cdqe
+cmp     rdx, rax
+jb      short loc_4059D8
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+mov     eax, [rbp-464h]
+mov     edi, eax
+call    indent_to
+mov     rdx, cs:stdout@@GLIBC_2_2_5
+mov     rax, [rbp-438h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 20h
+call    __IO_putc
+mov     rax, [rbp-438h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-464h]
+add     eax, edx
+add     eax, 1
+mov     [rbp+col], eax
+jmp     short loc_405A27
+mov     rdx, cs:stdout@@GLIBC_2_2_5
+mov     rax, [rbp-438h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 20h
+call    __IO_putc
+mov     rax, [rbp-438h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-43Ch]
+add     eax, edx
+add     eax, 1
+mov     [rbp+col], eax
+lea     rax, [rbp-430h]
+mov     rsi, rax
+mov     edi, 0
+call    _strtok
+mov     [rbp+token], rax
+cmp     [rbp+token], 0
+jnz     loc_405940
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_405A79
+call    ___stack_chk_fail
+add     rsp, 468h
+pop     rbx
+pop     rbp
+retn

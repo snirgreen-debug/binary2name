@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+nptr], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rcx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtoul
+mov     [rbp+var_14], eax
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_403E61
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_403E61
+mov     eax, [rbp-14h]
+jmp     short loc_403EAD
+lea     rdx, [rbp-14h]
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     edi, 62C820h
+call    trans_strtotok
+test    eax, eax
+jz      short loc_403EAA
+mov     edi, 422F9Fh
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-28h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 1
+call    _exit
+mov     eax, [rbp-14h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_403EC1
+call    ___stack_chk_fail
+leave
+retn

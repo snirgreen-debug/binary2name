@@ -1,0 +1,66 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+cmp     [rbp+var_8], 0
+jz      short loc_421193
+cmp     [rbp+var_10], 0
+jnz     short loc_4211A6
+mov     rax, [rbp-8]
+cmp     rax, [rbp-10h]
+setz    al
+movzx   eax, al
+jmp     locret_421248
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+cmp     edx, eax
+jz      short loc_4211C0
+mov     eax, 0
+jmp     locret_421248
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     eax, 1
+jz      short loc_421219
+cmp     eax, 2
+jz      short loc_42122E
+test    eax, eax
+jnz     short loc_421243
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+test    rax, rax
+jnz     short loc_4211F4
+mov     rax, [rbp-10h]
+mov     rax, [rax+28h]
+test    rax, rax
+setz    al
+movzx   eax, al
+jmp     short locret_421248
+mov     rax, [rbp-10h]
+mov     rdx, [rax+28h]
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+setz    al
+movzx   eax, al
+jmp     short locret_421248
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42101E
+jmp     short locret_421248
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4210E3
+jmp     short locret_421248
+mov     eax, 0
+leave
+retn

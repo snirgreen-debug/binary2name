@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     eax, cs:dword_60C788
+test    eax, eax
+jz      short loc_409051
+mov     rax, cs:stdscr
+mov     rcx, [rbp-18h]
+mov     edx, 0FFFFFFFFh
+mov     rsi, rcx
+mov     rdi, rax
+call    _waddnstr
+jmp     short loc_409088
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_408D6E
+mov     [rbp+var_8], rax
+mov     rax, cs:stdscr
+mov     rcx, [rbp-8]
+mov     edx, 0FFFFFFFFh
+mov     rsi, rcx
+mov     rdi, rax
+call    _waddnstr
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

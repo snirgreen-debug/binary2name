@@ -1,0 +1,90 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     edi, 0
+call    _time
+mov     [rbp+var_20], rax
+mov     qword ptr [rbp+seconds], 0
+mov     eax, cs:debug_level
+cmp     eax, 1
+jle     short loc_408BF8
+mov     edi, 4238A8h
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    debugprt
+mov     rax, cs:proc_list
+mov     [rbp+var_30], rax
+jmp     loc_408CA1
+mov     rax, [rbp-30h]
+mov     rax, [rax+20h]
+mov     rdx, [rbp-20h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_18], rax
+mov     rax, [rbp-30h]
+mov     eax, [rax+14h]
+mov     eax, eax
+cmp     rax, [rbp-18h]
+jg      short loc_408C6B
+mov     rax, [rbp-30h]
+mov     eax, [rax+18h]
+movsxd  rbx, eax
+mov     edi, 4238C4h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    diag
+mov     rax, [rbp-30h]
+mov     eax, [rax+18h]
+mov     esi, 9
+mov     edi, eax
+call    _kill
+jmp     short loc_408C96
+cmp     qword ptr [rbp+seconds], 0
+jz      short loc_408C85
+mov     rax, [rbp-30h]
+mov     eax, [rax+14h]
+mov     eax, eax
+sub     rax, [rbp-18h]
+cmp     rax, [rbp-28h]
+jge     short loc_408C96
+mov     rax, [rbp-30h]
+mov     eax, [rax+14h]
+mov     eax, eax
+sub     rax, [rbp-18h]
+mov     qword ptr [rbp+seconds], rax
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     [rbp+var_30], rax
+cmp     [rbp+var_30], 0
+jnz     loc_408C08
+cmp     qword ptr [rbp+seconds], 0
+jz      short loc_408CE7
+mov     eax, cs:debug_level
+cmp     eax, 1
+jle     short loc_408CDC
+mov     rbx, [rbp-28h]
+mov     edi, 4238E0h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    debugprt
+mov     rax, [rbp-28h]
+mov     edi, eax
+call    _alarm
+mov     eax, cs:debug_level
+cmp     eax, 1
+jle     short loc_408D01
+mov     edi, 423900h
+mov     eax, 0
+call    debugprt
+nop
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

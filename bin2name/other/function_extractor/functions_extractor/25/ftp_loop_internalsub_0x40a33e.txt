@@ -1,0 +1,493 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 128h
+mov     [rbp+u], rdi
+mov     [rbp+f], rsi
+mov     [rbp+con], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+tmrate], 0
+mov     rax, [rbp-128h]
+mov     rax, [rax+1040h]
+test    rax, rax
+jnz     short loc_40A3AC
+mov     rax, [rbp-118h]
+mov     rdi, rax
+call    url_file_name
+mov     rdx, rax
+mov     rax, [rbp-128h]
+mov     [rax+1040h], rdx
+mov     eax, cs:opt.noclobber
+test    eax, eax
+jz      short loc_40A407
+mov     rax, [rbp-128h]
+mov     rax, [rax+1040h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jz      short loc_40A407
+mov     rax, [rbp-128h]
+mov     rbx, [rax+1040h]
+mov     edi, 430F60h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     eax, 22h
+jmp     loc_40ABCA
+mov     rax, [rbp-128h]
+mov     rax, [rax+1040h]
+mov     rdi, rax
+call    remove_link
+mov     rax, cs:opt.output_document
+test    rax, rax
+jnz     short loc_40A440
+mov     rax, [rbp-128h]
+mov     rax, [rax+1040h]
+mov     [rbp+locf], rax
+jmp     short loc_40A44E
+mov     rax, cs:opt.output_document
+mov     [rbp+locf], rax
+mov     [rbp+count], 0
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+and     eax, 1
+test    eax, eax
+jz      short loc_40A475
+mov     rax, [rbp-128h]
+mov     dword ptr [rax], 1
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 10h
+test    eax, eax
+setnz   al
+movzx   eax, al
+mov     [rbp+orig_lp], eax
+add     [rbp+count], 1
+mov     eax, [rbp-104h]
+mov     edi, eax
+call    sleep_between_retrievals
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+and     eax, 1
+test    eax, eax
+jz      short loc_40A52E
+mov     rax, [rbp-128h]
+mov     dword ptr [rax+4], 0
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+or      eax, 14h
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+mov     rax, [rbp-128h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_initialized_p
+test    eax, eax
+jz      short loc_40A510
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 0FFFFFFFCh
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+jmp     loc_40A5BD
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+or      eax, 3
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+jmp     loc_40A5BD
+mov     rax, [rbp-128h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_initialized_p
+test    eax, eax
+jz      short loc_40A560
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 0FFFFFFFEh
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+jmp     short loc_40A579
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+or      eax, 1
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+and     eax, 2
+test    eax, eax
+jz      short loc_40A5A4
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 0FFFFFFFDh
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+jmp     short loc_40A5BD
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+or      eax, 2
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+mov     [rbp+restval], 0
+cmp     [rbp+count], 1
+jg      short loc_40A5DB
+mov     eax, cs:opt.always_rest
+test    eax, eax
+jz      short loc_40A63C
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 8
+test    eax, eax
+jnz     short loc_40A63C
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jz      short loc_40A63C
+lea     rdx, [rbp-0C0h]
+mov     rax, [rbp-0E8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+jnz     short loc_40A63C
+mov     eax, [rbp-0A8h]
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_40A63C
+mov     rax, [rbp-90h]
+mov     [rbp+restval], rax
+mov     eax, cs:opt.always_rest
+test    eax, eax
+jz      short loc_40A669
+cmp     [rbp+restval], 0
+jle     short loc_40A669
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+or      eax, 20h
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+mov     edi, 0
+call    time_str
+mov     [rbp+tms], rax
+mov     eax, cs:opt.verbose
+test    eax, eax
+jz      loc_40A730
+mov     rax, [rbp-118h]
+mov     esi, 1
+mov     rdi, rax
+call    url_string
+mov     [rbp+hurl], rax
+lea     rax, [rbp-30h]
+mov     rbx, 2020202020202020h
+mov     [rax], rbx
+mov     byte ptr [rax+8], 0
+cmp     [rbp+count], 1
+jle     short loc_40A6E8
+mov     edi, 430F8Ah
+call    _gettext
+mov     rcx, rax
+mov     edx, [rbp-104h]
+lea     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rsi, [rbp-0E8h]
+lea     rcx, [rbp-30h]
+mov     rdx, [rbp-0D0h]
+mov     rax, [rbp-0D8h]
+mov     r9, rsi
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 430F94h
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-0D0h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+f], 0
+jz      short loc_40A74E
+mov     rax, [rbp-120h]
+mov     rax, [rax+10h]
+mov     [rbp+len], rax
+jmp     short loc_40A759
+mov     [rbp+len], 0
+mov     rcx, [rbp-128h]
+mov     rdx, [rbp-0F0h]
+lea     rsi, [rbp-0F8h]
+mov     rax, [rbp-118h]
+mov     rdi, rax
+call    getftp
+mov     [rbp+err], eax
+mov     rax, [rbp-128h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_initialized_p
+test    eax, eax
+jnz     short loc_40A7B3
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+and     eax, 0FFFFFFFDh
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax], edx
+jmp     short loc_40A7CA
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+or      eax, 2
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax], edx
+cmp     [rbp+err], 37h
+ja      short def_40A7E1
+mov     eax, [rbp-0FCh]
+mov     rax, [rax*8+431048h]
+jmp     rax
+mov     eax, [rbp-0FCh]
+jmp     loc_40ABCA
+mov     edx, cs:opt.ntry
+mov     eax, [rbp-104h]
+mov     esi, edx
+mov     edi, eax
+call    printwhat
+jmp     loc_40AB35
+cmp     [rbp+f], 0
+jz      short loc_40A829
+mov     rax, [rbp-120h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-0F8h]
+cmp     rdx, rax
+jz      short loc_40A84B
+mov     edx, cs:opt.ntry
+mov     eax, [rbp-104h]
+mov     esi, edx
+mov     edi, eax
+call    printwhat
+jmp     loc_40AB35
+call    _abort
+nop
+jmp     short loc_40A84C
+nop
+mov     edi, 0
+call    time_str
+mov     [rbp+tms], rax
+mov     eax, cs:opt.spider
+test    eax, eax
+jnz     short loc_40A8A6
+mov     rax, [rbp-128h]
+mov     rdx, [rax+1028h]
+mov     rax, [rbp-0F8h]
+sub     rax, [rbp-0F0h]
+mov     esi, 0
+mov     [rbp+var_130], rdx
+movsd   xmm0, qword ptr [rbp-130h]
+mov     rdi, rax
+call    retr_rate
+mov     [rbp+tmrate], rax
+mov     rax, [rbp-0E8h]
+mov     rsi, rax
+mov     edi, 1
+call    downloaded_file
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+and     eax, 1
+test    eax, eax
+jz      short loc_40A913
+mov     rax, [rbp-128h]
+mov     eax, [rax+8]
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40A900
+mov     rax, [rbp-128h]
+mov     eax, [rax+8]
+mov     esi, eax
+mov     edi, 4305B7h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-128h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_uninitialize
+mov     eax, cs:opt.spider
+test    eax, eax
+jnz     short loc_40A961
+mov     rbx, [rbp-0F8h]
+mov     edi, 430FADh
+call    _gettext
+mov     rsi, rax
+mov     rcx, [rbp-0E8h]
+mov     rdx, [rbp-0E0h]
+mov     rax, [rbp-0D8h]
+mov     r9, rbx
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rax
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     eax, cs:opt.verbose
+test    eax, eax
+jnz     short loc_40A9EA
+mov     eax, cs:opt.quiet
+test    eax, eax
+jnz     short loc_40A9EA
+mov     rax, [rbp-118h]
+mov     esi, 1
+mov     rdi, rax
+call    url_string
+mov     [rbp+hurl_0], rax
+mov     rsi, [rbp-0F8h]
+mov     rdi, [rbp-0E8h]
+mov     rdx, [rbp-0C8h]
+mov     rax, [rbp-0D8h]
+sub     rsp, 8
+mov     ecx, [rbp-104h]
+push    rcx
+mov     r9, rdi
+mov     r8, rsi
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 430FD0h
+mov     edi, 2
+mov     eax, 0
+call    logprintf
+add     rsp, 10h
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 8
+test    eax, eax
+jz      short loc_40AA35
+mov     eax, cs:opt.remove_listing
+test    eax, eax
+jnz     loc_40AAEE
+mov     rdx, cs:total_downloaded_bytes
+mov     rax, [rbp-0F8h]
+add     rax, rdx
+mov     cs:total_downloaded_bytes, rax
+mov     eax, cs:opt.numurls
+add     eax, 1
+mov     cs:opt.numurls, eax
+jmp     loc_40AAEE
+mov     eax, cs:opt.spider
+test    eax, eax
+jnz     loc_40AAEE
+mov     rdx, cs:total_downloaded_bytes
+mov     rax, [rbp-0F8h]
+add     rax, rdx
+mov     cs:total_downloaded_bytes, rax
+mov     eax, cs:opt.numurls
+add     eax, 1
+mov     cs:opt.numurls, eax
+mov     eax, cs:opt.delete_after
+test    eax, eax
+jz      short loc_40AAEE
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40AA8D
+mov     edi, 430FF0h
+mov     eax, 0
+call    debug_logprintf
+mov     edi, 43102Dh
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-0E8h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    _unlink
+test    eax, eax
+jz      short loc_40AAEE
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 43103Bh
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+cmp     [rbp+orig_lp], 0
+jz      short loc_40AB12
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+or      eax, 10h
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+jmp     short loc_40AB2B
+mov     rax, [rbp-128h]
+mov     eax, [rax+4]
+and     eax, 0FFFFFFEFh
+mov     edx, eax
+mov     rax, [rbp-128h]
+mov     [rax+4], edx
+mov     eax, 22h
+jmp     loc_40ABCA
+mov     eax, cs:opt.ntry
+test    eax, eax
+jz      loc_40A490
+mov     eax, cs:opt.ntry
+cmp     eax, [rbp-104h]
+jg      loc_40A490
+mov     rax, [rbp-128h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_initialized_p
+test    eax, eax
+jz      short loc_40ABC5
+mov     rax, [rbp-128h]
+mov     eax, [rax]
+and     eax, 1
+test    eax, eax
+jz      short loc_40ABC5
+mov     rax, [rbp-128h]
+mov     eax, [rax+8]
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40ABB2
+mov     rax, [rbp-128h]
+mov     eax, [rax+8]
+mov     esi, eax
+mov     edi, 4305B7h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-128h]
+add     rax, 8
+mov     rdi, rax
+call    rbuf_uninitialize
+mov     eax, 2Ch
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40ABDE
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

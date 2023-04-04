@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, rdi
+mov     [rbp+var_8], rsi
+mov     [rbp+var_C], edx
+cmp     [rbp+var_C], 0
+jz      short loc_414E33
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_414C03
+jmp     short locret_414E42
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_414C34
+leave
+retn

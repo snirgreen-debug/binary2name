@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:grecs_grecs_leng
+pop     rbp
+retn

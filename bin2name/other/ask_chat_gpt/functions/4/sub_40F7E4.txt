@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40A0EB
+mov     [rbp+var_8], rax
+cmp     [rbp+var_20], 0
+jz      short loc_40F824
+mov     rax, [rbp-8]
+lea     rdx, [rax+38h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_413EC9
+jmp     short loc_40F834
+mov     rax, [rbp-8]
+add     rax, 38h
+mov     rdi, rax
+call    sub_413FDD
+mov     rax, [rbp-8]
+mov     byte ptr [rax+19h], 1
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+19h]
+mov     rax, [rbp-8]
+mov     [rax+18h], dl
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42F964
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+leave
+retn

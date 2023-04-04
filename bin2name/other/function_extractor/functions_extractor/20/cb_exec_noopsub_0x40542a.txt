@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ctl], rdi
+mov     [rbp+usercontext], rsi
+mov     [rbp+argc], edx
+mov     [rbp+argv], rcx
+mov     eax, 0
+pop     rbp
+retn

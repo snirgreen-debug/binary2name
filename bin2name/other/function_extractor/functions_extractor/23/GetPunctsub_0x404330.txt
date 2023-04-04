@@ -1,0 +1,28 @@
+push    rbp
+push    rbx
+mov     ebp, edx
+mov     rbx, szLex
+sub     rsp, 18h
+lea     chPunct, [rsp+4]
+mov     rax, fs:28h
+mov     [rsp+28h+var_20], rax
+xor     eax, eax
+call    NextLex
+mov     edx, [rsp+4]
+cmp     edx, 8
+jz      short loc_404380
+xor     eax, eax
+cmp     edx, 20h
+jz      short loc_404380
+mov     rcx, [rsp+8]
+xor     rcx, fs:28h
+jnz     short loc_40438A
+add     rsp, 18h
+pop     szLex
+pop     rbp
+retn
+xor     eax, eax
+cmp     [szLex], bpl
+setz    al
+jmp     short loc_404365
+call    ___stack_chk_fail

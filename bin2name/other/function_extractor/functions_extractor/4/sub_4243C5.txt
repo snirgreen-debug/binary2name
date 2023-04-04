@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 102h
+test    eax, eax
+jz      loc_424498
+mov     rax, [rbp-30h]
+add     rax, 78h
+mov     [rbp+var_18], rax
+mov     edi, 18h
+call    _malloc
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_424414
+mov     eax, 0
+jmp     locret_4244D1
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rbp-30h]
+mov     [rax+10h], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+58h]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4195B8
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+cmp     rax, [rbp-10h]
+jz      short loc_4244CC
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+var_8], 0
+jnz     short loc_42447D
+mov     eax, 0
+jmp     short locret_4244D1
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-30h]
+mov     [rax], rdx
+mov     rax, [rbp-30h]
+mov     word ptr [rax+70h], 2
+jmp     short loc_4244CC
+mov     rax, [rbp-30h]
+lea     rdx, [rax+78h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_429A03
+test    al, al
+jz      short loc_4244CC
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-30h]
+mov     [rax], rdx
+mov     rax, [rbp-30h]
+mov     word ptr [rax+70h], 2
+mov     eax, 1
+leave
+retn

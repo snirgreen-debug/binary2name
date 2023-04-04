@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+max], edi
+mov     eax, cs:seeded_5361
+test    eax, eax
+jnz     short loc_42F8FB
+mov     edi, 0
+call    _time
+mov     edi, eax
+call    _srand
+mov     cs:seeded_5361, 1
+call    _rand
+mov     [rbp+rnd], eax
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, dword ptr [rbp-14h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-0Ch]
+mulsd   xmm0, xmm1
+movsd   xmm1, cs:qword_437768
+divsd   xmm0, xmm1
+movsd   [rbp+bounded], xmm0
+movsd   xmm0, qword ptr [rbp-8]
+cvttsd2si eax, xmm0
+leave
+retn

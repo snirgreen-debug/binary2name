@@ -1,0 +1,211 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+fd], edi
+mov     [rbp+fp], rsi
+mov     [rbp+len], rdx
+mov     [rbp+restval], rcx
+mov     [rbp+expected], r8
+mov     [rbp+rbuf], r9
+mov     rax, [rbp+18h]
+mov     [rbp+elapsed], rax
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+res], 0
+mov     [rbp+dlbufsize], 4000h
+mov     [rbp+progress], 0
+call    wtimer_allocate
+mov     [rbp+timer], rax
+pxor    xmm0, xmm0
+movsd   [rbp+dltime], xmm0
+mov     rax, [rbp-48h]
+mov     rdx, [rbp-50h]
+mov     [rax], rdx
+mov     eax, cs:opt.verbose
+test    eax, eax
+jz      short loc_4244AF
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    progress_create
+mov     [rbp+progress], rax
+cmp     [rbp+rbuf], 0
+jz      loc_424579
+mov     rax, [rbp-60h]
+mov     eax, [rax]
+cmp     eax, [rbp-34h]
+jnz     loc_424579
+mov     [rbp+sz], 0
+jmp     short loc_42450C
+mov     eax, [rbp-30h]
+cdqe
+mov     rdx, [rbp-40h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 642F80h
+call    _fwrite
+mov     rax, [rbp-48h]
+mov     rdx, [rax]
+mov     eax, [rbp-30h]
+cdqe
+add     rdx, rax
+mov     rax, [rbp-48h]
+mov     [rax], rdx
+mov     eax, [rbp-30h]
+add     [rbp+sz], eax
+mov     rax, [rbp-60h]
+mov     edx, 4000h
+mov     esi, 642F80h
+mov     rdi, rax
+call    rbuf_flush
+mov     [rbp+res], eax
+cmp     [rbp+res], 0
+jnz     short loc_4244D2
+cmp     [rbp+sz], 0
+jz      short loc_42453D
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _fflush
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _ferror
+test    eax, eax
+jz      short loc_424559
+mov     [rbp+res], 0FFFFFFFEh
+jmp     out
+cmp     [rbp+progress], 0
+jz      short loc_424579
+mov     eax, [rbp-28h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+pxor    xmm0, xmm0
+mov     rsi, rdx
+mov     rdi, rax
+call    progress_update
+mov     rax, cs:opt.limit_rate
+test    rax, rax
+jz      short loc_42458A
+call    limit_bandwidth_reset
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    wtimer_reset
+mov     rax, cs:opt.limit_rate
+test    rax, rax
+jz      loc_4246CF
+mov     rdx, cs:opt.limit_rate
+mov     eax, [rbp-2Ch]
+cdqe
+cmp     rdx, rax
+jge     loc_4246CF
+mov     rax, cs:opt.limit_rate
+mov     [rbp+dlbufsize], eax
+jmp     loc_4246CF
+cmp     [rbp+use_expected], 0
+jz      short loc_4245EC
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     rdx, [rbp-58h]
+sub     rdx, rax
+mov     eax, [rbp-2Ch]
+cdqe
+cmp     rdx, rax
+cmovle  rax, rdx
+jmp     short loc_4245EF
+mov     eax, [rbp-2Ch]
+mov     [rbp+amount_to_read], eax
+mov     edx, [rbp-24h]
+mov     eax, [rbp-34h]
+mov     esi, 642F80h
+mov     edi, eax
+call    iread
+mov     [rbp+res], eax
+cmp     [rbp+res], 0
+jle     loc_4246EC
+mov     eax, [rbp-30h]
+cdqe
+mov     rdx, [rbp-40h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 1
+mov     edi, 642F80h
+call    _fwrite
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _fflush
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _ferror
+test    eax, eax
+jz      short loc_424657
+mov     [rbp+res], 0FFFFFFFEh
+jmp     out
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    wtimer_elapsed
+movq    rax, xmm0
+mov     [rbp+dltime], rax
+mov     rax, cs:opt.limit_rate
+test    rax, rax
+jz      short loc_424690
+mov     eax, [rbp-30h]
+cdqe
+mov     rdx, [rbp-10h]
+lea     rcx, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    limit_bandwidth
+mov     rax, [rbp-48h]
+mov     rdx, [rax]
+mov     eax, [rbp-30h]
+cdqe
+add     rdx, rax
+mov     rax, [rbp-48h]
+mov     [rax], rdx
+cmp     [rbp+progress], 0
+jz      short loc_4246CF
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-30h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     [rbp+var_70], rcx
+movsd   xmm0, qword ptr [rbp-70h]
+mov     rsi, rdx
+mov     rdi, rax
+call    progress_update
+cmp     [rbp+use_expected], 0
+jz      loc_4245CA
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+cmp     rax, [rbp-58h]
+jl      loc_4245CA
+jmp     short loc_4246ED
+nop
+cmp     [rbp+res], 0FFFFFFFFh
+jge     short out
+mov     [rbp+res], 0FFFFFFFFh
+cmp     [rbp+progress], 0
+jz      short loc_42471A
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     [rbp+var_70], rdx
+movsd   xmm0, qword ptr [rbp-70h]
+mov     rdi, rax
+call    progress_finish
+cmp     [rbp+elapsed], 0
+jz      short loc_42472E
+movsd   xmm0, qword ptr [rbp-20h]
+mov     rax, [rbp-68h]
+movsd   qword ptr [rax], xmm0
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    wtimer_delete
+mov     eax, [rbp-30h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_424751
+call    ___stack_chk_fail
+leave
+retn

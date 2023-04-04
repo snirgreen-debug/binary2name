@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edx, 250h
+mov     esi, 0
+mov     edi, 6475C0h
+call    _memset
+mov     cs:dword_6477D8, 1
+mov     cs:dword_6475C0, 0FFFFFFFFh
+mov     cs:dword_6475C8, 14h
+mov     cs:dword_6475EC, 5
+mov     cs:dword_6475FC, 1
+mov     edi, 43374Eh
+call    sub_4288AF
+mov     cs:qword_647698, rax
+mov     edi, 433758h
+call    sub_4288AF
+mov     cs:qword_6476A0, rax
+mov     cs:dword_6476A8, 1
+mov     cs:dword_6476AC, 1
+mov     cs:dword_6477A0, 1
+mov     cs:dword_6476D0, 1
+mov     cs:dword_6476D4, 1
+mov     edi, 43375Fh
+call    _getenv
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_41A424
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_4289F2
+mov     cs:qword_6476F8, rax
+mov     cs:dword_6476D8, 1
+movsd   xmm0, cs:qword_433B40
+movsd   cs:qword_647720, xmm0
+mov     cs:dword_647750, 1
+mov     cs:dword_64779C, 1
+mov     cs:qword_6477B0, 400h
+mov     cs:dword_6477BC, 0Ah
+mov     cs:dword_6477B8, 32h
+mov     cs:dword_647658, 1
+mov     cs:dword_647800, 0
+mov     cs:dword_647804, 1
+nop
+leave
+retn

@@ -1,0 +1,48 @@
+test    pvm, pvm
+jz      short loc_406E69
+push    rbp
+push    rbx
+mov     rbp, sz
+mov     rbx, pvm
+sub     rsp, 8
+jmp     short loc_406E11
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_406E60
+mov     rsi, [rbx]
+mov     rdi, sz
+call    _strcmp
+test    eax, eax
+jnz     short loc_406E08
+mov     rdx, [pvm+18h]
+test    pvm, pvm
+jz      short loc_406E70
+mov     rax, [rbx+10h]
+xor     ecx, ecx
+cmp     rax, [pvm+10h]
+jnz     short loc_406E6C
+nop     dword ptr [rax]
+mov     pvm, [pvm+18h]
+add     ecx, 1
+test    pvm, pvm
+jz      short loc_406E4A
+cmp     rax, [pvm+10h]
+jz      short loc_406E38
+movsxd  rcx, ecx
+add     rsp, 8
+or      rax, rcx
+pop     rbx
+pop     sz
+retn
+add     rsp, 8
+xor     eax, eax
+pop     rbx
+pop     sz
+retn
+xor     eax, eax
+retn
+xor     ecx, ecx
+jmp     short loc_406E4D
+xor     ecx, ecx
+mov     rax, [rbx+10h]
+jmp     short loc_406E4A

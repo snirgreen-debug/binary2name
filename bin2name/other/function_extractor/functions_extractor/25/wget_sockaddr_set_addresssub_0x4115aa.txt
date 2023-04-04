@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+sa], rdi
+mov     [rbp+ip_family], esi
+mov     eax, edx
+mov     [rbp+addr], rcx
+mov     [rbp+port], ax
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+ip_family], 2
+jnz     short loc_411647
+mov     eax, [rbp-1Ch]
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax], dx
+movzx   eax, word ptr [rbp-20h]
+mov     edi, eax
+call    _htons
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax+2], dx
+cmp     [rbp+addr], 0
+jnz     short loc_41161C
+mov     rax, [rbp-18h]
+add     rax, 4
+mov     edx, 4
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+jmp     short loc_41164C
+lea     rdx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    map_ip_to_ipv4
+test    eax, eax
+jnz     short loc_411638
+call    _abort
+mov     rax, [rbp-18h]
+lea     rdx, [rax+4]
+mov     eax, [rbp-10h]
+mov     [rdx], eax
+jmp     short loc_41164C
+call    _abort
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_411660
+call    ___stack_chk_fail
+leave
+retn

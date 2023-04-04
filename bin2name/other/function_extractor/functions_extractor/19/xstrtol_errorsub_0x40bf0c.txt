@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+err], edi
+mov     [rbp+opt_idx], esi
+mov     eax, edx
+mov     [rbp+long_options], rcx
+mov     [rbp+arg], r8
+mov     [rbp+exit_status], r9d
+mov     [rbp+c], al
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+hyphens], 40FB28h
+mov     eax, [rbp-34h]
+cmp     eax, 3
+ja      short loc_40BF56
+cmp     eax, 2
+jnb     short loc_40BF6A
+cmp     eax, 1
+jz      short loc_40BF74
+jmp     short loc_40BF5B
+cmp     eax, 4
+jz      short loc_40BF60
+call    _abort
+mov     [rbp+msgid], 40FB2Bh
+jmp     short loc_40BF7D
+mov     [rbp+msgid], 40FB48h
+jmp     short loc_40BF7D
+mov     [rbp+msgid], 40FB6Dh
+nop
+cmp     [rbp+opt_idx], 0
+jns     short loc_40BFA4
+mov     eax, [rbp-38h]
+cdqe
+neg     rax
+add     [rbp+hyphens], rax
+movzx   eax, byte ptr [rbp-3Ch]
+mov     [rbp+option_buffer], al
+mov     [rbp+option_buffer+1], 0
+lea     rax, [rbp-10h]
+mov     [rbp+option], rax
+jmp     short loc_40BFBE
+mov     eax, [rbp-38h]
+cdqe
+shl     rax, 5
+mov     rdx, rax
+mov     rax, [rbp-48h]
+add     rax, rdx
+mov     rax, [rax]
+mov     [rbp+option], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _gettext
+mov     rdi, rax
+mov     rsi, [rbp-50h]
+mov     rcx, [rbp-18h]
+mov     rdx, [rbp-28h]
+mov     eax, [rbp-40h]
+mov     r9, rsi
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rdi
+mov     esi, 0
+mov     edi, eax
+mov     eax, 0
+call    _error
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40C00E
+call    ___stack_chk_fail
+leave
+retn

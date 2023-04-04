@@ -1,0 +1,69 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+mov     ebx, cs:dword_62D764
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+2Ch]
+add     ebx, eax
+mov     r12, cs:qword_62D8A0
+jmp     loc_41F41D
+movzx   eax, byte ptr [r12]
+test    al, al
+jz      short loc_41F388
+movzx   eax, byte ptr [r12]
+movzx   eax, al
+mov     eax, eax
+mov     eax, [rax*4+4252E0h]
+jmp     short loc_41F38D
+mov     eax, 1
+mov     r13d, eax
+movsxd  rax, ebx
+movzx   eax, word ptr [rax+rax+4251C0h]
+test    ax, ax
+jz      short loc_41F3D5
+mov     cs:dword_62D76C, ebx
+mov     cs:qword_62D770, r12
+jmp     short loc_41F3D5
+movsxd  rax, ebx
+movzx   eax, word ptr [rax+rax+4258A0h]
+movsx   ebx, ax
+cmp     ebx, 85h
+jle     short loc_41F3D5
+movzx   eax, r13b
+mov     eax, eax
+mov     eax, [rax*4+4256E0h]
+mov     r13d, eax
+movsxd  rax, ebx
+movzx   eax, word ptr [rax+rax+425740h]
+movsx   edx, ax
+movzx   eax, r13b
+add     eax, edx
+cdqe
+movzx   eax, word ptr [rax+rax+425E60h]
+cwde
+cmp     eax, ebx
+jnz     short loc_41F3AF
+movsxd  rax, ebx
+movzx   eax, word ptr [rax+rax+425740h]
+movsx   edx, ax
+movzx   eax, r13b
+add     eax, edx
+mov     eax, eax
+movzx   eax, word ptr [rax+rax+425A00h]
+movsx   ebx, ax
+add     r12, 1
+mov     rax, cs:qword_62D758
+cmp     r12, rax
+jb      loc_41F36C
+mov     eax, ebx
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

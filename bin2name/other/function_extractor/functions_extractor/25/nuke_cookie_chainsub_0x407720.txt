@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+value], rdi
+mov     [rbp+key], rsi
+mov     [rbp+arg], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+chain_key], rax
+mov     rax, [rbp-30h]
+mov     [rbp+chain], rax
+mov     rax, [rbp-38h]
+mov     [rbp+jar], rax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_remove
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+jmp     short loc_407790
+mov     rax, [rbp-20h]
+mov     rax, [rax+48h]
+mov     [rbp+next], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    delete_cookie
+mov     rax, [rbp-8]
+mov     [rbp+chain], rax
+cmp     [rbp+chain], 0
+jnz     short loc_407770
+mov     eax, 0
+leave
+retn

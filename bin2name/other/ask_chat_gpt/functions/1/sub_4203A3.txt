@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, cs:qword_62D790
+test    rax, rax
+jz      short loc_4203E6
+jmp     short loc_4203C2
+add     [rbp+var_8], 1
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4203E6
+mov     rax, cs:qword_62D790
+mov     rdx, [rbp-8]
+movzx   edx, byte ptr [rdx]
+movsx   edx, dl
+mov     edi, edx
+call    rax 
+test    eax, eax
+jnz     short loc_4203BD
+mov     rax, [rbp-8]
+leave
+retn

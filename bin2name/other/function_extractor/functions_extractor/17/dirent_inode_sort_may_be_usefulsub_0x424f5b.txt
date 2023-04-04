@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 90h
+mov     [rbp+dir_fd], edi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-80h]
+mov     eax, [rbp-84h]
+mov     rsi, rdx
+mov     edi, eax
+call    _fstatfs
+test    eax, eax
+jz      short loc_424F9A
+mov     eax, 1
+jmp     short loc_424FBA
+mov     rax, [rbp-80h]
+cmp     rax, 6969h
+jz      short loc_424FAE
+cmp     rax, 1021994h
+jnz     short loc_424FB5
+mov     eax, 0
+jmp     short loc_424FBA
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_424FCE
+call    ___stack_chk_fail
+leave
+retn

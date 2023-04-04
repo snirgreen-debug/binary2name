@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:off_6061C0
+mov     [rbp+ptr], rax
+mov     [rbp+var_C], 1
+jmp     short loc_4029BB
+mov     eax, [rbp-0Ch]
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+add     [rbp+var_C], 1
+mov     eax, cs:dword_6061A0
+cmp     [rbp+var_C], eax
+jb      short loc_40299A
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rax, 6062C0h
+jz      short loc_4029FC
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+mov     cs:qword_6061B0, 100h
+mov     cs:off_6061B8, 6062C0h
+cmp     [rbp+ptr], 6061B0h
+jz      short loc_402A1D
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     cs:off_6061C0, 6061B0h
+mov     cs:dword_6061A0, 1
+nop
+leave
+retn

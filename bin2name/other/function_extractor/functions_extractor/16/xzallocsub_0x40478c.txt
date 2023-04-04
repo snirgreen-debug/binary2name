@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    xmalloc
+mov     rcx, rax
+mov     rax, [rbp-8]
+mov     rdx, rax
+mov     esi, 0
+mov     rdi, rcx
+call    _memset
+leave
+retn

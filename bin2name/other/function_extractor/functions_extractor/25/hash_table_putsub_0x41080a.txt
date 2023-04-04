@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+ht], rdi
+mov     [rbp+key], rsi
+mov     [rbp+value], rdx
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_mapping
+mov     [rbp+mp], rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41085A
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+jmp     short locret_4108B7
+mov     rax, [rbp-18h]
+mov     edx, [rax+14h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+cmp     edx, eax
+jl      short loc_41088F
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grow_hash_table
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_mapping
+mov     [rbp+mp], rax
+mov     rax, [rbp-18h]
+mov     eax, [rax+14h]
+lea     edx, [rax+1]
+mov     rax, [rbp-18h]
+mov     [rax+14h], edx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+leave
+retn

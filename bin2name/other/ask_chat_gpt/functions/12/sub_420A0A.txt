@@ -1,0 +1,6 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:dword_642F44, 1
+nop
+pop     rbp
+retn

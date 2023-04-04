@@ -1,0 +1,34 @@
+push    r13
+push    r12
+xor     r13d, r13d
+push    rbp
+push    rbx
+movsxd  rbx, edx
+mov     rbp, pibIn
+mov     r12, szLex
+sub     rsp, 18h
+lea     iType, [rsp+4]
+mov     rax, fs:28h
+mov     [rsp+38h+var_30], rax
+xor     eax, eax
+call    NextLex
+mov     eax, ebx
+and     eax, [rsp+4]
+setz    r13b
+jnz     short loc_404304
+mov     rdx, [iType*8+6191A0h]
+mov     rcx, szLex
+mov     esi, 14h
+mov     rdi, pibIn
+call    ReportError
+mov     rcx, [rsp+8]
+xor     rcx, fs:28h
+mov     eax, r13d
+jnz     short loc_404322
+add     rsp, 18h
+pop     iType
+pop     pibIn
+pop     szLex
+pop     r13
+retn
+call    ___stack_chk_fail

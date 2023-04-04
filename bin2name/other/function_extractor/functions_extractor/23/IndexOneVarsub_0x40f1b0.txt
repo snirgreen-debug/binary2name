@@ -1,0 +1,10 @@
+cmp     qword ptr [pvm+8], 6192A0h
+jz      short loc_40F1D0
+movsxd  rax, dword ptr [pInfo]
+lea     ecx, [rax+1]
+mov     [pInfo], ecx
+or      [pvm+10h], rax
+mov     eax, 1
+retn
+xor     eax, eax
+retn

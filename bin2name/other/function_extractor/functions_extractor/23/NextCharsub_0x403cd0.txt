@@ -1,0 +1,46 @@
+test    pibIn, pibIn
+jz      short loc_403D30
+mov     rax, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_403CE8
+retn
+mov     rcx, [pibIn]
+test    rcx, rcx
+jz      short locret_403CE0
+mov     r8, [pibIn+8]
+test    r8, r8
+jz      short locret_403CE0
+push    rbx
+mov     edx, 1000h
+mov     rbx, pibIn
+mov     esi, 1
+mov     pibIn, r8
+call    _fread
+test    eax, eax
+jz      short loc_403D38
+mov     rdx, [pibIn+8]
+cmp     eax, 0FFFFFFFFh
+mov     [pibIn+18h], rdx
+jz      short loc_403D68
+pop     pibIn
+movzx   eax, byte ptr [rdx]
+rep retn
+xor     eax, eax
+retn
+mov     rdi, [pibIn]
+call    _feof
+test    eax, eax
+jnz     short loc_403D68
+mov     rdi, pibIn
+mov     ecx, 4123F5h
+xor     edx, edx
+mov     esi, 8000h
+call    ReportError
+mov     rax, [pibIn+18h]
+pop     pibIn
+movzx   eax, byte ptr [rax]
+jmp     short locret_403D24
+xor     eax, eax
+pop     pibIn
+jmp     short locret_403D24

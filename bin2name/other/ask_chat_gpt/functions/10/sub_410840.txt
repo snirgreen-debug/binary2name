@@ -1,0 +1,79 @@
+push    r12
+push    rbp
+mov     r12, rdi
+push    rbx
+mov     rcx, rdi
+mov     rbx, rsi
+mov     edi, 415468h
+mov     esi, 1
+mov     rbp, rdx
+mov     edx, 20h
+call    _fwrite
+mov     rcx, r12
+mov     edx, 2Ah
+mov     esi, 1
+mov     edi, 415490h
+call    _fwrite
+mov     rcx, r12
+mov     edx, 2
+mov     esi, 1
+mov     edi, 4145C9h
+call    _fwrite
+test    rbx, rbx
+jz      loc_41093F
+nop     dword ptr [rax+rax+00h]
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_4108A0
+test    rbp, rbp
+jnz     loc_410948
+pop     rbx
+mov     rcx, r12
+mov     edx, 10h
+mov     esi, 1
+pop     rbp
+pop     r12
+mov     edi, 41488Bh
+jmp     _fwrite
+mov     rsi, r12
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_410962
+xor     ecx, ecx
+mov     edx, 4145FDh
+mov     esi, 414606h
+mov     rdi, rbp
+call    sub_40D280
+mov     edx, 414662h
+mov     rcx, rax
+mov     esi, 1
+xor     eax, eax
+mov     rdi, r12
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_410962
+mov     rsi, [rbp+8]
+mov     edx, 8
+mov     rdi, r12
+call    sub_40E1C0
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      loc_4108B2
+mov     rax, [rbp+10h]
+test    ah, 0F0h
+jnz     loc_4108D0
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jnz     short loc_4108EE
+mov     rcx, [rbp+8]
+mov     edx, 41459Ah
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_41093B

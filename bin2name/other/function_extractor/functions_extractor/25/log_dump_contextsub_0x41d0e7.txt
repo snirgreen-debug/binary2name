@@ -1,0 +1,83 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     eax, cs:log_line_current
+mov     [rbp+num], eax
+call    get_log_fp
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jz      loc_41D213
+cmp     [rbp+num], 0FFFFFFFFh
+jz      loc_41D216
+mov     eax, cs:trailing_line
+test    eax, eax
+jz      short loc_41D131
+add     [rbp+num], 1
+cmp     [rbp+num], 17h
+jle     short loc_41D131
+mov     [rbp+num], 0
+mov     eax, [rbp-14h]
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 6420E0h
+mov     [rbp+ln], rax
+mov     rax, [rbp-8]
+mov     rax, [rax+90h]
+test    rax, rax
+jz      short loc_41D17F
+mov     rax, [rbp-8]
+mov     rax, [rax+90h]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+add     [rbp+num], 1
+cmp     [rbp+num], 17h
+jle     short loc_41D190
+mov     [rbp+num], 0
+mov     eax, cs:log_line_current
+cmp     [rbp+num], eax
+jnz     short loc_41D131
+mov     eax, cs:trailing_line
+test    eax, eax
+jz      short loc_41D205
+mov     eax, cs:log_line_current
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 642170h
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41D205
+mov     eax, cs:log_line_current
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 642170h
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _fflush
+jmp     short locret_41D217
+nop
+jmp     short locret_41D217
+nop
+leave
+retn

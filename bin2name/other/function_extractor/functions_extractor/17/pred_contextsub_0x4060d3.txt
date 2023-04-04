@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 40h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, cs:options_0.x_getfilecon
+mov     rsi, cs:state_0.rel_pathname
+mov     ecx, cs:state_0.cwd_dir_fd
+lea     rdx, [rbp-20h]
+mov     edi, ecx
+call    rax
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jns     short loc_406164
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     r12, rax
+mov     edi, 42B117h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, r12
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_40619E
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-48h]
+mov     rax, [rax+38h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+setz    al
+movzx   eax, al
+mov     [rbp+rv], eax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _freecon
+cmp     [rbp+rv], 0
+setnz   al
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_4061B2
+call    ___stack_chk_fail
+add     rsp, 40h
+pop     rbx
+pop     r12
+pop     rbp
+retn

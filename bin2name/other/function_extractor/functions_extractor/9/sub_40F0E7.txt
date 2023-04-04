@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    _getchar
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 79h
+jz      short loc_40F103
+cmp     [rbp+var_4], 59h
+jnz     short loc_40F10A
+mov     eax, 1
+jmp     short loc_40F10F
+mov     eax, 0
+mov     [rbp+var_5], al
+and     [rbp+var_5], 1
+jmp     short loc_40F120
+call    _getchar
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0Ah
+jz      short loc_40F12C
+cmp     [rbp+var_4], 0FFFFFFFFh
+jnz     short loc_40F118
+movzx   eax, byte ptr [rbp-5]
+leave
+retn

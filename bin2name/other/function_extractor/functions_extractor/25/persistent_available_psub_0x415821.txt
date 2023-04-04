@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+host], rdi
+mov     eax, esi
+mov     [rbp+port], ax
+mov     eax, cs:pc_active_p
+test    eax, eax
+jnz     short loc_415847
+mov     eax, 0
+jmp     locret_415906
+movzx   eax, cs:pc_last_port
+cmp     [rbp+port], ax
+jz      short loc_41585E
+mov     eax, 0
+jmp     locret_415906
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    lookup_host
+mov     [rbp+this_host_ip], rax
+cmp     [rbp+this_host_ip], 0
+jnz     short loc_415884
+mov     eax, 0
+jmp     locret_415906
+mov     rax, cs:pc_last_host_ip
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    address_list_match_all
+mov     [rbp+success], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    address_list_release
+cmp     [rbp+success], 0
+jnz     short loc_4158B6
+mov     eax, 0
+jmp     short locret_415906
+mov     eax, cs:pc_last_fd
+mov     edi, eax
+call    test_socket_open
+test    eax, eax
+jnz     short loc_415901
+mov     eax, cs:pc_last_fd
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4158F5
+mov     eax, cs:pc_last_fd
+mov     esi, eax
+mov     edi, 4327A8h
+mov     eax, 0
+call    debug_logprintf
+call    invalidate_persistent
+mov     eax, 0
+jmp     short locret_415906
+mov     eax, 1
+leave
+retn

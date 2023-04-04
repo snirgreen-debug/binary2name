@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+str], rdi
+lea     rax, utf8mode
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_402B67
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+jmp     locret_402BEF
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+add     eax, 1
+mov     [rbp+len], eax
+mov     eax, [rbp-0Ch]
+shl     eax, 2
+lea     rsi, aStrwidth
+mov     edi, eax
+call    mymalloc
+mov     [rbp+widestr], rax
+mov     eax, [rbp-0Ch]
+movsxd  rdx, eax
+lea     rsi, [rbp-18h]
+mov     rax, [rbp-8]
+mov     ecx, 0
+mov     rdi, rax
+call    _mbsrtowcs
+mov     [rbp+len], eax
+cmp     [rbp+len], 0FFFFFFFFh
+jnz     short loc_402BC8
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     eax, 0FFFFFFFFh
+jmp     short locret_402BEF
+mov     eax, [rbp-0Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _wcswidth
+mov     [rbp+len], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-0Ch]
+leave
+retn

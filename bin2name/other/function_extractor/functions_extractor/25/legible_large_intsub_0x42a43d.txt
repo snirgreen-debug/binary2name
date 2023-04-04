@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+l], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rdx, [rbp-48h]
+lea     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    large_int_to_string
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    legible_1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_42A48B
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:word_617FA0, 0
+mov     cs:dword_617FA4, 0
+mov     cs:dword_617FA8, 0
+mov     edi, 10h
+call    sub_40A39A
+nop
+pop     rbp
+retn

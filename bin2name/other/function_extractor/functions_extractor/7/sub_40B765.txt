@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+c], edi
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _wcwidth
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jns     short loc_40B797
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _iswcntrl
+test    eax, eax
+setz    al
+movzx   eax, al
+jmp     short locret_40B79A
+mov     eax, [rbp-4]
+leave
+retn

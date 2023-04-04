@@ -1,0 +1,73 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_18], 0
+mov     [rbp+var_10], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4139E3
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_4139E3
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rax, [rax+30h]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+add     rax, 38h
+mov     [rbp+var_10], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    sub_40C0D9
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_413A0E
+call    _abort
+cmp     [rbp+var_18], 0
+jz      short loc_413A6C
+cmp     [rbp+var_8], 0
+jz      short loc_413A4E
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_413A35
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rax, [rax+38h]
+jmp     short loc_413A3A
+mov     eax, 0
+mov     rdx, [rbp-8]
+mov     rsi, rax
+mov     rdi, rdx
+call    sub_41161B
+mov     rdi, rax
+jmp     short loc_413A53
+mov     edi, 0
+mov     rdx, [rbp-10h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rdi
+mov     edi, 1
+call    rax
+cmp     [rbp+var_8], 0
+jz      short loc_413A7F
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 0
+nop
+leave
+retn

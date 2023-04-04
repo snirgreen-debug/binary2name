@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+mov     [rbp+var_C], edi
+mov     [rbp+var_10], esi
+mov     ebx, 0
+mov     eax, [rbp-0Ch]
+and     eax, 1
+or      ebx, eax
+shr     [rbp+var_C], 1
+add     ebx, ebx
+sub     [rbp+var_10], 1
+cmp     [rbp+var_10], 0
+jg      short loc_401DEB
+mov     eax, ebx
+shr     eax, 1
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_62D638
+test    eax, eax
+jz      short loc_4206FF
+mov     eax, dword ptr cs:qword_62D828+4
+add     eax, 1
+mov     dword ptr cs:qword_62D828+4, eax
+mov     eax, dword ptr cs:qword_62D838+4
+sub     eax, 1
+mov     dword ptr cs:qword_62D838+4, eax
+nop
+pop     rbp
+retn

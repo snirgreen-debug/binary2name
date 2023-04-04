@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:tos
+add     rax, 18h
+mov     cs:tos, rax
+mov     eax, 0
+call    check_range
+mov     rax, cs:tos
+mov     rdi, rax
+call    init_string
+jmp     short loc_402616
+mov     edx, cs:idx
+mov     rax, cs:ptr
+mov     esi, edx
+mov     rdi, rax
+call    iscommand
+test    eax, eax
+jnz     short loc_402633
+mov     rdx, cs:tos
+mov     ecx, cs:idx
+mov     rax, cs:ptr
+mov     esi, ecx
+mov     rdi, rax
+call    copy_past_newline
+mov     cs:idx, eax
+mov     edx, cs:idx
+mov     rax, cs:ptr
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     short loc_4025D7
+jmp     short loc_402634
+nop
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

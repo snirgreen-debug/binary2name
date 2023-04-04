@@ -1,0 +1,18 @@
+mov     esi, 62D518h
+push    rbp
+sub     rsi, 62D518h
+sar     rsi, 3
+mov     rbp, rsp
+mov     rax, rsi
+shr     rax, 3Fh
+add     rsi, rax
+sar     rsi, 1
+jz      short loc_402768
+mov     eax, 0
+test    rax, rax
+jz      short loc_402768
+pop     rbp
+mov     edi, 62D518h
+jmp     rax
+pop     rbp
+retn

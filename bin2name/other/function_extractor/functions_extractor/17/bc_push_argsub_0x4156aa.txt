@@ -1,0 +1,210 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+ctl], rdi
+mov     [rbp+state], rsi
+mov     [rbp+arg], rdx
+mov     [rbp+len], rcx
+mov     [rbp+prefix], r8
+mov     [rbp+pfxlen], r9
+mov     rax, cs:special_terminating_arg
+cmp     [rbp+arg], rax
+setz    al
+movzx   eax, al
+mov     [rbp+terminate], eax
+cmp     [rbp+arg], 0
+jnz     short loc_4156FE
+mov     ecx, 42FCF8h
+mov     edx, 165h
+mov     esi, 42FAFDh
+mov     edi, 42FBA4h
+call    ___assert_fail
+cmp     [rbp+initial_args], 0
+jnz     short loc_41570F
+mov     rax, [rbp-20h]
+mov     dword ptr [rax+38h], 1
+cmp     [rbp+terminate], 0
+jnz     loc_41580A
+mov     rax, [rbp-20h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-30h]
+add     rdx, rax
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+18h]
+cmp     rdx, rax
+jbe     loc_4157E0
+cmp     [rbp+initial_args], 0
+jnz     short loc_41575A
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rax, [rax+38h]
+cmp     rdx, rax
+jnz     short loc_41577B
+mov     edi, 42FBB0h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+test    rax, rax
+jnz     short loc_4157AC
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_4157CD
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+test    rax, rax
+jnz     short loc_4157AC
+mov     rax, [rbp-18h]
+mov     rax, [rax+50h]
+test    rax, rax
+jz      short loc_4157CD
+mov     edi, 42FBEBh
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    bc_do_exec
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, [rbp+10h]
+call    bc_argc_limit_reached
+test    eax, eax
+jz      short loc_41580A
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    bc_do_exec
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+cmp     rdx, rax
+jb      short loc_41589A
+mov     rax, [rbp-20h]
+mov     rax, [rax+8]
+test    rax, rax
+jnz     short loc_415858
+mov     rax, [rbp-20h]
+mov     qword ptr [rax+10h], 40h
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+shl     rax, 3
+mov     rdi, rax
+call    xmalloc
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax+8], rdx
+jmp     short loc_41589A
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+lea     rdx, [rax+rax]
+mov     rax, [rbp-20h]
+mov     [rax+10h], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+mov     rax, [rax+8]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax+8], rdx
+cmp     [rbp+terminate], 0
+jz      short loc_4158CD
+mov     rax, [rbp-20h]
+mov     rsi, [rax+8]
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+lea     rcx, [rax+1]
+mov     rdx, [rbp-20h]
+mov     [rdx], rcx
+shl     rax, 3
+add     rax, rsi
+mov     qword ptr [rax], 0
+jmp     loc_4159A8
+mov     rax, [rbp-20h]
+mov     rsi, [rax+8]
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+lea     rcx, [rax+1]
+mov     rdx, [rbp-20h]
+mov     [rdx], rcx
+shl     rax, 3
+lea     rdx, [rsi+rax]
+mov     rax, [rbp-20h]
+mov     rcx, [rax+18h]
+mov     rax, [rbp-20h]
+mov     rax, [rax+20h]
+add     rax, rcx
+mov     [rdx], rax
+cmp     [rbp+prefix], 0
+jz      short loc_415945
+mov     rax, [rbp-20h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-20h]
+mov     rax, [rax+20h]
+add     rdx, rax
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rax, [rbp-20h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-20h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-20h]
+mov     rax, [rax+20h]
+add     rdx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rax, [rbp-20h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-30h]
+add     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, [rbp+10h]
+call    bc_argc_limit_reached
+test    eax, eax
+jz      short loc_4159A8
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    bc_do_exec
+cmp     [rbp+initial_args], 0
+jz      short loc_4159BE
+mov     rax, [rbp-20h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-20h]
+mov     [rax+28h], rdx
+nop
+leave
+retn

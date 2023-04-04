@@ -1,0 +1,163 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 680h
+mov     [rbp+havestr], rdi
+mov     [rbp+have], rsi
+mov     [rbp+fun], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rsi, [rbp-678h]
+mov     rax, [rbp-670h]
+mov     ecx, 0
+mov     edx, 1
+mov     rdi, rax
+call    evalfunc
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jnz     short loc_409839
+mov     rax, [rbp-670h]
+mov     rdi, rax
+call    completereduce
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      loc_409A34
+cmp     [rbp+err], 0Ah
+jnz     loc_4099F8
+lea     rdi, aConformability
+call    logputs
+mov     rax, [rbp-678h]
+mov     rax, [rax+68h]
+test    rax, rax
+jz      short loc_409883
+mov     rax, [rbp-678h]
+mov     rax, [rax+78h]
+mov     [rbp+dimen], rax
+jmp     short loc_4098B2
+mov     rax, [rbp-678h]
+mov     rax, [rax+48h]
+test    rax, rax
+jz      short loc_4098A7
+mov     rax, [rbp-678h]
+mov     rax, [rax+48h]
+mov     [rbp+dimen], rax
+jmp     short loc_4098B2
+mov     [rbp+dimen], 0
+cmp     [rbp+dimen], 0
+jnz     short loc_4098CB
+mov     edi, 0Ah
+call    logputchar
+jmp     loc_409A2A
+mov     rax, [rbp-658h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4098E7
+lea     rax, a1
+mov     [rbp+dimen], rax
+mov     rax, [rbp-658h]
+mov     rsi, rax
+lea     rdi, aConversionRequ
+mov     eax, 0
+call    logprintf
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_40992E
+mov     rax, [rbp-668h]
+mov     rsi, rax
+lea     rdi, aS_1
+mov     eax, 0
+call    logprintf
+jmp     short loc_409947
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_409947
+mov     edi, 9
+call    logputchar
+mov     rax, [rbp-670h]
+mov     rdi, rax
+call    showunit
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409982
+mov     rax, [rbp-658h]
+mov     rsi, rax
+lea     rdi, aS_2
+mov     eax, 0
+call    logprintf
+jmp     short loc_4099AE
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_4099A4
+lea     rdi, asc_4147E1
+mov     eax, 0
+call    logprintf
+jmp     short loc_4099AE
+mov     edi, 0Ah
+call    logputchar
+mov     rsi, [rbp-658h]
+lea     rax, [rbp-650h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    completereduce
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    showunit
+mov     edi, 0Ah
+call    logputchar
+jmp     short loc_409A2A
+cmp     [rbp+err], 0Bh
+jnz     short loc_409A1E
+mov     rax, [rbp-668h]
+mov     rsi, rax
+lea     rdi, aValueSIsNotInT
+mov     eax, 0
+call    logprintf
+jmp     short loc_409A2A
+lea     rdi, aFunctionEvalua
+call    logputs
+mov     eax, 1
+jmp     loc_409ABB
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409A6B
+mov     rax, [rbp-678h]
+mov     rdx, [rax+38h]
+mov     rax, [rbp-668h]
+mov     rsi, rax
+lea     rdi, aSS_0
+mov     eax, 0
+call    logprintf
+jmp     short loc_409A84
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_409A84
+mov     edi, 9
+call    logputchar
+mov     rax, [rbp-670h]
+mov     rdi, rax
+call    showunit
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409AAC
+mov     edi, 29h
+call    logputchar
+mov     edi, 0Ah
+call    logputchar
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_409ACF
+call    ___stack_chk_fail
+leave
+retn

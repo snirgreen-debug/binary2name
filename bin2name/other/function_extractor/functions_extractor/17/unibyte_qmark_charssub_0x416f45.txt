@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+buf], rdi
+mov     [rbp+len], rsi
+mov     rax, [rbp-28h]
+mov     [rbp+p], rax
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     [rbp+plimit], rax
+jmp     short loc_416FAC
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    to_uchar
+movzx   eax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 4000h
+test    eax, eax
+jnz     short loc_416FA7
+mov     rax, [rbp-20h]
+mov     byte ptr [rax], 3Fh
+add     [rbp+p], 1
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-18h]
+jb      short loc_416F6F
+mov     rax, [rbp-30h]
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

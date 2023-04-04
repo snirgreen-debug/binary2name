@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+buffer], rdi
+mov     [rbp+buffersize], rsi
+mov     [rbp+arg], rdx
+mov     [rbp+argsize], rcx
+mov     [rbp+o], r8
+cmp     [rbp+o], 0
+jz      short loc_408E77
+mov     rax, [rbp-48h]
+jmp     short loc_408E7C
+mov     eax, 611560h
+mov     [rbp+p], rax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     rax, [rbp-10h]
+mov     r8, [rax+30h]
+mov     rax, [rbp-10h]
+mov     rdi, [rax+28h]
+mov     rax, [rbp-10h]
+lea     r11, [rax+8]
+mov     rax, [rbp-10h]
+mov     r9d, [rax+4]
+mov     rax, [rbp-10h]
+mov     r10d, [rax]
+mov     rcx, [rbp-40h]
+mov     rdx, [rbp-38h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-28h]
+sub     rsp, 8
+push    r8
+push    rdi
+push    r11
+mov     r8d, r10d
+mov     rdi, rax
+call    quotearg_buffer_restyled
+add     rsp, 20h
+mov     [rbp+r], rax
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     rax, [rbp-8]
+leave
+retn

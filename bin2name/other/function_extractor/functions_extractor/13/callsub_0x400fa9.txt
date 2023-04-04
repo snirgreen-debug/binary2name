@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:pc
+mov     [rbp+oldpc], rax
+mov     rax, cs:pc
+mov     rax, [rax+8]
+mov     [rbp+e], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    exec
+mov     rax, [rbp-10h]
+add     rax, 10h
+mov     cs:pc, rax
+nop
+leave
+retn

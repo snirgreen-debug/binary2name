@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+fp], rdi
+cmp     [rbp+fp], 0
+jz      short loc_4048E3
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    ___freading
+test    eax, eax
+jnz     short loc_4048F1
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fflush
+jmp     short locret_404909
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_40488C
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fflush
+leave
+retn

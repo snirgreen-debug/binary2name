@@ -1,0 +1,30 @@
+mov     edi, 62BE20h
+cmp     qword ptr [rdi], 0
+jnz     short loc_4027A0
+jmp     short loc_402730
+mov     eax, 0
+test    rax, rax
+jz      short loc_40279B
+push    rbp
+mov     rbp, rsp
+call    rax
+pop     rbp
+jmp     loc_402730
+mov     esi, 62D518h
+push    rbp
+sub     rsi, 62D518h
+sar     rsi, 3
+mov     rbp, rsp
+mov     rax, rsi
+shr     rax, 3Fh
+add     rsi, rax
+sar     rsi, 1
+jz      short loc_402768
+mov     eax, 0
+test    rax, rax
+jz      short loc_402768
+pop     rbp
+mov     edi, 62D518h
+jmp     rax
+pop     rbp
+retn

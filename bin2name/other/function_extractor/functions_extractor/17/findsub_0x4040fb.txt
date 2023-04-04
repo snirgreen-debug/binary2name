@@ -1,0 +1,169 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 50h
+mov     [rbp+arg], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+mov     cs:state_0.starting_path_length, eax
+mov     edi, 0FFFFFF9Ch
+call    inside_dir
+mov     rax, [rbp-58h]
+mov     [rbp+arglist], rax
+mov     [rbp+arglist+8], 0
+mov     eax, cs:options_0.symlink_handling
+cmp     eax, 1
+jz      short loc_40415C
+cmp     eax, 1
+jb      short loc_40417E
+cmp     eax, 2
+jz      short loc_40416D
+jmp     short loc_40418E
+mov     eax, cs:ftsoptions
+or      eax, 3
+mov     cs:ftsoptions, eax
+jmp     short loc_40418E
+mov     eax, cs:ftsoptions
+or      eax, 11h
+mov     cs:ftsoptions, eax
+jmp     short loc_40418E
+mov     eax, cs:ftsoptions
+or      eax, 10h
+mov     cs:ftsoptions, eax
+nop
+movzx   eax, cs:options_0.stay_on_filesystem
+test    al, al
+jz      short loc_4041A8
+mov     eax, cs:ftsoptions
+or      eax, 40h
+mov     cs:ftsoptions, eax
+mov     ecx, cs:ftsoptions
+lea     rax, [rbp-30h]
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    fts_open
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     short loc_40421A
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     r12, rax
+mov     edi, 42AE44h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, r12
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     edi, 1
+call    error_severity
+jmp     loc_404383
+mov     [rbp+level], 80000000h
+jmp     loc_4042B5
+movzx   eax, cs:state_0.execdirs_outstanding
+test    al, al
+jz      short loc_404252
+mov     rax, [rbp-38h]
+mov     rax, [rax+58h]
+cmp     eax, [rbp-44h]
+jz      short loc_404252
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    show_outstanding_execdirs
+call    complete_pending_execdirs
+mov     rax, [rbp-38h]
+mov     rax, [rax+58h]
+mov     [rbp+level], eax
+mov     cs:state_0.already_issued_stat_error_msg, 0
+mov     cs:state_0.have_stat, 0
+mov     rax, [rbp-38h]
+mov     eax, [rax+90h]
+test    eax, eax
+setnz   al
+mov     cs:state_0.have_type, al
+movzx   eax, cs:state_0.have_type
+test    al, al
+jz      short loc_404297
+mov     rax, [rbp-38h]
+mov     eax, [rax+90h]
+jmp     short loc_40429C
+mov     eax, 0
+mov     cs:state_0.type, eax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    consider_visiting
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    fts_read
+mov     [rbp+ent], rax
+cmp     [rbp+ent], 0
+jnz     loc_404226
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_40432B
+mov     rax, [rbp-58h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 42AE58h
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     edi, 1
+call    error_severity
+mov     eax, 0
+jmp     short loc_404388
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    fts_close
+test    eax, eax
+jz      short loc_40437B
+mov     edi, 42AE98h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-58h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     edi, 1
+call    error_severity
+mov     eax, 0
+jmp     short loc_404388
+mov     [rbp+p], 0
+mov     eax, 1
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_40439C
+call    ___stack_chk_fail
+add     rsp, 50h
+pop     rbx
+pop     r12
+pop     rbp
+retn

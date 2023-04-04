@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+table], rdi
+mov     rax, [rbp-18h]
+mov     rax, [rax+20h]
+test    rax, rax
+jnz     short loc_4182C5
+mov     eax, 0
+jmp     short locret_4182FF
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     [rbp+bucket], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, [rbp-8]
+ja      short loc_4182E3
+call    _abort
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4182F8
+mov     rax, [rbp-8]
+mov     rax, [rax]
+jmp     short locret_4182FF
+add     [rbp+bucket], 10h
+jmp     short loc_4182D0
+leave
+retn

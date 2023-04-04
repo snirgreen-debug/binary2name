@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+movsd   xmm0, cs:qword_437760
+pop     rbp
+retn

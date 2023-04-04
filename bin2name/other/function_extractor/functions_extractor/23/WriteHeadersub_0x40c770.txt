@@ -1,0 +1,210 @@
+push    r12
+push    rbp
+mov     r12, pfile
+push    rbx
+mov     rbp, szName
+mov     rbx, pvmGlo
+sub     rsp, 10h
+mov     pfile, rsp
+mov     rax, fs:28h
+mov     [rsp+28h+var_20], rax
+xor     eax, eax
+call    _time
+xor     eax, eax
+mov     rcx, szName
+mov     edx, 4140FCh
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+test    eax, eax
+js      loc_40CAC0
+mov     rcx, pfile
+mov     edx, 38h
+mov     esi, 1
+mov     edi, 414B80h
+call    _fwrite
+mov     rcx, cs:vszModelFilename
+mov     edx, 414118h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+mov     rdi, rsp
+call    _ctime
+mov     edx, 41412Dh
+mov     rcx, rax
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+mov     rcx, cs:vszModGenName
+mov     r8d, 41413Bh
+mov     edx, 414142h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+mov     rcx, pfile
+mov     edx, 2Ah
+mov     esi, 1
+mov     edi, 414BC0h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 38h
+mov     esi, 1
+mov     edi, 414B80h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 3Ah
+mov     esi, 1
+mov     edi, 414BF0h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 31h
+mov     esi, 1
+mov     edi, 414C30h
+call    _fwrite
+mov     ecx, cs:vnStates
+cmp     ecx, 1
+jz      loc_40CA40
+mov     edx, 414168h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+test    pvmGlo, pvmGlo
+mov     szName, pvmGlo
+jnz     short loc_40C8C1
+jmp     short loc_40C8F0
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      short loc_40C8F0
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jnz     short loc_40C8B8
+xor     edx, edx
+mov     rsi, rbp
+mov     rdi, pfile
+call    WriteOneName
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jnz     short loc_40C8C1
+nop     dword ptr [rax+rax+00000000h]
+mov     ecx, cs:vnOutputs
+cmp     ecx, 1
+jz      loc_40CAA0
+mov     edx, 414186h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+test    pvmGlo, pvmGlo
+mov     rbp, pvmGlo
+jnz     short loc_40C929
+jmp     short loc_40C950
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      short loc_40C950
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 30000h
+jnz     short loc_40C920
+xor     edx, edx
+mov     rsi, rbp
+mov     rdi, pfile
+call    WriteOneName
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jnz     short loc_40C929
+mov     ecx, cs:vnInputs
+cmp     ecx, 1
+jz      loc_40CA80
+mov     edx, 4141A5h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+test    pvmGlo, pvmGlo
+mov     rbp, pvmGlo
+jnz     short loc_40C989
+jmp     short loc_40C9B0
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      short loc_40C9B0
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jnz     short loc_40C980
+xor     edx, edx
+mov     rsi, rbp
+mov     rdi, pfile
+call    WriteOneName
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jnz     short loc_40C989
+mov     ecx, cs:vnParms
+cmp     ecx, 1
+jz      loc_40CA60
+mov     edx, 4141C7h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_40C9DC
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40CA08
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 40000h
+jnz     short loc_40C9D8
+xor     edx, edx
+mov     rsi, rbx
+mov     rdi, pfile
+call    WriteOneName
+jmp     short loc_40C9D8
+mov     rcx, pfile
+mov     edx, 4
+mov     esi, 1
+mov     edi, 4146CEh
+call    _fwrite
+mov     rax, [rsp+8]
+xor     rax, fs:28h
+jnz     loc_40CAD9
+add     rsp, 10h
+pop     rbx
+pop     rbp
+pop     pfile
+retn
+mov     rcx, pfile
+mov     edx, 0Ch
+mov     esi, 1
+mov     edi, 41415Bh
+call    _fwrite
+jmp     loc_40C8A9
+mov     rcx, pfile
+mov     edx, 11h
+mov     esi, 1
+mov     edi, 4141B5h
+call    _fwrite
+jmp     loc_40C9DC
+mov     rcx, pfile
+mov     edx, 0Dh
+mov     esi, 1
+mov     edi, 414197h
+call    _fwrite
+jmp     loc_40C973
+mov     rcx, pfile
+mov     edx, 0Eh
+mov     esi, 1
+mov     edi, 414177h
+call    _fwrite
+jmp     loc_40C913
+mov     ecx, 414103h
+mov     rdx, szName
+mov     esi, 8003h
+xor     edi, edi
+call    ReportError
+jmp     loc_40C7B8
+call    ___stack_chk_fail

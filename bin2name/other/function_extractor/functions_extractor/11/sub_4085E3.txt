@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+movsd   [rbp+var_18], xmm0
+movsd   [rbp+var_20], xmm1
+movsd   [rbp+var_28], xmm2
+movsd   [rbp+var_30], xmm3
+movsd   [rbp+var_38], xmm4
+movsd   xmm0, qword ptr [rbp-20h]
+subsd   xmm0, qword ptr [rbp-38h]
+movsd   xmm1, qword ptr [rbp-20h]
+subsd   xmm1, qword ptr [rbp-18h]
+divsd   xmm0, xmm1
+movsd   [rbp+var_8], xmm0
+movsd   xmm0, qword ptr [rbp-8]
+movapd  xmm1, xmm0
+mulsd   xmm1, qword ptr [rbp-28h]
+movsd   xmm0, cs:qword_416DA0
+subsd   xmm0, qword ptr [rbp-8]
+mulsd   xmm0, qword ptr [rbp-30h]
+addsd   xmm0, xmm1
+pop     rbp
+retn

@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:qword_605468
+mov     [rbp+var_10], rax
+mov     rax, cs:qword_605468
+mov     rax, [rax+8]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_400F69
+mov     rax, [rbp-10h]
+add     rax, 10h
+mov     cs:qword_605468, rax
+nop
+leave
+retn

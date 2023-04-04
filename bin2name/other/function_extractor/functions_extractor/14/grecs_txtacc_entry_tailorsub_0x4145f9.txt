@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+cmp     rdx, rax
+jbe     short locret_41465D
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_realloc
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_41465C
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     [rax+8], rdx
+jmp     short locret_41465D
+nop
+leave
+retn

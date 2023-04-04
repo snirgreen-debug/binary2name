@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 10h
+call    sub_40C49E
+mov     [rbp+var_8], rax
+call    sub_40BD9B
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     qword ptr [rax+20h], 41465Fh
+call    sub_40BD9B
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     qword ptr [rax+20h], 41465Fh
+mov     rax, [rbp-8]
+leave
+retn

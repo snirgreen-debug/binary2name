@@ -1,0 +1,88 @@
+test    pibIn, pibIn
+jz      loc_403F7C
+push    r13
+push    r12
+push    rbp
+push    rbx
+mov     rbx, pibIn
+sub     rsp, 8
+mov     r12, [pibIn+18h]
+movzx   ebp, byte ptr [r12]
+test    bpl, bpl
+jz      loc_403F56
+call    ___ctype_b_loc
+mov     r13, rax
+movsx   rcx, bpl
+xor     eax, eax
+mov     rdx, [r13+0]
+test    byte ptr [rdx+rcx*2+1], 20h
+jnz     short loc_403EDF
+nop     dword ptr [fSkipped+00000000h]
+cmp     bpl, 23h
+jnz     loc_403F4B
+lea     rdx, [r12+1]
+jmp     short loc_403E9E
+add     rdx, 1
+cmp     byte ptr [rdx-1], 0
+jz      loc_403F30
+mov     [pibIn+18h], rdx
+cmp     byte ptr [rdx-1], 0Ah
+jnz     short loc_403E90
+add     dword ptr [pibIn+20h], 1
+movzx   ebp, byte ptr [rdx]
+test    bpl, bpl
+jnz     short loc_403EC8
+mov     rdi, pibIn
+call    FillBuffer_0
+mov     rdx, [pibIn+18h]
+movzx   ebp, byte ptr [rdx]
+nop     dword ptr [rax+rax+00h]
+mov     r12, rdx
+mov     rdx, [r13+0]
+movsx   rcx, bpl
+mov     eax, 1
+test    byte ptr [rdx+rcx*2+1], 20h
+jz      short loc_403E78
+cmp     bpl, 23h
+jz      short loc_403E82
+cmp     bpl, 0Ah
+jz      short loc_403F20
+lea     rdx, [r12+1]
+mov     [pibIn+18h], rdx
+movzx   ebp, byte ptr [r12+1]
+test    bpl, bpl
+jnz     short loc_403EC8
+cmp     qword ptr [pibIn], 0
+jz      short loc_403EC8
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+jz      short loc_403F46
+mov     rdx, [pibIn+18h]
+movzx   ebp, byte ptr [rdx]
+jmp     short loc_403EC8
+add     dword ptr [pibIn+20h], 1
+jmp     short loc_403EEB
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+jz      short loc_403F73
+mov     r12, [pibIn+18h]
+jmp     loc_403E82
+mov     eax, 1
+add     rsp, 8
+pop     pibIn
+pop     rbp
+pop     r12
+pop     r13
+retn
+cmp     qword ptr [rdi], 0
+jz      loc_403E58
+call    FillBuffer_0
+mov     r12, [pibIn+18h]
+movzx   ebp, byte ptr [r12]
+jmp     loc_403E58
+mov     rdx, [pibIn+18h]
+jmp     loc_403EA8
+xor     eax, eax
+retn

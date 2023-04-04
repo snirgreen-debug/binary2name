@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+UTF8Text], rdi
+mov     eax, cs:isUTF8Locale
+test    eax, eax
+jz      short loc_409051
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rcx, [rbp-18h]
+mov     edx, 0FFFFFFFFh
+mov     rsi, rcx
+mov     rdi, rax
+call    _waddnstr
+jmp     short loc_409088
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    convertUTF8ToCurrentEncoding
+mov     [rbp+textWithCurrentEncoding], rax
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rcx, [rbp-8]
+mov     edx, 0FFFFFFFFh
+mov     rsi, rcx
+mov     rdi, rax
+call    _waddnstr
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

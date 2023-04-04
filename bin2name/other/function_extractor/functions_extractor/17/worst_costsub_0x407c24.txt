@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jz      short loc_407C8B
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    worst_cost
+mov     [rbp+cost_l], eax
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    worst_cost
+mov     [rbp+cost_r], eax
+mov     eax, [rbp-8]
+cmp     [rbp+cost_r], eax
+cmovnb  eax, [rbp-4]
+mov     [rbp+worst], eax
+mov     rax, [rbp-18h]
+mov     eax, [rax+20h]
+cmp     eax, [rbp-0Ch]
+jbe     short loc_407C86
+mov     rax, [rbp-18h]
+mov     eax, [rax+20h]
+mov     [rbp+worst], eax
+mov     eax, [rbp-0Ch]
+jmp     short locret_407C90
+mov     eax, 0
+leave
+retn

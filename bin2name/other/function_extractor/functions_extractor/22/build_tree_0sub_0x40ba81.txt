@@ -1,0 +1,81 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+nodes], 0
+mov     eax, cs:max_len
+mov     [rbp+len], eax
+jmp     short loc_40BADD
+sar     [rbp+nodes], 1
+mov     eax, [rbp-10h]
+cdqe
+mov     edx, [rbp-14h]
+mov     ds:parents[rax*4], edx
+mov     eax, [rbp-10h]
+cdqe
+mov     eax, [rax*4+6180E0h]
+sub     eax, [rbp-14h]
+mov     edx, eax
+mov     eax, [rbp-10h]
+cdqe
+mov     ds:lit_base[rax*4], edx
+mov     eax, [rbp-10h]
+cdqe
+mov     eax, [rax*4+618160h]
+add     [rbp+nodes], eax
+sub     [rbp+len], 1
+cmp     [rbp+len], 0
+jg      short loc_40BA9B
+mov     eax, [rbp-14h]
+sar     eax, 1
+cmp     eax, 1
+jz      short loc_40BAF7
+mov     edi, 4114A8h
+call    gzip_error
+mov     eax, cs:max_len
+mov     edx, 0Ch
+cmp     eax, 0Ch
+cmovg   eax, edx
+mov     cs:peek_bits, eax
+mov     eax, cs:peek_bits
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cdqe
+add     rax, 648700h
+mov     [rbp+prefixp], rax
+mov     [rbp+len], 1
+jmp     short loc_40BB75
+mov     eax, [rbp-10h]
+cdqe
+mov     edx, [rax*4+618160h]
+mov     eax, cs:peek_bits
+sub     eax, [rbp-10h]
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+mov     [rbp+prefixes], eax
+jmp     short loc_40BB64
+sub     [rbp+prefixp], 1
+mov     eax, [rbp-10h]
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax], dl
+mov     eax, [rbp-0Ch]
+lea     edx, [rax-1]
+mov     [rbp+prefixes], edx
+test    eax, eax
+jnz     short loc_40BB54
+add     [rbp+len], 1
+mov     eax, cs:peek_bits
+cmp     [rbp+len], eax
+jle     short loc_40BB34
+jmp     short loc_40BB8E
+sub     [rbp+prefixp], 1
+mov     rax, [rbp-8]
+mov     byte ptr [rax], 0
+cmp     [rbp+prefixp], 648700h
+ja      short loc_40BB82
+nop
+leave
+retn

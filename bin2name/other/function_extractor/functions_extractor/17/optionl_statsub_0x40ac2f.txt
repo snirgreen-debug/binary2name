@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     [rbp+p], rsi
+mov     eax, cs:state_0.cwd_dir_fd
+cmp     eax, 0FFFFFF9Ch
+jz      short loc_40AC6D
+mov     eax, cs:state_0.cwd_dir_fd
+test    eax, eax
+jns     short loc_40AC6D
+mov     ecx, 42C620h
+mov     edx, 277h
+mov     esi, 42C0E8h
+mov     edi, 42C2CBh
+call    ___assert_fail
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    set_stat_placeholders
+mov     eax, cs:state_0.cwd_dir_fd
+mov     rdx, [rbp-20h]
+mov     rsi, [rbp-18h]
+mov     ecx, 0
+mov     edi, eax
+call    fstatat
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jnz     short loc_40ACA3
+mov     eax, 0
+jmp     short locret_40ACB9
+mov     edx, [rbp-4]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    fallback_stat
+leave
+retn

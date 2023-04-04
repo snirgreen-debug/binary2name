@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+s], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+mov     [rbp+stream], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 0
+call    __IO_putc
+mov     eax, 1
+leave
+retn

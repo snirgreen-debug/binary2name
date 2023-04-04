@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, [rbp-20h]
+mov     [rbp+pattern], rax
+call    ___ctype_get_mb_cur_max
+cmp     rax, 1
+jz      short loc_402F99
+mov     ecx, 40EBE0h
+mov     edx, 2C3h
+mov     esi, 40DA68h
+mov     edi, 40DB30h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+20h]
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strstr
+test    rax, rax
+jz      short loc_402FBC
+mov     eax, 2
+jmp     short locret_402FC1
+mov     eax, 4
+leave
+retn

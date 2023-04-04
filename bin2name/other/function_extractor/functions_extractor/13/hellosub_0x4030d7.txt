@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 40397Fh
+call    _puts
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

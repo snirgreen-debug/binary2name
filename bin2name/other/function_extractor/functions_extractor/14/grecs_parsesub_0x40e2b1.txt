@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     eax, cs:grecs_trace_flags
+test    eax, eax
+jnz     short loc_40E339
+mov     edi, 42403Eh
+call    _getenv
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_40E339
+jmp     short loc_40E32E
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+var_8], rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+cmp     eax, 4Ch
+jz      short loc_40E31E
+cmp     eax, 4Ch
+jg      short loc_40E301
+cmp     eax, 47h
+jz      short loc_40E30D
+jmp     short loc_40E32E
+cmp     eax, 67h
+jz      short loc_40E30D
+cmp     eax, 6Ch
+jz      short loc_40E31E
+jmp     short loc_40E32E
+mov     eax, cs:grecs_trace_flags
+or      eax, 1
+mov     cs:grecs_trace_flags, eax
+jmp     short loc_40E32E
+mov     eax, cs:grecs_trace_flags
+or      eax, 2
+mov     cs:grecs_trace_flags, eax
+nop
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40E2DE
+mov     cs:grecs_error_count, 0
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grecs_install_text
+mov     cs:grecs_current_locus_point, rax
+mov     dword ptr cs:qword_62D8B8, 1
+mov     dword ptr cs:qword_62D8B8+4, 0
+mov     rax, cs:grecs_parser_fun
+mov     ecx, cs:grecs_trace_flags
+mov     rdx, [rbp-18h]
+mov     esi, ecx
+mov     rdi, rdx
+call    rax 
+leave
+retn

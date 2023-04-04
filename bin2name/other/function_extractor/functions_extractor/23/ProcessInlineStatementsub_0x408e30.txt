@@ -1,0 +1,42 @@
+push    r13
+push    r12
+mov     r12, szLex
+push    rbp
+push    rbx
+mov     rbx, szEqn
+mov     szLex, szEqn
+add     rbx, 1
+mov     rbp, pibIn
+sub     rsp, 8
+mov     r13d, ecx
+call    GetStatement
+mov     rdi, szEqn
+call    _strlen
+mov     ecx, r13d
+mov     byte ptr [szEqn+rax-1], 0
+mov     rdx, szEqn
+mov     rsi, szLex
+mov     rdi, pibIn
+call    DefineVariable
+mov     edx, 3Bh
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      short loc_408E90
+add     rsp, 8
+pop     szEqn
+pop     pibIn
+pop     szLex
+pop     iKWCode
+retn
+add     rsp, 8
+mov     rdi, pibIn
+xor     ecx, ecx
+pop     szEqn
+pop     pibIn
+pop     szLex
+pop     iKWCode
+mov     edx, 4133ADh
+mov     esi, 8013h
+jmp     ReportError

@@ -1,0 +1,159 @@
+push    rbp
+mov     rbp, rsp
+push    s
+sub     rsp, 28h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 80h
+jnz     short loc_402B48
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    get_short
+mov     ecx, eax
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+movsx   eax, cx
+add     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+4], edx
+jmp     short loc_402B86
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 7Fh
+jle     short loc_402B70
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+sub     eax, 100h
+add     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+4], edx
+jmp     short loc_402B86
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+add     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+4], edx
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     rax, [rbp-28h]
+mov     eax, [rax+8]
+cmp     edx, eax
+jg      short loc_402BA3
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+test    eax, eax
+jns     short loc_402BE4
+mov     rax, [rbp-28h]
+mov     rax, [rax+30h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     s, rax
+mov     edi, 40DAE0h
+call    _gettext
+mov     rcx, s
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+mov     rcx, [rbp-28h]
+lea     rsi, [rcx+18h]
+mov     rcx, [rbp-28h]
+lea     rdi, [rcx+10h]
+mov     r8d, edx
+mov     ecx, 0
+mov     rdx, rax
+call    locate_read_str
+mov     [rbp+nread], eax
+cmp     [rbp+nread], 0
+jg      short loc_402C26
+mov     eax, 8
+jmp     loc_402D36
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    __IO_getc
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax], edx
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     eax, [rbp-14h]
+add     eax, edx
+lea     edx, [rax-1]
+mov     rax, [rbp-28h]
+mov     [rax+8], edx
+mov     rax, [rbp-28h]
+mov     eax, [rax+8]
+test    eax, eax
+jg      short loc_402CA0
+mov     rax, [rbp-28h]
+mov     rax, [rax+30h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     s, rax
+mov     edi, 40DAE0h
+call    _gettext
+mov     rcx, s
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     eax, [rax+8]
+cdqe
+sub     rax, 1
+lea     s, [rdx+rax]
+movzx   eax, byte ptr [s]
+test    al, al
+jnz     short loc_402CD9
+mov     ecx, 40EBC0h
+mov     edx, 249h
+mov     esi, 40DA68h
+mov     edi, 40DB09h
+call    ___assert_fail
+lea     rax, [s+1]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_402CFD
+mov     ecx, 40EBC0h
+mov     edx, 24Ah
+mov     esi, 40DA68h
+mov     edi, 40DB16h
+call    ___assert_fail
+lea     rax, [s+2]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_402D21
+mov     ecx, 40EBC0h
+mov     edx, 24Bh
+mov     esi, 40DA68h
+mov     edi, 40DB23h
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     [rax+20h], rdx
+mov     eax, 1
+add     rsp, 28h
+pop     s
+pop     rbp
+retn

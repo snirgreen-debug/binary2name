@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jz      short loc_40A7D6
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    complete_pending_execs
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 404E69h
+jnz     short loc_40A7C1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+38h]
+test    al, al
+jz      short loc_40A7C1
+mov     rax, [rbp-18h]
+add     rax, 38h
+mov     [rbp+execp], rax
+mov     rax, [rbp-8]
+mov     eax, [rax+98h]
+test    eax, eax
+jz      short loc_40A7C1
+mov     rax, [rbp-8]
+lea     rdx, [rax+60h]
+mov     rax, [rbp-8]
+add     rax, 8
+mov     rsi, rdx
+mov     rdi, rax
+call    bc_do_exec
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    complete_pending_execs
+jmp     short locret_40A7D7
+nop
+leave
+retn

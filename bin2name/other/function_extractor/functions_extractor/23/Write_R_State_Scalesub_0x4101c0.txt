@@ -1,0 +1,38 @@
+test    pvmScale, pvmScale
+jz      short locret_410236
+push    r12
+mov     r12, pfile
+push    rbp
+mov     rbp, pvmScale
+push    rbx
+mov     rbx, pvmScale
+jmp     short loc_4101E1
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      short loc_410218
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jnz     short loc_4101D8
+mov     rsi, rbp
+mov     rdi, pfile
+call    WriteOneEquation_0
+jmp     short loc_4101D8
+mov     rsi, rbx
+mov     rdi, pfile
+call    WriteOneEquation_0
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_410232
+nop     dword ptr [rax+00h]
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_410200
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_410218
+pop     rbx
+pop     rbp
+pop     pfile
+rep retn

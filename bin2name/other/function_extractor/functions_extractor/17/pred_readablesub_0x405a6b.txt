@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rsi, cs:state_0.rel_pathname
+mov     eax, cs:state_0.cwd_dir_fd
+mov     ecx, 0
+mov     edx, 4
+mov     edi, eax
+call    _faccessat
+test    eax, eax
+setz    al
+leave
+retn

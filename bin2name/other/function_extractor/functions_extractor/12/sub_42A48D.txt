@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_4], 1
+cmp     [rbp+var_18], 0
+jns     short loc_42A4B1
+neg     [rbp+var_18]
+add     [rbp+var_4], 1
+jmp     short loc_42A4B1
+add     [rbp+var_4], 1
+mov     rcx, [rbp-18h]
+mov     rdx, 6666666666666667h
+mov     rax, rcx
+imul    rdx
+sar     rdx, 2
+mov     rax, rcx
+sar     rax, 3Fh
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jg      short loc_42A4AD
+mov     eax, [rbp-4]
+pop     rbp
+retn

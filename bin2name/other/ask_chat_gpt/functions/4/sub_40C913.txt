@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+mov     [rbp+var_9], 0
+mov     [rbp+var_8], 0
+jmp     loc_40CA27
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+add     rax, rdx
+movzx   edx, byte ptr [rax]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-8]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jz      loc_40CA22
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-8]
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jz      short loc_40C9BC
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-8]
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jnz     short loc_40C9C6
+mov     eax, 0
+jmp     locret_40CA7F
+movzx   eax, byte ptr [rbp-9]
+xor     eax, 1
+test    al, al
+jz      short loc_40C9ED
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-30h]
+mov     qword ptr [rax], 1
+mov     [rbp+var_9], 1
+jmp     short loc_40CA22
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-8]
+sub     rdx, rax
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+cmp     rdx, rax
+jnz     short loc_40CA1B
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+lea     rdx, [rax+1]
+mov     rax, [rbp-30h]
+mov     [rax], rdx
+jmp     short loc_40CA22
+mov     eax, 0
+jmp     short locret_40CA7F
+add     [rbp+var_8], 1
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40CA4F
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_40C93C
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40CA73
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40CA7A
+mov     eax, 0
+jmp     short locret_40CA7F
+mov     eax, 1
+leave
+retn

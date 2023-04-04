@@ -1,0 +1,156 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+s1], rdi
+mov     [rbp+s2], rsi
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_403DAA
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    xstrdup_real
+jmp     loc_403F63
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_403DCE
+mov     ecx, 430070h
+mov     edx, 164h
+mov     esi, 42FFF6h
+mov     edi, 430000h
+call    ___assert_fail
+mov     [rbp+cnt], 0
+mov     eax, [rbp-20h]
+mov     [rbp+i], eax
+jmp     short loc_403DE1
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-38h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_403E55
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-40h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_403E55
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-38h]
+add     rax, rdx
+movzx   edx, byte ptr [rax]
+mov     eax, [rbp-24h]
+movsxd  rcx, eax
+mov     rax, [rbp-40h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_403E55
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-38h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_403E55
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-40h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_403DDD
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-38h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_403E8C
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-40h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_403E8C
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+mov     [rbp+cnt], eax
+jmp     loc_403DDB
+mov     [rbp+sepdirs1], 0
+jmp     short loc_403EB1
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-38h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_403EAD
+add     [rbp+sepdirs1], 1
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-38h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_403E95
+mov     edx, [rbp-1Ch]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+movsxd  rbx, eax
+mov     eax, [rbp-20h]
+movsxd  rdx, eax
+mov     rax, [rbp-40h]
+add     rax, rdx
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+add     rax, 1
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+res], rax
+mov     [rbp+i], 0
+jmp     short loc_403F2B
+mov     edx, [rbp-24h]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     edx, 3
+mov     esi, 43000Bh
+mov     rdi, rax
+call    _memcpy
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+cmp     eax, [rbp-1Ch]
+jl      short loc_403F02
+mov     eax, [rbp-20h]
+movsxd  rdx, eax
+mov     rax, [rbp-40h]
+lea     rcx, [rdx+rax]
+mov     edx, [rbp-24h]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     rsi, rcx
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp-18h]
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,92 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+progress], rdi
+mov     [rbp+howmuch], rsi
+movsd   [rbp+dltime], xmm0
+mov     rax, [rbp-18h]
+mov     [rbp+bp_0], rax
+mov     [rbp+force_screen_update], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+test    rax, rax
+jle     short loc_42138B
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rdx, rax
+jle     short loc_42138B
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rcx, [rbp-28h]
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+mov     [rbp+var_30], rcx
+movsd   xmm0, qword ptr [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    update_speed_ring
+mov     eax, cs:screen_width
+lea     edx, [rax-1]
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+cmp     edx, eax
+jz      short loc_421401
+mov     eax, cs:screen_width
+lea     edx, [rax-1]
+mov     rax, [rbp-8]
+mov     [rax+20h], edx
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+add     eax, 1
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+28h], rdx
+mov     [rbp+force_screen_update], 1
+mov     rax, [rbp-8]
+movsd   xmm1, qword ptr [rax+18h]
+movsd   xmm0, qword ptr [rbp-28h]
+subsd   xmm0, xmm1
+movsd   xmm1, cs:qword_436518
+ucomisd xmm1, xmm0
+jbe     short loc_421427
+cmp     [rbp+force_screen_update], 0
+jz      short loc_421460
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-8]
+mov     [rbp+var_30], rdx
+movsd   xmm0, qword ptr [rbp-30h]
+mov     rdi, rax
+call    create_image
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    display_image
+mov     rax, [rbp-8]
+movsd   xmm0, qword ptr [rbp-28h]
+movsd   qword ptr [rax+18h], xmm0
+jmp     short locret_421461
+nop
+leave
+retn

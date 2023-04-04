@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+s2], rsi
+mov     [rbp+var_18], rdx
+jmp     short loc_402E80
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_402E7B
+mov     rax, [rbp-8]
+mov     edx, [rax+8]
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     eax, 0
+jmp     short locret_402E91
+add     [rbp+var_8], 10h
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_402E4D
+mov     eax, 0FFFFFFFFh
+leave
+retn

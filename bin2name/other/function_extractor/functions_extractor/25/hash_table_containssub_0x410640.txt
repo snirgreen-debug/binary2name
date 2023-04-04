@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+ht], rdi
+mov     [rbp+key], rsi
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_mapping
+mov     [rbp+mp], rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+setnz   al
+movzx   eax, al
+leave
+retn

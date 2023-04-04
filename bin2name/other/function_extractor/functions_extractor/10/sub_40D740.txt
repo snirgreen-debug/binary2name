@@ -1,0 +1,209 @@
+push    r13
+push    r12
+mov     ecx, 11h
+push    rbp
+push    rbx
+mov     r12, rdi
+mov     rbx, rsi
+sub     rsp, 98h
+mov     rax, fs:28h
+mov     [rsp+0B8h+var_30], rax
+xor     eax, eax
+mov     rdi, rsp
+test    rsi, rsi
+mov     r13, rsp
+rep stosq
+mov     [rsp+0B8h+var_B8], 1
+jz      loc_40D8AE
+mov     rax, [rsi+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40D8A0
+jbe     short loc_40D7D0
+cmp     rax, 30000h
+jz      loc_40D8C0
+cmp     rax, 90000h
+jnz     loc_40D8AE
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+cmp     rax, 10000h
+jnz     loc_40D8AE
+mov     ecx, cs:dword_619884
+test    ecx, ecx
+jnz     loc_40DAB8
+mov     r8, [rbx]
+mov     ecx, 414045h
+xor     eax, eax
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+call    ___sprintf_chk
+mov     rbp, [rbx+8]
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rbp, 6192A0h
+jz      short loc_40D888
+cmp     rax, 40000h
+ja      short loc_40D888
+cmp     rax, 20000h
+jz      loc_40D8E0
+test    rbp, rbp
+mov     r8d, 414086h
+mov     ecx, 619CC0h
+cmovnz  r8, rbp
+mov     edx, 41407Ah
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+mov     rdx, [rsp+88h]
+xor     rdx, fs:28h
+jnz     loc_40DB05
+add     rsp, 98h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+retn
+cmp     rax, 0A0000h
+jz      loc_40DAE8
+xor     eax, eax
+jmp     short loc_40D85D
+mov     esi, cs:dword_619884
+test    esi, esi
+jz      loc_40DAD8
+mov     r8, [rbx]
+mov     ecx, 4140BDh
+jmp     loc_40D7F2
+mov     eax, cs:dword_619884
+test    eax, eax
+jz      loc_40D7EA
+mov     r8, [rsi]
+mov     ecx, 414059h
+jmp     loc_40D7F2
+test    rbp, rbp
+jz      loc_40DAF8
+movsxd  rax, dword ptr [rbp+0]
+mov     r8, [rax*8+6197A0h]
+mov     ecx, 619CC0h
+mov     edx, 41447Eh
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     ecx, 619CC0h
+mov     edx, 414490h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     ecx, 619CC0h
+mov     edx, 4144A9h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+movsd   xmm0, qword ptr [rbp+8]
+mov     ecx, 619CC0h
+mov     edx, 4144BCh
+mov     esi, 1
+mov     rdi, r12
+mov     eax, 1
+call    ___fprintf_chk
+movsd   xmm0, qword ptr [rbp+18h]
+mov     ecx, 619CC0h
+mov     edx, 4144CDh
+mov     esi, 1
+mov     rdi, r12
+mov     eax, 1
+call    ___fprintf_chk
+movsd   xmm0, qword ptr [rbp+20h]
+mov     ecx, 619CC0h
+mov     edx, 4144DDh
+mov     esi, 1
+mov     rdi, r12
+mov     eax, 1
+call    ___fprintf_chk
+movsd   xmm0, qword ptr [rbp+28h]
+mov     ecx, 619CC0h
+mov     edx, 4144EFh
+mov     esi, 1
+mov     rdi, r12
+mov     eax, 1
+call    ___fprintf_chk
+movsd   xmm0, qword ptr [rbp+10h]
+mov     ecx, 619CC0h
+mov     edx, 414502h
+mov     esi, 1
+mov     rdi, r12
+mov     eax, 1
+call    ___fprintf_chk
+mov     r8, [rbp+40h]
+mov     ecx, 619CC0h
+mov     edx, 414514h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     r8, [rbp+50h]
+mov     ecx, 619CC0h
+mov     edx, 414527h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     r8, [rbp+58h]
+mov     ecx, 619CC0h
+mov     edx, 414539h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     r8, [rbp+60h]
+mov     ecx, 619CC0h
+mov     edx, 41454Dh
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     r8, [rbp+48h]
+mov     ecx, 619CC0h
+mov     edx, 414562h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     ecx, 619CC0h
+mov     edx, 414576h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     ecx, 619CC0h
+mov     edx, 414588h
+mov     esi, 1
+mov     rdi, r12
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+jmp     loc_40D85D
+mov     edx, cs:dword_619880
+test    edx, edx
+jnz     loc_40D8AE
+mov     r8, [rsi]
+mov     ecx, 41403Ch
+jmp     loc_40D7F2
+mov     r8, [rbx]
+mov     ecx, 41402Bh
+jmp     loc_40D7F2
+mov     rcx, rbp
+mov     edx, 41459Ah
+jmp     short loc_40DA99
+mov     eax, 1
+mov     rbp, r13
+jmp     loc_40D8ED
+call    ___stack_chk_fail

@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+filename], rdi
+mov     rax, [rbp-18h]
+mov     esi, 40A6E0h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+script], rax
+cmp     [rbp+script], 0
+jz      short loc_40645A
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strdup
+mov     cs:global_script_filename, rax
+mov     rax, [rbp-8]
+leave
+retn

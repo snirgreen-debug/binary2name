@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     eax, esi
+mov     [rbp+var_C], al
+movsx   edx, byte ptr [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     rsi, 0FFFFFFFFFFFFFFFFh
+mov     rdi, rax
+call    sub_403915
+leave
+retn

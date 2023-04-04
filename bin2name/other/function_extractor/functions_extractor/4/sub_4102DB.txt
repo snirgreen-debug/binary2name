@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    sub_4101B3
+lea     rdx, [rbp-18h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40F08F
+test    al, al
+jz      short loc_410390
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 42EAF2h
+call    sub_410245
+test    al, al
+jz      short loc_410390
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40A098
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-10h]
+mov     [rax+1Ah], dl
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     [rax+38h], rdx
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    sub_4100AD
+movd    edx, xmm0
+mov     rax, [rbp-10h]
+mov     [rax+24h], edx
+mov     eax, 1
+jmp     short loc_410395
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4103A9
+call    ___stack_chk_fail
+leave
+retn

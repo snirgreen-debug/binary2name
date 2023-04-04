@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_38], rdi
+mov     [rbp+var_40], rsi
+mov     [rbp+var_48], rdx
+pxor    xmm0, xmm0
+movsd   [rbp+var_18], xmm0
+mov     [rbp+var_20], 0
+mov     [rbp+var_1C], 0
+movsd   xmm0, cs:qword_433B68
+movsd   [rbp+var_10], xmm0
+mov     rax, [rbp-38h]
+mov     [rbp+var_8], rax
+jmp     loc_41C4BD
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+mov     [rbp+var_21], al
+movsx   eax, byte ptr [rbp-21h]
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      short loc_41C495
+cmp     [rbp+var_20], 0
+jnz     short loc_41C454
+movsd   xmm1, qword ptr [rbp-18h]
+movsd   xmm0, cs:qword_433B90
+mulsd   xmm1, xmm0
+movsx   eax, byte ptr [rbp-21h]
+sub     eax, 30h
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+addsd   xmm0, xmm1
+movsd   [rbp+var_18], xmm0
+jmp     short loc_41C48C
+movsx   eax, byte ptr [rbp-21h]
+sub     eax, 30h
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+movsd   xmm2, qword ptr [rbp-10h]
+movsd   xmm1, cs:qword_433B90
+mulsd   xmm1, xmm2
+movsd   [rbp+var_10], xmm1
+divsd   xmm0, qword ptr [rbp-10h]
+movsd   xmm1, qword ptr [rbp-18h]
+addsd   xmm0, xmm1
+movsd   [rbp+var_18], xmm0
+mov     [rbp+var_1C], 1
+jmp     short loc_41C4B8
+cmp     [rbp+var_21], 2Eh
+jnz     short loc_41C4B1
+cmp     [rbp+var_20], 0
+jnz     short loc_41C4AA
+mov     [rbp+var_20], 1
+jmp     short loc_41C4B8
+mov     eax, 0
+jmp     short loc_41C4EA
+mov     eax, 0
+jmp     short loc_41C4EA
+add     [rbp+var_8], 1
+mov     rax, [rbp-8]
+cmp     rax, [rbp-40h]
+jb      loc_41C3FE
+cmp     [rbp+var_1C], 0
+jnz     short loc_41C4D8
+mov     eax, 0
+jmp     short loc_41C4EA
+mov     rax, [rbp-48h]
+movsd   xmm0, qword ptr [rbp-18h]
+movsd   qword ptr [rax], xmm0
+mov     eax, 1
+pop     rbp
+retn

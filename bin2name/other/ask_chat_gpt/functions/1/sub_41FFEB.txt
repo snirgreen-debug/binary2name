@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+jmp     short loc_420045
+mov     rax, cs:qword_62D748
+test    rax, rax
+jz      short loc_420017
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_42001C
+mov     eax, 0
+mov     rdi, rax
+call    sub_41F7C3
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     qword ptr [rax], 0
+call    sub_41FAB4
+mov     rax, cs:qword_62D748
+test    rax, rax
+jz      short loc_42006E
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_41FFF1
+mov     rax, cs:qword_62D748
+mov     rdi, rax
+call    sub_4200D3
+mov     cs:qword_62D748, 0
+call    sub_41FF8A
+mov     eax, 0
+pop     rbp
+retn

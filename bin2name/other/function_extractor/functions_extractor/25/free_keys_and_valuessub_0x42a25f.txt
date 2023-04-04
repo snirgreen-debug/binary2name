@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+ht], rdi
+mov     rax, [rbp-8]
+mov     edx, 0
+mov     esi, 42A22Ch
+mov     rdi, rax
+call    hash_table_map
+nop
+leave
+retn

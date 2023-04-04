@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pid], edi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rcx, [rbp-0Ch]
+mov     eax, [rbp-14h]
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+call    _waitpid
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_41020F
+call    ___stack_chk_fail
+leave
+retn

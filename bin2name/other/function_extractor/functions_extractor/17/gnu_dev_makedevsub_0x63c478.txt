@@ -1,0 +1,1 @@
+extrn gnu_dev_makedev:near

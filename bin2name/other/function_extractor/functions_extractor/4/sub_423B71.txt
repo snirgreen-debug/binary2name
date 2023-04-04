@@ -1,0 +1,205 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+path], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _chdir
+mov     [rbp+var_40], eax
+cmp     [rbp+var_40], 0
+jz      short loc_423BAD
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 24h
+jz      short loc_423BB5
+mov     eax, [rbp-40h]
+jmp     loc_423E77
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_30], rax
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     [rbp+var_28], rax
+lea     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_423A67
+cmp     [rbp+var_30], 0
+jnz     short loc_423C00
+mov     ecx, 432628h
+mov     edx, 7Eh
+mov     esi, 4325B8h
+mov     edi, 4325D4h
+call    ___assert_fail
+cmp     [rbp+var_30], 0FFFh
+ja      short loc_423C23
+mov     ecx, 432628h
+mov     edx, 7Fh
+mov     esi, 4325B8h
+mov     edi, 4325DCh
+call    ___assert_fail
+mov     rax, [rbp-58h]
+mov     esi, 4325D2h
+mov     rdi, rax
+call    _strspn
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 2
+jnz     loc_423CCE
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-58h]
+add     rdx, 3
+sub     rax, rdx
+mov     rdx, rax
+mov     rax, [rbp-58h]
+add     rax, 3
+mov     esi, 2Fh
+mov     rdi, rax
+call    _memchr
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jnz     short loc_423C8A
+call    ___errno_location
+mov     dword ptr [rax], 24h
+mov     eax, 0FFFFFFFFh
+jmp     loc_423E77
+mov     rax, [rbp-18h]
+mov     byte ptr [rax], 0
+mov     rdx, [rbp-58h]
+lea     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_423AE9
+mov     [rbp+var_3C], eax
+mov     rax, [rbp-18h]
+mov     byte ptr [rax], 2Fh
+cmp     [rbp+var_3C], 0
+jnz     loc_423E42
+mov     rax, [rbp-18h]
+add     rax, 1
+mov     rdi, rax
+call    sub_423B43
+mov     [rbp+path], rax
+jmp     short loc_423CF6
+cmp     [rbp+var_20], 0
+jz      short loc_423CF6
+lea     rax, [rbp-50h]
+mov     esi, 4325D2h
+mov     rdi, rax
+call    sub_423AE9
+test    eax, eax
+jnz     loc_423E45
+mov     rax, [rbp-20h]
+add     [rbp+path], rax
+mov     rax, [rbp-58h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_423D1A
+mov     ecx, 432628h
+mov     edx, 0A2h
+mov     esi, 4325B8h
+mov     edi, 4325E8h
+call    ___assert_fail
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-28h]
+jbe     loc_423DE4
+mov     ecx, 432628h
+mov     edx, 0A3h
+mov     esi, 4325B8h
+mov     edi, 4325F4h
+call    ___assert_fail
+mov     rax, [rbp-58h]
+mov     edx, 1000h
+mov     esi, 2Fh
+mov     rdi, rax
+call    _memrchr
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_423D77
+call    ___errno_location
+mov     dword ptr [rax], 24h
+mov     eax, 0FFFFFFFFh
+jmp     loc_423E77
+mov     rax, [rbp-10h]
+mov     byte ptr [rax], 0
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-58h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 0FFFh
+jle     short loc_423DAD
+mov     ecx, 432628h
+mov     edx, 0B3h
+mov     esi, 4325B8h
+mov     edi, 432603h
+call    ___assert_fail
+mov     rdx, [rbp-58h]
+lea     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_423AE9
+mov     [rbp+var_38], eax
+mov     rax, [rbp-10h]
+mov     byte ptr [rax], 2Fh
+cmp     [rbp+var_38], 0
+jnz     short loc_423E48
+mov     rax, [rbp-10h]
+add     rax, 1
+mov     rdi, rax
+call    sub_423B43
+mov     [rbp+path], rax
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-58h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 0FFFh
+jg      loc_423D41
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-28h]
+jnb     short loc_423E1F
+mov     rdx, [rbp-58h]
+lea     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_423AE9
+test    eax, eax
+jnz     short loc_423E4B
+lea     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_423A7C
+test    eax, eax
+jnz     short loc_423E4E
+lea     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_423A97
+mov     eax, 0
+jmp     short loc_423E77
+nop
+jmp     short loc_423E4F
+nop
+jmp     short loc_423E4F
+nop
+jmp     short loc_423E4F
+nop
+jmp     short loc_423E4F
+nop
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_34], eax
+lea     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_423A97
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-34h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_423E8B
+call    ___stack_chk_fail
+leave
+retn

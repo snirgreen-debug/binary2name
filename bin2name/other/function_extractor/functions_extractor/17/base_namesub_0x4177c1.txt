@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    last_component
+mov     [rbp+base], rax
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_417808
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    base_len
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xstrndup
+jmp     short locret_417842
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    base_len
+mov     [rbp+length], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_41782F
+add     [rbp+length], 1
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    xstrndup
+leave
+retn

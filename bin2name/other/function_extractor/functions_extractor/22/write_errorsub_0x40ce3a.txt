@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 411F1Ch
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     [rdx], eax
+mov     edi, 64CF20h
+call    _perror
+call    abort_gzip

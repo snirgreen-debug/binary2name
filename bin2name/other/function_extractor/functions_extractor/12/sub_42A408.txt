@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rcx, rdx
+mov     edx, 437621h
+mov     esi, 18h
+mov     rdi, rax
+mov     eax, 0
+call    _snprintf
+nop
+leave
+retn

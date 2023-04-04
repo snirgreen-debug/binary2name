@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+cmp     eax, 1
+jz      loc_413E21
+call    grecs_value_list_create
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_413DA2
+cmp     eax, 2
+jz      short loc_413DC2
+jmp     short loc_413E09
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grecs_value_ptr_from_static
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_list_append
+jmp     short loc_413E09
+mov     [rbp+var_C], 0
+jmp     short loc_413DF6
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_list_append
+add     [rbp+var_C], 1
+mov     eax, [rbp-0Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+cmp     rdx, rax
+jb      short loc_413DCB
+mov     rax, [rbp-18h]
+mov     dword ptr [rax], 1
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-8]
+mov     [rax+28h], rdx
+jmp     short locret_413E22
+nop
+leave
+retn

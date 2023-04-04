@@ -1,0 +1,21 @@
+push    rbp
+push    rbx
+mov     rbp, rsi
+mov     rbx, rdi
+sub     rsp, 8
+test    rdi, rdi
+jnz     short loc_406D81
+jmp     short loc_406D90
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_406D90
+mov     rsi, [rbx]
+mov     rdi, rbp
+call    _strcmp
+test    eax, eax
+jnz     short loc_406D78
+add     rsp, 8
+mov     rax, rbx
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+al_0], rdi
+mov     eax, esi
+mov     [rbp+silent], edx
+mov     [rbp+port], ax
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-1Ch]
+lea     rcx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    address_list_get_bounds
+mov     eax, [rbp-20h]
+mov     [rbp+i], eax
+jmp     short loc_402D0C
+lea     rdx, [rbp-10h]
+mov     ecx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     esi, ecx
+mov     rdi, rax
+call    address_list_copy_one
+movzx   ecx, word ptr [rbp-2Ch]
+mov     edx, [rbp-30h]
+lea     rax, [rbp-10h]
+mov     esi, ecx
+mov     rdi, rax
+call    connect_to_one
+mov     [rbp+sock], eax
+cmp     [rbp+sock], 0
+js      short loc_402CF7
+mov     eax, [rbp-14h]
+jmp     short loc_402D19
+mov     edx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    address_list_set_faulty
+add     [rbp+i], 1
+mov     eax, [rbp-1Ch]
+cmp     [rbp+i], eax
+jl      short loc_402CBF
+mov     eax, 0FFFFFFFFh
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_402D2D
+call    ___stack_chk_fail
+leave
+retn

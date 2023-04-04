@@ -1,0 +1,159 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 178h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rax, [rbp-140h]
+mov     rdi, rax
+call    set_stat_placeholders
+lea     rcx, [rbp-150h]
+lea     rdx, [rbp-140h]
+mov     rsi, [rbp-178h]
+mov     rax, [rbp-170h]
+mov     rdi, rax
+call    collect_arg_stat_info
+xor     eax, 1
+test    al, al
+jz      short loc_4120F7
+mov     eax, 0
+jmp     loc_412366
+lea     rax, [rbp-0B0h]
+mov     rdi, rax
+call    set_stat_placeholders
+mov     [rbp+fd], 0FFFFFFFDh
+mov     [rbp+openflags], 0
+mov     eax, cs:options_0.symlink_handling
+test    eax, eax
+jnz     short loc_41216F
+movzx   eax, cs:options_0.open_nofollow_available
+test    al, al
+jz      short loc_412145
+or      [rbp+openflags], 20000h
+mov     [rbp+fd], 0FFFFFFFFh
+jmp     short loc_412179
+mov     eax, [rbp-128h]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     short loc_412163
+mov     [rbp+fd], 0FFFFFFFEh
+jmp     short loc_412179
+mov     [rbp+fd], 0FFFFFFFFh
+jmp     short loc_412179
+mov     [rbp+fd], 0FFFFFFFFh
+cmp     [rbp+fd], 0FFFFFFFDh
+jnz     short loc_41219B
+mov     ecx, 42F918h
+mov     edx, 8FAh
+mov     esi, 42E06Ch
+mov     edi, 42F110h
+call    ___assert_fail
+cmp     [rbp+fd], 0FFFFFFFFh
+jnz     loc_4122E3
+mov     rax, [rbp-150h]
+mov     edx, [rbp-154h]
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    open_cloexec
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      loc_4122E3
+lea     rdx, [rbp-0B0h]
+mov     eax, [rbp-158h]
+mov     rsi, rdx
+mov     edi, eax
+call    fstat
+test    eax, eax
+jz      short loc_41220A
+mov     rbx, [rbp-150h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    fatal_target_file_error
+mov     rax, cs:options_0.xstat
+mov     rdx, [rbp-150h]
+lea     rcx, [rbp-140h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jz      short loc_412243
+mov     rbx, [rbp-150h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    fatal_target_file_error
+mov     eax, cs:options_0.symlink_handling
+test    eax, eax
+jnz     short loc_4122C7
+movzx   eax, cs:options_0.open_nofollow_available
+xor     eax, 1
+test    al, al
+jz      short loc_4122C7
+mov     eax, [rbp-128h]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     short loc_412286
+mov     eax, [rbp-158h]
+mov     edi, eax
+call    _close
+mov     [rbp+fd], 0FFFFFFFFh
+jmp     short loc_4122E3
+mov     rdx, [rbp-140h]
+mov     rax, [rbp-0B0h]
+cmp     rdx, rax
+jnz     short loc_4122AC
+mov     rdx, [rbp-138h]
+mov     rax, [rbp-0A8h]
+cmp     rdx, rax
+jz      short loc_4122C5
+mov     eax, [rbp-158h]
+mov     edi, eax
+call    _close
+mov     [rbp+fd], 0FFFFFFFFh
+jmp     short loc_4122E3
+jmp     short loc_4122E3
+lea     rax, [rbp-140h]
+lea     rdx, [rbp-0B0h]
+mov     ecx, 12h
+mov     rdi, rax
+mov     rsi, rdx
+rep movsq
+mov     rdx, [rbp-150h]
+mov     rax, [rbp-168h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rdx, [rbp-138h]
+mov     rax, [rbp-148h]
+mov     [rax+38h], rdx
+mov     rdx, [rbp-140h]
+mov     rax, [rbp-148h]
+mov     [rax+40h], rdx
+mov     rax, [rbp-148h]
+mov     edx, [rbp-158h]
+mov     [rax+48h], edx
+mov     rax, [rbp-148h]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-148h]
+mov     byte ptr [rax+1Ah], 1
+mov     rax, [rbp-148h]
+movss   xmm0, cs:dword_42F960
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_41237A
+call    ___stack_chk_fail
+add     rsp, 178h
+pop     rbx
+pop     rbp
+retn

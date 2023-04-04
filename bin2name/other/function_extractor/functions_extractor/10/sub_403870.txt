@@ -1,0 +1,15 @@
+test    rdi, rdi
+mov     qword ptr [rsi], 0
+mov     [rsi+8], rdx
+mov     [rsi+18h], rdx
+mov     dword ptr [rsi+20h], 0
+mov     dword ptr [rsi+24h], 0
+jz      short loc_4038B0
+mov     rax, [rdi+30h]
+mov     [rsi+30h], rax
+mov     eax, [rdi+20h]
+mov     dword ptr [rsi+24h], 1
+mov     [rsi+20h], eax
+retn
+mov     qword ptr [rsi+30h], 0
+retn

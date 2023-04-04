@@ -1,0 +1,102 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+bytes], rdi
+mov     [rbp+dltime], rsi
+mov     [rbp+timer], rdx
+mov     rax, [rbp-40h]
+movsd   xmm0, qword ptr [rax]
+movsd   xmm1, cs:limit_data.chunk_start
+subsd   xmm0, xmm1
+movsd   [rbp+delta_t], xmm0
+mov     rdx, cs:limit_data.chunk_bytes
+mov     rax, [rbp-38h]
+add     rax, rdx
+mov     cs:limit_data.chunk_bytes, rax
+mov     rax, cs:limit_data.chunk_bytes
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, cs:qword_436C48
+mulsd   xmm0, xmm1
+mov     rax, cs:opt.limit_rate
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, rax
+divsd   xmm0, xmm1
+movsd   [rbp+expected], xmm0
+movsd   xmm0, qword ptr [rbp-20h]
+ucomisd xmm0, qword ptr [rbp-28h]
+jbe     loc_424405
+movsd   xmm0, qword ptr [rbp-20h]
+subsd   xmm0, qword ptr [rbp-28h]
+movsd   xmm1, cs:limit_data.sleep_adjust
+addsd   xmm0, xmm1
+movsd   [rbp+slp], xmm0
+movsd   xmm0, cs:qword_436C50
+ucomisd xmm0, qword ptr [rbp-18h]
+jbe     short loc_424334
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_424422
+mov     rdx, cs:limit_data.chunk_bytes
+movsd   xmm0, qword ptr [rbp-28h]
+mov     rax, [rbp-18h]
+movapd  xmm1, xmm0
+mov     rsi, rdx
+mov     [rbp+var_50], rax
+movsd   xmm0, qword ptr [rbp-50h]
+mov     edi, 436A40h
+mov     eax, 2
+call    debug_logprintf
+jmp     loc_424422
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_424370
+movsd   xmm0, cs:limit_data.sleep_adjust
+mov     rdx, cs:limit_data.chunk_bytes
+mov     rax, [rbp-18h]
+movapd  xmm1, xmm0
+mov     rsi, rdx
+mov     [rbp+var_50], rax
+movsd   xmm0, qword ptr [rbp-50h]
+mov     edi, 436A68h
+mov     eax, 2
+call    debug_logprintf
+mov     rax, [rbp-40h]
+movsd   xmm0, qword ptr [rax]
+movsd   [rbp+t0], xmm0
+movsd   xmm1, qword ptr [rbp-18h]
+movsd   xmm0, cs:qword_436C48
+mulsd   xmm0, xmm1
+ucomisd xmm0, cs:qword_436C58
+jnb     short loc_42439F
+cvttsd2si rax, xmm0
+jmp     short loc_4243BD
+movsd   xmm1, cs:qword_436C58
+subsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     rdx, 8000000000000000h
+xor     rax, rdx
+mov     edi, eax
+call    _usleep
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    wtimer_elapsed
+movq    rax, xmm0
+mov     [rbp+t1], rax
+movsd   xmm0, qword ptr [rbp-8]
+subsd   xmm0, qword ptr [rbp-10h]
+movsd   xmm1, qword ptr [rbp-18h]
+subsd   xmm1, xmm0
+movapd  xmm0, xmm1
+movsd   cs:limit_data.sleep_adjust, xmm0
+mov     rax, [rbp-40h]
+movsd   xmm0, qword ptr [rbp-8]
+movsd   qword ptr [rax], xmm0
+mov     cs:limit_data.chunk_bytes, 0
+mov     rax, [rbp-40h]
+movsd   xmm0, qword ptr [rax]
+movsd   cs:limit_data.chunk_start, xmm0
+jmp     short locret_424423
+nop
+leave
+retn

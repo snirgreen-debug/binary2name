@@ -1,0 +1,128 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     eax, [rbp-1Ch]
+cdqe
+mov     eax, [rax*4+615DE0h]
+mov     [rbp+var_4], eax
+mov     eax, [rbp-1Ch]
+add     eax, eax
+mov     [rbp+var_8], eax
+jmp     loc_408F3F
+mov     eax, cs:dword_6166D4
+cmp     [rbp+var_8], eax
+jge     loc_408E7D
+mov     eax, [rbp-8]
+add     eax, 1
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   edx, word ptr [rax]
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+cmp     dx, ax
+jb      short loc_408E79
+mov     eax, [rbp-8]
+add     eax, 1
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   edx, word ptr [rax]
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+cmp     dx, ax
+jnz     short loc_408E7D
+mov     eax, [rbp-8]
+add     eax, 1
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+movzx   edx, byte ptr [rax+6166E0h]
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+movzx   eax, byte ptr [rax+6166E0h]
+cmp     dl, al
+ja      short loc_408E7D
+add     [rbp+var_8], 1
+mov     eax, [rbp-4]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   edx, word ptr [rax]
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+cmp     dx, ax
+jb      loc_408F4E
+mov     eax, [rbp-4]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   edx, word ptr [rax]
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-18h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+cmp     dx, ax
+jnz     short loc_408F1E
+mov     eax, [rbp-4]
+cdqe
+movzx   edx, byte ptr [rax+6166E0h]
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+615DE0h]
+cdqe
+movzx   eax, byte ptr [rax+6166E0h]
+cmp     dl, al
+jbe     short loc_408F4E
+mov     eax, [rbp-8]
+cdqe
+mov     edx, [rax*4+615DE0h]
+mov     eax, [rbp-1Ch]
+cdqe
+mov     ds:dword_615DE0[rax*4], edx
+mov     eax, [rbp-8]
+mov     [rbp+var_1C], eax
+shl     [rbp+var_8], 1
+mov     eax, cs:dword_6166D4
+cmp     [rbp+var_8], eax
+jle     loc_408DA9
+mov     eax, [rbp-1Ch]
+cdqe
+mov     edx, [rbp-4]
+mov     ds:dword_615DE0[rax*4], edx
+nop
+pop     rbp
+retn

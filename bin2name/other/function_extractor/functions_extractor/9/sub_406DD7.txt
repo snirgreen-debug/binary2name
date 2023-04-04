@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+sig], edi
+call    sub_406D2B
+mov     eax, cs:dword_614940
+cmp     [rbp+sig], eax
+jnz     short loc_406DFC
+mov     edi, 2
+call    __exit
+mov     eax, [rbp-4]
+mov     esi, 0
+mov     edi, eax
+call    _signal
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _raise
+nop
+leave
+retn

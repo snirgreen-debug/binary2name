@@ -1,0 +1,99 @@
+test    End, End
+push    r12
+mov     r12, pfile
+push    rbp
+mov     rbp, pvm
+push    rbx
+mov     rbx, End
+jle     loc_410DE8
+test    End, End
+jz      short loc_410DC8
+cmp     End, 1
+jz      short loc_410D78
+cmp     End, 0FFFFFFFFFFFFFFFFh
+mov     eax, 1
+jz      short loc_410D90
+pop     End
+pop     pvm
+pop     pfile
+retn
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+pop     End
+xor     eax, eax
+pop     pvm
+pop     pfile
+retn
+mov     rax, [pvm+8]
+mov     r8d, 414086h
+mov     ecx, 619CC0h
+mov     edx, 41408Ch
+test    rax, rax
+cmovnz  r8, rax
+mov     rdi, pfile
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+pop     End
+mov     eax, 1
+pop     pvm
+pop     pfile
+retn
+mov     rax, [pvm+8]
+mov     r8d, 414086h
+mov     ecx, 619CC0h
+mov     edx, 41408Ah
+test    rax, rax
+cmovnz  r8, rax
+jmp     short loc_410DAB
+test    pvm, pvm
+jz      short loc_410E60
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_410EA0
+jbe     short loc_410E70
+cmp     rax, 30000h
+jz      short loc_410E30
+cmp     rax, 90000h
+jnz     short loc_410E60
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+mov     eax, cs:bForR
+test    eax, eax
+jnz     short loc_410EB5
+mov     r8, [rbp+0]
+mov     ecx, 414045h
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+jmp     loc_410D56
+mov     r8, [pvm+0]
+mov     ecx, 4140BDh
+jmp     short loc_410E43
+cmp     rax, 10000h
+jnz     short loc_410E60
+mov     ecx, cs:bForR
+test    ecx, ecx
+jz      short loc_410E3A
+mov     edx, cs:bForInits
+test    edx, edx
+jnz     short loc_410E60
+mov     r8, [pvm]
+mov     ecx, 41403Ch
+jmp     short loc_410E43
+mov     esi, cs:bForR
+test    esi, esi
+jnz     short loc_410E60
+mov     r8, [pvm+0]
+mov     ecx, 41402Bh
+jmp     short loc_410E43
+mov     r8, [pvm]
+mov     ecx, 414059h
+jmp     loc_410E43

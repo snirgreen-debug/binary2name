@@ -1,0 +1,146 @@
+push    r14
+push    r13
+push    r12
+push    rbp
+mov     r12, rdx
+push    rbx
+mov     rbx, rsi
+sub     rsp, 410h
+mov     rbp, [rsi]
+mov     rax, fs:28h
+mov     [rsp+438h+var_30], rax
+xor     eax, eax
+cmp     byte ptr [rbp+0], 5Fh
+jz      short loc_409F20
+mov     r12, [rdx]
+mov     r13, [rsi+10h]
+mov     r14, [rsi+8]
+mov     rsi, rbp
+mov     rbx, [r12+30h]
+mov     rdi, [rbx+20h]
+call    sub_406D60
+test    rax, rax
+jz      short loc_409F68
+mov     rcx, [rsp+408h]
+xor     rcx, fs:28h
+mov     eax, 1
+jnz     loc_40A126
+add     rsp, 410h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+mov     r8, [rdx+8]
+mov     ecx, 413906h
+mov     r9, rbp
+mov     edx, 3FFh
+mov     esi, 1
+mov     rdi, rsp
+call    ___sprintf_chk
+mov     rcx, [rbx+10h]
+cmp     rcx, 5F000h
+jz      loc_409FE0
+mov     rdx, [r12+10h]
+mov     rdi, [r12]
+mov     rsi, rsp
+call    sub_409CE0
+jmp     short loc_409EF2
+cmp     r13, 10000h
+jz      loc_409FF8
+cmp     r13, 20000h
+jz      loc_40A070
+cmp     r13, 30000h
+jz      loc_40A080
+cmp     r13, 40000h
+jz      short loc_409FA5
+cmp     r13, 5F000h
+jnz     loc_40A090
+lea     rdi, [rbx+20h]
+mov     rcx, r13
+mov     rdx, r14
+mov     rsi, rbp
+call    sub_406B10
+cmp     r13, 40000h
+jnz     loc_409EF2
+mov     rcx, r14
+mov     rdx, rbp
+mov     esi, 413959h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_409EF2
+mov     rdx, [rbx+8]
+mov     rdi, [r12]
+mov     rsi, rsp
+call    sub_409CE0
+jmp     loc_409EF2
+mov     edx, 1
+mov     rsi, rbp
+mov     rdi, r12
+call    sub_408040
+mov     rdi, [rbx+20h]
+mov     rsi, rbp
+call    sub_406D60
+mov     r8, r13
+mov     rcx, r14
+mov     rdx, rbp
+mov     rsi, rax
+mov     rdi, r12
+call    sub_406E80
+cmp     r13, 10000h
+jz      loc_40A0D8
+cmp     r13, 20000h
+jz      short loc_40A0B6
+cmp     r13, 30000h
+jnz     loc_409EF2
+mov     rcx, r14
+mov     rdx, rbp
+mov     esi, 41398Fh
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_409EF2
+mov     edx, 2
+jmp     short loc_409FFD
+mov     edx, 3
+jmp     loc_409FFD
+lea     rax, [r13-6F000h]
+test    rax, 0FFFFFFFFFFFDFFFFh
+jnz     short loc_40A0F4
+lea     rdi, [rbx+20h]
+mov     rcx, r13
+mov     rdx, r14
+mov     rsi, rbp
+call    sub_406B10
+jmp     loc_409EF2
+mov     rcx, r14
+mov     rdx, rbp
+mov     esi, 41397Dh
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_409EF2
+mov     rcx, r14
+mov     rdx, rbp
+mov     esi, 41396Bh
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     loc_409EF2
+xor     edx, edx
+mov     rsi, rbp
+mov     rdi, r12
+call    sub_408040
+mov     rdi, [rbx+20h]
+mov     rsi, rbp
+call    sub_406D60
+mov     r8, r13
+mov     rcx, r14
+mov     rdx, rbp
+mov     rsi, rax
+mov     rdi, r12
+call    sub_406E80
+jmp     loc_409EF2
+call    ___stack_chk_fail

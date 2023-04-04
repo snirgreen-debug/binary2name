@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 0
+jz      short loc_40E29F
+mov     eax, cs:grecs_trace_flags
+or      eax, 2
+mov     cs:grecs_trace_flags, eax
+jmp     short loc_40E2AE
+mov     eax, cs:grecs_trace_flags
+and     eax, 0FFFFFFFDh
+mov     cs:grecs_trace_flags, eax
+nop
+pop     rbp
+retn

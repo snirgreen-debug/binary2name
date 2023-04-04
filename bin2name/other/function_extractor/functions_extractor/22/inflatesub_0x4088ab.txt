@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     cs:outcnt, 0
+mov     cs:bk, 0
+mov     cs:bb, 0
+mov     [rbp+h], 0
+mov     cs:hufts, 0
+lea     rax, [rbp-14h]
+mov     rdi, rax
+call    inflate_block
+mov     [rbp+r], eax
+cmp     [rbp+r], 0
+jz      short loc_40890C
+mov     eax, [rbp-0Ch]
+jmp     short loc_408968
+mov     eax, cs:hufts
+cmp     eax, [rbp-10h]
+jbe     short loc_408920
+mov     eax, cs:hufts
+mov     [rbp+h], eax
+mov     eax, [rbp-14h]
+test    eax, eax
+jz      short loc_4088E8
+jmp     short loc_408947
+mov     eax, cs:bk
+sub     eax, 8
+mov     cs:bk, eax
+mov     eax, cs:inptr
+sub     eax, 1
+mov     cs:inptr, eax
+mov     eax, cs:bk
+cmp     eax, 7
+ja      short loc_408929
+mov     eax, cs:outcnt
+mov     cs:outcnt, eax
+call    flush_window
+mov     eax, 0
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_40897C
+call    ___stack_chk_fail
+leave
+retn

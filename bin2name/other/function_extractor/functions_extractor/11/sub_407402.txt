@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-10h]
+movsd   xmm0, qword ptr [rax+640h]
+mov     rax, [rbp-8]
+movsd   qword ptr [rax+640h], xmm0
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40738A
+mov     rax, [rbp-10h]
+lea     rdx, [rax+320h]
+mov     rax, [rbp-8]
+add     rax, 320h
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40738A
+nop
+leave
+retn

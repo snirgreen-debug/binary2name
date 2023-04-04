@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 1Ch
+mov     esi, 1
+mov     edi, 4039B0h
+call    _fwrite
+mov     edi, 21h
+call    _exit

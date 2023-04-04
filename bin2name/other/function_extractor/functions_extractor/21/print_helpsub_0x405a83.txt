@@ -1,0 +1,187 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 1C8h
+mov     rax, fs:28h
+mov     [rbp+var_28], rax
+xor     eax, eax
+lea     rax, [rbp-1D0h]
+mov     esi, 409FE0h
+mov     edx, 11h
+mov     rdi, rax
+mov     rcx, rdx
+rep movsq
+lea     rax, [rbp-140h]
+mov     esi, 40A140h
+mov     edx, 11h
+mov     rdi, rax
+mov     rcx, rdx
+rep movsq
+mov     edi, 4098D8h
+call    _gettext
+mov     [rbp+help], rax
+mov     edi, 409900h
+call    _gettext
+mov     [rbp+help+8], rax
+mov     edi, 409957h
+call    _gettext
+mov     [rbp+help+10h], rax
+mov     edi, 409978h
+call    _gettext
+mov     [rbp+help+18h], rax
+mov     edi, 4099A0h
+call    _gettext
+mov     [rbp+help+20h], rax
+mov     edi, 409A18h
+call    _gettext
+mov     [rbp+help+28h], rax
+mov     edi, 409A44h
+call    _gettext
+mov     [rbp+help+30h], rax
+mov     edi, 409A59h
+call    _gettext
+mov     [rbp+help+38h], rax
+mov     edi, 409A6Eh
+call    _gettext
+mov     [rbp+help+40h], rax
+mov     edi, 409A8Ch
+call    _gettext
+mov     [rbp+help+48h], rax
+mov     edi, 409AB0h
+call    _gettext
+mov     [rbp+help+50h], rax
+mov     edi, 409AD8h
+call    _gettext
+mov     [rbp+help+58h], rax
+mov     edi, 409AFCh
+call    _gettext
+mov     [rbp+help+60h], rax
+mov     edi, 409B10h
+call    _gettext
+mov     [rbp+help+68h], rax
+mov     edi, 409B38h
+call    _gettext
+mov     [rbp+help+70h], rax
+mov     edi, 409B60h
+call    _gettext
+mov     [rbp+help+78h], rax
+mov     edi, 409BB8h
+call    _gettext
+mov     [rbp+help+80h], rax
+mov     edi, 409BF8h
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 409C82h
+call    _gettext
+mov     r13, rax
+mov     edi, 409C8Eh
+call    _gettext
+mov     r12, rax
+mov     rbx, cs:argv0
+mov     edi, 409C96h
+call    _gettext
+mov     r8, r13
+mov     rcx, r12
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 409C9Ch
+mov     eax, 0
+call    _printf
+mov     edi, 409CB6h
+call    _gettext
+mov     rsi, rax
+mov     edi, 409CBEh
+mov     eax, 0
+call    _printf
+mov     [rbp+loop], 0
+jmp     short loc_405CB5
+mov     eax, [rbp-1D4h]
+cdqe
+mov     rdx, [rbp+rax*8-0B0h]
+mov     eax, [rbp-1D4h]
+cdqe
+mov     rsi, [rbp+rax*8-140h]
+mov     eax, [rbp-1D4h]
+cdqe
+mov     rax, [rbp+rax*8-1D0h]
+sub     rsp, 8
+push    4Bh 
+mov     r9d, 19h
+mov     r8d, 8
+mov     ecx, 1
+mov     rdi, rax
+call    print_usage_item
+add     rsp, 10h
+add     [rbp+loop], 1
+mov     eax, [rbp-1D4h]
+cmp     eax, 10h
+jbe     short loc_405C5B
+mov     edi, 409CC8h
+call    _gettext
+mov     edx, 409CFCh
+mov     esi, 409D08h
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 409D60h
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 409D97h
+call    _gettext
+mov     rsi, rax
+mov     edi, 409CBEh
+mov     eax, 0
+call    _printf
+mov     rbx, cs:argv0
+mov     edi, 409DA0h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 409DD3h
+mov     eax, 0
+call    _printf
+mov     rbx, cs:argv0
+mov     edi, 409DE2h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 409DFFh
+mov     eax, 0
+call    _printf
+mov     rbx, cs:argv0
+mov     edi, 409E18h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 409E68h
+mov     eax, 0
+call    _printf
+mov     rbx, cs:argv0
+mov     edi, 409E98h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 409F20h
+mov     eax, 0
+call    _printf
+mov     edi, 409F50h
+call    _gettext
+mov     rdi, rax
+call    _puts
+nop
+mov     rax, [rbp-28h]
+xor     rax, fs:28h
+jz      short loc_405DD3
+call    ___stack_chk_fail
+lea     rsp, [rbp-18h]
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

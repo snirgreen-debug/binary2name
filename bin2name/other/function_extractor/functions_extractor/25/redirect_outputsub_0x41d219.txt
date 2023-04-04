@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     esi, 0
+mov     edi, 433B9Ch
+call    unique_name
+mov     [rbp+logfile], rax
+mov     rbx, cs:redirect_request_signal_name
+mov     edi, 433BA8h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-18h]
+mov     esi, 433B9Ah
+mov     rdi, rax
+call    _fopen
+mov     cs:logfp, rax
+mov     rax, cs:logfp
+test    rax, rax
+jnz     short loc_41D2D0
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 433BD3h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-18h]
+mov     rcx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     cs:inhibit_logging, 1
+jmp     short loc_41D2D5
+call    log_dump_context
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     cs:save_context_p, 0
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

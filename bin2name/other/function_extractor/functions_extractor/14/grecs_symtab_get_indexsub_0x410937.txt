@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     [rbp+var_40], rcx
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_41098A
+cmp     [rbp+var_40], 0
+jz      short loc_410980
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    symtab_rehash
+mov     [rbp+var_10], eax
+cmp     [rbp+var_10], 0
+jz      short loc_41098A
+mov     eax, [rbp-10h]
+jmp     locret_410AAB
+mov     eax, 2
+jmp     locret_410AAB
+mov     rax, [rbp-30h]
+mov     rax, [rax+18h]
+mov     rdx, [rbp-30h]
+mov     edx, [rdx+4]
+mov     edx, edx
+mov     edx, [rdx*4+62D220h]
+mov     ecx, edx
+mov     rdx, [rbp-38h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+var_C], eax
+mov     eax, [rbp-0Ch]
+mov     [rbp+var_14], eax
+jmp     short loc_410A23
+mov     rax, [rbp-30h]
+mov     rax, [rax+20h]
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jnz     short loc_4109FB
+cmp     [rbp+var_40], 0
+jz      short loc_4109E8
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-28h]
+mov     edx, [rbp-14h]
+mov     [rax], edx
+mov     eax, 0
+jmp     locret_410AAB
+add     [rbp+var_14], 1
+mov     rax, [rbp-30h]
+mov     eax, [rax+4]
+mov     eax, eax
+mov     eax, [rax*4+62D220h]
+cmp     [rbp+var_14], eax
+jb      short loc_410A1B
+mov     [rbp+var_14], 0
+mov     eax, [rbp-14h]
+cmp     eax, [rbp-0Ch]
+jz      short loc_410A49
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+mov     edx, [rbp-14h]
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     loc_4109BB
+jmp     short loc_410A4A
+nop
+cmp     [rbp+var_40], 0
+jnz     short loc_410A58
+mov     eax, 2
+jmp     short locret_410AAB
+cmp     [rbp+var_8], 0
+jnz     short loc_410A79
+mov     rax, [rbp-40h]
+mov     dword ptr [rax], 1
+mov     rax, [rbp-28h]
+mov     edx, [rbp-14h]
+mov     [rax], edx
+mov     eax, 0
+jmp     short locret_410AAB
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    symtab_rehash
+mov     [rbp+var_10], eax
+cmp     [rbp+var_10], 0
+jz      short loc_410A93
+mov     eax, [rbp-10h]
+jmp     short locret_410AAB
+mov     rcx, [rbp-40h]
+mov     rdx, [rbp-38h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    grecs_symtab_get_index
+leave
+retn

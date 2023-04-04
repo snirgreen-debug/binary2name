@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+movsd   [rbp+var_18], xmm0
+mov     [rbp+var_20], rdi
+mov     eax, 0
+call    sub_410F88
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_411062
+mov     rax, [rbp-20h]
+mov     dword ptr [rax], 0Eh
+mov     eax, 0
+jmp     short locret_411081
+mov     rax, [rbp-8]
+movsd   xmm0, qword ptr [rbp-18h]
+movsd   qword ptr [rax+640h], xmm0
+mov     rax, [rbp-20h]
+mov     dword ptr [rax], 0
+mov     rax, [rbp-8]
+leave
+retn

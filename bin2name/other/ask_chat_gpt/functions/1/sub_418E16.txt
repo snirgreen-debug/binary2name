@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+98h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+0A0h]
+mov     [rbp+var_8], rax
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-30h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+var_1D], al
+mov     rax, [rbp-30h]
+add     rax, 1
+mov     [rbp+var_18], rax
+jmp     short loc_418E89
+cmp     [rbp+var_1D], 22h
+jnz     short loc_418E84
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jnz     short loc_418E84
+add     [rbp+var_18], 1
+add     [rbp+var_18], 1
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-8]
+jnb     short loc_418EA6
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, [rbp-1Dh]
+jnz     short loc_418E67
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-8]
+jnb     short loc_418F0D
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, [rbp-1Dh]
+jnz     short loc_418F0D
+mov     [rbp+var_1C], 104h
+cmp     [rbp+var_1D], 27h
+jnz     short loc_418ED4
+or      [rbp+var_1C], 8
+mov     rax, [rbp-30h]
+lea     rsi, [rax+1]
+mov     ecx, [rbp-1Ch]
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_41575A
+test    eax, eax
+jz      short loc_418EFA
+mov     eax, 2
+jmp     short locret_418F32
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+nop
+mov     eax, 0
+jmp     short locret_418F32
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-30h]
+mov     [rax+0A8h], rdx
+mov     rax, [rbp-28h]
+mov     esi, 1
+mov     rdi, rax
+call    sub_414B9D
+mov     eax, 2
+leave
+retn

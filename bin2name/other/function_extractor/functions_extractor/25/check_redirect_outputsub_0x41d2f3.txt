@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:redirect_request
+cmp     eax, 1
+jnz     short loc_41D311
+mov     cs:redirect_request, 2
+call    redirect_output
+nop
+pop     rbp
+retn

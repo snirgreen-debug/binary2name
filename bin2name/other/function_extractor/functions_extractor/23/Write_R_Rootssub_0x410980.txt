@@ -1,0 +1,84 @@
+push    r12
+push    rbp
+mov     r12, pfile
+push    rbx
+mov     rcx, pfile
+mov     rbx, pvmGlo
+mov     edi, 4154C0h
+mov     esi, 1
+mov     rbp, pvmRoots
+mov     edx, 1Fh
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 2Bh
+mov     esi, 1
+mov     edi, 4154E0h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 2Dh
+mov     esi, 1
+mov     edi, 415510h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 2
+mov     esi, 1
+mov     edi, 4145C9h
+call    _fwrite
+test    pvmGlo, pvmGlo
+jz      loc_410A97
+nop     word ptr [rax+rax+00h]
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_4109F8
+test    pvmRoots, pvmRoots
+jnz     loc_410AA0
+pop     rbx
+mov     rcx, pfile
+mov     edx, 0Fh
+mov     esi, 1
+pop     rbp
+pop     pfile
+mov     edi, 41489Ch
+jmp     _fwrite
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_410ABA
+xor     ecx, ecx
+mov     edx, 4145FDh
+mov     esi, 414606h
+mov     rdi, rbp
+call    GetName
+mov     edx, 414662h
+mov     rcx, rax
+mov     esi, 1
+xor     eax, eax
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_410ABA
+mov     rsi, [rbp+8]
+mov     edx, 9
+mov     rdi, pfile
+call    TranslateEquation
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      loc_410A0A
+mov     rax, [rbp+10h]
+test    ah, 0F0h
+jnz     loc_410A28
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jnz     short loc_410A46
+mov     rcx, [rbp+8]
+mov     edx, 41459Ah
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_410A93

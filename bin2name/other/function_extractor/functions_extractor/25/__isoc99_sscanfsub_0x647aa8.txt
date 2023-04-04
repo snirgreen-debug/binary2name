@@ -1,0 +1,1 @@
+extrn __isoc99_sscanf:near

@@ -1,0 +1,18 @@
+mov     esi, 60C5E0h
+push    rbp
+sub     rsi, 60C5E0h
+sar     rsi, 3
+mov     rbp, rsp
+mov     rax, rsi
+shr     rax, 3Fh
+add     rsi, rax
+sar     rsi, 1
+jz      short loc_4020A8
+mov     eax, 0
+test    rax, rax
+jz      short loc_4020A8
+pop     rbp
+mov     edi, 60C5E0h
+jmp     rax
+pop     rbp
+retn

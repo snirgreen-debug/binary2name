@@ -1,0 +1,66 @@
+push    rbp
+push    rbx
+mov     rbx, rsi
+mov     ebp, edi
+sub     rsp, 0F8h
+mov     rax, fs:28h
+mov     [rsp+108h+var_20], rax
+xor     eax, eax
+call    sub_406050
+mov     rax, [rbx]
+lea     r8, [rsp+10h]
+lea     rcx, [rsp+8]
+mov     rdx, rsp
+mov     rsi, rbx
+mov     edi, ebp
+mov     [rsp+108h+var_F8], 1
+mov     [rsp+108h+var_F4], 0
+mov     [rsp+108h+var_E0], rax
+mov     [rsp+108h+var_70], rax
+mov     [rsp+108h+var_F0], 0
+mov     [rsp+108h+var_EC], 0
+mov     [rsp+108h+var_D8], 0
+mov     [rsp+108h+var_D0], 0
+mov     [rsp+108h+var_C8], 0
+mov     [rsp+108h+var_C0], 0
+mov     [rsp+108h+var_B8], 0
+mov     [rsp+108h+var_B0], 0
+mov     [rsp+108h+var_A8], 0
+mov     [rsp+108h+var_A0], 0
+mov     [rsp+108h+var_98], 0
+mov     [rsp+108h+var_88], 1
+mov     [rsp+108h+var_84], 0
+mov     [rsp+108h+var_80], 0
+mov     [rsp+108h+var_7C], 0
+mov     [rsp+108h+var_68], 0
+mov     [rsp+108h+var_60], 0
+mov     [rsp+108h+var_58], 0
+mov     [rsp+108h+var_50], 0
+mov     [rsp+108h+var_48], 0
+mov     [rsp+108h+var_40], 0
+mov     [rsp+108h+var_38], 0
+mov     [rsp+108h+var_30], 0
+mov     [rsp+108h+var_28], 0
+call    sub_4062D0
+mov     rdx, [rsp]
+lea     rsi, [rsp+80h]
+lea     rdi, [rsp+10h]
+call    sub_408F90
+cmp     [rsp+108h+var_F0], 1
+mov     rsi, [rsp+8]
+lea     rdi, [rsp+10h]
+jz      short loc_40123B
+call    sub_40FA50
+lea     rdi, [rsp+10h]
+call    sub_406560
+xor     eax, eax
+mov     rdx, [rsp+0E8h]
+xor     rdx, fs:28h
+jnz     short loc_401242
+add     rsp, 0F8h
+pop     rbx
+pop     rbp
+retn
+call    sub_411CB0
+jmp     short loc_401212
+call    ___stack_chk_fail

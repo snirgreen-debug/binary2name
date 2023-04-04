@@ -1,0 +1,12 @@
+test    sz1, sz1
+jz      short loc_412190
+test    sz2, sz2
+jz      short loc_4121A0
+jmp     _strcmp
+xor     eax, eax
+test    sz2, sz2
+setnz   al
+neg     eax
+retn
+mov     eax, 1
+retn

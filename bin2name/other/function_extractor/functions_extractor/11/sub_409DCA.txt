@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+lea     rax, unk_61A8B0
+movzx   eax, byte ptr [rax+10h]
+movsx   eax, al
+mov     esi, eax
+lea     rdi, aEe
+call    _strchr
+test    rax, rax
+jz      short loc_409E0A
+lea     rax, unk_61A8B0
+mov     eax, [rax+0Ch]
+lea     edx, [rax-1]
+lea     rax, unk_61A8B0
+mov     [rax+0Ch], edx
+mov     [rbp+var_8], 4
+lea     rax, unk_61A8B0
+mov     eax, [rax+0Ch]
+test    eax, eax
+jle     short loc_409E73
+lea     rax, unk_61A8B0
+mov     eax, [rax+0Ch]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+call    _log10
+call    _floor
+ucomisd xmm0, cs:qword_416DC8
+jnb     short loc_409E4D
+cvttsd2si rax, xmm0
+jmp     short loc_409E6B
+movsd   xmm1, cs:qword_416DC8
+subsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     rdx, 8000000000000000h
+xor     rax, rdx
+add     rax, 1
+add     [rbp+var_8], rax
+mov     rax, [rbp-8]
+lea     rsi, aSetnumformat
+mov     edi, eax
+call    sub_402A3E
+mov     rdx, rax
+lea     rax, unk_61A8B0
+mov     [rax], rdx
+lea     rax, unk_61A8B0
+movzx   eax, byte ptr [rax+10h]
+movsx   ecx, al
+lea     rax, unk_61A8B0
+mov     edx, [rax+0Ch]
+lea     rax, unk_61A8B0
+mov     rax, [rax]
+lea     rsi, aDC
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     eax, 0
+leave
+retn

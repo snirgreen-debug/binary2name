@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    get_eval_tree
+mov     [rbp+eval_tree], rax
+cmp     [rbp+eval_tree], 0
+jz      short loc_40AAA3
+mov     rax, [rbp-8]
+mov     esi, 40A74Bh
+mov     rdi, rax
+call    traverse_tree
+call    complete_pending_execdirs
+mov     rax, cs:state_0.shared_files
+mov     rdi, rax
+call    sharefile_destroy
+cmp     [rbp+eval_tree], 0
+jz      short loc_40AACA
+mov     rax, [rbp-8]
+mov     esi, 40AA01h
+mov     rdi, rax
+call    traverse_tree
+call    cleanup_initial_cwd
+call    fd_leak_check_is_enabled
+test    al, al
+jz      short loc_40AAE2
+call    complain_about_leaky_fds
+call    forget_non_cloexec_fds
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fflush
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_40AB09
+call    ___errno_location
+mov     eax, [rax]
+mov     esi, 42C27Ch
+mov     edi, eax
+call    nonfatal_nontarget_file_error
+nop
+leave
+retn

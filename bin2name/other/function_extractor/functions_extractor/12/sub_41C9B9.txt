@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_6420D0
+test    eax, eax
+jz      short loc_41C9CE
+mov     eax, 0
+jmp     short loc_41C9EA
+mov     rax, cs:qword_6420C8
+test    rax, rax
+jz      short loc_41C9E3
+mov     rax, cs:qword_6420C8
+jmp     short loc_41C9EA
+mov     rax, cs:stderr
+pop     rbp
+retn

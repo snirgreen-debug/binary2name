@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:limit_data.chunk_bytes, 0
+pxor    xmm0, xmm0
+movsd   cs:limit_data.chunk_start, xmm0
+nop
+pop     rbp
+retn

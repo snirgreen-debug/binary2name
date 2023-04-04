@@ -1,0 +1,99 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_41BD57
+mov     rax, cs:qword_6476C8
+test    rax, rax
+jz      short loc_41BD47
+mov     rax, cs:qword_6476C8
+mov     rdi, rax
+call    _free
+mov     cs:qword_6476C8, 0
+jmp     loc_41BE77
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    sub_41C4EC
+test    eax, eax
+jnz     short loc_41BDAA
+mov     rbx, cs:qword_6475A0
+mov     edi, 433A68h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-28h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+jmp     loc_41BE7C
+mov     rax, cs:qword_6476C8
+test    rax, rax
+jz      short loc_41BDC7
+mov     rax, cs:qword_6476C8
+mov     rdi, rax
+call    _strlen
+jmp     short loc_41BDCC
+mov     eax, 0
+mov     [rbp+var_14], eax
+mov     eax, [rbp-14h]
+movsxd  rbx, eax
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+lea     rdx, [rax+3]
+mov     rax, cs:qword_6476C8
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_428858
+mov     cs:qword_6476C8, rax
+mov     rdx, cs:qword_6476C8
+mov     eax, [rbp-14h]
+cdqe
+add     rdx, rax
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     eax, [rbp-14h]
+add     eax, edx
+mov     [rbp+var_14], eax
+mov     rcx, cs:qword_6476C8
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+var_14], edx
+cdqe
+add     rax, rcx
+mov     byte ptr [rax], 0Dh
+mov     rcx, cs:qword_6476C8
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+var_14], edx
+cdqe
+add     rax, rcx
+mov     byte ptr [rax], 0Ah
+mov     rdx, cs:qword_6476C8
+mov     eax, [rbp-14h]
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     eax, 1
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,113 @@
+test    pvmCalcOut, pvmCalcOut
+push    r12
+mov     r12, pfile
+push    rbp
+mov     rbp, pvmCalcOut
+push    rbx
+mov     rbx, pvmGlo
+jz      loc_40F144
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415140h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 29h
+mov     esi, 1
+mov     edi, 415168h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 26h
+mov     esi, 1
+mov     edi, 414FC0h
+call    _fwrite
+test    pvmGlo, pvmGlo
+jnz     short loc_40F041
+jmp     loc_40F110
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40F070
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 80000h
+jnz     short loc_40F038
+xor     edx, edx
+mov     rsi, rbx
+mov     rdi, pfile
+call    WriteOneDecl
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_40F041
+nop     dword ptr [rax+rax+00000000h]
+test    pvmCalcOut, pvmCalcOut
+jnz     loc_40F110
+pop     rbx
+mov     rcx, pfile
+mov     edx, 18h
+mov     esi, 1
+pop     rbp
+pop     pfile
+mov     edi, 414700h
+jmp     _fwrite
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_40F12A
+xor     ecx, ecx
+mov     edx, 4145FDh
+mov     esi, 414606h
+mov     rdi, rbp
+call    GetName
+mov     edx, 414662h
+mov     rcx, rax
+mov     esi, 1
+xor     eax, eax
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      short loc_40F12A
+mov     rsi, [rbp+8]
+mov     edx, 7
+mov     rdi, pfile
+call    TranslateEquation
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      loc_40F079
+mov     rax, [rbp+10h]
+test    ah, 0F0h
+jnz     loc_40F098
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jnz     short loc_40F0B6
+mov     rcx, [rbp+8]
+mov     edx, 41459Ah
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_40F103
+mov     edi, 415108h
+call    _puts
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415140h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 29h
+mov     esi, 1
+mov     edi, 415168h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 26h
+mov     esi, 1
+mov     edi, 414FC0h
+call    _fwrite
+test    pvmGlo, pvmGlo
+jz      loc_40F079
+jmp     loc_40F041

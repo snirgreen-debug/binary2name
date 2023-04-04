@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+al_0], rdi
+mov     [rbp+index], esi
+mov     [rbp+ip_store], rdx
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cmp     eax, [rbp-0Ch]
+jg      short loc_4112A3
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     eax, [rbp-0Ch]
+jg      short loc_4112BC
+mov     ecx, 4320F0h
+mov     edx, 77h
+mov     esi, 431FA0h
+mov     edi, 431FA8h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     edx, [rbp-0Ch]
+movsxd  rdx, edx
+shl     rdx, 2
+add     rax, rdx
+mov     edx, [rax]
+mov     rax, [rbp-18h]
+mov     [rax], edx
+nop
+leave
+retn

@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+exitval], edi
+mov     [rbp+errno_value], esi
+mov     eax, edx
+mov     [rbp+name], rcx
+mov     [rbp+is_target_file], al
+movzx   eax, byte ptr [rbp-0Ch]
+xor     eax, 1
+test    al, al
+jnz     short loc_40B8C3
+movzx   eax, cs:state_0.already_issued_stat_error_msg
+xor     eax, 1
+test    al, al
+jz      short loc_40B8FB
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rdx, rax
+mov     esi, [rbp-8]
+mov     eax, [rbp-4]
+mov     rcx, rdx
+mov     edx, 42C5CAh
+mov     edi, eax
+mov     eax, 0
+call    _error
+mov     edi, 1
+call    error_severity
+cmp     [rbp+is_target_file], 0
+jz      short loc_40B908
+mov     cs:state_0.already_issued_stat_error_msg, 1
+nop
+leave
+retn

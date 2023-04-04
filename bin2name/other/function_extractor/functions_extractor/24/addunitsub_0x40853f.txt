@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+unita], rdi
+mov     [rbp+unitb], rsi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    completereduce
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_408569
+mov     eax, [rbp-4]
+jmp     short locret_4085E1
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    completereduce
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_408583
+mov     eax, [rbp-4]
+jmp     short locret_4085E1
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+lea     rdx, ignore_nothing
+mov     rsi, rcx
+mov     rdi, rax
+call    compareunits
+test    eax, eax
+jz      short loc_4085A8
+mov     eax, 4
+jmp     short locret_4085E1
+mov     rax, [rbp-18h]
+movsd   xmm1, qword ptr [rax+640h]
+mov     rax, [rbp-20h]
+movsd   xmm0, qword ptr [rax+640h]
+addsd   xmm0, xmm1
+mov     rax, [rbp-18h]
+movsd   qword ptr [rax+640h], xmm0
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    freeunit
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_605100
+mov     rdx, [rax]
+mov     [rbp+var_20], rdx
+mov     rdx, [rax+8]
+mov     [rbp+var_18], rdx
+mov     rax, [rax+10h]
+mov     [rbp+var_10], rax
+mov     rax, cs:qword_605100
+mov     rdx, cs:qword_605100
+mov     rcx, [rdx-18h]
+mov     [rax], rcx
+mov     rcx, [rdx-10h]
+mov     [rax+8], rcx
+mov     rdx, [rdx-8]
+mov     [rax+10h], rdx
+mov     rax, cs:qword_605100
+sub     rax, 18h
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+10h], rdx
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

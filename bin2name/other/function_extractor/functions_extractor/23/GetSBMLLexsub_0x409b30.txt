@@ -1,0 +1,109 @@
+push    r14
+push    r13
+push    r12
+push    rbp
+push    rbx
+sub     rsp, 410h
+mov     rax, fs:28h
+mov     [rsp+438h+var_30], rax
+xor     eax, eax
+test    pibIn, pibIn
+jz      loc_409CD0
+mov     rcx, [pibIn+18h]
+mov     rbx, pibIn
+test    rcx, rcx
+jz      loc_409CD0
+mov     r13d, esi
+mov     r12d, edx
+xor     ebp, ebp
+movzx   eax, byte ptr [rcx]
+cmp     al, 3Ch
+jz      short loc_409B91
+test    al, al
+jz      loc_409C18
+add     rcx, 1
+mov     [pibIn+18h], rcx
+movzx   eax, byte ptr [rcx]
+cmp     al, 3Ch
+jnz     short loc_409B7A
+lea     c, [rcx+1]
+mov     [pibIn+18h], rax
+movzx   eax, byte ptr [rcx]
+mov     [rsp+438h+szLex], al
+movzx   eax, byte ptr [rcx+1]
+mov     edx, eax
+and     edx, 0FFFFFFEFh
+cmp     dl, 2Fh
+jz      loc_409C48
+cmp     al, 21h
+jz      loc_409C48
+mov     rsi, rsp
+mov     rdi, pibIn
+mov     ebp, 6195A0h
+call    GetIdentifier
+mov     rsi, cs:vrgSBMLKW.szKeyword
+cmp     byte ptr [rsi], 0
+jnz     short loc_409BED
+jmp     short loc_409BF9
+add     rbp, 10h
+mov     rsi, [rbp+0]
+cmp     byte ptr [rsi], 0
+jz      short loc_409BF9
+mov     rdi, rsp
+call    _strcmp
+test    eax, eax
+jnz     short loc_409BE0
+cmp     [rbp+8], r12d
+setz    bpl
+movzx   ebp, bpl
+mov     eax, ebp
+test    eax, eax
+jnz     short loc_409C18
+mov     rcx, [pibIn+18h]
+jmp     loc_409B73
+mov     eax, ebp
+mov     rdi, [rsp+408h]
+xor     rdi, fs:28h
+jnz     loc_409CD7
+add     rsp, 410h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+cmp     al, 2Fh
+lea     rdx, [rcx+2]
+jz      short loc_409C70
+mov     [pibIn+18h], rdx
+mov     rcx, rdx
+add     rdx, 1
+cmp     byte ptr [rdx-2], 3Eh
+jnz     short loc_409C50
+jmp     loc_409B73
+mov     [pibIn+18h], rdx
+movzx   eax, byte ptr [rcx+1]
+mov     rsi, rsp
+mov     rdi, pibIn
+mov     r14d, 6195A0h
+mov     [rsp+438h+szLex], al
+call    GetIdentifier
+mov     rsi, cs:vrgSBMLKW.szKeyword
+cmp     byte ptr [rsi], 0
+jnz     short loc_409CAC
+jmp     short loc_409CB8
+add     r14, 10h
+mov     rsi, [r14]
+cmp     byte ptr [rsi], 0
+jz      short loc_409CB8
+mov     rdi, rsp
+call    _strcmp
+test    eax, eax
+jnz     short loc_409CA0
+xor     eax, eax
+cmp     [r14+8], r13d
+setz    al
+jmp     loc_409C07
+xor     eax, eax
+jmp     loc_409C1A
+call    ___stack_chk_fail

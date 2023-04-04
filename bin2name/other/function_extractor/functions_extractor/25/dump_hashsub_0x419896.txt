@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+buf], rdi
+mov     [rbp+hash], rsi
+mov     [rbp+i], 0
+jmp     short loc_4198FE
+mov     rax, [rbp-18h]
+lea     rdx, [rax+1]
+mov     [rbp+buf], rdx
+mov     rdx, [rbp-20h]
+movzx   edx, byte ptr [rdx]
+shr     dl, 4
+movzx   edx, dl
+movsxd  rdx, edx
+movzx   edx, byte ptr [rdx+43326Dh]
+mov     [rax], dl
+mov     rax, [rbp-18h]
+lea     rdx, [rax+1]
+mov     [rbp+buf], rdx
+mov     rdx, [rbp-20h]
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+and     edx, 0Fh
+movsxd  rdx, edx
+movzx   edx, byte ptr [rdx+43326Dh]
+mov     [rax], dl
+add     [rbp+i], 1
+add     [rbp+hash], 1
+cmp     [rbp+i], 0Fh
+jle     short loc_4198AB
+mov     rax, [rbp-18h]
+mov     byte ptr [rax], 0
+nop
+pop     rbp
+retn

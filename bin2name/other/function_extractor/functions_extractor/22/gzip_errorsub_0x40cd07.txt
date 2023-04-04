@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+m], rdi
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-8]
+mov     r8, rcx
+mov     ecx, 6182C0h
+mov     esi, 411EE3h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    abort_gzip

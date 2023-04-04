@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+cmp     [rbp+var_8], 0
+jz      short loc_408BAB
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    sub_408B5D
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    sub_408B5D
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_408986
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+20h], edx
+nop
+leave
+retn

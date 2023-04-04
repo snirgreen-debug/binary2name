@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-10h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rdx, rax
+jnz     short loc_40BA15
+mov     rax, [rbp-10h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rdx, rax
+jnz     short loc_40BA15
+mov     eax, 1
+jmp     short loc_40BA1A
+mov     eax, 0
+and     eax, 1
+pop     rbp
+retn

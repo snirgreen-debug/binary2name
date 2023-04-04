@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:grecs_usr_include_path
+test    rax, rax
+jz      short loc_40ED16
+mov     rax, cs:grecs_usr_include_path
+mov     rdi, rax
+call    grecs_list_clear
+mov     rax, cs:grecs_std_include_path
+test    rax, rax
+jz      short loc_40ED31
+mov     rax, cs:grecs_std_include_path
+mov     rdi, rax
+call    grecs_list_clear
+nop
+pop     rbp
+retn

@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 0
+js      short loc_40E425
+jmp     short loc_40E40C
+mov     edi, 20h
+call    _putchar
+mov     eax, [rbp-4]
+lea     edx, [rax-1]
+mov     [rbp+var_4], edx
+test    eax, eax
+jnz     short loc_40E402
+lea     rdi, asc_413527
+call    _puts
+nop
+leave
+retn

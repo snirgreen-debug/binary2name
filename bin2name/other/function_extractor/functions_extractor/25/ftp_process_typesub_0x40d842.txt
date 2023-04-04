@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+params], rdi
+cmp     [rbp+params], 0
+jz      short loc_40D89A
+mov     rax, [rbp-8]
+mov     edx, 5
+mov     esi, 431676h
+mov     rdi, rax
+call    _strncasecmp
+test    eax, eax
+jnz     short loc_40D89A
+mov     rax, [rbp-8]
+add     rax, 5
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40D89A
+mov     rax, [rbp-8]
+add     rax, 5
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+jmp     short locret_40D89F
+mov     eax, 49h
+leave
+retn

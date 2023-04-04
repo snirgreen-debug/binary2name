@@ -1,0 +1,323 @@
+push    rbp
+mov     rbp, rsp
+push    r14
+push    r13
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     r13, [rax+8]
+mov     r14, cs:grecs_grecs_text
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+8]
+mov     edx, cs:grecs_grecs__n_chars
+movsxd  rdx, edx
+add     rdx, 1
+add     rdx, rax
+mov     rax, cs:grecs_grecs__c_buf_p
+cmp     rdx, rax
+jnb     short loc_41EE89
+mov     edi, 426530h
+call    grecs_grecs__fatal_error
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+38h]
+test    eax, eax
+jnz     short loc_41EED9
+mov     rax, cs:grecs_grecs__c_buf_p
+mov     rdx, rax
+mov     rax, cs:grecs_grecs_text
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 1
+jnz     short loc_41EECF
+mov     eax, 1
+jmp     loc_41F327
+mov     eax, 2
+jmp     loc_41F327
+mov     rax, cs:grecs_grecs__c_buf_p
+mov     rdx, rax
+mov     rax, cs:grecs_grecs_text
+sub     rdx, rax
+mov     rax, rdx
+lea     ebx, [rax-1]
+mov     r12d, 0
+jmp     short loc_41EF12
+mov     rax, r13
+lea     r13, [rax+1]
+mov     rdx, r14
+lea     r14, [rdx+1]
+movzx   edx, byte ptr [rdx]
+mov     [rax], dl
+add     r12d, 1
+cmp     r12d, ebx
+jl      short loc_41EEFB
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+3Ch]
+cmp     eax, 2
+jnz     short loc_41EF67
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     cs:grecs_grecs__n_chars, 0
+mov     edx, cs:grecs_grecs__n_chars
+mov     [rax+20h], edx
+jmp     loc_41F189
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+18h]
+mov     edx, eax
+mov     eax, ebx
+sub     edx, eax
+mov     eax, edx
+sub     eax, 1
+mov     [rbp+var_3C], eax
+jmp     loc_41F0C3
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_41EFBC
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_41EFC1
+mov     eax, 0
+mov     [rbp+var_30], rax
+mov     rax, cs:grecs_grecs__c_buf_p
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_38], eax
+mov     rax, [rbp-30h]
+mov     eax, [rax+24h]
+test    eax, eax
+jz      short loc_41F05F
+mov     rax, [rbp-30h]
+mov     rax, [rax+18h]
+add     eax, eax
+mov     [rbp+var_34], eax
+cmp     [rbp+var_34], 0
+jg      short loc_41F01F
+mov     rax, [rbp-30h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-30h]
+mov     rax, [rax+18h]
+shr     rax, 3
+add     rdx, rax
+mov     rax, [rbp-30h]
+mov     [rax+18h], rdx
+jmp     short loc_41F033
+mov     rax, [rbp-30h]
+mov     rax, [rax+18h]
+lea     rdx, [rax+rax]
+mov     rax, [rbp-30h]
+mov     [rax+18h], rdx
+mov     rax, [rbp-30h]
+mov     rax, [rax+18h]
+lea     rdx, [rax+2]
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_grecs_realloc
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     [rax+8], rdx
+jmp     short loc_41F06B
+mov     rax, [rbp-30h]
+mov     qword ptr [rax+8], 0
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+test    rax, rax
+jnz     short loc_41F082
+mov     edi, 426568h
+call    grecs_grecs__fatal_error
+mov     rax, [rbp-30h]
+mov     rdx, [rax+8]
+mov     eax, [rbp-38h]
+cdqe
+add     rax, rdx
+mov     cs:grecs_grecs__c_buf_p, rax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+18h]
+mov     edx, eax
+mov     eax, ebx
+sub     edx, eax
+mov     eax, edx
+sub     eax, 1
+mov     [rbp+var_3C], eax
+cmp     [rbp+var_3C], 0
+jle     loc_41EF96
+cmp     [rbp+var_3C], 2000h
+jle     short loc_41F0DD
+mov     [rbp+var_3C], 2000h
+mov     rax, cs:grecs_preprocessor
+test    rax, rax
+jz      short loc_41F130
+mov     rdx, cs:grecs_grecs_in
+mov     eax, [rbp-3Ch]
+cdqe
+mov     rcx, cs:grecs_grecs__buffer_stack
+mov     rsi, cs:grecs_grecs__buffer_stack_top
+shl     rsi, 3
+add     rcx, rsi
+mov     rcx, [rcx]
+mov     rsi, [rcx+8]
+movsxd  rcx, ebx
+lea     rdi, [rsi+rcx]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 1
+call    _fread
+mov     cs:grecs_grecs__n_chars, eax
+jmp     short loc_41F168
+mov     eax, [rbp-3Ch]
+cdqe
+mov     rdx, cs:grecs_grecs__buffer_stack
+mov     rcx, cs:grecs_grecs__buffer_stack_top
+shl     rcx, 3
+add     rdx, rcx
+mov     rdx, [rdx]
+mov     rcx, [rdx+8]
+movsxd  rdx, ebx
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    grecs_preproc_fill_buffer
+mov     cs:grecs_grecs__n_chars, eax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     edx, cs:grecs_grecs__n_chars
+mov     [rax+20h], edx
+mov     eax, cs:grecs_grecs__n_chars
+test    eax, eax
+jnz     short loc_41F1D7
+test    ebx, ebx
+jnz     short loc_41F1AF
+mov     [rbp+var_40], 1
+mov     rax, cs:grecs_grecs_in
+mov     rdi, rax
+call    grecs_grecs_restart
+jmp     short loc_41F1DE
+mov     [rbp+var_40], 2
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     dword ptr [rax+3Ch], 2
+jmp     short loc_41F1DE
+mov     [rbp+var_40], 0
+mov     eax, cs:grecs_grecs__n_chars
+add     eax, ebx
+movsxd  rdx, eax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rcx, cs:grecs_grecs__buffer_stack_top
+shl     rcx, 3
+add     rax, rcx
+mov     rax, [rax]
+mov     rax, [rax+18h]
+cmp     rdx, rax
+jbe     loc_41F29A
+mov     eax, cs:grecs_grecs__n_chars
+lea     edx, [rax+rbx]
+mov     eax, cs:grecs_grecs__n_chars
+sar     eax, 1
+add     eax, edx
+cdqe
+mov     [rbp+var_28], rax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     r12, [rax]
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+8]
+mov     rdx, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_grecs_realloc
+mov     [r12+8], rax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+8]
+test    rax, rax
+jnz     short loc_41F29A
+mov     edi, 426598h
+call    grecs_grecs__fatal_error
+mov     eax, cs:grecs_grecs__n_chars
+add     eax, ebx
+mov     cs:grecs_grecs__n_chars, eax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rax+8]
+mov     eax, cs:grecs_grecs__n_chars
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+8]
+mov     edx, cs:grecs_grecs__n_chars
+movsxd  rdx, edx
+add     rdx, 1
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+8]
+mov     cs:grecs_grecs_text, rax
+mov     eax, [rbp-40h]
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     r13
+pop     r14
+pop     rbp
+retn

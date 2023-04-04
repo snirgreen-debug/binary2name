@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+0B0h]
+cmp     eax, 9
+jnz     short loc_41A412
+mov     rax, [rbp-8]
+mov     rax, [rax+0B8h]
+jmp     short loc_41A441
+mov     rax, [rbp-8]
+mov     edx, [rax+0B0h]
+mov     eax, cs:_wordsplit_nerrs
+cmp     edx, eax
+jge     short loc_41A43C
+mov     rax, [rbp-8]
+mov     eax, [rax+0B0h]
+cdqe
+mov     rax, [rax*8+62D4C0h]
+jmp     short loc_41A441
+mov     eax, 4247A3h
+pop     rbp
+retn

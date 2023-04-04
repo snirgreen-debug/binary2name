@@ -1,0 +1,39 @@
+xor     eax, eax
+cmp     qword ptr [pvm+8], 6192A0h
+jz      short locret_40CCE4
+push    rbp
+push    rbx
+mov     rcx, pfile
+mov     rbx, pvm
+mov     rbp, pfile
+mov     edx, 8
+sub     rsp, 8
+mov     esi, 1
+mov     edi, 4142E0h
+call    _fwrite
+mov     rcx, [pvm]
+xor     eax, eax
+mov     edx, 4142E9h
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rcx, [pvm+10h]
+and     ecx, 7FFFh
+jnz     short loc_40CCF0
+mov     rcx, pfile
+mov     edx, 9
+mov     esi, 1
+mov     edi, 4142F9h
+call    _fwrite
+mov     eax, 1
+add     rsp, 8
+pop     pvm
+pop     pfile
+rep retn
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+jmp     short loc_40CCDE

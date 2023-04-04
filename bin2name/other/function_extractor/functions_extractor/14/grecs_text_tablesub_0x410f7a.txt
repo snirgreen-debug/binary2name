@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:text_table
+mov     [rbp+var_8], rax
+mov     cs:text_table, 0
+mov     rax, [rbp-8]
+pop     rbp
+retn

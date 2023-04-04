@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_11], 0
+mov     edi, 42F1DAh
+call    sub_413FFD
+mov     edi, 42F1DFh
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 42F1F2h
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+movzx   eax, cs:byte_63C018
+test    al, al
+jz      short loc_41289A
+mov     eax, 42F1FAh
+jmp     short loc_41289F
+mov     eax, 42F202h
+mov     rsi, rax
+mov     edi, 42F20Bh
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+mov     edi, 42F21Bh
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+call    _is_selinux_enabled
+test    eax, eax
+jle     short loc_4128E4
+mov     edi, 42F22Eh
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+mov     [rbp+var_10], 0
+lea     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_40463A
+test    al, al
+jz      short loc_412953
+mov     [rbp+var_C], 0
+mov     edi, 42F237h
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+mov     eax, [rbp-10h]
+and     eax, 200h
+test    eax, eax
+jz      short loc_412944
+cmp     [rbp+var_C], 0
+jz      short loc_412931
+mov     edi, 2Ch
+call    _putchar
+mov     edi, 42F23Ch
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+mov     edi, 42F246h
+mov     eax, 0
+call    _printf
+movzx   eax, cs:word_63C028
+movzx   eax, ax
+mov     esi, eax
+mov     edi, 42F249h
+mov     eax, 0
+call    _printf
+mov     [rbp+var_11], 1
+movzx   eax, byte ptr [rbp-11h]
+xor     eax, 1
+test    al, al
+jz      short loc_41298C
+mov     edi, 42F258h
+mov     eax, 0
+call    _printf
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 0
+call    _exit

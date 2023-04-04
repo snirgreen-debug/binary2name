@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_6420C0
+cmp     eax, 1
+jnz     short loc_41D311
+mov     cs:dword_6420C0, 2
+call    sub_41D219
+nop
+pop     rbp
+retn

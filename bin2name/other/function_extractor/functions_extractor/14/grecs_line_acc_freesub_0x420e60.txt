@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:line_acc
+mov     rdi, rax
+call    grecs_txtacc_free
+mov     cs:line_acc, 0
+nop
+pop     rbp
+retn

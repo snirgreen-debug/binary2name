@@ -1,0 +1,1 @@
+jmp     cs:__gmon_start___ptr

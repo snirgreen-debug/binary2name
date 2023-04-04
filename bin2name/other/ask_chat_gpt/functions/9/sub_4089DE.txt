@@ -1,0 +1,186 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, [rbp-28h]
+mov     cs:qword_617D50, rax
+mov     rax, [rbp-30h]
+mov     cs:qword_617D58, rax
+mov     cs:qword_617D48, 0
+mov     rax, cs:qword_617D48
+mov     cs:qword_617D40, rax
+movzx   eax, cs:word_615CA2
+test    ax, ax
+jnz     loc_408CBD
+mov     [rbp+var_C], 0
+mov     [rbp+var_8], 0
+jmp     short loc_408A8D
+mov     eax, [rbp-8]
+cdqe
+mov     edx, [rbp-0Ch]
+mov     ds:dword_616C20[rax*4], edx
+mov     [rbp+var_14], 0
+jmp     short loc_408A6D
+mov     eax, [rbp-0Ch]
+lea     edx, [rax+1]
+mov     [rbp+var_C], edx
+mov     edx, [rbp-8]
+cdqe
+mov     ds:byte_616920[rax], dl
+add     [rbp+var_14], 1
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+6145A0h]
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cmp     eax, [rbp-14h]
+jg      short loc_408A55
+add     [rbp+var_8], 1
+cmp     [rbp+var_8], 1Bh
+jle     short loc_408A3D
+mov     eax, [rbp-0Ch]
+lea     edx, [rax-1]
+mov     eax, [rbp-8]
+mov     ecx, eax
+movsxd  rax, edx
+mov     ds:byte_616920[rax], cl
+mov     [rbp+var_4], 0
+mov     [rbp+var_8], 0
+jmp     short loc_408B07
+mov     eax, [rbp-8]
+cdqe
+mov     edx, [rbp-4]
+mov     ds:dword_616CA0[rax*4], edx
+mov     [rbp+var_14], 0
+jmp     short loc_408AE7
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     [rbp+var_4], edx
+mov     edx, [rbp-8]
+cdqe
+mov     ds:byte_616A20[rax], dl
+add     [rbp+var_14], 1
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+614620h]
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cmp     eax, [rbp-14h]
+jg      short loc_408ACF
+add     [rbp+var_8], 1
+cmp     [rbp+var_8], 0Fh
+jle     short loc_408AB7
+sar     [rbp+var_4], 7
+jmp     short loc_408B74
+mov     eax, [rbp-4]
+shl     eax, 7
+mov     edx, eax
+mov     eax, [rbp-8]
+cdqe
+mov     ds:dword_616CA0[rax*4], edx
+mov     [rbp+var_14], 0
+jmp     short loc_408B51
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     [rbp+var_4], edx
+lea     edx, [rax+100h]
+mov     eax, [rbp-8]
+mov     ecx, eax
+movsxd  rax, edx
+mov     ds:byte_616A20[rax], cl
+add     [rbp+var_14], 1
+mov     eax, [rbp-8]
+cdqe
+mov     eax, [rax*4+614620h]
+sub     eax, 7
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+cmp     eax, [rbp-14h]
+jg      short loc_408B30
+add     [rbp+var_8], 1
+cmp     [rbp+var_8], 1Dh
+jle     short loc_408B13
+mov     [rbp+var_10], 0
+jmp     short loc_408B96
+mov     eax, [rbp-10h]
+cdqe
+mov     ds:word_615DC0[rax+rax], 0
+add     [rbp+var_10], 1
+cmp     [rbp+var_10], 0Fh
+jle     short loc_408B83
+mov     [rbp+var_14], 0
+jmp     short loc_408BCB
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+var_14], edx
+cdqe
+mov     ds:word_615822[rax*4], 8
+movzx   eax, cs:word_615DD0
+add     eax, 1
+mov     cs:word_615DD0, ax
+cmp     [rbp+var_14], 8Fh
+jle     short loc_408BA5
+jmp     short loc_408BFC
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+var_14], edx
+cdqe
+mov     ds:word_615822[rax*4], 9
+movzx   eax, cs:word_615DD2
+add     eax, 1
+mov     cs:word_615DD2, ax
+cmp     [rbp+var_14], 0FFh
+jle     short loc_408BD6
+jmp     short loc_408C2D
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+var_14], edx
+cdqe
+mov     ds:word_615822[rax*4], 7
+movzx   eax, cs:word_615DCE
+add     eax, 1
+mov     cs:word_615DCE, ax
+cmp     [rbp+var_14], 117h
+jle     short loc_408C07
+jmp     short loc_408C5E
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+var_14], edx
+cdqe
+mov     ds:word_615822[rax*4], 8
+movzx   eax, cs:word_615DD0
+add     eax, 1
+mov     cs:word_615DD0, ax
+cmp     [rbp+var_14], 11Fh
+jle     short loc_408C38
+mov     esi, 11Fh
+mov     edi, 615820h
+call    sub_4092F2
+mov     [rbp+var_14], 0
+jmp     short loc_408CB0
+mov     eax, [rbp-14h]
+cdqe
+mov     ds:word_615CA2[rax*4], 5
+mov     eax, [rbp-14h]
+mov     esi, 5
+mov     edi, eax
+call    sub_401DDB
+mov     edx, eax
+mov     eax, [rbp-14h]
+cdqe
+mov     ds:word_615CA0[rax*4], dx
+add     [rbp+var_14], 1
+cmp     [rbp+var_14], 1Dh
+jle     short loc_408C7F
+call    sub_408CC0
+jmp     short locret_408CBE
+nop
+leave
+retn

@@ -1,0 +1,85 @@
+push    r14
+push    r13
+mov     r13d, r8d
+push    r12
+push    rbp
+mov     r12, szLex
+push    rbx
+mov     ebp, edx
+mov     rbx, pibIn
+sub     rsp, 10h
+mov     rax, fs:28h
+mov     [rsp+38h+var_30], rax
+xor     eax, eax
+test    ecx, ecx
+jz      short loc_404A20
+call    SkipWhitespace
+test    pibIn, pibIn
+mov     r14d, eax
+jz      loc_404A90
+mov     rax, [pibIn+18h]
+movzx   edx, byte ptr [rax]
+test    dl, dl
+jz      loc_404AA8
+cmp     dl, 2Ch
+jz      loc_404AC8
+test    r14d, r14d
+jnz     short loc_404A29
+xor     eax, eax
+jmp     short loc_404A51
+test    rdi, rdi
+jz      short loc_404AA0
+mov     rax, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_404A78
+cmp     r13b, al
+jz      short loc_404A19
+lea     rdx, [rsp+4]
+mov     rsi, szLex
+mov     rdi, pibIn
+call    NextLex
+and     ebp, [rsp+4]
+cmp     ebp, 1
+sbb     eax, eax
+or      eax, 1
+mov     rsi, [rsp+8]
+xor     rsi, fs:28h
+jnz     loc_404AF8
+add     rsp, 10h
+pop     pibIn
+pop     rbp
+pop     szLex
+pop     r13
+pop     r14
+retn
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+jz      short loc_404AA0
+mov     rax, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+jmp     short loc_404A30
+test    eax, eax
+jz      loc_404A19
+nop     dword ptr [rax+rax+00000000h]
+xor     eax, eax
+jmp     short loc_404A30
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+jz      short loc_404AE8
+mov     rax, [pibIn+18h]
+movzx   edx, byte ptr [rax]
+jmp     loc_404A0B
+lea     rdx, [rsp+4]
+mov     rsi, szLex
+mov     rdi, pibIn
+call    NextLex
+mov     rax, [pibIn+18h]
+jmp     loc_404A29
+test    r14d, r14d
+jnz     loc_404A25
+xor     eax, eax
+jmp     loc_404A51
+call    ___stack_chk_fail

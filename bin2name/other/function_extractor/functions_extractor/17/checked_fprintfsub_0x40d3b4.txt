@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0F8h
+mov     [rbp+dest], rdi
+mov     [rbp+fmt], rsi
+mov     [rbp+var_B0], rdx
+mov     [rbp+var_A8], rcx
+mov     [rbp+var_A0], r8
+mov     [rbp+var_98], r9
+test    al, al
+jz      short loc_40D411
+movaps  [rbp+var_90], xmm0
+movaps  [rbp+var_80], xmm1
+movaps  [rbp+var_70], xmm2
+movaps  [rbp+var_60], xmm3
+movaps  [rbp+var_50], xmm4
+movaps  [rbp+var_40], xmm5
+movaps  [rbp+var_30], xmm6
+movaps  [rbp+var_20], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_C8], rax
+xor     eax, eax
+mov     [rbp+var_E0], 10h
+mov     [rbp+var_DC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_D8], rax
+lea     rax, [rbp-0C0h]
+mov     [rbp+var_D0], rax
+mov     rax, [rbp-0F8h]
+mov     rax, [rax+8]
+lea     rdx, [rbp-0E0h]
+mov     rcx, [rbp-100h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _vfprintf
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jns     short loc_40D49F
+mov     rax, [rbp-0F8h]
+mov     rbx, [rax+10h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    nonfatal_nontarget_file_error
+nop
+mov     rax, [rbp-0C8h]
+xor     rax, fs:28h
+jz      short loc_40D4B7
+call    ___stack_chk_fail
+add     rsp, 0F8h
+pop     rbx
+pop     rbp
+retn

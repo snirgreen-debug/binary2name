@@ -1,0 +1,125 @@
+push    r12
+push    rbp
+mov     ecx, 7Eh
+push    rbx
+mov     rbx, pInfo
+xor     r8d, r8d
+sub     rsp, 1C60h
+mov     pInfo, [pvm+10h]
+mov     rax, fs:28h
+mov     [rsp+1C78h+var_20], rax
+xor     eax, eax
+lea     pfile, [rsp+58h]
+mov     qword ptr [rsp+1C78h+szTmpName], 0
+mov     qword ptr [rsp+1C78h+szTmpEq], 0
+and     edx, 0F0000h
+rep stosq
+xor     ecx, ecx
+cmp     rdx, 90000h
+mov     [rdi+4], cx
+mov     dword ptr [rdi], 0
+mov     ecx, 27Eh
+mov     byte ptr [rdi+6], 0
+lea     rdi, [rsp+858h]
+rep stosq
+mov     dword ptr [rdi], 0
+mov     [rdi+4], r8w
+mov     byte ptr [rdi+6], 0
+jz      short loc_4094E0
+mov     pV, [rsp+1C58h]
+xor     pV, fs:28h
+jnz     loc_409669
+add     rsp, 1C60h
+pop     rbx
+pop     rbp
+pop     r12
+retn
+mov     r8, [pvm]
+mov     r12, pvm
+lea     rbp, [rsp+50h]
+cmp     byte ptr [r8], 5Fh
+jz      loc_409610
+mov     ecx, 4140BDh
+mov     edx, 3FFh
+mov     esi, 1
+mov     rdi, rbp
+xor     eax, eax
+call    ___sprintf_chk
+mov     rdx, [pvm+8]
+lea     rsi, [rsp+10h]
+xor     edi, edi
+call    MakeStringBuffer
+jmp     short loc_409551
+lea     r8, [rsp+850h]
+lea     r9, [rsp+450h]
+mov     ecx, 413906h
+mov     edx, 13FFh
+mov     esi, 1
+xor     eax, eax
+mov     rdi, r8
+call    ___sprintf_chk
+mov     rax, [rsp+28h]
+test    rax, rax
+jz      short loc_409560
+cmp     byte ptr [rax], 0
+jnz     short loc_409577
+mov     rdi, [rsp+10h]
+test    rdi, rdi
+jz      loc_4095F0
+call    _feof
+test    eax, eax
+jnz     short loc_4095F0
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+450h]
+lea     rdi, [rsp+10h]
+call    NextLex
+cmp     [rsp+1C78h+iType], 1
+jnz     short loc_409528
+lea     rdi, [rsp+450h]
+call    IsMathFunc
+test    eax, eax
+jnz     short loc_409528
+cmp     [rsp+1C78h+szLex], 5Fh
+jnz     loc_409528
+sub     rsp, 8
+mov     edx, 13FFh
+mov     ecx, 413904h
+lea     rax, [rsp+458h]
+mov     esi, 1
+push    rax
+mov     r9, [pV+8]
+xor     eax, eax
+lea     r8, [rsp+860h]
+mov     rdi, r8
+call    ___sprintf_chk
+pop     rax
+pop     rdx
+jmp     loc_409551
+mov     rdi, [pV+18h]
+mov     rsi, rbp
+call    GetVarPTR
+test    rax, rax
+jz      short loc_409633
+mov     eax, 1
+jmp     loc_4094B8
+mov     r9, r8
+mov     r8, [pV+8]
+mov     ecx, 413906h
+mov     edx, 3FFh
+mov     esi, 1
+mov     rdi, rbp
+call    ___sprintf_chk
+jmp     loc_40950E
+mov     rdi, [pV]
+lea     rdx, [rsp+850h]
+mov     rsi, rbp
+mov     ecx, 14h
+call    DefineVariable
+lea     rcx, [rsp+850h]
+mov     rdx, rbp
+mov     esi, 413B98h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+jmp     short loc_409601
+call    ___stack_chk_fail

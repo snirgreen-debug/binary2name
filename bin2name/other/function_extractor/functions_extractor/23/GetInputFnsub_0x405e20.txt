@@ -1,0 +1,115 @@
+push    r13
+push    r12
+push    rbp
+push    rbx
+sub     rsp, 468h
+mov     rax, fs:28h
+mov     [rsp+488h+var_30], rax
+xor     eax, eax
+test    pibIn, pibIn
+jz      loc_405FB0
+test    pifn, pifn
+mov     rbx, pifn
+jz      loc_405FB0
+mov     rax, [pibIn+30h]
+test    sz, sz
+mov     rbp, pibIn
+mov     r12, pibIn
+mov     pinfo, [pinfo+20h]
+mov     cs:vpvmGlo, rax
+jz      short loc_405E81
+mov     pifn, sz
+lea     r12, [rsp+10h]
+lea     sz, [rsp+10h]
+call    MakeStringBuffer
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+50h]
+mov     rdi, pibDum
+call    NextLex
+mov     ecx, [rsp+0Ch]
+cmp     ecx, 4
+jbe     short loc_405EE0
+xor     ecx, ecx
+mov     edx, 412A1Ch
+mov     esi, 14h
+mov     rdi, pibIn
+call    ReportError
+xor     eax, eax
+mov     rcx, [rsp+458h]
+xor     rcx, fs:28h
+jnz     loc_406040
+add     rsp, 468h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+retn
+mov     eax, 1
+shl     rax, cl
+test    al, 16h
+jz      short loc_405E9C
+cmp     ecx, 1
+mov     qword ptr [pifn+38h], 0
+mov     dword ptr [pifn+4], 0
+mov     qword ptr [pifn+8], 0
+mov     qword ptr [pifn+10h], 0
+mov     qword ptr [pifn+18h], 0
+mov     qword ptr [pifn+20h], 0
+mov     qword ptr [pifn+28h], 0
+mov     qword ptr [pifn+30h], 0
+mov     dword ptr [pifn+68h], 0
+mov     qword ptr [pifn+40h], 0
+mov     qword ptr [pifn+48h], 0
+mov     qword ptr [pifn+50h], 0
+mov     qword ptr [pifn+58h], 0
+mov     qword ptr [pifn+60h], 0
+mov     dword ptr [pifn+6Ch], 0
+mov     qword ptr [pifn+80h], 0
+mov     qword ptr [pifn+78h], 0
+mov     qword ptr [pifn+70h], 0
+jz      short loc_405FC0
+lea     rdi, [rsp+50h]
+mov     dword ptr [pifn], 1
+xor     esi, esi
+call    _strtod
+mov     dword ptr [pifn+4], 1
+movsd   qword ptr [pifn+30h], xmm0
+mov     eax, 1
+movsd   qword ptr [pifn+8], xmm0
+jmp     loc_405EB2
+xor     eax, eax
+jmp     loc_405EB2
+mov     rsi, cs:vrgifmMap.szName
+mov     r13d, 619240h
+cmp     byte ptr [rsi], 0
+jnz     short loc_405FE5
+jmp     short loc_405FF3
+add     r13, 10h
+mov     rsi, [r13+0]
+cmp     byte ptr [rsi], 0
+jz      short loc_405FF3
+lea     rdi, [rsp+50h]
+call    MyStrcmp
+test    eax, eax
+jnz     short loc_405FD8
+mov     eax, [r13+8]
+cmp     eax, 2
+mov     [pifn], eax
+jl      short loc_406020
+cmp     eax, 4
+jle     short loc_406030
+cmp     eax, 5
+jnz     short loc_406020
+lea     rsi, [rsp+50h]
+mov     rdx, pifn
+mov     rdi, pibDum
+call    GetNDoses
+jmp     loc_405EB2
+mov     dword ptr [pifn], 0
+lea     rcx, [rsp+50h]
+jmp     loc_405E9E
+mov     rsi, pifn
+mov     rdi, pibDum
+call    GetInputArgs
+jmp     loc_405EB2
+call    ___stack_chk_fail

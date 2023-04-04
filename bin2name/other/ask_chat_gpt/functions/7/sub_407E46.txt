@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+cmp     [rbp+var_8], 0
+jz      short loc_407E5E
+mov     rax, [rbp-8]
+jmp     short loc_407E63
+mov     eax, 611560h
+mov     edx, [rbp-0Ch]
+mov     [rax], edx
+nop
+pop     rbp
+retn

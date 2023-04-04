@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 0
+call    _sysconf
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jle     short loc_40541E
+mov     rax, [rbp-8]
+jmp     short locret_405428
+mov     rax, 7FFFFFFFFFFFFFFFh
+leave
+retn

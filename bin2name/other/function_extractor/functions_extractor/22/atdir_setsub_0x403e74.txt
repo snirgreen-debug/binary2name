@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+dir], rdi
+mov     [rbp+dirlen], rsi
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    atdir_eq
+xor     eax, 1
+test    al, al
+jz      short loc_403F08
+mov     eax, cs:dfd
+test    eax, eax
+js      short loc_403EB5
+mov     eax, cs:dfd
+mov     edi, eax
+call    _close
+cmp     [rbp+dirlen], 0
+jnz     short loc_403ECC
+mov     [rbp+dir], 4106D9h
+mov     [rbp+dirlen], 1
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 614960h
+call    _memcpy
+mov     rax, [rbp-10h]
+add     rax, 614960h
+mov     byte ptr [rax], 0
+mov     esi, 10000h
+mov     edi, 614960h
+mov     eax, 0
+call    open_safer
+mov     cs:dfd, eax
+mov     eax, cs:dfd
+leave
+retn

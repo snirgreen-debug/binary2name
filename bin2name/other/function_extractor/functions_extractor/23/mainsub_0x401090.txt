@@ -1,0 +1,66 @@
+push    rbp
+push    rbx
+mov     rbx, rgszArg
+mov     ebp, edi
+sub     rsp, 0F8h
+mov     rax, fs:28h
+mov     [rsp+108h+var_20], rax
+xor     eax, eax
+call    AnnounceProgram
+mov     rax, [rgszArg]
+lea     r8, [rsp+10h]
+lea     rcx, [rsp+8]
+mov     rdx, rsp
+mov     rsi, rgszArg
+mov     edi, ebp
+mov     [rsp+108h+info.wContext], 1
+mov     [rsp+108h+info.bDelays], 0
+mov     [rsp+108h+info.szModGenName], rax
+mov     [rsp+108h+tempinfo.szModGenName], rax
+mov     [rsp+108h+info.bforR], 0
+mov     [rsp+108h+info.bTemplateInUse], 0
+mov     [rsp+108h+info.pvmGloVars], 0
+mov     [rsp+108h+info.pvmDynEqns], 0
+mov     [rsp+108h+info.pvmScaleEqns], 0
+mov     [rsp+108h+info.pvmJacobEqns], 0
+mov     [rsp+108h+info.pvmCalcOutEqns], 0
+mov     [rsp+108h+info.pvmEventEqns], 0
+mov     [rsp+108h+info.pvmRootEqns], 0
+mov     [rsp+108h+info.pvmCpts], 0
+mov     [rsp+108h+info.pvmLocalCpts], 0
+mov     [rsp+108h+tempinfo.wContext], 1
+mov     [rsp+108h+tempinfo.bDelays], 0
+mov     [rsp+108h+tempinfo.bforR], 0
+mov     [rsp+108h+tempinfo.bTemplateInUse], 0
+mov     [rsp+108h+tempinfo.pvmGloVars], 0
+mov     [rsp+108h+tempinfo.pvmDynEqns], 0
+mov     [rsp+108h+tempinfo.pvmScaleEqns], 0
+mov     [rsp+108h+tempinfo.pvmJacobEqns], 0
+mov     [rsp+108h+tempinfo.pvmCalcOutEqns], 0
+mov     [rsp+108h+tempinfo.pvmEventEqns], 0
+mov     [rsp+108h+tempinfo.pvmRootEqns], 0
+mov     [rsp+108h+tempinfo.pvmCpts], 0
+mov     [rsp+108h+tempinfo.pvmLocalCpts], 0
+call    GetCmdLineArgs
+mov     rdx, [rsp]
+lea     rsi, [rsp+80h]
+lea     rdi, [rsp+10h]
+call    ReadModel
+cmp     [rsp+108h+info.bforR], 1
+mov     rsi, [rsp+8]
+lea     rdi, [rsp+10h]
+jz      short loc_40123B
+call    WriteModel
+lea     rdi, [rsp+10h]
+call    Cleanup
+xor     eax, eax
+mov     rdx, [rsp+0E8h]
+xor     rdx, fs:28h
+jnz     short loc_401242
+add     rsp, 0F8h
+pop     rgszArg
+pop     nArg
+retn
+call    Write_R_Model
+jmp     short loc_401212
+call    ___stack_chk_fail

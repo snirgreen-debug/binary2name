@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:s
+test    rax, rax
+jnz     short loc_404092
+movzx   eax, cs:byte_6112D0
+test    al, al
+jnz     short loc_404092
+mov     rdx, cs:qword_611400
+mov     rax, cs:qword_611498
+cmp     rdx, rax
+jz      short loc_404092
+mov     eax, cs:dword_611460
+test    eax, eax
+jnz     short loc_404092
+mov     esi, 611400h
+mov     edi, 611460h
+call    sub_404EAE
+jmp     short loc_404093
+nop
+pop     rbp
+retn

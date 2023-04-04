@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    sub_406055
+mov     edi, 0
+call    sub_404095
+mov     [rbp+var_34], eax
+mov     eax, [rbp-34h]
+mov     edi, eax
+call    sub_403AEC
+mov     eax, cs:dword_6113F0
+test    eax, eax
+jnz     short loc_403CCD
+mov     rax, 6C756E2F7665642Fh
+mov     qword ptr [rbp+file], rax
+mov     [rbp+var_28], 6Ch
+mov     edi, 0
+call    _close
+lea     rax, [rbp-30h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    _open
+test    eax, eax
+jns     short loc_403CCD
+lea     rax, [rbp-30h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    sub_409442
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 40CB8Eh
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_403CE2
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, 9Ch
+pop     rbp
+retn

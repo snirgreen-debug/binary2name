@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+test    eax, eax
+js      short loc_423AE6
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+mov     edi, eax
+call    _close
+test    eax, eax
+setnz   al
+mov     [rbp+var_1], al
+movzx   eax, byte ptr [rbp-1]
+xor     eax, 1
+test    al, al
+jnz     short loc_423AE6
+mov     ecx, 432618h
+mov     edx, 40h
+mov     esi, 4325B8h
+mov     edi, 4325C5h
+call    ___assert_fail
+nop
+leave
+retn

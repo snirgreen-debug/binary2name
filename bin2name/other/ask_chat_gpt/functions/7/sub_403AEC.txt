@@ -1,0 +1,82 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+var_24], edi
+mov     rax, cs:off_6112D8
+mov     edx, [rbp-24h]
+mov     ecx, edx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _snprintf
+mov     [rbp+var_1C], eax
+cmp     [rbp+var_1C], 0
+jg      short loc_403B3F
+mov     ecx, 40D898h
+mov     edx, 474h
+mov     esi, 40BF40h
+mov     edi, 40CB43h
+call    ___assert_fail
+mov     eax, [rbp-1Ch]
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    _malloc
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jnz     short loc_403B87
+mov     edi, 40CB4Ch
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+jmp     loc_403C14
+mov     rdx, cs:off_6112D8
+mov     eax, [rbp-1Ch]
+add     eax, 1
+movsxd  rsi, eax
+mov     ecx, [rbp-24h]
+mov     rax, [rbp-18h]
+mov     rdi, rax
+mov     eax, 0
+call    _snprintf
+mov     rax, cs:name
+test    rax, rax
+jz      short loc_403C08
+mov     rax, cs:name
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    _setenv
+test    eax, eax
+jns     short loc_403C08
+mov     rbx, cs:name
+mov     edi, 40CB68h
+call    _gettext
+mov     r12, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     rdx, r12
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+nop
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+in], edi
+mov     [rbp+out], esi
+mov     eax, [rbp-14h]
+mov     cs:ifd, eax
+mov     eax, [rbp-18h]
+mov     cs:ofd, eax
+call    decode_start
+jmp     short loc_40B0B1
+mov     esi, 64D320h
+mov     edi, 2000h
+call    decode
+mov     [rbp+n], eax
+mov     eax, cs:test
+test    eax, eax
+jnz     short loc_40B0B1
+cmp     [rbp+n], 0
+jz      short loc_40B0B1
+mov     edx, [rbp-4]
+mov     eax, [rbp-18h]
+mov     esi, 64D320h
+mov     edi, eax
+call    write_buf
+mov     eax, cs:done
+test    eax, eax
+jz      short loc_40B07D
+mov     eax, 0
+leave
+retn

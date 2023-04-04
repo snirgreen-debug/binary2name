@@ -1,0 +1,94 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     r12, rdx
+mov     rax, fs:28h
+mov     [rbp+var_28], rax
+xor     eax, eax
+mov     rax, [rbp-48h]
+mov     rax, [rax+40h]
+mov     [rbp+compar], rax
+mov     rax, [rbp-48h]
+mov     rax, [rax+38h]
+cmp     rax, r12
+jnb     loc_426896
+lea     rdx, [r12+28h]
+mov     rax, [rbp-48h]
+mov     [rax+38h], rdx
+mov     rax, [rbp-48h]
+mov     rdx, [rax+38h]
+mov     rax, 1FFFFFFFFFFFFFFFh
+cmp     rdx, rax
+ja      short loc_426859
+mov     rax, [rbp-48h]
+mov     rax, [rax+38h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     [rbp+var_30], rax
+cmp     [rbp+var_30], 0
+jnz     short loc_42688A
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-48h]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-48h]
+mov     qword ptr [rax+38h], 0
+mov     rax, [rbp-50h]
+jmp     loc_42690E
+mov     rax, [rbp-48h]
+mov     rdx, [rbp-30h]
+mov     [rax+10h], rdx
+mov     rax, [rbp-48h]
+mov     rbx, [rax+10h]
+mov     r13, [rbp-50h]
+jmp     short loc_4268B2
+mov     rax, rbx
+lea     rbx, [rax+8]
+mov     [rax], r13
+mov     r13, [r13+10h]
+test    r13, r13
+jnz     short loc_4268A4
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-38h]
+mov     rcx, rdx
+mov     edx, 8
+mov     rsi, r12
+mov     rdi, rax
+call    _qsort
+mov     rax, [rbp-48h]
+mov     rbx, [rax+10h]
+mov     rax, [rbx]
+mov     [rbp+var_50], rax
+jmp     short loc_4268F6
+mov     rax, [rbx]
+mov     rdx, [rbx+8]
+mov     [rax+10h], rdx
+add     rbx, 8
+sub     r12, 1
+test    r12, r12
+jnz     short loc_4268E7
+mov     rax, [rbx]
+mov     qword ptr [rax+10h], 0
+mov     rax, [rbp-50h]
+mov     rcx, [rbp-28h]
+xor     rcx, fs:28h
+jz      short loc_426922
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

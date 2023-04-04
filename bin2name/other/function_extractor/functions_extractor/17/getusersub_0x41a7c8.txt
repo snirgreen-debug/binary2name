@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+uid], edi
+mov     [rbp+match], 0
+mov     rax, cs:user_alist
+mov     [rbp+tail], rax
+jmp     short loc_41A809
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+cmp     eax, [rbp-24h]
+jnz     short loc_41A7FD
+mov     rax, [rbp-20h]
+mov     [rbp+match], rax
+jmp     short loc_41A810
+mov     rax, [rbp-20h]
+mov     rax, [rax+8]
+mov     [rbp+tail], rax
+cmp     [rbp+tail], 0
+jnz     short loc_41A7E8
+cmp     [rbp+match], 0
+jnz     short loc_41A894
+mov     eax, [rbp-24h]
+mov     edi, eax
+call    _getpwuid
+mov     [rbp+pwent], rax
+cmp     [rbp+pwent], 0
+jz      short loc_41A835
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+jmp     short loc_41A83A
+mov     eax, 4300A0h
+mov     [rbp+name], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+add     rax, 11h
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+match], rax
+mov     rax, [rbp-18h]
+mov     edx, [rbp-24h]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rdx, cs:user_alist
+mov     rax, [rbp-18h]
+mov     [rax+8], rdx
+mov     rax, [rbp-18h]
+mov     cs:user_alist, rax
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+10h]
+test    al, al
+jz      short loc_41A8AA
+mov     rax, [rbp-18h]
+add     rax, 10h
+jmp     short locret_41A8AF
+mov     eax, 0
+leave
+retn

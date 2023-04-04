@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+host], rdi
+cmp     [rbp+host], 0
+jz      short loc_402963
+mov     rax, cs:connection_host_name
+test    rax, rax
+jz      short loc_402988
+mov     ecx, 42FDF0h
+mov     edx, 8Fh
+mov     esi, 42FCEEh
+mov     edi, 42FCF8h
+call    ___assert_fail
+mov     rax, cs:connection_host_name
+test    rax, rax
+jnz     short loc_402988
+mov     ecx, 42FDF0h
+mov     edx, 91h
+mov     esi, 42FCEEh
+mov     edi, 42FD15h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     cs:connection_host_name, rax
+nop
+leave
+retn

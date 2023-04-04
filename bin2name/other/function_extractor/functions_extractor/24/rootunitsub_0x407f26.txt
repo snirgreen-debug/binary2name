@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 680h
+mov     [rbp+inunit], rdi
+mov     [rbp+n], esi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    initializeunit
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    completereduce
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_407F85
+mov     eax, [rbp-654h]
+jmp     loc_4080A2
+mov     rax, [rbp-668h]
+movsd   xmm1, qword ptr [rax+640h]
+pxor    xmm0, xmm0
+ucomisd xmm0, xmm1
+jbe     short loc_407FA8
+mov     eax, 6
+jmp     loc_4080A2
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-66Ch]
+movsd   xmm1, cs:qword_416DA0
+divsd   xmm1, xmm0
+movapd  xmm0, xmm1
+mov     rax, [rbp-668h]
+mov     rax, [rax+640h]
+movapd  xmm1, xmm0
+mov     [rbp+var_678], rax
+movsd   xmm0, qword ptr [rbp-678h]
+call    _pow
+movq    rax, xmm0
+mov     [rbp+outunit.factor], rax
+mov     rcx, [rbp-668h]
+lea     rdx, [rbp-650h]
+mov     eax, [rbp-66Ch]
+mov     rsi, rcx
+mov     edi, eax
+call    subunitroot
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_408028
+mov     eax, [rbp-654h]
+jmp     short loc_4080A2
+mov     rax, [rbp-668h]
+lea     rcx, [rax+320h]
+lea     rax, [rbp-650h]
+lea     rdx, [rax+320h]
+mov     eax, [rbp-66Ch]
+mov     rsi, rcx
+mov     edi, eax
+call    subunitroot
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_40806B
+mov     eax, [rbp-654h]
+jmp     short loc_4080A2
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    freeunit
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    initializeunit
+lea     rdx, [rbp-650h]
+mov     rax, [rbp-668h]
+mov     rsi, rdx
+mov     rdi, rax
+call    multunit
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4080B6
+call    ___stack_chk_fail
+leave
+retn

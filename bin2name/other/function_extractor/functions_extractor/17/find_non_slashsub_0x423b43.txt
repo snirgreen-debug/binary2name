@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     esi, 4325D2h
+mov     rdi, rax
+call    _strspn
+mov     [rbp+n_slash], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+add     rax, rdx
+leave
+retn

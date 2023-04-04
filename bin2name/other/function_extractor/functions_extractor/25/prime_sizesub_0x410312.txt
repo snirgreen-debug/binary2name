@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+size], edi
+mov     [rbp+prime_offset], rsi
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+mov     [rbp+i], eax
+jmp     short loc_410362
+mov     eax, [rbp-4]
+cdqe
+mov     rdx, [rax*8+431D40h]
+mov     eax, [rbp-14h]
+cdqe
+cmp     rdx, rax
+jb      short loc_41035E
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     rax, [rbp-20h]
+mov     [rax], edx
+mov     eax, [rbp-4]
+cdqe
+mov     rax, [rax*8+431D40h]
+jmp     short locret_41036F
+add     [rbp+i], 1
+mov     eax, [rbp-4]
+cmp     eax, 47h
+jbe     short loc_41032C
+call    _abort
+leave
+retn

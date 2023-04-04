@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, cs:qword_63AE00
+test    rax, rax
+jnz     short loc_409A6E
+mov     edi, 42BD27h
+call    sub_40EE8E
+mov     cs:qword_63AE00, rax
+mov     rax, cs:qword_63AE00
+test    rax, rax
+jnz     short loc_409A93
+mov     ecx, 42BF60h
+mov     edx, 60Bh
+mov     esi, 42B9B7h
+mov     edi, 42BD2Bh
+call    ___assert_fail
+mov     rax, cs:qword_63ADD8
+test    rax, rax
+jz      loc_409B68
+mov     rax, cs:qword_63ADD8
+mov     eax, [rax+10h]
+cmp     eax, 1
+jz      short loc_409AE7
+cmp     eax, 1
+jb      short loc_409AC1
+cmp     eax, 5
+jz      short loc_409AE7
+jmp     loc_409B68
+mov     edi, 42BD40h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_409B68
+mov     rax, cs:qword_63AE00
+mov     rdi, rax
+call    sub_409829
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 404895h
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 42B9B4h
+mov     rax, [rbp-8]
+mov     dword ptr [rax+10h], 3
+mov     rax, [rbp-8]
+mov     dword ptr [rax+14h], 3
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Ah], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Ch], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+30h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+18h], 0
+mov     rax, [rbp-8]
+mov     byte ptr [rax+19h], 0
+nop
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40985E
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax+130h], rdx
+mov     rax, [rbp-8]
+leave
+retn

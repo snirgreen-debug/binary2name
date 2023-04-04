@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jnz     short loc_41932B
+mov     eax, 0
+jmp     loc_4193C7
+add     [rbp+p], 1
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 40h
+test    eax, eax
+jnz     short loc_419326
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4193BB
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 47h
+jnz     short loc_419380
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 4Dh
+jnz     short loc_419380
+mov     rax, [rbp-8]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+cmp     al, 54h
+jz      short loc_4193BB
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Bh
+jz      short loc_419396
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Dh
+jnz     short loc_4193C2
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      short loc_4193C2
+mov     eax, 1
+jmp     short loc_4193C7
+mov     eax, 0
+pop     rbp
+retn

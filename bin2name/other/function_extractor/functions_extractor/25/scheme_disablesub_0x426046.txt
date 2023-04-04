@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+scheme], edi
+mov     eax, [rbp-4]
+shl     rax, 4
+add     rax, 63FEECh
+mov     dword ptr [rax], 0
+nop
+pop     rbp
+retn

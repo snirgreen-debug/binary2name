@@ -1,0 +1,4 @@
+xor     eax, eax
+cmp     qword ptr [pvm+8], 6192A0h
+setnz   al
+retn

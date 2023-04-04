@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+yymsg], rdi
+mov     [rbp+yytype], esi
+mov     [rbp+yyvaluep], rdx
+mov     [rbp+pc], rcx
+cmp     [rbp+yymsg], 0
+jnz     short loc_41CDF6
+mov     [rbp+yymsg], 43071Ch
+nop
+pop     rbp
+retn

@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+status], edi
+mov     [rbp+errnum], esi
+mov     eax, edx
+mov     [rbp+var_18], rcx
+mov     [rbp+var_C], al
+movzx   eax, byte ptr [rbp-0Ch]
+xor     eax, 1
+test    al, al
+jnz     short loc_40B8C3
+movzx   eax, cs:byte_63BFB8
+xor     eax, 1
+test    al, al
+jz      short loc_40B8FB
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     edi, 0
+call    sub_40B84E
+mov     rdx, rax
+mov     esi, [rbp-8]
+mov     eax, [rbp-4]
+mov     rcx, rdx
+mov     edx, 42C5CAh
+mov     edi, eax
+mov     eax, 0
+call    _error
+mov     edi, 1
+call    sub_40B875
+cmp     [rbp+var_C], 0
+jz      short loc_40B908
+mov     cs:byte_63BFB8, 1
+nop
+leave
+retn

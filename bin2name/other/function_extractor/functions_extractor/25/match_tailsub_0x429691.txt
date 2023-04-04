@@ -1,0 +1,82 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+string], rdi
+mov     [rbp+tail], rsi
+mov     [rbp+fold_case_p], edx
+cmp     [rbp+fold_case_p], 0
+jnz     short loc_42970C
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+i], eax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+j], eax
+jmp     short loc_4296FA
+mov     eax, [rbp-8]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   edx, byte ptr [rax]
+mov     eax, [rbp-4]
+movsxd  rcx, eax
+mov     rax, [rbp-20h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     loc_429784
+sub     [rbp+i], 1
+sub     [rbp+j], 1
+cmp     [rbp+i], 0
+js      loc_429788
+cmp     [rbp+j], 0
+jns     short loc_4296CA
+jmp     short loc_429788
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+i], eax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+j], eax
+jmp     short loc_429776
+mov     eax, [rbp-8]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   edx, byte ptr [rax+436E80h]
+mov     eax, [rbp-4]
+movsxd  rcx, eax
+mov     rax, [rbp-20h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436E80h]
+cmp     dl, al
+jnz     short loc_429787
+sub     [rbp+i], 1
+sub     [rbp+j], 1
+cmp     [rbp+i], 0
+js      short loc_429788
+cmp     [rbp+j], 0
+jns     short loc_42972C
+jmp     short loc_429788
+nop
+jmp     short loc_429788
+nop
+cmp     [rbp+j], 0FFFFFFFFh
+jnz     short loc_429795
+mov     eax, 1
+jmp     short locret_42979A
+mov     eax, 0
+leave
+retn

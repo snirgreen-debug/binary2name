@@ -1,0 +1,25 @@
+cmp     esi, 1
+push    rbx
+mov     rbx, pibIn
+jnz     short loc_40AFB8
+jmp     short loc_40AFD8
+mov     rdi, pibIn
+call    ReadReaction_L2
+mov     edx, 14h
+mov     esi, 9
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40AFB0
+pop     pibIn
+retn
+mov     rdi, pibIn
+call    ReadReaction_L1
+mov     edx, 14h
+mov     esi, 9
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40AFD0
+pop     pibIn
+retn

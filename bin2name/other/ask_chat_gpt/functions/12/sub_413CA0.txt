@@ -1,0 +1,123 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     edi, 15h
+call    sub_410C8B
+mov     cs:ptr, rax
+mov     [rbp+var_24], 0
+jmp     short loc_413D11
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+lea     rsi, [rax+63E580h]
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63E588h
+mov     rcx, [rax]
+mov     rax, cs:ptr
+mov     rdx, rsi
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41080A
+add     [rbp+var_24], 1
+mov     eax, [rbp-24h]
+cmp     eax, 14h
+jbe     short loc_413CC2
+mov     rax, cs:qword_647668
+test    rax, rax
+jz      short loc_413D5C
+mov     rax, cs:qword_647668
+mov     [rbp+var_20], rax
+jmp     short loc_413D50
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, cs:ptr
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4108B9
+add     [rbp+var_20], 8
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_413D32
+mov     rax, cs:qword_647660
+test    rax, rax
+jz      loc_413DF3
+mov     edi, 0
+call    sub_410C8B
+mov     [rbp+var_10], rax
+mov     rax, cs:qword_647660
+mov     [rbp+var_18], rax
+jmp     short loc_413DCD
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, cs:ptr
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_410588
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_413DC7
+mov     rax, [rbp-18h]
+mov     rcx, [rax]
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41080A
+jmp     short loc_413DC8
+nop
+add     [rbp+var_18], 8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_413D87
+mov     rax, cs:ptr
+mov     rdi, rax
+call    sub_410490
+mov     rax, [rbp-10h]
+mov     cs:ptr, rax
+mov     edi, 0Ah
+call    sub_410C8B
+mov     cs:qword_647580, rax
+mov     [rbp+var_24], 0
+jmp     short loc_413E30
+mov     eax, [rbp-24h]
+cdqe
+mov     rdx, [rax*8+63E960h]
+mov     rax, cs:qword_647580
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42A160
+add     [rbp+var_24], 1
+mov     eax, [rbp-24h]
+cmp     eax, 4
+jbe     short loc_413E0D
+mov     [rbp+var_24], 0
+jmp     short loc_413E73
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63E788h
+mov     rdx, [rax]
+mov     rax, cs:qword_647580
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42A160
+add     [rbp+var_24], 1
+mov     eax, [rbp-24h]
+cmp     eax, 13h
+jbe     short loc_413E41
+nop
+leave
+retn

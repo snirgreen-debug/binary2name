@@ -1,0 +1,143 @@
+push    r15
+push    r14
+mov     r14, szName
+push    r13
+push    r12
+mov     r13, szEqn
+push    rbp
+push    rbx
+mov     ebx, 80000h
+mov     szEqn, hType
+mov     rbp, pibIn
+sub     rsp, 18h
+test    hType, hType
+mov     eax, [pibIn+20h]
+cmovnz  rbx, hType
+sub     eax, [pibIn+24h]
+mov     r12, [pibIn+30h]
+mov     hType, rbx
+mov     edi, 412E24h
+or      ch, 0F0h
+cmp     eax, 1
+cmovnz  rbx, rcx
+mov     ecx, 7
+repe cmpsb
+jz      loc_407530
+test    hType, hType
+jz      loc_4074B8
+cmp     pinfo, 0FFFFFFFFFFFFFFC0h
+jnz     short loc_407418
+mov     eax, [pibIn+20h]
+mov     [pibIn+24h], eax
+add     rsp, 18h
+pop     rbx
+pop     pibIn
+pop     pinfo
+pop     szEqn
+pop     r14
+pop     r15
+retn
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     r15, rax
+jz      loc_407550
+mov     rdi, r14
+call    _strlen
+lea     rdx, [rax+1]
+mov     rdi, rdx
+mov     [rsp+48h+var_40], rdx
+call    _malloc
+test    rax, rax
+jz      loc_4075B2
+mov     rdx, [rsp+8]
+mov     rsi, r14
+mov     rdi, rax
+call    _memcpy
+test    szEqn, szEqn
+mov     [r15], rax
+jz      loc_407590
+mov     rdi, szEqn
+call    _strlen
+lea     r14, [rax+1]
+mov     rdi, r14
+call    _malloc
+test    rax, rax
+jz      loc_407597
+mov     rdx, r14
+mov     rsi, szEqn
+mov     rdi, rax
+call    _memcpy
+mov     [r15+8], rax
+mov     rax, [pinfo+40h]
+mov     [r15+10h], rbx
+mov     [r15+18h], rax
+mov     [pinfo+40h], r15
+jmp     loc_4073FE
+cmp     pinfo, 0FFFFFFFFFFFFFFE0h
+jz      loc_4073F8
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     r15, rax
+jz      loc_407570
+mov     rdi, r14
+call    _strlen
+lea     rdx, [rax+1]
+mov     rdi, rdx
+mov     [rsp+48h+var_40], rdx
+call    _malloc
+test    rax, rax
+jz      loc_4075CD
+mov     rdx, [rsp+8]
+mov     rsi, r14
+mov     rdi, rax
+call    _memcpy
+mov     [r15], rax
+mov     qword ptr [r15+8], 0
+mov     rax, [pinfo+20h]
+mov     [r15+10h], rbx
+mov     [r15+18h], rax
+mov     [pinfo+20h], r15
+jmp     loc_4073F8
+lea     rdi, [pinfo+40h]
+mov     ecx, 0A0000h
+mov     hType, szEqn
+mov     rsi, r14
+call    AddEquation
+jmp     loc_4073FE
+mov     ecx, 4131E8h
+mov     rdx, r14
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+jmp     loc_4073FE
+mov     ecx, 4131E8h
+mov     rdx, r14
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+jmp     loc_4073F8
+xor     eax, eax
+jmp     loc_407497
+mov     ecx, 4131C0h
+mov     rdx, szEqn
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     loc_407497
+mov     ecx, 4131C0h
+mov     rdx, r14
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     loc_407460
+mov     ecx, 4131C0h
+mov     rdx, r14
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     loc_40750A

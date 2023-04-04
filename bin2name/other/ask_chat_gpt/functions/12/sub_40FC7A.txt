@@ -1,0 +1,73 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_20], edx
+mov     eax, [rbp-1Ch]
+lea     edx, [rax+7]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 3
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+var_B], al
+mov     eax, [rbp-1Ch]
+lea     edx, [rax+7]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 3
+cdqe
+lea     rdx, [rax+1]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+var_A], al
+mov     eax, [rbp-1Ch]
+lea     edx, [rax+7]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 3
+cdqe
+lea     rdx, [rax+2]
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+var_9], al
+movzx   eax, byte ptr [rbp-0Bh]
+shl     eax, 8
+mov     edx, eax
+movzx   eax, byte ptr [rbp-0Ah]
+or      eax, edx
+cdqe
+shl     rax, 8
+mov     rdx, rax
+movzx   eax, byte ptr [rbp-9]
+or      rax, rdx
+mov     [rbp+var_8], rax
+mov     eax, [rbp-1Ch]
+cdq
+shr     edx, 1Dh
+add     eax, edx
+and     eax, 7
+sub     eax, edx
+mov     edx, eax
+mov     eax, [rbp-20h]
+add     eax, edx
+mov     edx, 18h
+sub     edx, eax
+mov     eax, edx
+mov     ecx, eax
+shr     [rbp+var_8], cl
+mov     eax, 10h
+sub     eax, [rbp-20h]
+mov     edx, 0FFFFh
+mov     ecx, eax
+sar     edx, cl
+mov     eax, edx
+cdqe
+and     [rbp+var_8], rax
+mov     rax, [rbp-8]
+pop     rbp
+retn

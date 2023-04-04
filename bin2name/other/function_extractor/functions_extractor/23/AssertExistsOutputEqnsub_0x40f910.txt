@@ -1,0 +1,30 @@
+push    r12
+push    rbp
+xor     ebp, ebp
+push    rbx
+cmp     qword ptr [pvm+8], 6192A0h
+jz      short loc_40F93D
+mov     rbx, pvm
+mov     pfile, [pInfo+28h]
+mov     pvm, [pvm]
+mov     r12, [pInfo+40h]
+call    GetVarPTR
+test    rax, rax
+jz      short loc_40F948
+mov     ebp, 1
+mov     eax, ebp
+pop     rbx
+pop     iReturn
+pop     r12
+retn
+mov     rsi, [pvm]
+mov     rdi, r12
+call    GetVarPTR
+test    rax, rax
+jnz     short loc_40F938
+mov     rdx, [pvm]
+xor     ecx, ecx
+mov     esi, 10Dh
+xor     edi, edi
+call    ReportError
+jmp     short loc_40F93D

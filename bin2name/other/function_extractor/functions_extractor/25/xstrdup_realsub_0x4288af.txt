@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strdup
+mov     [rbp+copy], rax
+cmp     [rbp+copy], 0
+jnz     short loc_4288DC
+mov     edi, 43752Bh
+call    memfatal
+mov     rax, [rbp-8]
+leave
+retn

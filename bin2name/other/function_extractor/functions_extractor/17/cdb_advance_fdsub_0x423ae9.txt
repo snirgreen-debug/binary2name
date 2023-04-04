@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+cdb], rdi
+mov     [rbp+dir], rsi
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+mov     rcx, [rbp-20h]
+mov     edx, 10900h
+mov     rsi, rcx
+mov     edi, eax
+mov     eax, 0
+call    _openat
+mov     [rbp+new_fd], eax
+cmp     [rbp+new_fd], 0
+jns     short loc_423B27
+mov     eax, 0FFFFFFFFh
+jmp     short locret_423B41
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    cdb_free
+mov     rax, [rbp-18h]
+mov     edx, [rbp-4]
+mov     [rax], edx
+mov     eax, 0
+leave
+retn

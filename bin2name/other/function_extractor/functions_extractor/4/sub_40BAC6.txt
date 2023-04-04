@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     edi, 10h
+call    _malloc
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jz      loc_40BB73
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strdup
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40BB67
+mov     r8d, 40BA1Fh
+mov     ecx, 40B9CAh
+mov     edx, 40BA92h
+mov     esi, 0
+mov     edi, 0Bh
+call    sub_4188A1
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_40BB4A
+mov     rax, [rbp-8]
+jmp     short locret_40BB78
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+jmp     short loc_40BB73
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+leave
+retn

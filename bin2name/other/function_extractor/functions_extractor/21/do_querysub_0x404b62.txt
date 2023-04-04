@@ -1,0 +1,167 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+script], rdi
+mov     [rbp+line], rsi
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+mov     eax, cs:COLS@@NCURSES_TINFO_5_0_19991023
+mov     ebx, eax
+mov     rax, cs:MODE_QUERY
+mov     rdi, rax
+call    _strlen
+sub     ebx, eax
+mov     eax, ebx
+sub     eax, 2
+mov     edx, eax
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:MODE_QUERY
+mov     rdi, rax
+call    wideaddstr_rev
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, [rbp-30h]
+add     rax, 2
+mov     rdi, rax
+call    wideaddstr_rev
+mov     edi, 0
+call    getch_fl
+mov     [rbp+resp], eax
+mov     [rbp+fkey], 1
+jmp     short loc_404C98
+mov     eax, [rbp-14h]
+sub     eax, 1
+cdqe
+movzx   eax, byte ptr [rax+60C338h]
+movsx   eax, al
+cmp     eax, [rbp-18h]
+jz      short loc_404C87
+cmp     [rbp+fkey], 0Ah
+jg      short loc_404C57
+mov     eax, [rbp-14h]
+add     eax, 30h
+cmp     eax, [rbp-18h]
+jz      short loc_404C87
+cmp     [rbp+fkey], 0Ah
+jnz     short loc_404C63
+cmp     [rbp+resp], 30h
+jz      short loc_404C87
+cmp     [rbp+fkey], 0Bh
+jnz     short loc_404C75
+cmp     [rbp+resp], 61h
+jz      short loc_404C87
+cmp     [rbp+resp], 41h
+jz      short loc_404C87
+cmp     [rbp+fkey], 0Ch
+jnz     short loc_404C94
+cmp     [rbp+resp], 73h
+jz      short loc_404C87
+cmp     [rbp+resp], 53h
+jnz     short loc_404C94
+mov     eax, [rbp-14h]
+add     eax, 108h
+mov     [rbp+resp], eax
+jmp     short loc_404C9E
+add     [rbp+fkey], 1
+cmp     [rbp+fkey], 0Ch
+jle     short loc_404C2F
+mov     [rbp+fkey], 1
+jmp     short loc_404CF3
+mov     eax, [rbp-14h]
+add     eax, 108h
+cmp     eax, [rbp-18h]
+jnz     short loc_404CEF
+mov     eax, [rbp-14h]
+sub     eax, 1
+cdqe
+mov     rax, [rax*8+60C6C0h]
+test    rax, rax
+jz      short loc_404CEF
+mov     eax, [rbp-14h]
+sub     eax, 1
+cdqe
+mov     rcx, [rax*8+60C6C0h]
+mov     rax, [rbp-28h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    seek_label
+jmp     short loc_404CF9
+add     [rbp+fkey], 1
+cmp     [rbp+fkey], 0Ch
+jle     short loc_404CA7
+cmp     [rbp+fkey], 0Ch
+jg      short loc_404D05
+mov     [rbp+ret_code], 0
+jmp     short loc_404D75
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    towideupper
+cmp     eax, 59h
+jz      short loc_404D2D
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    towideupper
+mov     edx, eax
+mov     rax, cs:YN
+mov     eax, [rax]
+cmp     edx, eax
+jnz     short loc_404D3A
+mov     [rbp+ret_code], 1
+mov     cs:global_resp_flag, 1
+jmp     short loc_404D75
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    towideupper
+cmp     eax, 4Eh
+jz      short loc_404D6A
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    towideupper
+mov     edx, eax
+mov     rax, cs:YN
+add     rax, 8
+mov     eax, [rax]
+cmp     edx, eax
+jnz     loc_404C19
+mov     [rbp+ret_code], 1
+mov     cs:global_resp_flag, 0
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    get_script_line
+movzx   eax, byte ptr [rbp-19h]
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

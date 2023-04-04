@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+errnum], edi
+mov     edi, 430220h
+call    _gettext
+mov     rdx, rax
+mov     eax, cs:exit_failure
+mov     ecx, [rbp-4]
+mov     esi, ecx
+mov     edi, eax
+mov     eax, 0
+call    _error
+call    _abort

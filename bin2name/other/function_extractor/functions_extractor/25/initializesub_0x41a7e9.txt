@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+call    defaults
+mov     edi, 4337F0h
+call    file_exists_p
+test    eax, eax
+jz      short loc_41A80F
+mov     edi, 4337F0h
+call    run_wgetrc
+call    wgetrc_file_name
+mov     [rbp+file], rax
+cmp     [rbp+file], 0
+jz      short loc_41A883
+mov     rax, [rbp-18h]
+mov     esi, 4337F0h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_41A868
+mov     rbx, cs:exec_name
+mov     edi, 433840h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_41A874
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    run_wgetrc
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+nop
+jmp     short loc_41A884
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

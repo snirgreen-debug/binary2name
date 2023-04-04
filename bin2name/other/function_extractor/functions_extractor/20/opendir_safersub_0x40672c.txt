@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+name], rdi
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _opendir
+mov     [rbp+dp], rax
+cmp     [rbp+dp], 0
+jz      loc_4067DF
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _dirfd
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_4067DF
+cmp     [rbp+fd], 2
+jg      short loc_4067DF
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    dup_safer
+mov     [rbp+f], eax
+cmp     [rbp+f], 0
+jns     short loc_406795
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     [rbp+newdp], 0
+jmp     short loc_4067BE
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _fdopendir
+mov     [rbp+newdp], rax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+cmp     [rbp+newdp], 0
+jnz     short loc_4067BE
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _close
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _closedir
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-1Ch]
+mov     [rdx], eax
+mov     rax, [rbp-8]
+mov     [rbp+dp], rax
+mov     rax, [rbp-10h]
+leave
+retn

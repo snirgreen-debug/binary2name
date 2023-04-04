@@ -1,0 +1,141 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4212484,
+                "src": 4212460
+            },
+            {
+                "dst": 4212507,
+                "src": 4212484
+            },
+            {
+                "dst": 4212495,
+                "src": 4212484
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4212507
+            },
+            {
+                "dst": 4212507,
+                "src": 4212495
+            },
+            {
+                "dst": 4212502,
+                "src": 4212495
+            },
+            {
+                "dst": 4212507,
+                "src": 4212502
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4212460,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |sub|rsp|0x20|    |mov|qword|ptr|rbp|-|0x18|rdi|    |mov|rax|qword|ptr|rbp|-|0x18|    |mov|rdi|rax|    |call|0x401500|    "
+            },
+            {
+                "block_addr": 4212484,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ],
+                    [
+                        1,
+                        []
+                    ],
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "mov|qword|ptr|rbp|-|8|rax|    |cmp|qword|ptr|rbp|-|8|0|    |jne|0x40471b|    "
+            },
+            {
+                "block_addr": 4212507,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool __ne__(fake_ret_value_792_64, 0x0)>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<Bool __eq__(reg_48_791_64, 0x0)>"
+                        ]
+                    ],
+                    [
+                        4,
+                        []
+                    ]
+                ],
+                "instructions": "mov|rax|qword|ptr|rbp|-|8|    |leave|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<BV32 Extract(31, 0, fake_ret_value_792_64)>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<BV32 Extract(31, 0, fake_ret_value_792_64)>"
+                        ]
+                    ],
+                    [
+                        5,
+                        [
+                            "<BV32 Extract(31, 0, fake_ret_value_792_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4212495,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool __eq__(fake_ret_value_792_64, 0x0)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool __eq__(fake_ret_value_792_64, 0x0)>"
+                        ]
+                    ]
+                ],
+                "instructions": "cmp|qword|ptr|rbp|-|0x18|0|    |je|0x40471b|    "
+            },
+            {
+                "block_addr": 4212502,
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<Bool __ne__(reg_48_791_64, 0x0)>"
+                        ]
+                    ]
+                ],
+                "instructions": "call|0x404877|    "
+            }
+        ]
+    },
+    "func_name": "4212460"
+}

@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_18], rdi
+mov     [rbp+fd], esi
+mov     [rbp+file], rdx
+mov     edi, 10h
+call    sub_422DC2
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax+0C0h], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+0C0h]
+mov     qword ptr [rax+8], 0
+mov     rax, [rbp-18h]
+mov     rbx, [rax+0C0h]
+mov     rcx, [rbp-28h]
+mov     eax, [rbp-1Ch]
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+mov     eax, 0
+call    _openat
+mov     [rbx], eax
+mov     rax, [rbp-18h]
+mov     rax, [rax+0C0h]
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_4068CE
+mov     eax, 0
+jmp     short loc_4068EC
+mov     rax, [rbp-18h]
+mov     rax, [rax+0C0h]
+mov     eax, [rax]
+mov     esi, 1
+mov     edi, eax
+call    sub_41754F
+mov     eax, 1
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,107 @@
+push    r15
+push    r14
+mov     r15, szEqn
+push    r13
+push    r12
+mov     r12d, 70000h
+push    rbp
+push    rbx
+mov     rax, hType
+mov     r13, pibIn
+mov     rbp, szName
+sub     rsp, 18h
+test    hType, hType
+mov     edx, [pibIn+20h]
+cmovnz  r12, hType
+sub     edx, [pibIn+24h]
+mov     r14, [pibIn+30h]
+mov     hType, hNewType
+mov     edi, 412E24h
+or      ch, 0F0h
+cmp     edx, 1
+cmovnz  hNewType, rcx
+mov     ecx, 7
+repe cmpsb
+jz      loc_4078C0
+test    hType, hType
+jz      short loc_407850
+test    eax, 70000h
+jnz     short loc_407838
+mov     rbx, [pinfo+48h]
+test    rbx, rbx
+jnz     short loc_4077F9
+jmp     short loc_407838
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_407838
+mov     rsi, [rbx]
+mov     rdi, rbp
+call    _strcmp
+test    eax, eax
+jnz     short loc_4077F0
+mov     ecx, 412E3Eh
+mov     rdx, rbp
+mov     esi, 4103h
+mov     rdi, pibIn
+call    ReportError
+mov     eax, [pibIn+20h]
+mov     [pibIn+24h], eax
+add     rsp, 18h
+pop     rbx
+pop     rbp
+pop     hNewType
+pop     pibIn
+pop     pinfo
+pop     szEqn
+retn
+lea     rdi, [pinfo+48h]
+mov     rcx, hNewType
+mov     rdx, szEqn
+mov     rsi, rbp
+call    AddEquation
+jmp     short loc_40781D
+cmp     pinfo, 0FFFFFFFFFFFFFFE0h
+jz      short loc_4077DC
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     rbx, rax
+jz      short loc_4078D9
+mov     rdi, rbp
+call    _strlen
+lea     rdx, [rax+1]
+mov     rdi, rdx
+mov     [rsp+48h+var_40], rdx
+call    _malloc
+test    rax, rax
+jz      short loc_4078F2
+mov     rdx, [rsp+8]
+mov     rsi, rbp
+mov     rdi, rax
+call    _memcpy
+mov     [rbx], rax
+mov     qword ptr [rbx+8], 0
+mov     rax, [pinfo+20h]
+mov     [rbx+10h], hNewType
+mov     [rbx+18h], rax
+mov     [pinfo+20h], rbx
+jmp     loc_4077DC
+lea     rdi, [pinfo+48h]
+mov     ecx, 0A0000h
+mov     rdx, szEqn
+mov     rsi, rbp
+call    AddEquation
+jmp     loc_40781D
+mov     ecx, 4131E8h
+mov     rdx, rbp
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+jmp     loc_4077DC
+mov     ecx, 4131C0h
+mov     rdx, rbp
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     short loc_407896

@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, cs:qword_62D6F8
+test    rax, rax
+jnz     short loc_40EFFA
+call    sub_40BD9B
+mov     cs:qword_62D6F8, rax
+mov     rax, cs:qword_62D6F8
+mov     qword ptr [rax+20h], 40ECDCh
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_40C567
+mov     rdx, rax
+mov     rax, cs:qword_62D6F8
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40BF93
+nop
+leave
+retn

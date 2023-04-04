@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_14], edi
+mov     eax, cs:dword_6420D4
+mov     [rbp+var_4], eax
+mov     eax, [rbp-14h]
+mov     cs:dword_6420D4, eax
+mov     eax, [rbp-4]
+pop     rbp
+retn

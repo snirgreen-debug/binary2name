@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _lgetfilecon
+mov     [rbp+var_4], eax
+mov     rdx, [rbp-20h]
+mov     eax, [rbp-4]
+mov     rsi, rdx
+mov     edi, eax
+call    sub_42A71D
+leave
+retn

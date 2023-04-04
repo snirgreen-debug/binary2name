@@ -1,0 +1,520 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0C0h
+mov     [rbp+s1], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-0B8h]
+mov     esi, 4106DAh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_403F6B
+mov     eax, cs:dword_614860
+mov     [rbp+var_A8], eax
+call    sub_403AFE
+mov     eax, [rbp-0A8h]
+mov     cs:dword_614860, eax
+jmp     loc_4047D1
+mov     rax, [rbp-0B8h]
+mov     esi, 614D60h
+mov     rdi, rax
+call    sub_404CCE
+mov     cs:dword_64CF00, eax
+mov     eax, cs:dword_64CF00
+test    eax, eax
+js      loc_4047C4
+mov     eax, cs:stat_buf.st_mode
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     short loc_404024
+mov     eax, cs:dword_61488C
+test    eax, eax
+jz      short loc_403FCB
+mov     eax, cs:dword_64CF00
+mov     rdx, [rbp-0B8h]
+mov     rsi, rdx
+mov     edi, eax
+call    sub_406849
+jmp     loc_4047D1
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_404007
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     ecx, 6182C0h
+mov     esi, 4106E0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     loc_4047C7
+mov     cs:dword_614870, 2
+jmp     loc_4047C7
+mov     eax, cs:dword_614860
+test    eax, eax
+jnz     loc_40425F
+mov     eax, cs:stat_buf.st_mode
+and     eax, 0F000h
+cmp     eax, 8000h
+jz      short loc_404099
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_404073
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     ecx, 6182C0h
+mov     esi, 410708h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_404087
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+mov     eax, cs:stat_buf.st_mode
+and     eax, 800h
+test    eax, eax
+jz      short loc_4040FD
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_4040D7
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     ecx, 6182C0h
+mov     esi, 410740h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_4040EB
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+mov     eax, cs:stat_buf.st_mode
+and     eax, 400h
+test    eax, eax
+jz      short loc_404161
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_40413B
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     ecx, 6182C0h
+mov     esi, 410770h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_40414F
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+mov     eax, cs:dword_614884
+test    eax, eax
+jnz     loc_40425F
+mov     eax, cs:stat_buf.st_mode
+and     eax, 200h
+test    eax, eax
+jz      short loc_4041D3
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_4041AD
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     ecx, 6182C0h
+mov     esi, 4107A0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_4041C1
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+mov     rax, cs:stat_buf.st_nlink
+cmp     rax, 1
+jbe     short loc_40425F
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_404239
+mov     rax, cs:stat_buf.st_nlink
+cmp     rax, 2
+jnz     short loc_4041FE
+mov     esi, 20h
+jmp     short loc_404203
+mov     esi, 73h
+mov     rax, cs:stat_buf.st_nlink
+lea     rcx, [rax-1]
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     r9d, esi
+mov     r8, rcx
+mov     ecx, 6182C0h
+mov     esi, 4107D0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_40424D
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+mov     eax, cs:stat_buf.st_mode
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_40427A
+mov     rax, cs:stat_buf.st_size
+jmp     short loc_404281
+mov     rax, 0FFFFFFFFFFFFFFFFh
+mov     cs:qword_6486F0, rax
+mov     cs:qword_65D338, 0FFFFFFFFFFFFFFFFh
+mov     eax, cs:dword_614324
+test    eax, eax
+jz      short loc_4042A7
+mov     eax, cs:dword_614890
+test    eax, eax
+jz      short loc_4042BF
+mov     edi, 614D60h
+call    sub_40E083
+mov     cs:timer, rax
+mov     cs:qword_65D338, rdx
+mov     eax, cs:dword_614860
+test    eax, eax
+jz      short loc_4042F9
+mov     eax, cs:dword_614890
+test    eax, eax
+jnz     short loc_4042F9
+mov     eax, cs:dword_61486C
+test    eax, eax
+jnz     short loc_4042F9
+mov     cs:dword_64CF20, 6F647473h
+mov     cs:word_64CF24, 7475h
+mov     cs:byte_64CF26, 0
+jmp     short loc_404314
+call    sub_404F21
+test    eax, eax
+jz      short loc_404314
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+call    sub_40C764
+mov     cs:dword_6148A0, 0
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_40435C
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    sub_4051E4
+mov     cs:dword_61432C, eax
+mov     eax, cs:dword_61432C
+test    eax, eax
+jns     short loc_40435C
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+jmp     loc_4047D1
+mov     eax, cs:dword_614890
+test    eax, eax
+jz      short loc_404395
+mov     edx, cs:dword_61432C
+mov     eax, cs:dword_64CF00
+mov     esi, edx
+mov     edi, eax
+call    sub_405E2F
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      loc_4047CA
+call    sub_40CDC6
+mov     eax, cs:dword_614860
+test    eax, eax
+jz      short loc_4043AB
+mov     cs:fd, 1
+jmp     short loc_40440B
+call    sub_4047E7
+test    eax, eax
+jnz     loc_4047CD
+mov     eax, cs:dword_614880
+test    eax, eax
+jnz     short loc_40440B
+mov     eax, cs:dword_6486E8
+test    eax, eax
+jz      short loc_40440B
+mov     eax, cs:dword_614864
+test    eax, eax
+jnz     short loc_40440B
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_40440B
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     r8d, 64CF20h
+mov     ecx, 6182C0h
+mov     esi, 4107FAh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_6486E8
+test    eax, eax
+jnz     short loc_404429
+mov     eax, cs:dword_614320
+test    eax, eax
+setz    al
+movzx   eax, al
+mov     cs:dword_6486E8, eax
+mov     eax, cs:dword_614864
+test    eax, eax
+jz      short loc_404451
+mov     rax, cs:stderr
+mov     edx, 6182C0h
+mov     esi, 410813h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:off_614358
+mov     ecx, cs:fd
+mov     edx, cs:dword_64CF00
+mov     esi, ecx
+mov     edi, edx
+call    rax 
+test    eax, eax
+jz      short loc_40447A
+mov     cs:dword_61432C, 0FFFFFFFFh
+jmp     short loc_4044B1
+call    sub_403A9B
+test    eax, eax
+jnz     short loc_4044AD
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    sub_4051E4
+mov     cs:dword_61432C, eax
+mov     eax, cs:dword_61432C
+test    eax, eax
+js      short loc_4044B0
+mov     cs:qword_65D320, 0
+jmp     short loc_404451
+nop
+jmp     short loc_4044B1
+nop
+mov     eax, cs:dword_64CF00
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      short loc_4044C7
+call    sub_40CDC6
+mov     eax, cs:dword_614860
+test    eax, eax
+jnz     loc_404691
+mov     edi, 614D60h
+call    sub_4065FD
+movzx   eax, cs:byte_614879
+test    al, al
+jz      short loc_40452E
+mov     eax, cs:fildes
+test    eax, eax
+js      short loc_404511
+mov     eax, cs:fildes
+mov     edi, eax
+call    _fdatasync
+test    eax, eax
+jz      short loc_404511
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 16h
+jnz     short loc_40453F
+mov     eax, cs:fd
+mov     edi, eax
+call    _fsync
+test    eax, eax
+jz      short loc_40452E
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 16h
+jnz     short loc_40453F
+mov     eax, cs:fd
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      short loc_404544
+call    sub_40CE3A
+mov     eax, cs:dword_614888
+test    eax, eax
+jnz     loc_404691
+mov     edi, 6182C0h
+call    sub_40D855
+mov     [rbp+name], rax
+mov     rax, [rbp-98h]
+mov     edx, 6182C0h
+sub     rax, rdx
+mov     rsi, rax
+mov     edi, 6182C0h
+call    sub_403E12
+test    al, al
+jz      short loc_40458B
+mov     eax, cs:fildes
+jmp     short loc_404590
+mov     eax, 0FFFFFFFFh
+mov     [rbp+fd], eax
+lea     rax, [rbp-90h]
+mov     rdx, rax
+mov     esi, 6148C0h
+mov     edi, 0
+call    _sigprocmask
+mov     cs:dword_614334, 0FFFFFFFFh
+cmp     [rbp+fd], 0
+jns     short loc_4045CE
+mov     edi, 6182C0h
+call    sub_40CB02
+jmp     short loc_4045EA
+mov     rcx, [rbp-98h]
+mov     eax, [rbp-0A4h]
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+call    _unlinkat
+mov     [rbp+var_A0], eax
+cmp     [rbp+var_A0], 0
+jz      short loc_404602
+call    ___errno_location
+mov     eax, [rax]
+jmp     short loc_404607
+mov     eax, 0
+mov     [rbp+var_9C], eax
+lea     rax, [rbp-90h]
+mov     edx, 0
+mov     rsi, rax
+mov     edi, 2
+call    _sigprocmask
+cmp     [rbp+var_9C], 0
+jz      short loc_404691
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_404659
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     esi, 40FE2Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_40466D
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_404691
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-9Ch]
+mov     [rdx], eax
+mov     edi, 6182C0h
+call    _perror
+mov     eax, cs:dword_61432C
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_4046B4
+mov     eax, cs:dword_614860
+test    eax, eax
+jnz     loc_4047D0
+call    sub_406D2B
+jmp     loc_4047D0
+mov     eax, cs:dword_614864
+test    eax, eax
+jz      loc_4047D1
+mov     eax, cs:dword_61486C
+test    eax, eax
+jz      short loc_4046EC
+mov     rax, cs:stderr
+mov     rcx, rax
+mov     edx, 3
+mov     esi, 1
+mov     edi, 410818h
+call    _fwrite
+jmp     short loc_404766
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_40472F
+mov     rdx, cs:stderr
+mov     rax, cs:qword_65D320
+mov     rcx, cs:qword_65D320
+mov     rdi, cs:qword_6186C0
+mov     rsi, cs:qword_6653A0
+sub     rdi, rsi
+mov     rsi, rdi
+sub     rcx, rsi
+mov     rsi, rax
+mov     rdi, rcx
+call    sub_40CE88
+jmp     short loc_404766
+mov     rdx, cs:stderr
+mov     rax, cs:qword_6186C0
+mov     rcx, cs:qword_6186C0
+mov     rdi, cs:qword_65D320
+mov     rsi, cs:qword_6653A0
+sub     rdi, rsi
+mov     rsi, rdi
+sub     rcx, rsi
+mov     rsi, rax
+mov     rdi, rcx
+call    sub_40CE88
+mov     eax, cs:dword_61486C
+test    eax, eax
+jnz     short loc_4047AE
+mov     eax, cs:dword_614860
+test    eax, eax
+jnz     short loc_4047AE
+mov     eax, cs:dword_614888
+test    eax, eax
+jz      short loc_40478B
+mov     edx, 41081Ch
+jmp     short loc_404790
+mov     edx, 410824h
+mov     rax, cs:stderr
+mov     ecx, 64CF20h
+mov     esi, 410832h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:stderr
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+jmp     short loc_4047D1
+nop
+jmp     short loc_4047D1
+nop
+jmp     short loc_4047D1
+nop
+jmp     short loc_4047D1
+nop
+jmp     short loc_4047D1
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4047E5
+call    ___stack_chk_fail
+leave
+retn

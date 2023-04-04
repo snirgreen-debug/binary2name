@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax+10h]
+xor     eax, 1
+test    al, al
+jz      loc_41884A
+mov     rax, [rbp-28h]
+test    rax, rax
+js      short loc_4187B9
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rax
+jmp     short loc_4187D2
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rdx
+addss   xmm0, xmm0
+mov     rax, [rbp-30h]
+movss   xmm1, dword ptr [rax+8]
+divss   xmm0, xmm1
+movss   [rbp+var_14], xmm0
+movss   xmm0, dword ptr [rbp-14h]
+ucomiss xmm0, cs:dword_42FFC0
+jb      short loc_4187FC
+mov     eax, 0
+jmp     loc_41888B
+movss   xmm0, dword ptr [rbp-14h]
+ucomiss xmm0, cs:dword_42FFC4
+jnb     short loc_41881A
+movss   xmm0, dword ptr [rbp-14h]
+cvttss2si rax, xmm0
+mov     [rbp+var_28], rax
+jmp     short loc_418842
+movss   xmm0, dword ptr [rbp-14h]
+movss   xmm1, cs:dword_42FFC4
+subss   xmm0, xmm1
+cvttss2si rax, xmm0
+mov     [rbp+var_28], rax
+mov     rax, 8000000000000000h
+xor     [rbp+var_28], rax
+mov     rax, [rbp-28h]
+mov     [rbp+var_28], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_41858D
+mov     [rbp+var_28], rax
+mov     ecx, 0
+mov     edx, 8
+mov     rax, rdx
+mul     qword ptr [rbp-28h]
+jno     short loc_418872
+mov     ecx, 1
+mov     [rbp+var_10], rax
+mov     rax, rcx
+and     eax, 1
+test    al, al
+jz      short loc_418887
+mov     eax, 0
+jmp     short loc_41888B
+mov     rax, [rbp-28h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_41889F
+call    ___stack_chk_fail
+leave
+retn

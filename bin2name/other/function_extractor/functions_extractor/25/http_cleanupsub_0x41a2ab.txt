@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:pc_last_host_ip
+test    rax, rax
+jz      short loc_41A2CA
+mov     rax, cs:pc_last_host_ip
+mov     rdi, rax
+call    address_list_release
+nop
+pop     rbp
+retn

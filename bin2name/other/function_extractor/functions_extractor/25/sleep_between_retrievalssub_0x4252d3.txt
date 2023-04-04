@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+count], edi
+mov     eax, cs:first_retrieval_5528
+test    eax, eax
+jz      short loc_4252F7
+mov     cs:first_retrieval_5528, 0
+jmp     locret_42542C
+movsd   xmm0, cs:opt.waitretry
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_425313
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      short loc_425367
+cmp     [rbp+count], 1
+jle     short loc_425367
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-14h]
+movsd   xmm1, cs:opt.waitretry
+ucomisd xmm1, xmm0
+jb      short loc_425342
+mov     eax, [rbp-14h]
+sub     eax, 1
+mov     edi, eax
+call    _sleep
+jmp     locret_42542C
+movsd   xmm1, cs:opt.waitretry
+movsd   xmm0, cs:qword_436C78
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     edi, eax
+call    _usleep
+jmp     locret_42542C
+movsd   xmm0, cs:opt.wait
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_425387
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      locret_42542C
+mov     eax, cs:opt.random_wait
+test    eax, eax
+jz      short loc_425397
+cmp     [rbp+count], 1
+jle     short loc_4253B9
+movsd   xmm1, cs:opt.wait
+movsd   xmm0, cs:qword_436C78
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     edi, eax
+call    _usleep
+jmp     short locret_42542C
+movsd   xmm0, cs:opt.wait
+movapd  xmm2, xmm0
+addsd   xmm2, xmm0
+movsd   [rbp+var_20], xmm2
+call    random_float
+mulsd   xmm0, qword ptr [rbp-20h]
+movsd   [rbp+waitsecs], xmm0
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_42540F
+mov     rax, cs:opt.wait
+movsd   xmm0, qword ptr [rbp-8]
+movapd  xmm1, xmm0
+mov     [rbp+var_20], rax
+movsd   xmm0, qword ptr [rbp-20h]
+mov     edi, 436BC8h
+mov     eax, 2
+call    debug_logprintf
+movsd   xmm1, qword ptr [rbp-8]
+movsd   xmm0, cs:qword_436C78
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     edi, eax
+call    _usleep
+leave
+retn

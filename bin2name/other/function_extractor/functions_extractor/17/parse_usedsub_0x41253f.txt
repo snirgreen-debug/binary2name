@@ -1,0 +1,84 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 78h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+errmsg], 42F120h
+lea     rdx, [rbp-58h]
+mov     rcx, [rbp-78h]
+mov     rax, [rbp-70h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      loc_412677
+mov     [rbp+zero.tv_sec], 0
+mov     [rbp+zero.tv_nsec], 0
+mov     rdi, [rbp-58h]
+mov     r8, [rbp-50h]
+mov     rcx, 40F5180000000000h
+mov     rax, [rbp-40h]
+mov     rdx, [rbp-38h]
+lea     rsi, [rbp-30h]
+mov     [rbp+var_80], rcx
+movsd   xmm0, qword ptr [rbp-80h]
+mov     rcx, rdx
+mov     rdx, rax
+call    get_relative_timestamp
+test    al, al
+jz      short loc_412648
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-68h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-48h]
+mov     rdx, [rbp-30h]
+mov     [rax+38h], rdx
+mov     rdx, [rbp-28h]
+mov     [rax+40h], rdx
+mov     rdx, [rbp-20h]
+mov     [rax+48h], rdx
+mov     rcx, [rbp-28h]
+mov     rdx, 1845C8A0CE512957h
+mov     rax, rcx
+imul    rdx
+sar     rdx, 0Dh
+mov     rax, rcx
+sar     rax, 3Fh
+sub     rdx, rax
+mov     rax, rdx
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rax
+call    estimate_file_age_success_rate
+movd    edx, xmm0
+mov     rax, [rbp-48h]
+mov     [rax+24h], edx
+mov     eax, 1
+jmp     short loc_41267C
+mov     rbx, [rbp-58h]
+mov     edi, 42F164h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_41267C
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_412690
+call    ___stack_chk_fail
+add     rsp, 78h
+pop     rbx
+pop     rbp
+retn

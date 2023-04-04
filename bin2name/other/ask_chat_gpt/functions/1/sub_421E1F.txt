@@ -1,0 +1,112 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_C], 0
+mov     rax, [rbp-28h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_421E55
+mov     eax, 0
+jmp     locret_421F97
+cmp     [rbp+var_14], 2
+jnz     short loc_421E8B
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+test    eax, eax
+jnz     short loc_421E70
+mov     eax, 3
+jmp     locret_421F97
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+lea     edx, [rax-1]
+mov     rax, [rbp-8]
+mov     [rax+10h], edx
+mov     eax, 0
+jmp     locret_421F97
+mov     rax, [rbp-20h]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-8]
+mov     rcx, [rax+8]
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cdqe
+shl     rax, 3
+add     rax, rcx
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     loc_421F41
+mov     rax, [rbp-8]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cdqe
+shl     rax, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_421F13
+mov     rax, [rbp-20h]
+mov     rdx, [rax+70h]
+mov     rax, [rbp-8]
+mov     rcx, [rax+18h]
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cdqe
+shl     rax, 3
+add     rax, rcx
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_421175
+test    eax, eax
+jz      short loc_421F41
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+lea     edx, [rax+1]
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     edx, eax
+jnz     short loc_421F3A
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+28h], rdx
+mov     eax, 3
+jmp     short locret_421F97
+mov     [rbp+var_C], 1
+cmp     [rbp+var_C], 0
+jz      short loc_421F80
+cmp     [rbp+var_14], 1
+jnz     short loc_421F79
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+lea     edx, [rax+1]
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     edx, eax
+jnz     short loc_421F68
+mov     eax, 2
+jmp     short locret_421F97
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+lea     edx, [rax+1]
+mov     rax, [rbp-8]
+mov     [rax+10h], edx
+mov     eax, 0
+jmp     short locret_421F97
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_421F92
+mov     eax, 2
+jmp     short locret_421F97
+mov     eax, 0
+leave
+retn

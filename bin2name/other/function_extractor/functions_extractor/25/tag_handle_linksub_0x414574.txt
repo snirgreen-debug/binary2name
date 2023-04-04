@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+tagid], edi
+mov     [rbp+tag], rsi
+mov     [rbp+ctx], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-24h]
+mov     rax, [rbp-40h]
+mov     esi, 4324E1h
+mov     rdi, rax
+call    find_attr
+mov     [rbp+href], rax
+cmp     [rbp+href], 0
+jz      short loc_414631
+mov     edx, [rbp-24h]
+mov     rcx, [rbp-48h]
+mov     rsi, [rbp-40h]
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    append_url
+mov     [rbp+up], rax
+cmp     [rbp+up], 0
+jz      short loc_414631
+mov     rax, [rbp-40h]
+mov     edx, 0
+mov     esi, 432501h
+mov     rdi, rax
+call    find_attr
+mov     [rbp+rel], rax
+cmp     [rbp+rel], 0
+jz      short loc_414631
+mov     rax, [rbp-10h]
+mov     esi, 43260Fh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jz      short loc_414623
+mov     rax, [rbp-10h]
+mov     esi, 43261Ah
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_414631
+mov     rax, [rbp-18h]
+movzx   edx, byte ptr [rax+10h]
+or      edx, 10h
+mov     [rax+10h], dl
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_414646
+call    ___stack_chk_fail
+leave
+retn

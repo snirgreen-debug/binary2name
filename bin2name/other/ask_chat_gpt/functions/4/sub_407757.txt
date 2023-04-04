@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+stream], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-10h]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_40779C
+mov     rax, [rbp-10h]
+mov     rcx, [rax+30h]
+mov     rax, [rbp-10h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     esi, 42B798h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_4077B3
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+nop
+leave
+retn

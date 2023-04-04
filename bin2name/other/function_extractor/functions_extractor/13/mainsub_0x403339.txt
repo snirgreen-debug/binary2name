@@ -1,0 +1,238 @@
+push    rbp
+mov     rbp, rsp
+add     rsp, 0FFFFFFFFFFFFFF80h
+mov     [rbp+ac], edi
+mov     [rbp+av], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-60h]
+mov     rdi, rax
+call    init_string
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    init_string
+mov     edi, 605480h
+call    init_string
+mov     eax, 605498h
+mov     cs:tos, rax
+lea     rax, [rbp-40h]
+mov     cs:ptr, rax
+mov     esi, 40112Eh
+mov     edi, 4039CDh
+call    add_intrinsic
+mov     esi, 403057h
+mov     edi, 4039D7h
+call    add_intrinsic
+mov     esi, 4030A7h
+mov     edi, 4039D9h
+call    add_intrinsic
+mov     esi, 4030D7h
+mov     edi, 40397Fh
+call    add_intrinsic
+mov     esi, 4030FAh
+mov     edi, 4039DBh
+call    add_intrinsic
+mov     esi, 40313Dh
+mov     edi, 4039E2h
+call    add_intrinsic
+mov     esi, 403180h
+mov     edi, 4039E9h
+call    add_intrinsic
+mov     esi, 4027F7h
+mov     edi, 4039EFh
+call    add_intrinsic
+mov     esi, 402792h
+mov     edi, 403A01h
+call    add_intrinsic
+mov     esi, 4020F7h
+mov     edi, 403A08h
+call    add_intrinsic
+mov     esi, 4026C7h
+mov     edi, 403A1Ah
+call    add_intrinsic
+mov     esi, 402728h
+mov     edi, 403A1Eh
+call    add_intrinsic
+mov     esi, 40275Dh
+mov     edi, 403A23h
+call    add_intrinsic
+mov     esi, 400FE9h
+mov     edi, 403A29h
+call    add_intrinsic
+mov     esi, 4025A6h
+mov     edi, 403A31h
+call    add_intrinsic
+mov     esi, 401D7Fh
+mov     edi, 403A46h
+call    add_intrinsic
+mov     esi, 401B32h
+mov     edi, 403A55h
+call    add_intrinsic
+mov     esi, 401747h
+mov     edi, 403A5Fh
+call    add_intrinsic
+mov     esi, 40332Bh
+mov     edi, 403A6Ah
+call    add_intrinsic
+mov     esi, 402649h
+mov     edi, 403A6Fh
+call    add_intrinsic
+mov     esi, 4015B2h
+mov     edi, 403A74h
+call    add_intrinsic
+mov     esi, 4013F3h
+mov     edi, 403A7Fh
+call    add_intrinsic
+mov     esi, 402877h
+mov     edi, 403A8Ah
+call    add_intrinsic
+mov     esi, 40146Bh
+mov     edi, 403A96h
+call    add_intrinsic
+mov     esi, 40215Fh
+mov     edi, 403AA8h
+call    add_intrinsic
+mov     esi, 4023EDh
+mov     edi, 403AB9h
+call    add_intrinsic
+mov     esi, 402832h
+mov     edi, 403AC0h
+call    add_intrinsic
+mov     esi, 40135Fh
+mov     edi, 403ACDh
+call    add_intrinsic
+mov     esi, 401025h
+mov     edi, 403ADFh
+call    add_intrinsic
+lea     rax, [rbp-60h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    catchar
+mov     rdx, cs:stdin@@GLIBC_2_2_5
+lea     rax, [rbp-60h]
+mov     rsi, rdx
+mov     rdi, rax
+call    read_in
+mov     rdx, cs:ptr
+lea     rax, [rbp-60h]
+mov     rsi, rdx
+mov     rdi, rax
+call    remove_noncomments
+mov     [rbp+i], 1
+jmp     loc_4036D2
+mov     eax, [rbp-6Ch]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-80h]
+add     rax, rdx
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Dh
+jnz     loc_4036CE
+mov     eax, [rbp-6Ch]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-80h]
+add     rax, rdx
+mov     rax, [rax]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 66h
+jnz     loc_403671
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    init_string
+mov     eax, [rbp-6Ch]
+add     eax, 1
+mov     eax, eax
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-80h]
+add     rax, rdx
+mov     rax, [rax]
+mov     esi, 403AF7h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+f], rax
+cmp     [rbp+f], 0
+jnz     short loc_40364B
+mov     eax, [rbp-6Ch]
+add     eax, 1
+mov     eax, eax
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-80h]
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 403AF9h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 21h
+jmp     loc_403753
+mov     rdx, [rbp-68h]
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    read_in
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    compile
+call    perform
+jmp     short loc_4036CE
+mov     eax, [rbp-6Ch]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-80h]
+add     rax, rdx
+mov     rax, [rax]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 69h
+jnz     short loc_40369D
+mov     cs:internal_wanted, 1
+jmp     short loc_4036CE
+mov     eax, [rbp-6Ch]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-80h]
+add     rax, rdx
+mov     rax, [rax]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 77h
+jnz     short loc_4036C9
+mov     cs:warning, 1
+jmp     short loc_4036CE
+call    usage
+add     [rbp+i], 1
+mov     eax, [rbp-74h]
+cmp     [rbp+i], eax
+jb      loc_40358C
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 605480h
+call    write_buffer
+mov     rax, cs:tos
+cmp     rax, 605480h
+jz      short loc_40374E
+mov     rax, cs:tos
+mov     rdx, rax
+mov     eax, 605480h
+sub     rdx, rax
+mov     rax, rdx
+sar     rax, 3
+mov     rdx, rax
+mov     rax, 0AAAAAAAAAAAAAAABh
+imul    rax, rdx
+mov     rdx, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 403B18h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 1
+jmp     short loc_403753
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_403767
+call    ___stack_chk_fail
+leave
+retn

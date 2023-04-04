@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+cmp     [rbp+var_8], 0
+jz      loc_41FAB1
+call    grecs_grecs_ensure_buffer_stack
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_41FA49
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41FA49
+mov     rax, cs:grecs_grecs__c_buf_p
+movzx   edx, cs:grecs_grecs__hold_char
+mov     [rax], dl
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, cs:grecs_grecs__c_buf_p
+mov     [rax+10h], rdx
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     edx, cs:grecs_grecs__n_chars
+mov     [rax+20h], edx
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_41FA84
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41FA84
+mov     rax, cs:grecs_grecs__buffer_stack_top
+add     rax, 1
+mov     cs:grecs_grecs__buffer_stack_top, rax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rdx], rax
+call    grecs_grecs__load_buffer_state
+mov     cs:grecs_grecs__did_buffer_switch_on_eof, 1
+jmp     short locret_41FAB2
+nop
+leave
+retn

@@ -1,0 +1,120 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+idx], 0
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    init_string
+jmp     loc_401ED5
+mov     rax, cs:tos
+mov     edx, [rbp-34h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 3Ch
+jnz     loc_401EAC
+mov     eax, [rbp-34h]
+lea     edx, [rax+1]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 3Ch
+jnz     loc_401EAC
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     eax, [rbp-34h]
+lea     edx, [rax+2]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+movzx   eax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     loc_401EAC
+add     [rbp+idx], 2
+lea     rax, [rbp-30h]
+mov     esi, 403921h
+mov     rdi, rax
+call    cattext
+jmp     short loc_401E65
+mov     rax, cs:tos
+mov     edx, [rbp-34h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+movsx   edx, al
+lea     rax, [rbp-30h]
+mov     esi, edx
+mov     rdi, rax
+call    catchar
+add     [rbp+idx], 1
+mov     rax, cs:tos
+mov     edx, [rbp-34h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jz      short loc_401E95
+mov     rax, cs:tos
+mov     edx, [rbp-34h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 3Eh
+jnz     short loc_401E3C
+lea     rax, [rbp-30h]
+mov     esi, 403928h
+mov     rdi, rax
+call    cattext
+add     [rbp+idx], 2
+jmp     short loc_401ED5
+mov     rax, cs:tos
+mov     edx, [rbp-34h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+movsx   edx, al
+lea     rax, [rbp-30h]
+mov     esi, edx
+mov     rdi, rax
+call    catchar
+add     [rbp+idx], 1
+mov     rax, cs:tos
+mov     edx, [rbp-34h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     loc_401DAF
+mov     rax, cs:tos
+mov     rdi, rax
+call    delete_string
+mov     rax, cs:tos
+mov     rdx, [rbp-30h]
+mov     [rax], rdx
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-20h]
+mov     [rax+10h], rdx
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_401F45
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

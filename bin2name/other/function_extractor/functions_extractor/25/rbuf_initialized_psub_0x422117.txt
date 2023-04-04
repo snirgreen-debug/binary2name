@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+rbuf], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     eax, 0FFFFFFFFh
+setnz   al
+movzx   eax, al
+pop     rbp
+retn

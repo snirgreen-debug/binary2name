@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+ctl], rdi
+mov     [rbp+state], rsi
+mov     rdx, cs:special_terminating_arg
+mov     rsi, [rbp-10h]
+mov     rax, [rbp-8]
+sub     rsp, 8
+push    0
+mov     r9d, 0
+mov     r8d, 0
+mov     ecx, 0
+mov     rdi, rax
+call    bc_push_arg
+add     rsp, 10h
+nop
+leave
+retn

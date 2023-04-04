@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+opt], edi
+mov     rax, cs:options_0.debug_options
+and     eax, 2
+test    rax, rax
+jz      short loc_40ED29
+mov     cs:options_0.xstat, 40AD21h
+jmp     short loc_40ED91
+mov     eax, [rbp-4]
+cmp     eax, 1
+jz      short loc_40ED3D
+cmp     eax, 1
+jb      short loc_40ED5C
+cmp     eax, 2
+jz      short loc_40ED74
+jmp     short loc_40ED91
+mov     cs:options_0.xstat, 40AC2Fh
+mov     cs:options_0.x_getfilecon, 40EAAAh
+mov     cs:options_0.no_leaf_check, 1
+jmp     short loc_40ED91
+mov     cs:options_0.xstat, 40ACBBh
+mov     cs:options_0.x_getfilecon, 40EAF9h
+jmp     short loc_40ED91
+mov     cs:options_0.xstat, 40AB7Dh
+mov     cs:options_0.x_getfilecon, 40EA3Ah
+mov     cs:options_0.no_leaf_check, 1
+mov     eax, [rbp-4]
+mov     cs:options_0.symlink_handling, eax
+nop
+pop     rbp
+retn

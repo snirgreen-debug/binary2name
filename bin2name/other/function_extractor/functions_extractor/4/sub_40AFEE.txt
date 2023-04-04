@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+s], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+save_ptr], 0
+mov     word ptr [rbp+delim], 2Ch
+mov     [rbp+var_39], 1
+lea     rdx, [rbp-38h]
+lea     rcx, [rbp-20h]
+mov     rax, [rbp-48h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtok_r
+mov     [rbp+s2], rax
+jmp     loc_40B10E
+mov     [rbp+var_39], 0
+mov     [rbp+var_28], 0
+jmp     short loc_40B0AA
+mov     rdx, [rbp-28h]
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63AA60h
+mov     rax, [rax]
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40B0A5
+mov     rcx, cs:qword_63C000
+mov     rdx, [rbp-28h]
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63AA68h
+mov     eax, [rax]
+cdqe
+or      rax, rcx
+mov     cs:qword_63C000, rax
+jmp     short loc_40B0B1
+add     [rbp+var_28], 1
+cmp     [rbp+var_28], 6
+jbe     short loc_40B04A
+cmp     [rbp+var_28], 6
+jbe     short loc_40B0F5
+mov     eax, cs:dword_63C02C
+mov     rdx, [rbp-48h]
+mov     esi, eax
+mov     edi, 0
+call    sub_421C93
+mov     rbx, rax
+mov     edi, 42C3A0h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+lea     rdx, [rbp-38h]
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 0
+call    _strtok_r
+mov     [rbp+s2], rax
+cmp     [rbp+s2], 0
+jnz     loc_40B03C
+cmp     [rbp+var_39], 0
+jz      short loc_40B142
+mov     edi, 42C3C8h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_40B16F
+mov     rax, cs:qword_63C000
+and     eax, 10h
+test    rax, rax
+jz      short loc_40B16F
+mov     rax, cs:stdout
+mov     esi, 1
+mov     rdi, rax
+call    sub_40A10A
+mov     edi, 0
+call    _exit
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40B184
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

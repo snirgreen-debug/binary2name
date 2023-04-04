@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+x], rdi
+mov     [rbp+scale_factor], esi
+mov     eax, [rbp-0Ch]
+movsxd  rcx, eax
+mov     rax, 0FFFFFFFFFFFFFFFFh
+mov     edx, 0
+div     rcx
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rdx, rax
+jnb     short loc_423562
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 0FFFFFFFFFFFFFFFFh
+mov     eax, 1
+jmp     short loc_42357E
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+cdqe
+imul    rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     eax, 0
+pop     rbp
+retn

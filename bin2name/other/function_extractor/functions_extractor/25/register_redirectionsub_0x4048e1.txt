@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+from], rdi
+mov     [rbp+to], rsi
+mov     rax, cs:dl_file_url_map
+test    rax, rax
+jnz     short loc_40490F
+mov     edi, 0
+call    make_string_hash_table
+mov     cs:dl_file_url_map, rax
+mov     rax, cs:dl_url_file_map
+test    rax, rax
+jnz     short loc_40492C
+mov     edi, 0
+call    make_string_hash_table
+mov     cs:dl_url_file_map, rax
+mov     rax, cs:dl_url_file_map
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+file], rax
+cmp     [rbp+file], 0
+jnz     short loc_404966
+mov     ecx, 4300B0h
+mov     edx, 31Fh
+mov     esi, 42FFF6h
+mov     edi, 43005Ah
+call    ___assert_fail
+mov     rax, cs:dl_url_file_map
+mov     rdx, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_contains
+test    eax, eax
+jnz     short loc_4049B3
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rbx, rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rcx, rax
+mov     rax, cs:dl_url_file_map
+mov     rdx, rbx
+mov     rsi, rcx
+mov     rdi, rax
+call    hash_table_put
+nop
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

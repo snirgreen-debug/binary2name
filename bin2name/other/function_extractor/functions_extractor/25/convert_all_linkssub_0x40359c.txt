@@ -1,0 +1,156 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+file_count], 0
+call    wtimer_new
+mov     [rbp+timer], rax
+mov     rax, cs:downloaded_html_list
+mov     rdi, rax
+call    slist_nreverse
+mov     cs:downloaded_html_list, rax
+mov     rax, cs:downloaded_html_list
+mov     [rbp+html], rax
+jmp     loc_4037A7
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     [rbp+file], rax
+mov     rax, cs:dl_file_url_map
+mov     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+url], rax
+cmp     [rbp+url], 0
+jnz     short loc_40362F
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_40379A
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     edi, 42FE20h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_40379A
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_403653
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     edi, 42FE41h
+mov     eax, 0
+call    debug_logprintf
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-30h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    get_urls_html
+mov     [rbp+urls], rax
+mov     rax, [rbp-20h]
+mov     [rbp+cur_url], rax
+jmp     loc_40376A
+mov     rax, [rbp-40h]
+mov     rax, [rax]
+mov     [rbp+u], rax
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax+10h]
+and     eax, 8
+test    al, al
+jz      short loc_4036A6
+mov     rax, [rbp-40h]
+mov     dword ptr [rax+18h], 3
+jmp     loc_40375E
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, cs:dl_url_file_map
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+local_name], rax
+cmp     [rbp+local_name], 0
+jz      short loc_403715
+mov     rax, [rbp-40h]
+mov     dword ptr [rax+18h], 1
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-40h]
+mov     [rax+8], rdx
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40375E
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+mov     rsi, rax
+mov     edi, 42FE58h
+mov     eax, 0
+call    debug_logprintf
+jmp     short loc_40375E
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax+10h]
+and     eax, 4
+test    al, al
+jnz     short loc_40372F
+mov     rax, [rbp-40h]
+mov     dword ptr [rax+18h], 2
+mov     rax, [rbp-40h]
+mov     qword ptr [rax+8], 0
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_40375E
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 42FE80h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-40h]
+mov     rax, [rax+28h]
+mov     [rbp+cur_url], rax
+cmp     [rbp+cur_url], 0
+jnz     loc_40367C
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    convert_links
+add     [rbp+file_count], 1
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    free_urlpos
+jmp     short loc_40379B
+nop
+mov     rax, [rbp-48h]
+mov     rax, [rax+8]
+mov     [rbp+html], rax
+cmp     [rbp+html], 0
+jnz     loc_4035DA
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    wtimer_elapsed
+cvttsd2si rax, xmm0
+mov     [rbp+msecs], rax
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    wtimer_delete
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, qword ptr [rbp-8]
+movsd   xmm1, cs:qword_4300C8
+divsd   xmm0, xmm1
+movsd   [rbp+var_58], xmm0
+mov     edi, 42FEA8h
+call    _gettext
+mov     rcx, rax
+mov     eax, [rbp-4Ch]
+movsd   xmm0, qword ptr [rbp-58h]
+mov     edx, eax
+mov     rsi, rcx
+mov     edi, 0
+mov     eax, 1
+call    logprintf
+nop
+leave
+retn

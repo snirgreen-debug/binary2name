@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+cmp     [rbp+var_8], 0
+jz      short loc_421128
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_421133
+mov     rax, cs:qword_6477A8
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      loc_421246
+mov     rax, [rbp-8]
+mov     esi, 4363C7h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_421177
+mov     cs:qword_6477B0, 400h
+mov     cs:dword_6477BC, 0Ah
+mov     cs:dword_6477B8, 32h
+jmp     locret_421247
+mov     rax, [rbp-8]
+mov     esi, 4363CFh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_4211B0
+mov     cs:qword_6477B0, 2000h
+mov     cs:dword_6477BC, 10h
+mov     cs:dword_6477B8, 30h
+jmp     locret_421247
+mov     rax, [rbp-8]
+mov     esi, 4363D6h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_4211E6
+mov     cs:qword_6477B0, 10000h
+mov     cs:dword_6477BC, 8
+mov     cs:dword_6477B8, 30h
+jmp     short locret_421247
+mov     rax, [rbp-8]
+mov     esi, 4363DBh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_42121C
+mov     cs:qword_6477B0, 100000h
+mov     cs:dword_6477BC, 8
+mov     cs:dword_6477B8, 20h
+jmp     short locret_421247
+mov     edi, 4363E0h
+call    _gettext
+mov     rcx, rax
+mov     rax, cs:stderr
+mov     rdx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short locret_421247
+nop
+leave
+retn

@@ -1,0 +1,232 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     [rbp+var_54], edx
+mov     [rbp+argv], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     eax, cs:dword_6112D4
+test    eax, eax
+jz      short loc_403D40
+jmp     short loc_403D2B
+mov     esi, 1
+mov     edi, 0
+call    sub_404198
+mov     eax, cs:dword_6112D4
+movsxd  rdx, eax
+mov     rax, cs:qword_6114D0
+cmp     rdx, rax
+jbe     short loc_403D1C
+movzx   eax, cs:byte_6114F9
+xor     eax, 1
+test    al, al
+jnz     short loc_403D60
+mov     edi, 1
+call    sub_403917
+test    al, al
+jz      loc_404029
+movzx   eax, cs:byte_6114F9
+xor     eax, 1
+test    al, al
+jz      short loc_403D83
+movzx   eax, cs:byte_6114F8
+test    al, al
+jz      short loc_403D83
+mov     edi, 0
+call    sub_403917
+mov     esi, 0
+mov     edi, 0
+call    sub_404198
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    _pipe
+test    eax, eax
+jz      short loc_403DCA
+mov     edi, 40CB98h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, [rbp-1Ch]
+mov     edx, 1
+mov     esi, 2
+mov     edi, eax
+mov     eax, 0
+call    sub_40AA91
+jmp     short loc_403DF4
+mov     esi, 1
+mov     edi, 0
+call    sub_404198
+call    _fork
+mov     [rbp+pid], eax
+cmp     [rbp+pid], 0
+jns     short loc_403E1A
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 0Bh
+jnz     short loc_403E1A
+mov     rax, cs:qword_6114D0
+test    rax, rax
+jnz     short loc_403DE5
+mov     eax, [rbp-2Ch]
+cmp     eax, 0FFFFFFFFh
+jz      short loc_403E2B
+test    eax, eax
+jz      short loc_403E53
+jmp     loc_403F20
+mov     edi, 40CBBAh
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, [rbp-20h]
+mov     edi, eax
+call    _close
+mov     cs:status, 0
+call    sub_403C1E
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    sub_405824
+test    al, al
+jz      short loc_403E89
+call    ___errno_location
+mov     dword ptr [rax], 7
+jmp     short loc_403E9F
+mov     rax, [rbp-60h]
+mov     rax, [rax]
+mov     rdx, [rbp-60h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _execvp
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_403EC4
+call    ___errno_location
+mov     rcx, rax
+mov     eax, [rbp-1Ch]
+mov     edx, 4
+mov     rsi, rcx
+mov     edi, eax
+call    _write
+mov     eax, [rbp-1Ch]
+mov     edi, eax
+call    _close
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 7
+jz      short loc_403F01
+mov     rax, [rbp-60h]
+mov     rbx, [rax]
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 40CB8Eh
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_403F14
+mov     eax, 7Fh
+jmp     short loc_403F19
+mov     eax, 7Eh
+mov     edi, eax
+call    __exit
+mov     eax, [rbp-1Ch]
+mov     edi, eax
+call    _close
+mov     eax, [rbp-20h]
+lea     rcx, [rbp-34h]
+mov     edx, 4
+mov     rsi, rcx
+mov     edi, eax
+call    sub_409934
+mov     [rbp+var_28], rax
+mov     rax, [rbp-28h]
+cmp     rax, 4
+jz      short loc_403F99
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jz      short loc_403F62
+test    rax, rax
+jz      loc_403FE4
+jmp     loc_403FF0
+mov     eax, [rbp-20h]
+mov     edi, eax
+call    _close
+mov     edi, 40CBC8h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+jmp     loc_40401F
+mov     eax, [rbp-20h]
+mov     edi, eax
+call    _close
+lea     rcx, [rbp-30h]
+mov     eax, [rbp-2Ch]
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+call    _waitpid
+mov     eax, [rbp-34h]
+cmp     eax, 7
+jnz     short loc_403FC8
+mov     eax, 0
+jmp     short loc_40402E
+mov     eax, [rbp-34h]
+cmp     eax, 2
+jnz     short loc_403FDA
+mov     edi, 7Fh
+call    _exit
+mov     edi, 7Eh
+call    _exit
+mov     eax, [rbp-2Ch]
+mov     edi, eax
+call    sub_404095
+jmp     short loc_40401F
+mov     edi, 40CC28h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-28h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, [rbp-20h]
+mov     edi, eax
+call    _close
+mov     eax, 1
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_404042
+call    ___stack_chk_fail
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

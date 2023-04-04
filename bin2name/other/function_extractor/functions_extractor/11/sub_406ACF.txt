@@ -1,0 +1,143 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_C], 1
+mov     rax, [rbp-18h]
+mov     rdx, [rax+640h]
+lea     rax, unk_61A8B0
+mov     rax, [rax]
+mov     [rbp+var_20], rdx
+movsd   xmm0, qword ptr [rbp-20h]
+mov     rdi, rax
+mov     eax, 1
+call    sub_40239A
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+jmp     loc_406BB5
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-8]
+jnb     short loc_406B59
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406B59
+mov     rax, [rbp-8]
+sub     rax, 8
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_406B59
+add     [rbp+var_C], 1
+jmp     short loc_406BB0
+cmp     [rbp+var_C], 1
+jle     short loc_406B80
+lea     rax, off_619400
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+mov     rsi, rax
+lea     rdi, aSD
+mov     eax, 0
+call    sub_40239A
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406BA9
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aS
+mov     eax, 0
+call    sub_40239A
+mov     [rbp+var_C], 1
+add     [rbp+var_8], 8
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_406B1A
+cmp     [rbp+var_C], 1
+jle     short loc_406BEC
+lea     rax, off_619400
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+mov     rsi, rax
+lea     rdi, aSD
+mov     eax, 0
+call    sub_40239A
+mov     [rbp+var_C], 1
+mov     [rbp+var_10], 0
+mov     rax, [rbp-18h]
+add     rax, 320h
+mov     [rbp+var_8], rax
+jmp     loc_406CCC
+mov     rax, [rbp-18h]
+add     rax, 320h
+cmp     rax, [rbp-8]
+jnb     short loc_406C52
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406C52
+mov     rax, [rbp-8]
+sub     rax, 8
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_406C52
+add     [rbp+var_C], 1
+jmp     short loc_406CC7
+cmp     [rbp+var_C], 1
+jle     short loc_406C79
+lea     rax, off_619400
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+mov     rsi, rax
+lea     rdi, aSD
+mov     eax, 0
+call    sub_40239A
+mov     rax, [rbp-8]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406CC0
+cmp     [rbp+var_10], 0
+jnz     short loc_406C9E
+lea     rdi, asc_4146B6
+mov     eax, 0
+call    sub_40239A
+mov     [rbp+var_10], 1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aS
+mov     eax, 0
+call    sub_40239A
+mov     [rbp+var_C], 1
+add     [rbp+var_8], 8
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_406C0D
+cmp     [rbp+var_C], 1
+jle     short loc_406D03
+lea     rax, off_619400
+mov     rax, [rax]
+mov     edx, [rbp-0Ch]
+mov     rsi, rax
+lea     rdi, aSD
+mov     eax, 0
+call    sub_40239A
+nop
+leave
+retn

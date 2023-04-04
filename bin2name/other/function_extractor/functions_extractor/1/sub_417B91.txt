@@ -1,0 +1,296 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 148h
+mov     [rbp+var_128], rdi
+mov     [rbp+var_130], rsi
+mov     [rbp+var_138], rdx
+mov     [rbp+var_140], rcx
+mov     [rbp+var_148], r8
+mov     [rbp+var_14C], r9d
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+add     [rbp+var_130], 1
+sub     [rbp+var_138], 1
+lea     rcx, [rbp-108h]
+mov     rdx, [rbp-138h]
+mov     rax, [rbp-130h]
+mov     r8d, 4245EBh
+mov     esi, 0
+mov     rdi, rax
+call    sub_416021
+test    eax, eax
+jz      short loc_417C30
+mov     rax, [rbp-128h]
+mov     esi, 7
+mov     rdi, rax
+call    sub_414B9D
+mov     eax, 1
+jmp     loc_418139
+mov     rdx, [rbp-108h]
+mov     rax, [rbp-130h]
+add     rdx, rax
+mov     rax, [rbp-148h]
+mov     [rax], rdx
+mov     rax, [rbp-128h]
+mov     eax, [rax+24h]
+and     eax, 8
+test    eax, eax
+jz      loc_417D1E
+mov     rax, [rbp-108h]
+mov     ecx, eax
+mov     rdx, [rbp-130h]
+lea     rsi, [rbp-0F0h]
+mov     rax, [rbp-128h]
+mov     r8d, 744h
+mov     rdi, rax
+call    sub_414C6A
+mov     [rbp+var_114], eax
+cmp     [rbp+var_114], 0
+jz      short loc_417CCD
+lea     rdx, [rbp-0F0h]
+mov     rax, [rbp-128h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_414DA8
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    sub_41A31D
+mov     eax, 1
+jmp     loc_418139
+mov     rax, [rbp-128h]
+mov     rax, [rax+90h]
+mov     rdx, [rbp-128h]
+mov     r8, [rdx+88h]
+mov     rcx, [rbp-0E8h]
+mov     rdx, [rbp-108h]
+mov     rsi, [rbp-130h]
+lea     rdi, [rbp-100h]
+call    rax
+mov     [rbp+var_114], eax
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    sub_41A31D
+jmp     short loc_417D5F
+mov     rax, [rbp-128h]
+mov     rax, [rax+90h]
+mov     rdx, [rbp-128h]
+mov     rcx, [rdx+88h]
+mov     rdx, [rbp-108h]
+mov     rsi, [rbp-130h]
+lea     rdi, [rbp-100h]
+mov     r8, rcx
+mov     ecx, 0
+call    rax
+mov     [rbp+var_114], eax
+cmp     [rbp+var_114], 2
+jnz     short loc_417D7C
+mov     rax, [rbp-128h]
+mov     rdi, rax
+call    sub_414BD8
+jmp     loc_418139
+cmp     [rbp+var_114], 0
+jz      short loc_417DEC
+cmp     [rbp+var_114], 9
+jnz     short loc_417DCB
+mov     rax, [rbp-128h]
+mov     eax, [rax+0B0h]
+cmp     eax, 9
+jnz     short loc_417DB6
+mov     rax, [rbp-128h]
+mov     rax, [rax+0B8h]
+mov     rdi, rax
+call    _free
+mov     rdx, [rbp-100h]
+mov     rax, [rbp-128h]
+mov     [rax+0B8h], rdx
+mov     edx, [rbp-114h]
+mov     rax, [rbp-128h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_414B9D
+mov     eax, 1
+jmp     loc_418139
+mov     rax, [rbp-100h]
+test    rax, rax
+jz      loc_4180CC
+mov     eax, [rbp-14Ch]
+and     eax, 4
+test    eax, eax
+jz      loc_417E94
+lea     rdx, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41548C
+test    eax, eax
+jz      short loc_417E34
+mov     eax, 1
+jmp     loc_418139
+mov     rax, [rbp-140h]
+mov     rdx, [rax]
+mov     rsi, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     ecx, 0
+mov     rdi, rax
+call    sub_415634
+mov     rdx, [rbp-0F8h]
+mov     rax, [rbp-140h]
+mov     [rax], rdx
+mov     rax, [rbp-0F8h]
+mov     edx, [rbp-14Ch]
+or      edx, 0Ah
+mov     [rax+10h], edx
+mov     rax, [rbp-0F8h]
+mov     rdx, [rbp-100h]
+mov     [rax+18h], rdx
+jmp     loc_418134
+mov     rax, [rbp-100h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_417F21
+mov     rax, [rbp-100h]
+mov     rdi, rax
+call    _free
+lea     rdx, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41548C
+test    eax, eax
+jz      short loc_417ED8
+mov     eax, 1
+jmp     loc_418139
+mov     rax, [rbp-140h]
+mov     rdx, [rax]
+mov     rsi, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     ecx, 0
+mov     rdi, rax
+call    sub_415634
+mov     rdx, [rbp-0F8h]
+mov     rax, [rbp-140h]
+mov     [rax], rdx
+mov     rax, [rbp-0F8h]
+mov     dword ptr [rax+10h], 1
+jmp     loc_418134
+mov     rax, [rbp-100h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-100h]
+lea     rsi, [rbp-0F0h]
+mov     rax, [rbp-128h]
+mov     r8d, 744h
+mov     rdi, rax
+call    sub_414C6A
+mov     [rbp+var_10C], eax
+mov     rax, [rbp-100h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+var_10C], 0
+jz      short loc_417FA5
+lea     rdx, [rbp-0F0h]
+mov     rax, [rbp-128h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_414DA8
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    sub_41A31D
+mov     eax, 1
+jmp     loc_418139
+mov     [rbp+var_110], 0
+jmp     loc_4180A2
+lea     rdx, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41548C
+test    eax, eax
+jz      short loc_417FDB
+mov     eax, 1
+jmp     loc_418139
+mov     rax, [rbp-140h]
+mov     rdx, [rax]
+mov     rsi, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     ecx, 0
+mov     rdi, rax
+call    sub_415634
+mov     rdx, [rbp-0F8h]
+mov     rax, [rbp-140h]
+mov     [rax], rdx
+mov     rdx, [rbp-0F8h]
+mov     eax, [rbp-110h]
+add     eax, 1
+movsxd  rcx, eax
+mov     rax, [rbp-0F0h]
+cmp     rcx, rax
+jnb     short loc_41803E
+mov     eax, [rbp-14Ch]
+and     eax, 0FFFFFFE5h
+or      eax, 0Ah
+jmp     short loc_418047
+mov     eax, [rbp-14Ch]
+or      eax, 0Ah
+mov     [rdx+10h], eax
+mov     rbx, [rbp-0F8h]
+mov     rax, [rbp-0E8h]
+mov     edx, [rbp-110h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _strdup
+mov     [rbx+18h], rax
+mov     rax, [rbp-0F8h]
+mov     rax, [rax+18h]
+test    rax, rax
+jnz     short loc_41809B
+mov     rax, [rbp-128h]
+mov     rdi, rax
+call    sub_414BD8
+jmp     loc_418139
+add     [rbp+var_110], 1
+mov     eax, [rbp-110h]
+movsxd  rdx, eax
+mov     rax, [rbp-0F0h]
+cmp     rdx, rax
+jb      loc_417FB4
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    sub_41A31D
+jmp     short loc_418134
+lea     rdx, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41548C
+test    eax, eax
+jz      short loc_4180F0
+mov     eax, 1
+jmp     short loc_418139
+mov     rax, [rbp-140h]
+mov     rdx, [rax]
+mov     rsi, [rbp-0F8h]
+mov     rax, [rbp-128h]
+mov     ecx, 0
+mov     rdi, rax
+call    sub_415634
+mov     rdx, [rbp-0F8h]
+mov     rax, [rbp-140h]
+mov     [rax], rdx
+mov     rax, [rbp-0F8h]
+mov     dword ptr [rax+10h], 1
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_41814D
+call    ___stack_chk_fail
+add     rsp, 148h
+pop     rbx
+pop     rbp
+retn

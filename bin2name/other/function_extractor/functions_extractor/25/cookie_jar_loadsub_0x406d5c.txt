@@ -1,0 +1,376 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0C0h
+mov     [rbp+jar], rdi
+mov     [rbp+file], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-0C0h]
+mov     esi, 430313h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jnz     short loc_406DDA
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-0C0h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 430318h
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+jmp     loc_4073DA
+mov     edi, 0
+call    _time
+mov     cs:cookies_now, rax
+jmp     loc_4073B3
+mov     rax, [rbp-70h]
+mov     [rbp+p], rax
+mov     [rbp+domain_b], 0
+mov     [rbp+domain_e], 0
+mov     [rbp+domflag_b], 0
+mov     [rbp+domflag_e], 0
+mov     [rbp+path_b], 0
+mov     [rbp+path_e], 0
+mov     [rbp+secure_b], 0
+mov     [rbp+secure_e], 0
+mov     [rbp+expires_b], 0
+mov     [rbp+expires_e], 0
+mov     [rbp+name_b], 0
+mov     [rbp+name_e], 0
+mov     [rbp+value_b], 0
+mov     [rbp+value_e], 0
+jmp     short loc_406E7B
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406EAD
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 40h
+test    eax, eax
+jnz     short loc_406E73
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A3
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 23h
+jz      loc_4073A3
+mov     rax, [rbp-90h]
+mov     [rbp+domain_b], rax
+jmp     short loc_406EE9
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406F05
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_406EE1
+mov     rax, [rbp-90h]
+mov     [rbp+domain_e], rax
+mov     rax, [rbp-98h]
+cmp     [rbp+domain_b], rax
+jz      loc_4073A6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+mov     [rbp+domflag_b], rax
+jmp     short loc_406F56
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406F72
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_406F4E
+mov     rax, [rbp-90h]
+mov     [rbp+domflag_e], rax
+mov     rax, [rbp-68h]
+cmp     rax, [rbp-60h]
+jz      loc_4073A6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+mov     [rbp+path_b], rax
+jmp     short loc_406FBA
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406FD6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_406FB2
+mov     rax, [rbp-90h]
+mov     [rbp+path_e], rax
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-50h]
+jz      loc_4073A6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+mov     [rbp+secure_b], rax
+jmp     short loc_40701E
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40703A
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_407016
+mov     rax, [rbp-90h]
+mov     [rbp+secure_e], rax
+mov     rax, [rbp-48h]
+cmp     rax, [rbp-40h]
+jz      loc_4073A6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+mov     [rbp+expires_b], rax
+jmp     short loc_407082
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40709E
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_40707A
+mov     rax, [rbp-90h]
+mov     [rbp+expires_e], rax
+mov     rax, [rbp-38h]
+cmp     rax, [rbp-30h]
+jz      loc_4073A6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+mov     [rbp+name_b], rax
+jmp     short loc_4070E6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_407102
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jnz     short loc_4070DE
+mov     rax, [rbp-90h]
+mov     [rbp+name_e], rax
+mov     rax, [rbp-28h]
+cmp     rax, [rbp-20h]
+jz      loc_4073A6
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_4073A6
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+mov     [rbp+value_b], rax
+mov     rax, [rbp-90h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-90h]
+add     rax, rdx
+mov     [rbp+value_e], rax
+mov     rax, [rbp-80h]
+cmp     rax, [rbp-18h]
+jbe     short loc_40717E
+mov     rax, [rbp-80h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+jnz     short loc_40717E
+sub     [rbp+value_e], 1
+mov     rax, [rbp-80h]
+cmp     rax, [rbp-18h]
+jbe     short loc_40719C
+mov     rax, [rbp-80h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 0Dh
+jnz     short loc_40719C
+sub     [rbp+value_e], 1
+call    cookie_new
+mov     [rbp+cookie], rax
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+38h], rdx
+mov     rdx, [rbp-80h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+40h], rdx
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+10h], rdx
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-48h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 4
+jnz     short loc_407234
+mov     rax, [rbp-48h]
+mov     edx, 4
+mov     esi, 43033Bh
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_407234
+mov     edx, 1
+jmp     short loc_407239
+mov     edx, 0
+mov     rax, [rbp-10h]
+mov     [rax+18h], edx
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-68h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 4
+jnz     short loc_40726E
+mov     rax, [rbp-68h]
+mov     edx, 4
+mov     esi, 43033Bh
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jz      short loc_407275
+mov     edx, 1
+jmp     short loc_40727A
+mov     edx, 0
+mov     rax, [rbp-10h]
+mov     [rax+1Ch], edx
+mov     rcx, [rbp-98h]
+lea     rdx, [rbp-98h]
+mov     rax, [rbp-88h]
+mov     rsi, rcx
+mov     rdi, rax
+call    domain_port
+mov     [rbp+port], eax
+cmp     [rbp+port], 0
+jz      short loc_4072BD
+mov     rax, [rbp-10h]
+mov     edx, [rbp-0A4h]
+mov     [rax+8], edx
+mov     rax, [rbp-88h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jnz     short loc_4072D3
+add     [rbp+domain_b], 1
+mov     rdx, [rbp-98h]
+mov     rax, [rbp-88h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     rax, cs:cookies_now
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, cs:qword_4304B0
+subsd   xmm0, xmm1
+movsd   [rbp+expiry], xmm0
+mov     rax, [rbp-30h]
+mov     byte ptr [rax], 0
+lea     rdx, [rbp-0A0h]
+mov     rax, [rbp-38h]
+mov     esi, 4301CDh
+mov     rdi, rax
+mov     eax, 0
+call    ___isoc99_sscanf
+mov     rax, cs:cookies_now
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, qword ptr [rbp-0A0h]
+ucomisd xmm0, xmm1
+ja      short loc_407394
+movsd   xmm0, qword ptr [rbp-0A0h]
+cvttsd2si rdx, xmm0
+mov     rax, [rbp-10h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+20h], 1
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-0B8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    store_cookie
+jmp     short loc_4073A6
+nop
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    delete_cookie
+jmp     short loc_4073A7
+nop
+jmp     short loc_4073A7
+nop
+mov     rax, [rbp-70h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-78h]
+mov     rdi, rax
+call    read_whole_line
+mov     [rbp+line], rax
+cmp     [rbp+line], 0
+jnz     loc_406DF0
+mov     rax, [rbp-78h]
+mov     rdi, rax
+call    _fclose
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4073EE
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:qword_642F60, 0
+pxor    xmm0, xmm0
+movsd   cs:qword_642F68, xmm0
+nop
+pop     rbp
+retn

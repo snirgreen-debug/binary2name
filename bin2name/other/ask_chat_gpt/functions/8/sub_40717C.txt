@@ -1,0 +1,130 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+movsd   [rbp+var_58], xmm0
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:qword_60C6A0
+mov     rdi, rax
+call    _getenv
+mov     rdi, rax
+call    _strlen
+add     rax, 12h
+mov     rdi, rax
+call    _malloc
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jnz     short loc_4071EF
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    sub_408C26
+mov     rax, cs:qword_60C6A0
+mov     rdi, rax
+call    _getenv
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     ecx, 40ACF9h
+mov     esi, 40AC72h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rax, [rbp-28h]
+mov     esi, 40AD16h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+stream], rax
+cmp     [rbp+stream], 0
+jnz     short loc_407259
+mov     edi, 40AD18h
+call    _perror
+mov     edi, 40AD1Eh
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    sub_408C26
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strdup
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_407291
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    sub_408C26
+mov     rax, [rbp-18h]
+mov     [rbp+var_30], rax
+jmp     short loc_4072B2
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     short loc_4072AD
+mov     rax, [rbp-30h]
+mov     byte ptr [rax], 2Bh
+add     [rbp+var_30], 1
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40729B
+mov     edi, 0
+call    _time
+mov     [rbp+timer], rax
+lea     rax, [rbp-38h]
+mov     rdi, rax
+call    _localtime
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+mov     esi, [rax]
+mov     rax, [rbp-10h]
+mov     ecx, [rax+4]
+mov     rax, [rbp-10h]
+mov     r9d, [rax+8]
+mov     rax, [rbp-10h]
+mov     r8d, [rax+0Ch]
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+lea     r10d, [rax+1]
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+lea     edi, [rax+76Ch]
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-20h]
+push    [rbp+var_50]
+push    [rbp+ptr]
+push    rsi
+push    rcx
+mov     [rbp+var_60], rdx
+movsd   xmm0, qword ptr [rbp-60h]
+mov     ecx, r10d
+mov     edx, edi
+mov     esi, 40AD38h
+mov     rdi, rax
+mov     eax, 1
+call    _fprintf
+add     rsp, 20h
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _fclose
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40737D
+call    ___stack_chk_fail
+leave
+retn

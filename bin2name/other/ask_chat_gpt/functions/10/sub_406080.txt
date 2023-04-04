@@ -1,0 +1,113 @@
+push    r12
+push    rbp
+mov     rbp, rsi
+push    rbx
+mov     esi, 100h
+mov     rbx, rdi
+mov     edi, 1
+call    _calloc
+test    rax, rax
+mov     [rbx], rax
+jz      loc_406220
+mov     esi, 100h
+mov     edi, 1
+call    _calloc
+test    rax, rax
+mov     [rbp+0], rax
+jnz     short loc_4060D0
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+mov     esi, 412DBFh
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     rdx, cs:stdin
+mov     rdi, [rbx]
+mov     esi, 100h
+call    _fgets
+mov     rdi, [rbx]
+mov     esi, 412DD0h
+call    _strtok
+test    rax, rax
+mov     [rbx], rax
+jz      short loc_406177
+cmp     byte ptr [rax], 0
+jnz     loc_406198
+mov     rdi, [rbp+0]
+test    rdi, rdi
+jz      short loc_406180
+cmp     byte ptr [rdi], 0
+jz      short loc_406180
+mov     r12, [rbx]
+test    r12, r12
+jz      loc_4061E0
+mov     rdi, r12
+call    _strlen
+lea     rsi, [rax+1]
+mov     rdi, r12
+call    _realloc
+test    rax, rax
+mov     [rbx], rax
+jz      loc_406240
+mov     rbx, [rbp+0]
+test    rbx, rbx
+jz      loc_406210
+mov     rdi, rbx
+call    _strlen
+lea     rsi, [rax+1]
+mov     rdi, rbx
+call    _realloc
+test    rax, rax
+mov     [rbp+0], rax
+jz      short loc_4061F0
+pop     rbx
+pop     rbp
+pop     r12
+retn
+call    _free
+mov     qword ptr [rbp+0], 0
+pop     rbx
+pop     rbp
+pop     r12
+retn
+mov     esi, 412DD4h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     rdx, cs:stdin
+mov     rdi, [rbp+0]
+mov     esi, 100h
+call    _fgets
+mov     rdi, [rbp+0]
+mov     esi, 412DD0h
+call    _strtok
+mov     rdi, rax
+mov     [rbp+0], rax
+jmp     loc_406117
+mov     esi, 1
+jmp     loc_406139
+pop     rbx
+pop     rbp
+pop     r12
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+jmp     sub_405040
+mov     esi, 1
+jmp     loc_406166
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+jmp     loc_4060A5
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+call    sub_405040
+jmp     loc_40614D

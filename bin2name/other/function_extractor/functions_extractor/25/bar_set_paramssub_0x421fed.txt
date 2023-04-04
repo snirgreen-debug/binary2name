@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+params], rdi
+mov     edi, 4364CAh
+call    _getenv
+mov     [rbp+term], rax
+cmp     [rbp+params], 0
+jz      short loc_42202D
+mov     rax, [rbp-18h]
+mov     esi, 4364CFh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_42202D
+mov     cs:current_impl_locked, 1
+mov     rax, cs:opt.lfilename
+test    rax, rax
+jnz     short loc_42206F
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    _fileno
+mov     edi, eax
+call    _isatty
+test    eax, eax
+jz      short loc_42206F
+cmp     [rbp+term], 0
+jz      short loc_422085
+mov     rax, [rbp-8]
+mov     esi, 4364D5h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_422085
+mov     eax, cs:current_impl_locked
+test    eax, eax
+jnz     short loc_422085
+mov     edi, 436368h
+call    set_progress_implementation
+jmp     short locret_4220A2
+call    determine_screen_width
+mov     [rbp+sw], eax
+cmp     [rbp+sw], 0
+jz      short locret_4220A2
+cmp     [rbp+sw], 2Ch
+jle     short locret_4220A2
+mov     eax, [rbp-0Ch]
+mov     cs:screen_width, eax
+leave
+retn

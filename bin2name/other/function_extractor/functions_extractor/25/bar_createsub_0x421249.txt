@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+initial], rdi
+mov     [rbp+total], rsi
+mov     edi, 1B0h
+call    xmalloc_real
+mov     [rbp+bp_0], rax
+mov     rax, [rbp-8]
+mov     edx, 1B0h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-20h]
+jle     short loc_42128F
+mov     rax, [rbp-18h]
+mov     [rbp+total], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+8], rdx
+mov     eax, cs:screen_width
+lea     edx, [rax-1]
+mov     rax, [rbp-8]
+mov     [rax+20h], edx
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    xmalloc_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+28h], rdx
+mov     esi, 43641Ah
+mov     edi, 0
+call    logputs
+mov     rax, [rbp-8]
+pxor    xmm0, xmm0
+mov     rdi, rax
+call    create_image
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    display_image
+mov     rax, [rbp-8]
+leave
+retn

@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 4054CCh
+jz      short loc_4076EC
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 405956h
+jz      short loc_4076EC
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 405174h
+jz      short loc_4076EC
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 40525Ah
+jnz     short loc_4076F3
+mov     eax, 1
+jmp     short loc_407755
+movzx   eax, cs:word_63C028
+test    ax, ax
+jz      short loc_407750
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 404895h
+jz      short loc_40773B
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 4054FEh
+jz      short loc_40773B
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 404A97h
+jz      short loc_40773B
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 4058E6h
+jnz     short loc_407742
+mov     eax, 0
+jmp     short loc_407755
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+test    eax, eax
+setz    al
+jmp     short loc_407755
+mov     eax, 0
+pop     rbp
+retn

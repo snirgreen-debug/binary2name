@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fclose
+test    eax, eax
+jz      short loc_406D21
+call    write_error
+mov     edi, 0
+call    do_exit

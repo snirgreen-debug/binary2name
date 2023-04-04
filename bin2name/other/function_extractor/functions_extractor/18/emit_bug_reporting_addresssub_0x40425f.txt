@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 8
+mov     edi, 405E80h
+call    _gettext
+mov     esi, 405E95h
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 405EABh
+call    _gettext
+mov     edx, 405EC0h
+mov     esi, 405EE7h
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     rbx, cs:stdout@@GLIBC_2_2_5
+mov     edi, 405EF8h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+nop
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

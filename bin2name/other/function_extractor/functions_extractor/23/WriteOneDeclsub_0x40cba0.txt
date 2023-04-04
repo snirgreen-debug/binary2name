@@ -1,0 +1,48 @@
+push    rbp
+push    rbx
+mov     rbp, pfile
+mov     rbx, pvm
+sub     rsp, 8
+test    pvm, pvm
+jz      short loc_40CBF5
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40CC4A
+cmp     rax, 30000h
+jz      short loc_40CC31
+cmp     rax, 10000h
+jz      short loc_40CC18
+cmp     rax, 40000h
+jbe     short loc_40CBF5
+mov     rcx, pfile
+mov     edx, 0Eh
+mov     esi, 1
+mov     edi, 4142C5h
+call    _fwrite
+mov     rcx, [pvm]
+mov     rdi, pfile
+mov     edx, 4142D4h
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+add     rsp, 8
+mov     eax, 1
+pop     pvm
+pop     pfile
+retn
+mov     ecx, 415AF8h
+mov     edx, 0F0h
+mov     esi, 414065h
+mov     edi, 4142AFh
+call    ___assert_fail
+mov     ecx, 415AF8h
+mov     edx, 0EFh
+mov     esi, 414065h
+mov     edi, 414298h
+call    ___assert_fail
+mov     ecx, 415AF8h
+mov     edx, 0EEh
+mov     esi, 414065h
+mov     edi, 414282h
+call    ___assert_fail

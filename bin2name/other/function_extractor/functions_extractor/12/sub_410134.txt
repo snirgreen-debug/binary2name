@@ -1,0 +1,127 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 68h
+mov     [rbp+var_54], edi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_68], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    sub_41E757
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+var_50], rax
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _strlen
+mov     rbx, rax
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+add     rax, 1
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ecx, 10h
+mov     edx, 0
+div     rcx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+var_48], rax
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rdx, [rbp-68h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcat
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_41E762
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strlen
+mov     ecx, eax
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-48h]
+mov     esi, ecx
+mov     rdi, rax
+call    sub_41E785
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41E7BC
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-30h]
+xor     rax, rdx
+mov     [rbp+var_40], rax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-28h]
+xor     rax, rdx
+mov     [rbp+var_38], rax
+mov     rax, [rbp-40h]
+mov     [rbp+var_20], rax
+jmp     short loc_4102D5
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_41E762
+mov     rdx, [rbp-50h]
+lea     rax, [rbp-20h]
+mov     esi, 8
+mov     rdi, rax
+call    sub_41E785
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_41E7BC
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-30h]
+xor     rax, rdx
+mov     [rbp+var_40], rax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-28h]
+xor     rax, rdx
+mov     [rbp+var_38], rax
+mov     rax, [rbp-40h]
+mov     [rbp+var_20], rax
+mov     eax, [rbp-54h]
+lea     edx, [rax-1]
+mov     [rbp+var_54], edx
+test    eax, eax
+jg      short loc_41027B
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 640040h
+call    sub_40FD4E
+mov     eax, 640040h
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_41030C
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

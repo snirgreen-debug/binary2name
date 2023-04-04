@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+src], rdi
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_417844
+mov     [rbp+n], rax
+cmp     [rbp+n], 0
+setz    al
+mov     [rbp+var_11], al
+movzx   edx, byte ptr [rbp-11h]
+mov     rax, [rbp-10h]
+add     rax, rdx
+add     rax, 1
+mov     rdi, rax
+call    _malloc
+mov     [rbp+dest], rax
+cmp     [rbp+dest], 0
+jnz     short loc_41791E
+mov     eax, 0
+jmp     short locret_417963
+mov     rdx, [rbp-10h]
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+cmp     [rbp+var_11], 0
+jz      short loc_417951
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+n], rdx
+mov     rdx, [rbp-8]
+add     rax, rdx
+mov     byte ptr [rax], 2Eh
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+leave
+retn

@@ -1,0 +1,235 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+input], rdi
+mov     eax, esi
+mov     [rbp+prev_pred], rdx
+mov     [rbp+prev_prec], ax
+mov     [rbp+next], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+this_pred], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_407204
+mov     edi, 42B4F2h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     eax, [rax+10h]
+cmp     eax, 5
+ja      def_407221
+mov     eax, eax
+mov     rax, [rax*8+42B710h]
+jmp     rax
+mov     edi, 42B4F2h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_4074D8
+mov     rax, [rbp-18h]
+mov     rbx, [rax+8]
+mov     edi, 42B508h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_4074D8
+mov     rax, [rbp-38h]
+mov     eax, [rax+10h]
+cmp     eax, 2
+jz      short loc_407292
+mov     rax, [rbp-38h]
+mov     eax, [rax+10h]
+cmp     eax, 3
+jnz     short loc_4072D2
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+29h]
+xor     eax, 1
+test    al, al
+jz      short loc_4072D2
+mov     rax, [rbp-38h]
+mov     rbx, [rax+8]
+mov     edi, 42B560h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_4074D8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax+29h]
+test    al, al
+jz      short loc_407312
+mov     rax, [rbp-38h]
+mov     rbx, [rax+8]
+mov     edi, 42B590h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_4074D8
+mov     edi, 42B5B8h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_4074D8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+next], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rax+108h]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+jmp     loc_4074D8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+next], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rax+108h]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     esi, 4
+mov     rdi, rax
+call    get_expr
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax+118h], rdx
+jmp     loc_4074D8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rax, [rax+108h]
+test    rax, rax
+jz      short loc_4073CE
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rax, [rax+108h]
+movzx   eax, byte ptr [rax+29h]
+test    al, al
+jz      short loc_4073FA
+mov     rax, [rbp-18h]
+mov     rbx, [rax+8]
+mov     edi, 42B5E8h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+prev_pred], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rax+108h]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     eax, [rax+10h]
+cmp     eax, 5
+jnz     short loc_40744A
+mov     edi, 42B658h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-28h]
+mov     esi, 0
+mov     rdi, rax
+call    get_expr
+mov     [rbp+next], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40747E
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     eax, [rax+10h]
+cmp     eax, 5
+jz      short loc_40749F
+mov     edi, 42B690h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rax+108h]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+jmp     short loc_4074D8
+mov     edi, 42B6E8h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+nop
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_4074EA
+mov     rax, [rbp-20h]
+jmp     short loc_407545
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     eax, [rax+14h]
+mov     edx, eax
+movsx   eax, word ptr [rbp-2Ch]
+cmp     edx, eax
+jle     short loc_407541
+movsx   edx, word ptr [rbp-2Ch]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    scan_rest
+mov     [rbp+next], rax
+cmp     [rbp+next], 0
+jnz     short loc_407541
+mov     edi, 42B4F2h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-20h]
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

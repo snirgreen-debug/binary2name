@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+rbuf], rdi
+mov     [rbp+where], rsi
+mov     [rbp+maxsize], edx
+mov     rax, [rbp-18h]
+mov     rax, [rax+1010h]
+test    rax, rax
+jnz     short loc_422236
+mov     eax, 0
+jmp     locret_4222B7
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     rax, [rax+1010h]
+cmp     rdx, rax
+cmovbe  rax, rdx
+mov     [rbp+howmuch], eax
+cmp     [rbp+where], 0
+jz      short loc_422278
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     rcx, [rax+1008h]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rax, [rbp-18h]
+mov     rdx, [rax+1010h]
+mov     eax, [rbp-4]
+cdqe
+sub     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax+1010h], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+1008h]
+mov     eax, [rbp-4]
+cdqe
+add     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax+1008h], rdx
+mov     eax, [rbp-4]
+leave
+retn

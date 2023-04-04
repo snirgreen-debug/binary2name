@@ -1,0 +1,161 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 0E0h
+mov     [rbp+var_E8], rdi
+mov     [rbp+var_EC], esi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    sub_40A04E
+mov     [rbp+var_D4], eax
+mov     [rbp+var_D0], 0
+mov     rax, [rbp-0E8h]
+mov     eax, [rax+28h]
+test    eax, eax
+jz      short loc_40801B
+or      [rbp+var_D4], 4000h
+cmp     [rbp+var_D4], 0
+jnz     short loc_40802E
+mov     eax, 0
+jmp     loc_40827D
+mov     rax, [rbp-0E8h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _opendir
+mov     [rbp+dirp], rax
+cmp     [rbp+dirp], 0
+jnz     loc_408244
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     r12, rax
+mov     rax, [rbp-0E8h]
+mov     rbx, [rax+10h]
+mov     edi, 42371Dh
+call    _gettext
+mov     rcx, r12
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+mov     eax, 0
+jmp     loc_40827D
+mov     rax, [rbp-0C0h]
+movzx   eax, byte ptr [rax+13h]
+cmp     al, 2Eh
+jnz     short loc_4080E2
+mov     rax, [rbp-0C0h]
+movzx   eax, byte ptr [rax+14h]
+test    al, al
+jz      loc_408243
+mov     rax, [rbp-0C0h]
+movzx   eax, byte ptr [rax+14h]
+cmp     al, 2Eh
+jnz     short loc_4080E2
+mov     rax, [rbp-0C0h]
+movzx   eax, byte ptr [rax+15h]
+test    al, al
+jz      loc_408243
+mov     rax, [rbp-0C0h]
+lea     rdx, [rax+13h]
+mov     rax, [rbp-0E8h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_402D34
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_408151
+mov     rax, [rbp-0C0h]
+lea     r12, [rax+13h]
+mov     rax, [rbp-0E8h]
+mov     rbx, [rax+10h]
+mov     edi, 423740h
+call    _gettext
+mov     rcx, r12
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+jmp     loc_408244
+lea     rdx, [rbp-0B0h]
+mov     rax, [rbp-0B8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_422870
+test    eax, eax
+jz      short loc_4081AD
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 423765h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-0B8h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+jmp     loc_408232
+cmp     [rbp+var_EC], 0
+jz      short loc_4081D3
+mov     rax, [rbp-0C0h]
+lea     rdx, [rax+13h]
+mov     rax, [rbp-0E8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_407D4F
+mov     edx, [rbp-98h]
+mov     eax, [rbp-0D4h]
+and     eax, edx
+test    eax, eax
+jz      short loc_408232
+mov     eax, [rbp-98h]
+and     eax, 0F000h
+cmp     eax, 4000h
+setz    al
+movzx   edx, al
+mov     ecx, [rbp-0ECh]
+mov     rsi, [rbp-0B8h]
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    sub_407C52
+mov     [rbp+var_CC], eax
+cmp     [rbp+var_CC], 0
+jle     short loc_408232
+mov     eax, [rbp-0CCh]
+add     [rbp+var_D0], eax
+mov     rax, [rbp-0B8h]
+mov     rdi, rax
+call    _free
+jmp     short loc_408244
+nop
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    _readdir
+mov     [rbp+var_C0], rax
+cmp     [rbp+var_C0], 0
+jnz     loc_40809E
+mov     rax, [rbp-0C8h]
+mov     rdi, rax
+call    _closedir
+mov     eax, [rbp-0D0h]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_408291
+call    ___stack_chk_fail
+add     rsp, 0E0h
+pop     rbx
+pop     r12
+pop     rbp
+retn

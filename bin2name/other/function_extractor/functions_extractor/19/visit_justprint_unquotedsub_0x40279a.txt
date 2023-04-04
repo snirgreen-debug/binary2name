@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rdx, cs:stdout@@GLIBC_2_2_5
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     eax, cs:separator
+mov     edi, eax
+call    _putchar
+mov     eax, 1
+leave
+retn

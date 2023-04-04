@@ -1,0 +1,113 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+sock], edi
+mov     [rbp+ssl], rsi
+mov     [rbp+file_name], rdx
+mov     [rbp+promised_size], rcx
+mov     [rbp+written], 0
+cmp     [rbp+sock], 0
+jns     short loc_415163
+cmp     [rbp+ssl], 0
+jnz     short loc_415163
+mov     ecx, 4332E8h
+mov     edx, 0CBh
+mov     esi, 4326D6h
+mov     edi, 4326DDh
+call    ___assert_fail
+cmp     [rbp+sock], 0FFFFFFFFh
+jz      short loc_415189
+cmp     [rbp+ssl], 0
+jz      short loc_415189
+mov     ecx, 4332E8h
+mov     edx, 0CCh
+mov     esi, 4326D6h
+mov     edi, 4326F6h
+call    ___assert_fail
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4151A9
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 432710h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-38h]
+mov     esi, 43272Bh
+mov     rdi, rax
+call    _fopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jnz     loc_41524B
+mov     eax, 0FFFFFFFFh
+jmp     locret_4152D5
+mov     rax, [rbp-8]
+mov     rcx, rax
+mov     edx, 2000h
+mov     esi, 1
+mov     edi, 6400A0h
+call    _fread
+mov     [rbp+length], eax
+cmp     [rbp+length], 0
+jz      short loc_41526B
+mov     rax, [rbp-40h]
+sub     rax, [rbp-10h]
+mov     rdx, rax
+mov     eax, [rbp-1Ch]
+cdqe
+cmp     rdx, rax
+cmovle  rax, rdx
+mov     [rbp+towrite], eax
+mov     edx, [rbp-18h]
+mov     eax, [rbp-24h]
+mov     esi, 6400A0h
+mov     edi, eax
+call    iwrite
+mov     [rbp+write_error], eax
+cmp     [rbp+write_error], 0
+jns     short loc_415242
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+mov     eax, 0FFFFFFFFh
+jmp     locret_4152D5
+mov     eax, [rbp-18h]
+cdqe
+add     [rbp+written], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jnz     short loc_41526C
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-40h]
+jl      loc_4151D3
+jmp     short loc_41526C
+nop
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fclose
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-40h]
+jge     short loc_415294
+call    ___errno_location
+mov     dword ptr [rax], 16h
+mov     eax, 0FFFFFFFFh
+jmp     short locret_4152D5
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-40h]
+jz      short loc_4152B7
+mov     ecx, 4332E8h
+mov     edx, 0F1h
+mov     esi, 4326D6h
+mov     edi, 43272Eh
+call    ___assert_fail
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4152D0
+mov     edi, 432747h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,69 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+name], rdi
+mov     [rbp+flags], esi
+mov     [rbp+st], rdx
+mov     [rbp+atfd], 0FFFFFF9Ch
+mov     rax, [rbp-28h]
+mov     [rbp+base], rax
+mov     eax, cs:to_stdout
+test    eax, eax
+jnz     short loc_404C1F
+mov     eax, cs:force
+test    eax, eax
+jnz     short loc_404C1F
+or      [rbp+flags], 20000h
+mov     eax, cs:keep
+test    eax, eax
+jnz     short loc_404C6A
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    last_component
+mov     [rbp+b], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    atdir_set
+mov     [rbp+f], eax
+cmp     [rbp+f], 0
+js      short loc_404C6A
+mov     rax, [rbp-8]
+mov     [rbp+base], rax
+mov     eax, [rbp-1Ch]
+mov     [rbp+atfd], eax
+mov     edx, [rbp-2Ch]
+mov     rcx, [rbp-10h]
+mov     eax, [rbp-20h]
+mov     rsi, rcx
+mov     edi, eax
+mov     eax, 0
+call    openat_safer
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_404CC9
+mov     rdx, [rbp-38h]
+mov     eax, [rbp-18h]
+mov     rsi, rdx
+mov     edi, eax
+call    fstat
+test    eax, eax
+jz      short loc_404CC9
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    _close
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     short locret_404CCC
+mov     eax, [rbp-18h]
+leave
+retn

@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+bytes], rdi
+movsd   [rbp+msecs], xmm0
+mov     [rbp+units], rsi
+movsd   xmm0, qword ptr [rbp-20h]
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jnb     short loc_42483C
+mov     ecx, 436C28h
+mov     edx, 123h
+mov     esi, 436AAAh
+mov     edi, 436AB1h
+call    ___assert_fail
+cmp     [rbp+bytes], 0
+jns     short loc_42485C
+mov     ecx, 436C28h
+mov     edx, 124h
+mov     esi, 436AAAh
+mov     edi, 436ABCh
+call    ___assert_fail
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-20h]
+jp      short loc_424880
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-20h]
+jnz     short loc_424880
+call    wtimer_granularity
+movq    rax, xmm0
+mov     [rbp+msecs], rax
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, qword ptr [rbp-18h]
+movsd   xmm1, cs:qword_436C48
+mulsd   xmm0, xmm1
+divsd   xmm0, qword ptr [rbp-20h]
+movsd   [rbp+dlrate], xmm0
+movsd   xmm0, cs:qword_436C60
+ucomisd xmm0, qword ptr [rbp-8]
+jbe     short loc_4248BE
+mov     rax, [rbp-28h]
+mov     dword ptr [rax], 0
+jmp     loc_424940
+movsd   xmm0, cs:qword_436C68
+ucomisd xmm0, qword ptr [rbp-8]
+jbe     short loc_4248EF
+mov     rax, [rbp-28h]
+mov     dword ptr [rax], 1
+movsd   xmm0, qword ptr [rbp-8]
+movsd   xmm1, cs:qword_436C60
+divsd   xmm0, xmm1
+movsd   [rbp+dlrate], xmm0
+jmp     short loc_424940
+movsd   xmm0, cs:qword_436C70
+ucomisd xmm0, qword ptr [rbp-8]
+jbe     short loc_424920
+mov     rax, [rbp-28h]
+mov     dword ptr [rax], 2
+movsd   xmm0, qword ptr [rbp-8]
+movsd   xmm1, cs:qword_436C68
+divsd   xmm0, xmm1
+movsd   [rbp+dlrate], xmm0
+jmp     short loc_424940
+mov     rax, [rbp-28h]
+mov     dword ptr [rax], 3
+movsd   xmm0, qword ptr [rbp-8]
+movsd   xmm1, cs:qword_436C70
+divsd   xmm0, xmm1
+movsd   [rbp+dlrate], xmm0
+movsd   xmm0, qword ptr [rbp-8]
+leave
+retn

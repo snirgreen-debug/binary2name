@@ -1,0 +1,114 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_48], rdi
+mov     [rbp+s], rsi
+mov     [rbp+var_58], rdx
+mov     [rbp+var_60], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, unk_61A888
+mov     eax, [rax]
+mov     [rbp+var_34], eax
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    sub_4069E0
+mov     [rbp+var_20], 0
+mov     [rbp+var_30], 0
+mov     rax, [rbp-50h]
+mov     [rbp+var_28], rax
+mov     [rbp+var_18], 1
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    sub_4113AB
+test    eax, eax
+jnz     short loc_413270
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      loc_413320
+mov     eax, [rbp-30h]
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_413287
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_30], eax
+cmp     [rbp+var_58], 0
+jz      short loc_4132D3
+mov     eax, [rbp-18h]
+cmp     eax, 8
+jz      short loc_4132A1
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_4132BB
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-58h]
+mov     [rax], rdx
+jmp     short loc_4132D3
+mov     edx, [rbp-18h]
+lea     rax, off_619420
+movsxd  rdx, edx
+mov     rdx, [rax+rdx*8]
+mov     rax, [rbp-58h]
+mov     [rax], rdx
+cmp     [rbp+var_60], 0
+jz      short loc_4132E3
+mov     edx, [rbp-30h]
+mov     rax, [rbp-60h]
+mov     [rax], edx
+lea     rax, unk_61A888
+mov     eax, [rax]
+cmp     eax, [rbp-34h]
+jz      short loc_41331B
+lea     rax, unk_61A888
+mov     ecx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     edx, [rbp-34h]
+lea     rsi, aUnitsParserLea
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, [rbp-18h]
+jmp     short loc_41338E
+cmp     [rbp+var_58], 0
+jz      short loc_413332
+mov     rax, [rbp-58h]
+mov     qword ptr [rax], 0
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_407460
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_410FEF
+lea     rax, unk_61A888
+mov     eax, [rax]
+cmp     eax, [rbp-34h]
+jz      short loc_413389
+lea     rax, unk_61A888
+mov     ecx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     edx, [rbp-34h]
+lea     rsi, aUnitsParserLea_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_4133A2
+call    ___stack_chk_fail
+leave
+retn

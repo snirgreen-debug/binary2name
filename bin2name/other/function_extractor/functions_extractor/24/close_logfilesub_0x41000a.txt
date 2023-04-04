@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+lea     rax, logfile
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_410046
+lea     rax, logfile
+mov     rax, [rax]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+lea     rax, logfile
+mov     rax, [rax]
+mov     rdi, rax
+call    _fclose
+nop
+pop     rbp
+retn

@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     edx, 6475F0h
+mov     rsi, rcx
+mov     rdi, rax
+call    cmd_boolean
+test    eax, eax
+jnz     short loc_41BCE5
+mov     eax, 0
+jmp     short locret_41BD0A
+mov     eax, cs:opt.dirstruct
+test    eax, eax
+jz      short loc_41BCFB
+mov     cs:opt.no_dirstruct, 0
+jmp     short loc_41BD05
+mov     cs:opt.no_dirstruct, 1
+mov     eax, 1
+leave
+retn

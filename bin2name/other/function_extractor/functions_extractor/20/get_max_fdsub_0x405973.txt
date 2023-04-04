@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    get_proc_max_fd
+cdqe
+mov     [rbp+open_max], rax
+cmp     [rbp+open_max], 0
+js      short loc_4059A2
+mov     rax, [rbp-28h]
+jmp     short loc_4059EE
+mov     edi, 4
+call    _sysconf
+mov     [rbp+open_max], rax
+cmp     [rbp+open_max], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4059BF
+mov     [rbp+open_max], 14h
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 7
+call    _getrlimit
+test    eax, eax
+jnz     short loc_4059EA
+mov     rax, [rbp-20h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4059E4
+mov     rax, [rbp-28h]
+jmp     short loc_4059EE
+mov     rax, [rbp-20h]
+jmp     short loc_4059EE
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_405A02
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+items], edi
+mov     [rbp+hash_function], rsi
+mov     [rbp+test_function], rdx
+mov     edi, 28h
+call    xmalloc_real
+mov     [rbp+ht], rax
+cmp     [rbp+hash_function], 0
+jz      short loc_41039F
+mov     rax, [rbp-20h]
+jmp     short loc_4103A4
+mov     eax, 410CACh
+mov     rdx, [rbp-8]
+mov     [rdx], rax
+cmp     [rbp+test_function], 0
+jz      short loc_4103B8
+mov     rax, [rbp-28h]
+jmp     short loc_4103BD
+mov     eax, 410D82h
+mov     rdx, [rbp-8]
+mov     [rdx+8], rax
+mov     rax, [rbp-8]
+mov     dword ptr [rax+1Ch], 0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-14h]
+movsd   xmm1, cs:qword_431F80
+divsd   xmm0, xmm1
+movsd   xmm1, cs:qword_431F88
+addsd   xmm0, xmm1
+cvttsd2si eax, xmm0
+mov     [rbp+size], eax
+mov     rax, [rbp-8]
+lea     rdx, [rax+1Ch]
+mov     eax, [rbp-0Ch]
+mov     rsi, rdx
+mov     edi, eax
+call    prime_size
+mov     [rbp+size], eax
+mov     rax, [rbp-8]
+mov     edx, [rbp-0Ch]
+mov     [rax+10h], edx
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-0Ch]
+movsd   xmm1, cs:qword_431F80
+mulsd   xmm0, xmm1
+cvttsd2si edx, xmm0
+mov     rax, [rbp-8]
+mov     [rax+18h], edx
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cdqe
+shl     rax, 4
+mov     rdi, rax
+call    xmalloc_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+20h], rdx
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax+20h]
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+mov     dword ptr [rax+14h], 0
+mov     rax, [rbp-8]
+leave
+retn

@@ -1,0 +1,154 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+ltree], rdi
+mov     [rbp+dtree], rsi
+mov     [rbp+lx], 0
+mov     [rbp+dx_0], 0
+mov     [rbp+fx], 0
+mov     [rbp+flag], 0
+mov     eax, cs:last_lit
+test    eax, eax
+jz      loc_40A2D2
+mov     eax, [rbp-1Ch]
+and     eax, 7
+test    eax, eax
+jnz     short loc_40A11D
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+fx], edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+616D20h]
+mov     [rbp+flag], al
+mov     eax, [rbp-1Ch]
+lea     edx, [rax+1]
+mov     [rbp+lx], edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+mov     [rbp+lc], eax
+movzx   eax, byte ptr [rbp-1Dh]
+and     eax, 1
+test    eax, eax
+jnz     short loc_40A183
+mov     eax, [rbp-10h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+movzx   eax, word ptr [rax+2]
+movzx   edx, ax
+mov     eax, [rbp-10h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+jmp     loc_40A2C0
+mov     eax, [rbp-10h]
+cdqe
+movzx   eax, byte ptr [rax+616920h]
+movzx   eax, al
+mov     [rbp+code], eax
+mov     eax, [rbp-0Ch]
+add     eax, 101h
+mov     eax, eax
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+movzx   eax, word ptr [rax+2]
+movzx   edx, ax
+mov     eax, [rbp-0Ch]
+add     eax, 101h
+mov     eax, eax
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-0Ch]
+mov     eax, [rax*4+6145A0h]
+mov     [rbp+extra], eax
+cmp     [rbp+extra], 0
+jz      short loc_40A20C
+mov     eax, [rbp-0Ch]
+mov     eax, [rax*4+616C20h]
+sub     [rbp+lc], eax
+mov     edx, [rbp-8]
+mov     eax, [rbp-10h]
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-18h]
+lea     edx, [rax+1]
+mov     [rbp+dx_0], edx
+mov     eax, eax
+movzx   eax, word ptr [rax+rax+6386E0h]
+movzx   eax, ax
+mov     [rbp+dist], eax
+cmp     [rbp+dist], 0FFh
+ja      short loc_40A23D
+mov     eax, [rbp-4]
+movzx   eax, byte ptr [rax+616A20h]
+movzx   eax, al
+jmp     short loc_40A254
+mov     eax, [rbp-4]
+shr     eax, 7
+add     eax, 100h
+mov     eax, eax
+movzx   eax, byte ptr [rax+616A20h]
+movzx   eax, al
+mov     [rbp+code], eax
+mov     eax, [rbp-0Ch]
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-30h]
+add     rax, rdx
+movzx   eax, word ptr [rax+2]
+movzx   edx, ax
+mov     eax, [rbp-0Ch]
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-30h]
+add     rax, rcx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-0Ch]
+mov     eax, [rax*4+614620h]
+mov     [rbp+extra], eax
+cmp     [rbp+extra], 0
+jz      short loc_40A2C0
+mov     eax, [rbp-0Ch]
+mov     eax, [rax*4+616CA0h]
+sub     [rbp+dist], eax
+mov     eax, [rbp-4]
+mov     edx, [rbp-8]
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+shr     [rbp+flag], 1
+mov     eax, cs:last_lit
+cmp     [rbp+lx], eax
+jb      loc_40A0FE
+mov     rax, [rbp-28h]
+add     rax, 400h
+movzx   eax, word ptr [rax+2]
+movzx   edx, ax
+mov     rax, [rbp-28h]
+add     rax, 400h
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+mov     esi, edx
+mov     edi, eax
+call    send_bits
+nop
+leave
+retn

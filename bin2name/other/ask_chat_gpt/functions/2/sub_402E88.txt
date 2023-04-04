@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     eax, edx
+mov     [rbp+var_54], al
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:qword_606280
+mov     [rbp+var_40], rax
+mov     rax, cs:qword_606288
+mov     [rbp+var_38], rax
+mov     rax, cs:qword_606290
+mov     [rbp+var_30], rax
+mov     rax, cs:qword_606298
+mov     [rbp+var_28], rax
+mov     rax, cs:qword_6062A0
+mov     [rbp+var_20], rax
+mov     rax, cs:qword_6062A8
+mov     [rbp+var_18], rax
+mov     rax, cs:qword_6062B0
+mov     [rbp+var_10], rax
+movsx   ecx, byte ptr [rbp-54h]
+lea     rax, [rbp-40h]
+mov     edx, 1
+mov     esi, ecx
+mov     rdi, rax
+call    sub_40179B
+lea     rcx, [rbp-40h]
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 0
+call    sub_402A2A
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_402F3D
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    init_string
+mov     rdx, cs:tos
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    catstr
+mov     rax, cs:tos
+lea     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    overwrite_string
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_401469
+call    ___stack_chk_fail
+leave
+retn

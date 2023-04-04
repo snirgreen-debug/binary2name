@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_14], edi
+mov     rax, cs:qword_62D7F8
+mov     [rbp+var_8], rax
+jmp     short loc_4086FF
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cmp     eax, [rbp-14h]
+jnz     short loc_4086F4
+mov     rax, [rbp-8]
+jmp     short loc_40870B
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_4086E2
+mov     eax, 0
+pop     rbp
+retn

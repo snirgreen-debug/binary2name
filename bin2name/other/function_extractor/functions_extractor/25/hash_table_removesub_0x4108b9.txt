@@ -1,0 +1,117 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+ht], rdi
+mov     [rbp+key], rsi
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_mapping
+mov     [rbp+mp], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_4108F6
+mov     eax, 0
+jmp     locret_410A4D
+mov     rax, [rbp-38h]
+mov     eax, [rax+10h]
+mov     [rbp+size], eax
+mov     rax, [rbp-38h]
+mov     rax, [rax+20h]
+mov     [rbp+mappings], rax
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-38h]
+mov     eax, [rax+14h]
+lea     edx, [rax-1]
+mov     rax, [rbp-38h]
+mov     [rax+14h], edx
+mov     eax, [rbp-24h]
+cdqe
+shl     rax, 4
+lea     rdx, [rax-10h]
+mov     rax, [rbp-10h]
+add     rax, rdx
+cmp     rax, [rbp-20h]
+jz      short loc_41094C
+mov     rax, [rbp-20h]
+add     rax, 10h
+jmp     short loc_410950
+mov     rax, [rbp-10h]
+mov     [rbp+mp], rax
+jmp     loc_410A38
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     [rbp+key2], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdx, [rbp-8]
+mov     rdi, rdx
+call    rax
+mov     rdx, rax
+mov     rax, [rbp-38h]
+mov     eax, [rax+10h]
+movsxd  rcx, eax
+mov     rax, rdx
+mov     edx, 0
+div     rcx
+mov     rax, rdx
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     [rbp+mp_new], rax
+jmp     short loc_4109DC
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, [rbp-8]
+jz      short loc_410A0B
+mov     eax, [rbp-24h]
+cdqe
+shl     rax, 4
+lea     rdx, [rax-10h]
+mov     rax, [rbp-10h]
+add     rax, rdx
+cmp     rax, [rbp-18h]
+jz      short loc_4109D4
+mov     rax, [rbp-18h]
+add     rax, 10h
+jmp     short loc_4109D8
+mov     rax, [rbp-10h]
+mov     [rbp+mp_new], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_4109A3
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-20h]
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+jmp     short next_rehash
+nop
+mov     eax, [rbp-24h]
+cdqe
+shl     rax, 4
+lea     rdx, [rax-10h]
+mov     rax, [rbp-10h]
+add     rax, rdx
+cmp     rax, [rbp-20h]
+jz      short loc_410A30
+mov     rax, [rbp-20h]
+add     rax, 10h
+jmp     short loc_410A34
+mov     rax, [rbp-10h]
+mov     [rbp+mp], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_410959
+mov     eax, 1
+leave
+retn

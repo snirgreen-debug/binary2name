@@ -1,0 +1,4 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 0
+call    _exit

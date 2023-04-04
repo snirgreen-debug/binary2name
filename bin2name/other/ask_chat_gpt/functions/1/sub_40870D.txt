@@ -1,0 +1,143 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 0A0h
+mov     [rbp+var_A4], edi
+mov     [rbp+var_A8], esi
+mov     [rbp+set], rdx
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_A0], eax
+mov     eax, [rbp-0A0h]
+and     eax, 7Fh
+test    eax, eax
+jnz     loc_4087E6
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_90], eax
+mov     eax, [rbp-90h]
+and     eax, 0FF00h
+sar     eax, 8
+test    eax, eax
+jnz     short loc_40879F
+mov     eax, cs:dword_62D7B0
+test    eax, eax
+jle     loc_408935
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     edi, 4237C8h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    sub_402B11
+jmp     loc_408935
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_80], eax
+mov     eax, [rbp-80h]
+and     eax, 0FF00h
+sar     eax, 8
+mov     r12d, eax
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     edi, 4237E8h
+call    _gettext
+mov     ecx, r12d
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+jmp     loc_408935
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_70], eax
+mov     eax, [rbp-70h]
+and     eax, 7Fh
+add     eax, 1
+sar     al, 1
+test    al, al
+jle     short loc_408876
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_60], eax
+mov     eax, [rbp-60h]
+and     eax, 7Fh
+mov     edx, eax
+mov     rax, [rbp-0B0h]
+mov     esi, edx
+mov     rdi, rax
+call    _sigismember
+test    eax, eax
+jz      short loc_40882D
+mov     [rbp+var_14], 7
+jmp     short loc_408834
+mov     [rbp+var_14], 3
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_50], eax
+mov     eax, [rbp-50h]
+and     eax, 7Fh
+mov     r12d, eax
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     edi, 423810h
+call    _gettext
+mov     rsi, rax
+mov     eax, [rbp-14h]
+mov     ecx, r12d
+mov     rdx, rbx
+mov     edi, eax
+mov     eax, 0
+call    sub_402A42
+jmp     loc_408935
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_40], eax
+mov     eax, [rbp-40h]
+movzx   eax, al
+cmp     eax, 7Fh
+jnz     short loc_4088CE
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_30], eax
+mov     eax, [rbp-30h]
+and     eax, 0FF00h
+sar     eax, 8
+mov     r12d, eax
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     edi, 423838h
+call    _gettext
+mov     ecx, r12d
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+jmp     short loc_408935
+mov     eax, [rbp-0A8h]
+mov     [rbp+var_20], eax
+mov     eax, [rbp-20h]
+and     eax, 80h
+test    eax, eax
+jz      short loc_40890D
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     edi, 423859h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+jmp     short loc_408935
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     edi, 423878h
+call    _gettext
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 3
+mov     eax, 0
+call    sub_402A42
+nop
+add     rsp, 0A0h
+pop     rbx
+pop     r12
+pop     rbp
+retn

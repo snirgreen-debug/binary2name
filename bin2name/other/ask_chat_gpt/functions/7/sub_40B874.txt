@@ -1,0 +1,54 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+s], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    ___ctype_get_mb_cur_max
+cmp     rax, 1
+jbe     loc_40B91E
+mov     [rbp+var_58], 0
+mov     rax, [rbp-68h]
+mov     [rbp+var_40], rax
+mov     [rbp+var_50], 0
+lea     rax, [rbp-50h]
+add     rax, 4
+mov     edx, 8
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     [rbp+var_44], 0
+jmp     short loc_40B8EA
+add     [rbp+var_58], 1
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-38h]
+add     rax, rdx
+mov     [rbp+var_40], rax
+mov     [rbp+var_44], 0
+lea     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_407A5B
+movzx   eax, byte ptr [rbp-30h]
+xor     eax, 1
+test    al, al
+jnz     short loc_40B908
+mov     eax, [rbp-2Ch]
+test    eax, eax
+jz      short loc_40B90F
+mov     eax, 1
+jmp     short loc_40B914
+mov     eax, 0
+test    eax, eax
+jnz     short loc_40B8D2
+mov     rax, [rbp-58h]
+jmp     short loc_40B92A
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _strlen
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40B93E
+call    ___stack_chk_fail
+leave
+retn

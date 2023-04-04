@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+cmp     [rbp+var_28], 0
+jz      locret_40B763
+mov     rax, [rbp-28h]
+sub     rax, 4
+mov     eax, [rax]
+cmp     eax, 1415FB4Ah
+jnz     locret_40B763
+mov     rcx, [rbp-28h]
+mov     rdx, 0FF00FF00FF00FF01h
+mov     rax, rcx
+mul     rdx
+mov     rax, rdx
+shr     rax, 8
+mov     [rbp+var_18], rax
+mov     rdx, [rbp-18h]
+mov     rax, rdx
+shl     rax, 8
+add     rax, rdx
+sub     rcx, rax
+mov     rax, rcx
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+shl     rax, 3
+add     rax, 6116C0h
+mov     [rbp+var_20], rax
+jmp     short loc_40B757
+mov     rax, [rbp-28h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+cmp     rax, [rbp-28h]
+jnz     short loc_40B740
+mov     rax, [rbp-10h]
+sub     rax, 10h
+mov     [rbp+ptr], rax
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+jmp     short locret_40B763
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+sub     rax, 10h
+mov     [rbp+var_20], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40B703
+leave
+retn

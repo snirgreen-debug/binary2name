@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    newentry
+mov     [rbp+new_d], rax
+mov     rax, [rbp-8]
+mov     esi, 4010D3h
+mov     rdi, rax
+call    add_to_definition
+mov     rax, [rbp-8]
+add     rax, 20h
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    add_to_definition
+mov     rax, [rbp-8]
+mov     esi, 0
+mov     rdi, rax
+call    add_to_definition
+nop
+leave
+retn

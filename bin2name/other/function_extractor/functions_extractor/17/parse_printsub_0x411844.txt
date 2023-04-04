@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    insert_primary_noarg
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-8]
+mov     byte ptr [rax+19h], 1
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+19h]
+mov     rax, [rbp-8]
+mov     [rax+18h], dl
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-8]
+mov     [rax+1Ah], dl
+mov     rax, [rbp-8]
+add     rax, 38h
+mov     rdi, rax
+call    open_stdout
+mov     eax, 1
+leave
+retn

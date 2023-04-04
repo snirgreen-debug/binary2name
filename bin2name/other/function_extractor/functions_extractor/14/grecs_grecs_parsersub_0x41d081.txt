@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     eax, [rbp-1Ch]
+and     eax, 2
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    grecs_lex_begin
+test    eax, eax
+jz      short loc_41D0B1
+mov     eax, 0
+jmp     short locret_41D112
+mov     eax, [rbp-1Ch]
+and     eax, 1
+mov     cs:grecs_grecs_debug, eax
+mov     cs:parse_tree, 0
+call    grecs_grecs_parse
+mov     [rbp+var_4], eax
+mov     eax, cs:grecs_error_count
+test    eax, eax
+jz      short loc_41D0E1
+mov     [rbp+var_4], 1
+mov     eax, [rbp-4]
+mov     edi, eax
+call    grecs_lex_end
+cmp     [rbp+var_4], 0
+jz      short loc_41D10B
+mov     rax, cs:parse_tree
+mov     rdi, rax
+call    grecs_tree_free
+mov     cs:parse_tree, 0
+mov     rax, cs:parse_tree
+leave
+retn

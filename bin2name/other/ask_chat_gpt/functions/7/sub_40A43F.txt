@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+size], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _malloc
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_40A46E
+cmp     [rbp+size], 0
+jz      short loc_40A46E
+call    sub_40A5CA
+mov     rax, [rbp-8]
+leave
+retn

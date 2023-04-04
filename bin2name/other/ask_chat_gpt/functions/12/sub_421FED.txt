@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     edi, 4364CAh
+call    _getenv
+mov     [rbp+var_8], rax
+cmp     [rbp+var_18], 0
+jz      short loc_42202D
+mov     rax, [rbp-18h]
+mov     esi, 4364CFh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_42202D
+mov     cs:dword_642F40, 1
+mov     rax, cs:qword_647610
+test    rax, rax
+jnz     short loc_42206F
+mov     rax, cs:stderr
+mov     rdi, rax
+call    _fileno
+mov     edi, eax
+call    _isatty
+test    eax, eax
+jz      short loc_42206F
+cmp     [rbp+var_8], 0
+jz      short loc_422085
+mov     rax, [rbp-8]
+mov     esi, 4364D5h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_422085
+mov     eax, cs:dword_642F40
+test    eax, eax
+jnz     short loc_422085
+mov     edi, 436368h
+call    sub_420929
+jmp     short locret_4220A2
+call    sub_42F84F
+mov     [rbp+var_C], eax
+cmp     [rbp+var_C], 0
+jz      short locret_4220A2
+cmp     [rbp+var_C], 2Ch
+jle     short locret_4220A2
+mov     eax, [rbp-0Ch]
+mov     cs:dword_63FE70, eax
+leave
+retn

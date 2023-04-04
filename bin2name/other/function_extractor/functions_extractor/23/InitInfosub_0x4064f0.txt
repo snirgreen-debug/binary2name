@@ -1,0 +1,15 @@
+mov     dword ptr [pinfo], 1
+mov     dword ptr [pinfo+4], 0
+mov     dword ptr [pinfo+8], 0
+mov     dword ptr [pinfo+0Ch], 0
+mov     [pinfo+18h], szModGenName
+mov     qword ptr [pinfo+20h], 0
+mov     qword ptr [pinfo+28h], 0
+mov     qword ptr [pinfo+30h], 0
+mov     qword ptr [pinfo+38h], 0
+mov     qword ptr [pinfo+40h], 0
+mov     qword ptr [pinfo+48h], 0
+mov     qword ptr [pinfo+50h], 0
+mov     qword ptr [pinfo+58h], 0
+mov     qword ptr [pinfo+60h], 0
+retn

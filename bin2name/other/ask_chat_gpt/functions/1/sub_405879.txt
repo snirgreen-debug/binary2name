@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:stdout
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 62CF80h
+call    sub_40ADB8
+mov     rax, cs:stdout
+mov     rcx, rax
+mov     edx, 0
+mov     esi, 1
+mov     edi, 62CD80h
+call    sub_40B2C5
+nop
+pop     rbp
+retn

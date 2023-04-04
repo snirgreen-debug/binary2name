@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     [rax], rdx
+nop
+leave
+retn

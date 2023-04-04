@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+name], rdi
+mov     [rbp+var_40], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _getenv
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jz      short loc_405804
+lea     rdx, [rbp-28h]
+lea     rsi, [rbp-30h]
+mov     rax, [rbp-20h]
+mov     r8d, 0
+mov     rcx, rdx
+mov     edx, 0Ah
+mov     rdi, rax
+call    sub_40A69F
+test    eax, eax
+jnz     short loc_4057CE
+mov     rax, [rbp-28h]
+cmp     [rbp+var_40], rax
+jbe     short loc_405804
+mov     eax, 1
+jmp     short loc_405809
+mov     edi, 40DA88h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-38h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_405809
+mov     eax, 0
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_40581D
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

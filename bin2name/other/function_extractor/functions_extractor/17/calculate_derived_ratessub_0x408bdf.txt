@@ -1,0 +1,189 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jnz     short loc_408C0B
+mov     ecx, 42BEF0h
+mov     edx, 48Ch
+mov     esi, 42B9B7h
+mov     edi, 42BA68h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+test    rax, rax
+jz      short loc_408C2E
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    calculate_derived_rates
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_408C51
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    calculate_derived_rates
+mov     rax, [rbp-18h]
+mov     eax, [rax+10h]
+cmp     eax, 5
+jnz     short loc_408C76
+mov     ecx, 42BEF0h
+mov     edx, 493h
+mov     esi, 42B9B7h
+mov     edi, 42BA72h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     eax, [rax+10h]
+cmp     eax, 4
+jnz     short loc_408C9B
+mov     ecx, 42BEF0h
+mov     edx, 494h
+mov     esi, 42B9B7h
+mov     edi, 42BA8Bh
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     eax, [rax+10h]
+cmp     eax, 5
+ja      def_408CB5
+mov     eax, eax
+mov     rax, [rax*8+42BAF0h]
+jmp     rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+test    rax, rax
+jz      short loc_408CE0
+mov     ecx, 42BEF0h
+mov     edx, 499h
+mov     esi, 42B9B7h
+mov     edi, 42BAA3h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_408D09
+mov     ecx, 42BEF0h
+mov     edx, 49Ah
+mov     esi, 42B9B7h
+mov     edi, 42BAB9h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+movss   xmm0, dword ptr [rax+24h]
+jmp     locret_408F19
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+test    rax, rax
+jz      short loc_408D40
+mov     ecx, 42BEF0h
+mov     edx, 49Eh
+mov     esi, 42B9B7h
+mov     edi, 42BAA3h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_408D69
+mov     ecx, 42BEF0h
+mov     edx, 49Fh
+mov     esi, 42B9B7h
+mov     edi, 42BAB9h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+movss   xmm0, dword ptr [rax+24h]
+jmp     locret_408F19
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 4054FEh
+jz      short loc_408D9F
+mov     ecx, 42BEF0h
+mov     edx, 4A4h
+mov     esi, 42B9B7h
+mov     edi, 42BACEh
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_408DC8
+mov     ecx, 42BEF0h
+mov     edx, 4A5h
+mov     esi, 42B9B7h
+mov     edi, 42BAB9h
+call    ___assert_fail
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+movss   xmm1, dword ptr [rax+24h]
+movss   xmm0, cs:dword_42BF74
+subss   xmm0, xmm1
+mov     rax, [rbp-18h]
+movss   dword ptr [rax+24h], xmm0
+mov     rax, [rbp-18h]
+movss   xmm0, dword ptr [rax+24h]
+jmp     locret_408F19
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 404895h
+jnz     short loc_408E41
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    getrate
+movss   [rbp+var_1C], xmm0
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    getrate
+mulss   xmm0, dword ptr [rbp-1Ch]
+movss   [rbp+rate], xmm0
+jmp     short loc_408EBE
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 404A97h
+jnz     short loc_408E5F
+movss   xmm0, cs:dword_42BF74
+movss   [rbp+rate], xmm0
+jmp     short loc_408EBE
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+cmp     rax, 4058E6h
+jnz     short loc_408EA5
+mov     rax, [rbp-18h]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    getrate
+movss   [rbp+var_1C], xmm0
+mov     rax, [rbp-18h]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    getrate
+addss   xmm0, dword ptr [rbp-1Ch]
+movss   [rbp+rate], xmm0
+jmp     short loc_408EBE
+mov     ecx, 42BEF0h
+mov     edx, 4BCh
+mov     esi, 42B9B7h
+mov     edi, 42BAE7h
+call    ___assert_fail
+mov     eax, [rbp-4]
+mov     [rbp+var_1C], eax
+movss   xmm0, dword ptr [rbp-1Ch]
+call    constrain_rate
+movd    edx, xmm0
+mov     rax, [rbp-18h]
+mov     [rax+24h], edx
+mov     rax, [rbp-18h]
+movss   xmm0, dword ptr [rax+24h]
+jmp     short locret_408F19
+mov     rax, [rbp-18h]
+movss   xmm0, cs:dword_42BF74
+movss   dword ptr [rax+24h], xmm0
+mov     rax, [rbp-18h]
+movss   xmm0, dword ptr [rax+24h]
+jmp     short locret_408F19
+mov     ecx, 42BEF0h
+mov     edx, 4C8h
+mov     esi, 42B9B7h
+mov     edi, 42BAE7h
+call    ___assert_fail
+leave
+retn

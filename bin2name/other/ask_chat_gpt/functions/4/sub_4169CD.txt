@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_5], 0
+mov     esi, 80000h
+mov     edi, 42FDFEh
+mov     eax, 0
+call    sub_417A81
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_416A12
+mov     eax, [rbp-4]
+mov     edi, eax
+call    sub_41672E
+test    eax, eax
+setnz   al
+mov     [rbp+var_5], al
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+movzx   eax, byte ptr [rbp-5]
+leave
+retn

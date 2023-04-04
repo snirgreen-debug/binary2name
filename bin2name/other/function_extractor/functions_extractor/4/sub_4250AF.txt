@@ -1,0 +1,95 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_58], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     rax, [rax+50h]
+mov     [rbp+var_38], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax+50h]
+mov     [rbp+var_40], rax
+mov     rax, [rbp-38h]
+mov     eax, [rax+48h]
+and     eax, 200h
+test    eax, eax
+jnz     short loc_4250FC
+mov     eax, 0
+jmp     loc_42520C
+cmp     [rbp+var_40], 0
+jnz     short loc_42514A
+mov     r8d, 402A80h
+mov     ecx, 42507Dh
+mov     edx, 425054h
+mov     esi, 0
+mov     edi, 0Dh
+call    sub_4188A1
+mov     rdx, rax
+mov     rax, [rbp-38h]
+mov     [rax+50h], rdx
+mov     rax, [rbp-38h]
+mov     rax, [rax+50h]
+mov     [rbp+var_40], rax
+cmp     [rbp+var_40], 0
+jnz     short loc_42514A
+mov     eax, 0
+jmp     loc_42520C
+mov     rax, [rbp-58h]
+mov     rax, [rax+78h]
+mov     [rbp+var_20], rax
+lea     rdx, [rbp-20h]
+mov     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_418212
+mov     [rbp+var_30], rax
+cmp     [rbp+var_30], 0
+jz      short loc_425181
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax+8]
+jmp     loc_42520C
+mov     edi, 10h
+call    _malloc
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_42519D
+mov     eax, 0
+jmp     short loc_42520C
+mov     rax, [rbp-38h]
+mov     eax, [rax+2Ch]
+mov     edi, eax
+call    sub_424FD0
+mov     [rbp+var_41], al
+mov     rax, [rbp-28h]
+movzx   edx, byte ptr [rbp-41h]
+mov     [rax+8], dl
+mov     rax, [rbp-58h]
+mov     rdx, [rax+78h]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4195B8
+mov     [rbp+var_30], rax
+cmp     [rbp+var_30], 0
+jnz     short loc_4251F9
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     short loc_42520C
+mov     rax, [rbp-30h]
+cmp     rax, [rbp-28h]
+jz      short loc_425208
+call    _abort
+movzx   eax, byte ptr [rbp-41h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_425220
+call    ___stack_chk_fail
+leave
+retn

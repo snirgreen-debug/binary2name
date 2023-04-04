@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edx, 0
+mov     esi, 423468h
+mov     edi, 4234C8h
+mov     eax, 0
+call    grecs_include_path_setup
+nop
+pop     rbp
+retn

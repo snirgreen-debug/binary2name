@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     edx, cs:idx
+mov     rax, cs:ptr
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    skip_past_newline_1
+mov     cs:idx, eax
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+pop     rbp
+retn

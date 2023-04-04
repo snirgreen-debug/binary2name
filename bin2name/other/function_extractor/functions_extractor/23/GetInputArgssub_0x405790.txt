@@ -1,0 +1,173 @@
+push    r14
+push    r13
+push    r12
+push    rbp
+mov     r12, pifn
+push    rbx
+mov     esi, 4
+mov     rbp, pibIn
+sub     rsp, 1060h
+movdqa  xmm0, cs:xmmword_412A60
+lea     r9, [rsp+30h]
+lea     r8, [rsp+10h]
+lea     rcx, [rsp+50h]
+mov     rdx, rsp
+mov     rax, fs:28h
+mov     [rsp+1088h+var_30], rax
+xor     eax, eax
+movaps  xmmword ptr [rsp+1088h+rgiTypes], xmm0
+call    GetFuncArgs
+xor     edx, edx
+test    eax, eax
+jz      loc_40590A
+xor     ebx, ebx
+cmp     [rsp+rbx+1088h+rgiLowerB], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4057FC
+cmp     [rsp+rbx+1088h+rgiUpperB], 0FFFFFFFFFFFFFFFFh
+jz      short loc_405813
+mov     ecx, 412990h
+mov     edx, 412A0Fh
+mov     esi, 8101h
+mov     rdi, pibIn
+call    ReportError
+add     rbx, 8
+cmp     rbx, 20h
+jnz     short loc_4057EC
+call    ___ctype_b_loc
+movsx   rcx, byte ptr [rsp+50h]
+mov     rbx, rax
+mov     rdx, [rbx]
+test    byte ptr [rdx+rcx*2+1], 4
+jnz     loc_405988
+cmp     cl, 5Fh
+jz      loc_405988
+lea     rdi, [rsp+50h]
+xor     esi, esi
+mov     r13d, 1
+call    _strtod
+movsd   qword ptr [pifn+8], xmm0
+movsx   rcx, byte ptr [rsp+44Fh]
+mov     rdx, [rbx]
+test    byte ptr [rdx+rcx*2+1], 4
+jnz     loc_405A10
+cmp     cl, 5Fh
+jz      loc_405A10
+lea     rdi, [rsp+44Fh]
+xor     esi, esi
+call    _strtod
+movsd   qword ptr [pifn+10h], xmm0
+movsx   rcx, byte ptr [rsp+84Eh]
+mov     rdx, [rbx]
+test    byte ptr [rdx+rcx*2+1], 4
+jnz     loc_4059D0
+cmp     cl, 5Fh
+jz      loc_4059D0
+lea     rdi, [rsp+84Eh]
+xor     esi, esi
+call    _strtod
+movsd   qword ptr [pifn+18h], xmm0
+cmp     dword ptr [pifn], 4
+movsx   rcx, byte ptr [rsp+0C4Dh]
+mov     rdx, [rbx]
+jz      loc_405A50
+test    byte ptr [rdx+rcx*2+1], 4
+jnz     short loc_405938
+cmp     cl, 5Fh
+jz      short loc_405938
+lea     rdi, [rsp+0C4Dh]
+xor     esi, esi
+call    _strtod
+movsd   qword ptr [pifn+20h], xmm0
+test    r13d, r13d
+mov     edx, 1
+jz      short loc_40596A
+mov     rsi, [rsp+1058h]
+xor     rsi, fs:28h
+mov     eax, edx
+jnz     loc_405AAA
+add     rsp, 1060h
+pop     rbx
+pop     pibIn
+pop     pifn
+pop     r13
+pop     r14
+retn
+lea     rbx, [rsp+0C4Dh]
+mov     rdi, cs:vpvmGlo
+mov     rsi, rbx
+call    CalculateVarHandle
+test    rax, rax
+mov     [pifn+58h], rax
+jnz     short loc_405900
+xor     ecx, ecx
+mov     rdx, rbx
+mov     esi, 106h
+xor     edi, edi
+call    ReportError
+mov     edx, 412A1Ch
+xor     ecx, ecx
+mov     esi, 13h
+mov     rdi, pibIn
+call    ReportError
+xor     edx, edx
+jmp     short loc_40590A
+mov     rdi, cs:vpvmGlo
+lea     rsi, [rsp+50h]
+mov     r13d, 1
+call    CalculateVarHandle
+test    rax, rax
+mov     [pifn+40h], rax
+jnz     loc_40585B
+lea     rdx, [rsp+50h]
+xor     ecx, ecx
+mov     esi, 106h
+xor     edi, edi
+xor     r13d, r13d
+call    ReportError
+jmp     loc_40585B
+lea     r14, [rsp+84Eh]
+mov     rdi, cs:vpvmGlo
+mov     rsi, r14
+call    CalculateVarHandle
+test    rax, rax
+mov     [pifn+50h], rax
+jnz     loc_4058C7
+xor     ecx, ecx
+mov     rdx, r14
+mov     esi, 106h
+xor     edi, edi
+xor     r13d, r13d
+call    ReportError
+jmp     loc_4058C7
+lea     r14, [rsp+44Fh]
+mov     rdi, cs:vpvmGlo
+mov     rsi, r14
+call    CalculateVarHandle
+test    rax, rax
+mov     [pifn+48h], rax
+jnz     loc_405891
+xor     ecx, ecx
+mov     rdx, r14
+mov     esi, 106h
+xor     edi, edi
+xor     r13d, r13d
+call    ReportError
+jmp     loc_405891
+test    byte ptr [rdx+rcx*2+1], 4
+jnz     short loc_405A80
+cmp     cl, 5Fh
+jz      short loc_405A80
+lea     rdi, [rsp+0C4Dh]
+xor     esi, esi
+call    _strtod
+movsd   qword ptr [pifn+28h], xmm0
+jmp     loc_405900
+lea     rbx, [rsp+0C4Dh]
+mov     rdi, cs:vpvmGlo
+mov     rsi, rbx
+call    CalculateVarHandle
+test    rax, rax
+mov     [pifn+60h], rax
+jnz     loc_405900
+jmp     loc_405959
+call    ___stack_chk_fail

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+20h]
+mov     cs:grecs_grecs__n_chars, eax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+10h]
+mov     cs:grecs_grecs__c_buf_p, rax
+mov     rax, cs:grecs_grecs__c_buf_p
+mov     cs:grecs_grecs_text, rax
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax]
+mov     cs:grecs_grecs_in, rax
+mov     rax, cs:grecs_grecs__c_buf_p
+movzx   eax, byte ptr [rax]
+mov     cs:grecs_grecs__hold_char, al
+nop
+pop     rbp
+retn

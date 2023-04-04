@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+call    sub_40BD9B
+mov     [rbp+var_8], rax
+cmp     [rbp+var_14], 0
+jz      short loc_411328
+mov     rax, [rbp-8]
+mov     qword ptr [rax+20h], 4112E7h
+mov     rax, [rbp-8]
+leave
+retn

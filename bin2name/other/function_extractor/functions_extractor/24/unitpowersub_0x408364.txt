@@ -1,0 +1,126 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+base], rdi
+mov     [rbp+exponent], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    unit2num
+mov     [rbp+errcode], eax
+cmp     [rbp+errcode], 5
+jnz     short loc_4083A2
+mov     eax, 18h
+jmp     loc_408529
+cmp     [rbp+errcode], 0
+jz      short loc_4083B0
+mov     eax, [rbp-0Ch]
+jmp     loc_408529
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    unit2num
+mov     [rbp+errcode], eax
+cmp     [rbp+errcode], 0
+jnz     short loc_408417
+mov     rax, [rbp-30h]
+movsd   xmm0, qword ptr [rax+640h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+640h]
+movapd  xmm1, xmm0
+mov     [rbp+var_38], rax
+movsd   xmm0, qword ptr [rbp-38h]
+call    _pow
+movq    rdx, xmm0
+mov     rax, [rbp-28h]
+mov     [rax+640h], rdx
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      loc_408524
+mov     eax, 8
+jmp     loc_408529
+cmp     [rbp+errcode], 5
+jnz     loc_40851F
+mov     rax, [rbp-30h]
+mov     rax, [rax+640h]
+lea     rcx, [rbp-10h]
+lea     rdx, [rbp-14h]
+mov     rsi, rcx
+mov     rdi, rdx
+mov     [rbp+var_38], rax
+movsd   xmm0, qword ptr [rbp-38h]
+call    float2rat
+test    eax, eax
+jnz     short loc_4084B2
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    unitdimless
+test    eax, eax
+jz      short loc_4084AB
+mov     rax, [rbp-30h]
+movsd   xmm0, qword ptr [rax+640h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+640h]
+movapd  xmm1, xmm0
+mov     [rbp+var_38], rax
+movsd   xmm0, qword ptr [rbp-38h]
+call    _pow
+movq    rdx, xmm0
+mov     rax, [rbp-28h]
+mov     [rax+640h], rdx
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      loc_408524
+mov     eax, 8
+jmp     short loc_408529
+mov     eax, 16h
+jmp     short loc_408529
+mov     eax, [rbp-10h]
+cmp     eax, 1
+jz      short loc_4084E6
+mov     edx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    rootunit
+mov     [rbp+errcode], eax
+cmp     [rbp+errcode], 6
+jnz     short loc_4084DB
+mov     eax, 17h
+jmp     short loc_408529
+cmp     [rbp+errcode], 0
+jz      short loc_4084E6
+mov     eax, [rbp-0Ch]
+jmp     short loc_408529
+mov     eax, [rbp-14h]
+cdq
+xor     eax, edx
+sub     eax, edx
+mov     rdx, [rbp-28h]
+mov     esi, eax
+mov     rdi, rdx
+call    expunit
+mov     [rbp+errcode], eax
+cmp     [rbp+errcode], 0
+jz      short loc_40850A
+mov     eax, [rbp-0Ch]
+jmp     short loc_408529
+mov     eax, [rbp-14h]
+test    eax, eax
+jns     short loc_408524
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    invertunit
+jmp     short loc_408524
+mov     eax, [rbp-0Ch]
+jmp     short loc_408529
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40853D
+call    ___stack_chk_fail
+leave
+retn

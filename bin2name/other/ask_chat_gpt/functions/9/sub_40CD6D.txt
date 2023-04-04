@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_40CDAF
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     rcx, [rbp-8]
+mov     r8, rcx
+mov     ecx, 6182C0h
+mov     esi, 411F07h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_40CDC3
+mov     cs:dword_614870, 2
+nop
+leave
+retn

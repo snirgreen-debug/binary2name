@@ -1,0 +1,913 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0A8h
+mov     [rbp+buffer], rdi
+mov     [rbp+buffersize], rsi
+mov     [rbp+arg], rdx
+mov     [rbp+argsize], rcx
+mov     [rbp+quoting_style], r8d
+mov     [rbp+flags], r9d
+mov     rax, [rbp+10h]
+mov     [rbp+quote_these_too], rax
+mov     rax, [rbp+18h]
+mov     [rbp+left_quote], rax
+mov     rax, [rbp+20h]
+mov     [rbp+right_quote], rax
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+len], 0
+mov     [rbp+quote_string], 0
+mov     [rbp+quote_string_len], 0
+mov     [rbp+backslash_escapes], 0
+call    ___ctype_get_mb_cur_max
+cmp     rax, 1
+setz    al
+mov     [rbp+unibyte_locale], al
+mov     eax, [rbp-98h]
+and     eax, 2
+test    eax, eax
+setnz   al
+mov     [rbp+elide_outer_quotes], al
+mov     [rbp+pending_shell_escape_end], 0
+cmp     [rbp+quoting_style], 0Ah
+ja      def_40817C
+mov     eax, [rbp-94h]
+mov     rax, [rax*8+40DED0h]
+jmp     rax
+mov     [rbp+quoting_style], 5
+mov     [rbp+elide_outer_quotes], 1
+movzx   eax, byte ptr [rbp-6Ch]
+xor     eax, 1
+test    al, al
+jz      short loc_4081B4
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4081AF
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 22h
+add     [rbp+len], 1
+mov     [rbp+backslash_escapes], 1
+mov     [rbp+quote_string], 40DEC5h
+mov     [rbp+quote_string_len], 1
+jmp     loc_4082E7
+mov     [rbp+backslash_escapes], 1
+mov     [rbp+elide_outer_quotes], 0
+jmp     loc_4082E7
+cmp     [rbp+quoting_style], 0Ah
+jz      short loc_408215
+mov     eax, [rbp-94h]
+mov     esi, eax
+mov     edi, 40DEC9h
+call    gettext_quote
+mov     [rbp+left_quote], rax
+mov     eax, [rbp-94h]
+mov     esi, eax
+mov     edi, 40DEC7h
+call    gettext_quote
+mov     [rbp+right_quote], rax
+movzx   eax, byte ptr [rbp-6Ch]
+xor     eax, 1
+test    al, al
+jz      short loc_408260
+mov     rax, [rbp-0A8h]
+mov     [rbp+quote_string], rax
+jmp     short loc_408255
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_40824B
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rdx, rax
+mov     rax, [rbp-50h]
+movzx   eax, byte ptr [rax]
+mov     [rdx], al
+add     [rbp+len], 1
+add     [rbp+quote_string], 1
+mov     rax, [rbp-50h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40822D
+mov     [rbp+backslash_escapes], 1
+mov     rax, [rbp-0B0h]
+mov     [rbp+quote_string], rax
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+quote_string_len], rax
+jmp     short loc_4082E7
+mov     [rbp+backslash_escapes], 1
+mov     [rbp+elide_outer_quotes], 1
+movzx   eax, byte ptr [rbp-6Ch]
+xor     eax, 1
+test    al, al
+jz      short loc_408298
+mov     [rbp+backslash_escapes], 1
+mov     [rbp+quoting_style], 2
+movzx   eax, byte ptr [rbp-6Ch]
+xor     eax, 1
+test    al, al
+jz      short loc_4082CA
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4082C5
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+quote_string], 40DEC7h
+mov     [rbp+quote_string_len], 1
+jmp     short loc_4082E7
+mov     [rbp+elide_outer_quotes], 0
+jmp     short loc_4082E7
+call    _abort
+mov     [rbp+i], 0
+jmp     loc_408D03
+mov     [rbp+is_right_quote], 0
+mov     [rbp+escaping], 0
+cmp     [rbp+backslash_escapes], 0
+jz      loc_408396
+cmp     [rbp+quoting_style], 2
+jz      loc_408396
+cmp     [rbp+quote_string_len], 0
+jz      short loc_408396
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-48h]
+lea     rbx, [rdx+rax]
+cmp     [rbp+argsize], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_408356
+cmp     [rbp+quote_string_len], 1
+jbe     short loc_408356
+mov     rax, [rbp-88h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+argsize], rax
+mov     rax, [rbp-90h]
+jmp     short loc_40835D
+mov     rax, [rbp-90h]
+cmp     rbx, rax
+ja      short loc_408396
+mov     rdx, [rbp-88h]
+mov     rax, [rbp-60h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-50h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcmp
+test    eax, eax
+jnz     short loc_408396
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DB6
+mov     [rbp+is_right_quote], 1
+mov     rdx, [rbp-88h]
+mov     rax, [rbp-60h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+c], al
+movzx   eax, byte ptr [rbp-6Ah]
+cmp     eax, 7Eh
+ja      def_4083C1
+mov     eax, eax
+mov     rax, [rax*8+40DF28h]
+jmp     rax
+cmp     [rbp+backslash_escapes], 0
+jz      loc_4084F6
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DB9
+mov     [rbp+escaping], 1
+cmp     [rbp+quoting_style], 2
+jnz     short loc_40844A
+movzx   eax, byte ptr [rbp-6Bh]
+xor     eax, 1
+test    al, al
+jz      short loc_40844A
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408407
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408424
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 24h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408441
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+pending_shell_escape_end], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408462
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 5Ch
+add     [rbp+len], 1
+cmp     [rbp+quoting_style], 2
+jz      short loc_4084ED
+mov     rax, [rbp-60h]
+add     rax, 1
+cmp     rax, [rbp-90h]
+jnb     short loc_4084ED
+mov     rax, [rbp-60h]
+lea     rdx, [rax+1]
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jle     short loc_4084ED
+mov     rax, [rbp-60h]
+lea     rdx, [rax+1]
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 39h
+jg      short loc_4084ED
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4084CB
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 30h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4084E8
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 30h
+add     [rbp+len], 1
+mov     [rbp+c], 30h
+jmp     loc_408B72
+mov     eax, [rbp-98h]
+and     eax, 1
+test    eax, eax
+jz      loc_408B72
+jmp     loc_408CFE
+mov     eax, [rbp-94h]
+cmp     eax, 2
+jz      short loc_408521
+cmp     eax, 5
+jz      short loc_408530
+jmp     loc_40864A
+cmp     [rbp+elide_outer_quotes], 0
+jz      loc_408643
+jmp     force_outer_quoting_style
+mov     eax, [rbp-98h]
+and     eax, 4
+test    eax, eax
+jz      loc_408649
+mov     rax, [rbp-60h]
+add     rax, 2
+cmp     rax, [rbp-90h]
+jnb     loc_408649
+mov     rax, [rbp-60h]
+lea     rdx, [rax+1]
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 3Fh
+jnz     loc_408649
+mov     rax, [rbp-60h]
+lea     rdx, [rax+2]
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+sub     eax, 21h
+cmp     eax, 1Dh
+ja      def_4085A1
+mov     eax, eax
+mov     rax, [rax*8+40E320h]
+jmp     rax
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DBC
+mov     rax, [rbp-60h]
+lea     rdx, [rax+2]
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+c], al
+add     [rbp+i], 2
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4085E2
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 3Fh
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4085FF
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 22h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_40861C
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 22h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408639
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 3Fh
+add     [rbp+len], 1
+jmp     short loc_408641
+nop
+jmp     short loc_408649
+nop
+jmp     loc_408B82
+nop
+jmp     loc_408B82
+mov     [rbp+esc], 61h
+jmp     short c_escape
+mov     [rbp+esc], 62h
+jmp     short c_escape
+mov     [rbp+esc], 66h
+jmp     short c_escape
+mov     [rbp+esc], 6Eh
+jmp     short c_and_shell_escape
+mov     [rbp+esc], 72h
+jmp     short c_and_shell_escape
+mov     [rbp+esc], 74h
+jmp     short c_and_shell_escape
+mov     [rbp+esc], 76h
+jmp     short c_escape
+movzx   eax, byte ptr [rbp-6Ah]
+mov     [rbp+esc], al
+cmp     [rbp+quoting_style], 2
+jnz     short loc_408698
+cmp     [rbp+elide_outer_quotes], 0
+jz      loc_408C88
+jmp     force_outer_quoting_style
+cmp     [rbp+backslash_escapes], 0
+jz      short c_and_shell_escape
+cmp     [rbp+elide_outer_quotes], 0
+jz      short c_and_shell_escape
+cmp     [rbp+quote_string_len], 0
+jnz     loc_408C8B
+cmp     [rbp+quoting_style], 2
+jnz     short c_escape
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DBF
+cmp     [rbp+backslash_escapes], 0
+jz      loc_408B75
+movzx   eax, byte ptr [rbp-69h]
+mov     [rbp+c], al
+jmp     store_escape
+cmp     [rbp+argsize], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4086F7
+mov     rax, [rbp-88h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+setnz   al
+jmp     short loc_408702
+cmp     [rbp+argsize], 1
+setnz   al
+test    al, al
+jnz     loc_408B78
+cmp     [rbp+i], 0
+jnz     loc_408B7B
+cmp     [rbp+quoting_style], 2
+jnz     loc_408B7E
+cmp     [rbp+elide_outer_quotes], 0
+jz      loc_408B7E
+jmp     force_outer_quoting_style
+cmp     [rbp+quoting_style], 2
+jnz     loc_408B81
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DC2
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408760
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_40877D
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 5Ch
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_40879A
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+pending_shell_escape_end], 0
+jmp     loc_408B81
+cmp     [rbp+unibyte_locale], 0
+jz      short loc_4087E0
+mov     [rbp+m], 1
+call    ___ctype_b_loc
+mov     rax, [rax]
+movzx   edx, byte ptr [rbp-6Ah]
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 4000h
+test    eax, eax
+setnz   al
+mov     [rbp+printable], al
+jmp     loc_408963
+lea     rax, [rbp-20h]
+mov     edx, 8
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     [rbp+m], 0
+mov     [rbp+printable], 1
+cmp     [rbp+argsize], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_408822
+mov     rax, [rbp-88h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+argsize], rax
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-90h]
+sub     rax, rdx
+mov     rdi, rax
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-88h]
+lea     rsi, [rdx+rax]
+lea     rdx, [rbp-20h]
+lea     rax, [rbp-64h]
+mov     rcx, rdx
+mov     rdx, rdi
+mov     rdi, rax
+call    _mbrtowc
+mov     [rbp+bytes], rax
+cmp     [rbp+bytes], 0
+jz      loc_40895F
+cmp     [rbp+bytes], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_408885
+mov     [rbp+printable], 0
+jmp     loc_408963
+cmp     [rbp+bytes], 0FFFFFFFFFFFFFFFEh
+jnz     short loc_4088D0
+mov     [rbp+printable], 0
+jmp     short loc_408897
+add     [rbp+m], 1
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-40h]
+add     rax, rdx
+cmp     rax, [rbp-90h]
+jnb     loc_408962
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_408892
+jmp     loc_408962
+cmp     [rbp+elide_outer_quotes], 0
+jz      short loc_40892F
+cmp     [rbp+quoting_style], 2
+jnz     short loc_40892F
+mov     [rbp+j], 1
+jmp     short loc_408925
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-40h]
+add     rdx, rax
+mov     rax, [rbp-38h]
+add     rdx, rax
+mov     rax, [rbp-88h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+sub     eax, 5Bh
+cmp     eax, 21h
+ja      short def_40891D
+mov     eax, eax
+mov     rax, [rax*8+40E410h]
+jmp     rax
+nop
+add     [rbp+j], 1
+mov     rax, [rbp-38h]
+cmp     rax, [rbp-30h]
+jb      short loc_4088E9
+mov     eax, [rbp-64h]
+mov     edi, eax
+call    _iswprint
+test    eax, eax
+jnz     short loc_408941
+mov     [rbp+printable], 0
+mov     rax, [rbp-30h]
+add     [rbp+m], rax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    _mbsinit
+test    eax, eax
+jz      loc_408822
+jmp     short loc_408963
+nop
+jmp     short loc_408963
+nop
+cmp     [rbp+m], 1
+ja      short loc_408983
+cmp     [rbp+backslash_escapes], 0
+jz      loc_408B82
+movzx   eax, byte ptr [rbp-66h]
+xor     eax, 1
+test    al, al
+jz      loc_408B82
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-40h]
+add     rax, rdx
+mov     [rbp+ilim], rax
+cmp     [rbp+backslash_escapes], 0
+jz      loc_408AA3
+movzx   eax, byte ptr [rbp-66h]
+xor     eax, 1
+test    al, al
+jz      loc_408AA3
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DC8
+mov     [rbp+escaping], 1
+cmp     [rbp+quoting_style], 2
+jnz     short loc_408A28
+movzx   eax, byte ptr [rbp-6Bh]
+xor     eax, 1
+test    al, al
+jz      short loc_408A28
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_4089E5
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408A02
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 24h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408A1F
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+pending_shell_escape_end], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408A40
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 5Ch
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408A66
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+movzx   edx, byte ptr [rbp-6Ah]
+shr     dl, 6
+add     edx, 30h
+mov     [rax], dl
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408A8F
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+movzx   edx, byte ptr [rbp-6Ah]
+shr     dl, 3
+and     edx, 7
+add     edx, 30h
+mov     [rax], dl
+add     [rbp+len], 1
+movzx   eax, byte ptr [rbp-6Ah]
+and     eax, 7
+add     eax, 30h
+mov     [rbp+c], al
+jmp     short loc_408ACA
+cmp     [rbp+is_right_quote], 0
+jz      short loc_408ACA
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408AC1
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 5Ch
+add     [rbp+len], 1
+mov     [rbp+is_right_quote], 0
+mov     rax, [rbp-60h]
+add     rax, 1
+cmp     rax, [rbp-28h]
+jnb     loc_408B69
+cmp     [rbp+pending_shell_escape_end], 0
+jz      short loc_408B2B
+movzx   eax, byte ptr [rbp-67h]
+xor     eax, 1
+test    al, al
+jz      short loc_408B2B
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408B05
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408B22
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+pending_shell_escape_end], 0
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408B46
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rdx, rax
+movzx   eax, byte ptr [rbp-6Ah]
+mov     [rdx], al
+add     [rbp+len], 1
+add     [rbp+i], 1
+mov     rdx, [rbp-88h]
+mov     rax, [rbp-60h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+mov     [rbp+c], al
+jmp     loc_408992
+nop
+jmp     store_c
+nop
+jmp     short loc_408B82
+nop
+jmp     short loc_408B82
+nop
+jmp     short loc_408B82
+nop
+jmp     short loc_408B82
+nop
+jmp     short loc_408B82
+nop
+jmp     short loc_408B82
+nop
+movzx   eax, byte ptr [rbp-6Dh]
+xor     eax, 1
+test    al, al
+jnz     short loc_408B96
+cmp     [rbp+quoting_style], 2
+jnz     short loc_408BA1
+movzx   eax, byte ptr [rbp-6Ch]
+xor     eax, 1
+test    al, al
+jnz     short loc_408BDD
+cmp     [rbp+quote_these_too], 0
+jz      short loc_408BDD
+movzx   eax, byte ptr [rbp-6Ah]
+shr     al, 5
+movzx   eax, al
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-0A0h]
+add     rax, rdx
+mov     edx, [rax]
+movzx   eax, byte ptr [rbp-6Ah]
+and     eax, 1Fh
+mov     ecx, eax
+shr     edx, cl
+mov     eax, edx
+and     eax, 1
+test    eax, eax
+jnz     short store_escape
+movzx   eax, byte ptr [rbp-68h]
+xor     eax, 1
+test    al, al
+jnz     loc_408C8E
+cmp     [rbp+elide_outer_quotes], 0
+jnz     loc_408DCB
+mov     [rbp+escaping], 1
+cmp     [rbp+quoting_style], 2
+jnz     short loc_408C69
+movzx   eax, byte ptr [rbp-6Bh]
+xor     eax, 1
+test    al, al
+jz      short loc_408C69
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408C26
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408C43
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 24h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408C60
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+pending_shell_escape_end], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408C81
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 5Ch
+add     [rbp+len], 1
+jmp     short store_c
+nop
+jmp     short store_c
+nop
+jmp     short store_c
+nop
+cmp     [rbp+pending_shell_escape_end], 0
+jz      short loc_408CDE
+movzx   eax, byte ptr [rbp-67h]
+xor     eax, 1
+test    al, al
+jz      short loc_408CDE
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408CB8
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408CD5
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 27h
+add     [rbp+len], 1
+mov     [rbp+pending_shell_escape_end], 0
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408CF9
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rdx, rax
+movzx   eax, byte ptr [rbp-6Ah]
+mov     [rdx], al
+add     [rbp+len], 1
+add     [rbp+i], 1
+cmp     [rbp+argsize], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_408D25
+mov     rdx, [rbp-88h]
+mov     rax, [rbp-60h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+setnz   al
+jmp     short loc_408D33
+mov     rax, [rbp-60h]
+cmp     rax, [rbp-90h]
+setnz   al
+test    al, al
+jnz     loc_4082F4
+cmp     [rbp+len], 0
+jnz     short loc_408D51
+cmp     [rbp+quoting_style], 2
+jnz     short loc_408D51
+cmp     [rbp+elide_outer_quotes], 0
+jnz     short loc_408DCE
+cmp     [rbp+quote_string], 0
+jz      short loc_408D98
+movzx   eax, byte ptr [rbp-6Ch]
+xor     eax, 1
+test    al, al
+jz      short loc_408D98
+jmp     short loc_408D8D
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408D83
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rdx, rax
+mov     rax, [rbp-50h]
+movzx   eax, byte ptr [rax]
+mov     [rdx], al
+add     [rbp+len], 1
+add     [rbp+quote_string], 1
+mov     rax, [rbp-50h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_408D65
+mov     rax, [rbp-58h]
+cmp     rax, [rbp-80h]
+jnb     short loc_408DB0
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-58h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-58h]
+jmp     short loc_408E34
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+jmp     short force_outer_quoting_style
+nop
+cmp     [rbp+quoting_style], 2
+jnz     short loc_408DE8
+cmp     [rbp+backslash_escapes], 0
+jz      short loc_408DE8
+mov     [rbp+quoting_style], 4
+mov     eax, [rbp-98h]
+and     eax, 0FFFFFFFDh
+mov     r8d, eax
+mov     edi, [rbp-94h]
+mov     rcx, [rbp-90h]
+mov     rdx, [rbp-88h]
+mov     rsi, [rbp-80h]
+mov     rax, [rbp-78h]
+sub     rsp, 8
+push    [rbp+right_quote]
+push    [rbp+left_quote]
+push    0
+mov     r9d, r8d
+mov     r8d, edi
+mov     rdi, rax
+call    quotearg_buffer_restyled
+add     rsp, 20h
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_408E48
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

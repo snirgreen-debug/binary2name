@@ -1,0 +1,137 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+theunit], rdi
+mov     [rbp+power], esi
+cmp     [rbp+power], 0
+jnz     short loc_407AF1
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    freeunit
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    initializeunit
+mov     eax, 0
+jmp     loc_407CD9
+mov     [rbp+numlen], 0
+mov     rax, [rbp-48h]
+mov     [rbp+numptr], rax
+jmp     short loc_407B0B
+add     [rbp+numlen], 1
+add     [rbp+numptr], 8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_407B02
+mov     [rbp+denlen], 0
+mov     rax, [rbp-48h]
+add     rax, 320h
+mov     [rbp+denptr], rax
+jmp     short loc_407B37
+add     [rbp+denlen], 1
+add     [rbp+denptr], 8
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_407B2E
+mov     rax, [rbp-48h]
+movsd   xmm0, qword ptr [rax+640h]
+movsd   [rbp+thefactor], xmm0
+mov     [rbp+i], 1
+jmp     loc_407CB2
+mov     rax, [rbp-48h]
+movsd   xmm0, qword ptr [rax+640h]
+mulsd   xmm0, qword ptr [rbp-18h]
+mov     rax, [rbp-48h]
+movsd   qword ptr [rax+640h], xmm0
+mov     [rbp+uind], 0
+jmp     short loc_407C02
+mov     rax, [rbp-48h]
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+mov     rdx, [rax+rdx*8]
+lea     rax, NULLUNIT
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_407BFE
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-48h]
+sub     rax, rdx
+cmp     rax, 317h
+jle     short loc_407BD9
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     eax, 2
+jmp     loc_407CD9
+mov     rbx, [rbp-28h]
+lea     rax, [rbx+8]
+mov     [rbp+numptr], rax
+mov     rax, [rbp-48h]
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8]
+mov     rdi, rax
+call    dupstr
+mov     [rbx], rax
+add     [rbp+uind], 1
+mov     eax, [rbp-34h]
+cmp     eax, [rbp-2Ch]
+jl      loc_407B86
+mov     [rbp+uind], 0
+jmp     loc_407CA2
+mov     rax, [rbp-48h]
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+add     rdx, 64h
+mov     rdx, [rax+rdx*8]
+lea     rax, NULLUNIT
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_407C9E
+mov     rbx, [rbp-20h]
+lea     rax, [rbx+8]
+mov     [rbp+denptr], rax
+mov     rax, [rbp-48h]
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+add     rdx, 64h
+mov     rax, [rax+rdx*8]
+mov     rdi, rax
+call    dupstr
+mov     [rbx], rax
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-48h]
+add     rdx, 320h
+sub     rax, rdx
+cmp     rax, 317h
+jle     short loc_407C9E
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     eax, 2
+jmp     short loc_407CD9
+add     [rbp+uind], 1
+mov     eax, [rbp-34h]
+cmp     eax, [rbp-30h]
+jl      loc_407C1A
+add     [rbp+i], 1
+mov     eax, [rbp-38h]
+cmp     eax, [rbp-4Ch]
+jl      loc_407B60
+mov     rax, [rbp-28h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+mov     eax, 0
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

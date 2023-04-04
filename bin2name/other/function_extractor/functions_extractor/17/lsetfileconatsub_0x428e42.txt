@@ -1,0 +1,143 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 1020h
+mov     [rbp+fd], edi
+mov     [rbp+file], rsi
+mov     [rbp+con], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+fd], 0FFFFFF9Ch
+jz      short loc_428E87
+mov     rax, [rbp-1010h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_428EA5
+mov     rdx, [rbp-1018h]
+mov     rax, [rbp-1010h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _lsetfilecon
+jmp     loc_4290B6
+mov     rdx, [rbp-1010h]
+mov     ecx, [rbp-1004h]
+lea     rax, [rbp-0FD0h]
+mov     esi, ecx
+mov     rdi, rax
+call    openat_proc_name
+mov     [rbp+proc_file], rax
+cmp     [rbp+proc_file], 0
+jz      loc_428F88
+mov     rdx, [rbp-1018h]
+mov     rax, [rbp-0FE8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _lsetfilecon
+mov     [rbp+proc_result], eax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+proc_errno], eax
+lea     rax, [rbp-0FD0h]
+cmp     [rbp+proc_file], rax
+jz      short loc_428F23
+mov     rax, [rbp-0FE8h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+proc_result], 0FFFFFFFFh
+jz      short loc_428F37
+mov     eax, [rbp-0FF8h]
+jmp     loc_4290B6
+cmp     [rbp+proc_errno], 14h
+jz      short loc_428F88
+cmp     [rbp+proc_errno], 2
+jz      short loc_428F88
+cmp     [rbp+proc_errno], 1
+jz      short loc_428F88
+cmp     [rbp+proc_errno], 0Dh
+jz      short loc_428F88
+cmp     [rbp+proc_errno], 26h
+jz      short loc_428F88
+cmp     [rbp+proc_errno], 5Fh
+jz      short loc_428F88
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0FF4h]
+mov     [rdx], eax
+mov     eax, [rbp-0FF8h]
+jmp     loc_4290B6
+lea     rax, [rbp-0FE0h]
+mov     rdi, rax
+call    save_cwd
+test    eax, eax
+jz      short loc_428FA9
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    openat_save_fail
+cmp     [rbp+fd], 0
+js      short loc_428FE4
+mov     eax, [rbp-0FE0h]
+cmp     eax, [rbp-1004h]
+jnz     short loc_428FE4
+lea     rax, [rbp-0FE0h]
+mov     rdi, rax
+call    free_cwd
+call    ___errno_location
+mov     dword ptr [rax], 9
+mov     eax, 0FFFFFFFFh
+jmp     loc_4290B6
+mov     eax, [rbp-1004h]
+mov     edi, eax
+call    _fchdir
+test    eax, eax
+jz      short loc_42902B
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+lea     rax, [rbp-0FE0h]
+mov     rdi, rax
+call    free_cwd
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0FF0h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     loc_4290B6
+mov     rdx, [rbp-1018h]
+mov     rax, [rbp-1010h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _lsetfilecon
+mov     [rbp+err], eax
+cmp     [rbp+err], 0FFFFFFFFh
+jnz     short loc_42905C
+call    ___errno_location
+mov     eax, [rax]
+jmp     short loc_429061
+mov     eax, 0
+mov     [rbp+saved_errno], eax
+lea     rax, [rbp-0FE0h]
+mov     rdi, rax
+call    restore_cwd
+test    eax, eax
+jz      short loc_429088
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    openat_restore_fail
+lea     rax, [rbp-0FE0h]
+mov     rdi, rax
+call    free_cwd
+cmp     [rbp+saved_errno], 0
+jz      short loc_4290B0
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0FF0h]
+mov     [rdx], eax
+mov     eax, [rbp-0FECh]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4290CA
+call    ___stack_chk_fail
+leave
+retn

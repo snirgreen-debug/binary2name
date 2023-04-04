@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:bc_ctl.replace_pat
+test    rax, rax
+jnz     short loc_404092
+movzx   eax, cs:initial_args
+test    al, al
+jnz     short loc_404092
+mov     rdx, cs:bc_state.cmd_argc
+mov     rax, cs:bc_ctl.initial_argc
+cmp     rdx, rax
+jz      short loc_404092
+mov     eax, cs:bc_ctl.exit_if_size_exceeded
+test    eax, eax
+jnz     short loc_404092
+mov     esi, 611400h
+mov     edi, 611460h
+call    bc_do_exec
+jmp     short loc_404093
+nop
+pop     rbp
+retn

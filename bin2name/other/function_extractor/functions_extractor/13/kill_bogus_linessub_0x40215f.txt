@@ -1,0 +1,178 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+idx], 0
+mov     [rbp+dot], 0
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    init_string
+jmp     short loc_402197
+add     [rbp+idx], 1
+mov     edx, [rbp-3Ch]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jz      short loc_402193
+mov     eax, [rbp-3Ch]
+mov     [rbp+c], eax
+mov     edx, [rbp-3Ch]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 2Eh
+jnz     short loc_4021E4
+lea     rax, [rbp-30h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    catchar
+jmp     short loc_4021E4
+add     [rbp+idx], 1
+mov     edx, [rbp-3Ch]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     short loc_4021E0
+sub     [rbp+idx], 1
+jmp     short loc_402206
+sub     [rbp+idx], 1
+cmp     [rbp+idx], 0
+jz      short loc_402240
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     edx, [rbp-3Ch]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+movzx   eax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     short loc_402202
+add     [rbp+idx], 1
+mov     [rbp+sl], 1
+jmp     loc_402375
+mov     edx, [rbp-38h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_4022A8
+mov     eax, [rbp-38h]
+add     eax, 1
+mov     edx, eax
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_4022A8
+mov     eax, [rbp-38h]
+add     eax, 2
+mov     edx, eax
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 2Eh
+jnz     short loc_4022A8
+add     [rbp+c], 1
+jmp     short loc_40230E
+mov     edx, [rbp-38h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 2Eh
+jnz     short loc_4022CF
+cmp     [rbp+sl], 0
+jz      short loc_4022CF
+mov     [rbp+dot], 2
+jmp     short loc_40230E
+mov     edx, [rbp-38h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_40230E
+mov     eax, [rbp-38h]
+add     eax, 1
+mov     edx, eax
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_40230E
+cmp     [rbp+dot], 0
+jz      short loc_40230E
+add     [rbp+c], 1
+mov     edx, [rbp-38h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+movsx   edx, al
+lea     rax, [rbp-30h]
+mov     esi, edx
+mov     rdi, rax
+call    catchar
+mov     edx, [rbp-38h]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_40236A
+mov     [rbp+sl], 1
+cmp     [rbp+dot], 2
+jnz     short loc_402361
+mov     [rbp+dot], 1
+jmp     short loc_402371
+mov     [rbp+dot], 0
+jmp     short loc_402371
+mov     [rbp+sl], 0
+add     [rbp+c], 1
+mov     eax, [rbp-38h]
+cmp     eax, [rbp-3Ch]
+jl      loc_402250
+lea     rax, [rbp-30h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    catchar
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+mov     rax, cs:tos
+mov     rdi, rax
+call    delete_string
+mov     rax, cs:tos
+mov     rdx, [rbp-30h]
+mov     [rax], rdx
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-20h]
+mov     [rax+10h], rdx
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_4023E6
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

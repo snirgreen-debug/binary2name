@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+filename], rdi
+mov     rax, [rbp-28h]
+mov     esi, 42294Dh
+mov     rdi, rax
+call    _fopen
+mov     [rbp+stream], rax
+cmp     [rbp+stream], 0
+jnz     short loc_40305E
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 422950h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-28h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 3
+mov     eax, 0
+call    diag
+jmp     short loc_403088
+call    _getpid
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+mov     esi, 422977h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fclose
+nop
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

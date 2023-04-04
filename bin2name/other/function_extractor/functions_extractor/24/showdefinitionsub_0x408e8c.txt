@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+unitstr], rdi
+mov     [rbp+theunit], rsi
+lea     rax, deftext
+mov     rax, [rax]
+mov     rdi, rax
+call    logputs
+jmp     short loc_408EFE
+mov     rax, cs:stdout_ptr
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    tightprint
+lea     rax, logfile
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_408EF2
+lea     rax, logfile
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    tightprint
+lea     rdi, asc_4146C8
+call    logputs
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    lookupunit
+mov     [rbp+unitstr], rax
+cmp     [rbp+unitstr], 0
+jz      short loc_408F61
+lea     rax, digits
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strspn
+mov     rbx, rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+cmp     rbx, rax
+jz      short loc_408F61
+mov     rax, [rbp-18h]
+mov     esi, 21h
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      loc_408EB1
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    showunit
+mov     edi, 0Ah
+call    logputchar
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

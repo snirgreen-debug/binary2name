@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+p1], rdi
+mov     [rbp+p2], rsi
+mov     rax, [rbp-28h]
+mov     [rbp+wc1], rax
+mov     rax, [rbp-30h]
+mov     [rbp+wc2], rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rax+38h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rax, [rax+38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+mov     [rbp+namecmp], eax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rax+40h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rax, [rax+40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+mov     [rbp+valuecmp], eax
+cmp     [rbp+namecmp], 0
+jz      short loc_40661F
+mov     eax, [rbp-18h]
+jmp     short locret_406622
+mov     eax, [rbp-14h]
+leave
+retn

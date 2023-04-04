@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+procdata], rdi
+mov     rax, [rbp-18h]
+mov     rbx, [rax+30h]
+mov     edi, 40DA80h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

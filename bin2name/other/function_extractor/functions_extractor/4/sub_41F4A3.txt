@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+dest], rdi
+mov     edi, 431620h
+call    _getenv
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jz      short loc_41F50F
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+mov     [rbp+n], rax
+cmp     [rbp+n], 64h
+ja      short loc_41F4F8
+mov     rdx, [rbp-8]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+jmp     short loc_41F50B
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_422EEC
+mov     [rbp+s], rax
+mov     rax, [rbp-10h]
+leave
+retn

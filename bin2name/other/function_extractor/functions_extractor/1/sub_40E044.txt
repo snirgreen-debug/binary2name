@@ -1,0 +1,143 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_48], rdi
+mov     [rbp+stream], rsi
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40DEFB
+mov     rax, [rbp-48h]
+mov     rax, [rax+50h]
+test    rax, rax
+jz      short loc_40E08D
+mov     rax, [rbp-48h]
+mov     rax, [rax+50h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40E08D
+mov     rax, [rbp-48h]
+mov     rax, [rax+50h]
+jmp     short loc_40E092
+mov     eax, 423F60h
+mov     rdi, rax
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-50h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _fputs
+mov     rax, [rbp-48h]
+mov     rax, [rax+38h]
+test    rax, rax
+jz      short loc_40E0CA
+mov     rax, [rbp-48h]
+mov     rax, [rax+38h]
+mov     rdx, [rbp-50h]
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-48h]
+mov     rax, [rax+68h]
+test    rax, rax
+jz      loc_40E24E
+mov     edi, 424029h
+call    _gettext
+mov     [rbp+s], rax
+mov     edi, 424035h
+call    _gettext
+mov     [rbp+var_18], rax
+mov     edi, 424038h
+call    _gettext
+mov     [rbp+var_10], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_34], eax
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     [rbp+var_38], 0
+mov     rax, [rbp-48h]
+mov     rcx, [rax+68h]
+mov     eax, [rbp-38h]
+lea     edx, [rax+1]
+mov     [rbp+var_38], edx
+cdqe
+shl     rax, 3
+add     rax, rcx
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_30], rax
+mov     [rbp+var_28], 0
+mov     rax, [rbp-48h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-38h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40E1C5
+mov     rax, [rbp-48h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-38h]
+movsxd  rdx, edx
+add     rdx, 1
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40E1AB
+mov     rax, [rbp-18h]
+jmp     short loc_40E1AF
+mov     rax, [rbp-10h]
+mov     [rbp+var_28], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _strlen
+add     [rbp+var_30], rax
+jmp     short loc_40E1CA
+add     [rbp+var_30], 1
+mov     edx, [rbp-34h]
+mov     rax, [rbp-30h]
+add     rax, rdx
+cmp     rax, 4Fh
+jbe     short loc_40E1F2
+mov     rax, [rbp-50h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+mov     [rbp+var_34], 0
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-30h]
+add     [rbp+var_34], eax
+cmp     [rbp+var_28], 0
+jz      short loc_40E22B
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+jmp     loc_40E12E
+nop
+mov     rax, [rbp-50h]
+mov     rsi, rax
+mov     edi, 2Eh
+call    _fputc
+mov     rax, [rbp-50h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+nop
+leave
+retn

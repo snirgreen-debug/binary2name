@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     eax, ecx
+mov     [rbp+ignore_case], al
+mov     [rbp+ret], 0
+mov     rax, [rbp-20h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     loc_405409
+mov     rdx, cs:state_0.rel_pathname
+mov     eax, cs:state_0.cwd_dir_fd
+mov     rsi, rdx
+mov     edi, eax
+call    areadlinkat
+mov     [rbp+linkname], rax
+cmp     [rbp+linkname], 0
+jz      short loc_4053DE
+cmp     [rbp+ignore_case], 0
+jz      short loc_4053B8
+mov     edx, 10h
+jmp     short loc_4053BD
+mov     edx, 0
+mov     rax, [rbp-28h]
+mov     rax, [rax+38h]
+mov     rcx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+jnz     short loc_4053FD
+mov     [rbp+ret], 1
+jmp     short loc_4053FD
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     edi, eax
+call    nonfatal_target_file_error
+mov     cs:state_0.exit_status, 1
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+movzx   eax, byte ptr [rbp-9]
+leave
+retn

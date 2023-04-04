@@ -1,0 +1,1 @@
+extrn setenv:near

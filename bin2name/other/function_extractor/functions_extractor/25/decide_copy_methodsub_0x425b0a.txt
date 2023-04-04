@@ -1,0 +1,116 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+p], rdi
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 25h
+jnz     loc_425C47
+mov     rax, [rbp-18h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jz      loc_425C40
+mov     rax, [rbp-18h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 100h
+test    eax, eax
+jz      loc_425C40
+mov     rax, [rbp-18h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 40h
+jg      short loc_425B9B
+mov     rax, [rbp-18h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+sub     eax, 30h
+shl     eax, 4
+mov     edx, eax
+jmp     short loc_425BBD
+mov     rax, [rbp-18h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+sub     eax, 37h
+shl     eax, 4
+mov     edx, eax
+mov     rax, [rbp-18h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+cmp     al, 40h
+jg      short loc_425BDC
+mov     rax, [rbp-18h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+sub     eax, 30h
+jmp     short loc_425BF9
+mov     rax, [rbp-18h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436F80h]
+sub     eax, 37h
+add     eax, edx
+mov     [rbp+preempt], al
+movzx   eax, byte ptr [rbp-1]
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+4370A0h]
+movzx   eax, al
+and     eax, 2
+test    eax, eax
+jnz     short loc_425C32
+movzx   eax, byte ptr [rbp-1]
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+4370A0h]
+movzx   eax, al
+and     eax, 1
+test    eax, eax
+jz      short loc_425C39
+mov     eax, 2
+jmp     short loc_425C8D
+mov     eax, 0
+jmp     short loc_425C8D
+mov     eax, 1
+jmp     short loc_425C8D
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+4370A0h]
+movzx   eax, al
+and     eax, 2
+test    eax, eax
+jz      short loc_425C88
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+4370A0h]
+movzx   eax, al
+and     eax, 1
+test    eax, eax
+jnz     short loc_425C88
+mov     eax, 1
+jmp     short loc_425C8D
+mov     eax, 2
+pop     rbp
+retn

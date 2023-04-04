@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+ctx], rdi
+mov     [rbp+result], rsi
+mov     rax, [rbp-18h]
+mov     [rbp+ctx_imp], rax
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    md5_finish_ctx
+nop
+leave
+retn

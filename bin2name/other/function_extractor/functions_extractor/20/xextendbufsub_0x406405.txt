@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+existing], rdi
+mov     [rbp+wanted], rsi
+mov     [rbp+allocated], rdx
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    extendbuf
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     short loc_40644C
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+call    xalloc_die
+mov     rax, [rbp-8]
+leave
+retn

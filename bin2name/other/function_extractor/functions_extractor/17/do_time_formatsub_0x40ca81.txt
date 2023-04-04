@@ -1,0 +1,191 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0A0h
+mov     [rbp+fmt], rdi
+mov     [rbp+p], rsi
+mov     [rbp+ns], rdx
+mov     [rbp+ns_size], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+timefmt], 0
+mov     rax, [rbp-88h]
+mov     rdi, rax
+call    _strlen
+add     rax, 2
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+timefmt], rax
+mov     rax, [rbp-70h]
+mov     byte ptr [rax], 5Fh
+mov     rax, [rbp-88h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax+1]
+mov     rax, [rbp-70h]
+lea     rcx, [rax+1]
+mov     rax, [rbp-88h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-90h]
+mov     rdx, [rax]
+mov     qword ptr [rbp+altered_time.tm_sec], rdx
+mov     rdx, [rax+8]
+mov     qword ptr [rbp+altered_time.tm_hour], rdx
+mov     rdx, [rax+10h]
+mov     qword ptr [rbp+altered_time.tm_mon], rdx
+mov     rdx, [rax+18h]
+mov     qword ptr [rbp+altered_time.tm_wday], rdx
+mov     rdx, [rax+20h]
+mov     qword ptr [rbp+altered_time.tm_isdst], rdx
+mov     rdx, [rax+28h]
+mov     [rbp+altered_time.tm_gmtoff], rdx
+mov     rax, [rax+30h]
+mov     [rbp+altered_time.tm_zone], rax
+mov     eax, [rbp-40h]
+cmp     eax, 0Ah
+jle     short loc_40CB63
+mov     eax, [rbp-40h]
+sub     eax, 0Bh
+mov     [rbp+altered_time.tm_sec], eax
+jmp     short loc_40CB6C
+mov     eax, [rbp-40h]
+add     eax, 0Bh
+mov     [rbp+altered_time.tm_sec], eax
+mov     rax, cs:buf_7881
+test    rax, rax
+jnz     short loc_40CB99
+mov     cs:buf_size_7882, 1
+mov     rax, cs:buf_size_7882
+mov     rdi, rax
+call    xmalloc
+mov     cs:buf_7881, rax
+mov     rsi, cs:buf_size_7882
+mov     rax, cs:buf_7881
+mov     rcx, [rbp-90h]
+mov     rdx, [rbp-70h]
+mov     rdi, rax
+call    _strftime
+mov     [rbp+buf_used], rax
+cmp     [rbp+buf_used], 0
+jz      loc_40CDAD
+mov     rax, cs:buf_size_7882
+cmp     [rbp+buf_used], rax
+jnb     loc_40CDAD
+mov     [rbp+i], 0
+mov     [rbp+n], 0
+mov     rdx, [rbp-68h]
+mov     rax, [rbp-0A0h]
+add     rax, rdx
+add     rax, 1
+mov     [rbp+final_len], rax
+mov     rax, cs:buf_7881
+mov     rdx, [rbp-60h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc
+mov     cs:buf_7881, rax
+mov     rax, [rbp-60h]
+mov     cs:buf_size_7882, rax
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+altbuf], rax
+mov     rsi, cs:buf_size_7882
+lea     rcx, [rbp-40h]
+mov     rdx, [rbp-70h]
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strftime
+mov     rax, cs:buf_7881
+lea     rcx, [rbp-78h]
+lea     rdx, [rbp-80h]
+mov     rsi, [rbp-58h]
+mov     rdi, rax
+call    scan_for_digit_differences
+test    al, al
+jz      loc_40CD79
+mov     rax, [rbp-78h]
+cmp     rax, 2
+jnz     loc_40CD79
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rdx, cs:buf_7881
+mov     rsi, [rbp-80h]
+mov     rcx, [rbp-78h]
+add     rcx, rsi
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jnz     loc_40CD79
+mov     rdx, [rbp-80h]
+mov     rax, [rbp-78h]
+add     rax, rdx
+mov     [rbp+end_of_seconds], rax
+mov     rax, [rbp-68h]
+sub     rax, [rbp-50h]
+add     rax, 1
+mov     [rbp+suffix_len], rax
+mov     rdx, [rbp-50h]
+mov     rax, [rbp-0A0h]
+add     rdx, rax
+mov     rax, [rbp-48h]
+add     rax, rdx
+cmp     rax, [rbp-60h]
+jz      short loc_40CD13
+mov     ecx, 42D200h
+mov     edx, 230h
+mov     esi, 42C690h
+mov     edi, 42CBF8h
+call    ___assert_fail
+mov     rdx, cs:buf_7881
+mov     rax, [rbp-50h]
+lea     rsi, [rdx+rax]
+mov     rax, cs:buf_7881
+mov     rcx, [rbp-50h]
+mov     rdx, [rbp-0A0h]
+add     rdx, rcx
+lea     rcx, [rax+rdx]
+mov     rax, [rbp-48h]
+mov     rdx, rax
+mov     rdi, rcx
+call    _memmove
+mov     rax, cs:buf_7881
+mov     rcx, [rbp-80h]
+mov     rdx, [rbp-78h]
+add     rdx, rcx
+lea     rcx, [rax+rdx]
+mov     rdx, [rbp-0A0h]
+mov     rax, [rbp-98h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-70h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     rax, cs:buf_7881
+add     rax, 1
+mov     rdi, [rbp-8]
+xor     rdi, fs:28h
+jz      short locret_40CDD7
+jmp     short loc_40CDD2
+mov     rax, cs:buf_7881
+mov     edx, 1
+mov     esi, 63AE28h
+mov     rdi, rax
+call    x2nrealloc
+mov     cs:buf_7881, rax
+jmp     loc_40CB99
+call    ___stack_chk_fail
+leave
+retn

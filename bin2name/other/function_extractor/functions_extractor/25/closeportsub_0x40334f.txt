@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+sock], edi
+cmp     [rbp+sock], 0FFFFFFFFh
+jz      short loc_403388
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_403388
+mov     eax, [rbp-4]
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, cs:msock
+cmp     eax, 0FFFFFFFFh
+jz      short loc_4033C1
+mov     eax, cs:msock
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4033C1
+mov     eax, cs:msock
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    debug_logprintf
+mov     cs:msock, 0FFFFFFFFh
+nop
+leave
+retn

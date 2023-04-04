@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+sock], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, 0
+call    sockaddr_len
+mov     [rbp+addrlen], eax
+movsd   xmm0, cs:opt.connect_timeout
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_4032B2
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      short loc_4032DF
+mov     rdx, cs:opt.connect_timeout
+mov     eax, cs:msock
+mov     esi, 0
+mov     [rbp+var_20], rdx
+movsd   xmm0, qword ptr [rbp-20h]
+mov     edi, eax
+call    select_fd
+test    eax, eax
+jg      short loc_4032DF
+mov     eax, 0Ch
+jmp     short loc_403339
+mov     rcx, cs:addr
+mov     eax, cs:msock
+lea     rdx, [rbp-0Ch]
+mov     rsi, rcx
+mov     edi, eax
+call    _accept
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_403313
+mov     eax, 0Ch
+jmp     short loc_403339
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_403334
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+mov     esi, eax
+mov     edi, 42FDD0h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, 0Dh
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40334D
+call    ___stack_chk_fail
+leave
+retn

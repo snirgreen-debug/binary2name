@@ -1,0 +1,95 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+s], rdi
+mov     [rbp+store], rsi
+mov     [rbp+length], edx
+mov     rax, [rbp-20h]
+mov     [rbp+p], rax
+mov     [rbp+i], 0
+jmp     loc_419551
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     rdx, [rbp-18h]
+movzx   edx, byte ptr [rdx]
+sar     dl, 2
+movsx   edx, dl
+movsxd  rdx, edx
+movzx   edx, byte ptr [rdx+63E9C0h]
+mov     [rax], dl
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     rdx, [rbp-18h]
+movzx   edx, byte ptr [rdx]
+movsx   edx, dl
+and     edx, 3
+mov     ecx, edx
+shl     ecx, 4
+mov     rdx, [rbp-18h]
+add     rdx, 1
+movzx   edx, byte ptr [rdx]
+sar     dl, 4
+movsx   edx, dl
+add     edx, ecx
+movsxd  rdx, edx
+movzx   edx, byte ptr [rdx+63E9C0h]
+mov     [rax], dl
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     rdx, [rbp-18h]
+add     rdx, 1
+movzx   edx, byte ptr [rdx]
+movsx   edx, dl
+and     edx, 0Fh
+lea     ecx, [rdx*4+0]
+mov     rdx, [rbp-18h]
+add     rdx, 2
+movzx   edx, byte ptr [rdx]
+sar     dl, 6
+movsx   edx, dl
+add     edx, ecx
+movsxd  rdx, edx
+movzx   edx, byte ptr [rdx+63E9C0h]
+mov     [rax], dl
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     rdx, [rbp-18h]
+add     rdx, 2
+movzx   edx, byte ptr [rdx]
+movsx   edx, dl
+and     edx, 3Fh
+movsxd  rdx, edx
+movzx   edx, byte ptr [rdx+63E9C0h]
+mov     [rax], dl
+add     [rbp+s], 3
+add     [rbp+i], 3
+mov     eax, [rbp-0Ch]
+cmp     eax, [rbp-24h]
+jl      loc_41947A
+mov     eax, [rbp-24h]
+add     eax, 1
+cmp     eax, [rbp-0Ch]
+jnz     short loc_419575
+mov     rax, [rbp-8]
+sub     rax, 1
+mov     byte ptr [rax], 3Dh
+jmp     short loc_419598
+mov     eax, [rbp-24h]
+add     eax, 2
+cmp     eax, [rbp-0Ch]
+jnz     short loc_419598
+mov     rax, [rbp-8]
+lea     rdx, [rax-1]
+mov     rax, [rbp-8]
+sub     rax, 2
+mov     byte ptr [rax], 3Dh
+movzx   eax, byte ptr [rax]
+mov     [rdx], al
+mov     rax, [rbp-8]
+mov     byte ptr [rax], 0
+nop
+pop     rbp
+retn

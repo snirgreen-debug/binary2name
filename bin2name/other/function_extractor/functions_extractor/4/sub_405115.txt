@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+pattern], rsi
+mov     [rbp+flags], edx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_4177C1
+mov     [rbp+name], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_417A1C
+mov     edx, [rbp-24h]
+mov     rcx, [rbp-8]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+setz    al
+mov     [rbp+var_9], al
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+movzx   eax, byte ptr [rbp-9]
+leave
+retn

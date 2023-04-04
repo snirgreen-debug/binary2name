@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+mov     [rbp+var_10], rdi
+mov     [rbp+var_14], esi
+cmp     [rbp+var_10], 0
+jnz     short loc_40C70B
+mov     ebx, 0FFFFFFFFh
+jmp     short loc_40C752
+mov     rbx, cs:qword_6147C8
+cmp     [rbp+var_14], 0
+jz      short loc_40C752
+mov     ecx, ebx
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+var_10], rdx
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+xor     eax, ecx
+movzx   eax, al
+cdqe
+mov     rax, [rax*8+4116E0h]
+mov     rdx, rbx
+shr     rdx, 8
+xor     rax, rdx
+mov     rbx, rax
+sub     [rbp+var_14], 1
+cmp     [rbp+var_14], 0
+jnz     short loc_40C718
+mov     cs:qword_6147C8, rbx
+mov     eax, 0FFFFFFFFh
+xor     rax, rbx
+pop     rbx
+pop     rbp
+retn

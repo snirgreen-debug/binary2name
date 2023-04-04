@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+call    _getpid
+mov     edx, eax
+mov     eax, cs:parent
+cmp     edx, eax
+jz      short loc_40449E
+mov     ecx, 40D8C0h
+mov     edx, 60Ch
+mov     esi, 40BF40h
+mov     edi, 40CD32h
+call    ___assert_fail
+movzx   eax, cs:waiting_5847
+test    al, al
+jnz     short loc_4044E3
+mov     cs:waiting_5847, 1
+mov     esi, 0
+mov     edi, 1
+call    wait_for_proc
+mov     cs:waiting_5847, 0
+mov     edx, cs:original_exit_value
+mov     eax, cs:child_error
+cmp     edx, eax
+jz      short loc_4044E4
+mov     eax, cs:child_error
+mov     edi, eax
+call    __exit
+nop
+pop     rbp
+retn

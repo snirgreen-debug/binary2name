@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 1
+call    findunitsfile
+mov     [rbp+unitsfile], rax
+cmp     [rbp+unitsfile], 0
+jz      short loc_40DE1E
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _puts
+jmp     short loc_40DE2A
+lea     rdi, aUnitsDataFileN_0
+call    _puts
+nop
+leave
+retn

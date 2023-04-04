@@ -1,0 +1,78 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+table], rdi
+mov     [rbp+stream], rsi
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    hash_get_n_entries
+mov     [rbp+n_entries], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    hash_get_n_buckets
+mov     [rbp+n_buckets], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    hash_get_n_buckets_used
+mov     [rbp+n_buckets_used], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    hash_get_max_bucket_length
+mov     [rbp+max_bucket_length], rax
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-30h]
+mov     esi, 42FF34h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+mov     esi, 42FF4Ch
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-10h]
+test    rax, rax
+js      short loc_41812A
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+jmp     short loc_418143
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rdx
+addsd   xmm0, xmm0
+movsd   xmm1, cs:qword_42FFA8
+mulsd   xmm1, xmm0
+mov     rax, [rbp-18h]
+test    rax, rax
+js      short loc_418163
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+jmp     short loc_41817C
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rdx
+addsd   xmm0, xmm0
+divsd   xmm1, xmm0
+movapd  xmm0, xmm1
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-30h]
+mov     esi, 42FF68h
+mov     rdi, rax
+mov     eax, 1
+call    _fprintf
+mov     rdx, [rbp-8]
+mov     rax, [rbp-30h]
+mov     esi, 42FF89h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+nop
+leave
+retn

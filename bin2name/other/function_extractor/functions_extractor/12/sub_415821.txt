@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     eax, esi
+mov     [rbp+var_1C], ax
+mov     eax, cs:dword_640084
+test    eax, eax
+jnz     short loc_415847
+mov     eax, 0
+jmp     locret_415906
+movzx   eax, cs:word_640090
+cmp     [rbp+var_1C], ax
+jz      short loc_41585E
+mov     eax, 0
+jmp     locret_415906
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    sub_411920
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_415884
+mov     eax, 0
+jmp     locret_415906
+mov     rax, cs:qword_640088
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4112DC
+mov     [rbp+var_C], eax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_41152C
+cmp     [rbp+var_C], 0
+jnz     short loc_4158B6
+mov     eax, 0
+jmp     short locret_415906
+mov     eax, cs:dword_640094
+mov     edi, eax
+call    sub_402D2F
+test    eax, eax
+jnz     short loc_415901
+mov     eax, cs:dword_640094
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_4158F5
+mov     eax, cs:dword_640094
+mov     esi, eax
+mov     edi, 4327A8h
+mov     eax, 0
+call    sub_41CEC0
+call    sub_4156C5
+mov     eax, 0
+jmp     short locret_415906
+mov     eax, 1
+leave
+retn

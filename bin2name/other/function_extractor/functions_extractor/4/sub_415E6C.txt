@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 2060h
+mov     [rbp+stream], rdi
+mov     [rbp+var_2040], rsi
+mov     eax, edx
+mov     [rbp+format], rcx
+mov     [rbp+var_2058], r8
+mov     [rbp+var_2044], al
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+var_2044], 0
+jz      loc_415FCA
+mov     rcx, [rbp-2040h]
+mov     rdx, [rbp-2058h]
+lea     rax, [rbp-2010h]
+mov     r8, rcx
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 2000h
+mov     rdi, rax
+call    sub_42169F
+mov     [rbp+var_2018], rax
+cmp     [rbp+var_2018], 1FFFh
+ja      short loc_415F07
+lea     rax, [rbp-2010h]
+mov     [rbp+ptr], rax
+jmp     short loc_415F53
+mov     rax, [rbp-2018h]
+add     rax, 1
+mov     rdi, rax
+call    sub_422DC2
+mov     [rbp+ptr], rax
+mov     rax, [rbp-2018h]
+lea     rsi, [rax+1]
+mov     rcx, [rbp-2040h]
+mov     rdx, [rbp-2058h]
+mov     rax, [rbp-2020h]
+mov     r8, rcx
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rdi, rax
+call    sub_42169F
+mov     rdx, [rbp-2018h]
+mov     rax, [rbp-2020h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_416FC1
+mov     [rbp+var_2018], rax
+mov     rdx, [rbp-2020h]
+mov     rcx, [rbp-2050h]
+mov     rax, [rbp-2038h]
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+var_2024], eax
+lea     rax, [rbp-2010h]
+cmp     [rbp+ptr], rax
+jz      short loc_415FF5
+mov     rax, [rbp-2020h]
+mov     rdi, rax
+call    _free
+mov     [rbp+ptr], 0
+jmp     short loc_415FF5
+mov     rdx, [rbp-2058h]
+mov     rcx, [rbp-2050h]
+mov     rax, [rbp-2038h]
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+var_2024], eax
+mov     eax, [rbp-2024h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_41600F
+call    ___stack_chk_fail
+leave
+retn

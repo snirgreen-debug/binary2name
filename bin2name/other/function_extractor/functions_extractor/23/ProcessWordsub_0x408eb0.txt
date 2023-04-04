@@ -1,0 +1,10 @@
+test    pibIn, pibIn
+jz      short locret_408ED0
+test    szLex, szLex
+jz      short locret_408ED0
+cmp     byte ptr [szLex], 0
+jz      short locret_408ED0
+test    szEqn, szEqn
+jz      short locret_408ED0
+jmp     ProcessWord_0
+rep retn

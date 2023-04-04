@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], 40F920h
+mov     rdx, cs:Version
+mov     rax, cs:program_name
+mov     rsi, rax
+mov     edi, 40FE09h
+mov     eax, 0
+call    _printf
+jmp     short loc_40323A
+mov     rax, [rbp-8]
+lea     rdx, [rax+8]
+mov     [rbp+p], rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _puts
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_403223
+nop
+leave
+retn

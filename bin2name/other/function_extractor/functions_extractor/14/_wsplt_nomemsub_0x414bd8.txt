@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+call    ___errno_location
+mov     dword ptr [rax], 0Ch
+mov     rax, [rbp-8]
+mov     dword ptr [rax+0B0h], 2
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 80h
+test    eax, eax
+jz      short loc_414C1E
+mov     rax, [rbp-8]
+mov     rax, [rax+48h]
+mov     rdx, [rbp-8]
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 10h
+test    eax, eax
+jz      short loc_414C38
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wordsplit_perror
+mov     rax, [rbp-8]
+mov     eax, [rax+20h]
+and     eax, 8
+test    eax, eax
+jnz     short loc_414C52
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wordsplit_free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    wordsplit_free_nodes
+mov     rax, [rbp-8]
+mov     eax, [rax+0B0h]
+leave
+retn

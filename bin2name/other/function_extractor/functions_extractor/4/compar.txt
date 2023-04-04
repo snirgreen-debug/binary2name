@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     [rbp+var_40], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-40h]
+mov     [rbp+var_28], rax
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     [rbp+s1], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+s2], rax
+lea     rcx, [rbp-10h]
+lea     rax, [rbp-20h]
+mov     edx, 8
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcmp
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_408984
+call    ___stack_chk_fail
+leave
+retn

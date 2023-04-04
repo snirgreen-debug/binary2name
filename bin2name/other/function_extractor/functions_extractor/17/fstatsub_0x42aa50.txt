@@ -1,0 +1,4 @@
+mov     rdx, rsi
+mov     esi, edi
+mov     edi, 1
+jmp     ___fxstat

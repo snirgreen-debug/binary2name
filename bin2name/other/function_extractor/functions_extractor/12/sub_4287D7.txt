@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     edi, 0
+call    sub_41CD37
+mov     rbx, cs:qword_6475A0
+mov     edi, 437500h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-18h]
+mov     rcx, rax
+mov     rdx, rbx
+mov     edi, 3
+mov     eax, 0
+call    sub_41CD55
+mov     edi, 1
+call    _exit

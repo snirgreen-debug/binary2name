@@ -1,0 +1,95 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     [rbp+var_18], rdi
+mov     [rbp+stream], rsi
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+test    rax, rax
+jz      short loc_40DF5E
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40DF5E
+mov     rax, [rbp-18h]
+mov     rdx, [rax+40h]
+mov     rax, [rbp-20h]
+mov     esi, 423F23h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+test    rax, rax
+jz      short loc_40DF98
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40DF98
+mov     rax, [rbp-18h]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-20h]
+mov     esi, 423EFEh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp-18h]
+mov     rax, [rax+60h]
+test    rax, rax
+jz      short loc_40DFCF
+mov     rax, [rbp-18h]
+mov     rax, [rax+60h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40DFCF
+mov     rax, [rbp-18h]
+mov     r12, [rax+60h]
+jmp     short loc_40DFD5
+mov     r12d, 423F30h
+mov     rax, [rbp-18h]
+mov     rax, [rax+58h]
+test    rax, rax
+jz      short loc_40DFFB
+mov     rax, [rbp-18h]
+mov     rax, [rax+58h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40DFFB
+mov     rax, [rbp-18h]
+mov     rbx, [rax+58h]
+jmp     short loc_40E000
+mov     ebx, 423F4Fh
+mov     edi, 423F54h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     r8, r12
+mov     rcx, rbx
+mov     esi, 423F10h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+nop
+add     rsp, 10h
+pop     rbx
+pop     r12
+pop     rbp
+retn

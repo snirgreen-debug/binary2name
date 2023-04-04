@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     [rbp+var_40], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_19], 1
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rcx, [rbp-18h]
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-40h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+movq    rax, xmm0
+mov     [rbp+var_10], rax
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-28h]
+jz      short loc_42302A
+cmp     [rbp+var_30], 0
+jnz     short loc_423030
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_423030
+mov     [rbp+var_19], 0
+jmp     short loc_423056
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-10h]
+jp      short loc_423046
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-10h]
+jz      short loc_423056
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 22h
+jnz     short loc_423056
+mov     [rbp+var_19], 0
+cmp     [rbp+var_30], 0
+jz      short loc_423068
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+mov     [rax], rdx
+mov     rax, [rbp-38h]
+movsd   xmm0, qword ptr [rbp-10h]
+movsd   qword ptr [rax], xmm0
+movzx   eax, byte ptr [rbp-19h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_42308D
+call    ___stack_chk_fail
+leave
+retn

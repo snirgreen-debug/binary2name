@@ -1,0 +1,127 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_24], edi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     [rbp+var_40], rcx
+mov     rax, [rbp-30h]
+add     rax, 8
+mov     [rbp+var_18], rax
+mov     rax, [rbp-30h]
+mov     rax, [rax+70h]
+mov     [rbp+var_10], rax
+cmp     [rbp+var_24], 2
+jz      short loc_404FC3
+mov     edi, 422FE1h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 1
+jmp     locret_405151
+mov     rax, [rbp-10h]
+lea     rcx, [rax+8]
+mov     rax, [rbp-10h]
+mov     edx, 1
+mov     rsi, rax
+mov     rdi, rcx
+call    assert_grecs_value_type
+test    eax, eax
+jz      short loc_404FED
+mov     eax, 1
+jmp     locret_405151
+mov     rax, [rbp-10h]
+mov     rax, [rax+28h]
+mov     rax, [rax]
+mov     [rbp+var_20], rax
+jmp     loc_405141
+mov     rax, [rbp-20h]
+mov     rax, [rax+10h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+lea     rcx, [rax+8]
+mov     rax, [rbp-8]
+mov     edx, 0
+mov     rsi, rax
+mov     rdi, rcx
+call    assert_grecs_value_type
+test    eax, eax
+jz      short loc_405037
+mov     eax, 1
+jmp     locret_405151
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     esi, 423257h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_405064
+mov     eax, cs:dword_62D61C
+or      eax, 1
+mov     cs:dword_62D61C, eax
+jmp     loc_405136
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     esi, 42325Eh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_405091
+mov     eax, cs:dword_62D61C
+and     eax, 0FFFFFFFEh
+mov     cs:dword_62D61C, eax
+jmp     loc_405136
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     esi, 423263h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4050BB
+mov     eax, cs:dword_62D61C
+or      eax, 2
+mov     cs:dword_62D61C, eax
+jmp     short loc_405136
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     esi, 42326Ah
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4050E5
+mov     eax, cs:dword_62D61C
+or      eax, 4
+mov     cs:dword_62D61C, eax
+jmp     short loc_405136
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     esi, 423271h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40510F
+mov     eax, cs:dword_62D61C
+or      eax, 8
+mov     cs:dword_62D61C, eax
+jmp     short loc_405136
+mov     edi, 423277h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rax, 8
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     loc_405001
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:context_stack
+mov     rcx, [rax+30h]
+mov     rax, cs:context_stack
+mov     rdx, [rax+8]
+mov     rax, cs:context_stack
+mov     eax, [rax+10h]
+mov     eax, eax
+mov     r9, rcx
+mov     r8, rdx
+mov     rcx, rax
+mov     edx, 424050h
+mov     esi, 62D660h
+mov     edi, 62D658h
+mov     eax, 0
+call    grecs_asprintf
+test    eax, eax
+jz      short loc_40E59C
+call    grecs_alloc_die
+mov     rax, cs:linebufbase
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_10], rax
+mov     rdx, cs:putback_size
+mov     rax, [rbp-10h]
+add     rax, rdx
+add     rax, 1
+mov     [rbp+var_8], rax
+mov     rax, cs:putback_max
+cmp     [rbp+var_8], rax
+jbe     short loc_40E5FD
+mov     rax, [rbp-8]
+mov     cs:putback_max, rax
+mov     rdx, cs:putback_max
+mov     rax, cs:putback_buffer
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_realloc
+mov     cs:putback_buffer, rax
+mov     rax, cs:context_stack
+mov     rdx, [rax+30h]
+add     rdx, 1
+mov     [rax+30h], rdx
+mov     rax, cs:linebufbase
+mov     rcx, cs:putback_buffer
+mov     rdx, cs:putback_size
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+mov     rdx, cs:putback_size
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     cs:putback_size, rax
+nop
+leave
+retn

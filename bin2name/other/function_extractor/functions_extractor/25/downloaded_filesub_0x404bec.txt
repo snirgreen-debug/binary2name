@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+mode], edi
+mov     [rbp+file], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+mode], 3
+jnz     short loc_404C5E
+mov     rax, cs:downloaded_files_hash
+test    rax, rax
+jnz     short loc_404C26
+mov     eax, 0
+jmp     loc_404CDE
+mov     rax, cs:downloaded_files_hash
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+ptr], rax
+mov     rax, [rbp-10h]
+test    rax, rax
+jnz     short loc_404C53
+mov     eax, 0
+jmp     loc_404CDE
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+jmp     loc_404CDE
+mov     rax, cs:downloaded_files_hash
+test    rax, rax
+jnz     short loc_404C7B
+mov     edi, 0
+call    make_string_hash_table
+mov     cs:downloaded_files_hash, rax
+mov     rax, cs:downloaded_files_hash
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     [rbp+ptr], rax
+mov     rax, [rbp-10h]
+test    rax, rax
+jz      short loc_404CA6
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+jmp     short loc_404CDE
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    downloaded_mode_to_ptr
+mov     [rbp+ptr], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rcx, rax
+mov     rax, cs:downloaded_files_hash
+lea     rdx, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rax
+call    hash_table_put
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_404CF2
+call    ___stack_chk_fail
+leave
+retn

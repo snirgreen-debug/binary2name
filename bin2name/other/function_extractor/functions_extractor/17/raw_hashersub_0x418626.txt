@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+data], rdi
+mov     [rbp+n], rsi
+mov     rax, [rbp-18h]
+mov     esi, 3
+mov     rdi, rax
+call    rotr_sz
+mov     [rbp+val], rax
+mov     rax, [rbp-8]
+mov     edx, 0
+div     qword ptr [rbp-20h]
+mov     rax, rdx
+leave
+retn

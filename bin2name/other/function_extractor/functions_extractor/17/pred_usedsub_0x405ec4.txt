@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    get_stat_atime
+mov     [rbp+at.tv_sec], rax
+mov     [rbp+at.tv_nsec], rdx
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    get_stat_ctime
+mov     [rbp+ct.tv_sec], rax
+mov     [rbp+ct.tv_nsec], rdx
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-10h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+delta.tv_sec], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+delta.tv_nsec], rax
+mov     rax, [rbp-28h]
+test    rax, rax
+jns     short loc_405F47
+mov     rax, [rbp-28h]
+add     rax, 3B9ACA00h
+mov     [rbp+delta.tv_nsec], rax
+mov     rax, [rbp-30h]
+sub     rax, 1
+mov     [rbp+delta.tv_sec], rax
+mov     rdx, [rbp-48h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     ecx, 15180h
+mov     rdi, rsi
+mov     rsi, rax
+call    pred_timewindow
+leave
+retn

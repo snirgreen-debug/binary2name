@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+c], edi
+mov     eax, cs:isUTF8Locale
+test    eax, eax
+jz      short loc_40925D
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _iswupper
+jmp     short locret_40927C
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 100h
+leave
+retn

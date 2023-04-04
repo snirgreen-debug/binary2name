@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:qword_647610
+test    rax, rax
+jz      short loc_42F879
+mov     eax, 0
+jmp     short loc_42F8B5
+mov     rax, cs:stderr
+mov     rdi, rax
+call    _fileno
+mov     [rbp+var_14], eax
+lea     rdx, [rbp-10h]
+mov     eax, [rbp-14h]
+mov     esi, 5413h
+mov     edi, eax
+mov     eax, 0
+call    _ioctl
+test    eax, eax
+jns     short loc_42F8AE
+mov     eax, 0
+jmp     short loc_42F8B5
+movzx   eax, word ptr [rbp-0Eh]
+movzx   eax, ax
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_42F8C9
+call    ___stack_chk_fail
+leave
+retn

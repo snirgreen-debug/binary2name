@@ -1,0 +1,137 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4201153,
+                "src": 4201134
+            },
+            {
+                "dst": 4201147,
+                "src": 4201134
+            },
+            {
+                "dst": 4201165,
+                "src": 4201153
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4201165
+            },
+            {
+                "dst": 4201153,
+                "src": 4201147
+            },
+            {
+                "dst": 4201160,
+                "src": 4201147
+            },
+            {
+                "dst": 4201165,
+                "src": 4201160
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4201134,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |mov|dword|ptr|rbp|-|4|edi|    |cmp|dword|ptr|rbp|-|4|0xd|    |je|target_0|    "
+            },
+            {
+                "block_addr": 4201153,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool __eq__(Extract(31, 0, reg_48_564_64), 0xd)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        [
+                            "<Bool __eq__(Extract(31, 0, reg_48_564_64), 0x1)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|1|    |jmp|0x401acd|    "
+            },
+            {
+                "block_addr": 4201165,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ],
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        3,
+                        []
+                    ]
+                ],
+                "instructions": "and|eax|1|    |pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<BV32 0x1>"
+                        ]
+                    ],
+                    [
+                        4,
+                        [
+                            "<BV32 0x0>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4201147,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool __ne__(Extract(31, 0, reg_48_564_64), 0xd)>"
+                        ]
+                    ],
+                    [
+                        1,
+                        [
+                            "<Bool __ne__(Extract(31, 0, reg_48_564_64), 0xd)>"
+                        ]
+                    ]
+                ],
+                "instructions": "cmp|dword|ptr|rbp|-|4|1|    |jne|0x401ac8|    "
+            },
+            {
+                "block_addr": 4201160,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool __ne__(Extract(31, 0, reg_48_564_64), 0x1)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|0|    |and|eax|1|    |pop|rbp|    |ret|    "
+            }
+        ]
+    },
+    "func_name": "4201134"
+}

@@ -1,0 +1,97 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0B0h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+nsigs], 6
+mov     edi, 6148C0h
+call    _sigemptyset
+mov     [rbp+i], 0
+jmp     short loc_406B50
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+lea     rdx, [rbp-0A0h]
+mov     esi, 0
+mov     edi, eax
+call    _sigaction
+mov     rax, [rbp-0A0h]
+cmp     rax, 1
+jz      short loc_406B49
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+mov     esi, eax
+mov     edi, 6148C0h
+call    _sigaddset
+add     [rbp+i], 1
+mov     eax, [rbp-0A8h]
+cmp     eax, [rbp-0A4h]
+jl      short loc_406AFF
+mov     qword ptr [rbp+act.__sigaction_handler], 406DD7h
+mov     rax, cs:caught_signals.__val
+mov     [rbp+act.sa_mask.__val], rax
+mov     rax, cs:caught_signals.__val+8
+mov     [rbp+act.sa_mask.__val+8], rax
+mov     rax, cs:caught_signals.__val+10h
+mov     [rbp+act.sa_mask.__val+10h], rax
+mov     rax, cs:caught_signals.__val+18h
+mov     [rbp+act.sa_mask.__val+18h], rax
+mov     rax, cs:caught_signals.__val+20h
+mov     [rbp+act.sa_mask.__val+20h], rax
+mov     rax, cs:caught_signals.__val+28h
+mov     [rbp+act.sa_mask.__val+28h], rax
+mov     rax, cs:caught_signals.__val+30h
+mov     [rbp+act.sa_mask.__val+30h], rax
+mov     rax, cs:caught_signals.__val+38h
+mov     [rbp+act.sa_mask.__val+38h], rax
+mov     rax, cs:caught_signals.__val+40h
+mov     [rbp+act.sa_mask.__val+40h], rax
+mov     rax, cs:caught_signals.__val+48h
+mov     [rbp+act.sa_mask.__val+48h], rax
+mov     rax, cs:caught_signals.__val+50h
+mov     [rbp+act.sa_mask.__val+50h], rax
+mov     rax, cs:caught_signals.__val+58h
+mov     [rbp+act.sa_mask.__val+58h], rax
+mov     rax, cs:caught_signals.__val+60h
+mov     [rbp+act.sa_mask.__val+60h], rax
+mov     rax, cs:caught_signals.__val+68h
+mov     [rbp+act.sa_mask.__val+68h], rax
+mov     rax, cs:caught_signals.__val+70h
+mov     [rbp+act.sa_mask.__val+70h], rax
+mov     rax, cs:caught_signals.__val+78h
+mov     [rbp+act.sa_mask.__val+78h], rax
+mov     [rbp+act.sa_flags], 0
+mov     [rbp+i], 0
+jmp     short loc_406C93
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+mov     esi, eax
+mov     edi, 6148C0h
+call    _sigismember
+test    eax, eax
+jz      short loc_406C8C
+cmp     [rbp+i], 0
+jnz     short loc_406C67
+mov     cs:foreground, 1
+mov     eax, [rbp-0A8h]
+cdqe
+mov     eax, [rax*4+614340h]
+lea     rcx, [rbp-0A0h]
+mov     edx, 0
+mov     rsi, rcx
+mov     edi, eax
+call    _sigaction
+add     [rbp+i], 1
+mov     eax, [rbp-0A8h]
+cmp     eax, [rbp-0A4h]
+jl      short loc_406C35
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_406CB6
+call    ___stack_chk_fail
+leave
+retn

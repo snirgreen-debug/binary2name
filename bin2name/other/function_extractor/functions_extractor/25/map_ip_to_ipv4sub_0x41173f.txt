@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ip_0], rdi
+mov     [rbp+ipv4], rsi
+cmp     [rbp+ipv4], 0
+jz      short loc_41175E
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+mov     [rax], edx
+mov     eax, 1
+pop     rbp
+retn

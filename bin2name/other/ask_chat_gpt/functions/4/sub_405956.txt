@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+38h]
+mov     rcx, [rbp-8]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+jnz     short loc_405991
+mov     eax, 1
+jmp     short locret_405996
+mov     eax, 0
+leave
+retn

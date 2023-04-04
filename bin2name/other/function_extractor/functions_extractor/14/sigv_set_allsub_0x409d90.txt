@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0D0h
+mov     [rbp+var_B8], rdi
+mov     [rbp+var_BC], esi
+mov     [rbp+var_C8], rdx
+mov     [rbp+var_D0], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-0A0h]
+add     rax, 8
+mov     rdi, rax
+call    _sigemptyset
+mov     [rbp+var_18], 0
+mov     [rbp+var_A8], 0
+jmp     loc_409EBB
+mov     rax, [rbp-0B8h]
+mov     [rbp+var_A0], rax
+cmp     [rbp+var_D0], 0
+jz      short loc_409E32
+mov     eax, [rbp-0A8h]
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+mov     rdx, rax
+mov     rax, [rbp-0D0h]
+add     rdx, rax
+jmp     short loc_409E37
+mov     edx, 0
+mov     eax, [rbp-0A8h]
+cdqe
+lea     rcx, [rax*4+0]
+mov     rax, [rbp-0C8h]
+add     rax, rcx
+mov     eax, [rax]
+lea     rcx, [rbp-0A0h]
+mov     rsi, rcx
+mov     edi, eax
+call    _sigaction
+test    eax, eax
+jz      short loc_409EB4
+cmp     [rbp+var_D0], 0
+jz      short loc_409EAD
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_A4], eax
+mov     rdx, [rbp-0D0h]
+mov     rcx, [rbp-0C8h]
+mov     eax, [rbp-0A8h]
+mov     rsi, rcx
+mov     edi, eax
+call    sigv_set_action
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-0A4h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     short loc_409ED2
+add     [rbp+var_A8], 1
+mov     eax, [rbp-0A8h]
+cmp     eax, [rbp-0BCh]
+jl      loc_409DEE
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_409EE6
+call    ___stack_chk_fail
+leave
+retn

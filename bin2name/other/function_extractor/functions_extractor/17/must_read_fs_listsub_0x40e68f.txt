@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     eax, edi
+mov     [rbp+need_fs_type], al
+movzx   eax, byte ptr [rbp-14h]
+mov     edi, eax
+call    read_file_system_list
+mov     [rbp+entries], rax
+cmp     [rbp+entries], 0
+jnz     short loc_40E6D3
+mov     edi, 42D260h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-8]
+leave
+retn

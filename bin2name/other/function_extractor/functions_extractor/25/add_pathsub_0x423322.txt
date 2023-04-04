@@ -1,0 +1,77 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+specs], rdi
+mov     [rbp+path_b], rsi
+mov     [rbp+path_e], rdx
+mov     [rbp+allowedp], ecx
+mov     [rbp+exactp], r8d
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-28h]
+jnb     short loc_423357
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_423357
+add     [rbp+path_b], 1
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     [rbp+pp.path], rax
+mov     eax, [rbp-2Ch]
+mov     [rbp+pp.allowedp], eax
+mov     eax, [rbp-30h]
+mov     [rbp+pp.user_agent_exact_p], eax
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+lea     edx, [rax+1]
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+mov     edx, [rax]
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+cmp     edx, eax
+jle     short loc_4233F1
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+test    eax, eax
+jnz     short loc_4233B2
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+4], 1
+jmp     short loc_4233C3
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+lea     edx, [rax+rax]
+mov     rax, [rbp-18h]
+mov     [rax+4], edx
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax+8], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+cdqe
+shl     rax, 4
+sub     rax, 10h
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-10h]
+mov     rdx, [rbp-8]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+nop
+leave
+retn

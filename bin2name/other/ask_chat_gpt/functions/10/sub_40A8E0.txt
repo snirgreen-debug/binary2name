@@ -1,0 +1,13 @@
+push    rbx
+mov     rbx, rdi
+jmp     short loc_40A8F8
+mov     rdi, rbx
+call    sub_40A780
+mov     edx, 8
+mov     esi, 7
+mov     rdi, rbx
+call    sub_409B30
+test    eax, eax
+jnz     short loc_40A8F0
+pop     rbx
+retn

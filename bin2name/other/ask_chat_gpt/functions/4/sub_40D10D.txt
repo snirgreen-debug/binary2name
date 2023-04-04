@@ -1,0 +1,137 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, rdi
+mov     rcx, rsi
+mov     rdx, rcx
+mov     [rbp+timer], rax
+mov     [rbp+var_18], rdx
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    _localtime
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      loc_40D30B
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+test    eax, eax
+jns     short loc_40D165
+mov     ecx, 42D220h
+mov     edx, 2F4h
+mov     esi, 42C690h
+mov     edi, 42CD16h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cmp     eax, 6
+jle     short loc_40D18A
+mov     ecx, 42D220h
+mov     edx, 2F5h
+mov     esi, 42C690h
+mov     edi, 42CD28h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+test    eax, eax
+jns     short loc_40D1AE
+mov     ecx, 42D220h
+mov     edx, 2F6h
+mov     esi, 42C690h
+mov     edi, 42CD39h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cmp     eax, 0Bh
+jle     short loc_40D1D3
+mov     ecx, 42D220h
+mov     edx, 2F7h
+mov     esi, 42C690h
+mov     edi, 42CD4Ah
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+8]
+test    eax, eax
+jns     short loc_40D1F7
+mov     ecx, 42D220h
+mov     edx, 2F8h
+mov     esi, 42C690h
+mov     edi, 42CD5Bh
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+8]
+cmp     eax, 17h
+jle     short loc_40D21C
+mov     ecx, 42D220h
+mov     edx, 2F9h
+mov     esi, 42C690h
+mov     edi, 42CD6Dh
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+4]
+cmp     eax, 3Bh
+jle     short loc_40D241
+mov     ecx, 42D220h
+mov     edx, 2FAh
+mov     esi, 42C690h
+mov     edi, 42CD7Fh
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     eax, 3Dh
+jle     short loc_40D265
+mov     ecx, 42D220h
+mov     edx, 2FBh
+mov     esi, 42C690h
+mov     edi, 42CD90h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     eax, [rax+14h]
+lea     r10d, [rax+76Ch]
+mov     rdi, [rbp-18h]
+mov     rax, [rbp-8]
+mov     esi, [rax]
+mov     rax, [rbp-8]
+mov     ecx, [rax+4]
+mov     rax, [rbp-8]
+mov     edx, [rax+8]
+mov     rax, [rbp-8]
+mov     r9d, [rax+0Ch]
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+cdqe
+mov     r8, [rax*8+63AB60h]
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cdqe
+mov     rax, [rax*8+63AB20h]
+sub     rsp, 8
+push    r10
+push    rdi
+push    rsi
+push    rcx
+push    rdx
+mov     rcx, rax
+mov     edx, 42CDA8h
+mov     esi, 400h
+mov     edi, 63B160h
+mov     eax, 0
+call    _snprintf
+add     rsp, 30h
+mov     [rbp+var_C], eax
+cmp     [rbp+var_C], 3FFh
+jle     short loc_40D304
+mov     ecx, 42D220h
+mov     edx, 309h
+mov     esi, 42C690h
+mov     edi, 42CDCFh
+call    ___assert_fail
+mov     eax, 63B160h
+jmp     short locret_40D323
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     edx, 40h
+mov     rdi, rcx
+mov     rsi, rax
+call    sub_40CDD9
+leave
+retn

@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     eax, cs:dword_647800
+mov     [rbp+var_20], eax
+mov     eax, cs:dword_647804
+mov     [rbp+var_1C], eax
+mov     rax, [rbp-30h]
+mov     esi, 2Ch
+mov     rdi, rax
+call    _strchr
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jnz     short loc_41C0CC
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     [rbp+var_18], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 4
+jnz     short loc_41C106
+mov     rax, [rbp-30h]
+mov     edx, 4
+mov     esi, 433AADh
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_41C106
+mov     [rbp+var_20], 0
+jmp     loc_41C1B5
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 7
+jnz     short loc_41C13D
+mov     rax, [rbp-30h]
+mov     edx, 7
+mov     esi, 433AB2h
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_41C13D
+mov     [rbp+var_20], 1
+jmp     short loc_41C1B5
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+cmp     rax, 9
+jnz     short loc_41C175
+mov     rax, [rbp-30h]
+mov     edx, 9
+mov     esi, 433ABAh
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_41C175
+mov     [rbp+var_1C], 0
+jmp     short loc_41C1B5
+nop
+mov     rbx, cs:qword_6475A0
+mov     edi, 433AC8h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-28h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+jmp     short loc_41C1F7
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41C1E0
+mov     rax, [rbp-18h]
+add     rax, 1
+mov     esi, 433ABAh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_41C174
+mov     [rbp+var_1C], 0
+mov     eax, [rbp-20h]
+mov     cs:dword_647800, eax
+mov     eax, [rbp-1Ch]
+mov     cs:dword_647804, eax
+mov     eax, 1
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+p], rdi
+mov     edi, 42C512h
+call    _getenv
+test    rax, rax
+jz      short loc_40B5FD
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+11h], 1
+jmp     short loc_40B605
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+11h], 0
+call    check_nofollow
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax+58h], dl
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+5Ch], 0
+mov     edi, 0
+call    _isatty
+test    eax, eax
+jz      short loc_40B63E
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+10h], 1
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+0Fh], 0
+jmp     short loc_40B64E
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+10h], 0
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+0Fh], 0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+11h]
+test    al, al
+jz      short loc_40B662
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+10h], 0
+mov     rax, [rbp-18h]
+mov     byte ptr [rax], 1
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+1], 0
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+8], 0FFFFFFFFh
+mov     rax, [rbp-18h]
+mov     edx, [rax+8]
+mov     rax, [rbp-18h]
+mov     [rax+4], edx
+mov     rbx, [rbp-18h]
+call    now
+mov     [rbx+18h], rax
+mov     [rbx+20h], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+18h]
+lea     rdx, [rax-15180h]
+mov     rax, [rbp-18h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-18h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+38h], 0
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+0Dh], 0
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+0Eh], 0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+11h]
+test    al, al
+jz      short loc_40B6F3
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+3Ch], 200h
+jmp     short loc_40B6FE
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+3Ch], 400h
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+40h], 0
+mov     rax, [rbp-18h]
+mov     word ptr [rax+68h], 2
+mov     edi, 42C522h
+call    _getenv
+test    rax, rax
+jz      short loc_40B744
+mov     edi, 42C538h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+0Ch], 0
+mov     edi, 0
+call    set_follow_state
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+6Ch], 8
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

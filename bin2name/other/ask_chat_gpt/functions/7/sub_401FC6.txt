@@ -1,0 +1,121 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+var_48], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+base], 8
+mov     rax, [rbp-48h]
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jz      short loc_40200D
+mov     ecx, 40D870h
+mov     edx, 0F3h
+mov     esi, 40BF40h
+mov     edi, 40BF48h
+call    ___assert_fail
+mov     rax, [rbp-48h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 78h
+jnz     short loc_402031
+mov     rax, [rbp-48h]
+add     rax, 2
+mov     [rbp+nptr], rax
+mov     [rbp+base], 10h
+jmp     short loc_4020A1
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rdx, [rbp-48h]
+add     rdx, 1
+movzx   edx, byte ptr [rdx]
+movzx   edx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jz      short loc_402071
+mov     rax, [rbp-48h]
+add     rax, 1
+mov     [rbp+nptr], rax
+mov     [rbp+base], 8
+jmp     short loc_4020A1
+mov     [rbp+nptr], 0
+mov     edi, 40BF58h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-48h]
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     [rbp+endptr], 0
+mov     edx, [rbp-34h]
+lea     rcx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtoul
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4020E1
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 22h
+jz      short loc_4020EB
+cmp     [rbp+var_20], 0FFh
+jbe     short loc_40214F
+cmp     [rbp+base], 10h
+jnz     short loc_402121
+mov     edi, 40BF98h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-48h]
+mov     r8d, 0FFh
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_40214F
+mov     edi, 40C000h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-48h]
+mov     r8d, 0FFh
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_402189
+mov     rbx, [rbp-30h]
+mov     edi, 40C068h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-48h]
+mov     r8, rbx
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-20h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_4021A1
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

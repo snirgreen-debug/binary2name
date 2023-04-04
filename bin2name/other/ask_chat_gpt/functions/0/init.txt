@@ -1,0 +1,34 @@
+push    r15
+push    r14
+mov     r15d, edi
+push    r13
+push    r12
+lea     r12, off_604E10
+push    rbp
+lea     rbp, off_604E18
+push    rbx
+mov     r14, rsi
+mov     r13, rdx
+sub     rbp, r12
+sub     rsp, 8
+sar     rbp, 3
+call    _init_proc
+test    rbp, rbp
+jz      short loc_4037C6
+xor     ebx, ebx
+nop     dword ptr [rax+rax+00000000h]
+mov     rdx, r13
+mov     rsi, r14
+mov     edi, r15d
+call    qword ptr [r12+rbx*8]
+add     rbx, 1
+cmp     rbx, rbp
+jnz     short loc_4037B0
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn

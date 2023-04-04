@@ -1,0 +1,51 @@
+sub     rsp, 8
+test    pibIn, pibIn
+jz      short loc_403912
+test    szLex, szLex
+jz      short loc_403912
+mov     rax, [pibIn+18h]
+test    rax, rax
+jz      short loc_403978
+xor     edx, edx
+cmp     byte ptr [rax], 22h
+jz      short loc_403920
+mov     byte ptr [szLex+rdx], 0
+add     rsp, 8
+retn
+mov     r8, szLex
+jmp     short loc_403939
+cmp     cl, 22h
+jz      short loc_403956
+add     r8, 1
+cmp     edx, 3FEh
+jz      short loc_403984
+lea     rcx, [rax+1]
+add     edx, 1
+mov     [pibIn+18h], rcx
+movzx   eax, byte ptr [rax+1]
+mov     [r8], al
+mov     rax, [pibIn+18h]
+movzx   ecx, byte ptr [rax]
+test    cl, cl
+jnz     short loc_403928
+cmp     edx, 3FEh
+jz      short loc_403984
+cmp     cl, 22h
+jnz     short loc_40396E
+add     rax, 1
+sub     edx, 1
+mov     [pibIn+18h], rax
+movsxd  rdx, edx
+jmp     short loc_40390E
+movzx   ecx, byte ptr 0
+xor     edx, edx
+jmp     short loc_40395E
+mov     i, szLex
+mov     edi, 1
+mov     esi, 412558h
+xor     eax, eax
+call    ___printf_chk
+mov     edi, 412418h
+call    _puts
+xor     edi, edi
+call    _exit

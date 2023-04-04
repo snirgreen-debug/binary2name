@@ -1,0 +1,114 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+output], rdi
+mov     [rbp+input], rsi
+mov     [rbp+errstr], rdx
+mov     [rbp+errloc], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, unitcount
+mov     eax, [rax]
+mov     [rbp+saveunitcount], eax
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    initializeunit
+mov     [rbp+comm.result], 0
+mov     [rbp+comm.location], 0
+mov     rax, [rbp-50h]
+mov     [rbp+comm.data], rax
+mov     [rbp+comm.errorcode], 1
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    unitsparse
+test    eax, eax
+jnz     short loc_413270
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      loc_413320
+mov     eax, [rbp-30h]
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_413287
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+comm.location], eax
+cmp     [rbp+errstr], 0
+jz      short loc_4132D3
+mov     eax, [rbp-18h]
+cmp     eax, 8
+jz      short loc_4132A1
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_4132BB
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-58h]
+mov     [rax], rdx
+jmp     short loc_4132D3
+mov     edx, [rbp-18h]
+lea     rax, errormsg
+movsxd  rdx, edx
+mov     rdx, [rax+rdx*8]
+mov     rax, [rbp-58h]
+mov     [rax], rdx
+cmp     [rbp+errloc], 0
+jz      short loc_4132E3
+mov     edx, [rbp-30h]
+mov     rax, [rbp-60h]
+mov     [rax], edx
+lea     rax, unitcount
+mov     eax, [rax]
+cmp     eax, [rbp-34h]
+jz      short loc_41331B
+lea     rax, unitcount
+mov     ecx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     edx, [rbp-34h]
+lea     rsi, aUnitsParserLea
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, [rbp-18h]
+jmp     short loc_41338E
+cmp     [rbp+errstr], 0
+jz      short loc_413332
+mov     rax, [rbp-58h]
+mov     qword ptr [rax], 0
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    multunit
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    destroyunit
+lea     rax, unitcount
+mov     eax, [rax]
+cmp     eax, [rbp-34h]
+jz      short loc_413389
+lea     rax, unitcount
+mov     ecx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     edx, [rbp-34h]
+lea     rsi, aUnitsParserLea_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_4133A2
+call    ___stack_chk_fail
+leave
+retn

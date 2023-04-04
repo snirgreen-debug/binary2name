@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:qword_62D748, 0
+mov     cs:qword_62D738, 0
+mov     cs:qword_62D740, 0
+mov     cs:qword_62D758, 0
+mov     cs:dword_62D760, 0
+mov     cs:dword_62D764, 0
+mov     cs:stream, 0
+mov     cs:qword_62D730, 0
+mov     eax, 0
+pop     rbp
+retn

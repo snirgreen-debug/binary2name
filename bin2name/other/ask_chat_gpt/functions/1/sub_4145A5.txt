@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+src], rsi
+mov     [rbp+n], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+nop
+leave
+retn

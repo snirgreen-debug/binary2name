@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:logfp
+test    rax, rax
+jz      short loc_41D094
+mov     rax, cs:logfp
+mov     rdi, rax
+call    _fclose
+mov     cs:logfp, 0
+mov     cs:inhibit_logging, 1
+mov     cs:save_context_p, 0
+mov     [rbp+i], 0
+jmp     short loc_41D0CA
+mov     eax, [rbp-4]
+mov     edi, eax
+call    free_log_line
+add     [rbp+i], 1
+cmp     [rbp+i], 17h
+jle     short loc_41D0BC
+mov     cs:log_line_current, 0FFFFFFFFh
+mov     cs:trailing_line, 0
+nop
+leave
+retn

@@ -1,0 +1,305 @@
+push    r13
+push    r12
+push    rbp
+push    rbx
+mov     rbp, pibIn
+xor     ebx, ebx
+sub     rsp, 68h
+mov     r12, [pibIn+30h]
+lea     rdx, [rsp+8]
+mov     rsi, rsp
+mov     [rsp+88h+nFiles], 0
+mov     rax, fs:28h
+mov     [rsp+88h+var_30], rax
+xor     eax, eax
+mov     [rsp+88h+pszFileNames], 0
+call    ReadFileNames
+cmp     [rsp+88h+nFiles], 0
+jle     loc_40BDD0
+mov     rax, [rsp+8]
+mov     esi, 413A3Ch
+mov     edi, 1
+mov     rdx, [rax+i*8]
+xor     eax, eax
+call    ___printf_chk
+mov     rax, [rsp+8]
+lea     rdi, [rsp+10h]
+mov     rsi, 0FFFFFFFFFFFFFFFFh
+mov     rdx, [rax+i*8]
+call    InitBuffer
+test    eax, eax
+jz      loc_40BC5D
+movdqu  xmm0, xmmword ptr [pibIn+30h]
+lea     rdi, [rsp+10h]
+mov     edx, 0Ah
+mov     esi, 0Ah
+movaps  xmmword ptr [rsp+88h+ibInLocal.pInfo], xmm0
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BC4B
+mov     edx, [pinfo+0Ch]
+test    edx, edx
+jz      loc_40BC3C
+cmp     r13d, 1
+jle     loc_40BE6C
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 2
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BD3E
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 11h
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BC78
+mov     rax, [rsp+18h]
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+nop     dword ptr [rax+rax+00h]
+lea     rdi, [rsp+10h]
+mov     edx, 7
+mov     esi, 0Ah
+call    GetSBMLLex
+test    eax, eax
+jz      short loc_40BA94
+nop     dword ptr [rax+rax+00000000h]
+lea     rdi, [rsp+10h]
+mov     edx, 8
+mov     esi, 7
+call    GetSBMLLex
+test    eax, eax
+jz      short loc_40BA50
+lea     rdi, [rsp+10h]
+call    ReadParameter
+jmp     short loc_40BA70
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 4
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BBEC
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 0Fh
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BCAF
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 9
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BCE7
+mov     rax, [rsp]
+add     i, 1
+cmp     rax, i
+jg      loc_40B97C
+test    rax, rax
+jle     loc_40BDD0
+xor     ebx, ebx
+jmp     short loc_40BB93
+mov     eax, [pinfo+0Ch]
+movdqu  xmm0, xmmword ptr [pibIn+30h]
+test    eax, eax
+movaps  xmmword ptr [rsp+88h+ibInLocal.pInfo], xmm0
+jnz     loc_40BD7C
+mov     esi, 413E80h
+mov     edi, 1
+mov     rax, [rsp+8]
+mov     rdx, [rax+r13]
+xor     eax, eax
+call    ___printf_chk
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 4
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jnz     loc_40BC1F
+lea     rdi, [rsp+10h]
+add     i, 1
+call    ReadDifferentials
+cmp     [rsp+88h+nFiles], i
+jle     loc_40BDD0
+mov     rax, [rsp+8]
+lea     rdi, [rsp+10h]
+mov     rsi, 0FFFFFFFFFFFFFFFFh
+lea     r13, [i*8+0]
+mov     rdx, [rax+i*8]
+call    InitBuffer
+test    eax, eax
+jnz     loc_40BB24
+lea     rdi, [rsp+10h]
+xor     ecx, ecx
+mov     edx, 413A22h
+mov     esi, 8001h
+call    ReportError
+jmp     loc_40BB24
+lea     rdi, [rsp+10h]
+xor     esi, esi
+call    Read1Species
+lea     rdi, [rsp+10h]
+mov     edx, 6
+mov     esi, 4
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BBE0
+jmp     loc_40BABA
+lea     rdi, [rsp+10h]
+mov     esi, 1
+call    Read1Species
+lea     rdi, [rsp+10h]
+mov     edx, 6
+mov     esi, 4
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BC10
+jmp     loc_40BB7B
+mov     edi, 413E48h
+call    _puts
+jmp     loc_40BA1B
+lea     rdi, [rsp+10h]
+call    ReadSBMLLevel
+mov     r13d, eax
+jmp     loc_40B9DE
+lea     rdi, [rsp+10h]
+xor     ecx, ecx
+mov     edx, 413A22h
+mov     esi, 8001h
+call    ReportError
+jmp     loc_40B9B8
+cmp     r13d, 1
+jnz     short loc_40BC92
+jmp     loc_40BE28
+lea     rdi, [rsp+10h]
+call    ReadRule
+lea     rdi, [rsp+10h]
+mov     edx, 12h
+mov     esi, 11h
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BC88
+jmp     loc_40BA41
+cmp     r13d, 1
+jnz     short loc_40BCCA
+jmp     loc_40BE37
+lea     rdi, [rsp+10h]
+call    ReadRule
+lea     rdi, [rsp+10h]
+mov     edx, 10h
+mov     esi, 0Fh
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BCC0
+jmp     loc_40BAE0
+cmp     r13d, 1
+jnz     short loc_40BCFA
+jmp     short loc_40BD21
+lea     rdi, [rsp+10h]
+call    ReadReaction_L2
+lea     rdi, [rsp+10h]
+mov     edx, 14h
+mov     esi, 9
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BCF0
+jmp     loc_40BB06
+lea     rdi, [rsp+10h]
+call    ReadReaction_L1
+lea     rdi, [rsp+10h]
+mov     edx, 14h
+mov     esi, 9
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BD17
+jmp     loc_40BB06
+mov     rax, [rsp+40h]
+mov     qword ptr [rax+60h], 0
+jmp     short loc_40BD5F
+lea     rdi, [rsp+10h]
+mov     esi, 1
+call    ReadCpt
+lea     rdi, [rsp+10h]
+mov     edx, 3
+mov     esi, 2
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BD50
+jmp     loc_40BA1B
+lea     rdi, [rsp+10h]
+mov     edx, 2
+mov     esi, 0Ah
+call    GetSBMLLex
+test    eax, eax
+jz      loc_40BB3B
+mov     rax, [rsp+40h]
+mov     qword ptr [rax+60h], 0
+jmp     short loc_40BDB3
+lea     rdi, [rsp+10h]
+xor     esi, esi
+call    ReadCpt
+lea     rdi, [rsp+10h]
+mov     edx, 3
+mov     esi, 2
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40BDA7
+jmp     loc_40BB3B
+mov     edi, 0Ah
+xor     ebx, ebx
+call    _putchar
+cmp     [rsp+88h+nFiles], 0
+jle     short loc_40BDFB
+mov     rax, [rsp+8]
+mov     rdi, [rax+i*8]
+add     i, 1
+call    _free
+cmp     [rsp+88h+nFiles], i
+jg      short loc_40BDE3
+mov     rdi, [rsp+8]
+call    _free
+mov     rax, [rsp+58h]
+xor     rax, fs:28h
+mov     dword ptr [pinfo], 4000h
+jnz     short loc_40BE8E
+add     rsp, 68h
+pop     rbx
+pop     pibIn
+pop     pinfo
+pop     r13
+retn
+mov     edi, 413C50h
+call    _puts
+jmp     loc_40BA41
+mov     edi, 413C88h
+call    _puts
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+10h]
+mov     edx, 9
+mov     esi, 0Ah
+mov     [rsp+88h+ibInLocal.pbufCur], rax
+call    GetSBMLLex
+test    eax, eax
+jz      loc_40BB06
+jmp     loc_40BD21
+mov     esi, 413E18h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     edi, 413A4Fh
+call    _puts
+xor     edi, edi
+call    _exit
+call    ___stack_chk_fail

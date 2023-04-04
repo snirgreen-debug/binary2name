@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_20], rcx
+mov     cs:qword_63B578, 0
+nop
+pop     rbp
+retn

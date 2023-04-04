@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ctl], rdi
+mov     [rbp+state], rsi
+mov     rax, [rbp-8]
+mov     rdx, [rax+38h]
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+28h]
+mov     rax, [rbp-10h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+38h], 0
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+3Ch], 0FFFFFFFFh
+nop
+pop     rbp
+retn

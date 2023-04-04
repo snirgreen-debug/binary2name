@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-20h]
+mov     esi, 0
+mov     rdi, rax
+call    _gettimeofday
+test    eax, eax
+jnz     short loc_40B57B
+mov     rax, [rbp-20h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-18h]
+imul    rax, 3E8h
+mov     [rbp+var_28], rax
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-28h]
+jmp     short loc_40B5C1
+mov     edi, 0
+call    _time
+mov     [rbp+var_38], rax
+cmp     [rbp+var_38], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_40B5A9
+mov     ecx, 42C64Bh
+mov     edx, 3C7h
+mov     esi, 42C0E8h
+mov     edi, 42C502h
+call    ___assert_fail
+mov     rax, [rbp-38h]
+mov     [rbp+var_30], rax
+mov     [rbp+var_28], 0
+mov     rax, [rbp-30h]
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40B5D5
+call    ___stack_chk_fail
+leave
+retn

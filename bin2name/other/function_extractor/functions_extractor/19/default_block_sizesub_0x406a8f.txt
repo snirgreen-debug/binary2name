@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 40EEC0h
+call    _getenv
+test    rax, rax
+jz      short loc_406AA9
+mov     eax, 200h
+jmp     short loc_406AAE
+mov     eax, 400h
+pop     rbp
+retn

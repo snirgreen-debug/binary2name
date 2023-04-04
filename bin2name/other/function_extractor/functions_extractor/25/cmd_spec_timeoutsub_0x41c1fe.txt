@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-10h]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    cmd_time
+test    eax, eax
+jnz     short loc_41C243
+mov     eax, 0
+jmp     short loc_41C26F
+movsd   xmm0, qword ptr [rbp-10h]
+movsd   cs:opt.read_timeout, xmm0
+movsd   xmm0, qword ptr [rbp-10h]
+movsd   cs:opt.connect_timeout, xmm0
+movsd   xmm0, qword ptr [rbp-10h]
+movsd   cs:opt.dns_timeout, xmm0
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41C283
+call    ___stack_chk_fail
+leave
+retn

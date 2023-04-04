@@ -1,0 +1,36 @@
+test    pvm, pvm
+jz      short locret_406D01
+test    szEqn, szEqn
+jz      short locret_406D01
+push    r12
+push    rbp
+mov     rbp, pvm
+push    rbx
+mov     pvm, [pvm+8]
+mov     r12, szEqn
+test    rdi, rdi
+jz      short loc_406CD2
+call    _free
+mov     rdi, szEqn
+call    _strlen
+lea     rbx, [rax+1]
+mov     rdi, rbx
+call    _malloc
+test    rax, rax
+jz      short loc_406D08
+mov     rdx, rbx
+mov     rsi, szEqn
+mov     rdi, rax
+call    _memcpy
+mov     [pvm+8], rax
+pop     rbx
+pop     pvm
+pop     szEqn
+rep retn
+mov     ecx, 4131C0h
+mov     rdx, szEqn
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     short loc_406CF9

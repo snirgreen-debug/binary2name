@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+buffer], rdi
+mov     [rbp+f], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_400B5B
+mov     rax, [rbp-8]
+mov     rsi, [rax+8]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+mov     rcx, rdx
+mov     edx, 1
+mov     rdi, rax
+call    _fwrite
+cmp     rax, 1
+jz      short loc_400B5B
+mov     edi, 4037F8h
+call    die
+nop
+leave
+retn

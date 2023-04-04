@@ -1,0 +1,1 @@
+extrn is_selinux_enabled:near

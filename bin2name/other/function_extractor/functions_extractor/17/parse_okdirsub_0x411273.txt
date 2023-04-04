@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rcx, [rbp-18h]
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 42ECFCh
+call    insert_exec_ok
+leave
+retn

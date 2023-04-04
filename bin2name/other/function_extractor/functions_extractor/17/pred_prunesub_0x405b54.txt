@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+movzx   eax, cs:options_0.do_dir_first
+test    al, al
+jz      short loc_405BB8
+movzx   eax, cs:state_0.have_stat
+test    al, al
+jnz     short loc_405B97
+mov     ecx, 42B350h
+mov     edx, 399h
+mov     esi, 42AFC0h
+mov     edi, 42B0F7h
+call    ___assert_fail
+cmp     [rbp+stat_buf], 0
+jz      short loc_405BB8
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     short loc_405BB8
+mov     cs:state_0.stop_at_current_level, 1
+mov     eax, 1
+leave
+retn

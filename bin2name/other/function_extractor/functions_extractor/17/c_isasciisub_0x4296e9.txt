@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+c], edi
+mov     eax, [rbp-4]
+add     eax, 0
+cmp     eax, 7Fh
+ja      short loc_429702
+mov     eax, 1
+jmp     short loc_429707
+mov     eax, 0
+pop     rbp
+retn

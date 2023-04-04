@@ -1,0 +1,79 @@
+sub     rsp, 8
+test    rcx, rcx
+jnz     short loc_40D29C
+test    rdi, rdi
+jz      loc_40D33C
+mov     rcx, [rdi+10h]
+and     ecx, 0F0000h
+cmp     rcx, 20000h
+jz      loc_40D330
+jbe     short loc_40D2E0
+cmp     rcx, 30000h
+jz      short loc_40D310
+cmp     rcx, 90000h
+jnz     short loc_40D33C
+test    rdx, rdx
+jz      loc_40D3BA
+mov     eax, cs:dword_619884
+test    eax, eax
+jz      loc_40D3A0
+mov     r8, [rdi]
+mov     ecx, 414413h
+jmp     short loc_40D344
+cmp     rcx, 10000h
+jnz     short loc_40D33C
+mov     r8d, cs:dword_619884
+test    r8d, r8d
+jz      short loc_40D31E
+mov     ecx, cs:dword_619880
+test    ecx, ecx
+jnz     short loc_40D33C
+mov     r8, [rdi]
+mov     ecx, 41403Ch
+jmp     short loc_40D344
+mov     edx, cs:dword_619884
+test    edx, edx
+jnz     loc_40D3B0
+test    rsi, rsi
+jnz     short loc_40D364
+mov     r8, [rdi]
+mov     ecx, 414045h
+jmp     short loc_40D344
+mov     r9d, cs:dword_619884
+test    r9d, r9d
+jz      short loc_40D390
+mov     r8, [rdi]
+mov     ecx, 4140BDh
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+mov     eax, 619CC0h
+add     rsp, 8
+retn
+mov     r9, [rdi]
+mov     r8, rsi
+mov     ecx, 414409h
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+mov     eax, 619CC0h
+add     rsp, 8
+retn
+mov     r8, [rdi]
+mov     ecx, 41402Bh
+jmp     short loc_40D344
+mov     r9, [rdi]
+mov     r8, rdx
+jmp     short loc_40D36A
+mov     r8, [rdi]
+mov     ecx, 414059h
+jmp     short loc_40D344
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail

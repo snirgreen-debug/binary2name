@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+file], rdi
+mov     rax, [rbp-8]
+mov     cs:file_name, rax
+nop
+pop     rbp
+retn

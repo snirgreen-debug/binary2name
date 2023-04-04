@@ -1,0 +1,117 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+var_48], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, cs:eventconf
+mov     rax, [rax]
+mov     [rbp+var_38], rax
+jmp     loc_404325
+mov     rax, [rbp-38h]
+mov     rax, [rax+10h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-30h]
+lea     rdx, [rax+10h]
+lea     rax, [rbp-3Ch]
+mov     rsi, rax
+mov     rdi, rdx
+call    dirwatcher_install
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_4041EF
+call    _abort
+mov     eax, [rbp-3Ch]
+test    eax, eax
+jnz     short loc_40423A
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+movsxd  rdx, eax
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_40423A
+mov     rax, [rbp-30h]
+lea     rbx, [rax+10h]
+mov     edi, 423130h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-48h]
+mov     rcx, rbx
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+28h], edx
+mov     edi, 50h
+call    emalloc
+mov     [rbp+var_20], rax
+mov     rax, [rbp-20h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     rdx, cs:qword_62D5E8
+mov     [rax+8], rdx
+mov     rdx, cs:qword_62D5F0
+mov     rax, [rbp-20h]
+mov     [rax+10h], rdx
+mov     edx, cs:dword_62D61C
+mov     rax, [rbp-20h]
+mov     [rax+18h], edx
+mov     edx, cs:dword_62D618
+mov     rax, [rbp-20h]
+mov     [rax+40h], edx
+mov     rdx, cs:ptr
+mov     rax, [rbp-20h]
+mov     [rax+20h], rdx
+mov     edx, cs:dword_62D600
+mov     rax, [rbp-20h]
+mov     [rax+28h], edx
+mov     rdx, cs:qword_62D610
+mov     rax, [rbp-20h]
+mov     [rax+38h], rdx
+mov     rdx, cs:qword_62D608
+mov     rax, [rbp-20h]
+mov     [rax+30h], rdx
+mov     rdx, cs:qword_62D620
+mov     rax, [rbp-20h]
+mov     [rax+48h], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+test    rax, rax
+jz      short loc_404302
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+jmp     short loc_40430E
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-20h]
+mov     [rax+18h], rdx
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     [rbp+var_38], rax
+cmp     [rbp+var_38], 0
+jnz     loc_4041BC
+mov     rax, cs:eventconf
+mov     rdi, rax
+call    grecs_list_free
+mov     eax, 0
+call    eventconf_init
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40435E
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

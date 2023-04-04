@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+sig], edi
+cmp     [rbp+sig], 0Eh
+jz      short loc_42F9DB
+mov     ecx, 437740h
+mov     edx, 797h
+mov     esi, 437720h
+mov     edi, 437728h
+call    ___assert_fail
+mov     esi, 0FFFFFFFFh
+mov     edi, 6473A0h
+call    _siglongjmp

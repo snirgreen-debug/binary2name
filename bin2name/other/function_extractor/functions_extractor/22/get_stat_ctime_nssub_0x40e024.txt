@@ -1,0 +1,7 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+st], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+70h]
+pop     rbp
+retn

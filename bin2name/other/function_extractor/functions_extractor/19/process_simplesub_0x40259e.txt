@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+procdata], rdi
+mov     rax, cs:inspectors
+mov     rdx, [rbp-8]
+mov     ecx, 0
+mov     esi, 3
+mov     rdi, rax
+call    visit
+leave
+retn

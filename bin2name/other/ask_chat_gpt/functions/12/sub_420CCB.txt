@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, qword ptr [rbp-18h]
+movsd   xmm1, cs:qword_436510
+mulsd   xmm0, xmm1
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, qword ptr [rbp-20h]
+divsd   xmm0, xmm1
+cvttsd2si eax, xmm0
+mov     [rbp+var_4], eax
+mov     eax, [rbp-4]
+mov     edx, eax
+mov     esi, 4363B8h
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+nop
+leave
+retn

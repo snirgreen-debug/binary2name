@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+fun], rdi
+mov     [rbp+inverse], esi
+mov     rax, [rbp-8]
+mov     rax, [rax+68h]
+test    rax, rax
+jz      short loc_4096DD
+mov     edx, [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     esi, edx
+mov     rdi, rax
+call    showtable
+jmp     short loc_409743
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+cmp     [rbp+inverse], 0
+jz      short loc_4096F3
+lea     rax, asc_414774
+jmp     short loc_4096FA
+lea     rax, locale
+lea     rcx, deftext
+mov     rsi, [rcx]
+mov     rcx, rdx
+mov     rdx, rax
+lea     rdi, aSSS
+mov     eax, 0
+call    logprintf
+cmp     [rbp+inverse], 0
+jz      short loc_409733
+mov     rax, [rbp-8]
+add     rax, 38h
+mov     rdi, rax
+call    showfunction
+jmp     short loc_409743
+mov     rax, [rbp-8]
+add     rax, 8
+mov     rdi, rax
+call    showfunction
+nop
+leave
+retn

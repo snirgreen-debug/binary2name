@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fd], edi
+mov     eax, [rbp-14h]
+mov     esi, 1
+mov     edi, eax
+mov     eax, 0
+call    rpl_fcntl
+mov     [rbp+flags], eax
+mov     eax, [rbp-4]
+and     eax, 1
+leave
+retn

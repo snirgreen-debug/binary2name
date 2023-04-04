@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+sig], edi
+cmp     [rbp+sig], 1
+jz      short loc_41E72B
+cmp     [rbp+sig], 0Ah
+jnz     short loc_41E724
+mov     eax, 435F08h
+jmp     short loc_41E730
+mov     eax, 435F10h
+jmp     short loc_41E730
+mov     eax, 435F16h
+mov     [rbp+signal_name], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    log_request_redirect_output
+call    progress_schedule_redirect
+mov     eax, [rbp-14h]
+mov     esi, 41E706h
+mov     edi, eax
+call    _signal
+nop
+leave
+retn

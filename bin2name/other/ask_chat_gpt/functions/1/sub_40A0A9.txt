@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     qword ptr [rbp+mask], rsi
+mov     eax, [rbp-0Ch]
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     rcx, [rax+10h]
+mov     eax, cs:fd
+mov     rsi, rcx
+mov     edi, eax
+call    _inotify_add_watch
+leave
+retn

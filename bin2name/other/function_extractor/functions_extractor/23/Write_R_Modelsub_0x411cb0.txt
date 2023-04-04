@@ -1,0 +1,306 @@
+push    r13
+push    r12
+mov     rax, pinfo
+push    rbp
+push    rbx
+sub     rsp, 8
+mov     pinfo, [pinfo+20h]
+mov     cs:bForR, 1
+test    rdi, rdi
+jz      loc_412160
+mov     r8, [pinfo+28h]
+test    r8, r8
+jz      loc_412100
+mov     rcx, [rdi+18h]
+test    rcx, rcx
+jz      short loc_411D18
+xor     r8d, r8d
+jmp     short loc_411CF3
+mov     rcx, rdx
+mov     [rdi+18h], r8
+mov     r8, [pinfo+20h]
+mov     rdi, rcx
+mov     [pinfo+20h], rcx
+mov     rdx, [rcx+18h]
+test    rdx, rdx
+jnz     short loc_411CF0
+mov     [rcx+18h], r8
+mov     r8, [pinfo+28h]
+test    r8, r8
+jz      short loc_411D4F
+mov     rcx, [r8+18h]
+test    rcx, rcx
+jz      short loc_411D4F
+xor     r9d, r9d
+jmp     short loc_411D33
+mov     rcx, rdx
+mov     [r8+18h], r9
+mov     r9, [pinfo+28h]
+mov     r8, rcx
+mov     [pinfo+28h], rcx
+mov     rdx, [rcx+18h]
+test    rdx, rdx
+jnz     short loc_411D30
+mov     [rcx+18h], r9
+mov     r8, [pinfo+30h]
+test    r8, r8
+jz      short loc_411D8F
+mov     rcx, [r8+18h]
+test    rcx, rcx
+jz      short loc_411D8F
+xor     r9d, r9d
+jmp     short loc_411D73
+mov     rcx, rdx
+mov     [r8+18h], r9
+mov     r9, [pinfo+30h]
+mov     r8, rcx
+mov     [pinfo+30h], rcx
+mov     rdx, [rcx+18h]
+test    rdx, rdx
+jnz     short loc_411D70
+mov     [rcx+18h], r9
+mov     r8, [pinfo+40h]
+test    r8, r8
+jz      short loc_411DCF
+mov     rcx, [r8+18h]
+test    rcx, rcx
+jz      short loc_411DCF
+xor     r9d, r9d
+jmp     short loc_411DB3
+mov     rcx, rdx
+mov     [r8+18h], r9
+mov     r9, [pinfo+40h]
+mov     r8, rcx
+mov     [pinfo+40h], rcx
+mov     rdx, [rcx+18h]
+test    rdx, rdx
+jnz     short loc_411DB0
+mov     [rcx+18h], r9
+mov     rdx, [pinfo+38h]
+test    rdx, rdx
+jz      short loc_411E0F
+mov     rcx, [rdx+18h]
+test    rcx, rcx
+jz      short loc_411E0F
+xor     r8d, r8d
+jmp     short loc_411DF3
+mov     rcx, r9
+mov     [rdx+18h], r8
+mov     r8, [pinfo+38h]
+mov     rdx, rcx
+mov     [pinfo+38h], rcx
+mov     r9, [rcx+18h]
+test    r9, r9
+jnz     short loc_411DF0
+mov     [rcx+18h], r8
+mov     rdx, [pinfo+48h]
+test    rdx, rdx
+jz      short loc_411E4F
+mov     rcx, [rdx+18h]
+test    rcx, rcx
+jz      short loc_411E4F
+xor     r8d, r8d
+jmp     short loc_411E33
+mov     rcx, r9
+mov     [rdx+18h], r8
+mov     r8, [pinfo+48h]
+mov     rdx, rcx
+mov     [pinfo+48h], rcx
+mov     r9, [rcx+18h]
+test    r9, r9
+jnz     short loc_411E30
+mov     [rcx+18h], r8
+mov     rdx, [pinfo+50h]
+test    rdx, rdx
+jz      short loc_411E8F
+mov     rcx, [rdx+18h]
+test    rcx, rcx
+jz      short loc_411E8F
+xor     r8d, r8d
+jmp     short loc_411E73
+mov     rcx, r9
+mov     [rdx+18h], r8
+mov     r8, [pinfo+50h]
+mov     rdx, rcx
+mov     [pinfo+50h], rcx
+mov     r9, [rcx+18h]
+test    r9, r9
+jnz     short loc_411E70
+mov     [rcx+18h], r8
+mov     rbx, pinfo
+mov     r12, szFileOut
+mov     cs:vpvmGloVarList, rdi
+call    IndexVariables
+mov     rdi, [pinfo+20h]
+call    AdjustVarHandles
+mov     rsi, [pinfo+28h]
+mov     rdi, [pinfo+20h]
+call    VerifyEqns
+mov     rdi, pinfo
+call    VerifyOutputEqns
+mov     esi, 413B70h
+mov     rdi, szFileOut
+call    _fopen
+test    rax, rax
+mov     rbp, rax
+jz      loc_412140
+mov     pfile, [pinfo+10h]
+mov     r9d, 414AFFh
+mov     r8, szFileOut
+mov     ecx, 414B15h
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 6198A0h
+mov     cs:vszModelFilename, rax
+mov     rax, [pinfo+18h]
+mov     cs:vszModGenName, rax
+xor     eax, eax
+call    ___sprintf_chk
+mov     rdx, [pinfo+20h]
+mov     esi, 6198A0h
+mov     rdi, pfile
+call    WriteHeader
+mov     rcx, pfile
+mov     edx, 0Fh
+mov     esi, 1
+mov     edi, 414AA2h
+call    _fwrite
+mov     eax, cs:bDelay
+test    eax, eax
+jnz     loc_4120B0
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_Decls
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_InitModel
+mov     rdx, [pinfo+30h]
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_Scale
+mov     rcx, [pinfo+40h]
+mov     rdx, [pinfo+28h]
+mov     rdi, pfile
+mov     rsi, [pinfo+20h]
+call    Write_R_CalcDeriv
+mov     rdx, [pinfo+38h]
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_CalcJacob
+mov     rdx, [pinfo+48h]
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_Events
+mov     rdx, [pinfo+50h]
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_Roots
+mov     rdi, pfile
+call    _fclose
+mov     rdx, szFileOut
+mov     esi, 415A60h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     esi, 2Eh
+mov     rdi, szFileOut
+call    _strrchr
+test    lastdot, lastdot
+jz      short loc_411FE5
+mov     byte ptr [lastdot], 0
+mov     rdi, szFileOut
+call    _strlen
+lea     rdi, [rax+9]
+mov     r13, rax
+call    _malloc
+mov     rdx, nbase
+mov     rsi, szFileOut
+mov     rdi, Rfile
+call    _strncpy
+mov     pfile, rax
+mov     byte ptr [rax+nbase], 0
+mov     rdx, rax
+mov     ecx, [rdx]
+add     rdx, 4
+lea     eax, [rcx-1010101h]
+not     ecx
+and     eax, ecx
+and     eax, 80808080h
+jz      short loc_412012
+mov     ecx, eax
+mov     rdi, rbp
+shr     ecx, 10h
+test    eax, 8080h
+cmovz   eax, ecx
+lea     rcx, [rdx+2]
+mov     esi, eax
+cmovz   rdx, rcx
+add     sil, al
+mov     rax, 522E7374696E695Fh
+sbb     rdx, 3
+mov     esi, 413B70h
+mov     [rdx], rax
+mov     byte ptr [rdx+8], 0
+call    _fopen
+test    rax, rax
+mov     szFileOut, rax
+jz      loc_412120
+mov     rdx, [pinfo+30h]
+mov     rsi, [pinfo+20h]
+mov     rdi, pfile
+call    Write_R_InitPOS
+mov     rdi, pfile
+call    _fclose
+mov     rdx, rbp
+mov     esi, 415A80h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+add     rsp, 8
+mov     rdi, rbp
+pop     pinfo
+pop     rbp
+pop     pfile
+pop     nbase
+jmp     _free
+mov     rcx, pfile
+mov     edx, 18h
+mov     esi, 1
+mov     edi, 414AB2h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 16h
+mov     esi, 1
+mov     edi, 414ACBh
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 1Ch
+mov     esi, 1
+mov     edi, 414AE2h
+call    _fwrite
+jmp     loc_411F48
+cmp     qword ptr [pinfo+40h], 0
+jz      short loc_412160
+mov     rcx, [rdi+18h]
+test    rcx, rcx
+jnz     loc_411CEA
+jmp     loc_411D4F
+mov     ecx, 414B1Bh
+mov     rdx, rbp
+mov     esi, 8003h
+xor     edi, edi
+call    ReportError
+jmp     loc_41209D
+mov     ecx, 414B1Bh
+mov     rdx, szFileOut
+mov     esi, 8003h
+xor     edi, edi
+call    ReportError
+jmp     loc_411FD0
+add     rsp, 8
+mov     edi, 415A28h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+jmp     _puts

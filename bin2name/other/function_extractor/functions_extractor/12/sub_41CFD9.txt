@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+cmp     [rbp+var_8], 0
+jz      short loc_41D03C
+cmp     [rbp+var_C], 0
+jz      short loc_41CFFC
+mov     edx, 433B98h
+jmp     short loc_41D001
+mov     edx, 433B9Ah
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fopen
+mov     cs:qword_6420C8, rax
+mov     rax, cs:qword_6420C8
+test    rax, rax
+jnz     short loc_41D06E
+mov     rax, cs:qword_647610
+mov     rdi, rax
+call    _perror
+mov     edi, 1
+call    _exit
+mov     rax, cs:stderr
+mov     cs:qword_6420C8, rax
+mov     rax, cs:qword_6420C8
+mov     rdi, rax
+call    _fileno
+mov     edi, eax
+call    _isatty
+test    eax, eax
+jz      short loc_41D06E
+mov     cs:dword_6420D4, 1
+nop
+leave
+retn

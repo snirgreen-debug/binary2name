@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     eax, esi
+mov     [rbp+var_10], edx
+mov     [rbp+var_C], ax
+mov     eax, cs:dword_640084
+test    eax, eax
+jz      short loc_41577E
+mov     eax, cs:dword_640094
+cmp     eax, [rbp-10h]
+jz      loc_41581E
+mov     eax, cs:dword_640094
+mov     edi, eax
+call    _close
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_415779
+mov     eax, cs:dword_640094
+mov     esi, eax
+mov     edi, 4327A8h
+mov     eax, 0
+call    sub_41CEC0
+call    sub_4156C5
+mov     rax, cs:qword_640088
+test    rax, rax
+jz      short loc_4157A3
+mov     ecx, 433320h
+mov     edx, 1B8h
+mov     esi, 4326D6h
+mov     edi, 4327B7h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     esi, 1
+mov     rdi, rax
+call    sub_411920
+mov     cs:qword_640088, rax
+mov     rax, cs:qword_640088
+test    rax, rax
+jnz     short loc_4157E0
+mov     ecx, 433320h
+mov     edx, 1BDh
+mov     esi, 4326D6h
+mov     edi, 4327CFh
+call    ___assert_fail
+movzx   eax, word ptr [rbp-0Ch]
+mov     cs:word_640090, ax
+mov     eax, [rbp-10h]
+mov     cs:dword_640094, eax
+mov     cs:dword_640084, 1
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short locret_41581F
+mov     eax, [rbp-10h]
+mov     esi, eax
+mov     edi, 4327E8h
+mov     eax, 0
+call    sub_41CEC0
+jmp     short locret_41581F
+nop
+leave
+retn

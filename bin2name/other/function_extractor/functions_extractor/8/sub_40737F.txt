@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     esi, 18h
+mov     edi, 1
+call    _calloc
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_4073BA
+mov     edi, 40AE70h
+call    _perror
+mov     esi, 0
+mov     edi, 40AE77h
+call    sub_408C26
+mov     rax, [rbp-8]
+leave
+retn

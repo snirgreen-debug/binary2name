@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0F0h
+mov     [rbp+fd], edi
+mov     [rbp+file], rsi
+mov     [rbp+flags], edx
+mov     [rbp+var_98], rcx
+mov     [rbp+var_90], r8
+mov     [rbp+var_88], r9
+test    al, al
+jz      short loc_42A63A
+movaps  [rbp+var_80], xmm0
+movaps  [rbp+var_70], xmm1
+movaps  [rbp+var_60], xmm2
+movaps  [rbp+var_50], xmm3
+movaps  [rbp+var_40], xmm4
+movaps  [rbp+var_30], xmm5
+movaps  [rbp+var_20], xmm6
+movaps  [rbp+var_10], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_B8], rax
+xor     eax, eax
+mov     [rbp+mode], 0
+mov     eax, [rbp-0E8h]
+and     eax, 40h
+test    eax, eax
+jz      short loc_42A6D8
+mov     [rbp+var_D0], 18h
+mov     [rbp+var_CC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_C8], rax
+lea     rax, [rbp-0B0h]
+mov     [rbp+var_C0], rax
+mov     eax, [rbp-0D0h]
+cmp     eax, 30h
+jnb     short loc_42A6BE
+mov     rax, [rbp-0C0h]
+mov     edx, [rbp-0D0h]
+mov     edx, edx
+add     rax, rdx
+mov     edx, [rbp-0D0h]
+add     edx, 8
+mov     [rbp+var_D0], edx
+jmp     short loc_42A6D0
+mov     rax, [rbp-0C8h]
+lea     rdx, [rax+8]
+mov     [rbp+var_C8], rdx
+mov     eax, [rax]
+mov     [rbp+mode], eax
+mov     ecx, [rbp-0D4h]
+mov     edx, [rbp-0E8h]
+mov     rsi, [rbp-0F0h]
+mov     eax, [rbp-0E4h]
+mov     edi, eax
+mov     eax, 0
+call    _openat
+mov     edi, eax
+call    fd_safer
+mov     rdi, [rbp-0B8h]
+xor     rdi, fs:28h
+jz      short locret_42A71B
+call    ___stack_chk_fail
+leave
+retn

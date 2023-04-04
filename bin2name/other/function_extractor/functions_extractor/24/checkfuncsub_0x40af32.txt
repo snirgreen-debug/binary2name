@@ -1,0 +1,609 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 19C8h
+mov     [rbp+infunc], rdi
+mov     [rbp+verbose], esi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-19B8h]
+mov     eax, [rax+88h]
+test    eax, eax
+jz      short loc_40AF9B
+cmp     [rbp+verbose], 0
+jz      loc_40BABF
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aSkippedFunctio
+mov     eax, 0
+call    _printf
+jmp     loc_40BABF
+cmp     [rbp+verbose], 0
+jz      short loc_40AFC2
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aDoingFunctionS
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rdi, rax
+call    plookup
+mov     [rbp+prefix], rax
+cmp     [rbp+prefix], 0
+jz      short loc_40B030
+mov     rax, [rbp-1998h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _strlen
+mov     rbx, rax
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+cmp     rbx, rax
+jnz     short loc_40B030
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aWarningSDefine
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+test    rax, rax
+jz      loc_40B2BE
+mov     rax, [rbp-19B8h]
+mov     rsi, [rax+78h]
+lea     rax, [rbp-1970h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+test    eax, eax
+jnz     short loc_40B07F
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    completereduce
+test    eax, eax
+jz      short loc_40B0A8
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+78h]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aTableSHasInval
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+mov     rax, [rbp-19B8h]
+mov     eax, [rax+70h]
+cmp     eax, 1
+jg      short loc_40B0E9
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aTableSHasOnlyO
+mov     eax, 0
+call    _printf
+jmp     loc_40BAC0
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+add     rax, 10h
+movsd   xmm0, qword ptr [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+movsd   xmm1, qword ptr [rax+8]
+subsd   xmm0, xmm1
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jbe     short loc_40B125
+movsd   xmm0, cs:qword_416DA0
+jmp     short loc_40B165
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+add     rax, 10h
+movsd   xmm0, qword ptr [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+movsd   xmm1, qword ptr [rax+8]
+subsd   xmm0, xmm1
+pxor    xmm1, xmm1
+ucomisd xmm1, xmm0
+jbe     short loc_40B161
+movsd   xmm0, cs:qword_416DE0
+jmp     short loc_40B165
+pxor    xmm0, xmm0
+movsd   [rbp+direction], xmm0
+mov     [rbp+i], 2
+jmp     loc_40B2A3
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-19ACh]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+movsd   xmm0, qword ptr [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-19ACh]
+movsxd  rdx, edx
+shl     rdx, 4
+sub     rdx, 10h
+add     rax, rdx
+movsd   xmm1, qword ptr [rax+8]
+subsd   xmm0, xmm1
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jbe     short loc_40B1D8
+movsd   xmm0, cs:qword_416DA0
+jmp     short loc_40B238
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-19ACh]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+movsd   xmm0, qword ptr [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-19ACh]
+movsxd  rdx, edx
+shl     rdx, 4
+sub     rdx, 10h
+add     rax, rdx
+movsd   xmm1, qword ptr [rax+8]
+subsd   xmm0, xmm1
+pxor    xmm1, xmm1
+ucomisd xmm1, xmm0
+jbe     short loc_40B234
+movsd   xmm0, cs:qword_416DE0
+jmp     short loc_40B238
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-1988h]
+jp      short loc_40B24C
+ucomisd xmm0, qword ptr [rbp-1988h]
+jz      short loc_40B29C
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+68h]
+mov     edx, [rbp-19ACh]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     [rbp+var_19C8], rdx
+movsd   xmm0, qword ptr [rbp-19C8h]
+mov     rsi, rax
+lea     rdi, aTableSLacksUni
+mov     eax, 1
+call    _printf
+jmp     loc_40BAC0
+add     [rbp+i], 1
+mov     rax, [rbp-19B8h]
+mov     eax, [rax+70h]
+cmp     eax, [rbp-19ACh]
+jg      loc_40B17C
+jmp     loc_40BAC0
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40B346
+mov     rax, [rbp-19B8h]
+mov     rsi, [rax+18h]
+lea     rax, [rbp-1970h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+test    eax, eax
+jnz     short loc_40B309
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    completereduce
+test    eax, eax
+jz      short loc_40B355
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aFunctionSHasIn
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+jmp     loc_40BAC0
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    initializeunit
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_40B3BC
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+20h]
+test    rax, rax
+jz      short loc_40B3BC
+movsd   xmm1, qword ptr [rbp-1330h]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+28h]
+movsd   xmm2, qword ptr [rax]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+20h]
+movsd   xmm0, qword ptr [rax]
+addsd   xmm0, xmm2
+movsd   xmm2, cs:qword_416DD0
+divsd   xmm0, xmm2
+mulsd   xmm0, xmm1
+movsd   [rbp+theunit.factor], xmm0
+jmp     loc_40B45A
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_40B3FD
+movsd   xmm1, qword ptr [rbp-1330h]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+28h]
+movsd   xmm0, qword ptr [rax]
+mulsd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DA0
+subsd   xmm0, xmm1
+movsd   [rbp+theunit.factor], xmm0
+jmp     short loc_40B45A
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+20h]
+test    rax, rax
+jz      short loc_40B43E
+movsd   xmm1, qword ptr [rbp-1330h]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+20h]
+movsd   xmm0, qword ptr [rax]
+mulsd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DA0
+addsd   xmm0, xmm1
+movsd   [rbp+theunit.factor], xmm0
+jmp     short loc_40B45A
+movsd   xmm1, qword ptr [rbp-1330h]
+movsd   xmm0, cs:qword_416DE8
+mulsd   xmm0, xmm1
+movsd   [rbp+theunit.factor], xmm0
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+18h]
+test    rax, rax
+jz      loc_40B539
+lea     rdx, [rbp-1970h]
+lea     rax, [rbp-1320h]
+mov     rsi, rdx
+mov     rdi, rax
+call    unitcopy
+mov     rsi, [rbp-19B8h]
+lea     rax, [rbp-1970h]
+mov     ecx, 1
+mov     edx, 0
+mov     rdi, rax
+call    evalfunc
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      loc_40B8D1
+mov     rax, [rbp-19B8h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorInDefinit
+mov     eax, 0
+call    _printf
+lea     rax, errormsg
+mov     edx, [rbp-19A4h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8]
+mov     rsi, rax
+lea     rdi, aS_5
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+lea     rax, [rbp-1320h]
+mov     rdi, rax
+call    freeunit
+jmp     loc_40BAC0
+mov     [rbp+errcount], 0
+mov     rax, 205E294B20676B28h
+mov     qword ptr [rbp+unittext], rax
+mov     [rbp+unittext+8], 0
+movsd   xmm0, qword ptr [rbp-1330h]
+movsd   [rbp+factor], xmm0
+lea     rax, [rbp-1320h]
+mov     rdi, rax
+call    initializeunit
+lea     rax, [rbp-0CD0h]
+mov     rdi, rax
+call    initializeunit
+mov     [rbp+i], 0
+jmp     loc_40B6D7
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+lea     rax, [rbp-30h]
+add     rax, rdx
+mov     edx, [rbp-19ACh]
+add     edx, 30h
+mov     [rax], dl
+lea     rsi, [rbp-30h]
+lea     rax, [rbp-680h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    parseunit
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_40B5EF
+lea     rax, [rbp-680h]
+mov     rdi, rax
+call    initializeunit
+movsd   xmm0, qword ptr [rbp-1990h]
+movsd   [rbp+arbunit.factor], xmm0
+lea     rdx, [rbp-680h]
+lea     rax, [rbp-0CD0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    unitcopy
+mov     rsi, [rbp-19B8h]
+lea     rax, [rbp-0CD0h]
+mov     ecx, 1
+mov     edx, 0
+mov     rdi, rax
+call    evalfunc
+mov     edx, eax
+mov     eax, [rbp-19ACh]
+cdqe
+mov     [rbp+rax*4+errors], edx
+mov     eax, [rbp-19ACh]
+cdqe
+mov     eax, [rbp+rax*4-1980h]
+test    eax, eax
+jz      short loc_40B662
+add     [rbp+errcount], 1
+jmp     short loc_40B6B2
+lea     rax, [rbp-1320h]
+mov     rdi, rax
+call    freeunit
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+lea     rdx, [rbp-680h]
+lea     rax, [rbp-1320h]
+mov     rsi, rdx
+mov     rdi, rax
+call    unitcopy
+lea     rdx, [rbp-0CD0h]
+lea     rax, [rbp-1970h]
+mov     rsi, rdx
+mov     rdi, rax
+call    unitcopy
+lea     rax, [rbp-0CD0h]
+mov     rdi, rax
+call    freeunit
+lea     rax, [rbp-680h]
+mov     rdi, rax
+call    freeunit
+add     [rbp+i], 1
+cmp     [rbp+i], 3
+jle     loc_40B592
+mov     eax, [rbp-1980h]
+test    eax, eax
+jnz     short loc_40B74A
+cmp     [rbp+errcount], 3
+jnz     short loc_40B74A
+mov     rax, [rbp-19B8h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aWarningFunctio
+mov     eax, 0
+call    _printf
+lea     rdi, aAppearsToRequi
+call    _puts
+lea     rax, asc_414E98
+mov     [rbp+indent], rax
+jmp     loc_40B7EE
+cmp     [rbp+errcount], 4
+jnz     short loc_40B797
+mov     rax, [rbp-19B8h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorOrMissing
+mov     eax, 0
+call    _printf
+lea     rax, asc_414EE5
+mov     [rbp+indent], rax
+jmp     short loc_40B7EE
+cmp     [rbp+errcount], 0
+jz      short loc_40B7EE
+mov     rax, [rbp-19B8h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aWarningFunctio
+mov     eax, 0
+call    _printf
+lea     rdi, aFailedForSomeT
+call    _puts
+lea     rax, asc_414E98
+mov     [rbp+indent], rax
+mov     [rbp+i], 0
+jmp     loc_40B8C4
+mov     eax, [rbp-19ACh]
+cdqe
+mov     eax, [rbp+rax*4-1980h]
+test    eax, eax
+jz      loc_40B8BD
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+lea     rax, [rbp-30h]
+add     rax, rdx
+mov     edx, [rbp-19ACh]
+add     edx, 30h
+mov     [rax], dl
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax]
+mov     rax, [rbp-19A0h]
+mov     rsi, rax
+lea     rdi, aSS_1
+mov     eax, 0
+call    _printf
+lea     rax, num_format
+mov     rax, [rax]
+mov     rdx, [rbp-1990h]
+mov     [rbp+var_19C8], rdx
+movsd   xmm0, qword ptr [rbp-19C8h]
+mov     rdi, rax
+mov     eax, 1
+call    _printf
+mov     eax, [rbp-19ACh]
+cdqe
+mov     edx, [rbp+rax*4-1980h]
+lea     rax, errormsg
+movsxd  rdx, edx
+mov     rdx, [rax+rdx*8]
+lea     rax, [rbp-30h]
+mov     rsi, rax
+lea     rdi, aSS_2
+mov     eax, 0
+call    _printf
+add     [rbp+i], 1
+cmp     [rbp+i], 3
+jle     loc_40B7FD
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    completereduce
+test    eax, eax
+jz      short loc_40B93B
+mov     rax, [rbp-19B8h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aDefinitionSSAs
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+lea     rax, [rbp-1320h]
+mov     rdi, rax
+call    freeunit
+jmp     loc_40BAC0
+mov     rax, [rbp-19B8h]
+mov     rax, [rax+40h]
+test    rax, rax
+jnz     short loc_40B98C
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aWarningNoInver
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+lea     rax, [rbp-1320h]
+mov     rdi, rax
+call    freeunit
+jmp     loc_40BAC0
+mov     rsi, [rbp-19B8h]
+lea     rax, [rbp-1970h]
+mov     ecx, 1
+mov     edx, 1
+mov     rdi, rax
+call    evalfunc
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jz      short loc_40BA3A
+mov     rax, [rbp-19B8h]
+mov     rcx, [rax+40h]
+mov     rax, [rbp-19B8h]
+mov     rdx, [rax+38h]
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorInInverse
+mov     eax, 0
+call    _printf
+lea     rax, errormsg
+mov     edx, [rbp-19A4h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8]
+mov     rsi, rax
+lea     rdi, aS_5
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+lea     rax, [rbp-1320h]
+mov     rdi, rax
+call    freeunit
+jmp     loc_40BAC0
+lea     rdx, [rbp-1320h]
+lea     rax, [rbp-1970h]
+mov     rsi, rdx
+mov     rdi, rax
+call    divunit
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    unit2num
+test    eax, eax
+jnz     short loc_40BA90
+movsd   xmm0, qword ptr [rbp-1330h]
+movsd   xmm1, cs:qword_416DA0
+subsd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DB0
+andpd   xmm0, xmm1
+ucomisd xmm0, cs:qword_416DF0
+jbe     short loc_40BAAE
+mov     rax, [rbp-19B8h]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aInverseIsNotTh
+mov     eax, 0
+call    _printf
+lea     rax, [rbp-1970h]
+mov     rdi, rax
+call    freeunit
+jmp     short loc_40BAC0
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40BAD4
+call    ___stack_chk_fail
+add     rsp, 19C8h
+pop     rbx
+pop     rbp
+retn

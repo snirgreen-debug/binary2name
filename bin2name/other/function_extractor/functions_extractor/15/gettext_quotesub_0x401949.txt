@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+msgid], rdi
+mov     [rbp+s], esi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _gettext
+mov     [rbp+translation], rax
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-18h]
+jz      short loc_401978
+mov     rax, [rbp-10h]
+jmp     short locret_4019EF
+call    locale_charset
+mov     [rbp+locale_code], rax
+mov     rax, [rbp-8]
+mov     esi, 404168h
+mov     rdi, rax
+call    c_strcasecmp
+test    eax, eax
+jnz     short loc_4019AF
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 60h
+jnz     short loc_4019A8
+mov     eax, 40416Eh
+jmp     short locret_4019EF
+mov     eax, 404172h
+jmp     short locret_4019EF
+mov     rax, [rbp-8]
+mov     esi, 404176h
+mov     rdi, rax
+call    c_strcasecmp
+test    eax, eax
+jnz     short loc_4019DD
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 60h
+jnz     short loc_4019D6
+mov     eax, 40417Eh
+jmp     short locret_4019EF
+mov     eax, 404182h
+jmp     short locret_4019EF
+cmp     [rbp+s], 9
+jnz     short loc_4019EA
+mov     eax, 404185h
+jmp     short locret_4019EF
+mov     eax, 404187h
+leave
+retn

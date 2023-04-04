@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     eax, edi
+mov     [rbp+var_4], al
+movsx   edx, byte ptr [rbp-4]
+lea     rax, off_619410
+mov     rax, [rax]
+mov     esi, edx
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+setnz   al
+movzx   eax, al
+leave
+retn

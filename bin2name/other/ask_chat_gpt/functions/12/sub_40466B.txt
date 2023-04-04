@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-30h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-38h]
+mov     [rbp+var_8], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4046DC
+mov     rax, cs:qword_6474E0
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4108B9
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+dir_fd], edi
+mov     eax, cs:ftsoptions
+and     eax, 200h
+test    eax, eax
+jz      loc_403576
+cmp     [rbp+dir_fd], 0FFFFFF9Ch
+jz      short loc_403510
+cmp     [rbp+dir_fd], 0
+jns     short loc_403510
+mov     ecx, 42AF90h
+mov     edx, 78h
+mov     esi, 42AAB0h
+mov     edi, 42AAC0h
+call    ___assert_fail
+mov     eax, [rbp-4]
+mov     cs:state_0.cwd_dir_fd, eax
+mov     eax, cs:curr_fd
+test    eax, eax
+jns     short loc_403576
+cmp     [rbp+dir_fd], 0FFFFFF9Ch
+jnz     short loc_403535
+mov     cs:curr_fd, 0FFFFFF9Ch
+jmp     short loc_403576
+cmp     [rbp+dir_fd], 0
+js      short loc_40354D
+mov     eax, [rbp-4]
+mov     edi, eax
+call    dup_cloexec
+mov     cs:curr_fd, eax
+jmp     short loc_403576
+mov     eax, cs:curr_fd
+test    eax, eax
+jns     short loc_403576
+cmp     [rbp+dir_fd], 0
+jns     short loc_403576
+mov     ecx, 42AF90h
+mov     edx, 8Ah
+mov     esi, 42AAB0h
+mov     edi, 42AAE2h
+call    ___assert_fail
+nop
+leave
+retn

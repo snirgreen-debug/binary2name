@@ -1,0 +1,13 @@
+push    rbx
+mov     rbx, pibIn
+jmp     short loc_40A8F8
+mov     rdi, pibIn
+call    ReadParameter
+mov     edx, 8
+mov     esi, 7
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40A8F0
+pop     pibIn
+retn

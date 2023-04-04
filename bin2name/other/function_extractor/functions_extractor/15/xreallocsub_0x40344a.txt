@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], rdi
+mov     [rbp+n], rsi
+cmp     [rbp+n], 0
+jnz     short loc_40347B
+cmp     [rbp+p], 0
+jz      short loc_40347B
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     short locret_4034A9
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     short loc_4034A5
+cmp     [rbp+n], 0
+jz      short loc_4034A5
+call    xalloc_die
+mov     rax, [rbp-8]
+leave
+retn

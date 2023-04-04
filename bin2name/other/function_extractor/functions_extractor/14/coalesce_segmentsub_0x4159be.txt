@@ -1,0 +1,127 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_58], rdi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_38], 0
+mov     rax, [rbp-60h]
+mov     [rbp+var_40], rax
+jmp     short loc_4159FC
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    wsnode_len
+add     [rbp+var_38], rax
+mov     rax, [rbp-40h]
+mov     rax, [rax+8]
+mov     [rbp+var_40], rax
+cmp     [rbp+var_40], 0
+jz      short loc_415A11
+mov     rax, [rbp-40h]
+mov     eax, [rax+10h]
+and     eax, 10h
+test    eax, eax
+jnz     short loc_4159E0
+cmp     [rbp+var_40], 0
+jz      short loc_415A28
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    wsnode_len
+add     [rbp+var_38], rax
+mov     rax, [rbp-40h]
+mov     [rbp+var_28], rax
+mov     rax, [rbp-38h]
+add     rax, 1
+mov     rdi, rax
+call    _malloc
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     short loc_415A5C
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _wsplt_nomem
+jmp     locret_415B8E
+mov     rax, [rbp-20h]
+mov     [rbp+dest], rax
+mov     rax, [rbp-60h]
+mov     [rbp+var_40], rax
+mov     [rbp+var_44], 0
+jmp     loc_415B26
+mov     rax, [rbp-40h]
+mov     rax, [rax+8]
+mov     [rbp+var_18], rax
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    wsnode_ptr
+mov     [rbp+src], rax
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    wsnode_len
+mov     [rbp+n], rax
+mov     rdx, [rbp-8]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rax, [rbp-8]
+add     [rbp+dest], rax
+mov     rax, [rbp-40h]
+cmp     rax, [rbp-60h]
+jz      short loc_415B1E
+mov     rax, [rbp-60h]
+mov     edx, [rax+10h]
+mov     rax, [rbp-40h]
+mov     eax, [rax+10h]
+and     eax, 4
+or      edx, eax
+mov     rax, [rbp-60h]
+mov     [rax+10h], edx
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    wsnode_remove
+mov     rax, [rbp-40h]
+cmp     rax, [rbp-28h]
+setz    al
+movzx   eax, al
+mov     [rbp+var_44], eax
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    wsnode_free
+mov     rax, [rbp-18h]
+mov     [rbp+var_40], rax
+cmp     [rbp+var_44], 0
+jz      loc_415A78
+mov     rax, [rbp-30h]
+mov     byte ptr [rax], 0
+mov     rax, [rbp-60h]
+mov     eax, [rax+10h]
+and     eax, 0FFFFFFEFh
+mov     edx, eax
+mov     rax, [rbp-60h]
+mov     [rax+10h], edx
+mov     rax, [rbp-60h]
+mov     eax, [rax+10h]
+and     eax, 2
+test    eax, eax
+jz      short loc_415B6A
+mov     rax, [rbp-60h]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    _free
+jmp     short loc_415B7D
+mov     rax, [rbp-60h]
+mov     eax, [rax+10h]
+or      eax, 2
+mov     edx, eax
+mov     rax, [rbp-60h]
+mov     [rax+10h], edx
+mov     rax, [rbp-60h]
+mov     rdx, [rbp-20h]
+mov     [rax+18h], rdx
+mov     eax, 0
+leave
+retn

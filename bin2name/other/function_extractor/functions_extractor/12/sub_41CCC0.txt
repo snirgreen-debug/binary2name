@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    sub_41C9B9
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_41CCE4
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fflush
+mov     cs:dword_6420D8, 0
+nop
+leave
+retn

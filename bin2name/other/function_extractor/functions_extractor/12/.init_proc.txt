@@ -1,0 +1,7 @@
+sub     rsp, 8
+mov     rax, cs:__gmon_start___ptr
+test    rax, rax
+jz      short loc_401F2D
+call    __gmon_start__
+add     rsp, 8
+retn

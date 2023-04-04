@@ -1,0 +1,86 @@
+test    ppvm, ppvm
+jz      locret_406BCC
+test    szName, szName
+jz      locret_406BCC
+push    r15
+push    r14
+push    r13
+push    r12
+mov     r13, hType
+push    rbp
+push    rbx
+mov     rbx, ppvm
+mov     edi, 20h
+mov     r12, szEqn
+mov     rbp, szName
+sub     rsp, 8
+call    _malloc
+test    rax, rax
+mov     r14, rax
+jz      loc_406BD0
+mov     rdi, szName
+call    _strlen
+lea     r15, [rax+1]
+mov     rdi, r15
+call    _malloc
+test    rax, rax
+jz      loc_406BFC
+mov     rdx, r15
+mov     rsi, szName
+mov     rdi, rax
+call    _memcpy
+test    szEqn, szEqn
+mov     [pvmNew], rax
+jz      short loc_406BF8
+mov     rdi, szEqn
+call    _strlen
+lea     szName, [rax+1]
+mov     rdi, rbp
+call    _malloc
+test    rax, rax
+jz      short loc_406C17
+mov     rdx, rbp
+mov     rsi, szEqn
+mov     rdi, rax
+call    _memcpy
+mov     [pvmNew+8], rax
+mov     rax, [ppvm]
+mov     [pvmNew+10h], hType
+mov     [ppvm], pvmNew
+mov     [pvmNew+18h], rax
+add     rsp, 8
+pop     ppvm
+pop     rbp
+pop     szEqn
+pop     hType
+pop     pvmNew
+pop     r15
+rep retn
+add     rsp, 8
+mov     rdx, szName
+mov     ecx, 4131E8h
+pop     ppvm
+pop     szName
+pop     szEqn
+pop     hType
+pop     r14
+pop     r15
+mov     esi, 8004h
+xor     edi, edi
+jmp     ReportError
+xor     eax, eax
+jmp     short loc_406BAC
+mov     ecx, 4131C0h
+mov     rdx, szName
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     loc_406B7D
+mov     ecx, 4131C0h
+mov     rdx, szEqn
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     loc_406BAC

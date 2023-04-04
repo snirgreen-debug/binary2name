@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     esi, 433BF0h
+mov     edi, 5
+call    _setlocale
+mov     esi, 433BF0h
+mov     edi, 0
+call    _setlocale
+mov     esi, 433BF8h
+mov     edi, 433C45h
+call    _bindtextdomain
+mov     edi, 433C45h
+call    _textdomain
+nop
+pop     rbp
+retn

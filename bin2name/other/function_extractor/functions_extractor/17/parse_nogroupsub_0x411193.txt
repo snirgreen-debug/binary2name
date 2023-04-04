@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-8]
+movss   xmm0, cs:dword_42F990
+movss   dword ptr [rax+24h], xmm0
+mov     eax, 1
+leave
+retn

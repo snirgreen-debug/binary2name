@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _unlink
+mov     [rbp+var_4], eax
+mov     eax, [rbp-4]
+leave
+retn

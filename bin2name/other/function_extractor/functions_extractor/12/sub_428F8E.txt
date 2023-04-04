@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0B0h
+mov     [rbp+var_A8], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-0A0h]
+mov     rax, [rbp-0A8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42FC70
+test    eax, eax
+jz      short loc_428FD3
+mov     eax, 0
+jmp     short loc_428FE9
+mov     eax, [rbp-88h]
+and     eax, 0F000h
+cmp     eax, 4000h
+setnz   al
+movzx   eax, al
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_428FFD
+call    ___stack_chk_fail
+leave
+retn

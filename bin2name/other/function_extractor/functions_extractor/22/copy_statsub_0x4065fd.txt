@@ -1,0 +1,145 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+ifstat], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     eax, [rax+18h]
+and     eax, 1FFh
+mov     [rbp+mode], eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    get_stat_atime
+mov     [rbp+timespec.tv_sec], rax
+mov     [rbp+timespec.tv_nsec], rdx
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    get_stat_mtime
+mov     [rbp+timespec.tv_sec+10h], rax
+mov     [rbp+timespec.tv_nsec+10h], rdx
+mov     eax, cs:decompress
+test    eax, eax
+jz      short loc_40668C
+mov     rax, cs:time_stamp.tv_nsec
+test    rax, rax
+js      short loc_40668C
+mov     rdx, [rbp-20h]
+mov     rax, cs:time_stamp.tv_sec
+cmp     rdx, rax
+jnz     short loc_406685
+mov     rdx, [rbp-18h]
+mov     rax, cs:time_stamp.tv_nsec
+cmp     rdx, rax
+jz      short loc_40668C
+mov     eax, 1
+jmp     short loc_406691
+mov     eax, 0
+mov     [rbp+restoring], al
+and     [rbp+restoring], 1
+cmp     [rbp+restoring], 0
+jz      short loc_4066B4
+mov     rax, cs:time_stamp.tv_sec
+mov     rdx, cs:time_stamp.tv_nsec
+mov     [rbp+timespec.tv_sec+10h], rax
+mov     [rbp+timespec.tv_nsec+10h], rdx
+mov     eax, cs:ofd
+lea     rdx, [rbp-30h]
+mov     esi, 64CF20h
+mov     edi, eax
+call    fdutimens
+test    eax, eax
+jnz     short loc_406707
+cmp     [rbp+restoring], 0
+jz      loc_406770
+mov     eax, cs:verbose
+cmp     eax, 1
+jle     loc_406770
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     edx, 64CF20h
+mov     esi, 410C1Fh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_406770
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_40673B
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 40FE2Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_40674F
+mov     cs:exit_code, 2
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_406770
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-3Ch]
+mov     [rdx], eax
+mov     edi, 64CF20h
+call    _perror
+mov     rax, [rbp-58h]
+mov     edx, [rax+20h]
+mov     eax, cs:ofd
+mov     ecx, edx
+mov     edx, 0FFFFFFFFh
+mov     esi, 64CF20h
+mov     edi, eax
+call    do_chown
+mov     eax, cs:ofd
+mov     edx, [rbp-40h]
+mov     esi, edx
+mov     edi, eax
+call    _fchmod
+mov     [rbp+r], eax
+cmp     [rbp+r], 0
+jz      short loc_406814
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e_0], eax
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_4067DF
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 40FE2Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_4067F3
+mov     cs:exit_code, 2
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_406814
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-34h]
+mov     [rdx], eax
+mov     edi, 64CF20h
+call    _perror
+mov     rax, [rbp-58h]
+mov     edx, [rax+1Ch]
+mov     eax, cs:ofd
+mov     ecx, 0FFFFFFFFh
+mov     esi, 64CF20h
+mov     edi, eax
+call    do_chown
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_406847
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], rdi
+mov     eax, esi
+mov     [rbp+required], al
+mov     rax, [rbp-8]
+movzx   eax, word ptr [rax+70h]
+cmp     ax, 0Bh
+jz      short loc_4246B9
+call    _abort
+cmp     [rbp+required], 0
+jz      short loc_4246C6
+mov     edx, 2
+jmp     short loc_4246CB
+mov     edx, 1
+mov     rax, [rbp-8]
+mov     [rax+0A8h], rdx
+nop
+leave
+retn

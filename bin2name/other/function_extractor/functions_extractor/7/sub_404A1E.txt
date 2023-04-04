@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rdx, cs:off_6112E8
+mov     rsi, [rbp-10h]
+mov     rax, [rbp-8]
+sub     rsp, 8
+push    0
+mov     r9d, 0
+mov     r8d, 0
+mov     ecx, 0
+mov     rdi, rax
+call    sub_4050E4
+add     rsp, 10h
+nop
+leave
+retn

@@ -1,0 +1,44 @@
+push    rbp
+push    rbx
+movsxd  rbx, esi
+mov     rbp, rdi
+sub     rsp, 18h
+mov     rax, [rdi+18h]
+add     rbx, [rdi+8]
+test    rax, rax
+jz      short loc_403C00
+cmp     byte ptr [rax], 0
+jz      short loc_403C00
+mov     rsi, rbx
+nop     dword ptr [rax+00000000h]
+sub     rsi, 1
+cmp     byte ptr [rsi], 0Ah
+jnz     short loc_403BE8
+mov     byte ptr [rsi], 0
+sub     rsi, rbx
+jnz     short loc_403C30
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn
+mov     rdi, [rbp+0]
+test    rdi, rdi
+jz      short loc_403C1A
+mov     [rsp+28h+var_1C], esi
+call    _feof
+test    eax, eax
+jz      short loc_403BDE
+mov     esi, [rsp+0Ch]
+cmp     esi, 1000h
+jz      short loc_403BDE
+mov     byte ptr [rbx], 0
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn
+mov     rdi, [rbp+0]
+add     rsp, 18h
+mov     edx, 1
+pop     rbx
+pop     rbp
+jmp     _fseek

@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+movsd   xmm1, qword ptr [rax+640h]
+mov     rax, [rbp-20h]
+movsd   xmm0, qword ptr [rax+640h]
+mulsd   xmm0, xmm1
+mov     rax, [rbp-18h]
+movsd   qword ptr [rax+640h], xmm0
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4072B0
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jnz     short loc_4074D7
+mov     rax, [rbp-20h]
+lea     rdx, [rax+320h]
+mov     rax, [rbp-18h]
+add     rax, 320h
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4072B0
+mov     [rbp+var_4], eax
+mov     eax, [rbp-4]
+leave
+retn

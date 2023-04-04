@@ -1,0 +1,113 @@
+push    r12
+push    rbp
+mov     rbp, pszFileOut
+push    rbx
+mov     esi, 100h
+mov     rbx, pszFileIn
+mov     edi, 1
+call    _calloc
+test    rax, rax
+mov     [pszFileIn], rax
+jz      loc_406220
+mov     esi, 100h
+mov     edi, 1
+call    _calloc
+test    rax, rax
+mov     [pszFileOut+0], rax
+jnz     short loc_4060D0
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+mov     esi, 412DBFh
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     rdx, cs:stdin@@GLIBC_2_2_5
+mov     rdi, [pszFileIn]
+mov     esi, 100h
+call    _fgets
+mov     rdi, [pszFileIn]
+mov     esi, 412DD0h
+call    _strtok
+test    rax, rax
+mov     [pszFileIn], rax
+jz      short loc_406177
+cmp     byte ptr [rax], 0
+jnz     loc_406198
+mov     rdi, [pszFileOut+0]
+test    rdi, rdi
+jz      short loc_406180
+cmp     byte ptr [rdi], 0
+jz      short loc_406180
+mov     r12, [pszFileIn]
+test    r12, r12
+jz      loc_4061E0
+mov     rdi, r12
+call    _strlen
+lea     rsi, [rax+1]
+mov     rdi, r12
+call    _realloc
+test    rax, rax
+mov     [pszFileIn], rax
+jz      loc_406240
+mov     pszFileIn, [pszFileOut+0]
+test    rbx, rbx
+jz      loc_406210
+mov     rdi, rbx
+call    _strlen
+lea     rsi, [rax+1]
+mov     rdi, rbx
+call    _realloc
+test    rax, rax
+mov     [pszFileOut+0], rax
+jz      short loc_4061F0
+pop     rbx
+pop     pszFileOut
+pop     r12
+retn
+call    _free
+mov     qword ptr [pszFileOut+0], 0
+pop     pszFileIn
+pop     pszFileOut
+pop     r12
+retn
+mov     esi, 412DD4h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     rdx, cs:stdin@@GLIBC_2_2_5
+mov     rdi, [pszFileOut+0]
+mov     esi, 100h
+call    _fgets
+mov     rdi, [pszFileOut+0]
+mov     esi, 412DD0h
+call    _strtok
+mov     rdi, rax
+mov     [pszFileOut+0], rax
+jmp     loc_406117
+mov     esi, 1
+jmp     loc_406139
+pop     rbx
+pop     pszFileOut
+pop     r12
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+jmp     ReportError
+mov     esi, 1
+jmp     loc_406166
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+jmp     loc_4060A5
+xor     ecx, ecx
+mov     edx, 412DAFh
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+jmp     loc_40614D

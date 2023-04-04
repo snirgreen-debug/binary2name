@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+cookie_path], rdi
+mov     [rbp+path], rsi
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    path_matches
+leave
+retn

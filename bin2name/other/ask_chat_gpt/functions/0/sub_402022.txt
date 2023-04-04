@@ -1,0 +1,65 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_4], 0
+jmp     short loc_40209E
+mov     edx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 9
+jnz     short loc_402074
+mov     rax, [rbp-28h]
+mov     esi, 20h
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+and     eax, 7
+test    eax, eax
+jnz     short loc_402053
+jmp     short loc_40209A
+mov     edx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movsx   edx, al
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_4], 1
+add     [rbp+var_1C], 1
+mov     edx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jz      short loc_4020CC
+mov     edx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 0Ah
+jnz     loc_40203E
+mov     edx, [rbp-1Ch]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movsx   edx, al
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_1C], 1
+mov     eax, [rbp-1Ch]
+leave
+retn

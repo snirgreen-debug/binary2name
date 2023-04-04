@@ -1,0 +1,1 @@
+extrn history_truncate_file:near

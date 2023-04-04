@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+push    c
+mov     [rbp+s], rdi
+mov     [rbp+n], esi
+cmp     [rbp+s], 0
+jnz     short loc_40C70B
+mov     ebx, 0FFFFFFFFh
+jmp     short loc_40C752
+mov     c, cs:crc_4630
+cmp     [rbp+n], 0
+jz      short loc_40C752
+mov     ecx, ebx
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+s], rdx
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+xor     eax, ecx
+movzx   eax, al
+cdqe
+mov     rax, [rax*8+4116E0h]
+mov     rdx, c
+shr     rdx, 8
+xor     rax, rdx
+mov     c, rax
+sub     [rbp+n], 1
+cmp     [rbp+n], 0
+jnz     short loc_40C718
+mov     cs:crc_4630, c
+mov     eax, 0FFFFFFFFh
+xor     rax, c
+pop     c
+pop     rbp
+retn

@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+path], rdi
+mov     [rbp+dir], rsi
+mov     [rbp+file], rdx
+mov     rax, [rbp-18h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strrchr
+mov     [rbp+last_slash], rax
+cmp     [rbp+last_slash], 0
+jnz     short loc_426C13
+mov     edi, 4372DFh
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+jmp     short loc_426C4A
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+add     rax, 1
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rdi, rax
+call    url_unescape
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    url_unescape
+nop
+leave
+retn

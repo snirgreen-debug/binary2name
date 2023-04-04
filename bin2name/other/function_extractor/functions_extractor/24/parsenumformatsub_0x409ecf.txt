@@ -1,0 +1,441 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0B8h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rax, a0x1p1
+mov     [rbp+two], rax
+lea     rax, aAbcdefghijklmn
+mov     [rbp+valid], rax
+mov     rax, cs:format_types_7163
+test    rax, rax
+jnz     loc_40A0A3
+lea     rsi, aParsenumformat
+mov     edi, 9
+call    mymalloc
+mov     cs:format_types_7163, rax
+mov     rax, cs:format_types_7163
+mov     dword ptr [rax], 45654767h
+mov     word ptr [rax+4], 66h
+mov     rdx, 3FF3333333333333h
+lea     rax, [rbp-70h]
+mov     [rbp+var_B8], rdx
+movsd   xmm0, qword ptr [rbp-0B8h]
+lea     rsi, a1f
+mov     rdi, rax
+mov     eax, 1
+call    _sprintf
+lea     rax, [rbp-70h]
+mov     rdi, rax
+call    _strlen
+cmp     rax, 3
+jnz     short loc_409FC1
+movzx   eax, byte ptr [rbp-70h]
+cmp     al, 31h
+jnz     short loc_409FC1
+movzx   eax, byte ptr [rbp-6Eh]
+cmp     al, 32h
+jnz     short loc_409FC1
+mov     rdx, cs:format_types_7163
+mov     rax, rdx
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rsi, rax
+mov     eax, 0
+mov     rdi, rsi
+repne scasb
+mov     rax, rcx
+not     rax
+sub     rax, 1
+add     rax, rdx
+mov     word ptr [rax], 46h
+mov     rdx, 4000000000000000h
+lea     rax, [rbp-70h]
+mov     [rbp+var_B8], rdx
+movsd   xmm0, qword ptr [rbp-0B8h]
+lea     rsi, a0a
+mov     rdi, rax
+mov     eax, 1
+call    _sprintf
+mov     rdx, [rbp-88h]
+lea     rax, [rbp-70h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40A040
+mov     rdx, cs:format_types_7163
+mov     rax, rdx
+mov     rcx, 0FFFFFFFFFFFFFFFFh
+mov     rsi, rax
+mov     eax, 0
+mov     rdi, rsi
+repne scasb
+mov     rax, rcx
+not     rax
+sub     rax, 1
+add     rax, rdx
+mov     word ptr [rax], 4161h
+mov     byte ptr [rax+2], 0
+mov     rdx, 4093480000000000h
+lea     rax, [rbp-70h]
+mov     [rbp+var_B8], rdx
+movsd   xmm0, qword ptr [rbp-0B8h]
+lea     rsi, a0f
+mov     rdi, rax
+mov     eax, 1
+call    _sprintf
+lea     rax, [rbp-70h]
+mov     rdi, rax
+call    _strlen
+cmp     rax, 2
+jbe     short loc_40A09C
+movzx   eax, byte ptr [rbp-70h]
+cmp     al, 31h
+jnz     short loc_40A09C
+movzx   eax, byte ptr [rbp-6Eh]
+cmp     al, 32h
+jnz     short loc_40A09C
+mov     cs:badflag_7165, 0
+jmp     short loc_40A0A3
+mov     cs:badflag_7165, 27h
+mov     [rbp+errors], 0
+lea     rax, num_format
+mov     rax, [rax]
+mov     [rbp+p], rax
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+cmp     al, 25h
+jz      short loc_40A0FD
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSNumberFormatS
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     short loc_40A167
+lea     rax, num_format
+mov     rax, [rax]
+mov     esi, 25h
+mov     rdi, rax
+call    _strrchr
+mov     rdx, rax
+lea     rax, num_format
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_40A15F
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSOnlyOneAllowe
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+add     [rbp+p], 1
+jmp     short loc_40A167
+add     [rbp+p], 1
+lea     rax, num_format
+mov     rax, [rax]
+mov     esi, 2Eh
+mov     rdi, rax
+call    _strchr
+mov     [rbp+dotptr], rax
+cmp     [rbp+dotptr], 0
+jz      loc_40A227
+lea     rax, num_format
+mov     rax, [rax]
+mov     esi, 2Eh
+mov     rdi, rax
+call    _strrchr
+cmp     rax, [rbp-78h]
+jz      short loc_40A227
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSOnlyOneAllowe_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     short loc_40A227
+mov     rax, [rbp-90h]
+movzx   edx, byte ptr [rax]
+movzx   eax, cs:badflag_7165
+cmp     dl, al
+jnz     short loc_40A21F
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSDigitGrouping
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+add     [rbp+p], 1
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40A258
+mov     rax, [rbp-90h]
+movzx   eax, byte ptr [rax]
+movsx   edx, al
+mov     rax, cs:format_flags_7164
+mov     esi, edx
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jnz     short loc_40A1DB
+lea     rax, num_format
+mov     rax, [rax]
+lea     rsi, needle
+mov     rdi, rax
+call    _strstr
+mov     [rbp+lptr], rax
+cmp     [rbp+lptr], 0
+jnz     short loc_40A2AC
+lea     rax, num_format
+mov     rax, [rax]
+lea     rsi, aLl
+mov     rdi, rax
+call    _strstr
+mov     [rbp+lptr], rax
+cmp     [rbp+lptr], 0
+jz      short loc_40A2E4
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     rcx, [rbp-98h]
+lea     rsi, aSTypeLengthMod
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     short loc_40A34A
+lea     rax, num_format
+mov     rax, [rax]
+lea     rsi, aHjlltz
+mov     rdi, rax
+call    _strpbrk
+mov     [rbp+lptr], rax
+cmp     [rbp+lptr], 0
+jz      short loc_40A34A
+mov     rax, [rbp-98h]
+movzx   eax, byte ptr [rax]
+movsx   ecx, al
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSTypeLengthMod_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+mov     rdx, [rbp-80h]
+mov     rax, [rbp-90h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strspn
+mov     [rbp+ndx], eax
+mov     eax, [rbp-0A4h]
+movsxd  rbx, eax
+mov     rax, [rbp-90h]
+mov     rdi, rax
+call    _strlen
+cmp     rbx, rax
+jnb     short loc_40A3CB
+mov     eax, [rbp-0A4h]
+movsxd  rdx, eax
+mov     rax, [rbp-90h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   ecx, al
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSInvalidCharac
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+cmp     [rbp+errors], 0
+jz      short loc_40A438
+lea     rax, num_format
+mov     rcx, [rax]
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSInvalidNumber
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSValidSpecific
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0FFFFFFFFh
+jmp     loc_40A6BB
+lea     rcx, [rbp-0A0h]
+mov     rax, [rbp-90h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtol
+mov     edx, eax
+lea     rax, num_format
+mov     [rax+8], edx
+mov     rax, [rbp-0A0h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jnz     loc_40A4F5
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rdx, [rbp-0A0h]
+add     rdx, 1
+movzx   edx, byte ptr [rdx]
+movsx   rdx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jz      short loc_40A4D3
+mov     rax, [rbp-0A0h]
+lea     rcx, [rax+1]
+lea     rax, [rbp-0A0h]
+mov     edx, 0Ah
+mov     rsi, rax
+mov     rdi, rcx
+call    _strtol
+mov     edx, eax
+lea     rax, num_format
+mov     [rax+0Ch], edx
+jmp     short loc_40A503
+lea     rax, num_format
+mov     dword ptr [rax+0Ch], 0
+mov     rax, [rbp-0A0h]
+add     rax, 1
+mov     [rbp+nonum], rax
+jmp     short loc_40A503
+lea     rax, num_format
+mov     dword ptr [rax+0Ch], 6
+mov     rax, [rbp-0A0h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40A545
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSMissingFormat
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     loc_40A612
+mov     rax, [rbp-0A0h]
+movzx   eax, byte ptr [rax]
+movsx   edx, al
+mov     rax, cs:format_types_7163
+mov     esi, edx
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_40A5CC
+mov     rax, [rbp-0A0h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40A5B6
+mov     rax, [rbp-0A0h]
+lea     rcx, [rax+1]
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSInvalidCharac_0
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     short loc_40A612
+mov     rax, [rbp-0A0h]
+movzx   edx, byte ptr [rax]
+lea     rax, num_format
+mov     [rax+10h], dl
+jmp     short loc_40A612
+mov     rsi, cs:format_types_7163
+mov     rax, [rbp-0A0h]
+movzx   eax, byte ptr [rax]
+movsx   ecx, al
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     r8, rsi
+lea     rsi, aSInvalidFormat
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+lea     rax, num_format
+mov     eax, [rax+0Ch]
+test    eax, eax
+jnz     short loc_40A64C
+lea     rax, num_format
+movzx   eax, byte ptr [rax+10h]
+cmp     al, 47h
+jz      short loc_40A63E
+lea     rax, num_format
+movzx   eax, byte ptr [rax+10h]
+cmp     al, 67h
+jnz     short loc_40A64C
+lea     rax, num_format
+mov     dword ptr [rax+0Ch], 1
+cmp     [rbp+errors], 0
+jz      short loc_40A6B6
+lea     rax, num_format
+mov     rcx, [rax]
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSInvalidNumber
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSValidSpecific
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0FFFFFFFFh
+jmp     short loc_40A6BB
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40A6CF
+call    ___stack_chk_fail
+add     rsp, 0B8h
+pop     rbx
+pop     rbp
+retn

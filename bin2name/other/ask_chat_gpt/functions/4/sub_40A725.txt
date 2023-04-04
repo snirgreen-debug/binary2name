@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+movzx   eax, cs:byte_63BFA8
+test    al, al
+jz      short loc_40A748
+call    sub_408BAE
+mov     rdi, rax
+call    sub_40A66F
+mov     cs:byte_63BFA8, 0
+nop
+pop     rbp
+retn

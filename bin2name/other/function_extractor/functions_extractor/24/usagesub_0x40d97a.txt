@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 1
+call    findunitsfile
+mov     [rbp+unitsfile], rax
+lea     rax, progname
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUsageSOptionsF
+mov     eax, 0
+call    _printf
+mov     esi, 8
+lea     rdi, aOptionsHHelpSh
+mov     eax, 0
+call    _printf
+lea     rdi, aHHistorySpecif
+call    _puts
+mov     edx, 8
+mov     esi, 67h
+lea     rdi, aLLogSpecifyAFi
+mov     eax, 0
+call    _printf
+cmp     [rbp+unitsfile], 0
+jnz     short loc_40DA0C
+lea     rsi, path
+lea     rdi, aUnitsDataFileS
+mov     eax, 0
+call    _printf
+jmp     short loc_40DA24
+mov     rax, [rbp-8]
+mov     rsi, rax
+lea     rdi, aToLearnAboutTh
+mov     eax, 0
+call    _printf
+lea     rdi, aReportBugsToAd
+call    _puts
+nop
+leave
+retn

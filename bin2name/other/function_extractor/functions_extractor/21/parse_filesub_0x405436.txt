@@ -1,0 +1,153 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 430h
+mov     [rbp+script], rdi
+mov     [rbp+label], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+label], 0
+jz      short loc_405488
+mov     rcx, [rbp-430h]
+mov     rax, [rbp-428h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    seek_label
+jmp     short loc_4054A1
+mov     rax, [rbp-428h]
+mov     rdi, rax
+call    _rewind
+mov     cs:global_line_counter, 0
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    get_script_line
+jmp     loc_4056E6
+movzx   eax, byte ptr [rbp-410h]
+mov     [rbp+command], al
+movsx   eax, byte ptr [rbp-411h]
+sub     eax, 2Ah
+cmp     eax, 49h
+ja      def_4054E9
+mov     eax, eax
+mov     rax, [rax*8+409608h]
+jmp     rax
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_tutorial
+jmp     loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_instruction
+jmp     loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_clear
+jmp     loc_4056E6
+lea     rcx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    do_goto
+jmp     loc_4056E6
+mov     rax, [rbp-428h]
+mov     rdi, rax
+call    do_exit
+jmp     loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_query
+jmp     loc_4056E6
+movzx   eax, cs:global_resp_flag
+movzx   edx, al
+lea     rcx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rcx
+mov     rdi, rax
+call    do_goto
+jmp     loc_4056E6
+movzx   eax, cs:global_resp_flag
+xor     eax, 1
+movzx   edx, al
+lea     rcx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rcx
+mov     rdi, rax
+call    do_goto
+jmp     loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_drill
+jmp     loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_speedtest
+jmp     loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_keybind
+jmp     loc_4056E6
+lea     rax, [rbp-410h]
+add     rax, 2
+mov     rdi, rax
+call    __update_last_label
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    get_script_line
+jmp     short loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_error_max_set
+jmp     short loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_on_failure_label_set
+jmp     short loc_4056E6
+lea     rdx, [rbp-410h]
+mov     rax, [rbp-428h]
+mov     rsi, rdx
+mov     rdi, rax
+call    do_menu
+jmp     short loc_4056E6
+mov     edi, 4095F3h
+call    _gettext
+mov     rdx, rax
+lea     rax, [rbp-410h]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+mov     rax, [rbp-428h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jz      loc_4054BF
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_405712
+call    ___stack_chk_fail
+leave
+retn

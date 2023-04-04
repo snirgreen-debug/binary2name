@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ignore], edi
+mov     eax, cs:proc_max
+cmp     eax, 1
+jle     short loc_404537
+mov     eax, cs:proc_max
+sub     eax, 1
+mov     cs:proc_max, eax
+nop
+pop     rbp
+retn

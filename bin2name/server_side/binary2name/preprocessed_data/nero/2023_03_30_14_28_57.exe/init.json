@@ -1,0 +1,105 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4196817,
+                "src": 4196768
+            },
+            {
+                "dst": 4196822,
+                "src": 4196817
+            },
+            {
+                "dst": 4196832,
+                "src": 4196822
+            },
+            {
+                "dst": 4196845,
+                "src": 4196832
+            },
+            {
+                "dst": 4196854,
+                "src": 4196845
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4196854
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4196768,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|reg|    |push|reg|    |mov|regd|edi|    |push|reg|    |push|reg|    |lea|reg|rip|+|0x20044e|    |push|rbp|    |lea|rbp|rip|+|0x20044e|    |push|rbx|    |mov|reg|rsi|    |mov|reg|rdx|    |sub|rbp|reg|    |sub|rsp|8|    |sar|rbp|3|    |call|0x4005a0|    "
+            },
+            {
+                "block_addr": 4196817,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "test|rbp|rbp|    |je|0x4009f6|    "
+            },
+            {
+                "block_addr": 4196822,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "xor|ebx|ebx|    |nop|dword|ptr|rax|+|rax|    |mov|rdx|r13|    |mov|rsi|r14|    |mov|edi|r15d|    |call|qword|ptr|r12|+|rbx*8|    "
+            },
+            {
+                "block_addr": 4196832,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ]
+                ],
+                "instructions": "mov|rdx|r13|    |mov|rsi|r14|    |mov|edi|r15d|    |call|qword|ptr|r12|+|rbx*8|    "
+            },
+            {
+                "block_addr": 4196845,
+                "constraints": [
+                    [
+                        4,
+                        []
+                    ]
+                ],
+                "instructions": "add|rbx|1|    |cmp|rbx|rbp|    |jne|0x4009e0|    "
+            },
+            {
+                "block_addr": 4196854,
+                "constraints": [
+                    [
+                        5,
+                        []
+                    ]
+                ],
+                "instructions": "add|rsp|8|    |pop|rbx|    |pop|rbp|    |pop|r12|    |pop|r13|    |pop|r14|    |pop|r15|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        6,
+                        [
+                            "<BV32 Extract(31, 0, fake_ret_value_19_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            }
+        ]
+    },
+    "func_name": "4196768"
+}

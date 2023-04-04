@@ -1,0 +1,145 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+script], rdi
+mov     [rbp+line], rsi
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-30h]
+mov     esi, 400h
+mov     rdi, rax
+call    _fgets
+mov     eax, cs:global_line_counter
+add     eax, 1
+mov     cs:global_line_counter, eax
+jmp     short loc_408749
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-30h]
+mov     esi, 400h
+mov     rdi, rax
+call    _fgets
+mov     eax, cs:global_line_counter
+add     eax, 1
+mov     cs:global_line_counter, eax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jnz     short loc_40877F
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    line_is_empty
+test    eax, eax
+jnz     short loc_408725
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 23h
+jz      short loc_408725
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 21h
+jz      short loc_408725
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jnz     loc_4088D7
+jmp     short loc_4087AF
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4087F5
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+mov     rax, [rbp-30h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   rax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     short loc_408795
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    utf8len
+mov     [rbp+numChars], eax
+cmp     [rbp+numChars], 0FFFFFFFFh
+jnz     short loc_408826
+mov     edi, 40AF80h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+cmp     [rbp+numChars], 1
+jg      short loc_408848
+mov     edi, 40AFADh
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+mov     rax, [rbp-30h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 3Ah
+jz      short loc_408873
+mov     edi, 40AFBBh
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Ah
+jz      short loc_4088D7
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 47h
+jz      short loc_4088D7
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 59h
+jz      short loc_4088D7
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 4Eh
+jz      short loc_4088D7
+mov     rax, [rbp-30h]
+add     rax, 2
+mov     rdi, rax
+call    utf8len
+mov     edx, eax
+mov     eax, cs:COLS@@NCURSES_TINFO_5_0_19991023
+cmp     edx, eax
+jle     short loc_4088D7
+mov     edi, 40AFC7h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+nop
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

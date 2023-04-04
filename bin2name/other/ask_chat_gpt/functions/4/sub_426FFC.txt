@@ -1,0 +1,176 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_58], rdi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_64], edx
+mov     [rbp+var_68], ecx
+mov     [rbp+var_6C], r8d
+mov     [rbp+var_70], r9d
+mov     rax, [rbp-58h]
+sar     rax, 2
+mov     edx, eax
+mov     rax, [rbp-58h]
+and     eax, 3
+test    rax, rax
+setz    al
+movzx   eax, al
+sub     edx, eax
+mov     eax, edx
+add     eax, 1DBh
+mov     [rbp+var_4C], eax
+mov     eax, [rbp-70h]
+sar     eax, 2
+mov     edx, eax
+mov     eax, [rbp-70h]
+and     eax, 3
+test    eax, eax
+setz    al
+movzx   eax, al
+sub     edx, eax
+mov     eax, edx
+add     eax, 1DBh
+mov     [rbp+var_48], eax
+mov     ecx, [rbp-4Ch]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+mov     esi, edx
+sub     esi, eax
+mov     ecx, [rbp-4Ch]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+shl     eax, 2
+add     eax, edx
+lea     edx, [rax*4+0]
+add     eax, edx
+sub     ecx, eax
+mov     edx, ecx
+mov     eax, edx
+shr     eax, 1Fh
+movzx   eax, al
+sub     esi, eax
+mov     eax, esi
+mov     [rbp+var_44], eax
+mov     ecx, [rbp-48h]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+mov     esi, edx
+sub     esi, eax
+mov     ecx, [rbp-48h]
+mov     edx, 51EB851Fh
+mov     eax, ecx
+imul    edx
+sar     edx, 3
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+shl     eax, 2
+add     eax, edx
+lea     edx, [rax*4+0]
+add     eax, edx
+sub     ecx, eax
+mov     edx, ecx
+mov     eax, edx
+shr     eax, 1Fh
+movzx   eax, al
+sub     esi, eax
+mov     eax, esi
+mov     [rbp+var_40], eax
+mov     eax, [rbp-44h]
+sar     eax, 2
+mov     [rbp+var_3C], eax
+mov     eax, [rbp-40h]
+sar     eax, 2
+mov     [rbp+var_38], eax
+mov     eax, [rbp-4Ch]
+sub     eax, [rbp-48h]
+mov     edx, eax
+mov     eax, [rbp-40h]
+sub     eax, [rbp-44h]
+add     edx, eax
+mov     eax, [rbp-3Ch]
+sub     eax, [rbp-38h]
+add     eax, edx
+mov     [rbp+var_34], eax
+mov     rax, [rbp-58h]
+mov     [rbp+var_30], rax
+mov     eax, [rbp-70h]
+cdqe
+mov     rdx, [rbp-30h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_28], rax
+mov     rdx, [rbp-28h]
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+shl     rax, 3
+add     rax, rdx
+lea     rdx, [rax*4+0]
+add     rdx, rax
+mov     rax, [rbp-60h]
+add     rdx, rax
+mov     eax, [rbp+10h]
+cdqe
+sub     rdx, rax
+mov     eax, [rbp-34h]
+cdqe
+add     rax, rdx
+mov     [rbp+var_20], rax
+mov     rdx, [rbp-20h]
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+mov     rdx, rax
+mov     eax, [rbp-64h]
+cdqe
+add     rdx, rax
+mov     eax, [rbp+18h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+shl     rax, 2
+mov     rdx, rax
+shl     rdx, 4
+sub     rdx, rax
+mov     eax, [rbp-68h]
+cdqe
+add     rdx, rax
+mov     eax, [rbp+20h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+shl     rax, 2
+mov     rdx, rax
+shl     rdx, 4
+sub     rdx, rax
+mov     eax, [rbp-6Ch]
+cdqe
+add     rdx, rax
+mov     eax, [rbp+28h]
+cdqe
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+pop     rbp
+retn

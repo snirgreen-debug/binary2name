@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     rax, [rbp-8]
+mov     edx, 1
+mov     esi, 2
+mov     rdi, rax
+call    url_escape_1
+leave
+retn

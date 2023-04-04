@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+buffer], rdi
+mov     [rbp+size], esi
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 0
+mov     edx, [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     eax, [rbp-0Ch]
+mov     rdi, rax
+call    _malloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+nop
+leave
+retn

@@ -1,0 +1,83 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 440h
+mov     [rbp+script], rdi
+mov     [rbp+label], rsi
+mov     [rbp+ref_line], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+label], 0
+jnz     short loc_408A4F
+mov     rax, [rbp-428h]
+mov     rdi, rax
+call    do_exit
+mov     rax, [rbp-430h]
+mov     rdi, rax
+call    __update_last_label
+mov     rax, [rbp-430h]
+mov     rdi, rax
+call    hash_label
+mov     [rbp+hash], eax
+mov     eax, [rbp-41Ch]
+cdqe
+mov     rax, [rax*8+60C820h]
+mov     [rbp+check_label], rax
+jmp     short loc_408ABE
+mov     rax, [rbp-418h]
+mov     rax, [rax]
+mov     rdx, [rbp-430h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_408ACA
+mov     rax, [rbp-418h]
+mov     rax, [rax+18h]
+mov     [rbp+check_label], rax
+cmp     [rbp+check_label], 0
+jnz     short loc_408A8C
+jmp     short loc_408ACB
+nop
+cmp     [rbp+check_label], 0
+jnz     short loc_408B19
+mov     edi, 40AFE0h
+call    _gettext
+mov     rcx, rax
+mov     rdx, [rbp-430h]
+lea     rax, [rbp-410h]
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rdx, [rbp-438h]
+lea     rax, [rbp-410h]
+mov     rsi, rdx
+mov     rdi, rax
+call    fatal_error
+mov     rax, [rbp-418h]
+mov     rcx, [rax+8]
+mov     rax, [rbp-428h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    _fseek
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_408B5F
+mov     edi, 40AFF5h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-438h]
+mov     rsi, rax
+mov     rdi, rdx
+call    fatal_error
+mov     rax, [rbp-418h]
+mov     eax, [rax+10h]
+mov     cs:global_line_counter, eax
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_408B84
+call    ___stack_chk_fail
+leave
+retn

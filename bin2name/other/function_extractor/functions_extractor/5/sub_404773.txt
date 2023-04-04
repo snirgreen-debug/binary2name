@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     r12, [rbp-28h]
+mov     rbx, [rbp-30h]
+cmp     r12, rbx
+jnz     short loc_40479A
+mov     eax, 0
+jmp     short loc_4047E2
+movzx   eax, byte ptr [r12]
+movzx   eax, al
+mov     edi, eax
+call    sub_405017
+mov     [rbp+var_12], al
+movzx   eax, byte ptr [rbx]
+movzx   eax, al
+mov     edi, eax
+call    sub_405017
+mov     [rbp+var_11], al
+cmp     [rbp+var_12], 0
+jz      short loc_4047D5
+add     r12, 1
+add     rbx, 1
+movzx   eax, byte ptr [rbp-12h]
+cmp     al, [rbp-11h]
+jz      short loc_40479A
+jmp     short loc_4047D6
+nop
+movzx   edx, byte ptr [rbp-12h]
+movzx   eax, byte ptr [rbp-11h]
+sub     edx, eax
+mov     eax, edx
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

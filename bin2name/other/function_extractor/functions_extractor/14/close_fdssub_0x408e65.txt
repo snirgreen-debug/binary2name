@@ -1,0 +1,65 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     edi, 4
+call    _sysconf
+sub     eax, 1
+mov     [rbp+fd], eax
+jmp     loc_408F19
+cmp     [rbp+var_18], 0
+jz      short loc_408F08
+mov     eax, [rbp-4]
+lea     edx, [rax+3FFh]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 0Ah
+cdqe
+shl     rax, 7
+mov     rdx, rax
+mov     rax, [rbp-18h]
+lea     rcx, [rdx+rax]
+mov     eax, [rbp-4]
+cdq
+shr     edx, 16h
+add     eax, edx
+and     eax, 3FFh
+sub     eax, edx
+lea     edx, [rax+3Fh]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 6
+cdqe
+mov     rsi, [rcx+rax*8]
+mov     eax, [rbp-4]
+cdq
+shr     edx, 16h
+add     eax, edx
+and     eax, 3FFh
+sub     eax, edx
+mov     edx, eax
+mov     eax, edx
+sar     eax, 1Fh
+shr     eax, 1Ah
+add     edx, eax
+and     edx, 3Fh
+sub     edx, eax
+mov     eax, edx
+mov     edx, 1
+mov     ecx, eax
+shl     rdx, cl
+mov     rax, rdx
+and     rax, rsi
+test    rax, rax
+jnz     short loc_408F14
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+jmp     short loc_408F15
+nop
+sub     [rbp+fd], 1
+cmp     [rbp+fd], 0
+jns     loc_408E86
+nop
+leave
+retn

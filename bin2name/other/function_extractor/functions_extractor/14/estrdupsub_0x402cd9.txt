@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+n], rax
+mov     rax, [rbp-10h]
+add     rax, 1
+mov     rdi, rax
+call    emalloc
+mov     [rbp+dest], rax
+mov     rdx, [rbp-10h]
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+leave
+retn

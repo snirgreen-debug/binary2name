@@ -1,0 +1,199 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, flags
+mov     eax, [rax+1Ch]
+test    eax, eax
+jnz     short loc_40DAAB
+lea     rsi, a218
+lea     rdi, aGnuUnitsVersio
+mov     eax, 0
+call    _printf
+jmp     loc_40DDDD
+lea     rax, mylocale
+mov     rax, [rax]
+mov     r8, rax
+lea     rcx, aWithUtf8
+lea     rdx, aWithReadline
+lea     rsi, a218
+lea     rdi, aGnuUnitsVersio_0
+mov     eax, 0
+call    _printf
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_40DB4F
+lea     rax, fullprogname
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40DB18
+lea     rax, progname
+mov     rax, [rax]
+lea     rdx, fullprogname
+mov     rsi, rdx
+mov     rdi, rax
+call    getprogdir
+lea     rax, fullprogname
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40DB4F
+lea     rax, fullprogname
+mov     rdx, [rax]
+lea     rax, progname
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aSProgramIsS
+mov     eax, 0
+call    _printf
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     loc_40DBF8
+mov     edi, 0Ah
+call    _putchar
+lea     rdi, aUnitsfile
+call    _getenv
+mov     [rbp+unitsfile], rax
+cmp     [rbp+unitsfile], 0
+jz      short loc_40DB9D
+mov     rax, [rbp-10h]
+mov     rsi, rax
+lea     rdi, aEnvironmentVar
+mov     eax, 0
+call    _printf
+jmp     short loc_40DBA9
+lea     rdi, aEnvironmentVar_0
+call    _puts
+lea     rdi, path
+call    isfullpath
+test    eax, eax
+jz      short loc_40DBD3
+lea     rsi, path
+lea     rdi, aDefaultUnitsDa
+mov     eax, 0
+call    _printf
+jmp     short loc_40DBF8
+lea     rax, progname
+mov     rax, [rax]
+mov     rdx, rax
+lea     rsi, path
+lea     rdi, aDefaultUnitsDa_0
+mov     eax, 0
+call    _printf
+mov     edi, 1
+call    findunitsfile
+mov     [rbp+unitsfile], rax
+cmp     [rbp+unitsfile], 0
+jz      short loc_40DC46
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_40DC46
+lea     rdi, path
+call    isfullpath
+test    eax, eax
+jnz     short loc_40DC46
+mov     rax, [rbp-10h]
+mov     rsi, rax
+lea     rdi, aFoundDataFileS
+mov     eax, 0
+call    _printf
+jmp     short loc_40DC73
+cmp     [rbp+unitsfile], 0
+jz      short loc_40DC67
+mov     rax, [rbp-10h]
+mov     rsi, rax
+lea     rdi, aUnitsDataFileI
+mov     eax, 0
+call    _printf
+jmp     short loc_40DC73
+lea     rdi, aUnitsDataFileN
+call    _puts
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_40DCDC
+mov     edi, 0Ah
+call    _putchar
+lea     rdi, envname
+call    _getenv
+mov     [rbp+unitsfile], rax
+cmp     [rbp+unitsfile], 0
+jz      short loc_40DCC4
+mov     rax, [rbp-10h]
+mov     rdx, rax
+lea     rsi, envname
+lea     rdi, aEnvironmentVar_1
+mov     eax, 0
+call    _printf
+jmp     short loc_40DCDC
+lea     rsi, envname
+lea     rdi, aEnvironmentVar_2
+mov     eax, 0
+call    _printf
+lea     rax, homeunitsfile
+mov     rax, [rax]
+lea     rdx, [rbp-14h]
+mov     rcx, rdx
+mov     edx, 1
+mov     rsi, rax
+lea     rdi, envname
+call    personalfile
+mov     [rbp+unitsfile], rax
+cmp     [rbp+unitsfile], 0
+jz      short loc_40DD45
+mov     rax, [rbp-10h]
+mov     rsi, rax
+lea     rdi, aPersonalUnitsD
+mov     eax, 0
+call    _printf
+mov     eax, [rbp-14h]
+test    eax, eax
+jnz     short loc_40DD39
+lea     rdi, aFileDoesNotExi
+call    _puts
+jmp     short loc_40DD51
+mov     edi, 0Ah
+call    _putchar
+jmp     short loc_40DD51
+lea     rdi, aPersonalUnitsD_0
+call    _puts
+lea     rax, flags
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_40DDC5
+lea     rax, [rbp-14h]
+mov     rcx, rax
+mov     edx, 1
+lea     rsi, basename
+mov     edi, 0
+call    personalfile
+mov     rdx, rax
+lea     rax, historyfile
+mov     [rax], rdx
+lea     rax, historyfile
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40DDB9
+lea     rax, historyfile
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aDefaultReadlin
+mov     eax, 0
+call    _printf
+jmp     short loc_40DDC5
+lea     rdi, aReadlineHistor
+call    _puts
+lea     rsi, aCopyrightC2018
+lea     rdi, aS_6
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40DDF1
+call    ___stack_chk_fail
+leave
+retn

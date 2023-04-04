@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-18h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      loc_40FD27
+movzx   eax, cs:options_0.optimisation_level
+cmp     ax, 1
+jbe     short loc_40FCB3
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    is_used_fs_type
+test    al, al
+jz      short loc_40FCF4
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    insert_primary
+mov     [rbp+our_pred], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     [rax+38h], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    estimate_fstype_success_rate
+movd    edx, xmm0
+mov     rax, [rbp-10h]
+mov     [rax+24h], edx
+mov     eax, 1
+jmp     short loc_40FD2C
+mov     rax, cs:options_0.debug_options
+and     eax, 8
+test    rax, rax
+jz      short loc_40FD20
+mov     rdx, [rbp-18h]
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 42E1F0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    insert_false
+jmp     short loc_40FD2C
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40FD40
+call    ___stack_chk_fail
+leave
+retn

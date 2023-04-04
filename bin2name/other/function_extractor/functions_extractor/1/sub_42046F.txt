@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, edi
+mov     [rbp+var_4], al
+cmp     [rbp+var_4], 9
+setz    al
+movzx   eax, al
+pop     rbp
+retn

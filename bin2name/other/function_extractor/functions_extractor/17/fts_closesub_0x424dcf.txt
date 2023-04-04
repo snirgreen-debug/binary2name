@@ -1,0 +1,121 @@
+push    rbp
+mov     rbp, rsp
+push    freep
+push    p
+sub     rsp, 20h
+mov     [rbp+sp_0], rdi
+mov     [rbp+saved_errno], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_424E2C
+mov     rax, [rbp-28h]
+mov     p, [rax]
+jmp     short loc_424E1B
+mov     freep, p
+mov     rax, [p+10h]
+test    rax, rax
+jz      short loc_424E0C
+mov     rax, [p+10h]
+jmp     short loc_424E10
+mov     rax, [p+8]
+mov     p, rax
+mov     rdi, freep
+call    _free
+mov     rax, [p+58h]
+test    rax, rax
+jns     short loc_424DFA
+mov     rdi, p
+call    _free
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_424E49
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    fts_lfree
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 200h
+test    eax, eax
+jz      short loc_424EA2
+mov     rax, [rbp-28h]
+mov     eax, [rax+2Ch]
+test    eax, eax
+js      short loc_424EEE
+mov     rax, [rbp-28h]
+mov     eax, [rax+2Ch]
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      short loc_424EEE
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+jmp     short loc_424EEE
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 4
+test    eax, eax
+jnz     short loc_424EEE
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+mov     edi, eax
+call    _fchdir
+test    eax, eax
+jz      short loc_424ECC
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      short loc_424EEE
+cmp     [rbp+saved_errno], 0
+jnz     short loc_424EEE
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+mov     rax, [rbp-28h]
+add     rax, 60h
+mov     rdi, rax
+call    fd_ring_clear
+mov     rax, [rbp-28h]
+mov     rax, [rax+50h]
+test    rax, rax
+jz      short loc_424F1B
+mov     rax, [rbp-28h]
+mov     rax, [rax+50h]
+mov     rdi, rax
+call    hash_free
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    free_dir
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+saved_errno], 0
+jz      short loc_424F4D
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     short loc_424F52
+mov     eax, 0
+add     rsp, 20h
+pop     p
+pop     freep
+pop     rbp
+retn

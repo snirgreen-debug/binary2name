@@ -1,0 +1,89 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+queue], rdi
+mov     [rbp+url], rsi
+mov     [rbp+referer], rdx
+mov     [rbp+depth], ecx
+mov     [rbp+html_allowed], r8d
+mov     edi, 20h
+call    xmalloc_real
+mov     [rbp+qel], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     edx, [rbp-2Ch]
+mov     [rax+10h], edx
+mov     eax, [rbp-30h]
+and     eax, 1
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     ecx, edx
+and     ecx, 1
+movzx   edx, byte ptr [rax+14h]
+and     edx, 0FFFFFFFEh
+or      edx, ecx
+mov     [rax+14h], dl
+mov     rax, [rbp-8]
+mov     qword ptr [rax+18h], 0
+mov     rax, [rbp-18h]
+mov     eax, [rax+10h]
+lea     edx, [rax+1]
+mov     rax, [rbp-18h]
+mov     [rax+10h], edx
+mov     rax, [rbp-18h]
+mov     edx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+14h]
+cmp     edx, eax
+jle     short loc_4223D7
+mov     rax, [rbp-18h]
+mov     edx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     [rax+14h], edx
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4223FA
+mov     edx, [rbp-2Ch]
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 436540h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_422423
+mov     rax, [rbp-18h]
+mov     edx, [rax+14h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+10h]
+mov     esi, eax
+mov     edi, 43655Ah
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_422440
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-8]
+mov     [rax+18h], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_422467
+mov     rax, [rbp-18h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-18h]
+mov     [rax], rdx
+nop
+leave
+retn

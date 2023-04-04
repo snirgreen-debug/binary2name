@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+argv], rdi
+mov     [rbp+arg_ptr], rsi
+mov     [rbp+p], rdx
+mov     [rbp+argument], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rdx, [rbp-20h]
+mov     rcx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      short loc_40F176
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-40h]
+mov     [rax], rdx
+mov     rax, cs:options_0.xstat
+mov     rdx, [rbp-20h]
+mov     rcx, [rbp-38h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+test    eax, eax
+jnz     short loc_40F161
+mov     eax, 1
+jmp     short loc_40F186
+mov     rbx, [rbp-20h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    fatal_target_file_error
+mov     rax, [rbp-40h]
+mov     qword ptr [rax], 0
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40F19A
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

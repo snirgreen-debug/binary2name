@@ -1,0 +1,69 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     edi, 640010h
+call    sub_42A4E6
+mov     esi, 640010h
+mov     edi, 43162Ah
+call    sub_40C564
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+mov     rcx, [rbp-10h]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_4034E3
+mov     [rbp+var_20], eax
+cmp     [rbp+var_20], 0
+jns     short loc_40D101
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     eax, 37h
+jmp     short loc_40D169
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+lea     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40C275
+mov     [rbp+var_1C], eax
+cmp     [rbp+var_1C], 0Fh
+jz      short loc_40D13A
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-1Ch]
+jmp     short loc_40D169
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 33h
+jz      short loc_40D158
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, 1Ah
+jmp     short loc_40D169
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, 0Fh
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40D17D
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,8 @@
+push    rbp
+mov     rbp, rsp
+call    huf_decode_start
+mov     cs:j, 0
+mov     cs:done, 0
+nop
+pop     rbp
+retn

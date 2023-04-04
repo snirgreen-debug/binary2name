@@ -1,0 +1,114 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+buf], rdi
+mov     [rbp+len], esi
+mov     [rbp+header], edx
+call    bi_windup
+cmp     [rbp+header], 0
+jz      loc_4020D6
+mov     eax, cs:outcnt
+cmp     eax, 3FFDh
+ja      short loc_401F8E
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+movzx   edx, dx
+sar     edx, 8
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+jmp     short loc_401FEC
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_401FBA
+call    flush_outbuf
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+movzx   edx, dx
+sar     edx, 8
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_401FEC
+call    flush_outbuf
+mov     eax, cs:outcnt
+cmp     eax, 3FFDh
+ja      short loc_40203A
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+not     edx
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+not     edx
+shr     dx, 8
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+jmp     loc_4020D6
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+not     edx
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_402068
+call    flush_outbuf
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-0Ch]
+not     edx
+shr     dx, 8
+mov     eax, eax
+mov     ds:outbuf[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_4020D6
+call    flush_outbuf
+jmp     short loc_4020D6
+mov     edx, cs:outcnt
+lea     eax, [rdx+1]
+mov     cs:outcnt, eax
+mov     rax, [rbp-8]
+lea     rcx, [rax+1]
+mov     [rbp+buf], rcx
+movzx   eax, byte ptr [rax]
+mov     ecx, eax
+mov     eax, edx
+mov     ds:outbuf[rax], cl
+mov     eax, cs:outcnt
+cmp     eax, 4000h
+jnz     short loc_4020D6
+call    flush_outbuf
+mov     eax, [rbp-0Ch]
+lea     edx, [rax-1]
+mov     [rbp+len], edx
+test    eax, eax
+jnz     short loc_40209C
+nop
+leave
+retn

@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     esi, edx
+mov     rdi, rax
+call    grecs_grecs__scan_bytes
+leave
+retn

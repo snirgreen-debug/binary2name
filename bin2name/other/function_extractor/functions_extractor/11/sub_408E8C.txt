@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+s], rdi
+mov     [rbp+var_20], rsi
+lea     rax, off_619408
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402506
+jmp     short loc_408EFE
+mov     rax, cs:stdout_ptr
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4030D1
+lea     rax, unk_619B48
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_408EF2
+lea     rax, unk_619B48
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4030D1
+lea     rdi, asc_4146C8
+call    sub_402506
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    sub_406ED2
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jz      short loc_408F61
+lea     rax, off_619410
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strspn
+mov     rbx, rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+cmp     rbx, rax
+jz      short loc_408F61
+mov     rax, [rbp-18h]
+mov     esi, 21h
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      loc_408EB1
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_406ACF
+mov     edi, 0Ah
+call    sub_4024C4
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

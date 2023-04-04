@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+arg], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+errors], 0
+mov     rax, [rbp-28h]
+lea     rsi, aMax
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_409CBF
+lea     rax, num_format
+mov     dword ptr [rax+0Ch], 0Fh
+jmp     loc_409DA2
+lea     rcx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtol
+mov     [rbp+ival], eax
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_409D1A
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     rcx, [rbp-28h]
+lea     rsi, aSInvalidSignif
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     loc_409DA2
+cmp     [rbp+ival], 0
+jg      short loc_409D4E
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSNumberOfSigni
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+errors], 1
+jmp     short loc_409DA2
+cmp     [rbp+ival], 0Fh
+jle     short loc_409D95
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+mov     ecx, [rbp-14h]
+mov     r8d, 0Fh
+lea     rsi, aSTooManySignif
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+lea     rax, num_format
+mov     dword ptr [rax+0Ch], 0Fh
+jmp     short loc_409DA2
+lea     rax, num_format
+mov     edx, [rbp-14h]
+mov     [rax+0Ch], edx
+cmp     [rbp+errors], 0
+jz      short loc_409DAF
+mov     eax, 0FFFFFFFFh
+jmp     short loc_409DB4
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_409DC8
+call    ___stack_chk_fail
+leave
+retn

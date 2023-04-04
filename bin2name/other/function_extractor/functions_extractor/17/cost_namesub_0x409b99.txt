@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+cost], edi
+mov     [rbp+n], 0Bh
+mov     [rbp+i], 0
+jmp     short loc_409BDA
+mov     eax, [rbp-8]
+shl     rax, 4
+add     rax, 63A8A0h
+mov     eax, [rax]
+cmp     eax, [rbp-14h]
+jnz     short loc_409BD6
+mov     eax, [rbp-8]
+shl     rax, 4
+add     rax, 63A8A8h
+mov     rax, [rax]
+jmp     short loc_409BE7
+add     [rbp+i], 1
+mov     eax, [rbp-8]
+cmp     eax, [rbp-4]
+jb      short loc_409BB0
+mov     eax, 42BE2Eh
+pop     rbp
+retn

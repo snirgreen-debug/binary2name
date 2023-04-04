@@ -1,0 +1,78 @@
+push    rbp
+mov     rbp, rsp
+push    d
+sub     rsp, 88h
+mov     [rbp+number], rdi
+mov     [rbp+numberlen], rsi
+mov     [rbp+grouping], rdx
+mov     [rbp+thousands_sep], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+grouplen], 0FFFFFFFFFFFFFFFFh
+mov     rax, [rbp-90h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+thousands_seplen], rax
+mov     rax, [rbp-80h]
+mov     [rbp+i], rax
+mov     rdx, [rbp-80h]
+mov     rcx, [rbp-78h]
+lea     rax, [rbp-50h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, [rbp-78h]
+mov     rax, [rbp-80h]
+lea     d, [rdx+rax]
+mov     rax, [rbp-88h]
+movzx   eax, byte ptr [rax]
+mov     [rbp+g], al
+cmp     [rbp+g], 0
+jz      short loc_419AB5
+cmp     [rbp+g], 7Eh
+ja      short loc_419AA5
+movzx   eax, byte ptr [rbp-69h]
+jmp     short loc_419AA9
+mov     rax, [rbp-60h]
+mov     [rbp+grouplen], rax
+add     [rbp+grouping], 1
+mov     rax, [rbp-60h]
+cmp     rax, [rbp-68h]
+jnb     short loc_419AC7
+mov     rax, [rbp-60h]
+mov     [rbp+grouplen], rax
+mov     rax, [rbp-68h]
+neg     rax
+add     d, rax
+mov     rax, [rbp-68h]
+sub     [rbp+i], rax
+lea     rdx, [rbp-50h]
+mov     rax, [rbp-60h]
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-68h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     rdi, d
+call    _memcpy
+cmp     [rbp+i], 0
+jnz     short loc_419B12
+mov     rax, d
+mov     rsi, [rbp-18h]
+xor     rsi, fs:28h
+jz      short loc_419B3C
+jmp     short loc_419B37
+mov     rax, [rbp-58h]
+neg     rax
+add     d, rax
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-90h]
+mov     rsi, rax
+mov     rdi, d
+call    _memcpy
+jmp     loc_419A86
+call    ___stack_chk_fail
+add     rsp, 88h
+pop     d
+pop     rbp
+retn

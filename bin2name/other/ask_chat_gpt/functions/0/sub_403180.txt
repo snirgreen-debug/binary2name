@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:off_6050B0
+mov     rax, [rax]
+cmp     rax, 1
+jnz     short loc_4031AF
+mov     rdx, cs:stdout
+mov     rax, cs:qword_605100
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_400B0B
+jmp     short loc_4031FD
+mov     rax, cs:off_6050B0
+mov     rax, [rax]
+cmp     rax, 2
+jnz     short loc_4031DA
+mov     rdx, cs:stderr
+mov     rax, cs:qword_605100
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_400B0B
+jmp     short loc_4031FD
+mov     rax, cs:off_6050B0
+mov     rdx, [rax]
+mov     rax, cs:stderr
+mov     esi, 403988h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:off_6050B0
+sub     rax, 8
+mov     cs:off_6050B0, rax
+mov     rax, cs:qword_605100
+sub     rax, 18h
+mov     cs:qword_605100, rax
+mov     eax, 0
+call    sub_400F2E
+mov     eax, 0
+call    sub_400EF3
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

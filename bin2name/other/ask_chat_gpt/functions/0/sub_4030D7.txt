@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 40397Fh
+call    _puts
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

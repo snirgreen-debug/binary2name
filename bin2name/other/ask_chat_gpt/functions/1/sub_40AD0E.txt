@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 10h
+ja      short def_40AD26
+mov     eax, [rbp-4]
+mov     rax, [rax*8+423CC0h]
+jmp     rax
+mov     eax, 423C68h
+jmp     short loc_40AD7A
+mov     eax, 423C6Dh
+jmp     short loc_40AD7A
+mov     eax, 423C74h
+jmp     short loc_40AD7A
+mov     eax, 423C7Bh
+jmp     short loc_40AD7A
+mov     eax, 423C80h
+jmp     short loc_40AD7A
+mov     eax, 423C88h
+jmp     short loc_40AD7A
+mov     eax, 423C8Dh
+jmp     short loc_40AD7A
+mov     eax, 423C92h
+jmp     short loc_40AD7A
+mov     eax, 423C9Bh
+jmp     short loc_40AD7A
+mov     eax, 423CA4h
+jmp     short loc_40AD7A
+mov     eax, 423CACh
+jmp     short loc_40AD7A
+mov     eax, 423CB1h
+pop     rbp
+retn

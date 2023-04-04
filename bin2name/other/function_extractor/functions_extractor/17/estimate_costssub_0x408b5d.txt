@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+tree], rdi
+cmp     [rbp+tree], 0
+jz      short loc_408BAB
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    estimate_costs
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    estimate_costs
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    get_pred_cost
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+20h], edx
+nop
+leave
+retn

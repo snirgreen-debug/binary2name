@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 40h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+call    _fork
+mov     [rbp+var_44], eax
+cmp     [rbp+var_44], 0FFFFFFFFh
+jnz     short loc_4035B4
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     r12, rax
+mov     rbx, cs:self_test_prog
+mov     edi, 4229D8h
+call    _gettext
+mov     rcx, r12
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 2
+call    _exit
+cmp     [rbp+var_44], 0
+jz      short loc_4035D5
+mov     eax, [rbp-44h]
+mov     cs:self_test_pid, eax
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40364C
+jmp     short loc_403647
+mov     [rbp+path], 4229F9h
+mov     [rbp+var_38], 422A01h
+mov     rax, cs:self_test_prog
+mov     [rbp+var_30], rax
+mov     [rbp+var_28], 0
+mov     rax, [rbp-40h]
+lea     rdx, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _execv
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, cs:self_test_prog
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 422A04h
+mov     edi, 3
+mov     eax, 0
+call    diag
+mov     edi, 7Fh
+call    __exit
+call    ___stack_chk_fail
+add     rsp, 40h
+pop     rbx
+pop     r12
+pop     rbp
+retn

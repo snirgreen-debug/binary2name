@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+flush], edi
+mov     eax, cs:flush_log_p
+cmp     [rbp+flush], eax
+jz      short loc_41CD34
+cmp     [rbp+flush], 0
+jnz     short loc_41CD19
+mov     cs:flush_log_p, 0
+jmp     short locret_41CD35
+mov     eax, cs:needs_flushing
+test    eax, eax
+jz      short loc_41CD28
+call    logflush
+mov     cs:flush_log_p, 1
+jmp     short locret_41CD35
+nop
+leave
+retn

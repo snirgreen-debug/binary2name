@@ -1,0 +1,130 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+script_filename], rdi
+mov     [rbp+excersise_label], rsi
+movsd   [rbp+adjusted_cpm], xmm0
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:global_home_env
+mov     rdi, rax
+call    _getenv
+mov     rdi, rax
+call    _strlen
+add     rax, 12h
+mov     rdi, rax
+call    _malloc
+mov     [rbp+filename], rax
+cmp     [rbp+filename], 0
+jnz     short loc_4071EF
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    fatal_error
+mov     rax, cs:global_home_env
+mov     rdi, rax
+call    _getenv
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     ecx, 40ACF9h
+mov     esi, 40AC72h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rax, [rbp-28h]
+mov     esi, 40AD16h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+blfile], rax
+cmp     [rbp+blfile], 0
+jnz     short loc_407259
+mov     edi, 40AD18h
+call    _perror
+mov     edi, 40AD1Eh
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    fatal_error
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strdup
+mov     [rbp+fixed_script_filename], rax
+cmp     [rbp+fixed_script_filename], 0
+jnz     short loc_407291
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    fatal_error
+mov     rax, [rbp-18h]
+mov     [rbp+p], rax
+jmp     short loc_4072B2
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     short loc_4072AD
+mov     rax, [rbp-30h]
+mov     byte ptr [rax], 2Bh
+add     [rbp+p], 1
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40729B
+mov     edi, 0
+call    _time
+mov     [rbp+nowts], rax
+lea     rax, [rbp-38h]
+mov     rdi, rax
+call    _localtime
+mov     [rbp+now], rax
+mov     rax, [rbp-10h]
+mov     esi, [rax]
+mov     rax, [rbp-10h]
+mov     ecx, [rax+4]
+mov     rax, [rbp-10h]
+mov     r9d, [rax+8]
+mov     rax, [rbp-10h]
+mov     r8d, [rax+0Ch]
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+lea     r10d, [rax+1]
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+lea     edi, [rax+76Ch]
+mov     rdx, [rbp-58h]
+mov     rax, [rbp-20h]
+push    [rbp+excersise_label]
+push    [rbp+fixed_script_filename]
+push    rsi
+push    rcx
+mov     [rbp+var_60], rdx
+movsd   xmm0, qword ptr [rbp-60h]
+mov     ecx, r10d
+mov     edx, edi
+mov     esi, 40AD38h
+mov     rdi, rax
+mov     eax, 1
+call    _fprintf
+add     rsp, 20h
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _fclose
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40737D
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+stream], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fgetc
+movsx   eax, al
+shl     eax, 8
+mov     ebx, eax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fgetc
+movzx   eax, al
+or      ebx, eax
+mov     eax, ebx
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

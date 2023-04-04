@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     esi, 0
+mov     rdi, rax
+call    _access
+not     eax
+shr     eax, 1Fh
+movzx   eax, al
+leave
+retn

@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+mov     eax, [rbp-4]
+cmp     eax, 1
+jz      short loc_404BD0
+cmp     eax, 1
+jb      short loc_404BC9
+cmp     eax, 2
+jz      short loc_404BD7
+cmp     eax, 3
+jz      short loc_404BDE
+jmp     short loc_404BE5
+mov     eax, 640008h
+jmp     short loc_404BEA
+mov     eax, 63C3D4h
+jmp     short loc_404BEA
+mov     eax, 63C3D8h
+jmp     short loc_404BEA
+mov     eax, 63C3DCh
+jmp     short loc_404BEA
+mov     eax, 0
+pop     rbp
+retn

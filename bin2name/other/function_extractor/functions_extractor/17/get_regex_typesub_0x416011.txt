@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+s], rdi
+mov     [rbp+msglen], 0
+mov     [rbp+i], 0
+jmp     short loc_416092
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 63AC00h
+mov     rax, [rax]
+mov     rdx, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_416066
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 63AC0Ch
+mov     eax, [rax]
+jmp     loc_416155
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 63AC00h
+mov     rax, [rax]
+mov     rdi, rax
+call    quote
+mov     rdi, rax
+call    _strlen
+add     rax, 2
+add     [rbp+msglen], rax
+add     [rbp+i], 1
+cmp     [rbp+i], 0Ch
+jbe     short loc_41602F
+mov     rax, [rbp-28h]
+add     rax, 1
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+buf], rax
+mov     rax, [rbp-18h]
+mov     [rbp+p], rax
+mov     [rbp+i], 0
+jmp     short loc_416110
+cmp     [rbp+i], 0
+jz      short loc_4160D5
+mov     rax, [rbp-20h]
+mov     word ptr [rax], 202Ch
+mov     byte ptr [rax+2], 0
+add     [rbp+p], 2
+mov     eax, [rbp-2Ch]
+shl     rax, 4
+add     rax, 63AC00h
+mov     rax, [rax]
+mov     rdi, rax
+call    quote
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     esi, 42FDB3h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+cdqe
+add     [rbp+p], rax
+add     [rbp+i], 1
+cmp     [rbp+i], 0Ch
+jbe     short loc_4160BD
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    quote
+mov     rbx, rax
+mov     edi, 42FDB8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     r8, rax
+mov     rcx, rbx
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0FFFFFFFFh
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

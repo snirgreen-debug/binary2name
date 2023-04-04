@@ -1,0 +1,145 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+argc], edi
+mov     [rbp+argv], rsi
+mov     [rbp+var_28], rdx
+mov     cs:qword_62C790, 403691h
+mov     cs:optind@@GLIBC_2_2_5, 0
+jmp     loc_403993
+mov     eax, [rbp-0Ch]
+cmp     eax, 64h
+jz      loc_403828
+cmp     eax, 64h
+jg      short loc_4037E3
+cmp     eax, 49h
+jz      loc_4038AB
+cmp     eax, 49h
+jg      short loc_4037C6
+cmp     eax, 46h
+jz      loc_40387D
+cmp     eax, 48h
+jz      loc_40393E
+jmp     short loc_40381E
+cmp     eax, 54h
+jz      loc_4038BF
+cmp     eax, 56h
+jz      loc_403975
+cmp     eax, 50h
+jz      loc_4038D2
+jmp     short loc_40381E
+cmp     eax, 6Ch
+jz      short loc_40383C
+cmp     eax, 6Ch
+jg      short loc_403801
+cmp     eax, 66h
+jz      loc_403897
+cmp     eax, 68h
+jz      loc_40394D
+jmp     short loc_40381E
+cmp     eax, 75h
+jz      loc_4038F4
+cmp     eax, 100h
+jz      loc_403961
+cmp     eax, 74h
+jz      loc_4038E5
+mov     edi, 1
+call    _exit
+mov     eax, cs:opt_debug_level
+add     eax, 1
+mov     cs:opt_debug_level, eax
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     esi, 422E3Ah
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_403863
+mov     cs:log_to_stderr, 0FFFFFFFFh
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     rdi, rax
+call    get_priority
+mov     cs:log_to_stderr, eax
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     rdi, rax
+call    get_facility
+mov     cs:opt_facility, eax
+jmp     loc_403993
+mov     eax, cs:opt_foreground
+add     eax, 1
+mov     cs:opt_foreground, eax
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     rdi, rax
+call    grecs_preproc_add_include_dir
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     cs:self_test_prog, rax
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     cs:opt_pidfile, rax
+jmp     loc_403993
+mov     cs:lint_only, 1
+jmp     loc_403993
+mov     rax, cs:optarg@@GLIBC_2_2_5
+mov     cs:opt_user, rax
+mov     rax, cs:opt_user
+mov     rdi, rax
+call    _getpwnam
+test    rax, rax
+jnz     short loc_403993
+mov     rax, cs:opt_user
+mov     rdx, rax
+mov     esi, 422E3Fh
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 1
+call    _exit
+call    config_help
+mov     edi, 0
+call    _exit
+mov     edi, 62C760h
+call    grecs_print_help
+mov     edi, 0
+call    _exit
+mov     edi, 62C760h
+call    grecs_print_usage
+mov     edi, 0
+call    _exit
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 62C760h
+call    grecs_print_version
+mov     edi, 0
+call    _exit
+mov     rsi, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     r8d, 0
+mov     ecx, 62C400h
+mov     edx, 422E50h
+mov     edi, eax
+call    _getopt_long
+mov     [rbp+var_C], eax
+cmp     [rbp+var_C], 0FFFFFFFFh
+jnz     loc_403793
+mov     edx, cs:optind@@GLIBC_2_2_5
+mov     rax, [rbp-28h]
+mov     [rax], edx
+mov     rax, cs:cmdline_tree
+test    rax, rax
+jz      short loc_403A03
+mov     esi, 0
+mov     edi, 0
+call    grecs_node_create
+mov     [rbp+var_8], rax
+mov     rdx, cs:cmdline_tree
+mov     rax, [rbp-8]
+mov     [rax+30h], rdx
+mov     rax, [rbp-8]
+mov     cs:cmdline_tree, rax
+nop
+leave
+retn

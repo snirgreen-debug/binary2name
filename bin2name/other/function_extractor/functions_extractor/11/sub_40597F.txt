@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+setz    al
+movzx   eax, al
+pop     rbp
+retn

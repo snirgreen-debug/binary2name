@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     dword ptr [rbp+u], 0
+mov     byte ptr [rbp+u], 1
+mov     byte ptr [rbp+u+3], 0
+movzx   eax, byte ptr [rbp-0Dh]
+mov     byte ptr [rbp+u+2], al
+movzx   eax, byte ptr [rbp-0Eh]
+mov     byte ptr [rbp+u+1], al
+mov     eax, [rbp-10h]
+cmp     eax, 1
+setz    al
+movzx   eax, al
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_403925
+call    ___stack_chk_fail
+leave
+retn

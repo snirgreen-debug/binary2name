@@ -1,0 +1,98 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+s], rdi
+mov     rax, cs:qword_63C000
+and     eax, 20h
+test    rax, rax
+jz      loc_403A31
+mov     [rbp+var_24], 0
+call    sub_408BAE
+mov     [rbp+var_20], rax
+mov     rax, [rbp-38h]
+mov     rcx, rax
+mov     edx, 15h
+mov     esi, 1
+mov     edi, 42ACC2h
+call    _fwrite
+jmp     loc_403A05
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+cmp     rax, 404E96h
+jnz     short loc_403902
+mov     [rbp+var_18], 42ACD8h
+jmp     short loc_403923
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+cmp     rax, 405877h
+jnz     short loc_40391B
+mov     [rbp+var_18], 42ACE1h
+jmp     short loc_403923
+mov     [rbp+var_18], 0
+cmp     [rbp+var_18], 0
+jz      loc_4039F6
+mov     rax, [rbp-20h]
+add     rax, 38h
+mov     [rbp+var_8], rax
+add     [rbp+var_24], 1
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-38h]
+mov     esi, 42ACE8h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40397E
+mov     rax, [rbp-38h]
+mov     rcx, rax
+mov     edx, 9
+mov     esi, 1
+mov     edi, 42ACECh
+call    _fwrite
+mov     rax, [rbp-8]
+mov     rdx, [rax+60h]
+mov     rax, [rbp-38h]
+mov     esi, 42ACF6h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+var_10], 0
+jmp     short loc_4039D7
+mov     rax, [rbp-8]
+mov     rax, [rax+68h]
+mov     rdx, [rbp-10h]
+shl     rdx, 3
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, [rbp-38h]
+mov     esi, 42ACE8h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+var_10], 1
+mov     rax, [rbp-8]
+mov     rax, [rax+60h]
+cmp     rax, [rbp-10h]
+ja      short loc_4039A6
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbp-20h]
+mov     rax, [rax+108h]
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     loc_4038E9
+cmp     [rbp+var_24], 0
+jnz     short loc_403A31
+mov     rax, [rbp-38h]
+mov     rcx, rax
+mov     edx, 6
+mov     esi, 1
+mov     edi, 42AD01h
+call    _fwrite
+nop
+leave
+retn

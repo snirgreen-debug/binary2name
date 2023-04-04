@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-10h]
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+cmp     eax, 2
+jz      short loc_41A849
+cmp     eax, 0Ah
+jz      short loc_41A865
+jmp     short loc_41A886
+mov     rax, [rbp-10h]
+mov     edx, [rax+4]
+mov     rax, [rbp-8]
+mov     esi, edx
+mov     rdi, rax
+call    uint32_to_bytes
+mov     eax, 4
+jmp     short locret_41A88B
+mov     rax, [rbp-10h]
+add     rax, 8
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     rcx, [rbp-8]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     eax, 10h
+jmp     short locret_41A88B
+mov     eax, 0
+leave
+retn

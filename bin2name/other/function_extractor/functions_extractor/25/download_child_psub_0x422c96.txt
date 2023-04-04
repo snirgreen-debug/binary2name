@@ -1,0 +1,337 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+upos], rdi
+mov     [rbp+parent], rsi
+mov     [rbp+depth], edx
+mov     [rbp+start_url_parsed], rcx
+mov     [rbp+blacklist], r8
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     [rbp+u], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     [rbp+url], rax
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_422CF6
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     edi, 4366C0h
+mov     eax, 0
+call    debug_logprintf
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    string_set_contains
+test    eax, eax
+jz      short loc_422D2F
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_423129
+mov     edi, 4366E3h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_423129
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+mov     esi, 0
+mov     edi, eax
+call    schemes_are_similar_p
+mov     [rbp+u_scheme_like_http], eax
+cmp     [rbp+u_scheme_like_http], 0
+jnz     short loc_422D83
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+cmp     eax, 1
+jnz     short loc_422D61
+mov     eax, cs:opt.follow_ftp
+test    eax, eax
+jnz     short loc_422D83
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_42312C
+mov     edi, 436700h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_42312C
+cmp     [rbp+u_scheme_like_http], 0
+jz      short loc_422DC4
+mov     eax, cs:opt.relative_only
+test    eax, eax
+jz      short loc_422DC4
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax+10h]
+and     eax, 2
+test    al, al
+jnz     short loc_422DC4
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_42312F
+mov     edi, 436728h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_42312F
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    accept_domain
+test    eax, eax
+jnz     short loc_422DF6
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_423132
+mov     edi, 436756h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_423132
+mov     eax, cs:opt.no_parent
+test    eax, eax
+jz      loc_422EC1
+mov     rax, [rbp-50h]
+mov     edx, [rax+8]
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+mov     esi, edx
+mov     edi, eax
+call    schemes_are_similar_p
+test    eax, eax
+jz      loc_422EC1
+mov     rax, [rbp-50h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_422EC1
+mov     rax, [rbp-18h]
+mov     edx, [rax+18h]
+mov     rax, [rbp-50h]
+mov     eax, [rax+18h]
+cmp     edx, eax
+jnz     short loc_422EC1
+mov     eax, cs:opt.page_requisites
+test    eax, eax
+jz      short loc_422E6D
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax+10h]
+and     eax, 10h
+test    al, al
+jnz     short loc_422EC1
+mov     rax, [rbp-18h]
+mov     rdx, [rax+40h]
+mov     rax, [rbp-50h]
+mov     rax, [rax+40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    frontcmp
+test    eax, eax
+jnz     short loc_422EC1
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_423135
+mov     rax, [rbp-50h]
+mov     rdx, [rax+40h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+mov     rsi, rax
+mov     edi, 436778h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_423135
+mov     rax, cs:opt.includes
+test    rax, rax
+jnz     short loc_422ED9
+mov     rax, cs:opt.excludes
+test    rax, rax
+jz      short loc_422F23
+mov     rax, [rbp-18h]
+mov     rax, [rax+40h]
+mov     esi, 1
+mov     rdi, rax
+call    accdir
+test    eax, eax
+jnz     short loc_422F23
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_423138
+mov     rax, [rbp-18h]
+mov     rdx, [rax+40h]
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     edi, 4367B0h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_423138
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_422F9F
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    has_html_suffix_p
+test    eax, eax
+jz      short loc_422F5A
+cmp     [rbp+depth], 0FFFFFFFFh
+jz      short loc_422F5A
+mov     eax, cs:opt.reclevel
+sub     eax, 1
+cmp     eax, [rbp-44h]
+jg      short loc_422F9F
+mov     rax, [rbp-18h]
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    acceptable
+test    eax, eax
+jnz     short loc_422F9F
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_42313B
+mov     rax, [rbp-18h]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     edi, 4367D8h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_42313B
+mov     rax, [rbp-40h]
+mov     edx, [rax+8]
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+mov     esi, edx
+mov     edi, eax
+call    schemes_are_similar_p
+test    eax, eax
+jz      short loc_423018
+mov     eax, cs:opt.spanhost
+test    eax, eax
+jnz     short loc_423018
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-40h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jz      short loc_423018
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      loc_42313E
+mov     rax, [rbp-40h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rsi, rax
+mov     edi, 436800h
+mov     eax, 0
+call    debug_logprintf
+jmp     loc_42313E
+mov     eax, cs:opt.use_robots
+test    eax, eax
+jz      loc_423109
+cmp     [rbp+u_scheme_like_http], 0
+jz      loc_423109
+mov     rax, [rbp-18h]
+mov     edx, [rax+18h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     esi, edx
+mov     rdi, rax
+call    res_get_specs
+mov     [rbp+specs], rax
+cmp     [rbp+specs], 0
+jnz     short loc_4230B9
+lea     rdx, [rbp-28h]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    res_retrieve_file
+test    eax, eax
+jz      short loc_423089
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    res_parse_from_file
+mov     [rbp+specs], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+jmp     short loc_42309C
+mov     esi, 0
+mov     edi, 43683Ch
+call    res_parse
+mov     [rbp+specs], rax
+mov     rax, [rbp-18h]
+mov     ecx, [rax+18h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-20h]
+mov     esi, ecx
+mov     rdi, rax
+call    res_register_specs
+mov     rax, [rbp-18h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    res_match_path
+test    eax, eax
+jnz     short loc_423109
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4230F4
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     edi, 436840h
+mov     eax, 0
+call    debug_logprintf
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    string_set_add
+jmp     short out
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_423122
+mov     edi, 436871h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, 1
+jmp     short loc_42315D
+nop
+jmp     short out
+nop
+jmp     short out
+nop
+jmp     short out
+nop
+jmp     short out
+nop
+jmp     short out
+nop
+jmp     short out
+nop
+jmp     short out
+nop
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_423158
+mov     edi, 436886h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_423171
+call    ___stack_chk_fail
+leave
+retn

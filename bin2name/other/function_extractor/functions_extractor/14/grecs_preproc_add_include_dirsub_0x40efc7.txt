@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, cs:grecs_usr_include_path
+test    rax, rax
+jnz     short loc_40EFFA
+call    grecs_list_create
+mov     cs:grecs_usr_include_path, rax
+mov     rax, cs:grecs_usr_include_path
+mov     qword ptr [rax+20h], 40ECDCh
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_strdup
+mov     rdx, rax
+mov     rax, cs:grecs_usr_include_path
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_list_append
+nop
+leave
+retn

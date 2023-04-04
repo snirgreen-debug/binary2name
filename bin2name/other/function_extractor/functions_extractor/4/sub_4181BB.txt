@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     rax, [rax+30h]
+mov     rdx, [rbp-18h]
+mov     rcx, [rdx+10h]
+mov     rdx, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+cmp     rax, [rbp-8]
+ja      short loc_4181FE
+call    _abort
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdx, [rbp-8]
+shl     rdx, 4
+add     rax, rdx
+leave
+retn

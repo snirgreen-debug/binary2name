@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_34], edi
+mov     [rbp+var_40], rsi
+mov     [rbp+var_48], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-24h]
+mov     rax, [rbp-40h]
+mov     esi, 4324E1h
+mov     rdi, rax
+call    sub_413E7E
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jz      short loc_414631
+mov     edx, [rbp-24h]
+mov     rcx, [rbp-48h]
+mov     rsi, [rbp-40h]
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_413F1C
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jz      short loc_414631
+mov     rax, [rbp-40h]
+mov     edx, 0
+mov     esi, 432501h
+mov     rdi, rax
+call    sub_413E7E
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jz      short loc_414631
+mov     rax, [rbp-10h]
+mov     esi, 43260Fh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jz      short loc_414623
+mov     rax, [rbp-10h]
+mov     esi, 43261Ah
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_414631
+mov     rax, [rbp-18h]
+movzx   edx, byte ptr [rax+10h]
+or      edx, 10h
+mov     [rax+10h], dl
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_414646
+call    ___stack_chk_fail
+leave
+retn

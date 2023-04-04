@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+glob], rdi
+mov     eax, esi
+mov     [rbp+foldcase], al
+mov     [rbp+fnmatch_flags], 0
+cmp     [rbp+foldcase], 0
+jz      short loc_407131
+or      [rbp+fnmatch_flags], 10h
+mov     rax, cs:num_start_points
+test    rax, rax
+jz      short loc_407192
+mov     [rbp+i], 0
+jmp     short loc_40717E
+mov     rax, cs:start_points
+mov     rdx, [rbp-8]
+shl     rdx, 3
+add     rax, rdx
+mov     rcx, [rax]
+mov     edx, [rbp-0Ch]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+jnz     short loc_407179
+mov     eax, 1
+jmp     short locret_4071AB
+add     [rbp+i], 1
+mov     rax, cs:num_start_points
+cmp     [rbp+i], rax
+jb      short loc_407147
+mov     eax, 0
+jmp     short locret_4071AB
+mov     edx, [rbp-0Ch]
+mov     rax, [rbp-18h]
+mov     esi, 42B4F0h
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+setz    al
+leave
+retn

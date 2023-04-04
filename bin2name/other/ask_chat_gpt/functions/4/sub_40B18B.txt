@@ -1,0 +1,126 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+nptr], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40B1D8
+mov     edi, 42C3F0h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_40B356
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jnz     short loc_40B225
+mov     edi, 42C430h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_40B356
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_2C], eax
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rcx, [rbp-28h]
+mov     rax, [rbp-38h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtoul
+mov     [rbp+var_20], rax
+cmp     [rbp+var_20], 0
+jnz     short loc_40B28D
+mov     rax, [rbp-28h]
+cmp     rax, [rbp-38h]
+jnz     short loc_40B28D
+mov     edi, 42C430h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_40B356
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40B2C5
+mov     edi, 42C465h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-38h]
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     loc_40B356
+cmp     [rbp+var_20], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_40B308
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_40B308
+mov     edi, 42C465h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-38h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_40B356
+cmp     [rbp+var_20], 0FFFFh
+jbe     short loc_40B33C
+mov     edi, 42C488h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_40B356
+mov     rax, [rbp-20h]
+mov     cs:word_63C028, ax
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-2Ch]
+mov     [rdx], eax
+jmp     short $+2
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40B36B
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

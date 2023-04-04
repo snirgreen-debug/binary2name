@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+call    sysev_init
+mov     rax, cs:texttab
+mov     rdi, rax
+call    hashtab_count
+test    rax, rax
+jnz     short loc_408338
+mov     edi, 423778h
+call    _gettext
+mov     rsi, rax
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 1
+call    _exit
+mov     rax, cs:texttab
+mov     edx, 0
+mov     esi, 40829Dh
+mov     rdi, rax
+call    hashtab_foreach
+mov     rax, cs:dwtab
+mov     rdi, rax
+call    hashtab_count
+test    rax, rax
+jnz     short loc_40838B
+mov     edi, 423795h
+call    _gettext
+mov     rsi, rax
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 2
+call    _exit
+nop
+pop     rbp
+retn

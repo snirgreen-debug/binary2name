@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+beg], rdi
+mov     [rbp+end], rsi
+mov     [rbp+dest], rdx
+pxor    xmm0, xmm0
+movsd   [rbp+result], xmm0
+mov     [rbp+seen_dot], 0
+mov     [rbp+seen_digit], 0
+movsd   xmm0, cs:qword_433B68
+movsd   [rbp+divider], xmm0
+mov     rax, [rbp-38h]
+mov     [rbp+p], rax
+jmp     loc_41C4BD
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+mov     [rbp+ch_0], al
+movsx   eax, byte ptr [rbp-21h]
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jz      short loc_41C495
+cmp     [rbp+seen_dot], 0
+jnz     short loc_41C454
+movsd   xmm1, qword ptr [rbp-18h]
+movsd   xmm0, cs:qword_433B90
+mulsd   xmm1, xmm0
+movsx   eax, byte ptr [rbp-21h]
+sub     eax, 30h
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+addsd   xmm0, xmm1
+movsd   [rbp+result], xmm0
+jmp     short loc_41C48C
+movsx   eax, byte ptr [rbp-21h]
+sub     eax, 30h
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, eax
+movsd   xmm2, qword ptr [rbp-10h]
+movsd   xmm1, cs:qword_433B90
+mulsd   xmm1, xmm2
+movsd   [rbp+divider], xmm1
+divsd   xmm0, qword ptr [rbp-10h]
+movsd   xmm1, qword ptr [rbp-18h]
+addsd   xmm0, xmm1
+movsd   [rbp+result], xmm0
+mov     [rbp+seen_digit], 1
+jmp     short loc_41C4B8
+cmp     [rbp+ch_0], 2Eh
+jnz     short loc_41C4B1
+cmp     [rbp+seen_dot], 0
+jnz     short loc_41C4AA
+mov     [rbp+seen_dot], 1
+jmp     short loc_41C4B8
+mov     eax, 0
+jmp     short loc_41C4EA
+mov     eax, 0
+jmp     short loc_41C4EA
+add     [rbp+p], 1
+mov     rax, [rbp-8]
+cmp     rax, [rbp-40h]
+jb      loc_41C3FE
+cmp     [rbp+seen_digit], 0
+jnz     short loc_41C4D8
+mov     eax, 0
+jmp     short loc_41C4EA
+mov     rax, [rbp-48h]
+movsd   xmm0, qword ptr [rbp-18h]
+movsd   qword ptr [rax], xmm0
+mov     eax, 1
+pop     rbp
+retn

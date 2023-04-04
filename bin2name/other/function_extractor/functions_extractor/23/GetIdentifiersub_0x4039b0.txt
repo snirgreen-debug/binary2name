@@ -1,0 +1,52 @@
+test    pibIn, pibIn
+jz      short locret_4039F2
+test    szLex, szLex
+jz      short locret_4039F2
+push    rbp
+push    rbx
+mov     rbx, pibIn
+mov     rbp, szLex
+sub     rsp, 8
+call    ___ctype_b_loc
+mov     rdx, [pibIn+18h]
+mov     rsi, [rax]
+movsx   rdi, byte ptr [rdx]
+test    byte ptr [rsi+rdi*2+1], 4
+jnz     short loc_4039F8
+xor     r9d, r9d
+cmp     dil, 5Fh
+jz      short loc_4039F8
+mov     byte ptr [szLex+r9+0], 0
+add     rsp, 8
+pop     pibIn
+pop     szLex
+rep retn
+mov     r10, szLex
+xor     r9d, r9d
+jmp     short loc_403A20
+mov     rdi, [rax]
+movsx   rcx, r8b
+test    byte ptr [rdi+rcx*2], 8
+jnz     short loc_403A13
+cmp     r8b, 5Fh
+jnz     short loc_403A3F
+add     r10, 1
+cmp     r9d, 3FEh
+jz      short loc_403A50
+lea     rcx, [rdx+1]
+add     r9d, 1
+mov     [pibIn+18h], rcx
+movzx   edx, byte ptr [rdx]
+mov     [r10], dl
+mov     rdx, [pibIn+18h]
+movzx   r8d, byte ptr [rdx]
+test    r8b, r8b
+jnz     short loc_403A00
+movsxd  i, r9d
+mov     byte ptr [szLex+r9+0], 0
+add     rsp, 8
+pop     pibIn
+pop     szLex
+jmp     short locret_4039F2
+mov     r9d, 3FEh
+jmp     short loc_4039E6

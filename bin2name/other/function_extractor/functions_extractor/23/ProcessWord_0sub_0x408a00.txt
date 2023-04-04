@@ -1,0 +1,258 @@
+push    r15
+push    r14
+mov     r14, szEqn
+push    r13
+push    r12
+mov     r12, pibIn
+push    rbp
+push    rbx
+mov     rbp, szLex
+mov     ebx, 619460h
+sub     rsp, 418h
+mov     szLex, cs:vrgkmKeywordMap.szKeyword
+mov     r13, [pibIn+30h]
+mov     rax, fs:28h
+mov     [rsp+448h+var_40], rax
+xor     eax, eax
+cmp     byte ptr [rsi], 0
+jnz     short loc_408A54
+jmp     short loc_408A60
+add     rbx, 10h
+mov     rsi, [rbx]
+cmp     byte ptr [rsi], 0
+jz      short loc_408A60
+mov     rdi, szLex
+call    _strcmp
+test    eax, eax
+jnz     short loc_408A48
+mov     eax, [pinfo+0]
+mov     r15d, [rbx+8]
+cmp     eax, 4000h
+jz      loc_408E10
+test    r15d, r15d
+jz      short def_408A86
+test    [rbx+0Ch], eax
+jz      short loc_408A90
+cmp     r15d, 64h
+ja      short def_408A86
+mov     eax, r15d
+jmp     ds:jpt_408A86[rax*8]
+xor     ecx, ecx
+mov     rdx, szLex
+mov     esi, 8101h
+mov     rdi, pibIn
+call    ReportError
+mov     rax, [rsp+408h]
+xor     rax, fs:28h
+jnz     loc_408E05
+add     rsp, 418h
+pop     rbx
+pop     szLex
+pop     pibIn
+pop     pinfo
+pop     r14
+pop     r15
+retn
+mov     ecx, r15d
+mov     rdx, szEqn
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ProcessIdentifier
+jmp     short loc_408AA2
+mov     dword ptr [pinfo+0], 4000h
+jmp     short loc_408AA2
+mov     edx, 3Dh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      short loc_408B4F
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      loc_408DEC
+mov     esi, 413498h
+mov     edi, 1
+xor     eax, eax
+call    ___printf_chk
+mov     rdi, pibIn
+call    ReadPKTemplate
+jmp     loc_408AA2
+mov     edx, 3Dh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jnz     loc_408D50
+xor     ecx, ecx
+mov     edx, 41338Dh
+mov     esi, 8013h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408AA2
+mov     edx, 3Dh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      short loc_408B4F
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      loc_408DEC
+mov     rdi, pibIn
+call    ReadSBMLModels
+jmp     loc_408AA2
+mov     rsi, szEqn
+mov     rdi, pibIn
+add     szEqn, 1
+call    GetStatement
+mov     rdi, r14
+call    _strlen
+mov     ecx, 1Eh
+mov     byte ptr [r14+rax-1], 0
+mov     rdx, r14
+mov     rsi, szLex
+mov     rdi, pibIn
+call    DefineVariable
+mov     edx, 3Bh
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jnz     loc_408AA2
+xor     ecx, ecx
+mov     edx, 4133ADh
+mov     esi, 8013h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408AA2
+mov     ecx, 14h
+mov     rdx, szEqn
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ProcessDTStatement
+jmp     loc_408AA2
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+mov     rbx, rsp
+jz      short loc_408C79
+xor     eax, eax
+cmp     r15d, 8
+setnz   al
+add     eax, 6
+mov     [pinfo+0], eax
+jmp     loc_408AA2
+mov     esi, cs:bCalcOutputsDefined_4026
+test    esi, esi
+jnz     loc_408D7B
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+mov     cs:bCalcOutputsDefined_4026, 1
+mov     rbx, rsp
+call    GetPunct
+test    eax, eax
+jnz     loc_408DDF
+mov     ecx, 413468h
+mov     rdx, rbx
+mov     esi, 8013h
+mov     rdi, pibIn
+mov     [rsp+448h+szPunct+1], 7Bh
+call    ReportError
+jmp     loc_408AA2
+mov     ecx, cs:bJacobianDefined_4029
+test    ecx, ecx
+jnz     loc_408DC6
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+mov     cs:bJacobianDefined_4029, 1
+mov     rbx, rsp
+call    GetPunct
+test    eax, eax
+jz      short loc_408C79
+mov     dword ptr [pinfo+0], 4
+jmp     loc_408AA2
+mov     edx, cs:bInitializeDefined_4028
+test    edx, edx
+jnz     loc_408DAD
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+mov     cs:bInitializeDefined_4028, 1
+mov     rbx, rsp
+call    GetPunct
+test    eax, eax
+jz      loc_408C79
+mov     dword ptr [pinfo+0], 3
+jmp     loc_408AA2
+mov     eax, cs:bDynamicsDefined_4027
+test    eax, eax
+jnz     short loc_408D94
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+mov     cs:bDynamicsDefined_4027, 1
+mov     rbx, rsp
+call    GetPunct
+test    eax, eax
+jz      loc_408C79
+mov     dword ptr [pinfo+0], 2
+jmp     loc_408AA2
+mov     edx, 7Bh
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jz      loc_408DEC
+mov     edx, r15d
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetVarList
+jmp     loc_408AA2
+xor     ecx, ecx
+mov     edx, 4133B6h
+mov     esi, 810Eh
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408C54
+xor     ecx, ecx
+mov     edx, 4133D6h
+mov     esi, 810Eh
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408D1E
+xor     ecx, ecx
+mov     edx, 4133CBh
+mov     esi, 810Eh
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408CE2
+xor     ecx, ecx
+mov     edx, 4133C2h
+mov     esi, 810Eh
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408CA6
+mov     dword ptr [pinfo+0], 5
+jmp     loc_408AA2
+xor     ecx, ecx
+mov     edx, 4149CFh
+mov     esi, 8013h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408AA2
+call    ___stack_chk_fail
+mov     ecx, 4138F8h
+mov     edx, 13Dh
+mov     esi, 4133AFh
+mov     edi, 412E49h
+call    ___assert_fail

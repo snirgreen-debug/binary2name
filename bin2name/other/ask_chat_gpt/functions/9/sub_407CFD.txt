@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 4B0h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_4A4], 0
+jmp     short loc_407D3D
+mov     eax, [rbp-4A4h]
+cdqe
+mov     [rbp+rax*4+var_490], 8
+add     [rbp+var_4A4], 1
+cmp     [rbp+var_4A4], 8Fh
+jle     short loc_407D23
+jmp     short loc_407D65
+mov     eax, [rbp-4A4h]
+cdqe
+mov     [rbp+rax*4+var_490], 9
+add     [rbp+var_4A4], 1
+cmp     [rbp+var_4A4], 0FFh
+jle     short loc_407D4B
+jmp     short loc_407D8D
+mov     eax, [rbp-4A4h]
+cdqe
+mov     [rbp+rax*4+var_490], 7
+add     [rbp+var_4A4], 1
+cmp     [rbp+var_4A4], 117h
+jle     short loc_407D73
+jmp     short loc_407DB5
+mov     eax, [rbp-4A4h]
+cdqe
+mov     [rbp+rax*4+var_490], 8
+add     [rbp+var_4A4], 1
+cmp     [rbp+var_4A4], 11Fh
+jle     short loc_407D9B
+mov     [rbp+var_4AC], 7
+lea     rcx, [rbp-4A0h]
+lea     rax, [rbp-490h]
+sub     rsp, 8
+lea     rdx, [rbp-4ACh]
+push    rdx
+mov     r9, rcx
+mov     r8d, 6144A0h
+mov     ecx, 614460h
+mov     edx, 101h
+mov     esi, 120h
+mov     rdi, rax
+call    sub_406E18
+add     rsp, 10h
+mov     [rbp+var_4A4], eax
+cmp     [rbp+var_4A4], 0
+jz      short loc_407E23
+mov     eax, [rbp-4A4h]
+jmp     loc_407F10
+mov     [rbp+var_4A4], 0
+jmp     short loc_407E49
+mov     eax, [rbp-4A4h]
+cdqe
+mov     [rbp+rax*4+var_490], 5
+add     [rbp+var_4A4], 1
+cmp     [rbp+var_4A4], 1Dh
+jle     short loc_407E2F
+mov     [rbp+var_4A8], 5
+lea     rcx, [rbp-498h]
+lea     rax, [rbp-490h]
+sub     rsp, 8
+lea     rdx, [rbp-4A8h]
+push    rdx
+mov     r9, rcx
+mov     r8d, 614520h
+mov     ecx, 6144E0h
+mov     edx, 0
+mov     esi, 1Eh
+mov     rdi, rax
+call    sub_406E18
+add     rsp, 10h
+mov     [rbp+var_4A4], eax
+cmp     [rbp+var_4A4], 1
+jle     short loc_407EC0
+mov     rax, [rbp-4A0h]
+mov     rdi, rax
+call    sub_407575
+mov     eax, [rbp-4A4h]
+jmp     short loc_407F10
+mov     ecx, [rbp-4A8h]
+mov     edx, [rbp-4ACh]
+mov     rsi, [rbp-498h]
+mov     rax, [rbp-4A0h]
+mov     rdi, rax
+call    sub_4075B0
+test    eax, eax
+jz      short loc_407EED
+mov     eax, 1
+jmp     short loc_407F10
+mov     rax, [rbp-4A0h]
+mov     rdi, rax
+call    sub_407575
+mov     rax, [rbp-498h]
+mov     rdi, rax
+call    sub_407575
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_407F24
+call    ___stack_chk_fail
+leave
+retn

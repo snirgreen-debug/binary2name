@@ -1,0 +1,91 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0D0h
+mov     [rbp+fd], edi
+movsd   [rbp+maxtime], xmm0
+mov     [rbp+writep], esi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+rd], 0
+mov     [rbp+wrt], 0
+mov     eax, 0
+mov     ecx, 10h
+lea     rdx, [rbp-90h]
+mov     rdi, rdx
+cld
+rep stosq
+mov     eax, edi
+mov     edx, ecx
+mov     [rbp+__d0], edx
+mov     [rbp+__d1], eax
+mov     eax, [rbp-0C4h]
+lea     edx, [rax+3Fh]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 6
+mov     esi, eax
+movsxd  rax, esi
+mov     rdi, [rbp+rax*8-90h]
+mov     eax, [rbp-0C4h]
+cdq
+shr     edx, 1Ah
+add     eax, edx
+and     eax, 3Fh
+sub     eax, edx
+mov     edx, 1
+mov     ecx, eax
+shl     rdx, cl
+mov     rax, rdx
+or      rdi, rax
+mov     rdx, rdi
+movsxd  rax, esi
+mov     [rbp+rax*8+fds.fds_bits], rdx
+cmp     [rbp+writep], 0
+jz      short loc_403192
+lea     rax, [rbp-0A8h]
+jmp     short loc_403199
+lea     rax, [rbp-0B0h]
+lea     rdx, [rbp-90h]
+mov     [rax], rdx
+movsd   xmm0, qword ptr [rbp-0D0h]
+cvttsd2si rax, xmm0
+mov     [rbp+tmout.tv_sec], rax
+movsd   xmm0, qword ptr [rbp-0D0h]
+cvttsd2si rax, xmm0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, qword ptr [rbp-0D0h]
+subsd   xmm1, xmm0
+movapd  xmm0, xmm1
+movsd   xmm1, cs:qword_42FE10
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     [rbp+tmout.tv_usec], rax
+mov     rdx, [rbp-0A8h]
+mov     rax, [rbp-0B0h]
+mov     ecx, [rbp-0C4h]
+lea     edi, [rcx+1]
+lea     rcx, [rbp-0A0h]
+mov     r8, rcx
+mov     ecx, 0
+mov     rsi, rax
+call    _select
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+jns     short loc_40323E
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 4
+jz      short loc_4031F5
+cmp     [rbp+result], 0
+jnz     short loc_403252
+call    ___errno_location
+mov     dword ptr [rax], 6Eh
+mov     eax, [rbp-0B4h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_40326C
+call    ___stack_chk_fail
+leave
+retn

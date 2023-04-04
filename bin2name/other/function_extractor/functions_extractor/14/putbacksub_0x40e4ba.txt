@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40E544
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+mov     [rbp+var_8], rax
+mov     rax, cs:putback_max
+cmp     [rbp+var_8], rax
+jbe     short loc_40E51D
+mov     rax, [rbp-8]
+mov     cs:putback_max, rax
+mov     rdx, cs:putback_max
+mov     rax, cs:putback_buffer
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_realloc
+mov     cs:putback_buffer, rax
+mov     rax, cs:putback_buffer
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp-8]
+sub     rax, 1
+mov     cs:putback_size, rax
+jmp     short locret_40E545
+nop
+leave
+retn

@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+name], rdi
+mov     rax, [rbp-28h]
+mov     [rbp+base], rax
+mov     [rbp+saw_slash], 0
+jmp     short loc_40D870
+add     [rbp+base], 1
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_40D86B
+mov     rax, [rbp-10h]
+mov     [rbp+p], rax
+jmp     short loc_40D8AD
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_40D896
+mov     [rbp+saw_slash], 1
+jmp     short loc_40D8A8
+cmp     [rbp+saw_slash], 0
+jz      short loc_40D8A8
+mov     rax, [rbp-8]
+mov     [rbp+base], rax
+mov     [rbp+saw_slash], 0
+add     [rbp+p], 1
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40D885
+mov     rax, [rbp-10h]
+pop     rbp
+retn

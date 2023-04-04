@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+pred_func], rdi
+cmp     [rbp+pred_func], 404E96h
+jz      short loc_40B83D
+cmp     [rbp+pred_func], 405877h
+jnz     short loc_40B844
+mov     eax, 1
+jmp     short loc_40B849
+mov     eax, 0
+and     eax, 1
+pop     rbp
+retn

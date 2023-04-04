@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+zipfile], edi
+mov     eax, [rbp-4]
+mov     cs:zfile, eax
+mov     cs:bi_buf, 0
+mov     cs:bi_valid, 0
+mov     eax, cs:zfile
+cmp     eax, 0FFFFFFFFh
+jz      short loc_401C6F
+mov     cs:read_buf, 40D7E5h
+nop
+pop     rbp
+retn

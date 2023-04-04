@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+line], rdi
+jmp     short loc_408290
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+movsx   rax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     short loc_40828B
+mov     eax, 0
+jmp     short locret_4082A0
+add     [rbp+line], 1
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40825C
+mov     eax, 1
+leave
+retn

@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:exit_failure
+mov     edi, eax
+call    _exit

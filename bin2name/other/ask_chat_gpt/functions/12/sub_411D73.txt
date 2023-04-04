@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     eax, [rax+14h]
+cmp     eax, 1
+jz      short loc_411DC0
+mov     ecx, 432160h
+mov     edx, 307h
+mov     esi, 431FA0h
+mov     edi, 4320D5h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_411501
+mov     eax, 0
+leave
+retn

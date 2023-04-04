@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_414733
+mov     eax, 0
+leave
+retn

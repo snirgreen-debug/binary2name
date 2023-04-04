@@ -1,0 +1,76 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 108h
+mov     [rbp+var_F8], rdi
+mov     [rbp+var_100], rsi
+mov     [rbp+var_108], rdx
+mov     [rbp+var_110], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+lea     rcx, [rbp-0F0h]
+mov     rax, [rbp-0F8h]
+mov     edx, 2000E44h
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41A143
+test    eax, eax
+jz      short loc_420B50
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    sub_41A3EE
+mov     rbx, rax
+mov     edi, 426726h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-100h]
+mov     rcx, rbx
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    sub_40AA55
+jmp     loc_420BF0
+mov     rax, [rbp-0F0h]
+cmp     rax, 2
+ja      short loc_420B85
+mov     edi, 426742h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-100h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    sub_40AA55
+jmp     short loc_420BE1
+mov     rax, [rbp-0E8h]
+add     rax, 8
+mov     rdx, [rax]
+mov     rax, [rbp-0E8h]
+add     rax, 10h
+mov     rsi, [rax]
+mov     rcx, [rbp-110h]
+mov     rax, [rbp-108h]
+mov     rdi, rax
+call    sub_420760
+test    eax, eax
+jz      short loc_420BE1
+mov     edi, 42675Ah
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-100h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    sub_40AA55
+lea     rax, [rbp-0F0h]
+mov     rdi, rax
+call    sub_41A31D
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_420C04
+call    ___stack_chk_fail
+add     rsp, 108h
+pop     rbx
+pop     rbp
+retn

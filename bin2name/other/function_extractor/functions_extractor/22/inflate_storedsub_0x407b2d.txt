@@ -1,0 +1,128 @@
+push    rbp
+mov     rbp, rsp
+push    b
+push    k
+sub     rsp, 10h
+mov     b, cs:bb
+mov     ebx, cs:bk
+mov     eax, cs:outcnt
+mov     [rbp+w], eax
+mov     eax, ebx
+and     eax, 7
+mov     [rbp+n], eax
+mov     eax, [rbp-18h]
+mov     ecx, eax
+shr     b, cl
+sub     ebx, [rbp-18h]
+jmp     short loc_407BB1
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_407B90
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_407BA6
+mov     eax, [rbp-14h]
+mov     cs:outcnt, eax
+mov     edi, 0
+call    fill_inbuf
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      b, rax
+add     ebx, 8
+cmp     ebx, 0Fh
+jbe     short loc_407B63
+mov     eax, r12d
+and     eax, 0FFFFh
+mov     [rbp+n], eax
+shr     b, 10h
+sub     ebx, 10h
+jmp     short loc_407C18
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_407BF7
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_407C0D
+mov     eax, [rbp-14h]
+mov     cs:outcnt, eax
+mov     edi, 0
+call    fill_inbuf
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      b, rax
+add     ebx, 8
+cmp     ebx, 0Fh
+jbe     short loc_407BCA
+mov     eax, r12d
+not     eax
+movzx   eax, ax
+cmp     eax, [rbp-18h]
+jz      short loc_407C34
+mov     eax, 1
+jmp     loc_407CF4
+shr     b, 10h
+sub     ebx, 10h
+jmp     loc_407CCC
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_407C6D
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_407C83
+mov     eax, [rbp-14h]
+mov     cs:outcnt, eax
+mov     edi, 0
+call    fill_inbuf
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      b, rax
+add     ebx, 8
+cmp     ebx, 7
+jbe     short loc_407C40
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     [rbp+w], edx
+mov     edx, r12d
+mov     eax, eax
+mov     ds:window[rax], dl
+cmp     [rbp+w], 8000h
+jnz     short loc_407CC5
+mov     eax, [rbp-14h]
+mov     cs:outcnt, eax
+call    flush_window
+mov     [rbp+w], 0
+shr     b, 8
+sub     ebx, 8
+mov     eax, [rbp-18h]
+lea     edx, [rax-1]
+mov     [rbp+n], edx
+test    eax, eax
+jnz     short loc_407C8E
+mov     eax, [rbp-14h]
+mov     cs:outcnt, eax
+mov     cs:bb, b
+mov     cs:bk, ebx
+mov     eax, 0
+add     rsp, 10h
+pop     k
+pop     b
+pop     rbp
+retn

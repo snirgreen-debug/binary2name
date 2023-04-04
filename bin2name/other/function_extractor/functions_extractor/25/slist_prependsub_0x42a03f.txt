@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+l], rdi
+mov     [rbp+s], rsi
+mov     edi, 10h
+call    xmalloc_real
+mov     [rbp+newel], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+leave
+retn

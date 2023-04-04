@@ -1,0 +1,1 @@
+extrn bind_textdomain_codeset:near

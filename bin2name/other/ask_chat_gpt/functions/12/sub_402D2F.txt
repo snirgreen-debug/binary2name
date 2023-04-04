@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0C0h
+mov     [rbp+var_B4], edi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, 0
+mov     ecx, 10h
+lea     rdx, [rbp-90h]
+mov     rdi, rdx
+cld
+rep stosq
+mov     eax, edi
+mov     edx, ecx
+mov     [rbp+var_A8], edx
+mov     [rbp+var_A4], eax
+mov     eax, [rbp-0B4h]
+lea     edx, [rax+3Fh]
+test    eax, eax
+cmovs   eax, edx
+sar     eax, 6
+mov     esi, eax
+movsxd  rax, esi
+mov     rdi, [rbp+rax*8-90h]
+mov     eax, [rbp-0B4h]
+cdq
+shr     edx, 1Ah
+add     eax, edx
+and     eax, 3Fh
+sub     eax, edx
+mov     edx, 1
+mov     ecx, eax
+shl     rdx, cl
+mov     rax, rdx
+or      rdi, rax
+mov     rdx, rdi
+movsxd  rax, esi
+mov     [rbp+rax*8+readfds.fds_bits], rdx
+mov     [rbp+timeout.tv_sec], 0
+mov     [rbp+timeout.tv_usec], 1
+mov     eax, [rbp-0B4h]
+lea     edi, [rax+1]
+lea     rdx, [rbp-0A0h]
+lea     rax, [rbp-90h]
+mov     r8, rdx
+mov     ecx, 0
+mov     edx, 0
+mov     rsi, rax
+call    _select
+test    eax, eax
+jnz     short loc_402E11
+mov     eax, 1
+jmp     short loc_402E16
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_402E2A
+call    ___stack_chk_fail
+leave
+retn

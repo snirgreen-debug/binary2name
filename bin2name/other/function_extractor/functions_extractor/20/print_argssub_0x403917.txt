@@ -1,0 +1,119 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     eax, edi
+mov     [rbp+ask], al
+mov     [rbp+i], 0
+jmp     short loc_40398E
+mov     rax, cs:bc_state.cmd_argv
+mov     rdx, [rbp-18h]
+shl     rdx, 3
+add     rax, rdx
+mov     rdx, [rax]
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 40CAD2h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+test    eax, eax
+jns     short loc_403989
+mov     edi, 40CAD6h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+add     [rbp+i], 1
+mov     rax, cs:bc_state.cmd_argc
+sub     rax, 1
+cmp     rax, [rbp-18h]
+ja      short loc_40392F
+cmp     [rbp+ask], 0
+jz      loc_403ACC
+mov     rax, cs:tty_stream_5742
+test    rax, rax
+jnz     short loc_4039FA
+mov     edi, 40CAF0h
+call    fopen_cloexec_for_read_only
+mov     cs:tty_stream_5742, rax
+mov     rax, cs:tty_stream_5742
+test    rax, rax
+jnz     short loc_4039FA
+mov     edi, 40CB00h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 4
+mov     esi, 1
+mov     edi, 40CB24h
+call    _fwrite
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fflush
+test    eax, eax
+jz      short loc_403A53
+mov     edi, 40CAD6h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, cs:tty_stream_5742
+mov     rdi, rax
+call    __IO_getc
+mov     [rbp+savec], eax
+mov     eax, [rbp-1Ch]
+mov     [rbp+c], eax
+jmp     short loc_403A7F
+mov     rax, cs:tty_stream_5742
+mov     rdi, rax
+call    __IO_getc
+mov     [rbp+c], eax
+cmp     [rbp+c], 0FFFFFFFFh
+jz      short loc_403A8B
+cmp     [rbp+c], 0Ah
+jnz     short loc_403A6D
+cmp     [rbp+c], 0FFFFFFFFh
+jnz     short loc_403AB9
+mov     edi, 40CB29h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+cmp     [rbp+savec], 79h
+jz      short loc_403AC5
+cmp     [rbp+savec], 59h
+jnz     short loc_403AE0
+mov     eax, 1
+jmp     short loc_403AE5
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+mov     eax, 0
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

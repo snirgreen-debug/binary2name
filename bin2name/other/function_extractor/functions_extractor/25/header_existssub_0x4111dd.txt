@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+header], rdi
+mov     [rbp+closure], rsi
+mov     rax, [rbp-10h]
+mov     dword ptr [rax], 1
+mov     eax, 1
+pop     rbp
+retn

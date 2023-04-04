@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 100h
+mov     [rbp+var_F8], rdi
+mov     [rbp+var_A8], rsi
+mov     [rbp+var_A0], rdx
+mov     [rbp+var_98], rcx
+mov     [rbp+var_90], r8
+mov     [rbp+var_88], r9
+test    al, al
+jz      short loc_41CF19
+movaps  [rbp+var_80], xmm0
+movaps  [rbp+var_70], xmm1
+movaps  [rbp+var_60], xmm2
+movaps  [rbp+var_50], xmm3
+movaps  [rbp+var_40], xmm4
+movaps  [rbp+var_30], xmm5
+movaps  [rbp+var_20], xmm6
+movaps  [rbp+var_10], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_B8], rax
+xor     eax, eax
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      loc_41CFC0
+call    sub_41D2F3
+mov     eax, cs:dword_6420D0
+test    eax, eax
+jnz     short loc_41CFBF
+lea     rax, [rbp-0E0h]
+mov     edx, 10h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     [rbp+var_D0], 8
+mov     [rbp+var_CC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_C8], rax
+lea     rax, [rbp-0B0h]
+mov     [rbp+var_C0], rax
+lea     rdx, [rbp-0D0h]
+mov     rcx, [rbp-0F8h]
+lea     rax, [rbp-0E0h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_41CAA9
+mov     [rbp+var_E4], eax
+cmp     [rbp+var_E4], 0
+jz      short loc_41CF61
+jmp     short loc_41CFC0
+nop
+mov     rax, [rbp-0B8h]
+xor     rax, fs:28h
+jz      short locret_41CFD7
+call    ___stack_chk_fail
+leave
+retn

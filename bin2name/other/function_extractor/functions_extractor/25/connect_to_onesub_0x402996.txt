@@ -1,0 +1,192 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 70h
+mov     [rbp+addr], rdi
+mov     eax, esi
+mov     [rbp+silent], edx
+mov     [rbp+port], ax
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+movzx   edx, word ptr [rbp-6Ch]
+mov     esi, cs:ip_default_family
+mov     rcx, [rbp-68h]
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    wget_sockaddr_set_address
+cmp     [rbp+silent], 0
+jnz     loc_402A77
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    pretty_print_address
+mov     [rbp+pretty_addr], rax
+mov     rax, cs:connection_host_name
+test    rax, rax
+jz      short loc_402A4E
+mov     rax, cs:connection_host_name
+mov     rdx, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_402A4E
+movzx   r12d, word ptr [rbp-6Ch]
+mov     rbx, cs:connection_host_name
+mov     edi, 42FD32h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-48h]
+mov     r8d, r12d
+mov     rcx, rax
+mov     rdx, rbx
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+jmp     short loc_402A77
+movzx   ebx, word ptr [rbp-6Ch]
+mov     edi, 42FD4Fh
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-48h]
+mov     ecx, ebx
+mov     rdx, rax
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     eax, cs:ip_default_family
+mov     edx, 0
+mov     esi, 1
+mov     edi, eax
+call    _socket
+mov     [rbp+sock], eax
+cmp     [rbp+sock], 0
+js      loc_402BD1
+mov     rax, cs:opt.limit_rate
+test    rax, rax
+jz      short loc_402AF2
+mov     rax, cs:opt.limit_rate
+cmp     rax, 1FFFh
+jg      short loc_402AF2
+mov     rax, cs:opt.limit_rate
+mov     [rbp+bufsize], eax
+mov     eax, [rbp-54h]
+cmp     eax, 1FFh
+jg      short loc_402AD1
+mov     [rbp+bufsize], 200h
+lea     rdx, [rbp-54h]
+mov     eax, [rbp-50h]
+mov     r8d, 4
+mov     rcx, rdx
+mov     edx, 8
+mov     esi, 1
+mov     edi, eax
+call    _setsockopt
+call    resolve_bind_address
+mov     eax, cs:bind_address_resolved
+test    eax, eax
+jz      short loc_402B6F
+mov     esi, cs:ip_default_family
+lea     rax, [rbp-30h]
+mov     ecx, 63FFD8h
+mov     edx, 0
+mov     rdi, rax
+call    wget_sockaddr_set_address
+mov     eax, 0
+call    sockaddr_len
+mov     edx, eax
+lea     rcx, [rbp-30h]
+mov     eax, [rbp-50h]
+mov     rsi, rcx
+mov     edi, eax
+call    _bind
+test    eax, eax
+jz      short loc_402B6F
+mov     eax, [rbp-50h]
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_402B66
+mov     eax, [rbp-50h]
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    debug_logprintf
+mov     [rbp+sock], 0FFFFFFFFh
+jmp     short out
+mov     rbx, cs:opt.connect_timeout
+mov     eax, 0
+call    sockaddr_len
+mov     edx, eax
+lea     rcx, [rbp-40h]
+mov     eax, [rbp-50h]
+mov     [rbp+var_78], rbx
+movsd   xmm0, qword ptr [rbp-78h]
+mov     rsi, rcx
+mov     edi, eax
+call    connect_with_timeout
+test    eax, eax
+jns     short out
+mov     eax, [rbp-50h]
+mov     edi, eax
+call    _close
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_402BC8
+mov     eax, [rbp-50h]
+mov     esi, eax
+mov     edi, 42FD68h
+mov     eax, 0
+call    debug_logprintf
+mov     [rbp+sock], 0FFFFFFFFh
+jmp     short out
+nop
+cmp     [rbp+sock], 0
+js      short loc_402C1A
+cmp     [rbp+silent], 0
+jnz     short loc_402BFA
+mov     edi, 42FD77h
+call    _gettext
+mov     rsi, rax
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_402C5C
+mov     eax, [rbp-50h]
+mov     esi, eax
+mov     edi, 42FD83h
+mov     eax, 0
+call    debug_logprintf
+jmp     short loc_402C5C
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+save_errno], eax
+cmp     [rbp+silent], 0
+jnz     short loc_402C4F
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 42FD97h
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4Ch]
+mov     [rdx], eax
+mov     eax, [rbp-50h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_402C73
+call    ___stack_chk_fail
+add     rsp, 70h
+pop     rbx
+pop     r12
+pop     rbp
+retn

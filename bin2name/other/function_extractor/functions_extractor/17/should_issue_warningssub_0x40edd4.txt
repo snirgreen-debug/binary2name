@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+movzx   eax, cs:options_0.posixly_correct
+test    al, al
+jz      short loc_40EDEA
+mov     eax, 0
+jmp     short loc_40EDF1
+movzx   eax, cs:options_0.warnings
+pop     rbp
+retn

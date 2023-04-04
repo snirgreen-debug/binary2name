@@ -1,0 +1,199 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-38h]
+mov     rsi, [rbp-50h]
+mov     rax, [rbp-48h]
+mov     ecx, 1
+mov     rdi, rax
+call    sub_418CBF
+mov     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_419671
+mov     eax, 0
+jmp     loc_419910
+mov     rax, [rbp-48h]
+mov     rax, [rax+20h]
+lea     rdx, [rax-1]
+mov     rax, [rbp-48h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_41990C
+mov     rax, [rbp-48h]
+mov     rax, [rax+18h]
+lea     rdx, [rax-1]
+mov     rax, [rbp-48h]
+mov     [rax+18h], rdx
+mov     rax, [rbp-48h]
+mov     rax, [rax+18h]
+test    rax, rax
+js      short loc_4196C1
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rax
+jmp     short loc_4196DA
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rdx
+addss   xmm0, xmm0
+mov     rax, [rbp-48h]
+mov     rax, [rax+28h]
+movss   xmm2, dword ptr [rax]
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+test    rax, rax
+js      short loc_4196FE
+pxor    xmm1, xmm1
+cvtsi2ss xmm1, rax
+jmp     short loc_419717
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm1, xmm1
+cvtsi2ss xmm1, rdx
+addss   xmm1, xmm1
+mulss   xmm1, xmm2
+ucomiss xmm1, xmm0
+jbe     loc_41990C
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    sub_418676
+mov     rax, [rbp-48h]
+mov     rax, [rax+18h]
+test    rax, rax
+js      short loc_419748
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rax
+jmp     short loc_419761
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rdx
+addss   xmm0, xmm0
+mov     rax, [rbp-48h]
+mov     rax, [rax+28h]
+movss   xmm2, dword ptr [rax]
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+test    rax, rax
+js      short loc_419785
+pxor    xmm1, xmm1
+cvtsi2ss xmm1, rax
+jmp     short loc_41979E
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm1, xmm1
+cvtsi2ss xmm1, rdx
+addss   xmm1, xmm1
+mulss   xmm1, xmm2
+ucomiss xmm1, xmm0
+jbe     loc_41990C
+mov     rax, [rbp-48h]
+mov     rax, [rax+28h]
+mov     [rbp+var_20], rax
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax+10h]
+test    al, al
+jz      short loc_419834
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+test    rax, rax
+js      short loc_4197DB
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rax
+jmp     short loc_4197F4
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rdx
+addss   xmm0, xmm0
+mov     rax, [rbp-20h]
+movss   xmm1, dword ptr [rax+4]
+mulss   xmm0, xmm1
+ucomiss xmm0, cs:dword_42FFC4
+jnb     short loc_419814
+cvttss2si rax, xmm0
+jmp     loc_4198AD
+movss   xmm1, cs:dword_42FFC4
+subss   xmm0, xmm1
+cvttss2si rax, xmm0
+mov     rdx, 8000000000000000h
+xor     rax, rdx
+jmp     short loc_4198AD
+mov     rax, [rbp-48h]
+mov     rax, [rax+10h]
+test    rax, rax
+js      short loc_41984C
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rax
+jmp     short loc_419865
+mov     rdx, rax
+shr     rdx, 1
+and     eax, 1
+or      rdx, rax
+pxor    xmm0, xmm0
+cvtsi2ss xmm0, rdx
+addss   xmm0, xmm0
+mov     rax, [rbp-20h]
+movss   xmm1, dword ptr [rax+4]
+mulss   xmm0, xmm1
+mov     rax, [rbp-20h]
+movss   xmm1, dword ptr [rax+8]
+mulss   xmm0, xmm1
+ucomiss xmm0, cs:dword_42FFC4
+jnb     short loc_41988F
+cvttss2si rax, xmm0
+jmp     short loc_4198AD
+movss   xmm1, cs:dword_42FFC4
+subss   xmm0, xmm1
+cvttss2si rax, xmm0
+mov     rdx, 8000000000000000h
+xor     rax, rdx
+mov     [rbp+var_18], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_419024
+xor     eax, 1
+test    al, al
+jz      short loc_41990C
+mov     rax, [rbp-48h]
+mov     rax, [rax+48h]
+mov     [rbp+ptr], rax
+jmp     short loc_4198F9
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_4198D9
+mov     rax, [rbp-48h]
+mov     qword ptr [rax+48h], 0
+mov     rax, [rbp-28h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_419924
+call    ___stack_chk_fail
+leave
+retn

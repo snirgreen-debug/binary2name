@@ -1,0 +1,40 @@
+push    rbp
+push    rbx
+mov     rbx, pibIn
+sub     rsp, 438h
+mov     rcx, fs:28h
+mov     [rsp+448h+var_20], rcx
+xor     ecx, ecx
+test    szExpress_0, szExpress_0
+mov     [rsp+448h+szExpress], szExpress_0
+mov     [rsp+448h+iType], 0
+mov     [rsp+448h+szToken], 0
+jz      short loc_403460
+mov     rbp, index
+lea     szExpress_0, [rsp+1Ch]
+lea     index, [rsp+20h]
+lea     pibIn, [rsp+8]
+call    GetToken_0
+cmp     [rsp+448h+szToken], 0
+jz      short loc_403460
+lea     r8, [rsp+1Ch]
+lea     rcx, [rsp+20h]
+lea     rdx, [rsp+8]
+mov     rsi, index
+mov     rdi, pibIn
+call    EvalSum
+mov     pibIn, [rsp+428h]
+xor     pibIn, fs:28h
+jnz     short loc_40347B
+add     rsp, 438h
+pop     rbx
+pop     rbp
+retn
+mov     rdx, [rsp+8]
+mov     ecx, 412530h
+mov     esi, 8011h
+mov     rdi, pibIn
+call    ReportError
+xor     eax, eax
+jmp     short loc_40343E
+call    ___stack_chk_fail

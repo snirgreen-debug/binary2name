@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+dir_fd], edi
+mov     [rbp+callback], rsi
+mov     [rbp+usercontext], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+dir_fd], 0FFFFFF9Ch
+jnz     short loc_41634F
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-40h]
+mov     rdi, rdx
+call    rax
+jmp     loc_41640C
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    save_cwd
+test    eax, eax
+jz      short loc_41636D
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    openat_save_fail
+mov     eax, [rbp-34h]
+mov     edi, eax
+call    _fchdir
+test    eax, eax
+jz      short loc_4163A5
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    free_cwd
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-28h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     short loc_41640C
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-40h]
+mov     rdi, rdx
+call    rax
+mov     [rbp+err], eax
+cmp     [rbp+err], 0
+jns     short loc_4163C4
+call    ___errno_location
+mov     eax, [rax]
+jmp     short loc_4163C9
+mov     eax, 0
+mov     [rbp+saved_errno], eax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    restore_cwd
+test    eax, eax
+jz      short loc_4163EA
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    openat_restore_fail
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    free_cwd
+cmp     [rbp+saved_errno], 0
+jz      short loc_416409
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-28h]
+mov     [rdx], eax
+mov     eax, [rbp-24h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_416420
+call    ___stack_chk_fail
+leave
+retn

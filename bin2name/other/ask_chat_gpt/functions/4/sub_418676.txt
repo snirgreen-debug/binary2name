@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 42FF20h
+jnz     short loc_41869E
+mov     eax, 1
+jmp     loc_418771
+movss   xmm0, cs:dword_42FFBC
+movss   [rbp+var_C], xmm0
+mov     rax, [rbp-8]
+movss   xmm0, dword ptr [rax+8]
+ucomiss xmm0, dword ptr [rbp-0Ch]
+jbe     loc_418760
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+8]
+movss   xmm0, cs:dword_42FFB0
+subss   xmm0, dword ptr [rbp-0Ch]
+ucomiss xmm0, xmm1
+jbe     loc_418760
+movss   xmm1, dword ptr [rbp-0Ch]
+movss   xmm0, cs:dword_42FFB0
+addss   xmm0, xmm1
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+0Ch]
+ucomiss xmm1, xmm0
+jbe     short loc_418760
+mov     rax, [rbp-8]
+movss   xmm0, dword ptr [rax]
+pxor    xmm1, xmm1
+ucomiss xmm0, xmm1
+jb      short loc_418760
+mov     rax, [rbp-8]
+movss   xmm0, dword ptr [rax]
+addss   xmm0, dword ptr [rbp-0Ch]
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+4]
+ucomiss xmm1, xmm0
+jbe     short loc_418760
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+4]
+movss   xmm0, cs:dword_42FFB0
+ucomiss xmm0, xmm1
+jb      short loc_418760
+mov     rax, [rbp-8]
+movss   xmm0, dword ptr [rax]
+addss   xmm0, dword ptr [rbp-0Ch]
+mov     rax, [rbp-8]
+movss   xmm1, dword ptr [rax+8]
+ucomiss xmm1, xmm0
+jbe     short loc_418760
+mov     eax, 1
+jmp     short loc_418771
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+28h], 42FF20h
+mov     eax, 0
+pop     rbp
+retn

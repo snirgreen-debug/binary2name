@@ -1,0 +1,7 @@
+push    rbp
+mov     rbp, rsp
+call    init_getbits
+mov     cs:blocksize, 0
+nop
+pop     rbp
+retn

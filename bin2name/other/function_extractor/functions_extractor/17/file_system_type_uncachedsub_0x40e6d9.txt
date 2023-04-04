@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+statp], rdi
+mov     [rbp+path], rsi
+mov     [rbp+best], 0
+mov     edi, 1
+call    must_read_fs_list
+mov     [rbp+entries], rax
+mov     [rbp+type], 0
+mov     rax, [rbp-8]
+mov     [rbp+entry], rax
+jmp     short loc_40E765
+mov     rax, [rbp-20h]
+mov     rax, [rax+18h]
+mov     esi, 42D285h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_40E758
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    set_fstype_devno
+test    eax, eax
+jnz     short loc_40E759
+mov     rax, [rbp-20h]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+cmp     rdx, rax
+jnz     short loc_40E759
+mov     rax, [rbp-20h]
+mov     [rbp+best], rax
+jmp     short loc_40E759
+nop
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     [rbp+entry], rax
+cmp     [rbp+entry], 0
+jnz     short loc_40E711
+cmp     [rbp+best], 0
+jz      short loc_40E787
+mov     rax, [rbp-18h]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    xstrdup
+mov     [rbp+type], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    free_file_system_list
+cmp     [rbp+type], 0
+setnz   al
+movzx   eax, al
+mov     cs:fstype_known, eax
+cmp     [rbp+type], 0
+jnz     short loc_40E7BF
+mov     edi, 42D28Ch
+call    _gettext
+mov     rdi, rax
+call    xstrdup
+jmp     short locret_40E7C3
+mov     rax, [rbp-10h]
+leave
+retn

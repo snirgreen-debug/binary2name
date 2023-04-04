@@ -1,0 +1,62 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_24], edi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_14], 0
+jmp     short loc_404422
+mov     eax, [rbp-14h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+mov     cs:dword_63BF9C, eax
+mov     eax, [rbp-14h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_4040FB
+xor     eax, 1
+test    al, al
+jz      short loc_40441E
+mov     eax, 0
+jmp     short loc_404478
+add     [rbp+var_14], 1
+mov     eax, [rbp-14h]
+cmp     eax, [rbp-24h]
+jge     short loc_404459
+mov     eax, [rbp-14h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     rax, [rax]
+mov     esi, 1
+mov     rdi, rax
+call    sub_40AF58
+xor     eax, 1
+test    al, al
+jnz     loc_4043CC
+cmp     [rbp+var_14], 0
+jnz     short loc_404473
+mov     [rbp+var_10], 2Eh
+lea     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_4040FB
+jmp     short loc_404478
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40448C
+call    ___stack_chk_fail
+leave
+retn

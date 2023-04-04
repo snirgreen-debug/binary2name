@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+fp], rdi
+mov     [rbp+filename], rsi
+mov     [rbp+minvalue], rdx
+mov     [rbp+maxvalue], rcx
+mov     [rbp+endian_state_flag], r8
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _clearerr
+mov     rdx, [rbp-38h]
+lea     rax, [rbp-20h]
+mov     rcx, rdx
+mov     edx, 1
+mov     esi, 4
+mov     rdi, rax
+call    _fread
+mov     [rbp+bytes_read], rax
+cmp     [rbp+bytes_read], 1
+jz      loc_4053AF
+mov     rax, [rbp-40h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     [rbp+quoted_name], rax
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _feof
+test    eax, eax
+jz      short loc_40537B
+mov     edi, 40ECE2h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_4053AA
+mov     edi, 40ECF7h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-28h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+call    _abort
+mov     rax, [rbp-50h]
+mov     esi, eax
+mov     rcx, [rbp-40h]
+mov     rdx, [rbp-58h]
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    decode_value
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_4053DD
+call    ___stack_chk_fail
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

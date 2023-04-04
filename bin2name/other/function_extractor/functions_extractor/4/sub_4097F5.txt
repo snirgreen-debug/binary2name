@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+add     rax, 120h
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     qword ptr [rax+8], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax], rdx
+nop
+pop     rbp
+retn

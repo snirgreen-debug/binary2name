@@ -1,0 +1,173 @@
+push    r15
+lea     eax, [iKWCode-1]
+push    r14
+push    r13
+push    r12
+mov     r12, pibIn
+push    rbp
+push    rbx
+mov     rbp, szName
+sub     rsp, 8
+cmp     eax, 2
+mov     r13, [pibIn+30h]
+jbe     short loc_408069
+cmp     edx, 2Ah
+jnz     loc_4082D4
+cmp     edx, 1
+jz      loc_408180
+cmp     edx, 2
+jz      loc_4081A8
+cmp     edx, 3
+jz      loc_4081C0
+mov     rbx, [pinfo+20h]
+test    rbx, rbx
+jz      loc_40821D
+mov     r14d, 0B0000h
+mov     r15d, 0B0000h
+jmp     short loc_4080A9
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_408100
+mov     rsi, [rbx]
+mov     rdi, szName
+call    _strcmp
+test    eax, eax
+jnz     short loc_4080A0
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+jz      short loc_408100
+cdqe
+xor     ecx, ecx
+mov     rdx, szName
+cmp     hType, r14
+mov     esi, 4102h
+jz      short loc_4080EA
+cmp     hType, 40000h
+jz      loc_4081CE
+xor     ecx, ecx
+mov     szName, rbp
+mov     esi, 8102h
+mov     rdi, pibIn
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     pibIn
+pop     pinfo
+pop     r14
+pop     r15
+jmp     ReportError
+cmp     r15d, 0B0000h
+jz      loc_408230
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     rbx, rax
+jz      loc_40828D
+mov     rdi, szName
+call    _strlen
+lea     pibIn, [rax+1]
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+jz      loc_4082A1
+mov     rdx, r12
+mov     rsi, szName
+mov     rdi, rax
+call    _memcpy
+mov     [rbx], rax
+mov     qword ptr [rbx+8], 0
+mov     rax, [pinfo+20h]
+mov     [rbx+10h], r14
+mov     [rbx+18h], rax
+mov     [pinfo+20h], rbx
+add     rsp, 8
+pop     rbx
+pop     szName
+pop     r12
+pop     pinfo
+pop     r14
+pop     r15
+retn
+mov     r14d, 10000h
+mov     r15d, 10000h
+mov     rbx, [pinfo+20h]
+test    rbx, rbx
+jnz     loc_4080A9
+test    rbp, rbp
+jz      short loc_408169
+jmp     loc_40810D
+mov     r14d, 20000h
+mov     r15d, 20000h
+jmp     short loc_40818C
+mov     r14d, 30000h
+mov     r15d, 30000h
+jmp     short loc_40818C
+mov     ecx, 413358h
+mov     szName, rbp
+mov     esi, 4102h
+mov     rdi, pibIn
+call    ReportError
+mov     rbx, [pinfo+20h]
+test    rbx, rbx
+jnz     short loc_408205
+jmp     loc_408169
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      loc_408169
+mov     rsi, [rbx]
+mov     rdi, szName
+call    _strcmp
+test    eax, eax
+jnz     short loc_4081F8
+mov     [rbx+10h], r14
+jmp     loc_408169
+test    rbp, rbp
+jz      loc_408169
+nop     word ptr [rax+rax+00000000h]
+mov     edi, 20h
+call    _malloc
+test    rax, rax
+mov     rbx, rax
+jz      short loc_40828D
+mov     rdi, szName
+call    _strlen
+lea     pibIn, [rax+1]
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+jz      short loc_4082BC
+mov     rdx, r12
+mov     rsi, szName
+mov     rdi, rax
+call    _memcpy
+mov     [rbx], rax
+mov     qword ptr [rbx+8], 0
+mov     rax, [pinfo+58h]
+mov     qword ptr [rbx+10h], 0B0000h
+mov     [rbx+18h], rax
+mov     [pinfo+58h], rbx
+jmp     loc_408169
+mov     ecx, 4131E8h
+mov     rdx, szName
+mov     esi, 8004h
+xor     edi, edi
+jmp     loc_4080ED
+mov     ecx, 4131C0h
+mov     rdx, szName
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     loc_40814E
+mov     ecx, 4131C0h
+mov     rdx, szName
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+xor     eax, eax
+jmp     short loc_408269
+mov     ecx, 413190h
+mov     edx, 321h
+mov     esi, 412E2Bh
+mov     edi, 4132F0h
+call    ___assert_fail

@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+iter], rdi
+mov     [rbp+ptrdiff], rsi
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-10h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+nop
+pop     rbp
+retn

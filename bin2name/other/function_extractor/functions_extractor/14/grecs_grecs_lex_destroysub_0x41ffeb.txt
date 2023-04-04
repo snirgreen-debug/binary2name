@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+jmp     short loc_420045
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_420017
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_42001C
+mov     eax, 0
+mov     rdi, rax
+call    grecs_grecs__delete_buffer
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     qword ptr [rax], 0
+call    grecs_grecs_pop_buffer_state
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jz      short loc_42006E
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdx, cs:grecs_grecs__buffer_stack_top
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_41FFF1
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rdi, rax
+call    grecs_grecs_free
+mov     cs:grecs_grecs__buffer_stack, 0
+call    grecs_grecs__init_globals
+mov     eax, 0
+pop     rbp
+retn

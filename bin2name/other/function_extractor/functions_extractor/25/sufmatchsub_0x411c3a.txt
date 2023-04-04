@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+list], rdi
+mov     [rbp+what], rsi
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+lw], eax
+mov     [rbp+i], 0
+jmp     loc_411D0B
+mov     eax, [rbp-10h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+j], eax
+mov     eax, [rbp-4]
+mov     [rbp+k], eax
+jmp     short loc_411CEB
+mov     eax, [rbp-10h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   edx, byte ptr [rax+436E80h]
+mov     eax, [rbp-8]
+movsxd  rcx, eax
+mov     rax, [rbp-20h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, byte ptr [rax+436E80h]
+cmp     dl, al
+jnz     short loc_411CF9
+sub     [rbp+j], 1
+sub     [rbp+k], 1
+cmp     [rbp+j], 0
+js      short loc_411CFA
+cmp     [rbp+k], 0
+jns     short loc_411C8F
+jmp     short loc_411CFA
+nop
+cmp     [rbp+j], 0FFFFFFFFh
+jnz     short loc_411D07
+mov     eax, 1
+jmp     short locret_411D30
+add     [rbp+i], 1
+mov     eax, [rbp-10h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_411C65
+mov     eax, 0
+leave
+retn

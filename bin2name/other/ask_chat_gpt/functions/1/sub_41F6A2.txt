@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     eax, [rax+20h]
+mov     cs:dword_62D754, eax
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+10h]
+mov     cs:qword_62D758, rax
+mov     rax, cs:qword_62D758
+mov     cs:qword_62D8A0, rax
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax]
+mov     cs:stream, rax
+mov     rax, cs:qword_62D758
+movzx   eax, byte ptr [rax]
+mov     cs:byte_62D750, al
+nop
+pop     rbp
+retn

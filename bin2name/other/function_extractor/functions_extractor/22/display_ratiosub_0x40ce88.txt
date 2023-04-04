@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+num], rdi
+mov     [rbp+den], rsi
+mov     [rbp+file], rdx
+cmp     [rbp+den], 0
+jz      short loc_40CECE
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, qword ptr [rbp-8]
+movsd   xmm1, cs:qword_411F48
+mulsd   xmm0, xmm1
+pxor    xmm1, xmm1
+cvtsi2sd xmm1, qword ptr [rbp-10h]
+divsd   xmm0, xmm1
+movq    rax, xmm0
+jmp     short loc_40CED3
+mov     eax, 0
+mov     rdx, [rbp-18h]
+mov     [rbp+var_20], rax
+movsd   xmm0, qword ptr [rbp-20h]
+mov     esi, 411F3Eh
+mov     rdi, rdx
+mov     eax, 1
+call    _fprintf
+nop
+leave
+retn

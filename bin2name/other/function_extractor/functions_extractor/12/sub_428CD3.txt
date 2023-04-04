@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], 0
+mov     rax, cs:qword_647610
+test    rax, rax
+jnz     short loc_428D0C
+mov     esi, 0
+mov     edi, 43755Fh
+call    sub_42915E
+mov     cs:qword_647610, rax
+mov     [rbp+var_18], 1
+call    _fork
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 0
+jns     short loc_428D2E
+mov     edi, 437568h
+call    _perror
+mov     edi, 1
+call    _exit
+cmp     [rbp+var_14], 0
+jz      short loc_428D84
+mov     edi, 437570h
+call    _gettext
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     esi, eax
+mov     rdi, rdx
+mov     eax, 0
+call    _printf
+cmp     [rbp+var_18], 0
+jz      short loc_428D7A
+mov     rbx, cs:qword_647610
+mov     edi, 437598h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 0
+call    _exit
+call    _setsid
+mov     rax, cs:stdin
+mov     rdx, rax
+mov     esi, 4375B9h
+mov     edi, 4375BBh
+call    _freopen
+mov     rax, cs:stdout
+mov     rdx, rax
+mov     esi, 4375C5h
+mov     edi, 4375BBh
+call    _freopen
+mov     rax, cs:stderr
+mov     rdx, rax
+mov     esi, 4375C5h
+mov     edi, 4375BBh
+call    _freopen
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

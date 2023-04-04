@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_20], rcx
+lea     rdi, aConformability_0
+call    sub_402506
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409B1E
+mov     rax, [rbp-8]
+mov     rsi, rax
+lea     rdi, aS_3
+mov     eax, 0
+call    sub_40239A
+jmp     short loc_409B37
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_409B37
+mov     edi, 9
+call    sub_4024C4
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_406ACF
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_409B6C
+mov     rax, [rbp-18h]
+mov     rsi, rax
+lea     rdi, aS_4
+mov     eax, 0
+call    sub_40239A
+jmp     short loc_409B93
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_409B89
+lea     rdi, asc_4147E1
+call    sub_402506
+jmp     short loc_409B93
+mov     edi, 0Ah
+call    sub_4024C4
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_406ACF
+mov     edi, 0Ah
+call    sub_4024C4
+nop
+leave
+retn

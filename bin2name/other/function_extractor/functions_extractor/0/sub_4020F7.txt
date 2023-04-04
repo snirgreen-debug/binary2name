@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_605100
+add     rax, 18h
+mov     cs:qword_605100, rax
+mov     eax, 0
+call    sub_400EF3
+mov     rax, cs:qword_605100
+mov     rdi, rax
+call    sub_400A74
+mov     rdx, cs:qword_605100
+mov     ecx, cs:dword_6050EC
+mov     rax, cs:qword_605450
+mov     esi, ecx
+mov     rdi, rax
+call    sub_402022
+mov     cs:dword_6050EC, eax
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _time
+mov     [rbp+timer], rax
+mov     rax, [rbp-18h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_428BB9
+mov     cs:byte_647468, 0
+mov     eax, 647468h
+jmp     short loc_428BFD
+lea     rax, [rbp-18h]
+mov     rdi, rax
+call    _localtime
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+mov     ecx, [rax]
+mov     rax, [rbp-10h]
+mov     edx, [rax+4]
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+mov     r8d, ecx
+mov     ecx, edx
+mov     edx, eax
+mov     esi, 437532h
+mov     edi, 647468h
+mov     eax, 0
+call    _sprintf
+mov     eax, 647468h
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_428C11
+call    ___stack_chk_fail
+leave
+retn

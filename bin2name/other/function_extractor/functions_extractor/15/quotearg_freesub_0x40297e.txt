@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:slotvec_0
+mov     [rbp+sv], rax
+mov     [rbp+i], 1
+jmp     short loc_4029BB
+mov     eax, [rbp-0Ch]
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+add     [rbp+i], 1
+mov     eax, cs:nslots
+cmp     [rbp+i], eax
+jb      short loc_40299A
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rax, 6062C0h
+jz      short loc_4029FC
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+mov     cs:slotvec0.size, 100h
+mov     cs:slotvec0.val, 6062C0h
+cmp     [rbp+sv], 6061B0h
+jz      short loc_402A1D
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     cs:slotvec_0, 6061B0h
+mov     cs:nslots, 1
+nop
+leave
+retn

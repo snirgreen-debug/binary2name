@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 411EF0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    abort_gzip

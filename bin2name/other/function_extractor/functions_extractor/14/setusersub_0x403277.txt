@@ -1,0 +1,110 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+name], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _getpwnam
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_4032E2
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 422991h
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 2
+call    _exit
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+test    eax, eax
+jz      loc_4033FC
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+lea     rdx, [rbp-18h]
+lea     rcx, [rbp-20h]
+mov     rsi, rcx
+mov     edi, eax
+call    get_user_groups
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _setgroups
+test    eax, eax
+jns     short loc_403350
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 4229A2h
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 2
+call    _exit
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+mov     edi, eax
+call    _setgid
+test    eax, eax
+jz      short loc_4033AC
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     eax, [rax+14h]
+mov     eax, eax
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 4229B0h
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 2
+call    _exit
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+mov     edi, eax
+call    _setuid
+test    eax, eax
+jz      short loc_4033FD
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     eax, [rax+10h]
+mov     eax, eax
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 4229C0h
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 2
+call    _exit
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_403411
+call    ___stack_chk_fail
+leave
+retn

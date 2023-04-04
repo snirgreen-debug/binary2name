@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+shr     rax, 3
+mov     [rbp+var_4], eax
+mov     [rbp+var_8], 0
+jmp     short loc_41A974
+mov     eax, [rbp-8]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     byte ptr [rax], 0FFh
+add     [rbp+var_8], 1
+mov     eax, [rbp-8]
+cmp     eax, [rbp-4]
+jl      short loc_41A960
+cmp     [rbp+var_8], 10h
+jz      short loc_41A9DD
+mov     rax, [rbp-28h]
+and     eax, 7
+mov     edx, 8
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+var_4], eax
+mov     eax, [rbp-8]
+lea     edx, [rax+1]
+mov     [rbp+var_8], edx
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rdx, rax
+mov     eax, [rbp-4]
+mov     esi, 0FFh
+mov     ecx, eax
+sar     esi, cl
+mov     eax, [rbp-4]
+mov     ecx, eax
+shl     esi, cl
+mov     eax, esi
+mov     [rdx], al
+jmp     short loc_41A9D5
+mov     eax, [rbp-8]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+add     [rbp+var_8], 1
+cmp     [rbp+var_8], 0Fh
+jle     short loc_41A9C1
+jmp     short loc_41A9DE
+nop
+pop     rbp
+retn

@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_28], 0
+nop
+pop     rbp
+retn

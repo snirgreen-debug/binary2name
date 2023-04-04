@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+call    _inotify_init
+mov     cs:fd, eax
+mov     eax, cs:fd
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_40A0A6
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 423B46h
+mov     edi, 2
+mov     eax, 0
+call    sub_402A42
+mov     edi, 1
+call    _exit
+nop
+pop     rbp
+retn

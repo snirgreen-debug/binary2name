@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+c], edi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, cs:isUTF8Locale
+test    eax, eax
+jnz     short loc_409116
+mov     eax, [rbp-54h]
+movsxd  rdx, eax
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rsi, rdx
+mov     rdi, rax
+call    _waddch
+jmp     short loc_40917E
+mov     eax, [rbp-54h]
+mov     [rbp+wc], eax
+mov     [rbp+wc+4], 0
+lea     rsi, [rbp-40h]
+lea     rax, [rbp-30h]
+mov     r8d, 0
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    _setcchar
+mov     [rbp+result], eax
+cmp     [rbp+result], 0
+jz      short loc_409168
+mov     edi, 40B0DCh
+call    _gettext
+mov     esi, 40B062h
+mov     rdi, rax
+mov     eax, 0
+call    fatal_error
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+lea     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _wadd_wch
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_409192
+call    ___stack_chk_fail
+leave
+retn

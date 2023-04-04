@@ -1,0 +1,62 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     [rbp+var_14], 0
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, rdx
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     esi, 3Ah
+mov     rdi, rax
+call    _memchr
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_406CDD
+mov     eax, 0
+jmp     short locret_406D5A
+mov     rax, [rbp-8]
+add     rax, 1
+mov     [rbp+var_10], rax
+jmp     short loc_406D10
+mov     edx, [rbp-14h]
+mov     eax, edx
+shl     eax, 2
+add     eax, edx
+add     eax, eax
+mov     edx, eax
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+sub     eax, 30h
+add     eax, edx
+mov     [rbp+var_14], eax
+add     [rbp+var_10], 1
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-30h]
+jnb     short loc_406D3B
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jnz     short loc_406CEB
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-30h]
+jnb     short loc_406D4C
+mov     eax, 0
+jmp     short locret_406D5A
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     eax, [rbp-14h]
+leave
+retn

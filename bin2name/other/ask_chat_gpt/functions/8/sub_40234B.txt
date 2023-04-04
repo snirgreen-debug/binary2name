@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+cmp     [rbp+s], 0
+jz      short loc_4023C0
+mov     rax, cs:ptr
+test    rax, rax
+jz      short loc_402379
+mov     rax, cs:ptr
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strdup
+mov     cs:ptr, rax
+mov     rax, cs:ptr
+test    rax, rax
+jnz     short locret_4023C1
+mov     edi, 40946Eh
+call    _perror
+mov     edi, 409475h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     rdi, rdx
+call    sub_408C26
+jmp     short locret_4023C1
+nop
+leave
+retn

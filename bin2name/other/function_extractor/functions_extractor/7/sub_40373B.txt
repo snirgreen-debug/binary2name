@@ -1,0 +1,112 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, cs:qword_6113E8
+mov     [rbp+var_10], rax
+mov     rax, cs:qword_6113E8
+mov     rcx, cs:qword_611478
+mov     rdx, cs:qword_611428
+sub     rcx, rdx
+mov     rdx, rcx
+sub     rdx, 1
+add     rax, rdx
+mov     [rbp+var_8], rax
+movzx   eax, cs:byte_611509
+test    al, al
+jz      short loc_403789
+mov     eax, 0FFFFFFFFh
+jmp     locret_403915
+mov     rax, cs:fp
+mov     rdi, rax
+call    __IO_getc
+mov     [rbp+var_18], eax
+cmp     [rbp+var_18], 0FFFFFFFFh
+jnz     loc_403838
+mov     cs:byte_611509, 1
+mov     rax, cs:qword_6113E8
+cmp     [rbp+var_10], rax
+jnz     short loc_4037C3
+mov     eax, 0FFFFFFFFh
+jmp     locret_403915
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+var_10], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-10h]
+mov     rdx, cs:qword_6113E8
+sub     rax, rdx
+mov     [rbp+var_14], eax
+mov     rax, cs:s
+test    rax, rax
+jnz     short loc_403830
+movzx   eax, cs:byte_6112D0
+movzx   ecx, al
+mov     eax, [rbp-14h]
+movsxd  rdx, eax
+mov     rax, cs:qword_6113E8
+sub     rsp, 8
+push    rcx
+mov     r9d, 0
+mov     r8d, 0
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 611400h
+mov     edi, 611460h
+call    sub_4050E4
+add     rsp, 10h
+mov     eax, [rbp-14h]
+jmp     locret_403915
+movzx   eax, cs:byte_6114FA
+movsx   eax, al
+cmp     eax, [rbp-18h]
+jnz     loc_4038CF
+mov     rax, cs:qword_6113F8
+add     rax, 1
+mov     cs:qword_6113F8, rax
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+var_10], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-10h]
+mov     rdx, cs:qword_6113E8
+sub     rax, rdx
+mov     [rbp+var_14], eax
+mov     rax, cs:s
+test    rax, rax
+jnz     short loc_4038CA
+movzx   eax, cs:byte_6112D0
+movzx   ecx, al
+mov     eax, [rbp-14h]
+movsxd  rdx, eax
+mov     rax, cs:qword_6113E8
+sub     rsp, 8
+push    rcx
+mov     r9d, 0
+mov     r8d, 0
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 611400h
+mov     edi, 611460h
+call    sub_4050E4
+add     rsp, 10h
+mov     eax, [rbp-14h]
+jmp     short locret_403915
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-8]
+jb      short loc_4038FF
+call    sub_404049
+mov     edi, 40CABBh
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+var_10], rdx
+mov     edx, [rbp-18h]
+mov     [rax], dl
+jmp     loc_403789
+leave
+retn

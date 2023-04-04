@@ -1,0 +1,347 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0D00h
+mov     [rbp+var_CE8], rdi
+mov     [rbp+var_CF0], rsi
+mov     [rbp+s], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_CB8], 0
+mov     [rbp+var_CD8], 1
+mov     [rbp+var_CD4], 0
+lea     rax, [rbp-0CA0h]
+mov     rdi, rax
+call    sub_4069E0
+mov     rax, [rbp-0CF0h]
+movsd   xmm0, qword ptr [rax+640h]
+movsd   [rbp+var_CB0], xmm0
+mov     [rbp+var_CC8], 0
+mov     [rbp+var_CC0], 0
+pxor    xmm0, xmm0
+movsd   [rbp+var_CA8], xmm0
+lea     rax, unk_61BBA0
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      loc_40F71E
+mov     rax, [rbp-0CF8h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+mov     rax, [rbp-0CF8h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 3Bh
+jnz     short loc_40F214
+mov     rax, [rbp-0CF8h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+mov     rax, [rbp-0CF8h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-0CF8h]
+mov     esi, 3Bh
+mov     rdi, rax
+call    _strrchr
+mov     [rbp+var_CB8], rax
+cmp     [rbp+var_CB8], 0
+jz      loc_40F71E
+add     [rbp+var_CB8], 1
+jmp     loc_40F71E
+mov     rax, [rbp-0CF8h]
+mov     esi, 3Bh
+mov     rdi, rax
+call    _strchr
+mov     [rbp+var_CC0], rax
+cmp     [rbp+var_CC0], 0
+jz      short loc_40F284
+mov     rax, [rbp-0CC0h]
+lea     rdx, [rax+1]
+mov     [rbp+var_CC0], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-0CF8h]
+mov     rdi, rax
+call    sub_402FA3
+mov     rax, [rbp-0CF8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40F2AF
+mov     rax, [rbp-0CC8h]
+mov     [rbp+s], rax
+mov     rcx, [rbp-0CF8h]
+lea     rax, [rbp-0CA0h]
+mov     edx, 0FFFFFFFFh
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40E428
+test    eax, eax
+jz      short loc_40F2EA
+lea     rax, [rbp-0CA0h]
+mov     rdi, rax
+call    sub_406A20
+mov     eax, 1
+jmp     loc_40F833
+cmp     [rbp+var_CD8], 0
+jz      loc_40F4D9
+lea     rcx, [rbp-0CA0h]
+mov     rax, [rbp-0CF0h]
+lea     rdx, sub_40781D
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_407A0E
+test    eax, eax
+jz      short loc_40F358
+lea     rcx, [rbp-0CA0h]
+mov     rdx, [rbp-0CF8h]
+mov     rsi, [rbp-0CF0h]
+mov     rax, [rbp-0CE8h]
+mov     rdi, rax
+call    sub_409AD1
+lea     rax, [rbp-0CA0h]
+mov     rdi, rax
+call    sub_406A20
+mov     eax, 1
+jmp     loc_40F833
+lea     rax, unk_61BBA0
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      loc_40F485
+movsd   xmm0, qword ptr [rbp-0CB0h]
+movsd   [rbp+iptr], xmm0
+cmp     [rbp+var_CB8], 0
+jz      loc_40F42C
+mov     rax, [rbp-0CB8h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_40F42C
+mov     rax, [rbp-0CB8h]
+mov     rdi, rax
+call    sub_402FA3
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    sub_4069E0
+mov     rcx, [rbp-0CB8h]
+lea     rax, [rbp-650h]
+mov     edx, 0FFFFFFFFh
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40E428
+test    eax, eax
+jz      short loc_40F3F3
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    sub_406A20
+mov     eax, 1
+jmp     loc_40F833
+movsd   xmm1, qword ptr [rbp-10h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+divsd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DF8
+addsd   xmm0, xmm1
+call    _floor
+movapd  xmm1, xmm0
+movsd   xmm0, qword ptr [rbp-10h]
+mulsd   xmm0, xmm1
+movsd   [rbp+var_CB0], xmm0
+jmp     short loc_40F469
+movsd   xmm1, qword ptr [rbp-660h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+divsd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DF8
+addsd   xmm0, xmm1
+call    _floor
+movapd  xmm1, xmm0
+movsd   xmm0, qword ptr [rbp-660h]
+mulsd   xmm0, xmm1
+movsd   [rbp+var_CB0], xmm0
+movsd   xmm1, qword ptr [rbp-0CD0h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+subsd   xmm0, xmm1
+movsd   [rbp+var_CA8], xmm0
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+cmp     eax, 2
+jnz     short loc_40F4C0
+mov     rax, [rbp-0CE8h]
+mov     rdi, rax
+call    sub_402FA3
+mov     rax, [rbp-0CE8h]
+mov     rsi, rax
+lea     rdi, aS_3
+mov     eax, 0
+call    sub_40239A
+jmp     short loc_40F4D9
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+cmp     eax, 1
+jnz     short loc_40F4D9
+mov     edi, 9
+call    sub_4024C4
+cmp     [rbp+var_CC0], 0
+jz      loc_40F5D4
+movsd   xmm2, qword ptr [rbp-660h]
+movsd   [rbp+var_D00], xmm2
+movsd   xmm1, qword ptr [rbp-660h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+divsd   xmm0, xmm1
+lea     rax, [rbp-0CD0h]
+mov     rdi, rax
+call    _modf
+mulsd   xmm0, qword ptr [rbp-0D00h]
+movsd   [rbp+var_CB0], xmm0
+movsd   xmm1, qword ptr [rbp-660h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+divsd   xmm0, xmm1
+mov     edi, 0
+call    sub_40A6D9
+movsd   xmm1, cs:qword_416DA0
+ucomisd xmm0, xmm1
+jp      short loc_40F591
+movsd   xmm1, cs:qword_416DA0
+ucomisd xmm0, xmm1
+jnz     short loc_40F591
+movsd   xmm1, qword ptr [rbp-0CD0h]
+movsd   xmm0, cs:qword_416DA0
+addsd   xmm0, xmm1
+movsd   [rbp+iptr], xmm0
+pxor    xmm0, xmm0
+movsd   [rbp+var_CB0], xmm0
+jmp     loc_40F62A
+mov     rax, [rbp-0CF0h]
+movsd   xmm1, qword ptr [rax+640h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+divsd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DB0
+andpd   xmm0, xmm1
+movsd   xmm1, cs:qword_416DC0
+ucomisd xmm1, xmm0
+jbe     short loc_40F62A
+pxor    xmm0, xmm0
+movsd   [rbp+var_CB0], xmm0
+jmp     short loc_40F62A
+movsd   xmm1, qword ptr [rbp-660h]
+movsd   xmm0, qword ptr [rbp-0CB0h]
+divsd   xmm0, xmm1
+movsd   [rbp+iptr], xmm0
+lea     rax, unk_61BBA0
+mov     eax, [rax+0Ch]
+test    eax, eax
+jnz     short loc_40F62A
+mov     rax, [rbp-0CD0h]
+mov     edi, 0
+mov     [rbp+var_D00], rax
+movsd   xmm0, qword ptr [rbp-0D00h]
+call    sub_40A6D9
+movq    rax, xmm0
+mov     [rbp+iptr], rax
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+test    eax, eax
+jnz     short loc_40F684
+cmp     [rbp+var_CD8], 0
+jnz     short loc_40F64B
+mov     edi, 3Bh
+call    sub_4024C4
+mov     rdx, [rbp-0CD0h]
+lea     rax, unk_61A8B0
+mov     rax, [rax]
+mov     [rbp+var_D00], rdx
+movsd   xmm0, qword ptr [rbp-0D00h]
+mov     rdi, rax
+mov     eax, 1
+call    sub_40239A
+mov     [rbp+var_CD4], 1
+jmp     short loc_40F6E9
+movsd   xmm0, qword ptr [rbp-0CD0h]
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_40F6A0
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      short loc_40F6E9
+cmp     [rbp+var_CD4], 0
+jz      short loc_40F6B5
+lea     rdi, asc_41658E
+call    sub_402506
+mov     rax, [rbp-0CD0h]
+mov     rdx, [rbp-0CF8h]
+mov     esi, 1
+mov     rdi, rdx
+mov     [rbp+var_D00], rax
+movsd   xmm0, qword ptr [rbp-0D00h]
+call    sub_40A8DC
+mov     [rbp+var_CD4], 1
+lea     rax, [rbp-0CA0h]
+mov     rdi, rax
+call    sub_406A20
+mov     rax, [rbp-0CF8h]
+mov     [rbp+var_CC8], rax
+mov     rax, [rbp-0CC0h]
+mov     [rbp+s], rax
+mov     [rbp+var_CD8], 0
+cmp     [rbp+s], 0
+jnz     loc_40F24A
+cmp     [rbp+var_CD4], 0
+jnz     short loc_40F774
+lea     rdi, a0
+call    sub_402506
+mov     rax, [rbp-0CC8h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    sub_4031C5
+test    eax, eax
+jz      short loc_40F765
+lea     rdi, asc_416595
+call    sub_402506
+mov     rax, [rbp-0CC8h]
+mov     rdi, rax
+call    sub_402506
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-0CA8h]
+jp      short loc_40F794
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-0CA8h]
+jz      loc_40F824
+lea     rax, unk_61BBA0
+mov     eax, [rax+1Ch]
+test    eax, eax
+jz      short loc_40F7EE
+movsd   xmm0, qword ptr [rbp-0CA8h]
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jbe     short loc_40F7D1
+mov     rax, [rbp-0CC8h]
+mov     rsi, rax
+lea     rdi, aRoundedUpToNea
+mov     eax, 0
+call    sub_40239A
+jmp     short loc_40F824
+mov     rax, [rbp-0CC8h]
+mov     rsi, rax
+lea     rdi, aRoundedDownToN
+mov     eax, 0
+call    sub_40239A
+jmp     short loc_40F824
+movsd   xmm0, qword ptr [rbp-0CA8h]
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jbe     short loc_40F807
+mov     eax, 2Dh
+jmp     short loc_40F80C
+mov     eax, 2Bh
+mov     edx, eax
+mov     esi, 3Bh
+lea     rdi, aCC
+mov     eax, 0
+call    sub_40239A
+mov     edi, 0Ah
+call    sub_4024C4
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40F847
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+tp], rdi
+mov     rax, [rbp-8]
+mov     edx, 63B748h
+mov     esi, 402B20h
+mov     rdi, rax
+call    mktime_internal
+leave
+retn

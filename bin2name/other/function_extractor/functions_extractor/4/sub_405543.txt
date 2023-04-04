@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     eax, [rax+3Ch]
+test    eax, eax
+jz      short loc_40557C
+mov     ecx, 42B330h
+mov     edx, 2B1h
+mov     esi, 42AFC0h
+mov     edi, 42AFD0h
+call    ___assert_fail
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_4222EF
+mov     rcx, [rbp-28h]
+mov     rbx, [rcx+48h]
+mov     rcx, [rcx+40h]
+mov     rsi, rax
+mov     rdi, rdx
+mov     rax, rdx
+mov     rdx, rcx
+mov     rcx, rbx
+mov     rdi, rsi
+mov     rsi, rax
+call    sub_4046C6
+test    eax, eax
+setnle  al
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

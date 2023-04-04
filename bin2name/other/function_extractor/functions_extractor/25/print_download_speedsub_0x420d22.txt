@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+dp], rdi
+mov     [rbp+bytes], rsi
+movsd   [rbp+dltime], xmm0
+mov     rax, [rbp-8]
+movsd   xmm1, qword ptr [rax+20h]
+movsd   xmm0, qword ptr [rbp-18h]
+subsd   xmm0, xmm1
+mov     rax, [rbp-10h]
+mov     esi, 1
+mov     rdi, rax
+call    retr_rate
+mov     rdx, rax
+mov     esi, 4363BEh
+mov     edi, 0
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-8]
+movsd   xmm0, qword ptr [rbp-18h]
+movsd   qword ptr [rax+20h], xmm0
+nop
+leave
+retn

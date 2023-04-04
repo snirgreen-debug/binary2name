@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     [rbp+s], rsi
+jmp     short loc_40ADA8
+mov     rax, [rbp-10h]
+mov     rcx, rax
+mov     edx, 2
+mov     esi, 1
+mov     edi, 423D48h
+call    _fwrite
+mov     eax, [rbp-4]
+lea     edx, [rax-1]
+mov     [rbp+var_4], edx
+test    eax, eax
+jnz     short loc_40AD8D
+nop
+leave
+retn

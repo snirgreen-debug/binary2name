@@ -1,0 +1,102 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+s], rdi
+mov     [rbp+i], 0
+cmp     [rbp+s], 0
+jz      short loc_428A18
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_428A22
+mov     eax, 0
+jmp     loc_428B6F
+mov     [rbp+res], 0
+mov     rax, [rbp-38h]
+mov     [rbp+p], rax
+jmp     loc_428AEF
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Ch
+jnz     loc_428AEA
+mov     eax, [rbp-24h]
+add     eax, 2
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     [rbp+res], rax
+mov     eax, [rbp-24h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+lea     rbx, [rdx+rax]
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     [rbx], rax
+add     [rbp+i], 1
+mov     eax, [rbp-24h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     qword ptr [rax], 0
+add     [rbp+s], 1
+jmp     short loc_428ABF
+add     [rbp+s], 1
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 40h
+test    eax, eax
+jnz     short loc_428ABA
+mov     rax, [rbp-38h]
+mov     [rbp+p], rax
+jmp     short loc_428AEF
+add     [rbp+s], 1
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_428A37
+mov     eax, [rbp-24h]
+add     eax, 2
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     [rbp+res], rax
+mov     eax, [rbp-24h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+lea     rbx, [rdx+rax]
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     [rbx], rax
+mov     eax, [rbp-24h]
+cdqe
+add     rax, 1
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     qword ptr [rax], 0
+mov     rax, [rbp-20h]
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

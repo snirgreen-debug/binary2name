@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 8
+mov     rbx, cs:qword_6475A0
+mov     edi, 433C50h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+nop
+add     rsp, 8
+pop     rbx
+pop     rbp
+retn

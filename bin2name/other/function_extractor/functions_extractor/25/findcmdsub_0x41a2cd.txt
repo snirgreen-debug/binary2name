@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+com], rdi
+mov     [rbp+lo], 0
+mov     [rbp+hi], 5Bh
+jmp     short loc_41A34B
+mov     edx, [rbp-10h]
+mov     eax, [rbp-0Ch]
+add     eax, edx
+sar     eax, 1
+mov     [rbp+mid], eax
+mov     eax, [rbp-8]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63EA40h
+mov     rdx, [rax]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcasecmp
+mov     [rbp+cmp], eax
+cmp     [rbp+cmp], 0
+jns     short loc_41A335
+mov     eax, [rbp-8]
+sub     eax, 1
+mov     [rbp+hi], eax
+jmp     short loc_41A34B
+cmp     [rbp+cmp], 0
+jle     short loc_41A346
+mov     eax, [rbp-8]
+add     eax, 1
+mov     [rbp+lo], eax
+jmp     short loc_41A34B
+mov     eax, [rbp-8]
+jmp     short locret_41A358
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-0Ch]
+jle     short loc_41A2E9
+mov     eax, 0FFFFFFFFh
+leave
+retn

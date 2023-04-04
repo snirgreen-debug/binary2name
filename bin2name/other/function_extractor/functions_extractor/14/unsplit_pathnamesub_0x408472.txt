@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_40849E
+mov     rax, [rbp-8]
+mov     rax, [rax+30h]
+mov     byte ptr [rax], 2Fh
+mov     rax, [rbp-8]
+mov     qword ptr [rax+30h], 0
+nop
+pop     rbp
+retn

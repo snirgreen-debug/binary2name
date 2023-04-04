@@ -1,0 +1,105 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+tree], rdi
+mov     [rbp+max_code], esi
+mov     [rbp+prevlen], 0FFFFFFFFh
+mov     rax, [rbp-28h]
+movzx   eax, word ptr [rax+2]
+movzx   eax, ax
+mov     [rbp+nextlen], eax
+mov     [rbp+count], 0
+mov     [rbp+max_count], 7
+mov     [rbp+min_count], 4
+cmp     [rbp+nextlen], 0
+jnz     short loc_4097BA
+mov     [rbp+max_count], 8Ah
+mov     [rbp+min_count], 3
+mov     eax, [rbp-2Ch]
+cdqe
+add     rax, 1
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     word ptr [rax+2], 0FFFFh
+mov     [rbp+n], 0
+jmp     loc_409905
+mov     eax, [rbp-14h]
+mov     [rbp+curlen], eax
+mov     eax, [rbp-1Ch]
+cdqe
+add     rax, 1
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+movzx   eax, word ptr [rax+2]
+movzx   eax, ax
+mov     [rbp+nextlen], eax
+add     [rbp+count], 1
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-0Ch]
+jge     short loc_409824
+mov     eax, [rbp-4]
+cmp     eax, [rbp-14h]
+jz      loc_409900
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-8]
+jge     short loc_40984D
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, word ptr [rax*4+615D20h]
+mov     edx, [rbp-10h]
+add     edx, eax
+mov     eax, [rbp-4]
+cdqe
+mov     word ptr ds:bl_tree.fc[rax*4], dx
+jmp     short loc_4098B5
+cmp     [rbp+curlen], 0
+jz      short loc_40988B
+mov     eax, [rbp-4]
+cmp     eax, [rbp-18h]
+jz      short loc_409878
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, word ptr [rax*4+615D20h]
+lea     edx, [rax+1]
+mov     eax, [rbp-4]
+cdqe
+mov     word ptr ds:bl_tree.fc[rax*4], dx
+movzx   eax, word ptr cs:bl_tree.fc+40h
+add     eax, 1
+mov     word ptr cs:bl_tree.fc+40h, ax
+jmp     short loc_4098B5
+cmp     [rbp+count], 0Ah
+jg      short loc_4098A4
+movzx   eax, word ptr cs:bl_tree.fc+44h
+add     eax, 1
+mov     word ptr cs:bl_tree.fc+44h, ax
+jmp     short loc_4098B5
+movzx   eax, word ptr cs:bl_tree.fc+48h
+add     eax, 1
+mov     word ptr cs:bl_tree.fc+48h, ax
+mov     [rbp+count], 0
+mov     eax, [rbp-4]
+mov     [rbp+prevlen], eax
+cmp     [rbp+nextlen], 0
+jnz     short loc_4098D8
+mov     [rbp+max_count], 8Ah
+mov     [rbp+min_count], 3
+jmp     short loc_409901
+mov     eax, [rbp-4]
+cmp     eax, [rbp-14h]
+jnz     short loc_4098F0
+mov     [rbp+max_count], 6
+mov     [rbp+min_count], 3
+jmp     short loc_409901
+mov     [rbp+max_count], 7
+mov     [rbp+min_count], 4
+jmp     short loc_409901
+nop
+add     [rbp+n], 1
+mov     eax, [rbp-1Ch]
+cmp     eax, [rbp-2Ch]
+jle     loc_4097E4
+nop
+pop     rbp
+retn

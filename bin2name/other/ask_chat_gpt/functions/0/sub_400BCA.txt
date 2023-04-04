@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+cmp     rdx, rax
+jnz     short loc_400C26
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+lea     rdx, [rax+rax]
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rsi, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+lea     rcx, [rax+1]
+mov     rdx, [rbp-8]
+mov     [rdx+8], rcx
+add     rax, rsi
+mov     edx, [rbp-0Ch]
+mov     [rax], dl
+nop
+leave
+retn

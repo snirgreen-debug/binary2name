@@ -1,0 +1,121 @@
+test    rdi, rdi
+push    r14
+push    r13
+push    r12
+push    rbp
+push    rbx
+jz      loc_403830
+test    rsi, rsi
+mov     r13, rdx
+mov     r12, rsi
+mov     rbx, rdi
+js      loc_4037C0
+mov     [rbx+10h], rsi
+mov     dword ptr [rbx+20h], 1
+mov     dword ptr [rbx+24h], 0
+mov     esi, 4124B5h
+mov     dword ptr [rbx+28h], 0
+mov     qword ptr [rbx+30h], 0
+mov     rdi, r13
+mov     qword ptr [rbx+38h], 0
+mov     qword ptr [rbx+18h], 0
+call    _fopen
+test    rax, rax
+mov     rbp, rax
+mov     [rbx], rax
+jz      loc_4037A0
+mov     r13, [rbx+10h]
+mov     rdi, r13
+call    _malloc
+test    rax, rax
+mov     [rbx+8], rax
+jz      loc_403810
+mov     rcx, rbp
+mov     rdx, r13
+mov     esi, 1
+mov     rdi, rax
+call    _fread
+test    eax, eax
+mov     ebp, eax
+jz      short loc_403760
+mov     rax, [rbx+8]
+mov     [rbx+18h], rax
+test    r12, r12
+js      short loc_403789
+pop     rbx
+mov     eax, ebp
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+mov     rdi, [rbx]
+call    _feof
+test    eax, eax
+jnz     loc_403860
+xor     edx, edx
+mov     ecx, 4123F5h
+mov     esi, 8000h
+mov     rdi, rbx
+call    sub_405040
+test    r12, r12
+jns     short loc_40374F
+mov     rdi, [rbx]
+call    _fclose
+pop     rbx
+mov     eax, ebp
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+xor     ecx, ecx
+mov     rdx, r13
+mov     esi, 8002h
+mov     rdi, rbx
+xor     ebp, ebp
+call    sub_405040
+jmp     short loc_40374A
+mov     esi, 4124B5h
+mov     rdi, rdx
+call    _fopen
+test    rax, rax
+mov     r14, rax
+mov     [rbx], rax
+jz      short loc_403840
+xor     ebp, ebp
+jmp     short loc_4037E4
+add     rbp, 1
+mov     rdi, r14
+call    __IO_getc
+cmp     al, 0FFh
+jnz     short loc_4037E0
+mov     rdi, r14
+call    _rewind
+mov     rdi, [rbx]
+mov     [rbx+10h], rbp
+call    _fclose
+jmp     loc_4036C7
+xor     ecx, ecx
+mov     edx, 41240Dh
+mov     esi, 8004h
+mov     rdi, rbx
+xor     ebp, ebp
+call    sub_405040
+jmp     loc_40374A
+xor     ebp, ebp
+pop     rbx
+mov     eax, ebp
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+retn
+xor     ecx, ecx
+mov     rdx, r13
+mov     esi, 8002h
+mov     rdi, rbx
+call    sub_405040
+jmp     loc_4036C7
+mov     ebp, 0FFFFFFFFh
+jmp     loc_40374A

@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_28], rdi
+mov     [rbp+s], rsi
+mov     rbx, [rbp-28h]
+jmp     short loc_4016FA
+movzx   edx, byte ptr [rbx]
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_4016F6
+mov     rax, [rbp-30h]
+lea     r12, [rax+1]
+lea     r13, [rbx+1]
+jmp     short loc_4016B5
+add     r12, 1
+add     r13, 1
+movzx   eax, byte ptr [r12]
+test    al, al
+jz      short loc_4016CC
+movzx   edx, byte ptr [r12]
+movzx   eax, byte ptr [r13+0]
+cmp     dl, al
+jz      short loc_4016AD
+movzx   eax, byte ptr [r12]
+test    al, al
+jnz     short loc_4016F6
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+neg     rax
+add     rax, r13
+mov     rdx, rax
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, rdx
+jmp     short loc_401706
+add     rbx, 1
+movzx   eax, byte ptr [rbx]
+test    al, al
+jnz     short loc_401691
+mov     eax, 0FFFFFFFFh
+add     rsp, 18h
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

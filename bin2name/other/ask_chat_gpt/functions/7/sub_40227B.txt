@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 40C230h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+nop
+pop     rbp
+retn

@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+prefix], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+count], 1
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+plen], eax
+mov     eax, [rbp-1Ch]
+add     eax, 19h
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     esi, 10h
+mov     edx, 0
+div     rsi
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+template], rax
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     [rbp+template_tail], rax
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rax, [rbp-10h]
+lea     rdx, [rax+1]
+mov     [rbp+template_tail], rdx
+mov     byte ptr [rax], 2Eh
+mov     eax, [rbp-20h]
+lea     edx, [rax+1]
+mov     [rbp+count], edx
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    number_to_string
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    file_exists_p
+test    eax, eax
+jnz     short loc_429111
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_42915C
+call    ___stack_chk_fail
+leave
+retn

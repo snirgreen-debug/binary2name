@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_4], edi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rcx, [rbp-18h]
+mov     rdx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     esi, eax
+mov     edi, 0
+call    sub_421CF7
+leave
+retn

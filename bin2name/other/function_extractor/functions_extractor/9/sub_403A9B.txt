@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_403AB3
+mov     eax, cs:dword_61489C
+test    eax, eax
+jz      short loc_403ABA
+mov     eax, 1
+jmp     short loc_403AFC
+mov     edx, cs:dword_6486E4
+mov     eax, cs:dword_65D344
+cmp     edx, eax
+jnz     short loc_403AF7
+mov     eax, cs:dword_65D344
+cmp     eax, 8000h
+jnz     short loc_403AE6
+mov     edi, 1
+call    sub_40C7A4
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_403AED
+mov     eax, 1
+jmp     short loc_403AFC
+mov     cs:dword_6486E4, 0
+mov     eax, 0
+pop     rbp
+retn

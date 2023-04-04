@@ -1,0 +1,6 @@
+mov     dword ptr [piType], 0
+mov     byte ptr [cTmp], 0
+cmp     qword ptr [szExp], 0
+jz      short locret_403698
+jmp     GetToken_0
+rep retn

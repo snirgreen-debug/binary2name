@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     [rbp+official_name], rdi
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fflush
+mov     edi, 42F9BEh
+call    _gettext
+mov     rbx, rax
+mov     edi, 42F9CBh
+call    _gettext
+mov     r12, rax
+mov     edi, 42F9DAh
+call    _gettext
+mov     rcx, rax
+mov     rdx, cs:version_string
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rsi, [rbp-18h]
+push    0
+push    rbx
+mov     r9, r12
+mov     r8, rcx
+mov     rcx, rdx
+mov     edx, 42F9E9h
+mov     rdi, rax
+mov     eax, 0
+call    version_etc
+add     rsp, 10h
+nop
+lea     rsp, [rbp-10h]
+pop     rbx
+pop     r12
+pop     rbp
+retn

@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+stream], rdi
+cmp     [rbp+stream], 0
+jz      short loc_40C825
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    ___freading
+test    eax, eax
+jnz     short loc_40C833
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fflush
+jmp     short locret_40C84B
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    clear_ungetc_buffer_preserving_position
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fflush
+leave
+retn

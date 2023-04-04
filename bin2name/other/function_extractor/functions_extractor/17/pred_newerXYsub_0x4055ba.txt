@@ -1,0 +1,102 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     [rbp+collected], 0
+mov     rax, [rbp-48h]
+mov     eax, [rax+3Ch]
+test    eax, eax
+jz      short loc_4055F7
+mov     ecx, 42B340h
+mov     edx, 2BBh
+mov     esi, 42AFC0h
+mov     edi, 42AFD0h
+call    ___assert_fail
+mov     rax, [rbp-48h]
+mov     eax, [rax+38h]
+cmp     eax, 4
+ja      def_405611
+mov     eax, eax
+mov     rax, [rax*8+42B098h]
+jmp     rax
+mov     rax, [rbp-48h]
+mov     eax, [rax+38h]
+cmp     eax, 4
+jnz     short loc_405638
+mov     ecx, 42B340h
+mov     edx, 2C0h
+mov     esi, 42AFC0h
+mov     edi, 42B028h
+call    ___assert_fail
+mov     eax, 0
+jmp     loc_405737
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    get_stat_atime
+mov     [rbp+ts.tv_sec], rax
+mov     [rbp+ts.tv_nsec], rdx
+mov     [rbp+collected], 1
+jmp     def_405611
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    get_stat_birthtime
+mov     [rbp+ts.tv_sec], rax
+mov     [rbp+ts.tv_nsec], rdx
+mov     [rbp+collected], 1
+mov     rax, [rbp-18h]
+test    rax, rax
+jns     short loc_4056F3
+mov     rax, [rbp-38h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rbx, rax
+mov     edi, 42B058h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_405737
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    get_stat_ctime
+mov     [rbp+ts.tv_sec], rax
+mov     [rbp+ts.tv_nsec], rdx
+mov     [rbp+collected], 1
+jmp     short def_405611
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    get_stat_mtime
+mov     [rbp+ts.tv_sec], rax
+mov     [rbp+ts.tv_nsec], rdx
+mov     [rbp+collected], 1
+jmp     short def_405611
+nop
+cmp     [rbp+collected], 0
+jnz     short loc_405713
+mov     ecx, 42B340h
+mov     edx, 2DFh
+mov     esi, 42AFC0h
+mov     edi, 42B088h
+call    ___assert_fail
+mov     rax, [rbp-48h]
+mov     rdx, [rax+48h]
+mov     rax, [rax+40h]
+mov     rdi, [rbp-20h]
+mov     rsi, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rax
+call    compare_ts
+test    eax, eax
+setnle  al
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

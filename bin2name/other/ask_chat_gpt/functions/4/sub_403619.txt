@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax+70h]
+cmp     ax, 0Ah
+jz      short loc_403650
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax+70h]
+cmp     ax, 0Bh
+jz      short loc_403650
+mov     eax, 1
+jmp     short loc_403655
+mov     eax, 0
+and     eax, 1
+mov     cs:byte_63BF84, al
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     cs:s1, rax
+mov     rax, [rbp-18h]
+mov     eax, [rax+2Ch]
+mov     cs:fildes, eax
+call    sub_408BAE
+mov     [rbp+var_8], rax
+mov     rax, [rbp-20h]
+mov     rax, [rax+38h]
+mov     rdx, [rbp-8]
+mov     rcx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40B769
+movzx   eax, cs:byte_63BFA0
+test    al, al
+jz      short loc_4036C1
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     edx, 4
+mov     rsi, rcx
+mov     rdi, rax
+call    fts_set
+nop
+leave
+retn

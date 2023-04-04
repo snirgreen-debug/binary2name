@@ -1,0 +1,130 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_4], 0
+jmp     loc_401343
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 0Ah
+jnz     loc_40133F
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Fh
+jnz     loc_40133F
+mov     eax, [rbp-4]
+lea     edx, [rax+2]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Ah
+jnz     loc_40133F
+add     [rbp+var_4], 3
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    sub_400DC3
+mov     [rbp+var_4], eax
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Eh
+jnz     loc_401324
+add     [rbp+var_4], 1
+jmp     loc_401324
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 0Ah
+jnz     short loc_4012BA
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 0Ah
+jnz     short loc_40128A
+mov     rax, [rbp-20h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    sub_400BCA
+mov     rax, [rbp-20h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_4], 1
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    sub_400DC3
+mov     [rbp+var_4], eax
+jmp     short loc_401324
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Ah
+jnz     short loc_4012FE
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Fh
+jnz     short loc_4012FE
+add     [rbp+var_4], 2
+mov     rax, [rbp-20h]
+mov     esi, 403878h
+mov     rdi, rax
+call    sub_400D5C
+jmp     short loc_40133D
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+movsx   edx, al
+mov     rax, [rbp-20h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_4], 1
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jnz     loc_40124C
+jmp     short loc_401343
+add     [rbp+var_4], 1
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jnz     loc_4011BC
+nop
+leave
+retn

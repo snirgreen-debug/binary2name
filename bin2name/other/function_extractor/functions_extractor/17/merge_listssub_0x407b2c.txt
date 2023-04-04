@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+lists], rdi
+mov     [rbp+nlists], esi
+mov     [rbp+name_list], rdx
+mov     [rbp+regex_list], rcx
+mov     [rbp+last], r8
+mov     cs:mergefn_5925, 4078F9h
+mov     rax, cs:mergefn_5925
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax 
+mov     rax, cs:mergefn_5925
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax 
+mov     [rbp+i], 0
+jmp     short loc_407BB4
+mov     rax, cs:mergefn_5925
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+mov     rcx, rdx
+shl     rcx, 4
+mov     rdx, [rbp-18h]
+add     rcx, rdx
+mov     rdx, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rcx
+call    rax 
+add     [rbp+i], 1
+mov     eax, [rbp-4]
+cmp     eax, [rbp-1Ch]
+jl      short loc_407B89
+nop
+leave
+retn

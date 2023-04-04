@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+entry], rdi
+mov     [rbp+word], rsi
+mov     rax, [rbp-8]
+mov     edx, [rax+1Ch]
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cmp     edx, eax
+jnz     short loc_402D55
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+lea     edx, [rax+2]
+mov     rax, [rbp-8]
+mov     [rax+18h], edx
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     eax, [rax+1Ch]
+cdqe
+shl     rax, 3
+add     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rdx], rax
+mov     rax, [rbp-8]
+mov     eax, [rax+1Ch]
+lea     ecx, [rax+1]
+mov     rdx, [rbp-8]
+mov     [rdx+1Ch], ecx
+leave
+retn

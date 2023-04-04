@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+movsd   [rbp+var_18], xmm0
+mov     rax, [rbp-8]
+movsd   xmm1, qword ptr [rax+20h]
+movsd   xmm0, qword ptr [rbp-18h]
+subsd   xmm0, xmm1
+mov     rax, [rbp-10h]
+mov     esi, 1
+mov     rdi, rax
+call    sub_424753
+mov     rdx, rax
+mov     esi, 4363BEh
+mov     edi, 0
+mov     eax, 0
+call    sub_41CD55
+mov     rax, [rbp-8]
+movsd   xmm0, qword ptr [rbp-18h]
+movsd   qword ptr [rax+20h], xmm0
+nop
+leave
+retn

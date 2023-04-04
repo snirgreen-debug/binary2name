@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+desc], edi
+mov     eax, esi
+mov     [rbp+value], al
+mov     eax, [rbp-14h]
+mov     edx, 0
+mov     esi, 1
+mov     edi, eax
+mov     eax, 0
+call    rpl_fcntl
+mov     [rbp+flags], eax
+cmp     [rbp+flags], 0
+js      short loc_4064C6
+cmp     [rbp+value], 0
+jz      short loc_406492
+mov     eax, [rbp-8]
+or      eax, 1
+jmp     short loc_406498
+mov     eax, [rbp-8]
+and     eax, 0FFFFFFFEh
+mov     [rbp+newflags], eax
+mov     eax, [rbp-8]
+cmp     eax, [rbp-4]
+jz      short loc_4064BF
+mov     edx, [rbp-4]
+mov     eax, [rbp-14h]
+mov     esi, 2
+mov     edi, eax
+mov     eax, 0
+call    rpl_fcntl
+cmp     eax, 0FFFFFFFFh
+jz      short loc_4064C6
+mov     eax, 0
+jmp     short locret_4064CB
+mov     eax, 0FFFFFFFFh
+leave
+retn

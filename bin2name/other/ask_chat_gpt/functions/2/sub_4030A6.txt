@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+var_44], edi
+mov     [rbp+var_50], rsi
+mov     [rbp+var_58], rdx
+mov     [rbp+var_60], rcx
+mov     [rbp+var_68], r8
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:qword_606280
+mov     [rbp+var_40], rax
+mov     rax, cs:qword_606288
+mov     [rbp+var_38], rax
+mov     rax, cs:qword_606290
+mov     [rbp+var_30], rax
+mov     rax, cs:qword_606298
+mov     [rbp+var_28], rax
+mov     rax, cs:qword_6062A0
+mov     [rbp+var_20], rax
+mov     rax, cs:qword_6062A8
+mov     [rbp+var_18], rax
+mov     rax, cs:qword_6062B0
+mov     [rbp+var_10], rax
+mov     rdx, [rbp-58h]
+mov     rcx, [rbp-50h]
+lea     rax, [rbp-40h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_401856
+lea     rcx, [rbp-40h]
+mov     rdx, [rbp-68h]
+mov     rsi, [rbp-60h]
+mov     eax, [rbp-44h]
+mov     edi, eax
+call    sub_402A2A
+mov     rdi, [rbp-8]
+xor     rdi, fs:28h
+jz      short locret_40315E
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+current], rdi
+mov     [rbp+wanted], rsi
+cmp     [rbp+current], 0
+jnz     short loc_414E61
+mov     [rbp+newsize], 10h
+jmp     short loc_414E82
+mov     rax, [rbp-18h]
+mov     [rbp+newsize], rax
+jmp     short loc_414E82
+mov     rax, [rbp-8]
+add     rax, rax
+cmp     rax, [rbp-8]
+jnb     short loc_414E7E
+mov     rax, [rbp-20h]
+jmp     short loc_414E90
+shl     [rbp+newsize], 1
+mov     rax, [rbp-8]
+cmp     rax, [rbp-20h]
+jb      short loc_414E6B
+mov     rax, [rbp-8]
+pop     rbp
+retn

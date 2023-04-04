@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ctl], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rax, 1FFFFh
+ja      short loc_405600
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax+18h], rdx
+jmp     short loc_40562E
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+cmp     rax, 20000h
+jbe     short loc_405622
+mov     rax, [rbp-8]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-8]
+mov     [rax+18h], rdx
+jmp     short loc_40562E
+mov     rax, [rbp-8]
+mov     qword ptr [rax+18h], 20000h
+nop
+pop     rbp
+retn

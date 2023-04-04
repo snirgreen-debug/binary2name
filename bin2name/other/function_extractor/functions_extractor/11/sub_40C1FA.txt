@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+s], rdx
+mov     [rbp+var_4], 0
+jmp     loc_40C2C6
+mov     rax, cs:stdout_ptr
+mov     rdx, [rax]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, cs:stdin_ptr
+mov     rdx, [rax]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     ecx, 0
+mov     rdi, rax
+call    sub_4028E1
+test    rax, rax
+jnz     short loc_40C279
+lea     rax, unk_61BBA0
+mov     eax, [rax+8]
+test    eax, eax
+jnz     short loc_40C26F
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 0
+call    _exit
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402716
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402B3D
+not     eax
+shr     eax, 1Fh
+movzx   eax, al
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jnz     short loc_40C2C6
+lea     rax, off_6194F0
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorS
+mov     eax, 0
+call    _printf
+cmp     [rbp+var_4], 0
+jz      loc_40C21A
+nop
+leave
+retn

@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_65D340
+test    eax, eax
+jz      short loc_40CA1C
+mov     eax, cs:dword_65D340
+mov     esi, eax
+mov     edi, 64D320h
+call    sub_40C6F1
+mov     eax, cs:dword_61486C
+test    eax, eax
+jnz     short loc_40C9F7
+mov     edx, cs:dword_65D340
+mov     eax, cs:fd
+mov     esi, 64D320h
+mov     edi, eax
+call    sub_40CA1F
+mov     eax, cs:dword_65D340
+mov     edx, eax
+mov     rax, cs:qword_65D320
+add     rax, rdx
+mov     cs:qword_65D320, rax
+mov     cs:dword_65D340, 0
+jmp     short loc_40CA1D
+nop
+pop     rbp
+retn

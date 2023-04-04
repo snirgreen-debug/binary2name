@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+buf], rdi
+mov     [rbp+size], esi
+mov     eax, cs:ifd
+mov     edx, [rbp-1Ch]
+mov     rcx, [rbp-18h]
+mov     rsi, rcx
+mov     edi, eax
+call    read_buffer
+mov     [rbp+len], eax
+cmp     [rbp+len], 0
+jnz     short loc_40D819
+mov     eax, [rbp-4]
+jmp     short locret_40D853
+cmp     [rbp+len], 0FFFFFFFFh
+jnz     short loc_40D824
+call    read_error
+mov     edx, [rbp-4]
+mov     rax, [rbp-18h]
+mov     esi, edx
+mov     rdi, rax
+call    updcrc
+mov     cs:crc, rax
+mov     edx, [rbp-4]
+mov     rax, cs:bytes_in
+add     rax, rdx
+mov     cs:bytes_in, rax
+mov     eax, [rbp-4]
+leave
+retn

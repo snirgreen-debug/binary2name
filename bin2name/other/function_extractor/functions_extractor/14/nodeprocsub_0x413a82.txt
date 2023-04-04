@@ -1,0 +1,91 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+var_10], rax
+mov     eax, [rbp-14h]
+cmp     eax, 1
+jz      loc_413B51
+cmp     eax, 1
+jb      short loc_413ABC
+cmp     eax, 2
+jz      loc_413BBD
+jmp     loc_413BD1
+mov     rax, [rbp-20h]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_keyword
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_413B12
+mov     edi, 4244F0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-20h]
+add     rax, 50h
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 2
+jmp     locret_413BD6
+mov     rax, [rbp-20h]
+lea     rcx, [rax+50h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_413B33
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rax, [rax+38h]
+jmp     short loc_413B38
+mov     eax, 0
+mov     rdx, [rbp-20h]
+mov     rsi, [rdx+70h]
+mov     rdi, [rbp-8]
+mov     rdx, rax
+call    grecs_process_ident
+jmp     loc_413BD1
+mov     rax, [rbp-20h]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    find_keyword
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_413BA4
+mov     edi, 4244F0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-20h]
+add     rax, 8
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 2
+jmp     short locret_413BD6
+mov     rdx, [rbp-20h]
+mov     rcx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rax
+call    stmt_begin
+jmp     short loc_413BD1
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stmt_end
+nop
+mov     eax, 0
+leave
+retn

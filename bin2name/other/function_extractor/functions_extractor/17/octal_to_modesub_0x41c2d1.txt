@@ -1,0 +1,6 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+octal], edi
+mov     eax, [rbp-4]
+pop     rbp
+retn

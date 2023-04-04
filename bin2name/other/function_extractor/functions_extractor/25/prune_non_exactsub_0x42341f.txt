@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+specs], rdi
+mov     [rbp+cnt], 0
+mov     [rbp+i], 0
+jmp     short loc_42345F
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     edx, [rbp-14h]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      short loc_42345B
+add     [rbp+cnt], 1
+add     [rbp+i], 1
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, [rbp-14h]
+jg      short loc_42343B
+mov     eax, [rbp-0Ch]
+cdqe
+shl     rax, 4
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+newpaths], rax
+mov     [rbp+i], 0
+mov     [rbp+j], 0
+jmp     short loc_4234EC
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     edx, [rbp-14h]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      short loc_4234E8
+mov     eax, [rbp-10h]
+lea     edx, [rax+1]
+mov     [rbp+j], edx
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-8]
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     edx, [rbp-14h]
+movsxd  rdx, edx
+shl     rdx, 4
+add     rax, rdx
+mov     rdx, [rax+8]
+mov     rax, [rax]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+add     [rbp+i], 1
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, [rbp-14h]
+jg      short loc_42348F
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-0Ch]
+jz      short loc_423518
+mov     ecx, 436A20h
+mov     edx, 0AEh
+mov     esi, 436925h
+mov     edi, 43692Bh
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rdx, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-28h]
+mov     edx, [rbp-0Ch]
+mov     [rax], edx
+mov     rax, [rbp-28h]
+mov     edx, [rbp-0Ch]
+mov     [rax+4], edx
+nop
+leave
+retn

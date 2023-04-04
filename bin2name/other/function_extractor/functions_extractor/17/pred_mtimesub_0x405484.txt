@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    get_stat_mtime
+mov     rsi, [rbp-28h]
+mov     rcx, rax
+mov     rbx, rdx
+mov     rdi, rcx
+mov     rax, rdx
+mov     ecx, 15180h
+mov     rdx, rsi
+mov     rsi, rax
+call    pred_timewindow
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

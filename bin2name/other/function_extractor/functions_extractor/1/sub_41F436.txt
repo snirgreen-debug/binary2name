@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+mov     [rbp+var_14], edi
+mov     r12, cs:qword_62D758
+mov     ebx, 1
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax+rax+4251C0h]
+test    ax, ax
+jz      short loc_41F498
+mov     eax, [rbp-14h]
+mov     cs:dword_62D76C, eax
+mov     cs:qword_62D770, r12
+jmp     short loc_41F498
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax+rax+4258A0h]
+cwde
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 85h
+jle     short loc_41F498
+movzx   eax, bl
+mov     eax, eax
+mov     eax, [rax*4+4256E0h]
+mov     ebx, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax+rax+425740h]
+movsx   edx, ax
+movzx   eax, bl
+add     eax, edx
+cdqe
+movzx   eax, word ptr [rax+rax+425E60h]
+cwde
+cmp     eax, [rbp-14h]
+jnz     short loc_41F470
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax+rax+425740h]
+movsx   edx, ax
+movzx   eax, bl
+add     eax, edx
+mov     eax, eax
+movzx   eax, word ptr [rax+rax+425A00h]
+cwde
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 85h
+setz    al
+movzx   ebx, al
+test    ebx, ebx
+jnz     short loc_41F4F6
+mov     eax, [rbp-14h]
+jmp     short loc_41F4FB
+mov     eax, 0
+pop     rbx
+pop     r12
+pop     rbp
+retn

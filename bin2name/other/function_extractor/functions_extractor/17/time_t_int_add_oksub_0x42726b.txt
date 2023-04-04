@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+a], rdi
+mov     [rbp+b], esi
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     [rbp+sum], rax
+mov     rax, [rbp-8]
+cmp     rax, [rbp-18h]
+setnl   dl
+mov     eax, [rbp-1Ch]
+shr     eax, 1Fh
+xor     eax, edx
+movzx   eax, al
+pop     rbp
+retn

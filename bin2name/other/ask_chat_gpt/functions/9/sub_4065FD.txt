@@ -1,0 +1,145 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_58], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-58h]
+mov     eax, [rax+18h]
+and     eax, 1FFh
+mov     [rbp+mode], eax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    sub_40E057
+mov     [rbp+var_30], rax
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    sub_40E083
+mov     [rbp+var_20], rax
+mov     [rbp+var_18], rdx
+mov     eax, cs:dword_614880
+test    eax, eax
+jz      short loc_40668C
+mov     rax, cs:qword_65D338
+test    rax, rax
+js      short loc_40668C
+mov     rdx, [rbp-20h]
+mov     rax, cs:timer
+cmp     rdx, rax
+jnz     short loc_406685
+mov     rdx, [rbp-18h]
+mov     rax, cs:qword_65D338
+cmp     rdx, rax
+jz      short loc_40668C
+mov     eax, 1
+jmp     short loc_406691
+mov     eax, 0
+mov     [rbp+var_41], al
+and     [rbp+var_41], 1
+cmp     [rbp+var_41], 0
+jz      short loc_4066B4
+mov     rax, cs:timer
+mov     rdx, cs:qword_65D338
+mov     [rbp+var_20], rax
+mov     [rbp+var_18], rdx
+mov     eax, cs:fd
+lea     rdx, [rbp-30h]
+mov     esi, 64CF20h
+mov     edi, eax
+call    sub_40E3AA
+test    eax, eax
+jnz     short loc_406707
+cmp     [rbp+var_41], 0
+jz      loc_406770
+mov     eax, cs:dword_614864
+cmp     eax, 1
+jle     loc_406770
+mov     rax, cs:stderr
+mov     edx, 64CF20h
+mov     esi, 410C1Fh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_406770
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_3C], eax
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_40673B
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     esi, 40FE2Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_40674F
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_406770
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-3Ch]
+mov     [rdx], eax
+mov     edi, 64CF20h
+call    _perror
+mov     rax, [rbp-58h]
+mov     edx, [rax+20h]
+mov     eax, cs:fd
+mov     ecx, edx
+mov     edx, 0FFFFFFFFh
+mov     esi, 64CF20h
+mov     edi, eax
+call    sub_4065D0
+mov     eax, cs:fd
+mov     edx, [rbp-40h]
+mov     esi, edx
+mov     edi, eax
+call    _fchmod
+mov     [rbp+var_38], eax
+cmp     [rbp+var_38], 0
+jz      short loc_406814
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_34], eax
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_4067DF
+mov     rdx, cs:qword_65D328
+mov     rax, cs:stderr
+mov     esi, 40FE2Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:dword_614870
+test    eax, eax
+jnz     short loc_4067F3
+mov     cs:dword_614870, 2
+mov     eax, cs:dword_614868
+test    eax, eax
+jnz     short loc_406814
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-34h]
+mov     [rdx], eax
+mov     edi, 64CF20h
+call    _perror
+mov     rax, [rbp-58h]
+mov     edx, [rax+1Ch]
+mov     eax, cs:fd
+mov     ecx, 0FFFFFFFFh
+mov     esi, 64CF20h
+mov     edi, eax
+call    sub_4065D0
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_406847
+call    ___stack_chk_fail
+leave
+retn

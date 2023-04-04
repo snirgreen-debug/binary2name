@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+14h]
+lea     edx, [rax-1]
+mov     rax, [rbp-8]
+mov     [rax+14h], edx
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_411570
+mov     rax, [rbp-8]
+mov     edx, [rax+14h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 431FF0h
+mov     eax, 0
+call    sub_41CEC0
+mov     rax, [rbp-8]
+mov     eax, [rax+14h]
+test    eax, eax
+jg      short loc_4115A7
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_41159B
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 432011h
+mov     eax, 0
+call    sub_41CEC0
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_411501
+nop
+leave
+retn

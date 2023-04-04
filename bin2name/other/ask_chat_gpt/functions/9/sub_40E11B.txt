@@ -1,0 +1,89 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_8], 0
+mov     [rbp+var_4], 0
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jz      short loc_40E172
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jz      short loc_40E172
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+test    rax, rax
+js      short loc_40E1BF
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3B9AC9FFh
+jg      short loc_40E1BF
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jz      short loc_40E1D4
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jz      short loc_40E1D4
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+test    rax, rax
+js      short loc_40E1BF
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3B9AC9FFh
+jle     short loc_40E1D4
+call    ___errno_location
+mov     dword ptr [rax], 16h
+mov     eax, 0FFFFFFFFh
+jmp     locret_40E27F
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jz      short loc_40E1F4
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E21A
+mov     rax, [rbp-18h]
+mov     qword ptr [rax], 0
+mov     [rbp+var_8], 1
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E21A
+add     [rbp+var_4], 1
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFFh
+jz      short loc_40E242
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E270
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     qword ptr [rax], 0
+mov     [rbp+var_8], 1
+mov     rax, [rbp-18h]
+add     rax, 10h
+mov     rax, [rax+8]
+cmp     rax, 3FFFFFFEh
+jnz     short loc_40E270
+add     [rbp+var_4], 1
+cmp     [rbp+var_4], 1
+setz    al
+movzx   edx, al
+mov     eax, [rbp-8]
+add     eax, edx
+leave
+retn

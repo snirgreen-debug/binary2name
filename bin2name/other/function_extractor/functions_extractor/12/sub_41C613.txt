@@ -1,0 +1,210 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_1C], eax
+cmp     [rbp+var_1C], 0
+jz      loc_41C942
+mov     eax, cs:dword_642F20
+test    eax, eax
+jnz     loc_41C716
+mov     eax, cs:dword_63F2E4
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_41C663
+mov     cs:dword_63F2E4, 0
+jmp     short loc_41C670
+mov     eax, cs:dword_63F2E4
+mov     edi, eax
+call    sub_41C5A0
+mov     eax, cs:dword_63F2E4
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 6420E0h
+mov     [rbp+var_10], rax
+cmp     [rbp+var_1C], 80h
+jle     short loc_41C6DC
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42897F
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+88h], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+88h]
+mov     rax, [rbp-10h]
+mov     [rax+90h], rdx
+jmp     loc_41C8F9
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+mov     rcx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, [rbp-10h]
+mov     eax, [rbp-1Ch]
+cdqe
+mov     byte ptr [rdx+rax], 0
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-10h]
+mov     [rax+90h], rdx
+jmp     loc_41C8F9
+mov     eax, cs:dword_63F2E4
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 6420E0h
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+test    rax, rax
+jz      loc_41C7F7
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_18], eax
+mov     edx, [rbp-18h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+add     eax, 1
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_428858
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+88h], rdx
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rcx, [rax+88h]
+mov     eax, [rbp-18h]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     ecx, [rbp-18h]
+mov     eax, [rbp-1Ch]
+add     eax, ecx
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     rax, [rbp-8]
+mov     [rax+90h], rdx
+jmp     loc_41C8F9
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_14], eax
+mov     edx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+cmp     eax, 80h
+jle     loc_41C8B7
+mov     edx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    sub_428825
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+88h], rdx
+mov     eax, [rbp-14h]
+movsxd  rdx, eax
+mov     rcx, [rbp-8]
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rcx, [rax+88h]
+mov     eax, [rbp-14h]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     ecx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, ecx
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     rax, [rbp-8]
+mov     [rax+90h], rdx
+jmp     short loc_41C8F9
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rcx, [rbp-8]
+mov     eax, [rbp-14h]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     edx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+mov     rdx, [rbp-8]
+cdqe
+mov     byte ptr [rdx+rax], 0
+mov     rdx, [rbp-8]
+mov     rax, [rbp-8]
+mov     [rax+90h], rdx
+mov     rax, [rbp-30h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+setnz   al
+movzx   eax, al
+mov     cs:dword_642F20, eax
+mov     eax, cs:dword_642F20
+test    eax, eax
+jnz     short locret_41C943
+mov     eax, cs:dword_63F2E4
+add     eax, 1
+mov     cs:dword_63F2E4, eax
+mov     eax, cs:dword_63F2E4
+cmp     eax, 17h
+jle     short locret_41C943
+mov     cs:dword_63F2E4, 0
+jmp     short locret_41C943
+nop
+leave
+retn

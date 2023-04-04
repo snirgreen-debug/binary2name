@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     rax, [rbp-8]
+mov     esi, 2Eh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_420E22
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_str_is_ipv4
+jmp     short locret_420E4B
+mov     rax, [rbp-8]
+mov     esi, 3Ah
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_420E46
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_str_is_ipv6
+jmp     short locret_420E4B
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     dword ptr [rbp+n+4], edi
+mov     [rbp+buf], rsi
+mov     dword ptr [rbp+n], edx
+mov     eax, [rbp-8]
+test    eax, eax
+jns     short loc_40C951
+mov     dword ptr [rbp+n], 7FFFFFFFh
+mov     edx, [rbp-8]
+mov     rcx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     rsi, rcx
+mov     edi, eax
+call    _write
+leave
+retn

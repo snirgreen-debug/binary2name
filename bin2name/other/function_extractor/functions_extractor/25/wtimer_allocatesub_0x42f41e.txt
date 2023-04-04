@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 20h
+call    xmalloc_real
+mov     [rbp+wt], rax
+mov     rax, [rbp-8]
+leave
+retn

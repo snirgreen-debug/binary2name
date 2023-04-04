@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+message], rdi
+mov     [rbp+line], rsi
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     esi, 0
+mov     rdi, rax
+call    _wbkgdset
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclear
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wrefresh
+call    _endwin
+mov     ebx, cs:global_line_counter
+mov     edi, 40B01Eh
+call    _gettext
+mov     rsi, rax
+mov     rdx, cs:argv0
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-18h]
+mov     r9, rcx
+mov     r8d, ebx
+mov     rcx, rsi
+mov     esi, 40B023h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+cmp     [rbp+line], 0
+jz      short loc_408CD4
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-20h]
+mov     esi, 40B031h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_408CE8
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+mov     edi, 1
+call    _exit

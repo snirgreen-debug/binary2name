@@ -1,0 +1,176 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+var_44], edi
+mov     [rbp+var_50], rsi
+mov     [rbp+var_58], rdx
+mov     [rbp+var_60], rcx
+mov     rax, [rbp-50h]
+add     rax, 8
+mov     [rbp+var_28], rax
+mov     rax, [rbp-50h]
+mov     rax, [rax+70h]
+mov     [rbp+var_20], rax
+cmp     [rbp+var_44], 2
+jz      short loc_4051B6
+mov     edi, 422FE1h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 1
+jmp     loc_405405
+mov     rax, [rbp-20h]
+mov     eax, [rax]
+cmp     eax, 1
+jz      loc_405338
+cmp     eax, 2
+jz      short loc_405243
+test    eax, eax
+jnz     loc_405400
+mov     rax, [rbp-20h]
+lea     rcx, [rax+8]
+mov     rax, [rbp-20h]
+mov     edx, 0
+mov     rsi, rax
+mov     rdi, rcx
+call    assert_grecs_value_type
+test    eax, eax
+jz      short loc_4051FC
+mov     eax, 1
+jmp     loc_405405
+mov     esi, 8
+mov     edi, 2
+call    ecalloc
+mov     cs:qword_62D620, rax
+mov     rbx, cs:qword_62D620
+mov     rax, [rbp-20h]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    estrdup
+mov     [rbx], rax
+mov     rax, cs:qword_62D620
+add     rax, 8
+mov     qword ptr [rax], 0
+jmp     loc_405400
+mov     rax, [rbp-20h]
+mov     rax, [rax+28h]
+add     rax, 1
+mov     esi, 8
+mov     rdi, rax
+call    ecalloc
+mov     cs:qword_62D620, rax
+mov     [rbp+var_34], 0
+jmp     loc_405301
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rbp-20h]
+mov     rdx, [rdx+30h]
+mov     ecx, [rbp-34h]
+movsxd  rcx, ecx
+shl     rcx, 3
+add     rdx, rcx
+mov     rdx, [rdx]
+lea     rcx, [rdx+8]
+mov     edx, 0
+mov     rsi, rax
+mov     rdi, rcx
+call    assert_grecs_value_type
+test    eax, eax
+jz      short loc_4052C1
+mov     eax, 1
+jmp     loc_405405
+mov     rax, cs:qword_62D620
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+shl     rdx, 3
+lea     rbx, [rax+rdx]
+mov     rax, [rbp-20h]
+mov     rax, [rax+30h]
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    estrdup
+mov     [rbx], rax
+add     [rbp+var_34], 1
+mov     eax, [rbp-34h]
+movsxd  rdx, eax
+mov     rax, [rbp-20h]
+mov     rax, [rax+28h]
+cmp     rdx, rax
+jb      loc_40526F
+mov     rax, cs:qword_62D620
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     qword ptr [rax], 0
+jmp     loc_405400
+mov     rax, [rbp-20h]
+mov     rax, [rax+28h]
+mov     rax, [rax+10h]
+add     rax, 1
+mov     esi, 8
+mov     rdi, rax
+call    ecalloc
+mov     cs:qword_62D620, rax
+mov     [rbp+var_34], 0
+mov     rax, [rbp-20h]
+mov     rax, [rax+28h]
+mov     rax, [rax]
+mov     [rbp+var_30], rax
+jmp     short loc_4053DE
+mov     rax, [rbp-30h]
+mov     rax, [rax+10h]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-18h]
+lea     rcx, [rax+8]
+mov     rax, [rbp-18h]
+mov     edx, 0
+mov     rsi, rax
+mov     rdi, rcx
+call    assert_grecs_value_type
+test    eax, eax
+jz      short loc_4053A7
+mov     eax, 1
+jmp     short loc_405405
+mov     rax, cs:qword_62D620
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+shl     rdx, 3
+lea     rbx, [rax+rdx]
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    estrdup
+mov     [rbx], rax
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     [rbp+var_30], rax
+add     [rbp+var_34], 1
+cmp     [rbp+var_30], 0
+jnz     short loc_405374
+mov     rax, cs:qword_62D620
+mov     edx, [rbp-34h]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     qword ptr [rax], 0
+mov     eax, 0
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

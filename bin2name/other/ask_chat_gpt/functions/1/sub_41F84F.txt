@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+stream], rsi
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_4], eax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_41F913
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+38h], 1
+mov     rax, cs:qword_62D748
+test    rax, rax
+jz      short loc_41F8B1
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_41F8B6
+mov     eax, 0
+cmp     rax, [rbp-18h]
+jz      short loc_41F8D2
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+30h], 1
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+34h], 0
+cmp     [rbp+stream], 0
+jz      short loc_41F8F7
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _fileno
+mov     edi, eax
+call    _isatty
+test    eax, eax
+jle     short loc_41F8F7
+mov     edx, 1
+jmp     short loc_41F8FC
+mov     edx, 0
+mov     rax, [rbp-18h]
+mov     [rax+28h], edx
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     [rdx], eax
+nop
+leave
+retn

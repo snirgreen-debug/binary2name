@@ -1,0 +1,102 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 670h
+mov     [rbp+theunit], rdi
+mov     [rbp+fun], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-660h]
+mov     eax, [rax+10h]
+cmp     eax, 1
+jnz     loc_4111FE
+mov     rax, [rbp-658h]
+mov     rdi, rax
+call    unit2num
+mov     cs:err, eax
+mov     eax, cs:err
+cmp     eax, 5
+jnz     short loc_4111E9
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    initializeunit
+lea     rdi, str
+call    dupstr
+mov     [rbp+angleunit.denominator], rax
+mov     [rbp+angleunit.denominator+8], 0
+lea     rdx, [rbp-650h]
+mov     rax, [rbp-658h]
+mov     rsi, rdx
+mov     rdi, rax
+call    multunit
+mov     cs:err, eax
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    freeunit
+mov     eax, cs:err
+test    eax, eax
+jnz     short loc_4111E9
+mov     rax, [rbp-658h]
+mov     rdi, rax
+call    unit2num
+mov     cs:err, eax
+mov     eax, cs:err
+test    eax, eax
+jz      short loc_41124F
+mov     eax, cs:err
+jmp     loc_4112E5
+mov     rax, [rbp-660h]
+mov     eax, [rax+10h]
+cmp     eax, 2
+jz      short loc_41121B
+mov     rax, [rbp-660h]
+mov     eax, [rax+10h]
+test    eax, eax
+jnz     short loc_411245
+mov     rax, [rbp-658h]
+mov     rdi, rax
+call    unit2num
+mov     cs:err, eax
+mov     eax, cs:err
+test    eax, eax
+jz      short loc_41124F
+mov     eax, cs:err
+jmp     loc_4112E5
+mov     eax, 9
+jmp     loc_4112E5
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     rax, [rbp-660h]
+mov     rax, [rax+8]
+mov     rdx, [rbp-658h]
+mov     rdx, [rdx+640h]
+mov     [rbp+var_668], rdx
+movsd   xmm0, qword ptr [rbp-668h]
+call    rax
+movq    rdx, xmm0
+mov     rax, [rbp-658h]
+mov     [rax+640h], rdx
+call    ___errno_location
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_4112A9
+mov     eax, 8
+jmp     short loc_4112E5
+mov     rax, [rbp-660h]
+mov     eax, [rax+10h]
+cmp     eax, 2
+jnz     short loc_4112E0
+lea     rdi, str
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-658h]
+mov     [rax], rdx
+mov     rax, [rbp-658h]
+mov     qword ptr [rax+8], 0
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4112F9
+call    ___stack_chk_fail
+leave
+retn

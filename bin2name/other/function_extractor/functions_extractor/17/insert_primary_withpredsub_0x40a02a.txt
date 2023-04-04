@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+entry], rdi
+mov     [rbp+pred_func], rsi
+mov     [rbp+arg], rdx
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    get_new_pred_chk_op
+mov     [rbp+new_pred], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+38h], 0
+mov     rax, [rbp-8]
+mov     dword ptr [rax+10h], 1
+mov     rax, [rbp-8]
+mov     dword ptr [rax+14h], 0
+mov     rax, [rbp-8]
+leave
+retn

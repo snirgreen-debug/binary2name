@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+movzx   eax, cs:byte_60C670
+test    al, al
+jz      short loc_4063E8
+call    _has_colors
+test    al, al
+jz      short loc_4063E8
+mov     rax, cs:stdscr
+mov     esi, 0
+mov     rdi, rax
+call    _wbkgdset
+mov     rax, cs:stdscr
+mov     rdi, rax
+call    _wclear
+mov     rax, cs:stdscr
+mov     rdi, rax
+call    _wrefresh
+call    _endwin
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 1
+call    _exit

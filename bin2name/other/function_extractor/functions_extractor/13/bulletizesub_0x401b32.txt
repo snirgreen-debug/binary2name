@@ -1,0 +1,154 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+idx], 0
+mov     [rbp+on], 0
+lea     rax, [rbp-30h]
+mov     rdi, rax
+call    init_string
+jmp     loc_401CF1
+mov     rax, cs:tos
+mov     edx, [rbp-38h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 40h
+jnz     short loc_401BB6
+mov     eax, [rbp-38h]
+lea     edx, [rax+1]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 2Ah
+jnz     short loc_401BB6
+lea     rax, [rbp-30h]
+mov     esi, 4038E9h
+mov     rdi, rax
+call    cattext
+add     [rbp+idx], 2
+jmp     loc_401CF1
+mov     rax, cs:tos
+mov     edx, [rbp-38h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     loc_401C5C
+mov     eax, [rbp-38h]
+lea     edx, [rax+1]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 6Fh
+jnz     short loc_401C5C
+call    ___ctype_b_loc
+mov     rbx, [rax]
+mov     eax, [rbp-38h]
+lea     edx, [rax+2]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+movzx   eax, al
+add     rax, rax
+add     rax, rbx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jz      short loc_401C5C
+cmp     [rbp+on], 0
+jnz     short loc_401C42
+lea     rax, [rbp-30h]
+mov     esi, 4038EBh
+mov     rdi, rax
+call    cattext
+mov     [rbp+on], 1
+lea     rax, [rbp-30h]
+mov     esi, 4038FEh
+mov     rdi, rax
+call    cattext
+add     [rbp+idx], 3
+jmp     loc_401CF1
+mov     rax, cs:tos
+mov     edx, [rbp-38h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+movsx   edx, al
+lea     rax, [rbp-30h]
+mov     esi, edx
+mov     rdi, rax
+call    catchar
+cmp     [rbp+on], 0
+jz      short loc_401CED
+mov     rax, cs:tos
+mov     edx, [rbp-38h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_401CED
+mov     eax, [rbp-38h]
+lea     edx, [rax+1]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 0Ah
+jnz     short loc_401CED
+mov     eax, [rbp-38h]
+lea     edx, [rax+2]
+mov     rax, cs:tos
+mov     esi, edx
+mov     rdi, rax
+call    at
+cmp     al, 6Fh
+jz      short loc_401CED
+lea     rax, [rbp-30h]
+mov     esi, 403906h
+mov     rdi, rax
+call    cattext
+mov     [rbp+on], 0
+add     [rbp+idx], 1
+mov     rax, cs:tos
+mov     edx, [rbp-38h]
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     loc_401B69
+cmp     [rbp+on], 0
+jz      short loc_401D24
+lea     rax, [rbp-30h]
+mov     esi, 403913h
+mov     rdi, rax
+call    cattext
+mov     rax, cs:tos
+mov     rdi, rax
+call    delete_string
+mov     rax, cs:tos
+mov     rdx, [rbp-30h]
+mov     [rax], rdx
+mov     rdx, [rbp-28h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-20h]
+mov     [rax+10h], rdx
+mov     rax, cs:pc
+add     rax, 8
+mov     cs:pc, rax
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_401D78
+call    ___stack_chk_fail
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

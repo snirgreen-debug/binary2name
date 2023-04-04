@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-28h]
+mov     eax, [rax+3Ch]
+test    eax, eax
+jz      short loc_404A59
+mov     ecx, 42B310h
+mov     edx, 11Bh
+mov     esi, 42AFC0h
+mov     edi, 42AFD0h
+call    ___assert_fail
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    get_stat_ctime
+mov     rcx, [rbp-28h]
+mov     rbx, [rcx+48h]
+mov     rcx, [rcx+40h]
+mov     rsi, rax
+mov     rdi, rdx
+mov     rax, rdx
+mov     rdx, rcx
+mov     rcx, rbx
+mov     rdi, rsi
+mov     rsi, rax
+call    compare_ts
+test    eax, eax
+setnle  al
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

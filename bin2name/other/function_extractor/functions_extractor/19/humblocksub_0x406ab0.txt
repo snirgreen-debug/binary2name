@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+spec], rdi
+mov     [rbp+block_size], rsi
+mov     [rbp+options], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+opts], 0
+cmp     [rbp+spec], 0
+jnz     short loc_406B1F
+mov     edi, 40EED0h
+call    _getenv
+mov     [rbp+spec], rax
+cmp     [rbp+spec], 0
+jnz     short loc_406B1F
+mov     edi, 40EEDBh
+call    _getenv
+mov     [rbp+spec], rax
+cmp     [rbp+spec], 0
+jnz     short loc_406B1F
+call    default_block_size
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     [rax], rdx
+jmp     loc_406C19
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+cmp     al, 27h
+jnz     short loc_406B33
+or      [rbp+opts], 4
+add     [rbp+spec], 1
+mov     rax, [rbp-28h]
+mov     ecx, 4
+mov     edx, 40EEB8h
+mov     esi, 40EEA0h
+mov     rdi, rax
+call    argmatch
+mov     [rbp+i], eax
+cmp     [rbp+i], 0
+js      short loc_406B76
+mov     eax, [rbp-18h]
+cdqe
+mov     eax, [rax*4+40EEB8h]
+or      [rbp+opts], eax
+mov     rax, [rbp-30h]
+mov     qword ptr [rax], 1
+jmp     loc_406C19
+mov     rdx, [rbp-30h]
+lea     rsi, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     r8d, 40EEE5h
+mov     rcx, rdx
+mov     edx, 0
+mov     rdi, rax
+call    xstrtoumax
+mov     [rbp+e], eax
+cmp     [rbp+e], 0
+jz      short loc_406C00
+mov     rax, [rbp-38h]
+mov     dword ptr [rax], 0
+mov     eax, [rbp-14h]
+jmp     short loc_406C27
+mov     rax, [rbp-10h]
+cmp     [rbp+spec], rax
+jnz     short loc_406BFB
+or      [rbp+opts], 80h
+mov     rax, [rbp-10h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 42h
+jnz     short loc_406BD7
+or      [rbp+opts], 100h
+mov     rax, [rbp-10h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 42h
+jnz     short loc_406BF5
+mov     rax, [rbp-10h]
+sub     rax, 2
+movzx   eax, byte ptr [rax]
+cmp     al, 69h
+jnz     short loc_406C18
+or      [rbp+opts], 20h
+jmp     short loc_406C18
+add     [rbp+spec], 1
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jle     short loc_406BB0
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+cmp     al, 39h
+jg      short loc_406BB0
+jmp     short loc_406C19
+nop
+mov     rax, [rbp-38h]
+mov     edx, [rbp-1Ch]
+mov     [rax], edx
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_406C3B
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+what], rdi
+mov     edi, 0
+call    log_set_save_context
+mov     rbx, cs:exec_name
+mov     edi, 437500h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-18h]
+mov     rcx, rax
+mov     rdx, rbx
+mov     edi, 3
+mov     eax, 0
+call    logprintf
+mov     edi, 1
+call    _exit

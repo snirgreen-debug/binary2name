@@ -1,0 +1,43 @@
+push    rbp
+push    rbx
+mov     esi, 41394Eh
+mov     rbx, rdi
+xor     ebp, ebp
+sub     rsp, 18h
+mov     rax, fs:28h
+mov     [rsp+28h+var_20], rax
+xor     eax, eax
+call    ___isoc99_fscanf
+mov     rdi, rbx
+call    __IO_getc
+jmp     short loc_409AA3
+mov     rdx, rsp
+mov     esi, 413955h
+mov     rdi, rbx
+xor     eax, eax
+call    ___isoc99_fscanf
+test    eax, eax
+mov     rdi, rbx
+mov     esi, 41394Eh
+setnle  al
+movzx   eax, al
+add     ebp, eax
+xor     eax, eax
+call    ___isoc99_fscanf
+mov     rdi, rbx
+call    __IO_getc
+mov     rdi, rbx
+call    _feof
+test    eax, eax
+jz      short loc_409A70
+mov     rdi, rbx
+call    _rewind
+mov     rcx, [rsp+8]
+xor     rcx, fs:28h
+movsxd  rax, ebp
+jnz     short loc_409AD1
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn
+call    ___stack_chk_fail

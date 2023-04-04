@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+u], rdi
+mov     rax, [rbp-38h]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-38h]
+mov     rax, [rax+40h]
+mov     rdi, rax
+call    url_escape_dir
+mov     [rbp+edir], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax+48h]
+mov     edx, 1
+mov     esi, 3
+mov     rdi, rax
+call    url_escape_1
+mov     [rbp+efile], rax
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_426F81
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    xstrdup_real
+mov     [rbp+newpath], rax
+jmp     loc_427025
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+dirlen], eax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+filelen], eax
+mov     eax, [rbp-28h]
+lea     edx, [rax+1]
+mov     eax, [rbp-24h]
+add     eax, edx
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+newpath], rax
+mov     rax, [rbp-20h]
+mov     [rbp+p], rax
+mov     eax, [rbp-28h]
+movsxd  rdx, eax
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-28h]
+cdqe
+add     [rbp+p], rax
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     byte ptr [rax], 2Fh
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-24h]
+cdqe
+add     [rbp+p], rax
+mov     rax, [rbp-8]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-38h]
+mov     rdx, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-38h]
+mov     rax, [rax+40h]
+cmp     rax, [rbp-18h]
+jz      short loc_42704B
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-38h]
+mov     rax, [rax+48h]
+cmp     rax, [rbp-10h]
+jz      short loc_427065
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-38h]
+mov     esi, 0
+mov     rdi, rax
+call    url_string
+mov     rdx, rax
+mov     rax, [rbp-38h]
+mov     [rax], rdx
+nop
+leave
+retn

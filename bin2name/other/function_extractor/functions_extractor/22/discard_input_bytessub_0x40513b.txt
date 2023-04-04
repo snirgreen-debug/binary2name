@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+nbytes], rdi
+mov     [rbp+flags], esi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+jmp     short loc_4051C6
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_405185
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+jmp     short loc_40518F
+mov     edi, 0
+call    fill_inbuf
+mov     [rbp+c], al
+mov     eax, [rbp-1Ch]
+and     eax, 2
+test    eax, eax
+jz      short loc_4051AD
+lea     rax, [rbp-9]
+mov     esi, 1
+mov     rdi, rax
+call    updcrc
+cmp     [rbp+nbytes], 0FFFFFFFFFFFFFFFFh
+jz      short loc_4051BB
+sub     [rbp+nbytes], 1
+jmp     short loc_4051C6
+movzx   eax, byte ptr [rbp-9]
+test    al, al
+jnz     short loc_4051C6
+nop
+jmp     short loc_4051CD
+cmp     [rbp+nbytes], 0
+jnz     short loc_40515B
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_4051E2
+call    ___stack_chk_fail
+leave
+retn

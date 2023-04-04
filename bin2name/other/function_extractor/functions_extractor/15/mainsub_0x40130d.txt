@@ -1,0 +1,136 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+argc], edi
+mov     [rbp+argv], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-60h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_401349
+mov     rax, [rbp-60h]
+mov     rax, [rax]
+mov     rdi, rax
+call    set_program_name
+jmp     short loc_401353
+mov     edi, 403F88h
+call    set_program_name
+mov     esi, 403F8Fh
+mov     edi, 6
+call    _setlocale
+mov     esi, 403F90h
+mov     edi, 403FE2h
+call    _bindtextdomain
+mov     edi, 403FE2h
+call    _textdomain
+mov     edi, 401538h
+call    atexit
+test    eax, eax
+jz      short loc_4013B1
+mov     edi, 403FF0h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     [rbp+oldpathsize], 402h
+mov     rax, [rbp-30h]
+mov     [rbp+pathsize], rax
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+path], rax
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    xmalloc
+mov     [rbp+oldpath], rax
+mov     rax, [rbp-38h]
+mov     byte ptr [rax], 0
+jmp     loc_4014AD
+mov     rax, [rbp-48h]
+mov     edx, [rbp-4Ch]
+movsxd  rdx, edx
+sub     rdx, 1
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    prefix_length
+mov     ebx, eax
+jmp     short loc_401457
+mov     rdx, [rbp-48h]
+movsxd  rax, ebx
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    _putchar
+mov     rax, [rbp-48h]
+movsxd  rdx, ebx
+add     rdx, 1
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    _putchar
+mov     edi, 0Ah
+call    _putchar
+add     ebx, 2
+mov     rdx, [rbp-48h]
+movsxd  rax, ebx
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40147D
+mov     rax, [rbp-48h]
+movsxd  rdx, ebx
+add     rdx, 1
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_401418
+mov     rax, [rbp-38h]
+mov     [rbp+tmppath], rax
+mov     rax, [rbp-30h]
+mov     [rbp+tmppathsize], rax
+mov     rax, [rbp-48h]
+mov     [rbp+oldpath], rax
+mov     rax, [rbp-40h]
+mov     [rbp+oldpathsize], rax
+mov     rax, [rbp-28h]
+mov     [rbp+path], rax
+mov     rax, [rbp-20h]
+mov     [rbp+pathsize], rax
+mov     rdx, cs:stdin@@GLIBC_2_2_5
+lea     rcx, [rbp-40h]
+lea     rax, [rbp-48h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _getline
+mov     [rbp+line_len], eax
+cmp     [rbp+line_len], 0
+jg      loc_4013ED
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_401505
+call    ___stack_chk_fail
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

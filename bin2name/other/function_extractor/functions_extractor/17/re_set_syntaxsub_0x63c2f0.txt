@@ -1,0 +1,1 @@
+extrn re_set_syntax:near

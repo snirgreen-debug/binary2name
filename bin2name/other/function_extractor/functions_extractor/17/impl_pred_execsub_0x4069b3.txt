@@ -1,0 +1,196 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 70h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-78h]
+add     rax, 38h
+mov     [rbp+execp], rax
+mov     [rbp+buf], 0
+mov     rax, [rbp-78h]
+mov     rax, [rax]
+mov     rdi, rax
+call    is_exec_in_local_dir
+mov     [rbp+local], al
+cmp     [rbp+local], 0
+jz      loc_406A96
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    record_exec_dir
+xor     eax, 1
+test    al, al
+jz      short loc_406A4C
+mov     rax, [rbp-68h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     r12, rax
+mov     edi, 42B3B0h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, r12
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, cs:state_0.rel_pathname
+mov     rdi, rax
+call    base_name
+mov     [rbp+buf], rax
+mov     rax, [rbp-38h]
+mov     [rbp+target], rax
+mov     rax, [rbp-30h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_406A84
+mov     [rbp+prefix], 0
+mov     [rbp+pfxlen], 0
+jmp     short loc_406ADE
+mov     [rbp+prefix], 42B3F1h
+mov     [rbp+pfxlen], 2
+jmp     short loc_406ADE
+mov     rax, [rbp-18h]
+mov     rdx, [rax+0C0h]
+mov     rax, cs:initial_wd
+cmp     rdx, rax
+jz      short loc_406AC6
+mov     ecx, 42B4D0h
+mov     edx, 0A1h
+mov     esi, 42B390h
+mov     edi, 42B3F8h
+call    ___assert_fail
+mov     rax, [rbp-68h]
+mov     [rbp+target], rax
+mov     [rbp+prefix], 0
+mov     [rbp+pfxlen], 0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_406B4E
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax+1]
+mov     rax, [rbp-18h]
+lea     rsi, [rax+60h]
+mov     rax, [rbp-18h]
+lea     rdi, [rax+8]
+mov     r8, [rbp-20h]
+mov     rcx, [rbp-28h]
+mov     rax, [rbp-30h]
+sub     rsp, 8
+push    0
+mov     r9, r8
+mov     r8, rcx
+mov     rcx, rdx
+mov     rdx, rax
+call    bc_push_arg
+add     rsp, 10h
+mov     rax, [rbp-18h]
+mov     eax, [rax+98h]
+test    eax, eax
+jz      short loc_406B45
+mov     cs:state_0.execdirs_outstanding, 1
+mov     [rbp+result], 1
+jmp     loc_406C6F
+mov     [rbp+i], 0
+jmp     loc_406BE5
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _strlen
+mov     rbx, rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+0B0h]
+mov     edx, [rbp-3Ch]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+mov     r10, rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+0B0h]
+mov     edx, [rbp-3Ch]
+movsxd  rdx, edx
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+lea     rsi, [rdx+60h]
+mov     rdx, [rbp-18h]
+lea     rdi, [rdx+8]
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-28h]
+sub     rsp, 8
+push    0
+push    rbx
+push    [rbp+target]
+mov     r9, rcx
+mov     r8, rdx
+mov     rcx, r10
+mov     rdx, rax
+call    bc_do_insert
+add     rsp, 20h
+add     [rbp+i], 1
+mov     rax, [rbp-18h]
+mov     eax, [rax+0B8h]
+cmp     eax, [rbp-3Ch]
+jg      loc_406B5A
+mov     rax, [rbp-18h]
+lea     rdx, [rax+60h]
+mov     rax, [rbp-18h]
+add     rax, 8
+mov     rsi, rdx
+mov     rdi, rax
+call    bc_do_exec
+mov     rax, [rbp-18h]
+mov     eax, [rax+0C8h]
+mov     [rbp+var_50], eax
+mov     eax, [rbp-50h]
+and     eax, 7Fh
+test    eax, eax
+jnz     short loc_406C52
+mov     rax, [rbp-18h]
+mov     eax, [rax+0C8h]
+mov     [rbp+var_40], eax
+mov     eax, [rbp-40h]
+and     eax, 0FF00h
+sar     eax, 8
+test    eax, eax
+jnz     short loc_406C4C
+mov     [rbp+result], 1
+jmp     short loc_406C56
+mov     [rbp+result], 0
+jmp     short loc_406C56
+mov     [rbp+result], 0
+cmp     [rbp+local], 0
+jz      short loc_406C6F
+mov     rax, [rbp-18h]
+mov     rax, [rax+0C0h]
+mov     rdi, rax
+call    free_cwd
+cmp     [rbp+buf], 0
+jz      short loc_406CA1
+cmp     [rbp+local], 0
+jnz     short loc_406C95
+mov     ecx, 42B4D0h
+mov     edx, 0DDh
+mov     esi, 42B390h
+mov     edi, 42B419h
+call    ___assert_fail
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _free
+movzx   eax, byte ptr [rbp-52h]
+lea     rsp, [rbp-10h]
+pop     rbx
+pop     r12
+pop     rbp
+retn

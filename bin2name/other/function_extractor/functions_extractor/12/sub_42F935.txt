@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 3E8h
+call    sub_42F8CB
+mov     [rbp+var_C], eax
+mov     edi, 3E8h
+call    sub_42F8CB
+mov     [rbp+var_8], eax
+mov     edi, 3E8h
+call    sub_42F8CB
+mov     [rbp+var_4], eax
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-0Ch]
+movsd   xmm1, cs:qword_437758
+divsd   xmm0, xmm1
+movapd  xmm1, xmm0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-8]
+movsd   xmm2, cs:qword_437770
+divsd   xmm0, xmm2
+addsd   xmm1, xmm0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-4]
+movsd   xmm2, cs:qword_437778
+divsd   xmm0, xmm2
+addsd   xmm0, xmm1
+leave
+retn

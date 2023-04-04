@@ -1,0 +1,126 @@
+push    rbp
+mov     rbp, rsp
+push    p
+push    c
+sub     rsp, 20h
+mov     p, rdi
+mov     [rbp+stream], rsi
+jmp     loc_414DE8
+mov     [rbp+fprintf_result], 0FFFFFFFFh
+movzx   eax, bl
+cmp     eax, 0Ch
+jz      loc_414D3B
+cmp     eax, 0Ch
+jg      short loc_414C7B
+cmp     eax, 9
+jz      loc_414D1D
+cmp     eax, 0Ah
+jz      short loc_414CC3
+cmp     eax, 8
+jz      short loc_414CE1
+jmp     loc_414D8F
+cmp     eax, 20h
+jz      loc_414D59
+cmp     eax, 20h
+jg      short loc_414C93
+cmp     eax, 0Dh
+jz      short loc_414CFF
+jmp     loc_414D8F
+cmp     eax, 22h
+jz      loc_414D74
+cmp     eax, 5Ch
+jnz     loc_414D8F
+mov     rax, [rbp-28h]
+mov     esi, 42FA75h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA78h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA7Bh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA7Eh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA81h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA84h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA87h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     short loc_414DDB
+mov     rax, [rbp-28h]
+mov     esi, 42FA8Ah
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+jmp     short loc_414DDB
+cmp     bl, 20h
+jbe     short loc_414DBF
+cmp     bl, 7Eh
+ja      short loc_414DBF
+movzx   eax, bl
+mov     rdx, [rbp-28h]
+mov     rsi, rdx
+mov     edi, eax
+call    __IO_putc
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_414DB6
+mov     eax, 0
+jmp     short loc_414E01
+mov     [rbp+fprintf_result], 1
+jmp     short loc_414DDB
+movzx   edx, bl
+mov     rax, [rbp-28h]
+mov     esi, 42FA8Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     [rbp+fprintf_result], eax
+cmp     [rbp+fprintf_result], 0
+jns     short loc_414DE8
+mov     eax, 0
+jmp     short loc_414E01
+mov     rax, p
+lea     p, [rax+1]
+movzx   eax, byte ptr [rax]
+mov     ebx, eax
+test    bl, bl
+jnz     loc_414C4B
+mov     eax, 1
+add     rsp, 20h
+pop     c
+pop     p
+pop     rbp
+retn

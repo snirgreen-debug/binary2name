@@ -1,0 +1,153 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4202954,
+                "src": 4202937
+            },
+            {
+                "dst": 4202972,
+                "src": 4202954
+            },
+            {
+                "dst": 4202966,
+                "src": 4202954
+            },
+            {
+                "dst": 4202977,
+                "src": 4202972
+            },
+            {
+                "dst": 4202990,
+                "src": 4202977
+            },
+            {
+                "dst": 4202999,
+                "src": 4202990
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4202999
+            },
+            {
+                "dst": 4202977,
+                "src": 4202966
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4202937,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |sub|rsp|0x20|    |mov|qword|ptr|rbp|-|0x18|rdi|    |call|0x4012d0|    "
+            },
+            {
+                "block_addr": 4202954,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ],
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "mov|eax|dword|ptr|rax|    |mov|dword|ptr|rbp|-|0xc|eax|    |cmp|qword|ptr|rbp|-|0x18|0|    |je|0x4021dc|    "
+            },
+            {
+                "block_addr": 4202972,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool __eq__(fake_ret_value_868_64, 0xc000000000000000)>",
+                            "<Bool __eq__(reg_48_867_64, 0x0)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|0x608300|    |mov|esi|0x38|    |mov|rdi|rax|    |call|0x404816|    "
+            },
+            {
+                "block_addr": 4202977,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ],
+                    [
+                        3,
+                        []
+                    ]
+                ],
+                "instructions": "mov|esi|0x38|    |mov|rdi|rax|    |call|0x404816|    "
+            },
+            {
+                "block_addr": 4202990,
+                "constraints": [
+                    [
+                        4,
+                        []
+                    ],
+                    [
+                        4,
+                        []
+                    ]
+                ],
+                "instructions": "mov|qword|ptr|rbp|-|8|rax|    |call|0x4012d0|    "
+            },
+            {
+                "block_addr": 4202999,
+                "constraints": [
+                    [
+                        5,
+                        []
+                    ],
+                    [
+                        5,
+                        []
+                    ]
+                ],
+                "instructions": "mov|rdx|rax|    |mov|eax|dword|ptr|rbp|-|0xc|    |mov|dword|ptr|rdx|eax|    |mov|rax|qword|ptr|rbp|-|8|    |leave|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        6,
+                        [
+                            "<Bool __eq__(fake_ret_value_872_64, 0xffffffffffffffff)>",
+                            "<BV32 Extract(31, 0, fake_ret_value_870_64)>"
+                        ]
+                    ],
+                    [
+                        6,
+                        [
+                            "<Bool __eq__(fake_ret_value_873_64, 0xffffffffffffffff)>",
+                            "<BV32 Extract(31, 0, fake_ret_value_871_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4202966,
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<Bool __eq__(fake_ret_value_868_64, 0xc000000000000000)>",
+                            "<Bool __ne__(reg_48_867_64, 0x0)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|rax|qword|ptr|rbp|-|0x18|    |jmp|0x4021e1|    "
+            }
+        ]
+    },
+    "func_name": "4202937"
+}

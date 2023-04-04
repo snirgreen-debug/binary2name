@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+filename], rdi
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-8]
+mov     rcx, rdx
+mov     edx, 405412h
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+call    _abort

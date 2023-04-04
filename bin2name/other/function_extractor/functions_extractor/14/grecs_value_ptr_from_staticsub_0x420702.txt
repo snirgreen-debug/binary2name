@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     edi, 38h
+call    grecs_malloc
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdx, [rbp-18h]
+mov     rcx, [rdx]
+mov     [rax], rcx
+mov     rcx, [rdx+8]
+mov     [rax+8], rcx
+mov     rcx, [rdx+10h]
+mov     [rax+10h], rcx
+mov     rcx, [rdx+18h]
+mov     [rax+18h], rcx
+mov     rcx, [rdx+20h]
+mov     [rax+20h], rcx
+mov     rcx, [rdx+28h]
+mov     [rax+28h], rcx
+mov     rdx, [rdx+30h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-8]
+leave
+retn

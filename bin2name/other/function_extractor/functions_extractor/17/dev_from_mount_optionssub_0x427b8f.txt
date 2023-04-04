@@ -1,0 +1,6 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+mount_options], rdi
+mov     rax, 0FFFFFFFFFFFFFFFFh
+pop     rbp
+retn

@@ -1,0 +1,159 @@
+push    r13
+push    r12
+mov     r13, iEqType
+push    rbp
+push    rbx
+mov     iEqType, szEqn
+mov     r12, pfile
+xor     edi, edi
+xor     ebp, ebp
+sub     rsp, 468h
+lea     szEqn, [rsp+10h]
+lea     rbx, [rsp+50h]
+mov     rax, fs:28h
+mov     [rsp+488h+var_30], rax
+xor     eax, eax
+call    MakeStringBuffer
+lea     rdx, [rsp+0Ch]
+lea     rdi, [rsp+10h]
+mov     rsi, rbx
+call    NextLex
+mov     eax, [rsp+0Ch]
+test    eax, eax
+jnz     short loc_40E250
+jmp     loc_40E438
+mov     ebp, 1
+mov     rsi, pfile
+mov     edi, 20h
+call    _fputc
+lea     rdx, [rsp+0Ch]
+lea     rdi, [rsp+10h]
+mov     rsi, rbx
+call    NextLex
+mov     eax, [rsp+0Ch]
+test    eax, eax
+jz      loc_40E380
+cmp     eax, 1
+jz      short loc_40E2B0
+cmp     eax, 20h
+jz      short loc_40E25F
+cmp     eax, 8
+jnz     short loc_40E26A
+cmp     [rsp+488h+szLex], 23h
+jz      loc_40E310
+mov     rsi, pfile
+mov     rdi, rbx
+call    _fputs
+test    ebp, ebp
+jnz     short loc_40E220
+mov     esi, 412E06h
+mov     ecx, 0Ah
+mov     rdi, rbx
+repe cmpsb
+setz    bpl
+movzx   ebp, bpl
+mov     eax, ebp
+or      eax, cs:bDelay
+setnz   al
+movzx   eax, al
+mov     cs:bDelay, eax
+jmp     loc_40E225
+test    ebp, ebp
+jz      loc_40E360
+mov     rdi, cs:vpvmGloVarList
+mov     rsi, rbx
+call    GetVarPTR
+mov     ecx, cs:bForR
+test    ecx, ecx
+jnz     loc_40E3D8
+test    pvm, pvm
+jz      short loc_40E2EF
+mov     pvm, [pvm+10h]
+and     eax, 0D0000h
+cmp     rax, 10000h
+jz      loc_40E400
+mov     edx, 414618h
+lea     rdi, [rsp+10h]
+xor     ecx, ecx
+mov     esi, 8014h
+mov     ebp, 1
+call    ReportError
+jmp     loc_40E225
+mov     rax, [rsp+28h]
+movzx   edx, byte ptr [rax]
+test    dl, dl
+jz      short loc_40E345
+cmp     dl, 0Ah
+setnz   dl
+add     rax, 1
+test    dl, dl
+jnz     short loc_40E335
+jmp     short loc_40E345
+cmp     dl, 0Ah
+jz      short loc_40E345
+mov     [rsp+488h+ibDum.pbufCur], rax
+movzx   edx, byte ptr [rax]
+add     rax, 1
+test    dl, dl
+jnz     short loc_40E330
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+jmp     loc_40E275
+lea     rdi, [rsp+10h]
+mov     ecx, r13d
+mov     rdx, rbx
+mov     rsi, pfile
+call    TranslateID
+jmp     loc_40E279
+mov     edx, cs:bForR
+test    edx, edx
+jz      short loc_40E398
+mov     eax, cs:bForInits
+test    eax, eax
+jnz     loc_40E458
+mov     rcx, pfile
+mov     edx, 2
+mov     esi, 1
+mov     edi, 414812h
+call    _fwrite
+mov     rax, [rsp+458h]
+xor     rax, fs:28h
+jnz     loc_40E46A
+add     rsp, 468h
+pop     rbx
+pop     rbp
+pop     pfile
+pop     iEqType
+retn
+test    pvm, pvm
+jz      short loc_40E3EE
+mov     pvm, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jz      short loc_40E400
+mov     edx, 414628h
+jmp     loc_40E2F4
+mov     rcx, rbx
+mov     rdi, pfile
+mov     edx, 4142E9h
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+mov     rcx, pfile
+mov     edx, 0Bh
+mov     esi, 1
+mov     edi, 414646h
+call    _fwrite
+jmp     loc_40E279
+mov     rcx, pfile
+mov     edx, 17h
+mov     esi, 1
+mov     edi, 41462Eh
+call    _fwrite
+jmp     loc_40E3AF
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+jmp     loc_40E3AF
+call    ___stack_chk_fail

@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+jmp     short loc_4147AC
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grecs_txtacc_cur_entry
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-28h]
+jbe     short loc_414785
+mov     rax, [rbp-28h]
+mov     [rbp+var_10], rax
+mov     rdx, [rbp-10h]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    grecs_txtacc_entry_append
+mov     rax, [rbp-10h]
+add     [rbp+var_20], rax
+mov     rax, [rbp-10h]
+sub     [rbp+var_28], rax
+cmp     [rbp+var_28], 0
+jnz     short loc_414749
+nop
+leave
+retn

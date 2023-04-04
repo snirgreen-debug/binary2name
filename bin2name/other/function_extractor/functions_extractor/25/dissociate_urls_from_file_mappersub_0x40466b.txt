@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+key], rdi
+mov     [rbp+value], rsi
+mov     [rbp+arg], rdx
+mov     rax, [rbp-28h]
+mov     [rbp+mapping_url], rax
+mov     rax, [rbp-30h]
+mov     [rbp+mapping_file], rax
+mov     rax, [rbp-38h]
+mov     [rbp+file], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4046DC
+mov     rax, cs:dl_url_file_map
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_remove
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+url], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    full_path_length
+mov     [rbp+length], eax
+mov     eax, [rbp-0Ch]
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    xmalloc_real
+mov     [rbp+full_path], rax
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    full_path_write
+mov     eax, [rbp-0Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+leave
+retn

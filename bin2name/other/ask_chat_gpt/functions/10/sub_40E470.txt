@@ -1,0 +1,119 @@
+push    rbp
+push    rbx
+mov     rbp, rdi
+mov     rbx, rsi
+sub     rsp, 8
+mov     rax, [rsi+10h]
+test    ah, 0F0h
+jnz     loc_40E510
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40E66D
+cmp     rax, 0A0000h
+jz      loc_40E550
+mov     ecx, cs:dword_619884
+test    ecx, ecx
+jz      loc_40E578
+mov     edx, cs:dword_619880
+test    edx, edx
+jz      short loc_40E530
+cmp     rax, 10000h
+jz      loc_40E630
+cmp     rax, 20000h
+jz      loc_40E5B0
+jbe     loc_40E5B0
+cmp     rax, 30000h
+jz      loc_40E660
+cmp     rax, 90000h
+jnz     loc_40E5B0
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+mov     rsi, rdi
+mov     edi, 0Ah
+call    _fputc
+mov     rax, [rbx+10h]
+jmp     loc_40E489
+cmp     rax, 20000h
+jz      short loc_40E5B0
+ja      short loc_40E4DC
+cmp     rax, 10000h
+jnz     short loc_40E5B0
+mov     r8, [rbx]
+mov     ecx, 41403Ch
+jmp     short loc_40E5B8
+mov     rcx, [rbx+8]
+mov     rdi, rbp
+mov     edx, 41459Ah
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+add     rsp, 8
+mov     eax, 1
+pop     rbx
+pop     rbp
+retn
+cmp     rax, 20000h
+jz      loc_40E620
+jbe     short loc_40E5A0
+cmp     rax, 30000h
+jnz     loc_40E4E8
+mov     r8, [rbx]
+mov     ecx, 414045h
+jmp     short loc_40E5B8
+cmp     rax, 10000h
+jz      short loc_40E592
+nop     dword ptr [rax+rax+00000000h]
+mov     r8, [rbx]
+mov     ecx, 4140BDh
+mov     edx, 3FFh
+mov     esi, 1
+mov     edi, 619CC0h
+xor     eax, eax
+call    ___sprintf_chk
+mov     ecx, 619CC0h
+mov     edx, 414662h
+mov     esi, 1
+mov     rdi, rbp
+xor     eax, eax
+call    ___fprintf_chk
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 0A0000h
+jz      loc_40E550
+mov     rsi, [rbx+8]
+mov     rdi, rbp
+mov     edx, 5
+call    sub_40E1C0
+add     rsp, 8
+mov     eax, 1
+pop     rbx
+pop     rbp
+retn
+mov     r8, [rbx]
+mov     ecx, 41402Bh
+jmp     short loc_40E5B8
+xor     ecx, ecx
+xor     edx, edx
+xor     esi, esi
+mov     rdi, rbx
+call    sub_40D280
+mov     edx, 414652h
+mov     rcx, rax
+mov     esi, 1
+mov     rdi, rbp
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_40E5E7
+mov     r8, [rbx]
+mov     ecx, 414059h
+jmp     loc_40E5B8
+mov     rdx, [rbx]
+mov     edi, 1
+mov     esi, 414F68h
+xor     eax, eax
+call    ___printf_chk
+xor     edi, edi
+call    _exit

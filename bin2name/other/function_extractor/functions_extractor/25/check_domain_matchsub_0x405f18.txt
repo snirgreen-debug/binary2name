@@ -1,0 +1,188 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+cookie_domain], rdi
+mov     [rbp+host], rsi
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_405F41
+mov     edi, 430278h
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    numeric_address_p
+test    eax, eax
+jz      short loc_405F71
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+setz    al
+movzx   eax, al
+jmp     locret_4061D2
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_405F8A
+mov     edi, 43027Fh
+mov     eax, 0
+call    debug_logprintf
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_405FAB
+mov     eax, 1
+jmp     locret_4061D2
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_405FC4
+mov     edi, 430282h
+mov     eax, 0
+call    debug_logprintf
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-40h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    match_tail
+test    eax, eax
+jnz     short loc_405FEA
+mov     eax, 0
+jmp     locret_4061D2
+mov     rax, [rbp-38h]
+mov     [rbp+p], rax
+mov     [rbp+dccount], 1
+mov     [rbp+ldcl], 0
+mov     [rbp+nldcl], 0
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jnz     short loc_406017
+add     [rbp+p], 1
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_406030
+mov     edi, 430285h
+mov     eax, 0
+call    debug_logprintf
+mov     [rbp+out], 0
+jmp     short loc_40609B
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+test    eax, eax
+jz      short loc_40604E
+cmp     eax, 2Eh
+jz      short loc_406057
+jmp     short loc_406092
+mov     [rbp+out], 1
+jmp     short loc_406096
+cmp     [rbp+ldcl], 0
+jnz     short loc_406067
+mov     eax, 0
+jmp     locret_4061D2
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40607F
+mov     [rbp+out], 1
+jmp     short loc_406096
+mov     eax, [rbp-24h]
+mov     [rbp+nldcl], eax
+mov     [rbp+ldcl], 0
+add     [rbp+dccount], 1
+jmp     short loc_406096
+add     [rbp+ldcl], 1
+add     [rbp+p], 1
+cmp     [rbp+out], 0
+jz      short loc_406039
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4060BA
+mov     edi, 430288h
+mov     eax, 0
+call    debug_logprintf
+cmp     [rbp+dccount], 1
+jg      short loc_4060CA
+mov     eax, 0
+jmp     locret_4061D2
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4060E3
+mov     edi, 43028Bh
+mov     eax, 0
+call    debug_logprintf
+cmp     [rbp+dccount], 2
+jnz     short loc_406149
+mov     [rbp+known_toplevel], 0
+mov     [rbp+i], 0
+jmp     short loc_40612B
+mov     eax, [rbp-18h]
+cdqe
+mov     rcx, [rax*8+63C3E0h]
+mov     rax, [rbp-38h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    match_tail
+test    eax, eax
+jz      short loc_406127
+mov     [rbp+known_toplevel], 1
+jmp     short loc_406133
+add     [rbp+i], 1
+mov     eax, [rbp-18h]
+cmp     eax, 6
+jbe     short loc_4060F9
+cmp     [rbp+known_toplevel], 0
+jnz     short loc_406149
+cmp     [rbp+nldcl], 3
+jg      short loc_406149
+mov     eax, 0
+jmp     locret_4061D2
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_406162
+mov     edi, 43028Eh
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jz      short loc_4061B4
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+dlen], eax
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+hlen], eax
+mov     eax, [rbp-0Ch]
+cmp     eax, [rbp-10h]
+jle     short loc_4061B4
+mov     eax, [rbp-0Ch]
+sub     eax, [rbp-10h]
+cdqe
+lea     rdx, [rax-1]
+mov     rax, [rbp-40h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Eh
+jz      short loc_4061B4
+mov     eax, 0
+jmp     short locret_4061D2
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_4061CD
+mov     edi, 430291h
+mov     eax, 0
+call    debug_logprintf
+mov     eax, 1
+leave
+retn

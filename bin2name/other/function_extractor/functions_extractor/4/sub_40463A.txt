@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     edx, cs:dword_63A4D0
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     eax, 1
+pop     rbp
+retn

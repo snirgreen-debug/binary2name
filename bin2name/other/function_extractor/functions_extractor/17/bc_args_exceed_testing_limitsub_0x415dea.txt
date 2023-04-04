@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+argv], rdi
+mov     [rbp+args], 0
+mov     rax, [rbp-8]
+mov     [rbp+chars], rax
+jmp     short loc_415E25
+add     [rbp+args], 1
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _strlen
+add     [rbp+chars], rax
+add     [rbp+argv], 8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_415E08
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 42FC88h
+call    exceeds
+test    eax, eax
+jnz     short loc_415E5B
+mov     rax, [rbp-10h]
+mov     rsi, rax
+mov     edi, 42FCB0h
+call    exceeds
+test    eax, eax
+jz      short loc_415E62
+mov     eax, 1
+jmp     short loc_415E67
+mov     eax, 0
+and     eax, 1
+leave
+retn

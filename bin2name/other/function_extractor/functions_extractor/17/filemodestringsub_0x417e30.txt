@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+statp], rdi
+mov     [rbp+str], rsi
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     edi, eax
+call    strmode
+nop
+leave
+retn

@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, edi
+mov     [rbp+var_8], esi
+mov     [rbp+var_4], ax
+movzx   edx, word ptr [rbp-4]
+mov     eax, [rbp-8]
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+mov     esi, eax
+movzx   edx, word ptr [rbp-4]
+mov     eax, 10h
+sub     eax, [rbp-8]
+mov     ecx, eax
+sar     edx, cl
+mov     eax, edx
+or      eax, esi
+pop     rbp
+retn

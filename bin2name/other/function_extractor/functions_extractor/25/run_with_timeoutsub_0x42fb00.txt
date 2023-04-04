@@ -1,0 +1,53 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+movsd   [rbp+timeout], xmm0
+mov     [rbp+fun], rdi
+mov     [rbp+arg], rsi
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-18h]
+jp      short loc_42FB42
+pxor    xmm0, xmm0
+ucomisd xmm0, qword ptr [rbp-18h]
+jnz     short loc_42FB42
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rdi, rdx
+call    rax
+mov     eax, 0
+jmp     locret_42FBC9
+mov     esi, 42F9B1h
+mov     edi, 0Eh
+call    _signal
+mov     esi, 1
+mov     edi, 6473A0h
+call    ___sigsetjmp
+test    eax, eax
+jz      short loc_42FB7A
+mov     esi, 0
+mov     edi, 0Eh
+call    _signal
+mov     eax, 1
+jmp     short locret_42FBC9
+mov     rax, [rbp-18h]
+mov     [rbp+var_30], rax
+movsd   xmm0, qword ptr [rbp-30h]
+call    alarm_set
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rdi, rdx
+call    rax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+call    alarm_cancel
+mov     esi, 0
+mov     edi, 0Eh
+call    _signal
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     [rdx], eax
+mov     eax, 0
+leave
+retn

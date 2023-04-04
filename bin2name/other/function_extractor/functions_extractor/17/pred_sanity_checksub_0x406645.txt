@@ -1,0 +1,129 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+predicates], rdi
+mov     rax, [rbp-18h]
+mov     [rbp+p], rax
+jmp     loc_406841
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406683
+mov     ecx, 42B370h
+mov     edx, 531h
+mov     esi, 42AFC0h
+mov     edi, 42B1B3h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+130h]
+test    rax, rax
+jnz     short loc_4066AC
+mov     ecx, 42B370h
+mov     edx, 534h
+mov     esi, 42AFC0h
+mov     edi, 42B1C8h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+130h]
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_4066F4
+mov     rax, [rbp-8]
+mov     rax, [rax+130h]
+mov     rdx, [rax+18h]
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_4066F4
+mov     ecx, 42B370h
+mov     edx, 53Dh
+mov     esi, 42AFC0h
+mov     edi, 42B1E0h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+130h]
+mov     eax, [rax]
+cmp     eax, 6
+ja      def_406714
+mov     eax, eax
+mov     rax, [rax*8+42B2B8h]
+jmp     rax
+mov     rax, [rbp-8]
+mov     rax, [rax+130h]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_406740
+mov     ecx, 42B370h
+mov     edx, 54Dh
+mov     esi, 42AFC0h
+mov     edi, 42B210h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax+130h]
+mov     eax, [rax]
+cmp     eax, 2
+jnz     loc_40682B
+mov     ecx, 42B370h
+mov     edx, 54Eh
+mov     esi, 42AFC0h
+mov     edi, 42B238h
+call    ___assert_fail
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+18h]
+test    al, al
+jnz     short loc_406794
+mov     ecx, 42B370h
+mov     edx, 552h
+mov     esi, 42AFC0h
+mov     edi, 42B267h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 405B54h
+jz      loc_40682E
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 405BBFh
+jz      short loc_40682E
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+19h]
+test    al, al
+jnz     short loc_40682E
+mov     ecx, 42B370h
+mov     edx, 558h
+mov     esi, 42AFC0h
+mov     edi, 42B277h
+call    ___assert_fail
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+19h]
+xor     eax, 1
+test    al, al
+jnz     short loc_406803
+mov     ecx, 42B370h
+mov     edx, 566h
+mov     esi, 42AFC0h
+mov     edi, 42B28Bh
+call    ___assert_fail
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+18h]
+xor     eax, 1
+test    al, al
+jnz     short loc_406831
+mov     ecx, 42B370h
+mov     edx, 567h
+mov     esi, 42AFC0h
+mov     edi, 42B2A0h
+call    ___assert_fail
+nop
+jmp     short def_406714
+nop
+jmp     short def_406714
+nop
+mov     rax, [rbp-8]
+mov     rax, [rax+108h]
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jnz     loc_40665E
+nop
+leave
+retn

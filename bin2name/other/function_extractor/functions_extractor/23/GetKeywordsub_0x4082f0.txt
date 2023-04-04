@@ -1,0 +1,14 @@
+mov     rax, cs:vrgkmKeywordMap.szKeyword
+cmp     byte ptr [rax], 0
+jz      short locret_408321
+cmp     edi, cs:vrgkmKeywordMap.iKWCode
+jz      short locret_408321
+mov     edx, 619460h
+jmp     short loc_408315
+cmp     [pkm+8], edi
+jz      short locret_408321
+add     pkm, 10h
+mov     rax, [pkm]
+cmp     byte ptr [rax], 0
+jnz     short loc_408310
+rep retn

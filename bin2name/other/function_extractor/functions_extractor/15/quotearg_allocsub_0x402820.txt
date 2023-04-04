@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+arg], rdi
+mov     [rbp+argsize], rsi
+mov     [rbp+o], rdx
+mov     rdx, [rbp-18h]
+mov     rsi, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rcx, rdx
+mov     edx, 0
+mov     rdi, rax
+call    quotearg_alloc_mem
+leave
+retn

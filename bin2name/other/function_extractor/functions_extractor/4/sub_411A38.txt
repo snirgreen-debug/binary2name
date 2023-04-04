@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40A0EB
+mov     [rbp+var_8], rax
+movzx   eax, cs:byte_63BFC0
+xor     eax, 1
+test    al, al
+jz      short loc_411A81
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-8]
+mov     [rax+1Ah], dl
+mov     rax, [rbp-8]
+mov     byte ptr [rax+18h], 1
+mov     rax, [rbp-8]
+mov     byte ptr [rax+19h], 0
+mov     eax, 1
+leave
+retn

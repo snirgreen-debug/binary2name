@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+host], rdi
+mov     [rbp+port], esi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+HP_len], eax
+mov     eax, [rbp-24h]
+lea     ebx, [rax+1]
+mov     eax, [rbp-3Ch]
+cdqe
+mov     rdi, rax
+call    numdigit
+add     eax, ebx
+add     eax, 1
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+hp], rax
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     byte ptr [rax], 3Ah
+mov     eax, [rbp-3Ch]
+cdqe
+mov     edx, [rbp-24h]
+movsxd  rdx, edx
+lea     rcx, [rdx+1]
+mov     rdx, [rbp-20h]
+add     rdx, rcx
+mov     rsi, rax
+mov     rdi, rdx
+call    number_to_string
+mov     rax, cs:registered_specs
+test    rax, rax
+jnz     short loc_4240CC
+mov     eax, 0
+jmp     short loc_4240E2
+mov     rax, cs:registered_specs
+mov     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_4240F6
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+n], edi
+mov     [rbp+s], esi
+mov     [rbp+arg], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-40h]
+mov     edx, [rbp-48h]
+mov     esi, edx
+mov     rdi, rax
+call    quoting_options_from_style
+lea     rdx, [rbp-40h]
+mov     rsi, [rbp-50h]
+mov     eax, [rbp-44h]
+mov     rcx, rdx
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     edi, eax
+call    quotearg_n_options
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4094A4
+call    ___stack_chk_fail
+leave
+retn

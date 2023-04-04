@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     [rbp+var_40], rcx
+mov     rax, [rbp-28h]
+mov     [rbp+var_8], rax
+mov     [rbp+var_10], 1
+jmp     loc_4088FE
+mov     rax, [rbp-10h]
+sub     rax, 1
+imul    rax, [rbp-38h]
+mov     rdx, rax
+mov     rax, [rbp-8]
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-10h]
+imul    rax, [rbp-38h]
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rdx, rax
+mov     rax, [rbp-40h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 0
+jns     short loc_4088A0
+mov     eax, 0
+jmp     short locret_408911
+mov     rax, [rbp-10h]
+imul    rax, [rbp-38h]
+mov     rdx, rax
+mov     rax, [rbp-8]
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-10h]
+sub     rax, 1
+imul    rax, [rbp-38h]
+mov     rdx, rax
+mov     rax, [rbp-8]
+add     rdx, rax
+mov     rax, [rbp-40h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 0
+jle     short loc_4088F9
+mov     ecx, 42BED8h
+mov     edx, 3FCh
+mov     esi, 42B9B7h
+mov     edi, 42B9BEh
+call    ___assert_fail
+add     [rbp+var_10], 1
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-30h]
+jb      loc_408859
+mov     eax, 1
+leave
+retn

@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fd], edi
+mov     [rbp+con], rsi
+mov     rdx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rdx
+mov     edi, eax
+call    _fgetfilecon
+mov     [rbp+ret], eax
+mov     rdx, [rbp-20h]
+mov     eax, [rbp-4]
+mov     rsi, rdx
+mov     edi, eax
+call    map_to_failure
+leave
+retn

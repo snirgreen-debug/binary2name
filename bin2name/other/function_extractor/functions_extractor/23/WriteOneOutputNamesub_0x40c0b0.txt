@@ -1,0 +1,32 @@
+sub     rsp, 8
+test    END, END
+jz      short loc_40C110
+cmp     END, 1
+jz      short loc_40C0F0
+cmp     END, 0FFFFFFFFFFFFFFFFh
+jz      short loc_40C0D0
+mov     eax, 1
+add     rsp, 8
+retn
+mov     rcx, [pvm]
+mov     edx, 414022h
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+add     rsp, 8
+retn
+mov     pvm, pfile
+mov     edi, 0Ah
+call    _fputc
+mov     eax, 1
+add     rsp, 8
+retn
+mov     rcx, [pvm]
+mov     edx, 414020h
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+add     rsp, 8
+retn

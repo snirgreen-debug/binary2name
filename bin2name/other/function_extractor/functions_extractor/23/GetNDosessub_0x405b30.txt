@@ -1,0 +1,182 @@
+push    r15
+push    r14
+push    r13
+push    r12
+mov     r13, pifn
+push    rbp
+push    rbx
+mov     edx, 28h
+mov     rbp, pibIn
+mov     rbx, szLex
+sub     rsp, 8
+call    EGetPunct
+test    eax, eax
+jz      short loc_405B88
+mov     rcx, cs:stderr@@GLIBC_2_2_5
+mov     edx, 46h
+mov     esi, 1
+mov     edi, 4129C8h
+call    _fwrite
+xor     eax, eax
+add     rsp, 8
+pop     szLex
+pop     pibIn
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+mov     edx, 2
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ENextLex
+test    eax, eax
+jnz     short loc_405B55
+xor     esi, esi
+mov     edx, 0Ah
+mov     rdi, szLex
+call    _strtol
+test    eax, eax
+mov     [pifn+68h], eax
+jle     loc_405CD0
+cdqe
+lea     r12, [rax*8+0]
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+mov     [pifn+70h], rax
+jz      loc_405C70
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+mov     [pifn+78h], rax
+jz      loc_405C70
+mov     rdi, r12
+call    _malloc
+test    rax, rax
+mov     [pifn+80h], rax
+jz      short loc_405C70
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetOptPunct
+mov     r15d, [pifn+68h]
+mov     r12, [pifn+80h]
+test    r15d, r15d
+jle     loc_405CEA
+xor     r14d, r14d
+nop     word ptr [rax+rax+00000000h]
+mov     edx, 6
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ENextLex
+test    eax, eax
+jz      short loc_405C90
+mov     rsi, szLex
+mov     rdi, pibIn
+mov     edx, 2Ch
+call    GetOptPunct
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetOptPunct
+jmp     loc_405B55
+xor     ecx, ecx
+mov     edx, 412A38h
+mov     esi, 8004h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_405BFF
+xor     esi, esi
+mov     rdi, szLex
+add     r14d, 1
+call    _strtod
+cmp     r15d, r14d
+movsd   qword ptr [r12], xmm0
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+jle     loc_405DFF
+call    GetOptPunct
+add     r12, 8
+jmp     loc_405C30
+mov     rcx, szLex
+mov     edx, 412A27h
+mov     esi, 14h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_405B55
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetOptPunct
+mov     r15d, [pifn+68h]
+mov     r12, [pifn+70h]
+test    r15d, r15d
+jle     short loc_405D73
+xor     r14d, r14d
+nop     word ptr [rax+rax+00h]
+mov     edx, 6
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ENextLex
+test    eax, eax
+jz      short loc_405D40
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetOptPunct
+jmp     loc_405B55
+xor     esi, esi
+mov     rdi, szLex
+add     r14d, 1
+call    _strtod
+cmp     r15d, r14d
+movsd   qword ptr [r12], xmm0
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+jle     loc_405E09
+call    GetOptPunct
+add     r12, 8
+jmp     short loc_405D10
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetOptPunct
+mov     r12, [pifn+78h]
+mov     r13d, [pifn+68h]
+test    r13d, r13d
+jle     short loc_405DDD
+xor     r14d, r14d
+jmp     short loc_405DAC
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+add     r12, 8
+call    GetOptPunct
+mov     edx, 6
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ENextLex
+test    eax, eax
+jnz     loc_405B55
+xor     esi, esi
+mov     rdi, szLex
+add     r14d, 1
+call    _strtod
+cmp     r13d, r14d
+movsd   qword ptr [r12], xmm0
+jg      short loc_405D98
+mov     edx, 29h
+mov     rsi, szLex
+mov     rdi, pibIn
+call    EGetPunct
+test    eax, eax
+jnz     loc_405B55
+mov     eax, 1
+jmp     loc_405B72
+call    GetOptPunct
+jmp     loc_405CFA
+call    GetOptPunct
+jmp     loc_405D83

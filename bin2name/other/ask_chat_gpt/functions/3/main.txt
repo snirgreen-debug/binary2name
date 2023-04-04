@@ -1,0 +1,281 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 88h
+mov     [rbp+var_84], edi
+mov     [rbp+var_90], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-90h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_4020B1
+mov     edi, 401FC5h
+call    sub_405330
+test    eax, eax
+jz      short loc_40189A
+mov     edi, 405428h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     [rbp+var_1E], 0
+cmp     [rbp+var_84], 2
+jz      short loc_4018C0
+mov     rax, cs:stderr
+mov     rdi, rax
+call    sub_401758
+mov     eax, 2
+jmp     loc_401C5B
+mov     rax, [rbp-90h]
+add     rax, 8
+mov     rax, [rax]
+mov     esi, 40544Bh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_4018F8
+mov     rax, cs:stdout
+mov     rdi, rax
+call    sub_401758
+mov     eax, 0
+jmp     loc_401C5B
+mov     rax, [rbp-90h]
+add     rax, 8
+mov     rax, [rax]
+mov     esi, 405452h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40192B
+mov     edi, 40545Ch
+call    sub_401F16
+mov     eax, 0
+jmp     loc_401C5B
+mov     rax, [rbp-90h]
+add     rax, 8
+mov     rax, [rax]
+mov     esi, 405461h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+stream], rax
+cmp     [rbp+stream], 0
+jnz     short loc_401994
+mov     rax, [rbp-90h]
+mov     rdx, [rax]
+mov     rax, cs:stderr
+mov     esi, 405463h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-90h]
+add     rax, 8
+mov     rax, [rax]
+mov     rdi, rax
+call    _perror
+mov     eax, 1
+jmp     loc_401C5B
+mov     [rbp+var_48], 402h
+mov     rax, [rbp-48h]
+mov     [rbp+n], rax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    sub_4046CC
+mov     [rbp+lineptr], rax
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    sub_4046CC
+mov     [rbp+ptr], rax
+mov     rax, [rbp-50h]
+mov     byte ptr [rax], 0
+mov     [rbp+var_74], 0
+mov     rax, [rbp-38h]
+mov     rdx, rax
+mov     esi, 101h
+mov     edi, 6082C0h
+call    _fgets
+test    rax, rax
+jnz     short loc_401A03
+mov     rax, [rbp-90h]
+add     rax, 8
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_4017BF
+mov     rax, cs:stdout
+mov     rcx, rax
+mov     edx, 100h
+mov     esi, 1
+mov     edi, 6082C0h
+call    _fwrite
+cmp     rax, 100h
+jz      short loc_401A2E
+call    sub_4017F4
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _fclose
+cmp     eax, 0FFFFFFFFh
+jnz     loc_401C17
+mov     rax, [rbp-90h]
+add     rax, 8
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_4017BF
+mov     rax, [rbp-60h]
+mov     edx, [rbp-70h]
+movsxd  rdx, edx
+sub     rdx, 1
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-60h]
+mov     [rbp+var_40], rax
+jmp     short loc_401A99
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+cmp     al, 1Fh
+jle     short loc_401A8D
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+cmp     al, 7Fh
+jnz     short loc_401A94
+mov     rax, [rbp-40h]
+mov     byte ptr [rax], 3Fh
+add     [rbp+var_40], 1
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_401A77
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_401711
+mov     [rbp+var_6C], eax
+mov     eax, [rbp-6Ch]
+sub     eax, [rbp-74h]
+mov     [rbp+var_68], eax
+mov     eax, [rbp-6Ch]
+mov     [rbp+var_74], eax
+cmp     [rbp+var_68], 0FFFFFFF2h
+jl      short loc_401AD5
+cmp     [rbp+var_68], 0Eh
+jle     short loc_401B1B
+mov     rax, cs:stdout
+mov     rsi, rax
+mov     edi, 1Eh
+call    __IO_putc
+cmp     eax, 1
+jnz     short loc_401AF3
+call    sub_4017F4
+mov     eax, [rbp-68h]
+lea     ecx, [rax+0Eh]
+mov     rax, cs:stdout
+mov     edx, 1
+mov     esi, ecx
+mov     rdi, rax
+call    sub_401E9C
+xor     eax, 1
+test    al, al
+jz      short loc_401B3C
+call    sub_4017F4
+mov     rax, cs:stdout
+mov     edx, [rbp-68h]
+add     edx, 0Eh
+mov     rsi, rax
+mov     edi, edx
+call    __IO_putc
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_401B3C
+call    sub_4017F4
+mov     rdx, [rbp-60h]
+mov     eax, [rbp-6Ch]
+cdqe
+add     rax, rdx
+mov     [rbp+var_40], rax
+jmp     loc_401BD8
+mov     rax, [rbp-40h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_401B73
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    _putchar
+jmp     short loc_401BE7
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+mov     [rbp+s], al
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax+1]
+mov     [rbp+var_1F], al
+lea     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 6082C0h
+call    sub_401676
+mov     [rbp+var_64], eax
+mov     eax, [rbp-64h]
+and     eax, 1
+test    eax, eax
+jnz     short loc_401BBD
+mov     eax, [rbp-64h]
+mov     edx, eax
+shr     edx, 1Fh
+add     eax, edx
+sar     eax, 1
+or      al, 80h
+mov     edi, eax
+call    _putchar
+jmp     short loc_401BD3
+mov     rdx, cs:stdout
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+add     [rbp+var_40], 2
+mov     rax, [rbp-40h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_401B51
+mov     rax, [rbp-50h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-48h]
+mov     [rbp+var_28], rax
+mov     rax, [rbp-60h]
+mov     [rbp+ptr], rax
+mov     rax, [rbp-58h]
+mov     [rbp+var_48], rax
+mov     rax, [rbp-30h]
+mov     [rbp+lineptr], rax
+mov     rax, [rbp-28h]
+mov     [rbp+n], rax
+mov     rdx, cs:stdin
+lea     rcx, [rbp-58h]
+lea     rax, [rbp-60h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _getline
+mov     [rbp+var_70], eax
+cmp     [rbp+var_70], 0
+jg      loc_401A59
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_401C6F
+call    ___stack_chk_fail
+add     rsp, 88h
+pop     rbx
+pop     rbp
+retn

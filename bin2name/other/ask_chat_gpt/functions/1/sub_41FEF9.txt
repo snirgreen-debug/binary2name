@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:stream
+pop     rbp
+retn

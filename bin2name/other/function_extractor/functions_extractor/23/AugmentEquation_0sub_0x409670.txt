@@ -1,0 +1,103 @@
+push    r15
+push    r14
+mov     r15, szStoi
+push    r13
+push    r12
+mov     r13, szEqn
+push    rbp
+push    rbx
+mov     rbp, pvm
+sub     rsp, 428h
+mov     rax, fs:28h
+mov     [rsp+458h+var_40], rax
+xor     eax, eax
+test    ecx, ecx
+jz      loc_4097C0
+cmp     ecx, 1
+jz      loc_4097F0
+mov     r14, [rbp+8]
+lea     r12, [rsp+10h]
+mov     rbx, r12
+mov     pvm, r14
+call    _strlen
+mov     rsi, rax
+mov     ecx, [rbx]
+add     rbx, 4
+lea     eax, [rcx-1010101h]
+not     ecx
+and     eax, ecx
+and     eax, 80808080h
+jz      short loc_4096C5
+mov     ecx, eax
+mov     rdi, szStoi
+mov     [rsp+458h+var_450], rsi
+shr     ecx, 10h
+test    eax, 8080h
+cmovz   eax, ecx
+lea     rcx, [rbx+2]
+mov     edx, eax
+cmovz   rbx, rcx
+add     dl, al
+sbb     rbx, 3
+call    _strlen
+mov     rdi, szEqn
+mov     [rsp+458h+var_458], rax
+sub     rbx, r12
+call    _strlen
+mov     rsi, [rsp+8]
+lea     rdi, [rbx+rsi+5]
+add     rdi, [rsp]
+add     rdi, rax
+call    _malloc
+test    rax, rax
+mov     rbx, rax
+jz      loc_4097D0
+cmp     byte ptr [__s2], 31h
+jz      short loc_4097A0
+push    szEqn
+push    __s2
+mov     r9, r12
+mov     r8, r14
+mov     ecx, 41392Ah
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     esi, 1
+mov     rdi, rbx
+xor     eax, eax
+call    ___sprintf_chk
+pop     rax
+pop     rdx
+mov     rdi, [pvm+8]
+test    rdi, rdi
+jz      short loc_409772
+call    _free
+mov     rax, [rsp+418h]
+xor     rax, fs:28h
+mov     [pvm+8], szBuf_0
+jnz     short loc_4097FD
+add     rsp, 428h
+pop     szBuf_0
+pop     pvm
+pop     r12
+pop     szEqn
+pop     r14
+pop     szStoi
+retn
+cmp     byte ptr [__s2+1], 0
+jnz     short loc_40973D
+sub     rsp, 8
+mov     r9, r12
+mov     r8, r14
+push    szEqn
+mov     ecx, 413904h
+jmp     short loc_40974C
+mov     dword ptr [rsp+458h+szSymbol], 202B20h
+jmp     loc_4096AE
+mov     ecx, 413BB8h
+mov     rdx, szEqn
+mov     esi, 8004h
+xor     edi, edi
+call    ReportError
+jmp     loc_409764
+mov     dword ptr [rsp+458h+szSymbol], 202D20h
+jmp     loc_4096AE
+call    ___stack_chk_fail

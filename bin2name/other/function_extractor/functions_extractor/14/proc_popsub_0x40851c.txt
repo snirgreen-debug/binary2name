@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 8
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40854C
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    proc_unlink
+jmp     short locret_408551
+mov     eax, 0
+leave
+retn

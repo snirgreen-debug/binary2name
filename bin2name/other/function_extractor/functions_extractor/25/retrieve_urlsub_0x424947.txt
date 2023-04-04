@@ -1,0 +1,425 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 0B8h
+mov     [rbp+origurl], rdi
+mov     [rbp+file], rsi
+mov     [rbp+newloc], rdx
+mov     [rbp+refurl], rcx
+mov     [rbp+dt], r8
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+redirection_count], 0
+mov     [rbp+post_data_suspended], 0
+mov     [rbp+saved_post_data], 0
+mov     [rbp+saved_post_file_name], 0
+cmp     [rbp+dt], 0
+jnz     short loc_4249C5
+lea     rax, [rbp-84h]
+mov     [rbp+dt], rax
+mov     [rbp+dummy], 0
+mov     rax, [rbp-98h]
+mov     rdi, rax
+call    xstrdup_real
+mov     [rbp+url], rax
+cmp     [rbp+newloc], 0
+jz      short loc_4249F0
+mov     rax, [rbp-0A8h]
+mov     qword ptr [rax], 0
+cmp     [rbp+file], 0
+jz      short loc_424A08
+mov     rax, [rbp-0A0h]
+mov     qword ptr [rax], 0
+lea     rdx, [rbp-80h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    url_parse
+mov     [rbp+u], rax
+cmp     [rbp+u], 0
+jnz     short loc_424A67
+mov     eax, [rbp-80h]
+mov     edi, eax
+call    url_error
+mov     rdx, rax
+mov     rax, [rbp-58h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 436AC7h
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     eax, 1Bh
+jmp     loc_425041
+cmp     [rbp+refurl], 0
+jnz     short redirected
+mov     rax, cs:opt.referer
+mov     [rbp+refurl], rax
+mov     [rbp+result], 0
+mov     [rbp+mynewloc], 0
+mov     [rbp+local_file], 0
+mov     [rbp+proxy_url], 0
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    getproxy
+mov     [rbp+proxy], rax
+cmp     [rbp+proxy], 0
+jz      loc_424BCB
+lea     rdx, [rbp-80h]
+mov     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    url_parse
+mov     [rbp+proxy_url], rax
+cmp     [rbp+proxy_url], 0
+jnz     short loc_424B43
+mov     eax, [rbp-80h]
+mov     edi, eax
+call    url_error
+mov     rbx, rax
+mov     edi, 436AD0h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-30h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+post_data_suspended], 0
+jz      short loc_424B39
+mov     rax, [rbp-40h]
+mov     cs:opt.post_data, rax
+mov     rax, [rbp-38h]
+mov     cs:opt.post_file_name, rax
+mov     [rbp+post_data_suspended], 0
+mov     eax, 34h
+jmp     loc_425041
+mov     rax, [rbp-48h]
+mov     eax, [rax+8]
+test    eax, eax
+jz      short loc_424BCB
+mov     rax, [rbp-48h]
+mov     edx, [rax+8]
+mov     rax, [rbp-50h]
+mov     eax, [rax+8]
+cmp     edx, eax
+jz      short loc_424BCB
+mov     edi, 436AF8h
+call    _gettext
+mov     rcx, rax
+mov     rax, [rbp-30h]
+mov     rdx, rax
+mov     rsi, rcx
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+post_data_suspended], 0
+jz      short loc_424BC1
+mov     rax, [rbp-40h]
+mov     cs:opt.post_data, rax
+mov     rax, [rbp-38h]
+mov     cs:opt.post_file_name, rax
+mov     [rbp+post_data_suspended], 0
+mov     eax, 34h
+jmp     loc_425041
+mov     rax, [rbp-50h]
+mov     eax, [rax+8]
+test    eax, eax
+jz      short loc_424BE8
+cmp     [rbp+proxy_url], 0
+jz      short loc_424C1C
+mov     rax, [rbp-48h]
+mov     eax, [rax+8]
+test    eax, eax
+jnz     short loc_424C1C
+mov     r8, [rbp-48h]
+mov     rdi, [rbp-0B8h]
+mov     rcx, [rbp-0B0h]
+lea     rdx, [rbp-60h]
+lea     rsi, [rbp-68h]
+mov     rax, [rbp-50h]
+mov     r9, r8
+mov     r8, rdi
+mov     rdi, rax
+call    http_loop
+mov     [rbp+result], eax
+jmp     loc_424CAD
+mov     rax, [rbp-50h]
+mov     eax, [rax+8]
+cmp     eax, 1
+jnz     loc_424CAD
+mov     eax, cs:opt.recursive
+mov     [rbp+oldrec], eax
+cmp     [rbp+redirection_count], 0
+jz      short loc_424C45
+mov     cs:opt.recursive, 0
+mov     rdx, [rbp-48h]
+mov     rcx, [rbp-0B8h]
+mov     rax, [rbp-50h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ftp_loop
+mov     [rbp+result], eax
+mov     eax, [rbp-70h]
+mov     cs:opt.recursive, eax
+cmp     [rbp+redirection_count], 0
+jz      short loc_424CAD
+mov     rax, [rbp-60h]
+test    rax, rax
+jz      short loc_424CAD
+mov     rax, [rbp-50h]
+mov     eax, [rax+8]
+cmp     eax, 1
+jnz     short loc_424CAD
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    has_html_suffix_p
+test    eax, eax
+jz      short loc_424CAD
+mov     rax, [rbp-0B8h]
+mov     eax, [rax]
+or      eax, 1
+mov     edx, eax
+mov     rax, [rbp-0B8h]
+mov     [rax], edx
+cmp     [rbp+proxy_url], 0
+jz      short loc_424CC8
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    url_free
+mov     [rbp+proxy_url], 0
+cmp     [rbp+result], 6
+setz    al
+movzx   eax, al
+mov     [rbp+location_changed], eax
+cmp     [rbp+location_changed], 0
+jz      loc_424EEA
+mov     rax, [rbp-68h]
+test    rax, rax
+jnz     short loc_424D01
+mov     ecx, 436C38h
+mov     edx, 1CAh
+mov     esi, 436AAAh
+mov     edi, 436B1Eh
+call    ___assert_fail
+mov     rax, [rbp-60h]
+test    rax, rax
+jz      short loc_424D16
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _free
+mov     rdx, [rbp-68h]
+mov     rax, [rbp-58h]
+mov     rsi, rdx
+mov     rdi, rax
+call    uri_merge
+mov     [rbp+construced_newloc], rax
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     [rbp+mynewloc], rax
+mov     rax, [rbp-68h]
+lea     rdx, [rbp-80h]
+mov     rsi, rdx
+mov     rdi, rax
+call    url_parse
+mov     [rbp+newloc_parsed], rax
+cmp     [rbp+newloc_parsed], 0
+jnz     short loc_424DD9
+mov     eax, [rbp-80h]
+mov     edi, eax
+call    url_error
+mov     rdx, rax
+mov     rax, [rbp-68h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 436AC7h
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+post_data_suspended], 0
+jz      short loc_424DD1
+mov     rax, [rbp-40h]
+mov     cs:opt.post_data, rax
+mov     rax, [rbp-38h]
+mov     cs:opt.post_file_name, rax
+mov     [rbp+post_data_suspended], 0
+mov     eax, [rbp-7Ch]
+jmp     loc_425041
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rdi, rax
+call    xstrdup_real
+mov     [rbp+mynewloc], rax
+add     [rbp+redirection_count], 1
+cmp     [rbp+redirection_count], 14h
+jle     short loc_424E80
+mov     edi, 436B2Fh
+call    _gettext
+mov     edx, 14h
+mov     rsi, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+post_data_suspended], 0
+jz      short loc_424E76
+mov     rax, [rbp-40h]
+mov     cs:opt.post_data, rax
+mov     rax, [rbp-38h]
+mov     cs:opt.post_file_name, rax
+mov     [rbp+post_data_suspended], 0
+mov     eax, 25h
+jmp     loc_425041
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-68h]
+mov     [rbp+url], rax
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    url_free
+mov     rax, [rbp-20h]
+mov     [rbp+u], rax
+cmp     [rbp+post_data_suspended], 0
+jnz     redirected
+mov     [rbp+post_data_suspended], 1
+mov     rax, cs:opt.post_data
+mov     [rbp+saved_post_data], rax
+mov     rax, cs:opt.post_file_name
+mov     [rbp+saved_post_file_name], rax
+mov     cs:opt.post_data, 0
+mov     cs:opt.post_file_name, 0
+jmp     redirected
+mov     rax, [rbp-60h]
+test    rax, rax
+jz      loc_424F7F
+mov     rax, [rbp-0B8h]
+mov     eax, [rax]
+and     eax, 2
+test    eax, eax
+jz      short loc_424F7F
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-50h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    register_download
+cmp     [rbp+redirection_count], 0
+jz      short loc_424F59
+mov     rax, [rbp-50h]
+mov     rdx, [rax]
+mov     rax, [rbp-98h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_424F59
+mov     rax, [rbp-50h]
+mov     rdx, [rax]
+mov     rax, [rbp-98h]
+mov     rsi, rdx
+mov     rdi, rax
+call    register_redirection
+mov     rax, [rbp-0B8h]
+mov     eax, [rax]
+and     eax, 1
+test    eax, eax
+jz      short loc_424F7F
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-50h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    register_html
+cmp     [rbp+file], 0
+jz      short loc_424F99
+mov     rdx, [rbp-60h]
+mov     rax, [rbp-0A0h]
+mov     [rax], rdx
+jmp     short loc_424FAE
+mov     rax, [rbp-60h]
+test    rax, rax
+jz      short loc_424FAE
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    url_free
+cmp     [rbp+redirection_count], 0
+jz      short loc_424FE8
+cmp     [rbp+newloc], 0
+jz      short loc_424FDA
+mov     rax, [rbp-0A8h]
+mov     rdx, [rbp-58h]
+mov     [rax], rdx
+jmp     short loc_42500C
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+jmp     short loc_42500C
+cmp     [rbp+newloc], 0
+jz      short loc_425000
+mov     rax, [rbp-0A8h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     eax, cs:global_download_count
+add     eax, 1
+mov     cs:global_download_count, eax
+cmp     [rbp+post_data_suspended], 0
+jz      short loc_42503E
+mov     rax, [rbp-40h]
+mov     cs:opt.post_data, rax
+mov     rax, [rbp-38h]
+mov     cs:opt.post_file_name, rax
+mov     [rbp+post_data_suspended], 0
+mov     eax, [rbp-7Ch]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_425055
+call    ___stack_chk_fail
+add     rsp, 0B8h
+pop     rbx
+pop     rbp
+retn

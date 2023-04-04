@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+var_68], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:texttab
+test    rax, rax
+jnz     short loc_4077DA
+mov     eax, 0
+jmp     short loc_407820
+mov     rax, [rbp-68h]
+mov     [rbp+var_30], rax
+lea     rax, [rbp-40h]
+mov     [rbp+var_48], rax
+mov     rax, cs:texttab
+lea     rcx, [rbp-50h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    hashtab_lookup_or_install
+mov     [rbp+var_58], rax
+cmp     [rbp+var_58], 0
+jz      short loc_40781A
+mov     rax, [rbp-58h]
+mov     rax, [rax+8]
+jmp     short loc_407820
+mov     eax, 0
+nop
+mov     rdx, [rbp-8]
+xor     rdx, fs:28h
+jz      short locret_407834
+call    ___stack_chk_fail
+leave
+retn

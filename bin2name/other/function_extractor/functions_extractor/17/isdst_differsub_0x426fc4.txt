@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+a], edi
+mov     [rbp+b], esi
+cmp     [rbp+a], 0
+setz    dl
+cmp     [rbp+b], 0
+setz    al
+xor     eax, edx
+test    al, al
+jz      short loc_426FF5
+cmp     [rbp+a], 0
+js      short loc_426FF5
+cmp     [rbp+b], 0
+js      short loc_426FF5
+mov     eax, 1
+jmp     short loc_426FFA
+mov     eax, 0
+pop     rbp
+retn

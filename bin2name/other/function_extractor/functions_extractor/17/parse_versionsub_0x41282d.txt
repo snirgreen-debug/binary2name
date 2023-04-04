@@ -1,0 +1,87 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+has_features], 0
+mov     edi, 42F1DAh
+call    display_findutils_version
+mov     edi, 42F1DFh
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    _printf
+mov     edi, 42F1F2h
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+movzx   eax, cs:options_0.open_nofollow_available
+test    al, al
+jz      short loc_41289A
+mov     eax, 42F1FAh
+jmp     short loc_41289F
+mov     eax, 42F202h
+mov     rsi, rax
+mov     edi, 42F20Bh
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+mov     edi, 42F21Bh
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+call    _is_selinux_enabled
+test    eax, eax
+jle     short loc_4128E4
+mov     edi, 42F22Eh
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+mov     [rbp+flags], 0
+lea     rax, [rbp-10h]
+mov     rdi, rax
+call    is_fts_enabled
+test    al, al
+jz      short loc_412953
+mov     [rbp+nflags], 0
+mov     edi, 42F237h
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+mov     eax, [rbp-10h]
+and     eax, 200h
+test    eax, eax
+jz      short loc_412944
+cmp     [rbp+nflags], 0
+jz      short loc_412931
+mov     edi, 2Ch
+call    _putchar
+mov     edi, 42F23Ch
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+mov     edi, 42F246h
+mov     eax, 0
+call    _printf
+movzx   eax, cs:options_0.optimisation_level
+movzx   eax, ax
+mov     esi, eax
+mov     edi, 42F249h
+mov     eax, 0
+call    _printf
+mov     [rbp+has_features], 1
+movzx   eax, byte ptr [rbp-11h]
+xor     eax, 1
+test    al, al
+jz      short loc_41298C
+mov     edi, 42F258h
+mov     eax, 0
+call    _printf
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 0
+call    _exit

@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_20], 40BBFFh
+mov     rax, [rbp-30h]
+mov     [rbp+var_18], rax
+lea     rdx, [rbp-20h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_format_locus
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40BC80
+call    ___stack_chk_fail
+leave
+retn

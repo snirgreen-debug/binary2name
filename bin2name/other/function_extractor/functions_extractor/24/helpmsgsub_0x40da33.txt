@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+lea     rax, progname
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aTrySHelpForMor
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 1
+call    _exit

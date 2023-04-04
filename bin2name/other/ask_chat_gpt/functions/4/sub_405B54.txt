@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+movzx   eax, cs:byte_63BFC0
+test    al, al
+jz      short loc_405BB8
+movzx   eax, cs:byte_63BF84
+test    al, al
+jnz     short loc_405B97
+mov     ecx, 42B350h
+mov     edx, 399h
+mov     esi, 42AFC0h
+mov     edi, 42B0F7h
+call    ___assert_fail
+cmp     [rbp+var_10], 0
+jz      short loc_405BB8
+mov     rax, [rbp-10h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     short loc_405BB8
+mov     cs:byte_63BFA0, 1
+mov     eax, 1
+leave
+retn

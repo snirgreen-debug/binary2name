@@ -1,0 +1,23 @@
+test    pvm, pvm
+jz      short locret_406D59
+push    r12
+mov     r12, hType
+push    rbp
+mov     rbp, szName
+push    rbx
+mov     rbx, pvm
+jmp     short loc_406D41
+mov     pvm, [pvm+18h]
+test    pvm, pvm
+jz      short loc_406D54
+mov     rsi, [pvm]
+mov     rdi, szName
+call    _strcmp
+test    eax, eax
+jnz     short loc_406D38
+mov     [pvm+10h], hType
+pop     pvm
+pop     szName
+pop     hType
+retn
+rep retn

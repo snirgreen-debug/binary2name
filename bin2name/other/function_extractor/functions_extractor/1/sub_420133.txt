@@ -1,0 +1,70 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+file], rdi
+mov     [rbp+var_2C], esi
+mov     eax, [rbp-2Ch]
+mov     cs:dword_62D510, eax
+call    sub_420E4D
+mov     rax, cs:qword_62D648
+test    rax, rax
+jz      loc_42021F
+mov     rax, [rbp-28h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    _open
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0FFFFFFFFh
+jnz     short loc_4201B8
+mov     edi, 4266E4h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-28h]
+mov     rcx, rdx
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    sub_40AA55
+mov     eax, 1
+jmp     short loc_420232
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    _close
+mov     rax, [rbp-28h]
+mov     esi, 62D8C0h
+mov     rdi, rax
+call    sub_40FE92
+mov     cs:stream, rax
+mov     rax, cs:stream
+test    rax, rax
+jnz     short loc_42022D
+mov     rbx, cs:qword_62D648
+mov     edi, 4266F8h
+call    _gettext
+mov     r12, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     rdx, r12
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    sub_40AA55
+mov     eax, 1
+jmp     short loc_420232
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_40FB9D
+jmp     short loc_420232
+mov     eax, 0
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+sub     rdx, rax
+mov     rax, rdx
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, cs:qword_437758
+mulsd   xmm1, xmm0
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+sub     rdx, rax
+mov     rax, rdx
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm2, cs:qword_437758
+divsd   xmm0, xmm2
+addsd   xmm0, xmm1
+pop     rbp
+retn

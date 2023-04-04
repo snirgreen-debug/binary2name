@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+n], 0
+jmp     short loc_408CE0
+mov     eax, [rbp-4]
+cdqe
+mov     word ptr ds:dyn_ltree.fc[rax*4], 0
+add     [rbp+n], 1
+cmp     [rbp+n], 11Dh
+jle     short loc_408CCD
+mov     [rbp+n], 0
+jmp     short loc_408D05
+mov     eax, [rbp-4]
+cdqe
+mov     word ptr ds:dyn_dtree.fc[rax*4], 0
+add     [rbp+n], 1
+cmp     [rbp+n], 1Dh
+jle     short loc_408CF2
+mov     [rbp+n], 0
+jmp     short loc_408D27
+mov     eax, [rbp-4]
+cdqe
+mov     word ptr ds:bl_tree.fc[rax*4], 0
+add     [rbp+n], 1
+cmp     [rbp+n], 12h
+jle     short loc_408D14
+mov     word ptr cs:dyn_ltree.fc+400h, 1
+mov     cs:static_len, 0
+mov     rax, cs:static_len
+mov     cs:opt_len, rax
+mov     cs:last_flags, 0
+mov     eax, cs:last_flags
+mov     cs:last_dist, eax
+mov     eax, cs:last_dist
+mov     cs:last_lit, eax
+mov     cs:flags, 0
+mov     cs:flag_bit, 1
+nop
+pop     rbp
+retn

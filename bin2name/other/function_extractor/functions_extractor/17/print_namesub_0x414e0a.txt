@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     p, rdi
+mov     [rbp+stream], rsi
+mov     [rbp+literal_control_chars], edx
+cmp     [rbp+literal_control_chars], 0
+jz      short loc_414E33
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, p
+call    print_name_without_quoting
+jmp     short locret_414E42
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, p
+call    print_name_with_quoting
+leave
+retn

@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_28], rdi
+mov     eax, esi
+mov     [rbp+var_30], edx
+mov     [rbp+var_2C], al
+movzx   eax, byte ptr [rbp-2Ch]
+mov     [rbp+var_11], al
+cmp     [rbp+var_28], 0
+jz      short loc_4206E0
+mov     rax, [rbp-28h]
+jmp     short loc_4206E5
+mov     eax, 63B600h
+lea     rdx, [rax+8]
+movzx   eax, byte ptr [rbp-11h]
+shr     al, 5
+movzx   eax, al
+shl     rax, 2
+add     rax, rdx
+mov     [rbp+var_8], rax
+movzx   eax, byte ptr [rbp-11h]
+and     eax, 1Fh
+mov     [rbp+var_10], eax
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     eax, [rbp-10h]
+mov     ecx, eax
+shr     edx, cl
+mov     eax, edx
+and     eax, 1
+mov     [rbp+var_C], eax
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     eax, [rbp-30h]
+and     eax, 1
+xor     eax, [rbp-0Ch]
+mov     esi, eax
+mov     eax, [rbp-10h]
+mov     ecx, eax
+shl     esi, cl
+mov     eax, esi
+xor     edx, eax
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     eax, [rbp-0Ch]
+pop     rbp
+retn

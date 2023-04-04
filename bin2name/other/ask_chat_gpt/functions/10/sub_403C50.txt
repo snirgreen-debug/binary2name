@@ -1,0 +1,32 @@
+test    rdi, rdi
+jz      short locret_403C8E
+push    rbx
+mov     rax, [rdi+18h]
+mov     rbx, rdi
+cmp     byte ptr [rax], 0
+jz      short loc_403CB8
+add     rax, 1
+jmp     short loc_403C7A
+add     rax, 1
+cmp     byte ptr [rax-1], 0
+jz      short loc_403C90
+mov     [rbx+18h], rax
+cmp     byte ptr [rax-1], 0Ah
+jnz     short loc_403C70
+add     dword ptr [rbx+20h], 1
+cmp     byte ptr [rax], 0
+jz      short loc_403CA8
+pop     rbx
+rep retn
+mov     rdi, rbx
+call    sub_402830
+cmp     eax, 0FFFFFFFFh
+mov     rax, [rbx+18h]
+jnz     short loc_403C62
+jmp     short loc_403C84
+mov     rdi, rbx
+pop     rbx
+jmp     sub_402830
+call    sub_402830
+mov     rax, [rbx+18h]
+jmp     short loc_403C62

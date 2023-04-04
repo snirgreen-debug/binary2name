@@ -1,0 +1,25 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+errnum], edi
+mov     eax, [rbp-4]
+cmp     eax, 7
+jz      short loc_406DDB
+cmp     eax, 0Ch
+jz      short loc_406DE7
+cmp     eax, 2
+jnz     short loc_406DF3
+mov     edi, 423633h
+call    _gettext
+jmp     short locret_406DFD
+mov     edi, 42364Eh
+call    _gettext
+jmp     short locret_406DFD
+mov     edi, 423663h
+call    _gettext
+jmp     short locret_406DFD
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _strerror
+leave
+retn

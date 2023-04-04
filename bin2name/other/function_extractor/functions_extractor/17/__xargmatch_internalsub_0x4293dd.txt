@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+context], rdi
+mov     [rbp+arg], rsi
+mov     [rbp+arglist], rdx
+mov     [rbp+vallist], rcx
+mov     [rbp+valsize], r8
+mov     [rbp+exit_fn], r9
+mov     rcx, [rbp-38h]
+mov     rdx, [rbp-30h]
+mov     rsi, [rbp-28h]
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    argmatch
+mov     [rbp+res], rax
+cmp     [rbp+res], 0
+js      short loc_429426
+mov     rax, [rbp-8]
+jmp     short locret_429461
+mov     rdx, [rbp-8]
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    argmatch_invalid
+mov     rdx, [rbp-38h]
+mov     rcx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    argmatch_valid
+mov     rax, [rbp-40h]
+call    rax
+mov     rax, 0FFFFFFFFFFFFFFFFh
+leave
+retn

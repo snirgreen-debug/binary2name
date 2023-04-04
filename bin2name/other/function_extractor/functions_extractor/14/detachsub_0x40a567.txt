@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 160h
+mov     [rbp+var_158], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rdx, [rbp-158h]
+mov     eax, 0
+call    rdx
+lea     rax, [rbp-0A0h]
+add     rax, 8
+mov     rdi, rax
+call    _sigemptyset
+mov     [rbp+var_A0], 1
+mov     [rbp+var_18], 0
+lea     rdx, [rbp-140h]
+lea     rax, [rbp-0A0h]
+mov     rsi, rax
+mov     edi, 1
+call    _sigaction
+test    eax, eax
+jz      short loc_40A5E4
+mov     eax, 0FFFFFFFFh
+jmp     loc_40A6B9
+call    _fork
+cmp     eax, 0FFFFFFFFh
+jz      short loc_40A5F4
+test    eax, eax
+jz      short loc_40A608
+jmp     short loc_40A5FE
+mov     eax, 0FFFFFFFFh
+jmp     loc_40A6B9
+mov     edi, 0
+call    __exit
+nop
+call    _setsid
+mov     [rbp+var_148], eax
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_144], eax
+lea     rax, [rbp-140h]
+mov     edx, 0
+mov     rsi, rax
+mov     edi, 1
+call    _sigaction
+cmp     [rbp+var_148], 0FFFFFFFFh
+jnz     short loc_40A65A
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-144h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     short loc_40A6B9
+mov     edi, 423C0Fh
+call    _chdir
+mov     edi, 0
+call    _close
+mov     edi, 1
+call    _close
+mov     edi, 2
+call    _close
+mov     esi, 0
+mov     edi, 423C11h
+mov     eax, 0
+call    _open
+mov     esi, 1
+mov     edi, 423C11h
+mov     eax, 0
+call    _open
+mov     edi, 1
+call    _dup
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40A6CD
+call    ___stack_chk_fail
+leave
+retn

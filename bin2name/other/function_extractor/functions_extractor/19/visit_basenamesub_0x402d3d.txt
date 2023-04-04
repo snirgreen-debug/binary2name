@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    last_component
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+20h], rdx
+mov     eax, 1
+leave
+retn

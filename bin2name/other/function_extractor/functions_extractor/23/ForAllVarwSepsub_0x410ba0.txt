@@ -1,0 +1,96 @@
+push    r15
+push    r14
+mov     r14, pfile
+push    r13
+push    r12
+mov     r13, pfiFunc
+push    rbp
+push    rbx
+sub     rsp, 18h
+test    pvm, pvm
+jz      loc_410CE8
+test    hType, hType
+mov     rbx, pvm
+jnz     loc_410C50
+xor     r12d, r12d
+xor     ebp, ebp
+test    pfiFunc, pfiFunc
+mov     r15, 0FFFFFFFFFFFFFFFFh
+jz      short loc_410C30
+nop     word ptr [rax+rax+00h]
+cmp     qword ptr [pvm+8], 6192A0h
+jz      short loc_410C08
+test    r12d, r12d
+mov     edx, 0
+mov     rsi, pvm
+cmovz   rdx, End
+mov     rdi, pfile
+add     r12d, 1
+mov     End, rdx
+call    pfiFunc
+add     ebp, eax
+mov     pvm, [pvm+18h]
+test    pvm, pvm
+jnz     short loc_410BE0
+mov     rdi, pfile
+mov     edx, 1
+xor     esi, esi
+call    pfiFunc
+add     rsp, 18h
+mov     eax, ebp
+pop     rbx
+pop     rbp
+pop     r12
+pop     pfiFunc
+pop     pfile
+pop     r15
+retn
+xor     eax, eax
+cmp     qword ptr [pvm+8], 6192A0h
+mov     pvm, [pvm+18h]
+setnz   al
+add     ebp, eax
+test    pvm, pvm
+jnz     short loc_410C30
+jmp     short loc_410C11
+xor     r15d, r15d
+xor     ebp, ebp
+test    pfiFunc, pfiFunc
+mov     r12, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_410C71
+jmp     short loc_410CB8
+mov     pvm, [pvm+18h]
+test    pvm, pvm
+jz      short loc_410C11
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     rax, rcx
+jnz     short loc_410C68
+cmp     qword ptr [pvm+8], 6192A0h
+jz      short loc_410C68
+test    r15d, r15d
+mov     edx, 0
+mov     [rsp+48h+var_40], rcx
+cmovz   rdx, End
+mov     rsi, pvm
+mov     rdi, pfile
+mov     End, rdx
+add     r15d, 1
+call    pfiFunc
+mov     rcx, [rsp+8]
+add     ebp, eax
+jmp     short loc_410C68
+mov     rax, [pvm+10h]
+and     eax, 0F0000h
+cmp     hType, rax
+jnz     short loc_410CD5
+xor     eax, eax
+cmp     qword ptr [pvm+8], 6192A0h
+setnz   al
+add     ebp, eax
+mov     pvm, [pvm+18h]
+test    pvm, pvm
+jnz     short loc_410CB8
+jmp     loc_410C11
+xor     ebp, ebp
+jmp     loc_410C11

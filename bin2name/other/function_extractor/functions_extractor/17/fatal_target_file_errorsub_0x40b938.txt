@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+errno_value], edi
+mov     [rbp+name], rsi
+mov     rdx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     rcx, rdx
+mov     edx, 1
+mov     esi, eax
+mov     edi, 1
+call    report_file_err
+call    _abort

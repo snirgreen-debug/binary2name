@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 58h
+mov     [rbp+tree], rdi
+mov     [rbp+max_code], esi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+code], 0
+mov     [rbp+bits], 1
+jmp     short loc_40934E
+mov     eax, [rbp-4Ch]
+sub     eax, 1
+cdqe
+movzx   edx, word ptr [rax+rax+615DC0h]
+movzx   eax, word ptr [rbp-4Eh]
+add     eax, edx
+add     eax, eax
+mov     [rbp+code], ax
+mov     eax, [rbp-4Ch]
+cdqe
+movzx   edx, word ptr [rbp-4Eh]
+mov     [rbp+rax*2+next_code], dx
+add     [rbp+bits], 1
+cmp     [rbp+bits], 0Fh
+jle     short loc_409320
+mov     [rbp+n], 0
+jmp     short loc_4093C7
+mov     eax, [rbp-48h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-58h]
+add     rax, rdx
+movzx   eax, word ptr [rax+2]
+movzx   eax, ax
+mov     [rbp+len], eax
+cmp     [rbp+len], 0
+jz      short loc_4093C2
+mov     eax, [rbp-48h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-58h]
+lea     rbx, [rdx+rax]
+mov     eax, [rbp-44h]
+cdqe
+movzx   eax, word ptr [rbp+rax*2-40h]
+lea     ecx, [rax+1]
+mov     edx, [rbp-44h]
+movsxd  rdx, edx
+mov     [rbp+rdx*2+next_code], cx
+movzx   eax, ax
+mov     edx, [rbp-44h]
+mov     esi, edx
+mov     edi, eax
+call    bi_reverse
+mov     [rbx], ax
+jmp     short loc_4093C3
+nop
+add     [rbp+n], 1
+mov     eax, [rbp-48h]
+cmp     eax, [rbp-5Ch]
+jle     short loc_40935D
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_4093E4
+call    ___stack_chk_fail
+add     rsp, 58h
+pop     rbx
+pop     rbp
+retn

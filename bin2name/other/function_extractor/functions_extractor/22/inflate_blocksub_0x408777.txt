@@ -1,0 +1,88 @@
+push    rbp
+mov     rbp, rsp
+push    b
+push    k
+sub     rsp, 20h
+mov     [rbp+e], rdi
+mov     b, cs:bb
+mov     ebx, cs:bk
+mov     eax, cs:outcnt
+mov     [rbp+w], eax
+jmp     short loc_4087EC
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_4087CB
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_4087E1
+mov     eax, [rbp-18h]
+mov     cs:outcnt, eax
+mov     edi, 0
+call    fill_inbuf
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      b, rax
+add     ebx, 8
+test    ebx, ebx
+jz      short loc_40879E
+mov     eax, r12d
+and     eax, 1
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax], edx
+shr     b, 1
+sub     ebx, 1
+jmp     short loc_408854
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_408833
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_408849
+mov     eax, [rbp-18h]
+mov     cs:outcnt, eax
+mov     edi, 0
+call    fill_inbuf
+movzx   eax, al
+mov     ecx, ebx
+shl     rax, cl
+or      b, rax
+add     ebx, 8
+cmp     ebx, 1
+jbe     short loc_408806
+mov     eax, r12d
+and     eax, 3
+mov     [rbp+t], eax
+shr     b, 2
+sub     ebx, 2
+mov     cs:bb, b
+mov     cs:bk, ebx
+cmp     [rbp+t], 2
+jnz     short loc_408883
+call    inflate_dynamic
+jmp     short loc_4088A2
+cmp     [rbp+t], 0
+jnz     short loc_408890
+call    inflate_stored
+jmp     short loc_4088A2
+cmp     [rbp+t], 1
+jnz     short loc_40889D
+call    inflate_fixed
+jmp     short loc_4088A2
+mov     eax, 2
+add     rsp, 20h
+pop     k
+pop     b
+pop     rbp
+retn

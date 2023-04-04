@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_63B598
+mov     rdi, rax
+call    _free
+mov     cs:qword_63B598, 0
+mov     cs:qword_63B5A0, 0
+nop
+pop     rbp
+retn

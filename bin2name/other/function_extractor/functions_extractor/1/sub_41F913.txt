@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 8
+mov     [rbp+var_8], rdi
+cmp     [rbp+var_8], 0
+jz      loc_41F9AD
+mov     rax, [rbp-8]
+mov     dword ptr [rax+20h], 0
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+add     rax, 1
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     dword ptr [rax+2Ch], 1
+mov     rax, [rbp-8]
+mov     dword ptr [rax+3Ch], 0
+mov     rax, cs:qword_62D748
+test    rax, rax
+jz      short loc_41F99B
+mov     rax, cs:qword_62D748
+mov     rdx, cs:qword_62D738
+shl     rdx, 3
+add     rax, rdx
+mov     rax, [rax]
+jmp     short loc_41F9A0
+mov     eax, 0
+cmp     rax, [rbp-8]
+jnz     short locret_41F9AE
+call    sub_41F6A2
+jmp     short locret_41F9AE
+nop
+leave
+retn

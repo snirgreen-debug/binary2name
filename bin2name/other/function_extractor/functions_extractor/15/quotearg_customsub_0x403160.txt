@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+left_quote], rdi
+mov     [rbp+right_quote], rsi
+mov     [rbp+arg], rdx
+mov     rcx, [rbp-18h]
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 0
+call    quotearg_n_custom
+leave
+retn

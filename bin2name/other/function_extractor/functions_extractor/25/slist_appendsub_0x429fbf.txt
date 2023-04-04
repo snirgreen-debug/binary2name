@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+l], rdi
+mov     [rbp+s], rsi
+mov     edi, 10h
+call    xmalloc_real
+mov     [rbp+newel], rax
+mov     rax, [rbp-18h]
+mov     [rbp+beg], rax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     rax, [rbp-10h]
+mov     qword ptr [rax+8], 0
+cmp     [rbp+l], 0
+jnz     short loc_42A020
+mov     rax, [rbp-10h]
+jmp     short locret_42A03D
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     [rbp+l], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+test    rax, rax
+jnz     short loc_42A014
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+leave
+retn

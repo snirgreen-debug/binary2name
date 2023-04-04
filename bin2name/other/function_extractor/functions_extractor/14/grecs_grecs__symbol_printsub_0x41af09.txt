@@ -1,0 +1,150 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+stream], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_20], rcx
+cmp     [rbp+var_C], 0Ch
+jg      short loc_41AF4B
+mov     eax, [rbp-0Ch]
+cdqe
+mov     rdx, [rax*8+424B00h]
+mov     rax, [rbp-8]
+mov     esi, 424DE7h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_41AF6E
+mov     eax, [rbp-0Ch]
+cdqe
+mov     rdx, [rax*8+424B00h]
+mov     rax, [rbp-8]
+mov     esi, 424DF2h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-20h]
+mov     eax, [rax+0Ch]
+test    eax, eax
+jnz     short loc_41AFA2
+mov     rax, [rbp-20h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     esi, 424DFDh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     loc_41B0E4
+mov     rax, [rbp-20h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-20h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_41B00D
+mov     rax, [rbp-20h]
+mov     edi, [rax+1Ch]
+mov     rax, [rbp-20h]
+mov     esi, [rax+18h]
+mov     rax, [rbp-20h]
+mov     r9, [rax+10h]
+mov     rax, [rbp-20h]
+mov     r8d, [rax+0Ch]
+mov     rax, [rbp-20h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+push    rdi
+push    rsi
+mov     esi, 424E03h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+jmp     loc_41B0E4
+mov     rax, [rbp-20h]
+mov     edx, [rax+8]
+mov     rax, [rbp-20h]
+mov     eax, [rax+18h]
+cmp     edx, eax
+jz      short loc_41B06A
+mov     rax, [rbp-20h]
+mov     esi, [rax+1Ch]
+mov     rax, [rbp-20h]
+mov     r8d, [rax+18h]
+mov     rax, [rbp-20h]
+mov     edi, [rax+0Ch]
+mov     rax, [rbp-20h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+sub     rsp, 8
+push    rsi
+mov     r9d, r8d
+mov     r8d, edi
+mov     esi, 424E15h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+jmp     short loc_41B0E4
+mov     rax, [rbp-20h]
+mov     edx, [rax+0Ch]
+mov     rax, [rbp-20h]
+mov     eax, [rax+1Ch]
+cmp     edx, eax
+jz      short loc_41B0B6
+mov     rax, [rbp-20h]
+mov     edi, [rax+1Ch]
+mov     rax, [rbp-20h]
+mov     esi, [rax+0Ch]
+mov     rax, [rbp-20h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     r9d, edi
+mov     r8d, esi
+mov     esi, 424E24h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short loc_41B0E4
+mov     rax, [rbp-20h]
+mov     esi, [rax+0Ch]
+mov     rax, [rbp-20h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-20h]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     r8d, esi
+mov     esi, 424E30h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-8]
+mov     rcx, rax
+mov     edx, 2
+mov     esi, 1
+mov     edi, 424E39h
+call    _fwrite
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     esi, [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_grecs__symbol_value_print
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 29h
+call    _fputc
+nop
+leave
+retn

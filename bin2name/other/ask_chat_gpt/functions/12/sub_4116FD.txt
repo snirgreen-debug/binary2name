@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:domain
+cmp     eax, 2
+jnz     short loc_411713
+mov     eax, 10h
+jmp     short loc_411718
+call    _abort
+pop     rbp
+retn

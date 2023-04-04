@@ -1,0 +1,195 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_24], edi
+mov     [rbp+var_30], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     esi, 422E63h
+mov     edi, 6
+call    _setlocale
+mov     esi, 422E68h
+mov     edi, 422CBCh
+call    _bindtextdomain
+mov     edi, 422CBCh
+call    _textdomain
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdi, rax
+call    set_program_name
+mov     rax, cs:program_name
+mov     rdi, rax
+call    estrdup
+mov     cs:tag, rax
+mov     eax, 0
+call    genev_init
+call    config_init
+lea     rdx, [rbp-1Ch]
+mov     rcx, [rbp-30h]
+mov     eax, [rbp-24h]
+mov     rsi, rcx
+mov     edi, eax
+call    parse_options
+mov     eax, [rbp-1Ch]
+sub     [rbp+var_24], eax
+mov     eax, [rbp-1Ch]
+cdqe
+shl     rax, 3
+add     [rbp+var_30], rax
+mov     eax, [rbp-24h]
+test    eax, eax
+jz      short loc_403AEB
+cmp     eax, 1
+jz      short loc_403ADB
+mov     edi, 422EB7h
+call    _gettext
+mov     rsi, rax
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     cs:conffile, rax
+jmp     short loc_403AEC
+nop
+mov     rax, cs:conffile
+mov     rdi, rax
+call    config_parse
+mov     eax, cs:lint_only
+test    eax, eax
+jz      short loc_403B0F
+mov     eax, 0
+jmp     loc_403D2C
+mov     eax, cs:opt_debug_level
+test    eax, eax
+jz      short loc_403B2D
+mov     edx, cs:debug_level
+mov     eax, cs:opt_debug_level
+add     eax, edx
+mov     cs:debug_level, eax
+mov     eax, cs:opt_foreground
+test    eax, eax
+jz      short loc_403B43
+mov     eax, cs:opt_foreground
+mov     cs:foreground, eax
+mov     rax, cs:opt_pidfile
+test    rax, rax
+jz      short loc_403B5D
+mov     rax, cs:opt_pidfile
+mov     cs:pidfile, rax
+mov     eax, cs:opt_facility
+cmp     eax, 0FFFFFFFFh
+jz      short loc_403B74
+mov     eax, cs:opt_facility
+mov     cs:facility, eax
+mov     eax, cs:foreground
+test    eax, eax
+jnz     short loc_403B92
+mov     eax, cs:facility
+test    eax, eax
+jg      short loc_403B92
+mov     cs:facility, 18h
+mov     rax, cs:opt_user
+test    rax, rax
+jz      short loc_403BAC
+mov     rax, cs:opt_user
+mov     cs:user, rax
+mov     eax, cs:facility
+test    eax, eax
+jle     short loc_403BDA
+mov     edx, cs:facility
+mov     rax, cs:tag
+mov     esi, 1
+mov     rdi, rax
+call    _openlog
+mov     cs:grecs_log_to_stderr, 0
+mov     eax, cs:foreground
+test    eax, eax
+jz      short loc_403BEB
+call    setup_watchers
+jmp     short loc_403C32
+mov     edi, 4082F5h
+call    detach
+test    eax, eax
+jz      short loc_403C28
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 422ECAh
+mov     edi, 2
+mov     eax, 0
+call    diag
+mov     edi, 1
+call    _exit
+mov     cs:log_to_stderr, 0FFFFFFFFh
+mov     rbx, cs:program_name
+mov     edi, 422ED5h
+call    _gettext
+mov     ecx, 422D0Bh
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 6
+mov     eax, 0
+call    diag
+mov     rax, cs:pidfile
+test    rax, rax
+jz      short loc_403C78
+mov     rax, cs:pidfile
+mov     rdi, rax
+call    storepid
+mov     rax, cs:user
+test    rax, rax
+jz      short loc_403C9C
+call    _getuid
+test    eax, eax
+jnz     short loc_403C9C
+mov     rax, cs:user
+mov     rdi, rax
+call    setuser
+mov     edi, 403518h
+call    signal_setup
+mov     rax, cs:self_test_prog
+test    rax, rax
+jz      short loc_403CCD
+mov     eax, 0
+call    self_test
+jmp     short loc_403CCD
+call    process_timeouts
+mov     edi, 0
+call    process_cleanup
+mov     eax, cs:stop
+test    eax, eax
+jnz     short loc_403CE0
+call    sysev_select
+test    eax, eax
+jz      short loc_403CBE
+mov     rbx, cs:program_name
+mov     edi, 422EE3h
+call    _gettext
+mov     ecx, 422D0Bh
+mov     rdx, rbx
+mov     rsi, rax
+mov     edi, 6
+mov     eax, 0
+call    diag
+mov     rax, cs:pidfile
+test    rax, rax
+jz      short loc_403D26
+mov     rax, cs:pidfile
+mov     rdi, rax
+call    _unlink
+mov     eax, cs:exit_code
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_403D40
+call    ___stack_chk_fail
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

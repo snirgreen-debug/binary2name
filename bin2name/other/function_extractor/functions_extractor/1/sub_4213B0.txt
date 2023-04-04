@@ -1,0 +1,92 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+flags], edx
+cmp     [rbp+var_8], 0
+jz      short loc_4213D1
+cmp     [rbp+var_10], 0
+jnz     short loc_4213E4
+mov     rax, [rbp-8]
+cmp     rax, [rbp-10h]
+setz    al
+movzx   eax, al
+jmp     locret_4214D5
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+cmp     edx, eax
+jz      short loc_421444
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_421408
+mov     eax, 0
+jmp     locret_4214D5
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+cmp     eax, 1
+jz      short loc_42141A
+cmp     eax, 2
+jz      short loc_421435
+jmp     short loc_421444
+mov     rax, [rbp-10h]
+mov     rax, [rax+28h]
+mov     esi, 0
+mov     rdi, rax
+call    sub_40C2CC
+mov     [rbp+var_10], rax
+jmp     short loc_421444
+mov     rax, [rbp-10h]
+mov     rax, [rax+30h]
+mov     rax, [rax]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     eax, 1
+jz      short loc_4214A0
+cmp     eax, 2
+jz      short loc_4214B8
+test    eax, eax
+jnz     short loc_4214D0
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+test    rax, rax
+jnz     short loc_421478
+mov     rax, [rbp-10h]
+mov     rax, [rax+28h]
+test    rax, rax
+setz    al
+movzx   eax, al
+jmp     short locret_4214D5
+mov     rax, [rbp-10h]
+mov     rcx, [rax+28h]
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     edx, [rbp-14h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+setz    al
+movzx   eax, al
+jmp     short locret_4214D5
+mov     edx, [rbp-14h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_42124A
+jmp     short locret_4214D5
+mov     edx, [rbp-14h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_421318
+jmp     short locret_4214D5
+mov     eax, 0
+leave
+retn

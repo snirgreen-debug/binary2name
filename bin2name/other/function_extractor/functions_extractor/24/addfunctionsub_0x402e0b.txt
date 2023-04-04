@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+newfunc], rdi
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+and     eax, 7Fh
+mov     [rbp+val], eax
+lea     rax, ftab
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+mov     rdx, [rax+rdx*8]
+mov     rax, [rbp-18h]
+mov     [rax+80h], rdx
+lea     rax, ftab
+mov     edx, [rbp-4]
+movsxd  rdx, edx
+mov     rcx, [rbp-18h]
+mov     [rax+rdx*8], rcx
+nop
+pop     rbp
+retn

@@ -1,0 +1,96 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+jmp     short loc_42025F
+add     [rbp+var_14], 1
+mov     rdx, cs:qword_62D8A0
+mov     eax, [rbp-14h]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4202A9
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rcx, cs:qword_62D8A0
+mov     edx, [rbp-14h]
+movsxd  rdx, edx
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+movsx   rdx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     short loc_42025B
+mov     rdx, cs:qword_62D8A0
+mov     eax, [rbp-14h]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 3Bh
+jnz     loc_420387
+mov     eax, [rbp-14h]
+add     eax, 1
+mov     [rbp+var_8], eax
+jmp     short loc_420310
+call    ___ctype_b_loc
+mov     rax, [rax]
+mov     rcx, cs:qword_62D8A0
+mov     edx, [rbp-8]
+movsxd  rdx, edx
+add     rdx, rcx
+movzx   edx, byte ptr [rdx]
+movsx   rdx, dl
+add     rdx, rdx
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 2000h
+test    eax, eax
+jnz     short loc_42030C
+mov     eax, 0
+jmp     locret_4203A1
+add     [rbp+var_8], 1
+mov     rdx, cs:qword_62D8A0
+mov     eax, [rbp-8]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4202CE
+mov     eax, [rbp-14h]
+mov     [rbp+var_4], eax
+mov     rdx, cs:qword_62D8A0
+mov     eax, cs:dword_62D8C4
+cdqe
+add     rdx, rax
+movzx   eax, cs:byte_62D750
+mov     [rdx], al
+mov     rdx, cs:qword_62D8A0
+mov     eax, [rbp-4]
+cdqe
+add     rax, rdx
+mov     cs:qword_62D758, rax
+mov     rax, cs:qword_62D758
+movzx   eax, byte ptr [rax]
+mov     cs:byte_62D750, al
+mov     rax, cs:qword_62D758
+mov     byte ptr [rax], 0
+mov     eax, [rbp-4]
+mov     cs:dword_62D8C4, eax
+mov     eax, 1
+jmp     short locret_4203A1
+mov     rdx, cs:qword_62D8A0
+mov     eax, [rbp-14h]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+setz    al
+movzx   eax, al
+leave
+retn

@@ -1,0 +1,7 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+comm], rdi
+mov     [rbp+s], rsi
+nop
+pop     rbp
+retn

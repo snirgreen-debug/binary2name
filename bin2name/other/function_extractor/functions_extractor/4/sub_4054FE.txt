@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rax, [rbp-18h]
+mov     rdx, [rax+118h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40B769
+movzx   eax, al
+test    eax, eax
+setnz   al
+xor     eax, 1
+movzx   eax, al
+and     eax, 1
+leave
+retn

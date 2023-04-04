@@ -1,0 +1,125 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 90h
+mov     [rbp+rbuf], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-40h]
+mov     [rbp+in_addr4_ptr], rax
+mov     [rbp+port], 0
+lea     rax, [rbp-72h]
+mov     esi, 2
+mov     rdi, rax
+call    bindport
+mov     [rbp+err], eax
+cmp     [rbp+err], 0Ah
+jz      short loc_40CA0E
+mov     eax, [rbp-70h]
+jmp     loc_40CB7C
+mov     rax, [rbp-88h]
+mov     eax, [rax]
+lea     rdx, [rbp-50h]
+mov     rsi, rdx
+mov     edi, eax
+call    conaddr
+test    eax, eax
+jnz     short loc_40CA33
+mov     eax, 9
+jmp     loc_40CB7C
+lea     rdx, [rbp-40h]
+lea     rax, [rbp-50h]
+mov     rsi, rdx
+mov     rdi, rax
+call    map_ip_to_ipv4
+test    eax, eax
+jnz     short loc_40CA54
+mov     eax, 9
+jmp     loc_40CB7C
+movzx   eax, word ptr [rbp-72h]
+movzx   eax, ax
+movzx   edi, al
+movzx   eax, word ptr [rbp-72h]
+shr     ax, 8
+movzx   esi, ax
+mov     rax, [rbp-60h]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+movzx   r9d, al
+mov     rax, [rbp-60h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+movzx   r8d, al
+mov     rax, [rbp-60h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movzx   ecx, al
+mov     rax, [rbp-60h]
+movzx   eax, byte ptr [rax]
+movzx   edx, al
+lea     rax, [rbp-30h]
+push    rdi
+push    rsi
+mov     esi, 431605h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+add     rsp, 10h
+lea     rax, [rbp-30h]
+mov     rsi, rax
+mov     edi, 431617h
+call    ftp_request
+mov     [rbp+request], rax
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     rax, [rbp-88h]
+mov     eax, [rax]
+mov     rcx, [rbp-58h]
+mov     rsi, rcx
+mov     edi, eax
+call    iwrite
+mov     [rbp+nwritten], eax
+cmp     [rbp+nwritten], 0
+jns     short loc_40CB11
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+mov     eax, 37h
+jmp     short loc_40CB7C
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _free
+lea     rdx, [rbp-68h]
+mov     rax, [rbp-88h]
+mov     rsi, rdx
+mov     rdi, rax
+call    ftp_response
+mov     [rbp+err], eax
+cmp     [rbp+err], 0Fh
+jz      short loc_40CB4D
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-70h]
+jmp     short loc_40CB7C
+mov     rax, [rbp-68h]
+movzx   eax, byte ptr [rax]
+cmp     al, 32h
+jz      short loc_40CB6B
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+mov     eax, 12h
+jmp     short loc_40CB7C
+mov     rax, [rbp-68h]
+mov     rdi, rax
+call    _free
+mov     eax, 0Fh
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40CB90
+call    ___stack_chk_fail
+leave
+retn

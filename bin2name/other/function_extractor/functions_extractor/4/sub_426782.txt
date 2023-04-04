@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     [rbp+var_10], rax
+mov     rax, [rbp-20h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rax, [rax+50h]
+mov     rax, [rax+40h]
+mov     rcx, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+leave
+retn

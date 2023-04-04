@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_8], 0
+mov     rax, [rbp-28h]
+mov     dword ptr [rax], 0
+jmp     loc_41959F
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     esi, eax
+mov     edi, 42463Eh
+call    _strchr
+test    rax, rax
+jz      short loc_419515
+mov     rax, [rbp-28h]
+mov     dword ptr [rax], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     short loc_419527
+add     [rbp+var_8], 1
+jmp     short loc_41959A
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 22h
+jnz     short loc_419539
+add     [rbp+var_8], 2
+jmp     short loc_41959A
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 9
+jz      short loc_41956C
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jz      short loc_41956C
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 1Fh
+jbe     short loc_41956C
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+js      short loc_41956C
+add     [rbp+var_8], 1
+jmp     short loc_41959A
+cmp     [rbp+var_1C], 0
+jz      short loc_419579
+add     [rbp+var_8], 3
+jmp     short loc_41959A
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+mov     edi, eax
+call    sub_419678
+test    eax, eax
+jz      short loc_419595
+add     [rbp+var_8], 2
+jmp     short loc_41959A
+add     [rbp+var_8], 4
+add     [rbp+var_18], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_4194F0
+mov     rax, [rbp-8]
+leave
+retn

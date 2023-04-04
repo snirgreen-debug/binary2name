@@ -1,0 +1,121 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+unitname], rdi
+mov     [rbp+unitdef], rsi
+mov     [rbp+count], rdx
+mov     [rbp+linenum], ecx
+mov     [rbp+file], r8
+mov     [rbp+errfile], r9
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax-1]
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rcx, [rbp-40h]
+mov     rdx, [rbp-38h]
+mov     esi, [rbp-2Ch]
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    checkunitname
+test    eax, eax
+jz      short loc_4036F1
+mov     eax, 11h
+jmp     locret_403856
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    plookup
+mov     [rbp+pfxptr], rax
+cmp     [rbp+pfxptr], 0
+jz      loc_40379D
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_40379D
+lea     rax, flags
+mov     eax, [rax+18h]
+test    eax, eax
+jz      short loc_403788
+cmp     [rbp+errfile], 0
+jz      short loc_403788
+cmp     [rbp+redefine], 0
+jnz     short loc_403788
+mov     rax, [rbp-8]
+mov     r8, [rax+20h]
+mov     rax, [rbp-8]
+mov     edi, [rax+18h]
+lea     rax, progname
+mov     rdx, [rax]
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-40h]
+push    [rbp+file]
+mov     esi, [rbp-2Ch]
+push    rsi
+mov     r9, r8
+mov     r8d, edi
+lea     rsi, aSPrefixSDefine
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+jmp     loc_403824
+lea     rsi, aNewprefix
+mov     edi, 30h
+call    mymalloc
+mov     [rbp+pfxptr], rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+and     eax, 7Fh
+mov     [rbp+pval], eax
+lea     rax, ptab
+mov     edx, [rbp-0Ch]
+mov     rdx, [rax+rdx*8]
+mov     rax, [rbp-8]
+mov     [rax+28h], rdx
+lea     rax, ptab
+mov     edx, [rbp-0Ch]
+mov     rcx, [rbp-8]
+mov     [rax+rdx*8], rcx
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+lea     edx, [rax+1]
+mov     rax, [rbp-28h]
+mov     [rax], edx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     edx, [rbp-2Ch]
+mov     [rax+18h], edx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-38h]
+mov     [rax+20h], rdx
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+ptr], rdi
+cmp     [rbp+ptr], 0
+jz      short loc_410DDE
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_symtab_clear
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

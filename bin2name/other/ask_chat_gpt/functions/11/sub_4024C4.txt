@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     eax, edi
+mov     [rbp+var_4], al
+movsx   eax, byte ptr [rbp-4]
+mov     edi, eax
+call    _putchar
+lea     rax, unk_619B48
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_402503
+lea     rax, unk_619B48
+mov     rdx, [rax]
+movsx   eax, byte ptr [rbp-4]
+mov     rsi, rdx
+mov     edi, eax
+call    _fputc
+nop
+leave
+retn

@@ -1,0 +1,112 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0D0h
+mov     [rbp+state], rdi
+mov     [rbp+fmt], rsi
+mov     [rbp+args], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-90h]
+mov     [rbp+write_ptr], rax
+mov     [rbp+available_size], 80h
+call    get_log_fp
+mov     [rbp+fp], rax
+mov     eax, cs:save_context_p
+test    eax, eax
+jnz     short loc_41CB2B
+mov     rdx, [rbp-0C8h]
+mov     rcx, [rbp-0C0h]
+mov     rax, [rbp-98h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _vfprintf
+jmp     flush
+mov     rax, [rbp-0B8h]
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      short loc_41CB5A
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     [rbp+write_ptr], rax
+mov     rax, [rbp-0B8h]
+mov     eax, [rax+0Ch]
+mov     [rbp+available_size], eax
+mov     eax, [rbp-0B0h]
+movsxd  rsi, eax
+mov     rcx, [rbp-0C8h]
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0A0h]
+mov     rdi, rax
+call    _vsnprintf
+mov     [rbp+numwritten], eax
+cmp     [rbp+numwritten], 0FFFFFFFFh
+jnz     short loc_41CBE2
+mov     eax, [rbp-0B0h]
+add     eax, eax
+mov     [rbp+newsize], eax
+mov     eax, [rbp-0A8h]
+movsxd  rdx, eax
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-0B8h]
+mov     [rax], rdx
+mov     rax, [rbp-0B8h]
+mov     edx, [rbp-0A8h]
+mov     [rax+0Ch], edx
+mov     eax, 0
+jmp     loc_41CCAA
+mov     eax, [rbp-0ACh]
+cmp     eax, [rbp-0B0h]
+jl      short loc_41CC41
+mov     eax, [rbp-0ACh]
+add     eax, 1
+mov     [rbp+newsize_0], eax
+mov     eax, [rbp-0A4h]
+movsxd  rdx, eax
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-0B8h]
+mov     [rax], rdx
+mov     rax, [rbp-0B8h]
+mov     edx, [rbp-0A4h]
+mov     [rax+0Ch], edx
+mov     eax, 0
+jmp     short loc_41CCAA
+mov     rax, [rbp-0A0h]
+mov     rdi, rax
+call    saved_append
+mov     rdx, [rbp-98h]
+mov     rax, [rbp-0A0h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+test    rax, rax
+jz      short flush
+mov     rax, [rbp-0B8h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     eax, cs:flush_log_p
+test    eax, eax
+jz      short loc_41CC9B
+call    logflush
+jmp     short loc_41CCA5
+mov     cs:needs_flushing, 1
+mov     eax, 1
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41CCBE
+call    ___stack_chk_fail
+leave
+retn

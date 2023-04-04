@@ -1,0 +1,81 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:qword_62D650
+test    rax, rax
+jnz     short loc_40F5D1
+mov     eax, 1
+jmp     locret_40F71F
+mov     rax, cs:qword_62D650
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    _fclose
+mov     rax, cs:qword_62D650
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+mov     rax, cs:qword_62D650
+mov     rdi, rax
+call    sub_40C47F
+mov     rax, [rbp-8]
+mov     cs:qword_62D650, rax
+mov     rdx, cs:pglob.gl_pathc
+mov     rax, cs:qword_62D6E8
+cmp     rdx, rax
+jbe     short loc_40F65C
+mov     edx, cs:dword_62D6F0
+mov     rsi, cs:pglob.gl_pathv
+mov     rax, cs:qword_62D6E8
+lea     rcx, [rax+1]
+mov     cs:qword_62D6E8, rcx
+shl     rax, 3
+add     rax, rsi
+mov     rax, [rax]
+mov     esi, edx
+mov     rdi, rax
+call    sub_40F194
+mov     eax, 0
+jmp     locret_40F71F
+mov     rax, cs:pglob.gl_pathc
+test    rax, rax
+jz      short loc_40F68B
+mov     edi, 62D6A0h
+call    _globfree
+mov     cs:pglob.gl_pathc, 0
+mov     rax, cs:pglob.gl_pathc
+mov     cs:qword_62D6E8, rax
+mov     rax, cs:qword_62D650
+test    rax, rax
+jnz     short loc_40F6C6
+mov     eax, cs:dword_62D510
+test    eax, eax
+jz      short loc_40F6BF
+mov     rax, cs:stderr
+mov     rcx, rax
+mov     edx, 0Dh
+mov     esi, 1
+mov     edi, 42412Ch
+call    _fwrite
+mov     eax, 1
+jmp     short locret_40F71F
+mov     rax, cs:qword_62D650
+mov     edx, [rax+10h]
+add     edx, 1
+mov     [rax+10h], edx
+mov     eax, cs:dword_62D510
+test    eax, eax
+jz      short loc_40F710
+mov     rax, cs:qword_62D650
+mov     eax, [rax+10h]
+mov     ecx, eax
+mov     rax, cs:qword_62D650
+mov     rdx, [rax+8]
+mov     rax, cs:stderr
+mov     esi, 424140h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+call    sub_40E547
+mov     eax, 0
+leave
+retn

@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 18h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_18], rdx
+mov     rax, [rbp-18h]
+mov     dword ptr [rax], 0
+mov     rdx, [rbp-18h]
+mov     ecx, [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     esi, ecx
+mov     rdi, rax
+call    trans_toknext
+leave
+retn

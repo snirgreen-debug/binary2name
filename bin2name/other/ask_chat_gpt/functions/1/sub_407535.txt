@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+ptr], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax]
+lea     edx, [rax-1]
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_407578
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+jmp     short locret_407579
+nop
+leave
+retn

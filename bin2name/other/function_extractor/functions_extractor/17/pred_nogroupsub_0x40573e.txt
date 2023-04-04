@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-10h]
+mov     eax, [rax+20h]
+mov     edi, eax
+call    _getgrgid
+test    rax, rax
+setz    al
+leave
+retn

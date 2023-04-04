@@ -1,0 +1,81 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:context_stack
+test    rax, rax
+jnz     short loc_40F5D1
+mov     eax, 1
+jmp     locret_40F71F
+mov     rax, cs:context_stack
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    _fclose
+mov     rax, cs:context_stack
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+mov     rax, cs:context_stack
+mov     rdi, rax
+call    grecs_free
+mov     rax, [rbp-8]
+mov     cs:context_stack, rax
+mov     rdx, cs:include_glob.gl_pathc
+mov     rax, cs:include_pos
+cmp     rdx, rax
+jbe     short loc_40F65C
+mov     edx, cs:include_once
+mov     rsi, cs:include_glob.gl_pathv
+mov     rax, cs:include_pos
+lea     rcx, [rax+1]
+mov     cs:include_pos, rcx
+shl     rax, 3
+add     rax, rsi
+mov     rax, [rax]
+mov     esi, edx
+mov     rdi, rax
+call    push_source
+mov     eax, 0
+jmp     locret_40F71F
+mov     rax, cs:include_glob.gl_pathc
+test    rax, rax
+jz      short loc_40F68B
+mov     edi, 62D6A0h
+call    _globfree
+mov     cs:include_glob.gl_pathc, 0
+mov     rax, cs:include_glob.gl_pathc
+mov     cs:include_pos, rax
+mov     rax, cs:context_stack
+test    rax, rax
+jnz     short loc_40F6C6
+mov     eax, cs:grecs_grecs__flex_debug
+test    eax, eax
+jz      short loc_40F6BF
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 0Dh
+mov     esi, 1
+mov     edi, 42412Ch
+call    _fwrite
+mov     eax, 1
+jmp     short locret_40F71F
+mov     rax, cs:context_stack
+mov     edx, [rax+10h]
+add     edx, 1
+mov     [rax+10h], edx
+mov     eax, cs:grecs_grecs__flex_debug
+test    eax, eax
+jz      short loc_40F710
+mov     rax, cs:context_stack
+mov     eax, [rax+10h]
+mov     ecx, eax
+mov     rax, cs:context_stack
+mov     rdx, [rax+8]
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 424140h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 0
+call    pp_line_stmt
+mov     eax, 0
+leave
+retn

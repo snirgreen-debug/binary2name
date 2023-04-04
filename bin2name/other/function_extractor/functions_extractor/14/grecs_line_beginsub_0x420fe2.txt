@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:line_acc
+test    rax, rax
+jnz     short loc_420FF7
+call    grecs_line_acc_create
+nop
+pop     rbp
+retn

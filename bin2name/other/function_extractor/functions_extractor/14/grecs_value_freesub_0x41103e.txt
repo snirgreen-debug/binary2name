@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_value_free_content
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    grecs_free
+nop
+leave
+retn

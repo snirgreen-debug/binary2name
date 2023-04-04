@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+cmp     rax, 1
+jnz     short loc_4021D2
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+jmp     locret_402272
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 5Ch
+jnz     short loc_402245
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+sub     eax, 5Ch
+cmp     eax, 1Ah
+ja      short def_4021FD
+mov     eax, eax
+mov     rax, [rax*8+40C158h]
+jmp     rax
+mov     eax, 7
+jmp     short locret_402272
+mov     eax, 8
+jmp     short locret_402272
+mov     eax, 0Ch
+jmp     short locret_402272
+mov     eax, 0Ah
+jmp     short locret_402272
+mov     eax, 0Dh
+jmp     short locret_402272
+mov     eax, 9
+jmp     short locret_402272
+mov     eax, 0Bh
+jmp     short locret_402272
+mov     eax, 5Ch
+jmp     short locret_402272
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sub_401FC6
+jmp     short locret_402272
+mov     edi, 40C0D0h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0
+leave
+retn

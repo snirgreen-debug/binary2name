@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     [rbp+var_10], rsi
+cmp     [rbp+var_4], 0
+jnz     short loc_42A744
+call    ___errno_location
+mov     dword ptr [rax], 5Fh
+mov     eax, 0FFFFFFFFh
+jmp     short locret_42A791
+cmp     [rbp+var_4], 0Ah
+jnz     short loc_42A78E
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     esi, 432AE0h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_42A78E
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _freecon
+mov     rax, [rbp-10h]
+mov     qword ptr [rax], 0
+call    ___errno_location
+mov     dword ptr [rax], 3Dh
+mov     eax, 0FFFFFFFFh
+jmp     short locret_42A791
+mov     eax, [rbp-4]
+leave
+retn

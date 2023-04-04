@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+filename], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+var_14], edx
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jz      short loc_40AB30
+cmp     eax, 14h
+jnz     short loc_40AB78
+mov     rax, cs:qword_63C000
+and     eax, 2
+test    rax, rax
+jz      short loc_40AB5C
+mov     rax, cs:stderr
+mov     rdx, [rbp-8]
+mov     esi, 42C290h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:fildes
+mov     rdx, [rbp-10h]
+mov     rsi, [rbp-8]
+mov     ecx, 100h
+mov     edi, eax
+call    sub_42AA70
+jmp     short locret_40AB7B
+mov     eax, [rbp-14h]
+leave
+retn

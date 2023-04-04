@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+u], rdi
+mov     [rbp+dest], rsi
+mov     eax, cs:opt.cut_dirs
+mov     [rbp+cut], eax
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     [rbp+pathel], rax
+jmp     short loc_42796F
+mov     eax, [rbp-14h]
+lea     edx, [rax-1]
+mov     [rbp+cut], edx
+test    eax, eax
+jg      short loc_42795F
+mov     rax, [rbp-10h]
+cmp     rax, [rbp-8]
+jz      short loc_427962
+mov     rax, [rbp-30h]
+mov     eax, [rax+0Ch]
+test    eax, eax
+jz      short loc_427941
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     edi, 2Fh
+call    append_char
+mov     rdx, [rbp-30h]
+mov     rsi, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rcx, rdx
+mov     edx, 1
+mov     rdi, rax
+call    append_uri_pathel
+jmp     short loc_427963
+nop
+jmp     short loc_427963
+nop
+mov     rax, [rbp-8]
+add     rax, 1
+mov     [rbp+pathel], rax
+mov     rax, [rbp-10h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strchr
+mov     [rbp+next], rax
+cmp     [rbp+next], 0
+jnz     short loc_42790E
+nop
+leave
+retn

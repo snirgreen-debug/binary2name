@@ -1,0 +1,167 @@
+push    rbp
+mov     rbp, rsp
+push    scan_end
+push    scan_end1
+push    strend
+push    len
+push    scan
+mov     [rbp+cur_match], edi
+mov     eax, cs:max_chain_length
+mov     [rbp+chain_length], eax
+mov     eax, cs:strstart
+mov     eax, eax
+lea     scan, [rax+64D320h]
+mov     eax, cs:prev_length
+mov     [rbp+best_len], eax
+mov     eax, cs:strstart
+cmp     eax, 7EFAh
+jbe     short loc_4022DF
+mov     eax, cs:strstart
+sub     eax, 7EFAh
+jmp     short loc_4022E4
+mov     eax, 0
+mov     [rbp+limit], eax
+mov     eax, cs:strstart
+mov     eax, eax
+add     rax, 102h
+lea     strend, [rax+64D320h]
+mov     eax, [rbp-30h]
+cdqe
+sub     rax, 1
+add     rax, scan
+movzx   r14d, byte ptr [rax]
+mov     eax, [rbp-30h]
+cdqe
+add     rax, scan
+movzx   r15d, byte ptr [rax]
+mov     edx, cs:prev_length
+mov     eax, cs:good_match
+cmp     edx, eax
+jb      short loc_40232C
+shr     [rbp+chain_length], 2
+mov     eax, [rbp-3Ch]
+lea     len, [rax+64D320h]
+mov     eax, [rbp-30h]
+cdqe
+add     rax, len
+movzx   eax, byte ptr [rax]
+cmp     al, r15b
+jnz     loc_40249C
+mov     eax, [rbp-30h]
+cdqe
+sub     rax, 1
+add     rax, len
+movzx   eax, byte ptr [rax]
+cmp     al, r14b
+jnz     loc_40249C
+movzx   edx, byte ptr [len]
+movzx   eax, byte ptr [scan]
+cmp     dl, al
+jnz     loc_40249C
+add     len, 1
+movzx   edx, byte ptr [len]
+lea     rax, [scan+1]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     loc_40249C
+add     scan, 2
+add     len, 1
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     short loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     short loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     short loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     short loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     short loc_402443
+add     scan, 1
+movzx   edx, byte ptr [scan]
+add     len, 1
+movzx   eax, byte ptr [len]
+cmp     dl, al
+jnz     short loc_402443
+cmp     scan, strend
+jb      loc_402392
+mov     rdx, strend
+mov     rax, scan
+sub     rdx, rax
+mov     rax, rdx
+mov     edx, 102h
+sub     edx, eax
+mov     r12d, edx
+lea     scan, [strend-102h]
+cmp     r12d, [rbp-30h]
+jle     short loc_40249D
+mov     eax, [rbp-3Ch]
+mov     cs:match_start, eax
+mov     [rbp+best_len], r12d
+mov     eax, cs:nice_match
+cmp     r12d, eax
+jge     short loc_4024CD
+mov     eax, [rbp-30h]
+cdqe
+sub     rax, 1
+add     rax, scan
+movzx   r14d, byte ptr [rax]
+mov     eax, [rbp-30h]
+cdqe
+add     rax, scan
+movzx   r15d, byte ptr [rax]
+jmp     short loc_40249D
+nop
+mov     eax, [rbp-3Ch]
+and     eax, 7FFFh
+mov     eax, eax
+movzx   eax, word ptr [rax+rax+6186E0h]
+movzx   eax, ax
+mov     [rbp+cur_match], eax
+mov     eax, [rbp-3Ch]
+cmp     eax, [rbp-2Ch]
+jbe     short loc_4024CE
+sub     [rbp+chain_length], 1
+cmp     [rbp+chain_length], 0
+jnz     loc_40232C
+jmp     short loc_4024CE
+nop
+mov     eax, [rbp-30h]
+pop     scan
+pop     len
+pop     strend
+pop     scan_end1
+pop     scan_end
+pop     rbp
+retn

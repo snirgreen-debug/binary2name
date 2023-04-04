@@ -1,0 +1,72 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+inexact_style], edi
+cmp     [rbp+inexact_style], 1
+jz      loc_419A0A
+fld     cs:tbyte_430060
+fld     tbyte ptr [rbp+10h]
+fxch    st(1)
+fucomip st, st(1)
+fstp    st
+jbe     loc_419A0A
+fld     tbyte ptr [rbp+10h]
+fld     cs:tbyte_430070
+fxch    st(1)
+fucomip st, st(1)
+fstp    st
+jnb     short loc_419979
+fld     tbyte ptr [rbp+10h]
+fnstcw  [rbp+var_16]
+movzx   eax, word ptr [rbp-16h]
+or      ah, 0Ch
+mov     [rbp+var_18], ax
+fldcw   [rbp+var_18]
+fistp   qword ptr [rbp-8]
+fldcw   [rbp+var_16]
+jmp     short loc_4199A9
+fld     tbyte ptr [rbp+10h]
+fld     cs:tbyte_430070
+fsubp   st(1), st
+fnstcw  [rbp+var_16]
+movzx   eax, word ptr [rbp-16h]
+or      ah, 0Ch
+mov     [rbp+var_18], ax
+fldcw   [rbp+var_18]
+fistp   qword ptr [rbp-8]
+fldcw   [rbp+var_16]
+mov     rax, 8000000000000000h
+xor     [rbp+u], rax
+mov     rax, [rbp-8]
+mov     [rbp+u], rax
+cmp     [rbp+inexact_style], 0
+jnz     short loc_4199E4
+fild    qword ptr [rbp-8]
+cmp     [rbp+u], 0
+jns     short loc_4199C9
+fld     cs:tbyte_430080
+faddp   st(1), st
+fld     tbyte ptr [rbp+10h]
+fucomip st, st(1)
+jp      short loc_4199DB
+fld     tbyte ptr [rbp+10h]
+fucomip st, st(1)
+fstp    st
+jz      short loc_4199E4
+jmp     short loc_4199DD
+fstp    st
+mov     eax, 1
+jmp     short loc_4199E9
+mov     eax, 0
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     [rbp+var_20], rax
+fild    qword ptr [rbp-20h]
+test    rax, rax
+jns     short loc_419A07
+fld     cs:tbyte_430080
+faddp   st(1), st
+fstp    tbyte ptr [rbp+10h]
+fld     tbyte ptr [rbp+10h]
+pop     rbp
+retn

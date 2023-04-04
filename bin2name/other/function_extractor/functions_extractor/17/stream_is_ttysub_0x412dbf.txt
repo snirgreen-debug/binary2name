@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fp], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fileno
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0FFFFFFFFh
+jnz     short loc_412DE7
+mov     eax, 0
+jmp     short locret_412DF6
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _isatty
+test    eax, eax
+setnz   al
+leave
+retn

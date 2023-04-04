@@ -1,0 +1,78 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_30], rcx
+cmp     [rbp+var_28], 2
+jbe     short loc_4037F7
+mov     ecx, 40EC60h
+mov     edx, 3B8h
+mov     esi, 40DA68h
+mov     edi, 40DDC2h
+call    ___assert_fail
+cmp     [rbp+var_28], 1
+ja      short loc_403808
+mov     eax, 0
+jmp     loc_4038C8
+mov     rax, [rbp-20h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_4038C3
+call    ___ctype_b_loc
+mov     rdx, [rax]
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+add     rax, rax
+add     rax, rdx
+movzx   eax, word ptr [rax]
+movzx   eax, ax
+and     eax, 800h
+test    eax, eax
+jz      short loc_4038BC
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+lea     edx, [rax-30h]
+mov     rax, [rbp-30h]
+mov     [rax], edx
+mov     rax, [rbp-30h]
+mov     eax, [rax]
+cmp     eax, 1
+jle     short loc_4038B5
+mov     rax, [rbp-20h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+movsx   ebx, al
+mov     rax, [rbp-18h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    sub_40AD8C
+mov     r12, rax
+mov     edi, 40DDD0h
+call    _gettext
+mov     r8d, ebx
+mov     rcx, r12
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     eax, 1
+jmp     short loc_4038C8
+mov     eax, 1
+jmp     short loc_4038C8
+mov     eax, 0
+jmp     short loc_4038C8
+mov     eax, 0
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

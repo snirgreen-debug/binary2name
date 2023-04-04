@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+theunit], rdi
+mov     rax, [rbp-8]
+movsd   xmm0, cs:qword_416DA0
+movsd   qword ptr [rax+640h], xmm0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+320h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+320h]
+mov     rax, [rbp-8]
+mov     [rax], rdx
+nop
+pop     rbp
+retn

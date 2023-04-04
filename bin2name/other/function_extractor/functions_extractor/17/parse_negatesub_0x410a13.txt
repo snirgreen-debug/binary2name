@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    get_new_pred_chk_op
+mov     [rbp+our_pred], rax
+mov     rax, [rbp-8]
+mov     qword ptr [rax], 4054FEh
+mov     rax, [rbp-8]
+mov     dword ptr [rax+10h], 2
+mov     rax, [rbp-8]
+mov     dword ptr [rax+14h], 4
+mov     rax, [rbp-8]
+mov     byte ptr [rax+1Bh], 0
+mov     rax, [rbp-8]
+movzx   edx, byte ptr [rax+1Bh]
+mov     rax, [rbp-8]
+mov     [rax+1Ah], dl
+mov     eax, 1
+leave
+retn

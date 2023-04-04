@@ -1,0 +1,73 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+path], rdi
+mov     [rbp+p], rsi
+mov     rax, [rbp-10h]
+mov     qword ptr [rax], 0
+mov     edi, 0
+call    clone_quoting_options
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-8]
+mov     esi, 42F8BAh
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_413F37
+mov     rdx, cs:stderr@@GLIBC_2_2_5
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     edi, 42F8C6h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+10h], rdx
+jmp     loc_413FC1
+mov     rax, [rbp-8]
+mov     esi, 42F8D5h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_413F72
+mov     rdx, cs:stdout@@GLIBC_2_2_5
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     edi, 42F8E1h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+10h], rdx
+jmp     short loc_413FC1
+mov     rax, cs:state_0.shared_files
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    sharefile_fopen
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+test    rax, rax
+jnz     short loc_413FC1
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     edi, eax
+call    fatal_nontarget_file_error
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    stream_is_tty
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     [rax+18h], dl
+nop
+leave
+retn

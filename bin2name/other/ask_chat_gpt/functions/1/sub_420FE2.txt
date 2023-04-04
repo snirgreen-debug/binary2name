@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_62D7A0
+test    rax, rax
+jnz     short loc_420FF7
+call    sub_420E4D
+nop
+pop     rbp
+retn

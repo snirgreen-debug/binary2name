@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     esi, 0
+mov     rdi, rax
+call    _gettimeofday
+nop
+leave
+retn

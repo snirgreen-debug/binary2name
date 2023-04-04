@@ -1,0 +1,85 @@
+push    r13
+push    r12
+push    rbp
+push    rbx
+sub     rsp, 8
+test    rdi, rdi
+jz      loc_40F8F0
+xor     ebp, ebp
+test    rsi, rsi
+mov     rbx, rdi
+mov     r12, rsi
+jnz     short loc_40F811
+jmp     loc_40F899
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40F860
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jnz     short loc_40F808
+cmp     qword ptr [rbx+8], 6192A0h
+jz      loc_40F8E8
+mov     rsi, [rbx]
+mov     rdi, r12
+xor     r13d, r13d
+call    sub_406D60
+test    rax, rax
+setnz   r13b
+jz      loc_40F8F7
+mov     rbx, [rbx+18h]
+add     ebp, r13d
+test    rbx, rbx
+jnz     short loc_40F811
+nop     word ptr [rax+rax+00000000h]
+cmp     cs:dword_61A1EC, ebp
+jz      short loc_40F8D8
+add     rsp, 8
+mov     ecx, 41471Fh
+xor     edx, edx
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+mov     esi, 8000h
+xor     edi, edi
+jmp     sub_405040
+xor     r12d, r12d
+add     ebp, r12d
+nop     dword ptr [rax+rax+00h]
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_40F860
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jnz     short loc_40F890
+mov     rax, [rbx+8]
+cmp     rax, 6192A0h
+jz      short loc_40F885
+xor     r12d, r12d
+test    rax, rax
+setnz   r12b
+jnz     short loc_40F888
+mov     rdx, [rbx]
+xor     ecx, ecx
+mov     esi, 108h
+xor     edi, edi
+call    sub_405040
+jmp     short loc_40F888
+add     rsp, 8
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+retn
+xor     r13d, r13d
+jmp     loc_40F84B
+xor     ebp, ebp
+jmp     loc_40F860
+mov     rdx, [rbx]
+xor     ecx, ecx
+mov     esi, 107h
+xor     edi, edi
+call    sub_405040
+jmp     loc_40F84B

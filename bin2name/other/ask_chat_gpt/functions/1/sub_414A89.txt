@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rbx, [rax+50h]
+mov     edi, 424520h
+call    _gettext
+mov     rdi, rax
+mov     eax, 0
+call    rbx
+call    _abort

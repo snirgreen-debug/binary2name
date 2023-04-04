@@ -1,0 +1,116 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 250h
+mov     [rbp+var_258], rdi
+mov     [rbp+var_260], rsi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-258h]
+mov     rdi, rax
+call    grecs_preproc_init
+test    eax, eax
+jz      short loc_40FCA2
+mov     eax, 1
+jmp     loc_40FE72
+cmp     [rbp+var_260], 0
+jz      loc_40FE43
+mov     [rbp+command], 0
+mov     esi, 1
+mov     edi, 4241C1h
+call    grecs_find_include_file
+mov     [rbp+var_238], rax
+cmp     [rbp+var_238], 0
+jz      short loc_40FD34
+mov     [rbp+var_240], 0
+mov     rcx, [rbp-238h]
+mov     rdx, [rbp-260h]
+lea     rsi, [rbp-240h]
+lea     rax, [rbp-248h]
+mov     r8, rcx
+mov     rcx, rdx
+mov     edx, 4241CAh
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+test    eax, eax
+jz      short loc_40FD23
+call    grecs_alloc_die
+mov     rax, [rbp-238h]
+mov     rdi, rax
+call    grecs_free
+jmp     short loc_40FD4A
+mov     rax, [rbp-260h]
+mov     rdi, rax
+call    grecs_strdup
+mov     [rbp+command], rax
+mov     rax, [rbp-248h]
+mov     esi, 4241D2h
+mov     rdi, rax
+call    _popen
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jnz     short loc_40FDDC
+mov     rbx, [rbp-248h]
+mov     edi, 4241D8h
+call    _gettext
+mov     r12, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     rdx, r12
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    grecs_error
+mov     rax, [rbp-248h]
+mov     rdi, rax
+call    grecs_free
+mov     eax, 1
+jmp     loc_40FE72
+mov     rcx, [rbp-230h]
+mov     rdx, [rbp-228h]
+lea     rax, [rbp-220h]
+mov     esi, 1
+mov     rdi, rax
+call    _fwrite
+lea     rax, [rbp-220h]
+mov     esi, 200h
+mov     rdi, rax
+call    grecs_preproc_fill_buffer
+mov     [rbp+n], rax
+cmp     [rbp+n], 0
+jnz     short loc_40FDBA
+mov     rax, [rbp-230h]
+mov     rdi, rax
+call    _pclose
+mov     rax, [rbp-248h]
+mov     rdi, rax
+call    grecs_free
+jmp     short loc_40FE68
+mov     rcx, cs:stdout@@GLIBC_2_2_5
+mov     rdx, [rbp-228h]
+lea     rax, [rbp-220h]
+mov     esi, 1
+mov     rdi, rax
+call    _fwrite
+lea     rax, [rbp-220h]
+mov     esi, 200h
+mov     rdi, rax
+call    grecs_preproc_fill_buffer
+mov     [rbp+n], rax
+cmp     [rbp+n], 0
+jnz     short loc_40FE21
+call    grecs_preproc_done
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_40FE86
+call    ___stack_chk_fail
+add     rsp, 250h
+pop     rbx
+pop     r12
+pop     rbp
+retn

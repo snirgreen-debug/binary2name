@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_14], edi
+mov     [rbp+var_18], esi
+mov     [rbp+var_20], rdx
+mov     [rbp+var_24], ecx
+mov     rax, cs:qword_62D7F0
+test    rax, rax
+jz      short loc_4085D3
+mov     edi, 62D7F0h
+call    sub_40851C
+mov     [rbp+s], rax
+jmp     short loc_4085E1
+mov     edi, 38h
+call    sub_402BDE
+mov     [rbp+s], rax
+mov     rax, [rbp-8]
+mov     edx, 38h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+mov     edx, [rbp-14h]
+mov     [rax+10h], edx
+mov     rax, [rbp-8]
+mov     edx, [rbp-24h]
+mov     [rax+14h], edx
+mov     rax, [rbp-8]
+mov     edx, [rbp-18h]
+mov     [rax+18h], edx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, 62D7F8h
+call    sub_408553
+mov     rax, [rbp-8]
+leave
+retn

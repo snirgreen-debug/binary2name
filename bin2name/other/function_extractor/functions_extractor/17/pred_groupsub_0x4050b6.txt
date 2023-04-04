@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-18h]
+mov     edx, [rax+38h]
+mov     rax, [rbp-10h]
+mov     eax, [rax+20h]
+cmp     edx, eax
+jnz     short loc_4050DF
+mov     eax, 1
+jmp     short loc_4050E4
+mov     eax, 0
+pop     rbp
+retn

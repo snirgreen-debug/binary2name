@@ -1,0 +1,78 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     [rbp+var_4], 0
+jmp     loc_40C385
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C30E
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _readline
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C33F
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402716
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C35E
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402B3D
+test    eax, eax
+js      short loc_40C367
+mov     [rbp+var_4], 1
+jmp     short loc_40C385
+lea     rax, off_6194F0
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorS
+mov     eax, 0
+call    _printf
+cmp     [rbp+var_4], 0
+jz      loc_40C2F3
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C3B8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40C3B8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _add_history
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40C3E6
+lea     rax, unk_61BBA0
+mov     eax, [rax+8]
+test    eax, eax
+jnz     short loc_40C3DC
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 0
+call    _exit
+nop
+leave
+retn

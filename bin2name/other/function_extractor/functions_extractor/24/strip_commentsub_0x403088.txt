@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+line], rdi
+mov     [rbp+comment], 0
+mov     rax, [rbp-18h]
+mov     esi, 23h
+mov     rdi, rax
+call    _strchr
+mov     [rbp+line], rax
+cmp     [rbp+line], 0
+jz      short loc_4030CB
+mov     rax, [rbp-18h]
+add     rax, 1
+mov     [rbp+comment], rax
+mov     rax, [rbp-18h]
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+leave
+retn

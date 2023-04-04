@@ -1,0 +1,113 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+buffer], rdi
+mov     [rbp+len], rsi
+mov     [rbp+ctx], rdx
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+test    eax, eax
+jz      loc_41EAEA
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+mov     eax, eax
+mov     [rbp+left_over], rax
+mov     eax, 80h
+sub     rax, [rbp-10h]
+mov     rdx, rax
+mov     rax, [rbp-20h]
+cmp     rdx, rax
+cmovbe  rax, rdx
+mov     [rbp+add], rax
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+add     rax, rdx
+lea     rcx, [rax+0Ch]
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+mov     rdx, [rbp-8]
+add     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+18h], edx
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+add     rax, rdx
+cmp     rax, 40h
+jbe     loc_41EADA
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+add     rax, rdx
+and     rax, 0FFFFFFFFFFFFFFC0h
+mov     rsi, rax
+mov     rax, [rbp-28h]
+lea     rcx, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     rdx, rax
+mov     rdi, rcx
+call    md5_process_block
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+add     rax, rdx
+and     eax, 3Fh
+mov     rdx, rax
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+add     rax, rcx
+and     rax, 0FFFFFFFFFFFFFFC0h
+lea     rcx, [rax+10h]
+mov     rax, [rbp-28h]
+add     rax, rcx
+lea     rcx, [rax+0Ch]
+mov     rax, [rbp-28h]
+add     rax, 1Ch
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rax, [rbp-10h]
+mov     edx, eax
+mov     rax, [rbp-8]
+add     eax, edx
+and     eax, 3Fh
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+18h], edx
+mov     rax, [rbp-8]
+add     [rbp+buffer], rax
+mov     rax, [rbp-8]
+sub     [rbp+len], rax
+cmp     [rbp+len], 40h
+jbe     short loc_41EB20
+mov     rax, [rbp-20h]
+and     rax, 0FFFFFFFFFFFFFFC0h
+mov     rcx, rax
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    md5_process_block
+mov     rax, [rbp-20h]
+and     rax, 0FFFFFFFFFFFFFFC0h
+add     [rbp+buffer], rax
+and     [rbp+len], 3Fh
+cmp     [rbp+len], 0
+jz      short loc_41EB4F
+mov     rax, [rbp-28h]
+lea     rcx, [rax+1Ch]
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-20h]
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+18h], edx
+nop
+leave
+retn

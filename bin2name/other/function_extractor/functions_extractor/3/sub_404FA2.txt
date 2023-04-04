@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 0Eh
+call    _nl_langinfo
+mov     [rbp+s1], rax
+cmp     [rbp+s1], 0
+jnz     short loc_404FC7
+mov     [rbp+s1], 406151h
+call    sub_404AC8
+mov     [rbp+s2], rax
+jmp     short loc_405048
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_405003
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Ah
+jnz     short loc_405020
+mov     rax, [rbp-8]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_405020
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+lea     rdx, [rax+1]
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     [rbp+s1], rax
+jmp     short loc_405057
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+add     [rbp+s2], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+add     rax, 1
+add     [rbp+s2], rax
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_404FD2
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40506A
+mov     [rbp+s1], 40615Eh
+mov     rax, [rbp-10h]
+leave
+retn

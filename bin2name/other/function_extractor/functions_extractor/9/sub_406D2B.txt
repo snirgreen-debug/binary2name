@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0A0h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-90h]
+mov     rdx, rax
+mov     esi, 6148C0h
+mov     edi, 0
+call    _sigprocmask
+mov     eax, cs:dword_614334
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_406D94
+mov     cs:dword_614334, 0FFFFFFFFh
+mov     eax, [rbp-94h]
+mov     edi, eax
+call    _close
+mov     edi, 64CF20h
+call    sub_40CB02
+lea     rax, [rbp-90h]
+mov     edx, 0
+mov     rsi, rax
+mov     edi, 2
+call    _sigprocmask
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_406DC2
+call    ___stack_chk_fail
+leave
+retn

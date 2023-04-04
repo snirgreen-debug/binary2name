@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+and     eax, 1
+test    eax, eax
+jz      short loc_415454
+mov     eax, 0
+jmp     short locret_41548A
+mov     rax, [rbp-8]
+mov     eax, [rax+10h]
+and     eax, 2
+test    eax, eax
+jz      short loc_415474
+mov     rax, [rbp-8]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    _strlen
+jmp     short locret_41548A
+mov     rax, [rbp-8]
+mov     rdx, [rax+20h]
+mov     rax, [rbp-8]
+mov     rax, [rax+18h]
+sub     rdx, rax
+mov     rax, rdx
+leave
+retn

@@ -1,0 +1,51 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_1C], esi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+and     eax, [rbp-1Ch]
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax+4], edx
+mov     rax, [rbp-18h]
+mov     dword ptr [rax], 0
+mov     [rbp+var_4], 0
+jmp     short loc_40685F
+mov     eax, [rbp-4]
+cdqe
+mov     edx, [rax*8+62D1C4h]
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+and     eax, edx
+test    eax, eax
+jz      short loc_40685B
+mov     rax, [rbp-18h]
+mov     edx, [rax]
+mov     eax, [rbp-4]
+cdqe
+mov     eax, [rax*8+62D1C0h]
+or      edx, eax
+mov     rax, [rbp-18h]
+mov     [rax], edx
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cdqe
+mov     eax, [rax*8+62D1C0h]
+cmp     eax, [rbp-4]
+jg      short loc_406828
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+test    eax, eax
+jz      short loc_40688E
+mov     rax, [rbp-18h]
+mov     edx, [rax]
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+and     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+pop     rbp
+retn

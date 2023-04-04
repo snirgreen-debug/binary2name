@@ -1,0 +1,14 @@
+mov     eax, 6050BFh
+push    rbp
+sub     rax, 6050B8h
+cmp     rax, 0Eh
+mov     rbp, rsp
+jbe     short loc_4009A0
+mov     eax, 0
+test    rax, rax
+jz      short loc_4009A0
+pop     rbp
+mov     edi, 6050B8h
+jmp     rax
+pop     rbp
+retn

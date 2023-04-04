@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+nmemb], rdi
+mov     [rbp+size], rsi
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _calloc
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_40A563
+call    sub_40A5CA
+mov     rax, [rbp-8]
+leave
+retn

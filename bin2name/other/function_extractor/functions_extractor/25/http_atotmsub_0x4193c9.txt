@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+time_string], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+t.tm_isdst], 0
+mov     [rbp+i], 0
+jmp     short loc_419432
+mov     eax, [rbp-44h]
+cdqe
+mov     rcx, [rax*8+63E9A0h]
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strptime
+mov     rdi, rax
+call    check_end
+test    eax, eax
+jz      short loc_41942E
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    mktime_from_utc
+jmp     short loc_419441
+add     [rbp+i], 1
+mov     eax, [rbp-44h]
+cmp     eax, 3
+jbe     short loc_4193F4
+mov     rax, 0FFFFFFFFFFFFFFFFh
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_419455
+call    ___stack_chk_fail
+leave
+retn

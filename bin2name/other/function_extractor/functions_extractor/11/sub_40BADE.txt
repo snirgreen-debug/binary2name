@@ -1,0 +1,165 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 6B0h
+mov     [rbp+var_668], rdi
+mov     [rbp+needle], rsi
+mov     [rbp+haystack], rdx
+mov     [rbp+var_680], rcx
+mov     [rbp+s], r8
+mov     [rbp+var_690], r9
+mov     rax, [rbp+10h]
+mov     [rbp+var_698], rax
+mov     rax, [rbp+18h]
+mov     [rbp+var_6A0], rax
+mov     rax, [rbp+20h]
+mov     [rbp+var_6A8], rax
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_654], 0
+mov     [rbp+var_658], 0
+cmp     [rbp+var_680], 0
+jz      loc_40BDB0
+cmp     [rbp+arg_18], 1
+jnz     short loc_40BBE1
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    sub_4069E0
+mov     rsi, [rbp-680h]
+lea     rax, [rbp-650h]
+mov     ecx, 0
+mov     edx, 0
+mov     rdi, rax
+call    sub_4131E9
+test    eax, eax
+jnz     short loc_40BC0F
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    sub_407A74
+test    eax, eax
+jnz     short loc_40BC0F
+lea     rcx, [rbp-650h]
+mov     rax, [rbp-668h]
+lea     rdx, sub_40781D
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_407A0E
+test    eax, eax
+setz    al
+movzx   eax, al
+mov     [rbp+var_658], eax
+jmp     short loc_40BC0F
+cmp     [rbp+arg_18], 2
+jnz     short loc_40BC0F
+mov     rdx, [rbp-670h]
+mov     rax, [rbp-678h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strstr
+test    rax, rax
+setnz   al
+movzx   eax, al
+mov     [rbp+var_658], eax
+cmp     [rbp+var_658], 0
+jz      loc_40BD99
+mov     rax, [rbp-6A8h]
+mov     edx, [rax]
+mov     rax, [rbp-698h]
+mov     eax, [rax]
+cmp     edx, eax
+jnz     loc_40BCC0
+mov     rax, [rbp-698h]
+mov     eax, [rax]
+lea     edx, [rax+64h]
+mov     rax, [rbp-698h]
+mov     [rax], edx
+mov     rax, [rbp-698h]
+mov     eax, [rax]
+cdqe
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-690h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _realloc
+mov     rdx, rax
+mov     rax, [rbp-690h]
+mov     [rax], rdx
+mov     rax, [rbp-690h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40BCC0
+lea     rax, unk_61A8C8
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSMemoryAllocat_2
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 1
+call    _exit
+mov     rax, [rbp-690h]
+mov     rdx, [rax]
+mov     rax, [rbp-6A8h]
+mov     eax, [rax]
+cdqe
+shl     rax, 4
+add     rdx, rax
+mov     rax, [rbp-678h]
+mov     [rdx], rax
+mov     rax, [rbp-688h]
+mov     esi, 21h
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_40BD28
+mov     rax, [rbp-690h]
+mov     rdx, [rax]
+mov     rax, [rbp-6A8h]
+mov     eax, [rax]
+cdqe
+shl     rax, 4
+add     rdx, rax
+lea     rax, aPrimitiveUnit
+mov     [rdx+8], rax
+jmp     short loc_40BD4F
+mov     rax, [rbp-690h]
+mov     rdx, [rax]
+mov     rax, [rbp-6A8h]
+mov     eax, [rax]
+cdqe
+shl     rax, 4
+add     rdx, rax
+mov     rax, [rbp-688h]
+mov     [rdx+8], rax
+mov     rax, [rbp-6A8h]
+mov     eax, [rax]
+lea     edx, [rax+1]
+mov     rax, [rbp-6A8h]
+mov     [rax], edx
+mov     rax, [rbp-680h]
+mov     rdi, rax
+call    sub_402B3D
+mov     [rbp+var_654], eax
+mov     rax, [rbp-6A0h]
+mov     eax, [rax]
+cmp     eax, [rbp-654h]
+jge     short loc_40BD99
+mov     rax, [rbp-6A0h]
+mov     edx, [rbp-654h]
+mov     [rax], edx
+cmp     [rbp+arg_18], 1
+jnz     short loc_40BDB1
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    sub_406A20
+jmp     short loc_40BDB1
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_40BDC5
+call    ___stack_chk_fail
+leave
+retn

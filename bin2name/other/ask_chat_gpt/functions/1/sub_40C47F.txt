@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, cs:off_62D200
+mov     rdx, [rbp-8]
+mov     rdi, rdx
+call    rax 
+nop
+leave
+retn

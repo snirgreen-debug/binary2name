@@ -1,0 +1,93 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+candidate], rdi
+mov     [rbp+tuning], rsi
+mov     [rbp+hasher], rdx
+mov     [rbp+comparator], rcx
+mov     [rbp+data_freer], r8
+cmp     [rbp+hasher], 0
+jnz     short loc_4188CC
+mov     [rbp+hasher], 418626h
+cmp     [rbp+comparator], 0
+jnz     short loc_4188DB
+mov     [rbp+comparator], 41865Dh
+mov     edi, 50h
+call    _malloc
+mov     [rbp+table], rax
+cmp     [rbp+table], 0
+jnz     short loc_4188FA
+mov     eax, 0
+jmp     locret_418A0A
+cmp     [rbp+tuning], 0
+jnz     short loc_418909
+mov     [rbp+tuning], 42FF20h
+mov     rax, [rbp-8]
+mov     rdx, [rbp-20h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    check_tuning
+xor     eax, 1
+test    al, al
+jnz     loc_4189F2
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    compute_bucket_size
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+10h], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+test    rax, rax
+jz      loc_4189F5
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     esi, 10h
+mov     rdi, rax
+call    _calloc
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4189F8
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+shl     rax, 4
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+18h], 0
+mov     rax, [rbp-8]
+mov     qword ptr [rax+20h], 0
+mov     rax, [rbp-8]
+mov     rdx, [rbp-28h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-30h]
+mov     [rax+38h], rdx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-38h]
+mov     [rax+40h], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+48h], 0
+mov     rax, [rbp-8]
+jmp     short locret_418A0A
+nop
+jmp     short fail
+nop
+jmp     short fail
+nop
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+leave
+retn

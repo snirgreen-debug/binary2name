@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    get_log_fp
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jz      short loc_41CCE4
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _fflush
+mov     cs:needs_flushing, 0
+nop
+leave
+retn

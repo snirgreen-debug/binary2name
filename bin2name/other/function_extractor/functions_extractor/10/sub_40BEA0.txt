@@ -1,0 +1,108 @@
+push    rbp
+push    rbx
+mov     rbp, rdi
+sub     rsp, 1878h
+mov     rbx, [rdi+38h]
+lea     rdx, [rsp+18h]
+lea     rsi, [rsp+10h]
+mov     [rsp+1888h+var_1878], 0
+mov     rax, fs:28h
+mov     [rsp+1888h+var_20], rax
+xor     eax, eax
+mov     dword ptr [rbx], 1
+call    sub_40B750
+cmp     [rsp+1888h+var_1878], 1
+jle     short loc_40BEF3
+mov     edi, 413EB0h
+call    _puts
+mov     rax, [rsp+18h]
+mov     rdi, [rax]
+call    _puts
+mov     rax, [rsp+18h]
+lea     rdi, [rsp+20h]
+mov     esi, 1000h
+mov     rdx, [rax]
+call    sub_4036A0
+test    eax, eax
+jz      loc_40C090
+mov     [rsp+1888h+var_1838], rbx
+nop     dword ptr [rax+00h]
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+60h]
+lea     rdi, [rsp+20h]
+call    sub_403F80
+cmp     [rsp+1888h+var_187C], 20h
+ja      short def_40BF47
+mov     eax, [rsp+0Ch]
+jmp     ds:jpt_40BF47[rax*8]
+movzx   eax, byte ptr [rsp+60h]
+cmp     al, 3Bh
+jz      short loc_40BF82
+cmp     al, 7Dh
+jz      loc_40C060
+cmp     al, 23h
+jz      loc_40C078
+lea     rdx, [rsp+60h]
+lea     rdi, [rsp+20h]
+mov     ecx, 412E3Eh
+mov     esi, 11h
+call    sub_405040
+cmp     dword ptr [rbx], 4000h
+jz      short loc_40BFD6
+mov     rax, [rsp+38h]
+cmp     byte ptr [rax], 0
+jnz     short loc_40BF28
+lea     rdi, [rsp+20h]
+mov     esi, 1000h
+call    sub_4035E0
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_40BF28
+jmp     short loc_40BFD6
+lea     rdx, [rsp+60h]
+lea     rdi, [rsp+20h]
+mov     ecx, 412E3Eh
+mov     esi, 12h
+call    sub_405040
+jmp     short loc_40BF82
+mov     dword ptr [rbx], 4000h
+mov     rdi, [rsp+20h]
+call    _fclose
+lea     rdi, [rbx+20h]
+call    sub_40F710
+lea     rdi, [rbx+28h]
+call    sub_40F710
+lea     rdi, [rbx+30h]
+call    sub_40F710
+lea     rdi, [rbx+40h]
+call    sub_40F710
+lea     rdi, [rbx+38h]
+call    sub_40F710
+mov     rax, [rbp+30h]
+mov     dword ptr [rax], 200h
+mov     dword ptr [rax+0Ch], 1
+mov     rax, [rsp+1868h]
+xor     rax, fs:28h
+jnz     short loc_40C0AB
+add     rsp, 1878h
+pop     rbx
+pop     rbp
+retn
+lea     rdx, [rsp+460h]
+lea     rsi, [rsp+60h]
+lea     rdi, [rsp+20h]
+call    sub_408EB0
+jmp     loc_40BF82
+test    byte ptr [rbx], 7
+jz      def_40BF47
+mov     dword ptr [rbx], 1
+jmp     loc_40BF8A
+lea     rdi, [rsp+20h]
+call    sub_403C50
+jmp     loc_40BF82
+lea     rdi, [rsp+20h]
+xor     ecx, ecx
+mov     edx, 4133DFh
+mov     esi, 8001h
+call    sub_405040
+jmp     loc_40BF1F
+call    ___stack_chk_fail

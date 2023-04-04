@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+args], rdi
+mov     [rbp+argno], esi
+mov     [rbp+last], rdx
+mov     [rbp+predicates], rcx
+mov     cs:first_nonoption_arg, 0
+nop
+pop     rbp
+retn

@@ -1,0 +1,86 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+table], rdi
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+test    rax, rax
+jz      short loc_418B96
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+test    rax, rax
+jz      short loc_418B96
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+bucket], rax
+jmp     short loc_418B88
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_418B83
+mov     rax, [rbp-18h]
+mov     [rbp+cursor], rax
+jmp     short loc_418B7C
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+mov     rdx, [rbp-10h]
+mov     rdx, [rdx]
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+cursor], rax
+cmp     [rbp+cursor], 0
+jnz     short loc_418B5C
+add     [rbp+bucket], 10h
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+cmp     rax, [rbp-18h]
+ja      short loc_418B46
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+bucket], rax
+jmp     short loc_418BDD
+mov     rax, [rbp-18h]
+mov     rax, [rax+8]
+mov     [rbp+cursor], rax
+jmp     short loc_418BD1
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+next], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     [rbp+cursor], rax
+cmp     [rbp+cursor], 0
+jnz     short loc_418BB1
+add     [rbp+bucket], 10h
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+cmp     rax, [rbp-18h]
+ja      short loc_418BA3
+mov     rax, [rbp-28h]
+mov     rax, [rax+48h]
+mov     [rbp+cursor], rax
+jmp     short loc_418C19
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+next], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     [rbp+cursor], rax
+cmp     [rbp+cursor], 0
+jnz     short loc_418BF9
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

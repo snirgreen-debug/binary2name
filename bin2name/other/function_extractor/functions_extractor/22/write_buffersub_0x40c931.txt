@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+fd], edi
+mov     [rbp+buf], rsi
+mov     [rbp+cnt], edx
+mov     eax, [rbp-8]
+test    eax, eax
+jns     short loc_40C951
+mov     [rbp+cnt], 7FFFFFFFh
+mov     edx, [rbp-8]
+mov     rcx, [rbp-10h]
+mov     eax, [rbp-4]
+mov     rsi, rcx
+mov     edi, eax
+call    _write
+leave
+retn

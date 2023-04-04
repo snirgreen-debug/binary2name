@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, unk_619B40
+mov     rax, [rax]
+lea     rsi, aAt
+mov     rdi, rax
+call    _fopen
+mov     rdx, rax
+lea     rax, unk_619B48
+mov     [rax], rdx
+lea     rax, unk_619B48
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_4100DB
+lea     rax, unk_619B40
+mov     rcx, [rax]
+lea     rax, unk_61A8C8
+mov     rdx, [rax]
+mov     rax, cs:stderr_ptr
+mov     rax, [rax]
+lea     rsi, aSCannotWriteTo
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     edi, 0
+call    _perror
+mov     edi, 1
+call    _exit
+lea     rax, [rbp-18h]
+mov     rdi, rax
+call    _time
+lea     rax, [rbp-18h]
+mov     rdi, rax
+call    _ctime
+mov     [rbp+var_10], rax
+lea     rax, unk_619B48
+mov     rax, [rax]
+mov     rdx, [rbp-10h]
+lea     rsi, aLogStartedS
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+lea     rax, sub_41000A
+mov     rdi, rax
+call    sub_413430
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_41013D
+call    ___stack_chk_fail
+leave
+retn

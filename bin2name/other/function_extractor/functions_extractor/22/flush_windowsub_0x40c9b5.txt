@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:outcnt
+test    eax, eax
+jz      short loc_40CA1C
+mov     eax, cs:outcnt
+mov     esi, eax
+mov     edi, 64D320h
+call    updcrc
+mov     eax, cs:test
+test    eax, eax
+jnz     short loc_40C9F7
+mov     edx, cs:outcnt
+mov     eax, cs:ofd
+mov     esi, 64D320h
+mov     edi, eax
+call    write_buf
+mov     eax, cs:outcnt
+mov     edx, eax
+mov     rax, cs:bytes_out
+add     rax, rdx
+mov     cs:bytes_out, rax
+mov     cs:outcnt, 0
+jmp     short loc_40CA1D
+nop
+pop     rbp
+retn

@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+ctx], rdi
+mov     rax, [rbp-18h]
+mov     [rbp+ctx_imp], rax
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    md5_init_ctx
+nop
+leave
+retn

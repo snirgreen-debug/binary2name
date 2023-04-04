@@ -1,0 +1,126 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+rbuf], rdi
+mov     [rbp+server_type], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     esi, 0
+mov     edi, 431639h
+call    ftp_request
+mov     [rbp+request], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _strlen
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+mov     rcx, [rbp-10h]
+mov     rsi, rcx
+mov     edi, eax
+call    iwrite
+mov     [rbp+nwritten], eax
+cmp     [rbp+nwritten], 0
+jns     short loc_40D414
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     eax, 37h
+jmp     loc_40D570
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+lea     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    ftp_response
+mov     [rbp+err], eax
+cmp     [rbp+err], 0Fh
+jz      short loc_40D450
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, [rbp-1Ch]
+jmp     loc_40D570
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 35h
+jnz     short loc_40D471
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, 18h
+jmp     loc_40D570
+mov     rax, [rbp-18h]
+mov     esi, 4315C7h
+mov     rdi, rax
+call    _strtok
+mov     esi, 4315C7h
+mov     edi, 0
+call    _strtok
+mov     [rbp+request], rax
+mov     rax, [rbp-10h]
+mov     esi, 43163Eh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_40D4B9
+mov     rax, [rbp-30h]
+mov     dword ptr [rax], 1
+jmp     loc_40D55F
+mov     rax, [rbp-10h]
+mov     esi, 431642h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_40D4DD
+mov     rax, [rbp-30h]
+mov     dword ptr [rax], 0
+jmp     loc_40D55F
+mov     rax, [rbp-10h]
+mov     esi, 431647h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jz      short loc_40D507
+mov     rax, [rbp-10h]
+mov     esi, 431652h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_40D513
+mov     rax, [rbp-30h]
+mov     dword ptr [rax], 2
+jmp     short loc_40D55F
+mov     rax, [rbp-10h]
+mov     esi, 43165Eh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_40D534
+mov     rax, [rbp-30h]
+mov     dword ptr [rax], 3
+jmp     short loc_40D55F
+mov     rax, [rbp-10h]
+mov     esi, 431664h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_40D555
+mov     rax, [rbp-30h]
+mov     dword ptr [rax], 4
+jmp     short loc_40D55F
+mov     rax, [rbp-30h]
+mov     dword ptr [rax], 5
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+mov     eax, 0Fh
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40D584
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+call    cleanup
+mov     eax, cs:state_0.exit_status
+mov     edi, eax
+call    _exit

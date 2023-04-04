@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+sp_0], rdi
+mov     [rbp+p], rsi
+mov     [rbp+instr], edx
+cmp     [rbp+instr], 0
+jz      short loc_42594C
+cmp     [rbp+instr], 1
+jz      short loc_42594C
+cmp     [rbp+instr], 2
+jz      short loc_42594C
+cmp     [rbp+instr], 3
+jz      short loc_42594C
+cmp     [rbp+instr], 4
+jz      short loc_42594C
+call    ___errno_location
+mov     dword ptr [rax], 16h
+mov     eax, 1
+jmp     short locret_42595E
+mov     eax, [rbp-14h]
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     [rax+74h], dx
+mov     eax, 0
+leave
+retn

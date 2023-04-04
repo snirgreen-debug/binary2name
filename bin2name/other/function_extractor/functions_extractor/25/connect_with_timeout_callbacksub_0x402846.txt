@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+arg], rdi
+mov     rax, [rbp-18h]
+mov     [rbp+ctx], rax
+mov     rax, [rbp-8]
+mov     edx, [rax+10h]
+mov     rax, [rbp-8]
+mov     rcx, [rax+8]
+mov     rax, [rbp-8]
+mov     eax, [rax]
+mov     rsi, rcx
+mov     edi, eax
+call    _connect
+mov     edx, eax
+mov     rax, [rbp-8]
+mov     [rax+14h], edx
+nop
+leave
+retn

@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 670h
+mov     [rbp+var_668], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-650h]
+mov     rdi, rax
+call    sub_4069E0
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    sub_407A74
+mov     [rbp+var_654], eax
+cmp     [rbp+var_654], 0
+jz      short loc_407D36
+mov     eax, [rbp-654h]
+jmp     short loc_407D75
+lea     rcx, [rbp-650h]
+mov     rax, [rbp-668h]
+lea     rdx, sub_407877
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_407A0E
+test    eax, eax
+jz      short loc_407D61
+mov     eax, 5
+jmp     short loc_407D75
+mov     rax, [rbp-668h]
+mov     rdi, rax
+call    sub_406A20
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_407D89
+call    ___stack_chk_fail
+leave
+retn

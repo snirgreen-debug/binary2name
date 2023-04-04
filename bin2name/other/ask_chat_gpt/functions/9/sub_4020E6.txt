@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+cmp     [rbp+var_14], 0
+jle     short loc_402102
+cmp     [rbp+var_14], 9
+jle     short loc_40210C
+mov     edi, 40F7C4h
+call    sub_40CD07
+mov     eax, [rbp-14h]
+mov     cs:dword_614828, eax
+mov     eax, 6286E0h
+mov     edx, 10000h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     eax, 0FFFFFFFFh
+mov     cs:qword_614838, rax
+mov     cs:qword_614830, 0
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C2h]
+movzx   eax, ax
+mov     cs:dword_614824, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C0h]
+movzx   eax, ax
+mov     cs:dword_618298, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C4h]
+movzx   eax, ax
+mov     cs:dword_614840, eax
+mov     eax, [rbp-14h]
+cdqe
+movzx   eax, word ptr [rax*8+6142C6h]
+movzx   eax, ax
+mov     cs:dword_61829C, eax
+cmp     [rbp+var_14], 1
+jnz     short loc_4021B6
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax]
+or      eax, 4
+mov     edx, eax
+mov     rax, [rbp-20h]
+mov     [rax], dx
+jmp     short loc_4021CF
+cmp     [rbp+var_14], 9
+jnz     short loc_4021CF
+mov     rax, [rbp-20h]
+movzx   eax, word ptr [rax]
+or      eax, 2
+mov     edx, eax
+mov     rax, [rbp-20h]
+mov     [rax], dx
+mov     cs:dword_618288, 0
+mov     cs:qword_618290, 0
+mov     rax, cs:qword_618280
+mov     esi, 10000h
+mov     edi, 64D320h
+call    rax 
+mov     cs:dword_614820, eax
+mov     eax, cs:dword_614820
+test    eax, eax
+jz      short loc_402212
+mov     eax, cs:dword_614820
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_402228
+mov     cs:dword_61481C, 1
+mov     cs:dword_614820, 0
+jmp     short loc_40228D
+mov     cs:dword_61481C, 0
+jmp     short loc_402239
+call    sub_4024DC
+mov     eax, cs:dword_614820
+cmp     eax, 105h
+ja      short loc_402250
+mov     eax, cs:dword_61481C
+test    eax, eax
+jz      short loc_402234
+mov     cs:dword_614818, 0
+mov     ebx, 0
+jmp     short loc_402288
+mov     eax, cs:dword_614818
+shl     eax, 5
+mov     edx, eax
+mov     eax, ebx
+movzx   eax, byte ptr [rax+64D320h]
+movzx   eax, al
+xor     eax, edx
+and     eax, 7FFFh
+mov     cs:dword_614818, eax
+add     ebx, 1
+cmp     ebx, 1
+jbe     short loc_402261
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

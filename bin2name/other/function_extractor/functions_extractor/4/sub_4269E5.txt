@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+mov     r12, rdi
+jmp     short loc_426A13
+mov     r12, [r12+10h]
+mov     rax, [rbx+18h]
+test    rax, rax
+jz      short loc_426A0B
+mov     rax, [rbx+18h]
+mov     rdi, rax
+call    _closedir
+mov     rdi, rbx
+call    _free
+mov     rbx, r12
+test    rbx, rbx
+jnz     short loc_4269F1
+nop
+pop     rbx
+pop     r12
+pop     rbp
+retn

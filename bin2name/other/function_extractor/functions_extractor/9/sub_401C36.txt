@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+mov     eax, [rbp-4]
+mov     cs:dword_61480C, eax
+mov     cs:word_614810, 0
+mov     cs:dword_614814, 0
+mov     eax, cs:dword_61480C
+cmp     eax, 0FFFFFFFFh
+jz      short loc_401C6F
+mov     cs:qword_618280, 40D7E5h
+nop
+pop     rbp
+retn

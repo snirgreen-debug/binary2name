@@ -1,0 +1,20 @@
+test    rdi, rdi
+jz      short locret_40F74D
+mov     rcx, [rdi]
+test    rcx, rcx
+jz      short locret_40F74D
+mov     rax, [rcx+18h]
+test    rax, rax
+jz      short locret_40F74D
+xor     esi, esi
+jmp     short loc_40F733
+mov     rax, rdx
+mov     [rcx+18h], rsi
+mov     rsi, [rdi]
+mov     rcx, rax
+mov     [rdi], rax
+mov     rdx, [rax+18h]
+test    rdx, rdx
+jnz     short loc_40F730
+mov     [rax+18h], rsi
+rep retn

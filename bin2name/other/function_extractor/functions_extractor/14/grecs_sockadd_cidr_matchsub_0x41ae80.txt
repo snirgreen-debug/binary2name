@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     [rbp+var_40], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rdx, [rbp-38h]
+lea     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_sockaddr_to_cidr
+test    eax, eax
+jz      short loc_41AEBD
+mov     eax, 1
+jmp     short loc_41AED0
+lea     rdx, [rbp-30h]
+mov     rax, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_cidr_match
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41AEE4
+call    ___stack_chk_fail
+leave
+retn

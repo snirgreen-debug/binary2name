@@ -1,0 +1,5 @@
+push    rbp
+mov     rbp, rsp
+call    sub_406D2B
+mov     edi, 1
+call    sub_406CB8

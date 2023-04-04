@@ -1,0 +1,52 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_20], rcx
+cmp     [rbp+var_8], 0
+jnz     short loc_411324
+lea     rax, aDeleting
+mov     [rbp+var_8], rax
+mov     eax, [rbp-0Ch]
+sub     eax, 4
+cmp     eax, 1Dh
+ja      short def_411350
+mov     eax, eax
+lea     rdx, [rax*4+0]
+lea     rax, jpt_411350
+mov     eax, [rdx+rax]
+movsxd  rdx, eax
+lea     rax, jpt_411350
+add     rax, rdx
+jmp     rax
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_410FEF
+jmp     short loc_4113A8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_410FEF
+jmp     short loc_4113A8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_410FEF
+jmp     short loc_4113A8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_410FEF
+jmp     short loc_4113A8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_410FEF
+jmp     short loc_4113A8
+nop
+nop
+leave
+retn

@@ -1,0 +1,172 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 1078h
+mov     [rbp+script_filename], rdi
+mov     [rbp+excersise_label], rsi
+mov     [rbp+adjusted_cpm], rdx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+found], 0
+mov     rax, cs:global_home_env
+mov     rdi, rax
+call    _getenv
+mov     rdi, rax
+call    _strlen
+add     rax, 12h
+mov     rdi, rax
+call    _malloc
+mov     [rbp+filename], rax
+cmp     [rbp+filename], 0
+jnz     short loc_406ED7
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    fatal_error
+mov     rax, cs:global_home_env
+mov     rdi, rax
+call    _getenv
+mov     rdx, rax
+mov     rax, [rbp-1040h]
+mov     ecx, 40ACF9h
+mov     esi, 40AC72h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rax, [rbp-1040h]
+mov     esi, 40A6E0h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+blfile], rax
+cmp     [rbp+blfile], 0
+jnz     short loc_406F45
+mov     rax, [rbp-1040h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+jmp     loc_40715E
+mov     rax, [rbp-1068h]
+mov     rdi, rax
+call    _strdup
+mov     [rbp+fixed_script_filename], rax
+cmp     [rbp+fixed_script_filename], 0
+jnz     short loc_406F86
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    fatal_error
+mov     rax, [rbp-1030h]
+mov     [rbp+p], rax
+jmp     short loc_406FB6
+mov     rax, [rbp-1048h]
+movzx   eax, byte ptr [rax]
+cmp     al, 20h
+jnz     short loc_406FAE
+mov     rax, [rbp-1048h]
+mov     byte ptr [rax], 2Bh
+add     [rbp+p], 1
+mov     rax, [rbp-1048h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_406F96
+mov     rax, [rbp-1068h]
+mov     rdi, rax
+call    _strlen
+mov     ebx, eax
+mov     rax, [rbp-1070h]
+mov     rdi, rax
+call    _strlen
+add     eax, ebx
+add     eax, 3
+mov     [rbp+search_len], eax
+mov     eax, [rbp-104Ch]
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    _malloc
+mov     [rbp+search], rax
+cmp     [rbp+search], 0
+jnz     short loc_407034
+mov     edi, 40ACDBh
+call    _perror
+mov     edi, 40ACE2h
+call    _gettext
+mov     esi, 0
+mov     rdi, rax
+call    fatal_error
+mov     rcx, [rbp-1070h]
+mov     rdx, [rbp-1030h]
+mov     rax, [rbp-1028h]
+mov     esi, 40AD0Ah
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+jmp     loc_4070F7
+mov     [rbp+a], 0
+jmp     short loc_407085
+mov     eax, [rbp-1050h]
+cdqe
+movzx   eax, byte ptr [rbp+rax-1020h]
+test    al, al
+add     [rbp+a], 1
+cmp     [rbp+a], 12h
+jle     short loc_40706C
+mov     eax, [rbp-104Ch]
+movsxd  rdx, eax
+lea     rax, [rbp-1020h]
+add     rax, 13h
+mov     rcx, [rbp-1028h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _strncmp
+test    eax, eax
+jnz     short loc_4070F7
+mov     eax, [rbp-104Ch]
+cdqe
+lea     rdx, [rax+13h]
+lea     rax, [rbp-1020h]
+lea     rcx, [rax+rdx]
+mov     rax, [rbp-1078h]
+mov     rdx, rax
+mov     esi, 40AD12h
+mov     rdi, rcx
+mov     eax, 0
+call    _sscanf
+cmp     eax, 1
+jnz     short loc_4070F7
+mov     [rbp+found], 1
+mov     rdx, [rbp-1038h]
+lea     rax, [rbp-1020h]
+mov     esi, 1000h
+mov     rdi, rax
+call    _fgets
+test    rax, rax
+jnz     loc_407060
+mov     rax, [rbp-1028h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-1040h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-1030h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-1038h]
+mov     rdi, rax
+call    _fclose
+movzx   eax, byte ptr [rbp-1051h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_407172
+call    ___stack_chk_fail
+add     rsp, 1078h
+pop     rbx
+pop     rbp
+retn

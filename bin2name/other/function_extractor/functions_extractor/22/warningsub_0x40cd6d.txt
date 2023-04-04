@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+m], rdi
+mov     eax, cs:quiet
+test    eax, eax
+jnz     short loc_40CDAF
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-8]
+mov     r8, rcx
+mov     ecx, 6182C0h
+mov     esi, 411F07h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:exit_code
+test    eax, eax
+jnz     short loc_40CDC3
+mov     cs:exit_code, 2
+nop
+leave
+retn

@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, edi
+mov     [rbp+ignore], al
+movzx   eax, byte ptr [rbp-4]
+mov     cs:ignore_EPIPE, al
+nop
+pop     rbp
+retn

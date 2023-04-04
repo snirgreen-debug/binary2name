@@ -1,0 +1,83 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0F0h
+mov     [rbp+path], rdi
+mov     [rbp+flags], esi
+mov     [rbp+var_A0], rdx
+mov     [rbp+var_98], rcx
+mov     [rbp+var_90], r8
+mov     [rbp+var_88], r9
+test    al, al
+jz      short loc_416A70
+movaps  [rbp+var_80], xmm0
+movaps  [rbp+var_70], xmm1
+movaps  [rbp+var_60], xmm2
+movaps  [rbp+var_50], xmm3
+movaps  [rbp+var_40], xmm4
+movaps  [rbp+var_30], xmm5
+movaps  [rbp+var_20], xmm6
+movaps  [rbp+var_10], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_B8], rax
+xor     eax, eax
+mov     [rbp+mode], 0
+mov     eax, [rbp-0ECh]
+and     eax, 40h
+test    eax, eax
+jz      short loc_416B0E
+mov     [rbp+var_D0], 10h
+mov     [rbp+var_CC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_C8], rax
+lea     rax, [rbp-0B0h]
+mov     [rbp+var_C0], rax
+mov     eax, [rbp-0D0h]
+cmp     eax, 30h
+jnb     short loc_416AF4
+mov     rax, [rbp-0C0h]
+mov     edx, [rbp-0D0h]
+mov     edx, edx
+add     rax, rdx
+mov     edx, [rbp-0D0h]
+add     edx, 8
+mov     [rbp+var_D0], edx
+jmp     short loc_416B06
+mov     rax, [rbp-0C8h]
+lea     rdx, [rax+8]
+mov     [rbp+var_C8], rdx
+mov     eax, [rax]
+mov     [rbp+mode], eax
+movzx   eax, cs:cloexec_status_known_4770
+xor     eax, 1
+test    al, al
+jz      short loc_416B2E
+call    o_cloexec_works
+mov     cs:cloexec_works_4769, al
+mov     cs:cloexec_status_known_4770, 1
+mov     eax, [rbp-0ECh]
+or      eax, 80000h
+mov     ecx, eax
+mov     edx, [rbp-0D8h]
+mov     rax, [rbp-0E8h]
+mov     esi, ecx
+mov     rdi, rax
+mov     eax, 0
+call    open_safer
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_416B86
+movzx   eax, cs:cloexec_works_4769
+xor     eax, 1
+test    al, al
+jz      short loc_416B86
+mov     eax, [rbp-0D4h]
+mov     esi, 1
+mov     edi, eax
+call    set_cloexec_flag
+mov     eax, [rbp-0D4h]
+mov     rcx, [rbp-0B8h]
+xor     rcx, fs:28h
+jz      short locret_416BA3
+call    ___stack_chk_fail
+leave
+retn

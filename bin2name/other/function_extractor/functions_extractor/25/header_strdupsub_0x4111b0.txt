@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+header], rdi
+mov     [rbp+closure], rsi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    xstrdup_real
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     eax, 1
+leave
+retn

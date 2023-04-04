@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:host_name_addresses_map
+test    rax, rax
+jz      short loc_411E16
+mov     rax, cs:host_name_addresses_map
+mov     edx, 0
+mov     esi, 411D73h
+mov     rdi, rax
+call    hash_table_map
+mov     rax, cs:host_name_addresses_map
+mov     rdi, rax
+call    hash_table_destroy
+mov     cs:host_name_addresses_map, 0
+nop
+pop     rbp
+retn

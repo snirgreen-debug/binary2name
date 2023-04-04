@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     [rbp+pred], rdi
+mov     [rbp+arg], rsi
+call    should_issue_warnings
+test    al, al
+jz      short loc_4102CD
+mov     rax, [rbp-20h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jz      short loc_4102CD
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 1
+call    safely_quote_err_filename
+mov     r12, rax
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 0
+call    safely_quote_err_filename
+mov     rbx, rax
+mov     edi, 42E9A8h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     r9, r12
+mov     r8, rbx
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     eax, 1
+add     rsp, 10h
+pop     rbx
+pop     r12
+pop     rbp
+retn

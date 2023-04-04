@@ -1,0 +1,157 @@
+push    r15
+push    r14
+mov     r15, rgiArgTypes
+push    r13
+push    r12
+mov     r13, rgiLowerB
+push    rbp
+push    rbx
+mov     rbp, szArgs
+mov     rbx, pibIn
+mov     r12, rgiUpperB
+sub     rsp, 438h
+mov     [rsp+468h+nArgs], esi
+lea     rgiArgTypes, [rsp+1Ch]
+lea     nArgs_0, [rsp+20h]
+mov     rax, fs:28h
+mov     [rsp+468h+var_40], rax
+xor     eax, eax
+call    NextLex
+mov     eax, [rsp+1Ch]
+cmp     eax, 8
+jz      loc_404BF0
+cmp     eax, 20h
+jz      loc_404BF0
+lea     rdx, [rsp+20h]
+xor     ecx, ecx
+mov     esi, 13h
+mov     rdi, pibIn
+mov     [rsp+468h+szPunct+1], 28h
+call    ReportError
+movzx   edx, byte ptr [rsp+20h]
+cmp     dl, 29h
+mov     eax, 1
+jz      short loc_404BC7
+lea     rdx, [rsp+1Ch]
+lea     rsi, [rsp+20h]
+mov     rdi, pibIn
+call    NextLex
+mov     eax, [rsp+1Ch]
+cmp     eax, 8
+jz      loc_404D08
+cmp     eax, 20h
+jz      loc_404D08
+lea     rdx, [rsp+20h]
+xor     ecx, ecx
+mov     esi, 13h
+mov     rdi, pibIn
+mov     [rsp+468h+szPunct+1], 29h
+call    ReportError
+xor     eax, eax
+mov     rcx, [rsp+428h]
+xor     rcx, fs:28h
+jnz     loc_404DB0
+add     rsp, 438h
+pop     pibIn
+pop     szArgs
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+cmp     [rsp+468h+szPunct], 28h
+jnz     loc_404B5C
+mov     ecx, [rsp+0Ch]
+test    ecx, ecx
+jle     loc_404B84
+xor     r14d, r14d
+mov     [rsp+468h+bOK], 1
+jmp     loc_404CBA
+lea     rdx, [rsp+1Ch]
+lea     rsi, [rsp+20h]
+mov     qword ptr [r12], 0FFFFFFFFFFFFFFFFh
+mov     rdi, pibIn
+mov     qword ptr [r13+0], 0FFFFFFFFFFFFFFFFh
+call    NextLex
+mov     eax, [rsp+1Ch]
+cmp     eax, 8
+jz      loc_404D20
+cmp     eax, 20h
+jz      loc_404D20
+add     r14d, 1
+add     rbp, 3FFh
+cmp     [rsp+468h+nArgs], r14d
+jle     loc_404D80
+mov     eax, [rsp+8]
+test    eax, eax
+jz      loc_404D80
+mov     rdi, pibIn
+call    SkipWhitespace
+test    pibIn, pibIn
+mov     [rsp+468h+bOK], eax
+jz      short loc_404CA2
+mov     rax, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_404D40
+cmp     al, 2Ch
+jz      loc_404D60
+mov     edx, [rsp+8]
+test    edx, edx
+jz      loc_404D90
+add     r15, 4
+add     r13, 8
+add     r12, 8
+lea     rdx, [rsp+18h]
+mov     rsi, szArgs
+mov     rdi, pibIn
+call    NextLex
+movsxd  rdx, dword ptr [r15]
+xor     eax, eax
+test    [rsp+468h+iType], edx
+setnle  al
+and     eax, [rsp+8]
+mov     [rsp+468h+bOK], eax
+jnz     loc_404C20
+mov     rdx, [rdx*8+6191A0h]
+mov     rcx, szArgs
+mov     esi, 14h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_404C20
+cmp     [rsp+468h+szPunct], 29h
+jnz     loc_404BAC
+mov     eax, 1
+jmp     loc_404BC7
+cmp     [rsp+468h+szPunct], 5Bh
+jnz     loc_404C58
+mov     rdx, r12
+mov     rsi, r13
+mov     rdi, pibIn
+call    GetArrayBounds
+jmp     loc_404C58
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+jz      loc_404CA2
+mov     rax, [pibIn+18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Ch
+jnz     loc_404CA2
+lea     rdx, [rsp+1Ch]
+mov     rsi, szArgs
+mov     rdi, pibIn
+call    NextLex
+mov     [rsp+468h+bOK], 1
+jmp     loc_404CAE
+movzx   edx, byte ptr [rsp+20h]
+jmp     loc_404B7A
+mov     rdx, szArgs
+mov     byte ptr [szArgs+1], 2Ch
+xor     ecx, ecx
+mov     esi, 13h
+mov     rdi, pibIn
+call    ReportError
+movzx   edx, byte ptr [rsp+20h]
+jmp     loc_404B7A
+call    ___stack_chk_fail

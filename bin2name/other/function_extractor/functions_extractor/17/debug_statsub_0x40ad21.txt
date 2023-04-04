@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+file], rdi
+mov     [rbp+bufp], rsi
+mov     rax, cs:stat_count
+add     rax, 1
+mov     cs:stat_count, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-8]
+mov     esi, 42C320h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:options_0.symlink_handling
+cmp     eax, 1
+jz      short loc_40AD77
+cmp     eax, 1
+jb      short loc_40ADA1
+cmp     eax, 2
+jz      short loc_40AD8C
+jmp     short loc_40ADB6
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    optionl_stat
+jmp     short locret_40ADCF
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    optionh_stat
+jmp     short locret_40ADCF
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    optionp_stat
+jmp     short locret_40ADCF
+mov     ecx, 42C640h
+mov     edx, 2A0h
+mov     esi, 42C0E8h
+mov     edi, 42C331h
+call    ___assert_fail
+leave
+retn

@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:downloaded_files_hash
+test    rax, rax
+jz      short loc_404D5E
+mov     rax, cs:downloaded_files_hash
+mov     edx, 0
+mov     esi, 404CF4h
+mov     rdi, rax
+call    hash_table_map
+mov     rax, cs:downloaded_files_hash
+mov     rdi, rax
+call    hash_table_destroy
+mov     cs:downloaded_files_hash, 0
+nop
+pop     rbp
+retn

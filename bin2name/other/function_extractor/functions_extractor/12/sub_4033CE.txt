@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_34], edi
+mov     [rbp+var_40], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+len], 10h
+lea     rdx, [rbp-24h]
+lea     rcx, [rbp-20h]
+mov     eax, [rbp-34h]
+mov     rsi, rcx
+mov     edi, eax
+call    _getsockname
+test    eax, eax
+jns     short loc_403413
+mov     eax, 0
+jmp     short loc_403442
+movzx   eax, word ptr [rbp-20h]
+movzx   eax, ax
+cmp     eax, 2
+jnz     short loc_40343D
+mov     rax, [rbp-40h]
+lea     rdx, [rbp-20h]
+add     rdx, 4
+mov     rsi, rax
+mov     rdi, rdx
+call    sub_41171A
+mov     eax, 1
+jmp     short loc_403442
+call    _abort
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_403456
+call    ___stack_chk_fail
+leave
+retn

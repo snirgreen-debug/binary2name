@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 130h
+mov     [rbp+fp], rdi
+mov     [rbp+node], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-130h]
+mov     [rbp+cur], rax
+jmp     short loc_4062D2
+mov     rax, [rbp-118h]
+mov     rax, [rax+8]
+lea     rdx, [rbp-110h]
+mov     rsi, rdx
+mov     rdi, rax
+call    blank_rtrim
+mov     rdx, rax
+mov     rax, [rbp-128h]
+mov     esi, 42B12Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-118h]
+mov     rax, [rax+108h]
+mov     [rbp+cur], rax
+cmp     [rbp+cur], 0
+jnz     short loc_406284
+mov     rax, [rbp-128h]
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_406305
+call    ___stack_chk_fail
+leave
+retn

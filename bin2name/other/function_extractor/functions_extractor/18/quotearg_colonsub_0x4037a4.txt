@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+arg], rdi
+mov     rax, [rbp-8]
+mov     esi, 3Ah
+mov     rdi, rax
+call    quotearg_char
+leave
+retn

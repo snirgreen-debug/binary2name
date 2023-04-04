@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+theunit], rdi
+mov     rax, [rbp-18h]
+mov     [rbp+ptr], rax
+jmp     short loc_406A60
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+lea     rax, NULLUNIT
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_406A5B
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+add     [rbp+ptr], 8
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406A36
+mov     rax, [rbp-18h]
+add     rax, 320h
+mov     [rbp+ptr], rax
+jmp     short loc_406AA6
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+lea     rax, NULLUNIT
+mov     rax, [rax]
+cmp     rdx, rax
+jz      short loc_406AA1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+add     [rbp+ptr], 8
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_406A7C
+mov     rax, [rbp-18h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+320h], 0
+nop
+leave
+retn

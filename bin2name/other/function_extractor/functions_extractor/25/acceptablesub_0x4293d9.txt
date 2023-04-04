@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+l], eax
+jmp     short loc_4293FA
+sub     [rbp+l], 1
+cmp     [rbp+l], 0
+jz      short loc_429414
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_4293F6
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_429435
+mov     eax, [rbp-4]
+cdqe
+add     rax, 1
+add     [rbp+s], rax
+mov     rax, cs:opt.accepts
+test    rax, rax
+jz      short loc_4294B6
+mov     rax, cs:opt.rejects
+test    rax, rax
+jz      short loc_429499
+mov     rax, cs:opt.accepts
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    in_acclist
+test    eax, eax
+jz      short loc_429492
+mov     rax, cs:opt.rejects
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    in_acclist
+test    eax, eax
+jnz     short loc_429492
+mov     eax, 1
+jmp     short locret_4294EC
+mov     eax, 0
+jmp     short locret_4294EC
+mov     rax, cs:opt.accepts
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    in_acclist
+jmp     short locret_4294EC
+mov     rax, cs:opt.rejects
+test    rax, rax
+jz      short loc_4294E7
+mov     rax, cs:opt.rejects
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    in_acclist
+test    eax, eax
+setz    al
+movzx   eax, al
+jmp     short locret_4294EC
+mov     eax, 1
+leave
+retn

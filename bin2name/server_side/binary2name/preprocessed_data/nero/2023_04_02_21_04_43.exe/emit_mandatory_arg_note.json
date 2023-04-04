@@ -1,0 +1,63 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4200281,
+                "src": 4200255
+            },
+            {
+                "dst": 4200292,
+                "src": 4200281
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4200292
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4200255,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |push|rbx|    |sub|rsp|8|    |mov|rbx|qword|ptr|rip|+|0x206b39|    |mov|edi|0x4058e0|    |call|0x4013c0|    "
+            },
+            {
+                "block_addr": 4200281,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "mov|rsi|rbx|    |mov|rdi|rax|    |call|0x401480|    "
+            },
+            {
+                "block_addr": 4200292,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "nop|    |add|rsp|8|    |pop|rbx|    |pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        3,
+                        [
+                            "<BV32 Extract(31, 0, fake_ret_value_340_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            }
+        ]
+    },
+    "func_name": "4200255"
+}

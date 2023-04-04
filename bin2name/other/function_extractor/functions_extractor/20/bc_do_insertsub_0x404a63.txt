@@ -1,0 +1,132 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+ctl], rdi
+mov     [rbp+state], rsi
+mov     [rbp+arg], rdx
+mov     [rbp+arglen], rcx
+mov     [rbp+prefix], r8
+mov     [rbp+pfxlen], r9
+mov     rax, [rbp-28h]
+mov     rax, [rax+18h]
+sub     rax, 1
+mov     [rbp+bytes_left], rax
+mov     rax, cs:insertbuf_4260
+test    rax, rax
+jnz     short loc_404ABA
+mov     rax, [rbp-28h]
+mov     rax, [rax+18h]
+add     rax, 1
+mov     rdi, rax
+call    xmalloc
+mov     cs:insertbuf_4260, rax
+mov     rax, cs:insertbuf_4260
+mov     [rbp+p], rax
+mov     rax, [rbp-28h]
+mov     rdx, [rax+30h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    mbsstr
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jz      short loc_404AFB
+mov     rdx, [rbp-8]
+mov     rax, [rbp-38h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+len], rax
+jmp     short loc_404B03
+mov     rax, [rbp-40h]
+mov     [rbp+len], rax
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-10h]
+jbe     loc_404BD2
+mov     rax, [rbp-10h]
+sub     [rbp+bytes_left], rax
+mov     rdx, [rbp-10h]
+mov     rcx, [rbp-38h]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strncpy
+mov     rax, [rbp-10h]
+add     [rbp+p], rax
+mov     rax, [rbp-10h]
+add     [rbp+arg], rax
+mov     rax, [rbp-10h]
+sub     [rbp+arglen], rax
+cmp     [rbp+s], 0
+jz      short loc_404BC1
+mov     rdx, [rbp+18h]
+mov     rax, [rbp-50h]
+add     rax, rdx
+cmp     rax, [rbp-18h]
+jnb     short loc_404BD5
+mov     rdx, [rbp+18h]
+mov     rax, [rbp-50h]
+add     rax, rdx
+sub     [rbp+bytes_left], rax
+cmp     [rbp+prefix], 0
+jz      short loc_404B91
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp-50h]
+add     [rbp+p], rax
+mov     rax, [rbp-20h]
+mov     rsi, [rbp+10h]
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp+18h]
+add     [rbp+p], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+add     [rbp+arg], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+sub     [rbp+arglen], rax
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     loc_404AC5
+jmp     short loc_404BD6
+nop
+jmp     short loc_404BD6
+nop
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_404C02
+mov     edi, 40D92Ch
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-20h]
+lea     rdx, [rax+1]
+mov     [rbp+p], rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     rdx, cs:insertbuf_4260
+sub     rax, rdx
+mov     rdi, rax
+mov     rdx, cs:insertbuf_4260
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-28h]
+sub     rsp, 8
+mov     ecx, [rbp+20h]
+push    rcx
+mov     r9d, 0
+mov     r8d, 0
+mov     rcx, rdi
+mov     rdi, rax
+call    bc_push_arg
+add     rsp, 10h
+nop
+leave
+retn

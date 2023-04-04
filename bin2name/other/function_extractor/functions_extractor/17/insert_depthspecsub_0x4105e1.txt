@@ -1,0 +1,88 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     [rbp+limitptr], rcx
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-48h]
+mov     eax, [rax]
+cdqe
+shl     rax, 3
+lea     rdx, [rax-8]
+mov     rax, [rbp-40h]
+add     rax, rdx
+mov     rax, [rax]
+mov     [rbp+predicate], rax
+lea     rdx, [rbp-28h]
+mov     rcx, [rbp-48h]
+mov     rax, [rbp-40h]
+mov     rsi, rcx
+mov     rdi, rax
+call    collect_arg
+test    al, al
+jz      loc_4106FD
+mov     rax, [rbp-28h]
+mov     esi, 42E223h
+mov     rdi, rax
+call    _strspn
+mov     [rbp+depth_len], eax
+cmp     [rbp+depth_len], 0
+jle     short loc_4106B2
+mov     rdx, [rbp-28h]
+mov     eax, [rbp-2Ch]
+cdqe
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4106B2
+mov     edx, cs:options_0.err_quoting_style
+mov     rax, [rbp-28h]
+mov     esi, edx
+mov     rdi, rax
+call    safe_atoi
+mov     edx, eax
+mov     rax, [rbp-50h]
+mov     [rax], edx
+mov     rax, [rbp-50h]
+mov     eax, [rax]
+test    eax, eax
+js      short loc_4106B2
+mov     rdx, [rbp-48h]
+mov     rcx, [rbp-40h]
+mov     rax, [rbp-38h]
+mov     rsi, rcx
+mov     rdi, rax
+call    parse_noop
+jmp     short loc_410702
+mov     rdx, [rbp-28h]
+mov     eax, cs:options_0.err_quoting_style
+mov     esi, eax
+mov     edi, 0
+call    quotearg_n_style
+mov     rbx, rax
+mov     edi, 42EB00h
+call    _gettext
+mov     rdx, rax
+mov     rax, [rbp-20h]
+mov     r8, rbx
+mov     rcx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_410702
+mov     eax, 0
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_410716
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

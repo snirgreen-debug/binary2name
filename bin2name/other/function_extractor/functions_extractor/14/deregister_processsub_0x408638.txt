@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     rax, cs:proc_list
+mov     [rbp+ptr], rax
+jmp     short loc_4086C4
+mov     rax, [rbp-8]
+mov     eax, [rax+18h]
+cmp     eax, [rbp-14h]
+jnz     short loc_4086B9
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_408681
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdx, [rbp-8]
+mov     rdx, [rdx]
+mov     [rax], rdx
+jmp     short loc_40868C
+mov     rax, [rbp-8]
+mov     cs:proc_list, rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4086AB
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdx, [rbp-8]
+mov     rdx, [rdx+8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+jmp     short loc_4086CB
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     [rbp+ptr], rax
+cmp     [rbp+ptr], 0
+jnz     short loc_408654
+nop
+leave
+retn

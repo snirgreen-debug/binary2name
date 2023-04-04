@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+filename], rdi
+mov     rax, [rbp-18h]
+mov     esi, 437613h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jnz     short loc_429030
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     short locret_429066
+mov     rax, [rbp-10h]
+mov     edx, 2
+mov     esi, 0
+mov     rdi, rax
+call    _fseek
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _ftell
+mov     [rbp+size], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _fclose
+mov     rax, [rbp-8]
+leave
+retn

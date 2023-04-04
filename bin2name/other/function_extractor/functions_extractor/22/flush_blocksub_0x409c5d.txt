@@ -1,0 +1,138 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+buf], rdi
+mov     [rbp+stored_len], rsi
+mov     [rbp+pad], edx
+mov     [rbp+eof], ecx
+mov     edx, cs:last_flags
+movzx   eax, cs:flags
+mov     edx, edx
+mov     ds:flag_buf[rdx], al
+mov     rax, cs:file_type
+movzx   eax, word ptr [rax]
+cmp     ax, 0FFFFh
+jnz     short loc_409C9D
+call    set_file_type
+mov     edi, 614700h
+call    build_tree
+mov     edi, 614740h
+call    build_tree
+call    build_bl_tree
+mov     [rbp+max_blindex], eax
+mov     rax, cs:opt_len
+add     rax, 0Ah
+shr     rax, 3
+mov     [rbp+opt_lenb], rax
+mov     rax, cs:static_len
+add     rax, 0Ah
+shr     rax, 3
+mov     [rbp+static_lenb], rax
+mov     rax, cs:input_len
+mov     rdx, rax
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     cs:input_len, rax
+mov     rax, [rbp-8]
+cmp     rax, [rbp-10h]
+ja      short loc_409D09
+mov     rax, [rbp-8]
+mov     [rbp+opt_lenb], rax
+mov     rax, [rbp-30h]
+add     rax, 4
+cmp     rax, [rbp-10h]
+ja      short loc_409D82
+cmp     [rbp+buf], 0
+jz      short loc_409D82
+mov     eax, [rbp-38h]
+mov     esi, 3
+mov     edi, eax
+call    send_bits
+mov     rax, cs:compressed_len
+add     rax, 0Ah
+and     rax, 0FFFFFFFFFFFFFFF8h
+mov     cs:compressed_len, rax
+mov     rax, [rbp-30h]
+add     rax, 4
+lea     rdx, [rax*8+0]
+mov     rax, cs:compressed_len
+add     rax, rdx
+mov     cs:compressed_len, rax
+mov     rax, [rbp-30h]
+mov     ecx, eax
+mov     rax, [rbp-28h]
+mov     edx, 1
+mov     esi, ecx
+mov     rdi, rax
+call    copy_block
+jmp     loc_409E29
+mov     rax, [rbp-8]
+cmp     rax, [rbp-10h]
+jnz     short loc_409DCB
+mov     eax, [rbp-38h]
+add     eax, 2
+mov     esi, 3
+mov     edi, eax
+call    send_bits
+mov     esi, 615CA0h
+mov     edi, 615820h
+call    compress_block
+mov     rax, cs:static_len
+mov     rdx, cs:compressed_len
+add     rax, rdx
+add     rax, 3
+mov     cs:compressed_len, rax
+jmp     short loc_409E29
+mov     eax, [rbp-38h]
+add     eax, 4
+mov     esi, 3
+mov     edi, eax
+call    send_bits
+mov     eax, [rbp-14h]
+lea     edx, [rax+1]
+mov     eax, cs:d_desc.max_code
+lea     ecx, [rax+1]
+mov     eax, cs:l_desc.max_code
+add     eax, 1
+mov     esi, ecx
+mov     edi, eax
+call    send_all_trees
+mov     esi, 615720h
+mov     edi, 614E20h
+call    compress_block
+mov     rax, cs:opt_len
+mov     rdx, cs:compressed_len
+add     rax, rdx
+add     rax, 3
+mov     cs:compressed_len, rax
+call    init_block
+cmp     [rbp+eof], 0
+jz      short loc_409E4D
+call    bi_windup
+mov     rax, cs:compressed_len
+add     rax, 7
+mov     cs:compressed_len, rax
+jmp     short loc_409E9D
+cmp     [rbp+pad], 0
+jz      short loc_409E9D
+mov     rax, cs:compressed_len
+and     eax, 7
+test    rax, rax
+jz      short loc_409E9D
+mov     eax, [rbp-38h]
+mov     esi, 3
+mov     edi, eax
+call    send_bits
+mov     rax, cs:compressed_len
+add     rax, 0Ah
+and     rax, 0FFFFFFFFFFFFFFF8h
+mov     cs:compressed_len, rax
+mov     rax, [rbp-28h]
+mov     edx, 1
+mov     esi, 0
+mov     rdi, rax
+call    copy_block
+mov     rax, cs:compressed_len
+sar     rax, 3
+leave
+retn

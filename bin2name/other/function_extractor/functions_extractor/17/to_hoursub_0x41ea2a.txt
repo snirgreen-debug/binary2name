@@ -1,0 +1,43 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+hours], rdi
+mov     [rbp+meridian], esi
+mov     eax, [rbp-0Ch]
+test    eax, eax
+jz      short loc_41EA5C
+cmp     eax, 1
+jz      short loc_41EA85
+cmp     [rbp+hours], 0
+js      short loc_41EA55
+cmp     [rbp+hours], 17h
+jg      short loc_41EA55
+mov     rax, [rbp-8]
+jmp     short loc_41EAAF
+mov     eax, 0FFFFFFFFh
+jmp     short loc_41EAAF
+cmp     [rbp+hours], 0
+jle     short loc_41EA6A
+cmp     [rbp+hours], 0Bh
+jle     short loc_41EA7F
+cmp     [rbp+hours], 0Ch
+jnz     short loc_41EA78
+mov     eax, 0
+jmp     short loc_41EAAF
+mov     eax, 0FFFFFFFFh
+jmp     short loc_41EAAF
+mov     rax, [rbp-8]
+jmp     short loc_41EAAF
+cmp     [rbp+hours], 0
+jle     short loc_41EA9C
+cmp     [rbp+hours], 0Bh
+jg      short loc_41EA9C
+mov     rax, [rbp-8]
+add     eax, 0Ch
+jmp     short loc_41EAAF
+cmp     [rbp+hours], 0Ch
+jnz     short loc_41EAAA
+mov     eax, 0Ch
+jmp     short loc_41EAAF
+mov     eax, 0FFFFFFFFh
+pop     rbp
+retn

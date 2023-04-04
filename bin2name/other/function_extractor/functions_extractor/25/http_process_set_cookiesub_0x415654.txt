@@ -1,0 +1,29 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+hdr], rdi
+mov     [rbp+arg], rsi
+mov     rax, [rbp-20h]
+mov     [rbp+u], rax
+mov     rax, cs:wget_cookie_jar
+test    rax, rax
+jnz     short loc_415691
+mov     ecx, 433300h
+mov     edx, 159h
+mov     esi, 4326D6h
+mov     edi, 432764h
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rcx, [rax+20h]
+mov     rax, [rbp-8]
+mov     edx, [rax+18h]
+mov     rax, [rbp-8]
+mov     rsi, [rax+10h]
+mov     rax, cs:wget_cookie_jar
+mov     rdi, [rbp-18h]
+mov     r8, rdi
+mov     rdi, rax
+call    cookie_jar_process_set_cookie
+mov     eax, 1
+leave
+retn

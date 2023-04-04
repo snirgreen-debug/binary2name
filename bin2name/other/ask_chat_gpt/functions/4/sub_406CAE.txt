@@ -1,0 +1,106 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 48h
+mov     eax, edi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_54], al
+mov     rax, fs:28h
+mov     [rbp+var_28], rax
+xor     eax, eax
+mov     [rbp+var_41], 1
+cmp     [rbp+var_54], 0
+jz      loc_406D7F
+mov     rax, 6C756E2F7665642Fh
+mov     qword ptr [rbp+file], rax
+mov     [rbp+var_38], 6Ch
+mov     edi, 0
+call    _close
+test    eax, eax
+jns     short loc_406D31
+mov     edi, 42B41Fh
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     [rbp+var_41], 0
+jmp     short loc_406D7F
+lea     rax, [rbp-40h]
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    _open
+test    eax, eax
+jns     short loc_406D7F
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 0
+call    sub_40B84E
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, rbx
+mov     edx, 42B43Bh
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    sub_422211
+test    eax, eax
+jz      short loc_406E0C
+mov     rax, [rbp-60h]
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_406DB0
+mov     rax, [rbp-60h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_406DB0
+mov     rax, [rbp-60h]
+mov     rbx, [rax+8]
+jmp     short loc_406DB5
+mov     ebx, 42B43Eh
+mov     rax, [rbp-60h]
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_406DD4
+mov     rax, [rbp-60h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_406DD4
+mov     r12d, 42B43Fh
+jmp     short loc_406DDA
+mov     r12d, 42B43Eh
+mov     edi, 42B448h
+call    _gettext
+mov     r13, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     r8, rbx
+mov     rcx, r12
+mov     rdx, r13
+mov     esi, eax
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     [rbp+var_41], 0
+movzx   eax, byte ptr [rbp-41h]
+mov     rcx, [rbp-28h]
+xor     rcx, fs:28h
+jz      short loc_406E24
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

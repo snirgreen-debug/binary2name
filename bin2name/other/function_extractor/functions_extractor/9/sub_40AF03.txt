@@ -1,0 +1,91 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_8], 0
+jmp     short loc_40AF61
+mov     edx, [rbp-8]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     eax, cs:dword_617FB4
+mov     ecx, eax
+mov     rax, [rbp-20h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+mov     [rdx], al
+mov     eax, cs:dword_617FB4
+add     eax, 1
+and     eax, 1FFFh
+mov     cs:dword_617FB4, eax
+add     [rbp+var_8], 1
+mov     eax, [rbp-8]
+cmp     eax, [rbp-14h]
+jnz     short loc_40AF61
+mov     eax, [rbp-8]
+jmp     locret_40B054
+mov     eax, cs:dword_617FAC
+sub     eax, 1
+mov     cs:dword_617FAC, eax
+mov     eax, cs:dword_617FAC
+test    eax, eax
+jns     short loc_40AF1B
+call    sub_40AD06
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 1FEh
+jnz     short loc_40AF9D
+mov     cs:dword_617FB0, 1
+mov     eax, [rbp-8]
+jmp     locret_40B054
+cmp     [rbp+var_4], 0FFh
+ja      short loc_40AFC9
+mov     edx, [rbp-8]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     edx, [rbp-4]
+mov     [rax], dl
+add     [rbp+var_8], 1
+mov     eax, [rbp-8]
+cmp     eax, [rbp-14h]
+jnz     short loc_40AF7A
+mov     eax, [rbp-8]
+jmp     locret_40B054
+mov     eax, [rbp-4]
+sub     eax, 0FDh
+mov     cs:dword_617FAC, eax
+call    sub_40AE0A
+mov     edx, eax
+mov     eax, [rbp-8]
+sub     eax, edx
+sub     eax, 1
+and     eax, 1FFFh
+mov     cs:dword_617FB4, eax
+jmp     short loc_40B036
+mov     edx, [rbp-8]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     eax, cs:dword_617FB4
+mov     ecx, eax
+mov     rax, [rbp-20h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+mov     [rdx], al
+mov     eax, cs:dword_617FB4
+add     eax, 1
+and     eax, 1FFFh
+mov     cs:dword_617FB4, eax
+add     [rbp+var_8], 1
+mov     eax, [rbp-8]
+cmp     eax, [rbp-14h]
+jnz     short loc_40B036
+mov     eax, [rbp-8]
+jmp     short locret_40B054
+mov     eax, cs:dword_617FAC
+sub     eax, 1
+mov     cs:dword_617FAC, eax
+mov     eax, cs:dword_617FAC
+test    eax, eax
+jns     short loc_40AFF3
+jmp     loc_40AF7A
+leave
+retn

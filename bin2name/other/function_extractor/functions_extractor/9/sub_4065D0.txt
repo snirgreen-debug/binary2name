@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fd], edi
+mov     [rbp+var_20], rsi
+mov     [rbp+owner], edx
+mov     [rbp+group], ecx
+mov     edx, [rbp-24h]
+mov     ecx, [rbp-18h]
+mov     eax, [rbp-14h]
+mov     esi, ecx
+mov     edi, eax
+call    _fchown
+mov     [rbp+var_4], eax
+nop
+leave
+retn

@@ -1,0 +1,49 @@
+push    rbp
+lea     rbp, [c+N]
+push    rbx
+sub     rsp, 8
+cmp     c, end
+jnb     loc_408F78
+mov     rbx, c
+jmp     short loc_408F09
+add     c, 1
+cmp     end, c
+jbe     short loc_408F78
+cmp     byte ptr [c], 0Ah
+jnz     short loc_408F00
+add     c, 1
+cmp     end, c
+jbe     short loc_408F00
+call    ___ctype_b_loc
+mov     rcx, [rax]
+jmp     short loc_408F31
+add     c, 1
+cmp     end, c
+jz      short loc_408F68
+movsx   rdx, byte ptr [c]
+test    byte ptr [rcx+rdx*2+1], 20h
+mov     rax, rdx
+jnz     short loc_408F28
+cmp     end, c
+jbe     short loc_408F00
+lea     rdx, [c+2]
+cmp     end, rdx
+jbe     short loc_408F00
+cmp     al, 45h
+jnz     short loc_408F00
+cmp     byte ptr [c+1], 6Eh
+jnz     short loc_408F00
+cmp     byte ptr [c+2], 64h
+jnz     short loc_408F00
+mov     eax, 1
+jmp     short loc_408F7A
+mov     c, end
+add     c, 1
+cmp     end, c
+ja      short loc_408F09
+nop     dword ptr [rax+00h]
+xor     eax, eax
+add     rsp, 8
+pop     rbx
+pop     end
+retn

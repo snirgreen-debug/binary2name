@@ -1,0 +1,1 @@
+extrn getgrnam:near

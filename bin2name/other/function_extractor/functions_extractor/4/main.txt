@@ -1,0 +1,106 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_24], edi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_1C], 0
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4044C2
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_420545
+jmp     short loc_4044CC
+mov     edi, 42AECFh
+call    sub_420545
+call    sub_40A7D9
+mov     cs:byte_63BFB8, 0
+mov     cs:status, 0
+mov     cs:byte_63BFA8, 0
+mov     cs:fildes, 0FFFFFF9Ch
+call    sub_40AA54
+test    al, al
+jz      short loc_404501
+call    sub_416808
+mov     edi, 42AED4h
+call    sub_40BAC6
+mov     cs:qword_63BFB0, rax
+mov     rax, cs:qword_63BFB0
+test    rax, rax
+jnz     short loc_404546
+mov     edi, 42AED8h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     edi, 63BFC0h
+call    sub_40B5D7
+mov     esi, 42ABF0h
+mov     edi, 6
+call    _setlocale
+mov     esi, 42AF08h
+mov     edi, 42AF5Ah
+call    _bindtextdomain
+mov     edi, 42AF5Ah
+call    _textdomain
+mov     edi, 41761Ch
+call    sub_42AA10
+test    eax, eax
+jz      short loc_4045AE
+mov     edi, 42AF68h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rdx, [rbp-30h]
+mov     eax, [rbp-24h]
+mov     rsi, rdx
+mov     edi, eax
+call    sub_40B372
+mov     [rbp+var_1C], eax
+mov     rax, cs:qword_63C000
+and     eax, 2
+test    rax, rax
+jz      short loc_4045DC
+mov     cs:qword_63C010, 40AD21h
+mov     edx, [rbp-1Ch]
+mov     rcx, [rbp-30h]
+mov     eax, [rbp-24h]
+mov     rsi, rcx
+mov     edi, eax
+call    sub_408FD6
+mov     [rbp+var_18], rax
+mov     eax, [rbp-1Ch]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-30h]
+add     rdx, rax
+mov     eax, [rbp-24h]
+sub     eax, [rbp-1Ch]
+mov     rsi, rdx
+mov     edi, eax
+call    sub_4043A5
+test    al, al
+jz      short loc_40462D
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_4065DF
+call    sub_40AA75
+mov     eax, cs:status
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

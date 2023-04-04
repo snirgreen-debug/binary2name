@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+stream], rdi
+mov     [rbp+command_name], rsi
+mov     [rbp+package], rdx
+mov     [rbp+version], rcx
+mov     [rbp+authors], r8
+mov     [rbp+n_authors], 0
+jmp     short loc_40428B
+add     [rbp+n_authors], 1
+mov     rax, [rbp-8]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-38h]
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_404286
+mov     r8, [rbp-8]
+mov     rdi, [rbp-38h]
+mov     rcx, [rbp-30h]
+mov     rdx, [rbp-28h]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     r9, r8
+mov     r8, rdi
+mov     rdi, rax
+call    version_etc_arn
+nop
+leave
+retn

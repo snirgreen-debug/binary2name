@@ -1,0 +1,322 @@
+push    r12
+push    rbp
+mov     rcx, pfile
+push    rbx
+mov     r12, pfile
+mov     rbx, pvmGlo
+mov     edx, 1Fh
+mov     esi, 1
+mov     edi, 4157E0h
+call    _fwrite
+test    pvmGlo, pvmGlo
+jz      loc_411BA8
+mov     rbp, pvmGlo
+jmp     short loc_4116DD
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      loc_411770
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jnz     short loc_4116D0
+cmp     qword ptr [rbp+8], 6192A0h
+jz      short loc_4116D0
+mov     rcx, pfile
+mov     edx, 8
+mov     esi, 1
+mov     edi, 4142E0h
+call    _fwrite
+mov     rcx, [rbp+0]
+xor     eax, eax
+mov     edx, 4142E9h
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jz      loc_411B80
+mov     rcx, cs:iOutputs_4512
+xor     eax, eax
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rbp, [rbp+18h]
+add     cs:iOutputs_4512, 1
+test    rbp, rbp
+jnz     loc_4116DD
+nop     dword ptr [rax+00h]
+mov     rcx, pfile
+mov     edx, 20h
+mov     esi, 1
+mov     edi, 4159D8h
+mov     rbp, pvmGlo
+call    _fwrite
+jmp     short loc_41179D
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      loc_411830
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 30000h
+jnz     short loc_411790
+cmp     qword ptr [rbp+8], 6192A0h
+jz      short loc_411790
+mov     rcx, pfile
+mov     edx, 8
+mov     esi, 1
+mov     edi, 4142E0h
+call    _fwrite
+mov     rcx, [rbp+0]
+xor     eax, eax
+mov     edx, 4142E9h
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 10000h
+jz      loc_411B50
+mov     rcx, cs:iOutputs_4512
+xor     eax, eax
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     rbp, [rbp+18h]
+add     cs:iOutputs_4512, 1
+test    rbp, rbp
+jnz     loc_41179D
+nop     dword ptr [rax+00h]
+mov     rcx, pfile
+mov     edx, 12h
+mov     esi, 1
+mov     edi, 4143F6h
+mov     rbp, pvmGlo
+call    _fwrite
+mov     ecx, cs:vnParms
+mov     edx, 414A6Dh
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_411879
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jz      short loc_4118A0
+mov     rax, [rbp+10h]
+and     eax, 0F0000h
+cmp     rax, 40000h
+jnz     short loc_411870
+xor     edx, edx
+mov     rsi, rbp
+mov     rdi, pfile
+call    WriteOne_R_PIDefine
+mov     rbp, [rbp+18h]
+test    rbp, rbp
+jnz     short loc_411879
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415A00h
+call    _fwrite
+mov     ecx, cs:vnInputs
+mov     edx, 414A88h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     short loc_4118E1
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jz      short loc_411910
+mov     rax, [rbx+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jnz     short loc_4118D8
+xor     edx, edx
+mov     rsi, rbx
+mov     rdi, pfile
+call    WriteOne_R_PIDefine
+mov     rbx, [rbx+18h]
+test    rbx, rbx
+jnz     short loc_4118E1
+nop     dword ptr [rax+rax+00000000h]
+mov     rsi, pfile
+mov     edi, 0Ah
+call    _fputc
+mov     eax, cs:bDelay
+test    eax, eax
+jnz     short loc_411930
+pop     rbx
+pop     rbp
+pop     pfile
+retn
+mov     rcx, pfile
+mov     edx, 3Dh
+mov     esi, 1
+mov     edi, 415800h
+mov     ebx, 1
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 0Ch
+mov     esi, 1
+mov     edi, 41497Fh
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 0Fh
+mov     esi, 1
+mov     edi, 41498Ch
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 19h
+mov     esi, 1
+mov     edi, 41499Ch
+call    _fwrite
+mov     ecx, cs:vnStates
+xor     eax, eax
+mov     edx, 4149B6h
+mov     esi, 1
+mov     rdi, pfile
+call    ___fprintf_chk
+mov     eax, cs:vnStates
+test    eax, eax
+jg      short loc_4119E1
+jmp     short loc_411A09
+mov     edx, 5
+mov     esi, 1
+mov     edi, 414A67h
+call    _fwrite
+mov     eax, cs:vnStates
+add     ebx, 1
+cmp     eax, ebx
+jl      short loc_411A09
+cmp     eax, ebx
+mov     rcx, pfile
+jnz     short loc_4119C0
+mov     edx, 3
+mov     esi, 1
+mov     edi, 414086h
+call    _fwrite
+mov     eax, cs:vnStates
+add     ebx, 1
+cmp     eax, ebx
+jge     short loc_4119E1
+mov     rcx, pfile
+mov     edx, 29h
+mov     esi, 1
+mov     edi, 415840h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 38h
+mov     esi, 1
+mov     edi, 415870h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 38h
+mov     esi, 1
+mov     edi, 4158B0h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 13h
+mov     esi, 1
+mov     edi, 4149D1h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 56h
+mov     esi, 1
+mov     edi, 4158F0h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415948h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 39h
+mov     esi, 1
+mov     edi, 415970h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 1Ah
+mov     esi, 1
+mov     edi, 4149E5h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 16h
+mov     esi, 1
+mov     edi, 414A00h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 12h
+mov     esi, 1
+mov     edi, 414A17h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 25h
+mov     esi, 1
+mov     edi, 4159B0h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 8
+mov     esi, 1
+mov     edi, 414A2Ah
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 1Ch
+mov     esi, 1
+mov     edi, 414A33h
+call    _fwrite
+pop     rbx
+mov     rcx, pfile
+mov     edx, 16h
+mov     esi, 1
+pop     rbp
+pop     pfile
+mov     edi, 414A50h
+jmp     _fwrite
+mov     rcx, cs:iStates_4511
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+add     cs:iStates_4511, 1
+jmp     loc_411790
+mov     rcx, cs:iStates_4511
+mov     edx, 4142EFh
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+add     cs:iStates_4511, 1
+jmp     loc_4116D0
+mov     rcx, pfile
+mov     edx, 20h
+mov     esi, 1
+mov     edi, 4159D8h
+call    _fwrite
+mov     rcx, pfile
+mov     edx, 12h
+mov     esi, 1
+mov     edi, 4143F6h
+call    _fwrite
+mov     ecx, cs:vnParms
+mov     rdi, pfile
+mov     edx, 414A6Dh
+mov     esi, 1
+xor     eax, eax
+call    ___fprintf_chk
+mov     rcx, pfile
+mov     edx, 21h
+mov     esi, 1
+mov     edi, 415A00h
+call    _fwrite
+mov     ecx, cs:vnInputs
+mov     edx, 414A88h
+mov     esi, 1
+mov     rdi, pfile
+xor     eax, eax
+call    ___fprintf_chk
+jmp     loc_411910

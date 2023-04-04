@@ -1,0 +1,283 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+store], rdi
+mov     [rbp+c], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+mov     [rbp+ostore], rax
+mov     rax, [rbp-38h]
+mov     byte ptr [rax], 0
+lea     rax, [rbp-20h]
+mov     edx, 0Ah
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-40h]
+mov     rax, [rax]
+mov     qword ptr [rbp+cp], rax
+mov     [rbp+p], 0
+mov     [rbp+i], 0
+jmp     short loc_40FDD1
+mov     ecx, [rbp-2Ch]
+lea     rax, [rbp-20h]
+mov     edx, 2
+mov     esi, ecx
+mov     rdi, rax
+call    extract
+mov     edx, eax
+mov     eax, [rbp-30h]
+add     eax, edx
+mov     [rbp+p], eax
+add     [rbp+i], 2
+cmp     [rbp+i], 3Fh
+jle     short loc_40FDAD
+mov     eax, [rbp-30h]
+movsx   eax, al
+shl     eax, 6
+mov     [rbp+cp+8], al
+lea     rax, [rbp-20h]
+mov     edx, 0Bh
+mov     esi, 0
+mov     rdi, rax
+call    extract
+shl     rax, 2
+add     rax, 63C560h
+mov     edx, [rax]
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FE5F
+mov     rax, [rbp-38h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FE58
+mov     rax, [rbp-38h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FE51
+mov     rax, [rbp-38h]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40FE4A
+mov     eax, 3
+jmp     short loc_40FE64
+mov     eax, 4
+jmp     short loc_40FE64
+mov     eax, 2
+jmp     short loc_40FE64
+mov     eax, 1
+jmp     short loc_40FE64
+mov     eax, 0
+add     [rbp+store], rax
+mov     rax, [rbp-38h]
+lea     rdx, [rax+1]
+mov     [rbp+store], rdx
+mov     byte ptr [rax], 20h
+lea     rax, [rbp-20h]
+mov     edx, 0Bh
+mov     esi, 0Bh
+mov     rdi, rax
+call    extract
+shl     rax, 2
+add     rax, 63C560h
+mov     edx, [rax]
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FEF3
+mov     rax, [rbp-38h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FEEC
+mov     rax, [rbp-38h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FEE5
+mov     rax, [rbp-38h]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40FEDE
+mov     eax, 3
+jmp     short loc_40FEF8
+mov     eax, 4
+jmp     short loc_40FEF8
+mov     eax, 2
+jmp     short loc_40FEF8
+mov     eax, 1
+jmp     short loc_40FEF8
+mov     eax, 0
+add     [rbp+store], rax
+mov     rax, [rbp-38h]
+lea     rdx, [rax+1]
+mov     [rbp+store], rdx
+mov     byte ptr [rax], 20h
+lea     rax, [rbp-20h]
+mov     edx, 0Bh
+mov     esi, 16h
+mov     rdi, rax
+call    extract
+shl     rax, 2
+add     rax, 63C560h
+mov     edx, [rax]
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FF87
+mov     rax, [rbp-38h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FF80
+mov     rax, [rbp-38h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40FF79
+mov     rax, [rbp-38h]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40FF72
+mov     eax, 3
+jmp     short loc_40FF8C
+mov     eax, 4
+jmp     short loc_40FF8C
+mov     eax, 2
+jmp     short loc_40FF8C
+mov     eax, 1
+jmp     short loc_40FF8C
+mov     eax, 0
+add     [rbp+store], rax
+mov     rax, [rbp-38h]
+lea     rdx, [rax+1]
+mov     [rbp+store], rdx
+mov     byte ptr [rax], 20h
+lea     rax, [rbp-20h]
+mov     edx, 0Bh
+mov     esi, 21h
+mov     rdi, rax
+call    extract
+shl     rax, 2
+add     rax, 63C560h
+mov     edx, [rax]
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41001B
+mov     rax, [rbp-38h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_410014
+mov     rax, [rbp-38h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_41000D
+mov     rax, [rbp-38h]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_410006
+mov     eax, 3
+jmp     short loc_410020
+mov     eax, 4
+jmp     short loc_410020
+mov     eax, 2
+jmp     short loc_410020
+mov     eax, 1
+jmp     short loc_410020
+mov     eax, 0
+add     [rbp+store], rax
+mov     rax, [rbp-38h]
+lea     rdx, [rax+1]
+mov     [rbp+store], rdx
+mov     byte ptr [rax], 20h
+lea     rax, [rbp-20h]
+mov     edx, 0Bh
+mov     esi, 2Ch
+mov     rdi, rax
+call    extract
+shl     rax, 2
+add     rax, 63C560h
+mov     edx, [rax]
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4100AF
+mov     rax, [rbp-38h]
+add     rax, 1
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4100A8
+mov     rax, [rbp-38h]
+add     rax, 2
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4100A1
+mov     rax, [rbp-38h]
+add     rax, 3
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_41009A
+mov     eax, 3
+jmp     short loc_4100B4
+mov     eax, 4
+jmp     short loc_4100B4
+mov     eax, 2
+jmp     short loc_4100B4
+mov     eax, 1
+jmp     short loc_4100B4
+mov     eax, 0
+add     [rbp+store], rax
+mov     rax, [rbp-38h]
+lea     rdx, [rax+1]
+mov     [rbp+store], rdx
+mov     byte ptr [rax], 20h
+lea     rax, [rbp-20h]
+mov     edx, 0Bh
+mov     esi, 37h
+mov     rdi, rax
+call    extract
+shl     rax, 2
+add     rax, 63C560h
+mov     edx, [rax]
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+add     rax, 4
+mov     byte ptr [rax], 0
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_41011A
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     edi, 431D2Dh
+mov     eax, 0
+call    debug_logprintf
+mov     rax, [rbp-28h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_410132
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+name], rdi
+mov     [rbp+pi], 63FE20h
+cmp     [rbp+name], 0
+jnz     short loc_42094C
+mov     [rbp+name], 43636Ch
+mov     rax, [rbp-28h]
+mov     esi, 3Ah
+mov     rdi, rax
+call    _strchr
+mov     [rbp+colon], rax
+cmp     [rbp+colon], 0
+jz      short loc_420978
+mov     rdx, [rbp-8]
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, rdx
+jmp     short loc_420984
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+namelen], eax
+mov     [rbp+i], 0
+jmp     short loc_4209FA
+mov     eax, [rbp-14h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rcx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strncmp
+test    eax, eax
+jnz     short loc_4209F1
+mov     rax, [rbp-10h]
+mov     cs:current_impl, rax
+mov     cs:current_impl_locked, 0
+cmp     [rbp+colon], 0
+jz      short loc_4209D1
+add     [rbp+colon], 1
+mov     rax, [rbp-10h]
+mov     rax, [rax+20h]
+test    rax, rax
+jz      short loc_420A07
+mov     rax, [rbp-10h]
+mov     rax, [rax+20h]
+mov     rdx, [rbp-8]
+mov     rdi, rdx
+call    rax
+jmp     short loc_420A07
+add     [rbp+i], 1
+add     [rbp+pi], 28h
+mov     eax, [rbp-18h]
+cmp     eax, 1
+jbe     short loc_420990
+call    _abort
+nop
+leave
+retn

@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rdx, [rbp-18h]
+mov     rcx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _tree_recurse
+test    eax, eax
+jz      short loc_411483
+cmp     eax, 3
+jz      short loc_411483
+nop
+mov     eax, 1
+jmp     short locret_411488
+mov     eax, 0
+leave
+retn

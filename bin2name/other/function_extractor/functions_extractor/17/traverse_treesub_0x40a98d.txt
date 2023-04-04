@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+tree], rdi
+mov     [rbp+callback], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+test    rax, rax
+jz      short loc_40A9C7
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    traverse_tree
+mov     rdx, [rbp-8]
+mov     rax, [rbp-10h]
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+test    rax, rax
+jz      short loc_40A9FE
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+mov     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    traverse_tree
+nop
+leave
+retn

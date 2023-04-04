@@ -1,0 +1,130 @@
+push    r12
+push    rbp
+mov     r12, piUB
+push    rbx
+mov     rbp, piLB
+mov     rbx, pibIn
+sub     rsp, 420h
+lea     piUB, [rsp+0Ch]
+lea     piLB, [rsp+10h]
+mov     rax, fs:28h
+mov     [rsp+438h+var_20], rax
+xor     eax, eax
+call    NextLex
+test    byte ptr [rsp+438h+piLexType], 2
+jz      loc_4044E8
+lea     rdi, [rsp+10h]
+xor     esi, esi
+mov     edx, 0Ah
+call    _strtol
+test    rax, rax
+mov     [piLB+0], rax
+js      loc_404610
+test    pibIn, pibIn
+jz      short loc_40448C
+mov     rax, [pibIn+18h]
+movzx   edx, byte ptr [rax]
+test    dl, dl
+jz      loc_4045B0
+cmp     dl, 2Dh
+jz      loc_404530
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+10h]
+mov     rdi, pibIn
+call    NextLex
+mov     eax, [rsp+0Ch]
+cmp     eax, 8
+jz      short loc_404518
+cmp     eax, 20h
+jz      short loc_404518
+xor     ecx, ecx
+mov     edx, 413953h
+mov     esi, 8014h
+mov     rdi, pibIn
+call    ReportError
+mov     rax, [rsp+418h]
+xor     rax, fs:28h
+jnz     loc_40464C
+add     rsp, 420h
+pop     pibIn
+pop     piLB
+pop     piUB
+retn
+mov     rdx, cs:vrgszLexTypes+10h
+lea     rcx, [rsp+10h]
+mov     rdi, pibIn
+mov     esi, 14h
+call    ReportError
+xor     ecx, ecx
+xor     edx, edx
+mov     esi, 8001h
+mov     rdi, pibIn
+call    ReportError
+jmp     short loc_4044C0
+cmp     [rsp+438h+szTmp], 5Dh
+jnz     short loc_4044AC
+mov     rax, [piLB+0]
+add     rax, 1
+mov     [piUB], rax
+jmp     short loc_4044C0
+add     rax, 1
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+10h]
+mov     [pibIn+18h], rax
+mov     rdi, pibIn
+call    NextLex
+test    byte ptr [rsp+438h+piLexType], 2
+jz      loc_4045E0
+lea     rdi, [rsp+10h]
+xor     esi, esi
+mov     edx, 0Ah
+call    _strtol
+add     rax, 1
+mov     [piUB], rax
+cmp     rax, [piLB+0]
+jle     loc_404630
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+10h]
+mov     rdi, pibIn
+call    NextLex
+mov     eax, [rsp+0Ch]
+cmp     eax, 8
+jz      short loc_40459C
+cmp     eax, 20h
+jnz     loc_4044AC
+cmp     [rsp+438h+szTmp], 5Dh
+jnz     loc_4044AC
+jmp     loc_4044C0
+mov     rdi, pibIn
+call    FillBuffer_0
+cmp     eax, 0FFFFFFFFh
+jz      loc_40448C
+mov     rax, [pibIn+18h]
+movzx   edx, byte ptr [rax]
+cmp     dl, 2Dh
+jnz     loc_40448C
+jmp     loc_404530
+mov     rdx, cs:vrgszLexTypes+10h
+lea     rcx, [rsp+10h]
+mov     rdi, pibIn
+mov     esi, 14h
+call    ReportError
+xor     ecx, ecx
+xor     edx, edx
+mov     esi, 8001h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_404578
+lea     rdx, [rsp+10h]
+xor     ecx, ecx
+mov     esi, 810Ah
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_40446F
+mov     ecx, 412590h
+mov     edx, 412DD3h
+mov     esi, 8000h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_404578
+call    ___stack_chk_fail

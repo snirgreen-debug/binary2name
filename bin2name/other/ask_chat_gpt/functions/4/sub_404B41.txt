@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+flag], edi
+mov     rcx, cs:s1
+mov     eax, cs:fildes
+mov     edx, [rbp-4]
+mov     rsi, rcx
+mov     edi, eax
+call    _unlinkat
+test    eax, eax
+setz    al
+leave
+retn

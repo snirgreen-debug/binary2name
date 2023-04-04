@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:isp
+cmp     rax, 6052C0h
+jnb     short loc_400F4B
+mov     edi, 403843h
+call    die
+mov     rax, cs:isp
+mov     edx, 605450h
+cmp     rax, rdx
+jb      short loc_400F66
+mov     edi, 40385Eh
+call    die
+nop
+pop     rbp
+retn

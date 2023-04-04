@@ -1,0 +1,58 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     dword ptr [rbp+nbytes+4], edi
+mov     [rbp+buf], rsi
+mov     dword ptr [rbp+nbytes], edx
+mov     eax, [rbp-18h]
+test    eax, eax
+jns     short loc_40C895
+mov     dword ptr [rbp+nbytes], 7FFFFFFFh
+mov     edx, [rbp-18h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    _read
+mov     [rbp+var_8], eax
+cmp     [rbp+var_8], 0
+jns     short loc_40C92C
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 0Bh
+jnz     short loc_40C92C
+mov     eax, [rbp-14h]
+mov     esi, 3
+mov     edi, eax
+mov     eax, 0
+call    sub_40F1EA
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+js      short loc_40C92C
+mov     eax, [rbp-4]
+and     eax, 800h
+test    eax, eax
+jnz     short loc_40C8F4
+call    ___errno_location
+mov     dword ptr [rax], 0Bh
+jmp     short loc_40C92C
+mov     eax, [rbp-4]
+and     ah, 0F7h
+mov     edx, eax
+mov     eax, [rbp-14h]
+mov     esi, 4
+mov     edi, eax
+mov     eax, 0
+call    sub_40F1EA
+cmp     eax, 0FFFFFFFFh
+jz      short loc_40C92C
+mov     edx, [rbp-18h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    _read
+mov     [rbp+var_8], eax
+mov     eax, [rbp-8]
+leave
+retn

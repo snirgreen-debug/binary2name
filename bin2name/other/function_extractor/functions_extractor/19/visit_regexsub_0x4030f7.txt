@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, [rbp-30h]
+mov     [rbp+p], rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+len], rax
+mov     rax, [rbp-8]
+mov     ecx, eax
+mov     rax, [rbp-8]
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     rsi, [rax+20h]
+mov     rax, [rbp-10h]
+mov     r9d, 0
+mov     r8d, ecx
+mov     ecx, 0
+mov     rdi, rax
+call    _re_search
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jns     short loc_403161
+mov     eax, 4
+jmp     short locret_403166
+mov     eax, 2
+leave
+retn

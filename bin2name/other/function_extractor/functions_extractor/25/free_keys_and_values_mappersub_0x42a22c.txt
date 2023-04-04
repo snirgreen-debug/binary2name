@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+key], rdi
+mov     [rbp+value], rsi
+mov     [rbp+arg_ignored], rdx
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     eax, 0
+leave
+retn

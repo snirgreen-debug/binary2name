@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_48], rdi
+mov     [rbp+style], esi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-40h]
+mov     eax, 0
+mov     ecx, 7
+mov     rdi, rdx
+rep stosq
+cmp     [rbp+style], 0Ah
+jnz     short loc_40237B
+call    _abort
+mov     eax, [rbp-4Ch]
+mov     [rbp+o.style], eax
+mov     rax, [rbp-48h]
+mov     rdx, [rbp-40h]
+mov     [rax], rdx
+mov     rdx, [rbp-38h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-30h]
+mov     [rax+10h], rdx
+mov     rdx, [rbp-28h]
+mov     [rax+18h], rdx
+mov     rdx, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rdx, [rbp-18h]
+mov     [rax+28h], rdx
+mov     rdx, [rbp-10h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-48h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_4023D4
+call    ___stack_chk_fail
+leave
+retn

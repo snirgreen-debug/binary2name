@@ -1,0 +1,147 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+iname], rdi
+mov     [rbp+sbuf], rsi
+mov     [rbp+z_suffix_errno], 0
+mov     [rbp+suf], 6143C0h
+mov     [rbp+open_flags], 900h
+mov     rdx, cs:z_suffix
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+mov     rax, [rbp-48h]
+mov     rdi, rax
+call    _strlen
+cmp     rax, 3FEh
+ja      loc_404EE3
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 6182C0h
+call    _strcpy
+mov     rdx, [rbp-50h]
+mov     eax, [rbp-34h]
+mov     esi, eax
+mov     edi, 6182C0h
+call    open_and_stat
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_404D50
+mov     eax, [rbp-30h]
+jmp     loc_404F1A
+mov     eax, cs:decompress
+test    eax, eax
+jz      short loc_404D66
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jz      short loc_404D7A
+mov     edi, 6182C0h
+call    progerror
+mov     eax, 0FFFFFFFFh
+jmp     loc_404F1A
+mov     edi, 6182C0h
+call    get_suffix
+mov     [rbp+s], rax
+cmp     [rbp+s], 0
+jz      short loc_404DA3
+mov     edi, 6182C0h
+call    progerror
+mov     eax, 0FFFFFFFFh
+jmp     loc_404F1A
+mov     edi, 6182C0h
+call    _strlen
+mov     [rbp+ilen], eax
+mov     rax, cs:z_suffix
+mov     esi, 40FE3Ch
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_404DCD
+add     [rbp+suf], 8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+s], rax
+mov     rax, [rbp-20h]
+mov     [rbp+s0], rax
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 6182C0h
+call    _strcpy
+mov     eax, [rbp-2Ch]
+movsxd  rbx, eax
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+cmp     rax, 3FFh
+ja      loc_404EE6
+mov     rax, [rbp-20h]
+mov     rsi, rax
+mov     edi, 6182C0h
+call    _strcat
+mov     rdx, [rbp-50h]
+mov     eax, [rbp-34h]
+mov     esi, eax
+mov     edi, 6182C0h
+call    open_and_stat
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_404E47
+mov     eax, [rbp-30h]
+jmp     loc_404F1A
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jz      short loc_404E67
+mov     edi, 6182C0h
+call    progerror
+mov     eax, 0FFFFFFFFh
+jmp     loc_404F1A
+mov     rdx, cs:z_suffix
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_404E8B
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+z_suffix_errno], eax
+add     [rbp+suf], 8
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_404DCD
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 6182C0h
+call    _strcpy
+mov     rax, cs:z_suffix
+mov     rsi, rax
+mov     edi, 6182C0h
+call    _strcat
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-38h]
+mov     [rdx], eax
+mov     edi, 6182C0h
+call    progerror
+mov     eax, 0FFFFFFFFh
+jmp     short loc_404F1A
+nop
+jmp     short name_too_long
+nop
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-48h]
+mov     esi, 410861h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     cs:exit_code, 1
+mov     eax, 0FFFFFFFFh
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

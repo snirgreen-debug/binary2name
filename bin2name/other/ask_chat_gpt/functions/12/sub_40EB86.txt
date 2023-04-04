@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_4], 0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+sub     eax, 2Ch
+cmp     eax, 2Bh
+ja      short def_40EBB5
+mov     eax, eax
+mov     rax, [rax*8+431858h]
+jmp     rax
+shl     [rbp+var_4], 3
+jmp     short loc_40EBEE
+or      [rbp+var_4], 4
+jmp     short loc_40EBEE
+or      [rbp+var_4], 2
+jmp     short loc_40EBEE
+or      [rbp+var_4], 2
+jmp     short loc_40EBEE
+or      [rbp+var_4], 1
+jmp     short loc_40EBEE
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_40EBEE
+mov     edi, 43183Ch
+mov     eax, 0
+call    sub_41CEC0
+add     [rbp+var_18], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_40EB99
+mov     eax, [rbp-4]
+leave
+retn

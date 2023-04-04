@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:interesting_tags
+test    rax, rax
+jz      short loc_414EBB
+mov     rax, cs:interesting_tags
+mov     rdi, rax
+call    _free
+mov     rax, cs:interesting_attributes
+test    rax, rax
+jz      short loc_414ED6
+mov     rax, cs:interesting_attributes
+mov     rdi, rax
+call    _free
+nop
+pop     rbp
+retn

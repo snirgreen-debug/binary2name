@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_38], rdx
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax+18h]
+movzx   edx, al
+mov     rax, [rbp-28h]
+mov     rsi, [rax+20h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rdi, [rbp-38h]
+mov     rcx, [rbp-30h]
+mov     r8, rdi
+mov     rdi, rax
+call    sub_415E6C
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 0
+jns     short loc_40D526
+mov     rax, [rbp-28h]
+mov     rbx, [rax+10h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    sub_40B967
+nop
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

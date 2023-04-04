@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+entry], rdi
+mov     [rbp+argv], rsi
+mov     [rbp+arg_ptr], rdx
+mov     rax, [rbp-8]
+mov     esi, 0
+mov     rdi, rax
+call    insert_fls
+leave
+retn

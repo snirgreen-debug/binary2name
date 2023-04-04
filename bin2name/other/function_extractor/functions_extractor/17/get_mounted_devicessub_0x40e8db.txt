@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+n], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+alloc_size], 0
+mov     [rbp+used], 0
+mov     [rbp+result], 0
+mov     edi, 0
+call    read_file_system_list
+mov     [rbp+entries], rax
+mov     rax, [rbp-18h]
+mov     [rbp+entry], rax
+jmp     loc_40E9B4
+mov     rax, [rbp-30h]
+add     rax, 1
+lea     rcx, [rax*8+0]
+lea     rdx, [rbp-38h]
+mov     rax, [rbp-20h]
+mov     rsi, rcx
+mov     rdi, rax
+call    extendbuf
+mov     [rbp+p], rax
+cmp     [rbp+p], 0
+jz      short loc_40E994
+mov     rax, [rbp-10h]
+mov     [rbp+result], rax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    set_fstype_devno
+test    eax, eax
+jnz     short loc_40E9A8
+mov     rax, [rbp-30h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     [rdx], rax
+add     [rbp+used], 1
+jmp     short loc_40E9A8
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _free
+mov     [rbp+result], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax+30h]
+mov     [rbp+entry], rax
+cmp     [rbp+entry], 0
+jnz     loc_40E929
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    free_file_system_list
+cmp     [rbp+result], 0
+jz      short loc_40E9DD
+mov     rax, [rbp-48h]
+mov     rdx, [rbp-30h]
+mov     [rax], rdx
+mov     rax, [rbp-20h]
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_40E9F5
+call    ___stack_chk_fail
+leave
+retn

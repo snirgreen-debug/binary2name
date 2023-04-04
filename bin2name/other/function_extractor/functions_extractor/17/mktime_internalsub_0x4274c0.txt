@@ -1,0 +1,366 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 150h
+mov     [rbp+tp], rdi
+mov     [rbp+convert], rsi
+mov     [rbp+offset], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+remaining_probes], 6
+mov     rax, [rbp-138h]
+mov     eax, [rax]
+mov     [rbp+sec], eax
+mov     rax, [rbp-138h]
+mov     eax, [rax+4]
+mov     [rbp+min], eax
+mov     rax, [rbp-138h]
+mov     eax, [rax+8]
+mov     [rbp+hour], eax
+mov     rax, [rbp-138h]
+mov     eax, [rax+0Ch]
+mov     [rbp+mday], eax
+mov     rax, [rbp-138h]
+mov     eax, [rax+10h]
+mov     [rbp+mon], eax
+mov     rax, [rbp-138h]
+mov     eax, [rax+14h]
+mov     [rbp+year_requested], eax
+mov     rax, [rbp-138h]
+mov     eax, [rax+20h]
+mov     [rbp+isdst], eax
+mov     ecx, [rbp-108h]
+mov     edx, 2AAAAAABh
+mov     eax, ecx
+imul    edx
+sar     edx, 1
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+shl     eax, 2
+sub     ecx, eax
+mov     eax, ecx
+mov     [rbp+mon_remainder], eax
+mov     eax, [rbp-0FCh]
+shr     eax, 1Fh
+movzx   eax, al
+mov     [rbp+negative_mon_remainder], eax
+mov     ecx, [rbp-108h]
+mov     edx, 2AAAAAABh
+mov     eax, ecx
+imul    edx
+sar     edx, 1
+mov     eax, ecx
+sar     eax, 1Fh
+sub     edx, eax
+mov     eax, edx
+sub     eax, [rbp-0F8h]
+mov     [rbp+mon_years], eax
+mov     eax, [rbp-104h]
+cdqe
+mov     [rbp+lyear_requested], rax
+mov     eax, [rbp-0F4h]
+movsxd  rdx, eax
+mov     rax, [rbp-0B8h]
+add     rax, rdx
+mov     [rbp+year], rax
+mov     rax, [rbp-0B0h]
+mov     rdi, rax
+call    leapyear
+mov     esi, eax
+mov     edx, [rbp-0F8h]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+shl     eax, 2
+mov     edx, eax
+mov     eax, [rbp-0FCh]
+add     eax, edx
+movsxd  rcx, eax
+movsxd  rdx, esi
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 2
+add     rax, rdx
+add     rax, rcx
+movzx   eax, word ptr [rax+rax+4326C0h]
+movzx   eax, ax
+sub     eax, 1
+mov     [rbp+mon_yday], eax
+mov     eax, [rbp-10Ch]
+cdqe
+mov     [rbp+lmday], rax
+mov     eax, [rbp-0F0h]
+movsxd  rdx, eax
+mov     rax, [rbp-0A8h]
+add     rax, rdx
+mov     [rbp+yday], rax
+mov     rax, [rbp-148h]
+mov     rax, [rax]
+mov     [rbp+guessed_offset], rax
+mov     eax, [rbp-124h]
+mov     [rbp+sec_requested], eax
+cmp     [rbp+sec], 0
+jns     short loc_4276A4
+mov     [rbp+sec], 0
+cmp     [rbp+sec], 3Bh
+jle     short loc_4276B7
+mov     [rbp+sec], 3Bh
+mov     rax, [rbp-98h]
+neg     eax
+mov     r8d, eax
+mov     edi, [rbp-124h]
+mov     ecx, [rbp-114h]
+mov     edx, [rbp-110h]
+mov     rsi, [rbp-0A0h]
+mov     rax, [rbp-0B0h]
+push    r8
+push    0
+push    0
+push    0
+mov     r9d, 46h
+mov     r8d, edi
+mov     rdi, rax
+call    ydhms_diff
+add     rsp, 20h
+mov     [rbp+t0], rax
+mov     rax, [rbp-90h]
+mov     [rbp+t2], rax
+mov     rax, [rbp-0D0h]
+mov     [rbp+t1], rax
+mov     rax, [rbp-0C0h]
+mov     [rbp+t], rax
+mov     [rbp+dst2], 0
+jmp     loc_427803
+mov     rax, [rbp-0D8h]
+cmp     rax, [rbp-0C0h]
+jnz     short loc_4277AC
+mov     rdx, [rbp-0D8h]
+mov     rax, [rbp-0D0h]
+cmp     rdx, rax
+jz      short loc_4277AC
+mov     eax, [rbp-60h]
+test    eax, eax
+js      offset_found
+cmp     [rbp+isdst], 0
+jns     short loc_427790
+mov     eax, [rbp-60h]
+test    eax, eax
+setnz   al
+movzx   eax, al
+cmp     eax, [rbp-120h]
+jge     offset_found
+jmp     short loc_4277AC
+cmp     [rbp+isdst], 0
+setnz   dl
+mov     eax, [rbp-60h]
+test    eax, eax
+setnz   al
+xor     eax, edx
+test    al, al
+jnz     offset_found
+sub     [rbp+remaining_probes], 1
+cmp     [rbp+remaining_probes], 0
+jnz     short loc_4277C8
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     loc_427B55
+mov     rax, [rbp-0D0h]
+mov     [rbp+t1], rax
+mov     rax, [rbp-0D8h]
+mov     [rbp+t2], rax
+mov     rax, [rbp-88h]
+mov     [rbp+t], rax
+mov     eax, [rbp-60h]
+test    eax, eax
+setnz   al
+movzx   eax, al
+mov     [rbp+dst2], eax
+lea     rdx, [rbp-80h]
+lea     rcx, [rbp-0D8h]
+mov     rax, [rbp-140h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ranged_convert
+mov     r9, rax
+lea     r8, [rbp-0D8h]
+mov     edi, [rbp-124h]
+mov     ecx, [rbp-114h]
+mov     edx, [rbp-110h]
+mov     rsi, [rbp-0A0h]
+mov     rax, [rbp-0B0h]
+sub     rsp, 8
+push    r9
+mov     r9, r8
+mov     r8d, edi
+mov     rdi, rax
+call    guess_time_tm
+add     rsp, 10h
+mov     [rbp+gt], rax
+mov     rax, [rbp-0D8h]
+cmp     rax, [rbp-88h]
+jnz     loc_427740
+mov     edx, [rbp-60h]
+mov     eax, [rbp-100h]
+mov     esi, edx
+mov     edi, eax
+call    isdst_differ
+test    eax, eax
+jz      offset_found
+mov     [rbp+stride], 92C70h
+mov     [rbp+duration_max], 1FF9A370h
+mov     eax, [rbp-0E4h]
+mov     edx, eax
+shr     edx, 1Fh
+add     eax, edx
+sar     eax, 1
+mov     edx, eax
+mov     eax, [rbp-0E8h]
+add     eax, edx
+mov     [rbp+delta_bound], eax
+mov     eax, [rbp-0E8h]
+mov     [rbp+delta], eax
+jmp     loc_4279E9
+mov     [rbp+direction], 0FFFFFFFFh
+jmp     loc_4279D0
+mov     eax, [rbp-11Ch]
+imul    eax, [rbp-118h]
+mov     edx, eax
+mov     rax, [rbp-0D8h]
+mov     esi, edx
+mov     rdi, rax
+call    time_t_int_add_ok
+test    eax, eax
+jz      loc_4279C9
+mov     eax, [rbp-11Ch]
+imul    eax, [rbp-118h]
+movsxd  rdx, eax
+mov     rax, [rbp-0D8h]
+add     rax, rdx
+mov     [rbp+ot], rax
+lea     rdx, [rbp-40h]
+lea     rcx, [rbp-0C8h]
+mov     rax, [rbp-140h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ranged_convert
+mov     edx, [rbp-20h]
+mov     eax, [rbp-100h]
+mov     esi, edx
+mov     edi, eax
+call    isdst_differ
+test    eax, eax
+jnz     short loc_4279C9
+lea     r9, [rbp-0C8h]
+mov     r8d, [rbp-124h]
+mov     ecx, [rbp-114h]
+mov     edx, [rbp-110h]
+mov     rsi, [rbp-0A0h]
+mov     rax, [rbp-0B0h]
+sub     rsp, 8
+lea     rdi, [rbp-40h]
+push    rdi
+mov     rdi, rax
+call    guess_time_tm
+add     rsp, 10h
+mov     [rbp+t], rax
+lea     rdx, [rbp-80h]
+lea     rcx, [rbp-0D8h]
+mov     rax, [rbp-140h]
+mov     rsi, rcx
+mov     rdi, rax
+call    ranged_convert
+jmp     short offset_found
+add     [rbp+direction], 2
+cmp     [rbp+direction], 1
+jle     loc_4278EA
+mov     eax, [rbp-0E8h]
+add     [rbp+delta], eax
+mov     eax, [rbp-11Ch]
+cmp     eax, [rbp-0E0h]
+jl      loc_4278DB
+mov     rdx, [rbp-0D8h]
+mov     rax, [rbp-98h]
+add     rax, rdx
+sub     rax, [rbp-90h]
+mov     rdx, rax
+mov     rax, [rbp-148h]
+mov     [rax], rdx
+mov     eax, [rbp-80h]
+cmp     eax, [rbp-0ECh]
+jz      loc_427B10
+cmp     [rbp+sec], 0
+jnz     short loc_427A47
+mov     eax, [rbp-80h]
+cmp     eax, 3Ch
+jnz     short loc_427A47
+mov     eax, 1
+jmp     short loc_427A4C
+mov     eax, 0
+sub     eax, [rbp-124h]
+mov     [rbp+sec_adjustment], eax
+mov     rax, [rbp-0D8h]
+mov     edx, [rbp-0ECh]
+mov     esi, edx
+mov     rdi, rax
+call    time_t_int_add_ok
+test    eax, eax
+jnz     short loc_427A7F
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     loc_427B55
+mov     eax, [rbp-0ECh]
+movsxd  rdx, eax
+mov     rax, [rbp-0D8h]
+add     rax, rdx
+mov     [rbp+t1], rax
+mov     edx, [rbp-0DCh]
+mov     rax, [rbp-0C0h]
+mov     esi, edx
+mov     rdi, rax
+call    time_t_int_add_ok
+test    eax, eax
+jnz     short loc_427AC0
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     loc_427B55
+mov     eax, [rbp-0DCh]
+movsxd  rdx, eax
+mov     rax, [rbp-0C0h]
+add     rax, rdx
+mov     [rbp+t2], rax
+lea     rcx, [rbp-80h]
+lea     rdx, [rbp-0D0h]
+mov     rax, [rbp-140h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+test    rax, rax
+jnz     short loc_427B02
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     short loc_427B55
+mov     rax, [rbp-0D0h]
+mov     [rbp+t], rax
+mov     rax, [rbp-138h]
+mov     rdx, [rbp-80h]
+mov     [rax], rdx
+mov     rdx, [rbp-78h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-70h]
+mov     [rax+10h], rdx
+mov     rdx, [rbp-68h]
+mov     [rax+18h], rdx
+mov     rdx, [rbp-60h]
+mov     [rax+20h], rdx
+mov     rdx, [rbp-58h]
+mov     [rax+28h], rdx
+mov     rdx, [rbp-50h]
+mov     [rax+30h], rdx
+mov     rax, [rbp-0D8h]
+mov     rdi, [rbp-8]
+xor     rdi, fs:28h
+jz      short locret_427B69
+call    ___stack_chk_fail
+leave
+retn

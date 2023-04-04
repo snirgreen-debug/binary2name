@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+value], rdi
+mov     [rbp+arglist], rsi
+mov     [rbp+vallist], rdx
+mov     [rbp+valsize], rcx
+mov     [rbp+i], 0
+jmp     short loc_4294CD
+mov     rax, [rbp-30h]
+imul    rax, [rbp-8]
+mov     rdx, rax
+mov     rax, [rbp-28h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jnz     short loc_4294C8
+mov     rax, [rbp-8]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+jmp     short locret_4294ED
+add     [rbp+i], 1
+mov     rax, [rbp-8]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-20h]
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_429485
+mov     eax, 0
+leave
+retn

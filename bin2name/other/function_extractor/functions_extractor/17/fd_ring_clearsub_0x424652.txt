@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+fd_ring], rdi
+jmp     short loc_42467F
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    i_ring_pop
+mov     [rbp+fd], eax
+cmp     [rbp+fd], 0
+js      short loc_42467F
+mov     eax, [rbp-4]
+mov     edi, eax
+call    _close
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    i_ring_empty
+xor     eax, 1
+test    al, al
+jnz     short loc_424660
+nop
+leave
+retn

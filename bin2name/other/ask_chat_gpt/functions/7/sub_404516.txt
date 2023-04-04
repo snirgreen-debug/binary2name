@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+mov     eax, cs:dword_6112D4
+cmp     eax, 1
+jle     short loc_404537
+mov     eax, cs:dword_6112D4
+sub     eax, 1
+mov     cs:dword_6112D4, eax
+nop
+pop     rbp
+retn

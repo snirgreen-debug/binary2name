@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+fd], edi
+mov     [rbp+name], rsi
+mov     [rbp+p], rdx
+mov     eax, cs:state_0.curdepth
+test    eax, eax
+jnz     short loc_40EA93
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    getfileconat
+mov     [rbp+rv], eax
+cmp     [rbp+rv], 0
+jnz     short loc_40EA7C
+mov     eax, 0
+jmp     short locret_40EAA8
+mov     ecx, [rbp-4]
+mov     rdx, [rbp-28h]
+mov     rsi, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    fallback_getfilecon
+jmp     short locret_40EAA8
+mov     rdx, [rbp-28h]
+mov     rcx, [rbp-20h]
+mov     eax, [rbp-14h]
+mov     rsi, rcx
+mov     edi, eax
+call    lgetfileconat
+leave
+retn

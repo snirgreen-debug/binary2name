@@ -1,0 +1,117 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 48h
+mov     [rbp+p], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+data_requirement_cost], 0
+mov     [rbp+inherent_cost], 0Ah
+mov     rax, [rbp-48h]
+movzx   eax, byte ptr [rax+1Ah]
+test    al, al
+jz      short loc_4089C5
+mov     [rbp+data_requirement_cost], 3
+jmp     short loc_4089F6
+mov     rax, [rbp-48h]
+movzx   eax, byte ptr [rax+1Ch]
+test    al, al
+jz      short loc_4089DA
+mov     [rbp+data_requirement_cost], 1
+jmp     short loc_4089F6
+mov     rax, [rbp-48h]
+movzx   eax, byte ptr [rax+1Bh]
+test    al, al
+jz      short loc_4089EF
+mov     [rbp+data_requirement_cost], 2
+jmp     short loc_4089F6
+mov     [rbp+data_requirement_cost], 0
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+cmp     rax, 404E69h
+jz      short loc_408A14
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+cmp     rax, 404E96h
+jnz     short loc_408A38
+mov     rax, [rbp-48h]
+movzx   eax, byte ptr [rax+38h]
+test    al, al
+jz      short loc_408A2C
+mov     [rbp+inherent_cost], 7
+jmp     loc_408B32
+mov     [rbp+inherent_cost], 8
+jmp     loc_408B32
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+cmp     rax, 40E319h
+jnz     short loc_408A56
+mov     rax, [rbp-48h]
+mov     eax, [rax+20h]
+mov     [rbp+inherent_cost], eax
+jmp     loc_408B32
+mov     eax, cs:pred_table_sorted
+test    eax, eax
+jnz     short loc_408ABC
+mov     ecx, 408913h
+mov     edx, 10h
+mov     esi, 3Bh
+mov     edi, 63A4E0h
+call    _qsort
+mov     ecx, 408913h
+mov     edx, 10h
+mov     esi, 3Bh
+mov     edi, 63A4E0h
+call    check_sorted
+xor     eax, 1
+test    al, al
+jz      short loc_408AB2
+mov     edx, 42B9D0h
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     cs:pred_table_sorted, 1
+mov     rax, [rbp-48h]
+mov     rax, [rax]
+mov     [rbp+key.fn], rax
+lea     rax, [rbp-30h]
+mov     r8d, 408913h
+mov     ecx, 10h
+mov     edx, 3Bh
+mov     esi, 63A4E0h
+mov     rdi, rax
+call    _bsearch
+mov     [rbp+entry], rax
+cmp     [rbp+entry], 0
+jz      short loc_408AFF
+mov     rax, [rbp-38h]
+mov     eax, [rax+8]
+mov     [rbp+inherent_cost], eax
+jmp     short loc_408B32
+mov     rax, [rbp-48h]
+mov     rbx, [rax+8]
+mov     edi, 42B9F8h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 0
+mov     eax, 0
+call    _error
+mov     [rbp+inherent_cost], 0Ah
+mov     eax, [rbp-3Ch]
+cmp     eax, [rbp-40h]
+jbe     short loc_408B3F
+mov     eax, [rbp-3Ch]
+jmp     short loc_408B42
+mov     eax, [rbp-40h]
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_408B56
+call    ___stack_chk_fail
+add     rsp, 48h
+pop     rbx
+pop     rbp
+retn

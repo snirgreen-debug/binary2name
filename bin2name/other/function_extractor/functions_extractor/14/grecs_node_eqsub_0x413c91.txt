@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+cmp     edx, eax
+jz      short loc_413CB8
+mov     eax, 1
+jmp     short locret_413D25
+mov     rax, [rbp-8]
+mov     eax, [rax]
+test    eax, eax
+jnz     short loc_413CC9
+mov     eax, 0
+jmp     short locret_413D25
+mov     rax, [rbp-10h]
+mov     rdx, [rax+48h]
+mov     rax, [rbp-8]
+mov     rax, [rax+48h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_413CEF
+mov     eax, 1
+jmp     short locret_413D25
+mov     rax, [rbp-8]
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_413D20
+mov     rax, [rbp-10h]
+mov     rdx, [rax+70h]
+mov     rax, [rbp-8]
+mov     rax, [rax+70h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_value_eq
+test    eax, eax
+jnz     short loc_413D20
+mov     eax, 1
+jmp     short locret_413D25
+mov     eax, 0
+leave
+retn

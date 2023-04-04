@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_62D6F8
+test    rax, rax
+jz      short loc_40ED16
+mov     rax, cs:qword_62D6F8
+mov     rdi, rax
+call    sub_40C17B
+mov     rax, cs:qword_62D700
+test    rax, rax
+jz      short loc_40ED31
+mov     rax, cs:qword_62D700
+mov     rdi, rax
+call    sub_40C17B
+nop
+pop     rbp
+retn

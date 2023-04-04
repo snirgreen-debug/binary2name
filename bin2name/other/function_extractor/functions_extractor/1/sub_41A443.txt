@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+push    r13
+push    r12
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_28], rdi
+mov     rax, [rbp-28h]
+mov     eax, [rax+0B0h]
+cmp     eax, 1
+jnz     short loc_41A4B2
+mov     rax, [rbp-28h]
+mov     rbx, [rax+50h]
+mov     rax, [rbp-28h]
+mov     r13, [rax+0A8h]
+mov     rax, [rbp-28h]
+mov     rdx, [rax+98h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+0A8h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+movsx   r12d, al
+mov     edi, 4247B8h
+call    _gettext
+mov     rdx, r13
+mov     esi, r12d
+mov     rdi, rax
+mov     eax, 0
+call    rbx
+jmp     short loc_41A4D0
+mov     rax, [rbp-28h]
+mov     rbx, [rax+50h]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_41A3EE
+mov     rdi, rax
+mov     eax, 0
+call    rbx
+nop
+add     rsp, 18h
+pop     rbx
+pop     r12
+pop     r13
+pop     rbp
+retn

@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_4], edi
+cmp     [rbp+var_4], 7
+ja      short def_4027CE
+mov     eax, [rbp-4]
+mov     rax, [rax*8+4228F0h]
+jmp     rax
+mov     eax, 4228BBh
+jmp     short loc_40280D
+mov     eax, 4228C1h
+jmp     short loc_40280D
+mov     eax, 4228C7h
+jmp     short loc_40280D
+mov     eax, 4228CCh
+jmp     short loc_40280D
+mov     eax, 4228D2h
+jmp     short loc_40280D
+mov     eax, 4228DAh
+jmp     short loc_40280D
+mov     eax, 4228E1h
+jmp     short loc_40280D
+mov     eax, 4228E6h
+jmp     short loc_40280D
+mov     eax, 0
+pop     rbp
+retn

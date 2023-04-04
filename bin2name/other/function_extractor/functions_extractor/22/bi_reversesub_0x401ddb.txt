@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+push    res
+mov     [rbp+code], edi
+mov     [rbp+len], esi
+mov     ebx, 0
+mov     eax, [rbp-0Ch]
+and     eax, 1
+or      ebx, eax
+shr     [rbp+code], 1
+add     ebx, ebx
+sub     [rbp+len], 1
+cmp     [rbp+len], 0
+jg      short loc_401DEB
+mov     eax, ebx
+shr     eax, 1
+pop     res
+pop     rbp
+retn

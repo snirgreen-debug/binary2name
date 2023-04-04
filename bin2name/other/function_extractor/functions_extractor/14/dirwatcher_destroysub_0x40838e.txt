@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+var_18], rdi
+mov     eax, cs:debug_level
+test    eax, eax
+jle     short loc_4083C7
+mov     rax, [rbp-18h]
+mov     rbx, [rax+10h]
+mov     edi, 4237B1h
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+mov     eax, 0
+call    debugprt
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sysev_rm_watch
+mov     rax, [rbp-18h]
+mov     eax, [rax+4]
+mov     edi, eax
+call    dirwatcher_remove_wd
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    dirwatcher_remove
+nop
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

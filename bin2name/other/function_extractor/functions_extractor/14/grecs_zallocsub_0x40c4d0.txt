@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+n], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grecs_malloc
+mov     [rbp+s], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+leave
+retn

@@ -1,0 +1,105 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     [rbp+var_24], 0
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_400A74
+jmp     loc_4016EC
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Eh
+jnz     loc_4016D0
+add     [rbp+var_24], 1
+jmp     loc_40168C
+cmp     [rbp+var_25], 7Bh
+jnz     short loc_40163E
+mov     eax, [rbp-24h]
+lea     edx, [rax+1]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 2Ah
+jnz     short loc_40163E
+lea     rax, [rbp-20h]
+mov     esi, 4038CBh
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_24], 2
+jmp     short loc_40168C
+cmp     [rbp+var_25], 2Ah
+jnz     short loc_401676
+mov     eax, [rbp-24h]
+lea     edx, [rax+1]
+mov     rax, cs:qword_605100
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+cmp     al, 7Dh
+jnz     short loc_401676
+lea     rax, [rbp-20h]
+mov     esi, 4038CEh
+mov     rdi, rax
+call    sub_400D5C
+add     [rbp+var_24], 2
+jmp     short loc_40168C
+movsx   edx, byte ptr [rbp-25h]
+lea     rax, [rbp-20h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400BCA
+add     [rbp+var_24], 1
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+mov     [rbp+var_25], al
+cmp     [rbp+var_25], 0
+jz      short loc_4016B3
+cmp     [rbp+var_25], 0Ah
+jnz     loc_401606
+cmp     [rbp+var_25], 0Ah
+jnz     short loc_4016BD
+add     [rbp+var_24], 1
+lea     rax, [rbp-20h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    sub_400BCA
+jmp     short loc_4016EC
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+mov     eax, 0
+call    sub_400E5F
+mov     [rbp+var_24], eax
+mov     rax, cs:qword_605100
+mov     edx, [rbp-24h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_400B96
+test    al, al
+jnz     loc_4015E1
+mov     rax, cs:qword_605100
+lea     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_400C4C
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_401745
+call    ___stack_chk_fail
+leave
+retn

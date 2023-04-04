@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:dl_file_url_map
+test    rax, rax
+jz      short loc_404B3C
+mov     rax, cs:dl_file_url_map
+mov     rdi, rax
+call    free_keys_and_values
+mov     rax, cs:dl_file_url_map
+mov     rdi, rax
+call    hash_table_destroy
+mov     cs:dl_file_url_map, 0
+mov     rax, cs:dl_url_file_map
+test    rax, rax
+jz      short loc_404B71
+mov     rax, cs:dl_url_file_map
+mov     rdi, rax
+call    free_keys_and_values
+mov     rax, cs:dl_url_file_map
+mov     rdi, rax
+call    hash_table_destroy
+mov     cs:dl_url_file_map, 0
+mov     rax, cs:downloaded_html_set
+test    rax, rax
+jz      short loc_404B8C
+mov     rax, cs:downloaded_html_set
+mov     rdi, rax
+call    string_set_free
+mov     rax, cs:downloaded_html_list
+mov     rdi, rax
+call    slist_free
+mov     cs:downloaded_html_list, 0
+nop
+pop     rbp
+retn

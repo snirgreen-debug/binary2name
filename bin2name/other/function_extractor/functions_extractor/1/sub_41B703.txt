@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     [rbp+var_18], rdx
+mov     [rbp+var_20], rcx
+cmp     [rbp+var_8], 0
+jnz     short loc_41B729
+mov     [rbp+var_8], 424FB8h
+mov     eax, cs:dword_62D840
+test    eax, eax
+jz      short loc_41B77E
+mov     rax, cs:stderr
+mov     rdx, [rbp-8]
+mov     esi, 424FC1h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, cs:stderr
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     esi, [rbp-0Ch]
+mov     rdi, rax
+call    sub_41AF09
+mov     rax, cs:stderr
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+nop
+nop
+leave
+retn

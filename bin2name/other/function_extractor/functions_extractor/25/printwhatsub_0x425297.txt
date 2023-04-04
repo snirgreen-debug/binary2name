@@ -1,0 +1,19 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+n1], edi
+mov     [rbp+n2], esi
+mov     eax, [rbp-4]
+cmp     eax, [rbp-8]
+jnz     short loc_4252B9
+mov     edi, 436BA8h
+call    _gettext
+jmp     short loc_4252C3
+mov     edi, 436BB5h
+call    _gettext
+mov     rsi, rax
+mov     edi, 0
+call    logputs
+nop
+leave
+retn

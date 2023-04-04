@@ -1,0 +1,355 @@
+push    r15
+push    r14
+push    r13
+push    r12
+push    rbp
+push    rbx
+sub     rsp, 18h
+mov     r12, [pibIn+30h]
+mov     dword ptr [rsp+48h+iKWCode], ecx
+mov     ebp, [r12]
+cmp     ebp, 4000h
+jz      loc_407FB4
+test    szName, szName
+mov     rbx, szName
+jz      def_407B9C
+test    szEqn, szEqn
+mov     r14, szEqn
+jz      def_407B9C
+mov     r15, [r12+20h]
+mov     r13, pibIn
+test    r15, r15
+jnz     short loc_407AFD
+jmp     loc_407C30
+mov     r15, [r15+18h]
+test    r15, r15
+jz      loc_407C30
+mov     rsi, [r15]
+mov     rdi, szName
+call    _strcmp
+test    eax, eax
+jnz     short loc_407AF0
+mov     rax, [r15+10h]
+mov     r8, rax
+and     r8d, 0F0000h
+cmp     ebp, 2
+jz      loc_407C58
+cmp     ebp, 3
+jz      loc_407D00
+cmp     ebp, 4
+jz      loc_407C90
+cmp     ebp, 6
+jnz     loc_407DD5
+lea     rax, [r8-60000h]
+test    rax, 0FFFFFFFFFFFDFFFFh
+jz      loc_407D56
+mov     rax, r8
+and     rax, 0FFFFFFFFFFFDFFFFh
+cmp     rax, 50000h
+jz      loc_407D56
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jz      loc_407DCE
+mov     rsi, szEqn
+mov     rdi, pibIn
+mov     [rsp+48h+var_40], r8
+call    VerifyEqn
+test    eax, eax
+jz      def_407B9C
+cmp     dword ptr [r12], 7
+ja      def_407B9C
+mov     eax, [r12]
+mov     r8, [rsp+8]
+jmp     ds:jpt_407B9C[rax*8]
+test    r8, r8
+setz    al
+test    r8, 0FFFFFFFFFFF7FFFFh
+jz      short loc_407BC5
+cmp     r8, 30000h
+jz      short loc_407BC5
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     loc_407EAB
+test    r8, r8
+jz      loc_407F88
+mov     r12, [pibIn+30h]
+mov     edx, [pibIn+20h]
+sub     edx, [pibIn+24h]
+mov     rcx, r8
+or      ch, 0F0h
+mov     edi, 412E24h
+mov     rsi, szName
+cmp     edx, 1
+cmovnz  r8, rcx
+mov     ecx, 7
+repe cmpsb
+jz      loc_407F38
+test    al, al
+jnz     loc_407EBA
+lea     rdi, [r12+40h]
+mov     rcx, r8
+mov     rdx, szEqn
+mov     rsi, rbx
+call    AddEquation
+mov     eax, [pibIn+20h]
+mov     [pibIn+24h], eax
+add     rsp, 18h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+pop     r14
+pop     r15
+retn
+cmp     ebp, 2
+jz      loc_407CF8
+cmp     ebp, 3
+jz      loc_407CF8
+xor     r15d, r15d
+xor     r8d, r8d
+cmp     ebp, 4
+jnz     loc_407B35
+jmp     short loc_407C90
+and     eax, 0E0000h
+cmp     rax, 60000h
+jnz     loc_407E28
+xor     r8d, r8d
+xor     r15d, r15d
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     loc_407B70
+mov     rcx, r8
+mov     [rsp+48h+var_40], r8
+jmp     loc_407E5E
+lea     rax, [r8-50000h]
+test    rax, 0FFFFFFFFFFFEFFFFh
+jz      loc_407D7E
+cmp     r8, 80000h
+jz      loc_407D7E
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jz      loc_407DC5
+cmp     ebp, 1
+jnz     loc_407B70
+cmp     hGloVarType, 20000h
+jnz     loc_407B70
+mov     r8d, 20000h
+add     rsp, 18h
+mov     rcx, szEqn
+mov     rdx, szName
+mov     rsi, r15
+mov     rdi, pibIn
+pop     szName
+pop     rbp
+pop     r12
+pop     pibIn
+pop     szEqn
+pop     r15
+jmp     DefineGlobalVar
+xor     r15d, r15d
+xor     r8d, r8d
+jmp     short loc_407CB0
+and     eax, 0D0000h
+cmp     rax, 50000h
+jz      short loc_407D16
+cmp     hGloVarType, 80000h
+jnz     short loc_407CB0
+xor     r8d, r8d
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jz      loc_407DA6
+xor     r8d, r8d
+xor     r15d, r15d
+jmp     loc_407B70
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     short loc_407D23
+xor     r8d, r8d
+add     rsp, 18h
+mov     rdx, szEqn
+mov     rsi, szName
+mov     rdi, pibIn
+mov     rcx, r8
+pop     szName
+pop     rbp
+pop     r12
+pop     pibIn
+pop     szEqn
+pop     r15
+jmp     DefineRootEqn
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     short loc_407D23
+xor     r8d, r8d
+add     rsp, 18h
+mov     rdx, szEqn
+mov     rsi, szName
+mov     rdi, pibIn
+mov     rcx, r8
+pop     szName
+pop     rbp
+pop     r12
+pop     pibIn
+pop     szEqn
+pop     r15
+jmp     DefineEventEqn
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     short loc_407D23
+xor     r8d, r8d
+add     rsp, 18h
+mov     rdx, szEqn
+mov     rsi, szName
+mov     rdi, pibIn
+mov     rcx, r8
+pop     szName
+pop     rbp
+pop     r12
+pop     pibIn
+pop     szEqn
+pop     r15
+jmp     DefineJacobEqn
+add     rsp, 18h
+mov     rdx, szEqn
+mov     rsi, szName
+mov     rdi, pibIn
+mov     rcx, r8
+pop     szName
+pop     rbp
+pop     r12
+pop     pibIn
+pop     szEqn
+pop     r15
+jmp     DefineScaleEqn
+cmp     ebp, 7
+ja      def_407B9C
+jmp     ds:jpt_407DCE[rbp*8]
+cmp     ebp, 7
+jnz     loc_407FCD
+lea     rax, [r8-60000h]
+test    rax, 0FFFFFFFFFFFDFFFFh
+jz      loc_407D2E
+mov     rax, r8
+and     rax, 0FFFFFFFFFFFDFFFFh
+cmp     rax, 50000h
+jz      loc_407D2E
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     loc_407B70
+sub     ebp, 1
+cmp     ebp, 6
+ja      def_407B9C
+jmp     ds:jpt_407E1C[rbp*8]
+cmp     hGloVarType, 80000h
+jz      loc_407C69
+jmp     loc_407CB0
+cmp     dword ptr [rsp+48h+iKWCode], 14h
+jz      loc_407F52
+cmp     dword ptr [rsp+48h+iKWCode], 2Bh
+jnz     loc_407C79
+mov     [rsp+48h+var_40], r8
+mov     ecx, 0C0000h
+mov     rdx, szEqn
+mov     rsi, szName
+mov     rdi, pibIn
+call    DefineDynamicsEqn
+mov     r8, [rsp+8]
+cmp     r8, 10000h
+jnz     def_407B9C
+cmp     dword ptr [rsp+48h+iKWCode], 14h
+jz      def_407B9C
+mov     ecx, 413250h
+mov     rdx, szName
+mov     esi, 4103h
+add     rsp, 18h
+mov     rdi, pibIn
+pop     rbx
+pop     rbp
+pop     r12
+pop     pibIn
+pop     szEqn
+pop     r15
+jmp     ReportError
+mov     ecx, 4132A0h
+mov     rdx, szName
+mov     esi, 8101h
+jmp     short loc_407E95
+cmp     r12, 0FFFFFFFFFFFFFFE0h
+jz      loc_407C04
+mov     edi, 20h
+mov     [rsp+48h+iKWCode], r8
+call    _malloc
+test    rax, rax
+mov     rbp, rax
+mov     r8, [rsp]
+jz      loc_407F93
+mov     rdi, rbx
+call    _strlen
+lea     r15, [rax+1]
+mov     rdi, r15
+call    _malloc
+test    rax, rax
+mov     r8, [rsp]
+jz      loc_40800F
+mov     rdx, r15
+mov     rsi, rbx
+mov     rdi, rax
+call    _memcpy
+mov     r8, [rsp]
+mov     [rbp+0], rax
+mov     qword ptr [rbp+8], 0
+mov     rax, [r12+20h]
+mov     [rbp+10h], r8
+mov     [rbp+18h], rax
+mov     [r12+20h], rbp
+jmp     loc_407C04
+lea     rdi, [r12+40h]
+mov     ecx, 0A0000h
+mov     rdx, szEqn
+mov     rsi, rbx
+call    AddEquation
+jmp     loc_407C17
+mov     edi, 412E24h
+mov     ecx, 7
+mov     rsi, szName
+repe cmpsb
+mov     rax, [pibIn+30h]
+setnbe  cl
+setb    dl
+cmp     cl, dl
+lea     rdi, [rax+28h]
+jz      short loc_407F3D
+mov     ecx, 9F000h
+mov     rdx, szEqn
+mov     rsi, rbx
+call    AddEquation
+jmp     loc_407C17
+mov     r8d, 80000h
+jmp     loc_407BCE
+mov     ecx, 4131E8h
+mov     rdx, rbx
+mov     esi, 8004h
+xor     edi, edi
+mov     [rsp+48h+iKWCode], r8
+call    ReportError
+mov     r8, [rsp]
+jmp     loc_407C04
+mov     ecx, 4131A0h
+mov     edx, 295h
+mov     esi, 412E2Bh
+mov     edi, 412E49h
+call    ___assert_fail
+cmp     ebp, 5
+jnz     loc_407CB0
+mov     rax, r8
+and     rax, 0FFFFFFFFFFFDFFFFh
+cmp     rax, 50000h
+setz    dl
+cmp     r8, 60000h
+setz    al
+or      al, dl
+jz      loc_407E06
+cmp     dword ptr [rsp+48h+iKWCode], 1Eh
+jnz     loc_407D23
+mov     r8d, 80000h
+jmp     loc_407BD2
+mov     ecx, 4131C0h
+mov     rdx, rbx
+mov     esi, 8004h
+xor     edi, edi
+mov     [rsp+48h+iKWCode], r8
+call    ReportError
+xor     eax, eax
+mov     r8, [rsp]
+jmp     loc_407F15

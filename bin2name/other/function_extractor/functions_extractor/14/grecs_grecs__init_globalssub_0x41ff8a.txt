@@ -1,0 +1,13 @@
+push    rbp
+mov     rbp, rsp
+mov     cs:grecs_grecs__buffer_stack, 0
+mov     cs:grecs_grecs__buffer_stack_top, 0
+mov     cs:grecs_grecs__buffer_stack_max, 0
+mov     cs:grecs_grecs__c_buf_p, 0
+mov     cs:grecs_grecs__init, 0
+mov     cs:grecs_grecs__start, 0
+mov     cs:grecs_grecs_in, 0
+mov     cs:grecs_grecs_out, 0
+mov     eax, 0
+pop     rbp
+retn

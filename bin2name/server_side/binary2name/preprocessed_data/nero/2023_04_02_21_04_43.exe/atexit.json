@@ -1,0 +1,77 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4216972,
+                "src": 4216960
+            },
+            {
+                "dst": 4199872,
+                "src": 4216972
+            },
+            {
+                "dst": 7340480,
+                "src": 4199872
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 7340480
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4216960,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "lea|rax|rip|+|0x202961|    |test|rax|rax|    |je|target_0|    "
+            },
+            {
+                "block_addr": 4216972,
+                "constraints": [
+                    [
+                        1,
+                        []
+                    ]
+                ],
+                "instructions": "mov|rdx|qword|ptr|rax|    |xor|esi|esi|    |jmp|0x4015c0|    "
+            },
+            {
+                "block_addr": 4199872,
+                "constraints": [
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "jmp|qword|ptr|rip|+|0x206be2|    "
+            },
+            {
+                "block_addr": 7340480,
+                "constraints": [
+                    [
+                        3,
+                        []
+                    ]
+                ],
+                "instructions": "add|byte|ptr|rax|al|    |add|byte|ptr|rax|al|    |add|byte|ptr|rax|al|    |add|byte|ptr|rax|al|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        4,
+                        [
+                            "<BV32 Extract(31, 0, unconstrained_ret___cxa_atexit_4309_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            }
+        ]
+    },
+    "func_name": "4216960"
+}

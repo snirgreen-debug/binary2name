@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edx, 250h
+mov     esi, 0
+mov     edi, 6475C0h
+call    _memset
+mov     cs:opt.cookies, 1
+mov     cs:opt.verbose, 0FFFFFFFFh
+mov     cs:opt.ntry, 14h
+mov     cs:opt.reclevel, 5
+mov     cs:opt.add_hostdir, 1
+mov     edi, 43374Eh
+call    xstrdup_real
+mov     cs:opt.ftp_acc, rax
+mov     edi, 433758h
+call    xstrdup_real
+mov     cs:opt.ftp_pass, rax
+mov     cs:opt.netrc, 1
+mov     cs:opt.ftp_glob, 1
+mov     cs:opt.htmlify, 1
+mov     cs:opt.http_keep_alive, 1
+mov     cs:opt.use_proxy, 1
+mov     edi, 43375Fh
+call    _getenv
+mov     [rbp+tmp], rax
+cmp     [rbp+tmp], 0
+jz      short loc_41A424
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    sepstring
+mov     cs:opt.no_proxy, rax
+mov     cs:opt.allow_cache, 1
+movsd   xmm0, cs:qword_433B40
+movsd   cs:opt.read_timeout, xmm0
+mov     cs:opt.use_robots, 1
+mov     cs:opt.remove_listing, 1
+mov     cs:opt.dot_bytes, 400h
+mov     cs:opt.dot_spacing, 0Ah
+mov     cs:opt.dots_in_line, 32h
+mov     cs:opt.dns_cache, 1
+mov     cs:opt.restrict_files_os, 0
+mov     cs:opt.restrict_files_ctrl, 1
+nop
+leave
+retn

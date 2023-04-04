@@ -1,0 +1,6 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_4], edi
+mov     edi, 0
+call    __exit

@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     eax, cs:l_desc.max_code
+mov     esi, eax
+mov     edi, 614E20h
+call    scan_tree
+mov     eax, cs:d_desc.max_code
+mov     esi, eax
+mov     edi, 615720h
+call    scan_tree
+mov     edi, 614780h
+call    build_tree
+mov     [rbp+max_blindex], 12h
+jmp     short loc_409B7F
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, byte ptr [rax+6147B0h]
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax*4+615D22h]
+test    ax, ax
+jnz     short loc_409B87
+sub     [rbp+max_blindex], 1
+cmp     [rbp+max_blindex], 2
+jg      short loc_409B5D
+jmp     short loc_409B88
+nop
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+add     eax, 0Eh
+movsxd  rdx, eax
+mov     rax, cs:opt_len
+add     rax, rdx
+mov     cs:opt_len, rax
+mov     eax, [rbp-4]
+leave
+retn

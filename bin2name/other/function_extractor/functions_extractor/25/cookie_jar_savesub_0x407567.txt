@@ -1,0 +1,113 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+jar], rdi
+mov     [rbp+file], rsi
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_407598
+mov     rax, [rbp-30h]
+mov     rsi, rax
+mov     edi, 430360h
+mov     eax, 0
+call    debug_logprintf
+mov     edi, 0
+call    _time
+mov     cs:cookies_now, rax
+mov     rax, [rbp-30h]
+mov     esi, 430377h
+mov     rdi, rax
+call    _fopen
+mov     [rbp+fp], rax
+cmp     [rbp+fp], 0
+jnz     short loc_407601
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 430318h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-30h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+jmp     loc_407719
+mov     rax, [rbp-18h]
+mov     rcx, rax
+mov     edx, 14h
+mov     esi, 1
+mov     edi, 430379h
+call    _fwrite
+mov     edi, 0
+call    datetime_str
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     esi, 43038Eh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-18h]
+mov     rcx, rax
+mov     edx, 1Ah
+mov     esi, 1
+mov     edi, 4303AAh
+call    _fwrite
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdx, [rbp-18h]
+mov     esi, 4073F0h
+mov     rdi, rax
+call    hash_table_map
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _ferror
+test    eax, eax
+jz      short loc_4076B9
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 4303C5h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-30h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _fclose
+test    eax, eax
+jns     short loc_407700
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rbx, rax
+mov     edi, 4303E0h
+call    _gettext
+mov     rsi, rax
+mov     rax, [rbp-30h]
+mov     rcx, rbx
+mov     rdx, rax
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     eax, cs:opt.debug
+test    eax, eax
+jz      short loc_407719
+mov     edi, 4303F8h
+mov     eax, 0
+call    debug_logprintf
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

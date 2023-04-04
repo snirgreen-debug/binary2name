@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+o], rdi
+mov     eax, esi
+mov     [rbp+i], edx
+mov     [rbp+c], al
+movzx   eax, byte ptr [rbp-2Ch]
+mov     [rbp+uc], al
+cmp     [rbp+o], 0
+jz      short loc_401FFA
+mov     rax, [rbp-28h]
+jmp     short loc_401FFF
+mov     eax, 6082E0h
+lea     rdx, [rax+8]
+movzx   eax, byte ptr [rbp-11h]
+shr     al, 5
+movzx   eax, al
+shl     rax, 2
+add     rax, rdx
+mov     [rbp+p], rax
+movzx   eax, byte ptr [rbp-11h]
+and     eax, 1Fh
+mov     [rbp+shift], eax
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     eax, [rbp-10h]
+mov     ecx, eax
+shr     edx, cl
+mov     eax, edx
+and     eax, 1
+mov     [rbp+r], eax
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     eax, [rbp-30h]
+and     eax, 1
+xor     eax, [rbp-0Ch]
+mov     esi, eax
+mov     eax, [rbp-10h]
+mov     ecx, eax
+shl     esi, cl
+mov     eax, esi
+xor     edx, eax
+mov     rax, [rbp-8]
+mov     [rax], edx
+mov     eax, [rbp-0Ch]
+pop     rbp
+retn

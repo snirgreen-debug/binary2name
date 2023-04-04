@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     eax, cs:dword_63FEC0
+test    eax, eax
+jz      short loc_4252F7
+mov     cs:dword_63FEC0, 0
+jmp     locret_42542C
+movsd   xmm0, cs:qword_647748
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_425313
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      short loc_425367
+cmp     [rbp+var_14], 1
+jle     short loc_425367
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, dword ptr [rbp-14h]
+movsd   xmm1, cs:qword_647748
+ucomisd xmm1, xmm0
+jb      short loc_425342
+mov     eax, [rbp-14h]
+sub     eax, 1
+mov     edi, eax
+call    _sleep
+jmp     locret_42542C
+movsd   xmm1, cs:qword_647748
+movsd   xmm0, cs:qword_436C78
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     edi, eax
+call    _usleep
+jmp     locret_42542C
+movsd   xmm0, cs:qword_647740
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_425387
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      locret_42542C
+mov     eax, cs:dword_647738
+test    eax, eax
+jz      short loc_425397
+cmp     [rbp+var_14], 1
+jle     short loc_4253B9
+movsd   xmm1, cs:qword_647740
+movsd   xmm0, cs:qword_436C78
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     edi, eax
+call    _usleep
+jmp     short locret_42542C
+movsd   xmm0, cs:qword_647740
+movapd  xmm2, xmm0
+addsd   xmm2, xmm0
+movsd   [rbp+var_20], xmm2
+call    sub_42F935
+mulsd   xmm0, qword ptr [rbp-20h]
+movsd   [rbp+var_8], xmm0
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_42540F
+mov     rax, cs:qword_647740
+movsd   xmm0, qword ptr [rbp-8]
+movapd  xmm1, xmm0
+mov     [rbp+var_20], rax
+movsd   xmm0, qword ptr [rbp-20h]
+mov     edi, 436BC8h
+mov     eax, 2
+call    sub_41CEC0
+movsd   xmm1, qword ptr [rbp-8]
+movsd   xmm0, cs:qword_436C78
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     edi, eax
+call    _usleep
+leave
+retn

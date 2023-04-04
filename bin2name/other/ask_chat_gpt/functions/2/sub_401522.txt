@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, edi
+mov     [rbp+var_4], al
+movzx   eax, byte ptr [rbp-4]
+mov     cs:byte_606258, al
+nop
+pop     rbp
+retn

@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+args], rdi
+mov     [rbp+argno], esi
+mov     [rbp+last], rdx
+mov     [rbp+predicates], rcx
+nop
+pop     rbp
+retn

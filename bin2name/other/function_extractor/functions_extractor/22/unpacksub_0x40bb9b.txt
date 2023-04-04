@@ -1,0 +1,139 @@
+push    rbp
+mov     rbp, rsp
+push    peek
+sub     rsp, 38h
+mov     [rbp+in], edi
+mov     [rbp+out], esi
+mov     eax, [rbp-34h]
+mov     cs:ifd, eax
+mov     eax, [rbp-38h]
+mov     cs:ofd, eax
+call    read_tree
+call    build_tree_0
+mov     cs:valid, 0
+mov     cs:bitbuf_0, 0
+mov     eax, cs:peek_bits
+mov     edx, 1
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+sub     eax, 1
+mov     [rbp+peek_mask], eax
+mov     eax, cs:max_len
+cdqe
+mov     eax, [rax*4+618160h]
+sub     eax, 1
+mov     [rbp+eob], eax
+jmp     short loc_40BC38
+mov     rax, cs:bitbuf_0
+shl     rax, 8
+mov     peek, rax
+call    read_byte
+movzx   eax, al
+or      rax, peek
+mov     cs:bitbuf_0, rax
+mov     eax, cs:valid
+add     eax, 8
+mov     cs:valid, eax
+mov     edx, cs:valid
+mov     eax, cs:peek_bits
+cmp     edx, eax
+jl      short loc_40BC09
+mov     rdx, cs:bitbuf_0
+mov     ecx, cs:valid
+mov     eax, cs:peek_bits
+sub     ecx, eax
+mov     eax, ecx
+mov     ecx, eax
+shr     rdx, cl
+mov     rax, rdx
+and     eax, [rbp-20h]
+mov     ebx, eax
+mov     eax, ebx
+movzx   eax, byte ptr [rax+648700h]
+movzx   eax, al
+mov     [rbp+len], eax
+cmp     [rbp+len], 0
+jle     short loc_40BC93
+mov     eax, cs:peek_bits
+sub     eax, [rbp-24h]
+mov     ecx, eax
+shr     ebx, cl
+jmp     loc_40BD2A
+mov     eax, [rbp-20h]
+mov     [rbp+mask], rax
+mov     eax, cs:peek_bits
+mov     [rbp+len], eax
+jmp     short loc_40BD16
+add     [rbp+len], 1
+mov     rax, [rbp-18h]
+add     rax, rax
+add     rax, 1
+mov     [rbp+mask], rax
+jmp     short loc_40BCE9
+mov     rax, cs:bitbuf_0
+shl     rax, 8
+mov     peek, rax
+call    read_byte
+movzx   eax, al
+or      rax, peek
+mov     cs:bitbuf_0, rax
+mov     eax, cs:valid
+add     eax, 8
+mov     cs:valid, eax
+mov     eax, cs:valid
+cmp     eax, [rbp-24h]
+jl      short loc_40BCBA
+mov     rdx, cs:bitbuf_0
+mov     eax, cs:valid
+sub     eax, [rbp-24h]
+mov     ecx, eax
+shr     rdx, cl
+mov     rax, rdx
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     ebx, edx
+and     ebx, eax
+mov     eax, [rbp-24h]
+cdqe
+mov     eax, [rax*4+6181E0h]
+cmp     eax, ebx
+ja      loc_40BCA5
+cmp     ebx, [rbp-1Ch]
+jnz     short loc_40BD3A
+mov     eax, cs:max_len
+cmp     [rbp+len], eax
+jz      short loc_40BD8F
+mov     eax, cs:outcnt
+lea     edx, [rax+1]
+mov     cs:outcnt, edx
+mov     edx, [rbp-24h]
+movsxd  rdx, edx
+mov     edx, [rdx*4+6180E0h]
+add     edx, ebx
+mov     edx, edx
+movzx   edx, byte ptr [rdx+617FE0h]
+mov     eax, eax
+mov     ds:window[rax], dl
+mov     eax, cs:outcnt
+cmp     eax, 8000h
+jnz     short loc_40BD7B
+call    flush_window
+mov     eax, cs:valid
+sub     eax, [rbp-24h]
+mov     cs:valid, eax
+jmp     loc_40BC07
+nop
+call    flush_window
+mov     rax, cs:bytes_out
+mov     edx, eax
+mov     rax, cs:orig_len
+cmp     rdx, rax
+jz      short loc_40BDB4
+mov     edi, 4114C8h
+call    gzip_error
+mov     eax, 0
+add     rsp, 38h
+pop     peek
+pop     rbp
+retn

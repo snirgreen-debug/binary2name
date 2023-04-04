@@ -1,0 +1,84 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+string], rdi
+mov     [rbp+buflen], rsi
+mov     [rbp+usefree], 1
+lea     rax, flags
+mov     eax, [rax+20h]
+test    eax, eax
+jnz     short loc_40FD7A
+cmp     [rbp+buflen], 0
+jz      short loc_40FD7A
+mov     [rbp+usefree], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      loc_40FE7B
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      loc_40FE7B
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+input], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    removespaces
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    aliaslookup
+mov     [rbp+aliasptr], rax
+cmp     [rbp+aliasptr], 0
+jz      loc_40FE7B
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     esi, 0FFFFFFFEh
+mov     rdi, rax
+call    checkunitlist
+test    eax, eax
+jz      short loc_40FDFD
+lea     rdi, aUnitListDefini
+call    _puts
+mov     eax, 1
+jmp     locret_40FE80
+cmp     [rbp+usefree], 0
+jz      short loc_40FE41
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+mov     rax, [rbp-28h]
+mov     [rax], rdx
+jmp     short loc_40FE7B
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    growbuffer
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-30h]
+mov     eax, [rax]
+cdqe
+cmp     rdx, rax
+ja      short loc_40FE2E
+mov     rax, [rbp-8]
+mov     rdx, [rax+8]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     eax, 0
+leave
+retn

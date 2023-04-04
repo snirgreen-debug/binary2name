@@ -1,0 +1,42 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+lea     rsi, locale
+mov     edi, 0
+call    _setlocale
+mov     [rbp+temp], rax
+mov     edi, 0Eh
+call    _nl_langinfo
+lea     rsi, aUtf8_0
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+setz    al
+movzx   edx, al
+lea     rax, utf8mode
+mov     [rax], edx
+cmp     [rbp+temp], 0
+jz      short loc_40FD33
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    dupstr
+mov     rdx, rax
+lea     rax, mylocale
+mov     [rax], rdx
+lea     rax, mylocale
+mov     rax, [rax]
+mov     esi, 2Eh
+mov     rdi, rax
+call    _strchr
+mov     [rbp+temp], rax
+cmp     [rbp+temp], 0
+jz      short loc_40FD44
+mov     rax, [rbp-8]
+mov     byte ptr [rax], 0
+jmp     short loc_40FD44
+lea     rax, mylocale
+lea     rdx, aEnUs
+mov     [rax], rdx
+nop
+leave
+retn

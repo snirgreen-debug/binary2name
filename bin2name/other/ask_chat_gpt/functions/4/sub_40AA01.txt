@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 404F42h
+jz      short loc_40AA45
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 40E319h
+jz      short loc_40AA45
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 404EDDh
+jz      short loc_40AA45
+mov     rax, [rbp-8]
+mov     rax, [rax]
+cmp     rax, 404F8Ch
+jnz     short loc_40AA51
+mov     rax, [rbp-8]
+mov     qword ptr [rax+40h], 0
+nop
+pop     rbp
+retn

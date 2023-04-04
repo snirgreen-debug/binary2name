@@ -1,0 +1,112 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     eax, [rax+0Ch]
+test    eax, eax
+jnz     short loc_40ABDE
+mov     rax, [rbp-28h]
+mov     ecx, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     r8d, ecx
+mov     rcx, rdx
+mov     edx, 423C1Bh
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+mov     [rbp+var_4], eax
+jmp     loc_40AD09
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_40AC5E
+mov     rax, [rbp-28h]
+mov     r8d, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     edi, [rax+18h]
+mov     rax, [rbp-28h]
+mov     rcx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     r9d, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     r10d, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+sub     rsp, 8
+push    r8
+push    rdi
+push    rcx
+mov     r8d, r10d
+mov     rcx, rdx
+mov     edx, 423C21h
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+add     rsp, 20h
+mov     [rbp+var_4], eax
+jmp     loc_40AD09
+mov     rax, [rbp-28h]
+mov     edx, [rax+8]
+mov     rax, [rbp-28h]
+mov     eax, [rax+18h]
+cmp     edx, eax
+jz      short loc_40ACBD
+mov     rax, [rbp-28h]
+mov     edi, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     ecx, [rax+18h]
+mov     rax, [rbp-28h]
+mov     r9d, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     r8d, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+push    rdi
+push    rcx
+mov     rcx, rdx
+mov     edx, 423C33h
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+add     rsp, 10h
+mov     [rbp+var_4], eax
+jmp     short loc_40AD09
+mov     rax, [rbp-28h]
+mov     ecx, [rax+1Ch]
+mov     rax, [rbp-28h]
+mov     r8d, [rax+0Ch]
+mov     rax, [rbp-28h]
+mov     edi, [rax+8]
+mov     rax, [rbp-28h]
+mov     rdx, [rax]
+mov     rsi, [rbp-20h]
+mov     rax, [rbp-18h]
+sub     rsp, 8
+push    rcx
+mov     r9d, r8d
+mov     r8d, edi
+mov     rcx, rdx
+mov     edx, 423C42h
+mov     rdi, rax
+mov     eax, 0
+call    grecs_asprintf
+add     rsp, 10h
+mov     [rbp+var_4], eax
+mov     eax, [rbp-4]
+leave
+retn

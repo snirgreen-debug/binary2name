@@ -1,0 +1,62 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_614814
+cmp     eax, 8
+jle     loc_401ED4
+mov     eax, cs:dword_65D340
+cmp     eax, 3FFDh
+ja      short loc_401E6E
+mov     eax, cs:dword_65D340
+lea     edx, [rax+1]
+mov     cs:dword_65D340, edx
+movzx   edx, cs:word_614810
+mov     eax, eax
+mov     ds:byte_648700[rax], dl
+mov     eax, cs:dword_65D340
+lea     edx, [rax+1]
+mov     cs:dword_65D340, edx
+movzx   edx, cs:word_614810
+shr     dx, 8
+mov     eax, eax
+mov     ds:byte_648700[rax], dl
+jmp     loc_401F0E
+mov     eax, cs:dword_65D340
+lea     edx, [rax+1]
+mov     cs:dword_65D340, edx
+movzx   edx, cs:word_614810
+mov     eax, eax
+mov     ds:byte_648700[rax], dl
+mov     eax, cs:dword_65D340
+cmp     eax, 4000h
+jnz     short loc_401E9E
+call    sub_40C967
+mov     eax, cs:dword_65D340
+lea     edx, [rax+1]
+mov     cs:dword_65D340, edx
+movzx   edx, cs:word_614810
+shr     dx, 8
+mov     eax, eax
+mov     ds:byte_648700[rax], dl
+mov     eax, cs:dword_65D340
+cmp     eax, 4000h
+jnz     short loc_401F0E
+call    sub_40C967
+jmp     short loc_401F0E
+mov     eax, cs:dword_614814
+test    eax, eax
+jle     short loc_401F0E
+mov     eax, cs:dword_65D340
+lea     edx, [rax+1]
+mov     cs:dword_65D340, edx
+movzx   edx, cs:word_614810
+mov     eax, eax
+mov     ds:byte_648700[rax], dl
+mov     eax, cs:dword_65D340
+cmp     eax, 4000h
+jnz     short loc_401F0E
+call    sub_40C967
+mov     cs:word_614810, 0
+mov     cs:dword_614814, 0
+nop
+pop     rbp
+retn

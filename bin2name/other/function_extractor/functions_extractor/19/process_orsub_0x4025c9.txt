@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+procdata], rdi
+mov     rcx, cs:past_pat_inspector
+mov     rax, cs:inspectors
+mov     rdx, [rbp-18h]
+mov     esi, 5
+mov     rdi, rax
+call    visit
+mov     [rbp+result], eax
+cmp     [rbp+result], 1
+jnz     short loc_402604
+mov     [rbp+result], 4
+mov     eax, [rbp-4]
+and     eax, 0Ch
+test    eax, eax
+jz      short loc_402613
+mov     eax, [rbp-4]
+jmp     short locret_402643
+mov     rax, cs:past_pat_inspector
+mov     rdx, [rbp-18h]
+mov     ecx, 0
+mov     esi, 1
+mov     rdi, rax
+call    visit
+mov     [rbp+result], eax
+cmp     [rbp+result], 1
+jnz     short loc_402640
+mov     eax, 2
+jmp     short locret_402643
+mov     eax, [rbp-4]
+leave
+retn

@@ -1,0 +1,28 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+lea     rax, unitcount
+mov     eax, [rax]
+cmp     eax, 63h
+jle     short loc_410FA5
+mov     eax, 0
+jmp     short locret_410FED
+lea     rsi, aGetnewunit
+mov     edi, 648h
+call    mymalloc
+mov     [rbp+unit], rax
+cmp     [rbp+unit], 0
+jnz     short loc_410FC8
+mov     eax, 0
+jmp     short locret_410FED
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    initializeunit
+lea     rax, unitcount
+mov     eax, [rax]
+lea     edx, [rax+1]
+lea     rax, unitcount
+mov     [rax], edx
+mov     rax, [rbp-8]
+leave
+retn

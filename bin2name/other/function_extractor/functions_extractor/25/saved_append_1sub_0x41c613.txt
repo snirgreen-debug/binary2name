@@ -1,0 +1,210 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+start], rdi
+mov     [rbp+end], rsi
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+len], eax
+cmp     [rbp+len], 0
+jz      loc_41C942
+mov     eax, cs:trailing_line
+test    eax, eax
+jnz     loc_41C716
+mov     eax, cs:log_line_current
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_41C663
+mov     cs:log_line_current, 0
+jmp     short loc_41C670
+mov     eax, cs:log_line_current
+mov     edi, eax
+call    free_log_line
+mov     eax, cs:log_line_current
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 6420E0h
+mov     [rbp+ln], rax
+cmp     [rbp+len], 80h
+jle     short loc_41C6DC
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    strdupdelim
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+88h], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+88h]
+mov     rax, [rbp-10h]
+mov     [rax+90h], rdx
+jmp     loc_41C8F9
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+mov     rcx, [rbp-28h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rdx, [rbp-10h]
+mov     eax, [rbp-1Ch]
+cdqe
+mov     byte ptr [rdx+rax], 0
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-10h]
+mov     [rax+90h], rdx
+jmp     loc_41C8F9
+mov     eax, cs:log_line_current
+movsxd  rdx, eax
+mov     rax, rdx
+shl     rax, 3
+add     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 6420E0h
+mov     [rbp+ln_0], rax
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+test    rax, rax
+jz      loc_41C7F7
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+old_len], eax
+mov     edx, [rbp-18h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+add     eax, 1
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+mov     rsi, rdx
+mov     rdi, rax
+call    xrealloc_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+88h], rdx
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rcx, [rax+88h]
+mov     eax, [rbp-18h]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     ecx, [rbp-18h]
+mov     eax, [rbp-1Ch]
+add     eax, ecx
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     rax, [rbp-8]
+mov     [rax+90h], rdx
+jmp     loc_41C8F9
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+old_len_0], eax
+mov     edx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+cmp     eax, 80h
+jle     loc_41C8B7
+mov     edx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+add     eax, 1
+cdqe
+mov     rdi, rax
+call    xmalloc_real
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+88h], rdx
+mov     eax, [rbp-14h]
+movsxd  rdx, eax
+mov     rcx, [rbp-8]
+mov     rax, [rbp-8]
+mov     rax, [rax+88h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+mov     rcx, [rax+88h]
+mov     eax, [rbp-14h]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     ecx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, ecx
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+mov     rdx, [rax+88h]
+mov     rax, [rbp-8]
+mov     [rax+90h], rdx
+jmp     short loc_41C8F9
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rcx, [rbp-8]
+mov     eax, [rbp-14h]
+cdqe
+add     rcx, rax
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     rdi, rcx
+call    _memcpy
+mov     edx, [rbp-14h]
+mov     eax, [rbp-1Ch]
+add     eax, edx
+mov     rdx, [rbp-8]
+cdqe
+mov     byte ptr [rdx+rax], 0
+mov     rdx, [rbp-8]
+mov     rax, [rbp-8]
+mov     [rax+90h], rdx
+mov     rax, [rbp-30h]
+sub     rax, 1
+movzx   eax, byte ptr [rax]
+cmp     al, 0Ah
+setnz   al
+movzx   eax, al
+mov     cs:trailing_line, eax
+mov     eax, cs:trailing_line
+test    eax, eax
+jnz     short locret_41C943
+mov     eax, cs:log_line_current
+add     eax, 1
+mov     cs:log_line_current, eax
+mov     eax, cs:log_line_current
+cmp     eax, 17h
+jle     short locret_41C943
+mov     cs:log_line_current, 0
+jmp     short locret_41C943
+nop
+leave
+retn

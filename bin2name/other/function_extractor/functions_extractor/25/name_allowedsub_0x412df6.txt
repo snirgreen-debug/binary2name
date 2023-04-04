@@ -1,0 +1,69 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+ht], rdi
+mov     [rbp+b], rsi
+mov     [rbp+e], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+ht], 0
+jnz     short loc_412E2A
+mov     eax, 1
+jmp     loc_412EDA
+mov     rax, [rbp-40h]
+mov     [rbp+BTA_beg], rax
+mov     rdx, [rbp-48h]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+BTA_len], eax
+lea     rax, [rbp-20h]
+mov     [rbp+BTA_dest], rax
+mov     eax, [rbp-24h]
+add     eax, 1
+cdqe
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ecx, 10h
+mov     edx, 0
+div     rcx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax], rdx
+mov     eax, [rbp-24h]
+movsxd  rdx, eax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     rcx, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rax, [rbp-10h]
+mov     rdx, [rax]
+mov     eax, [rbp-24h]
+cdqe
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-38h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_table_get
+test    rax, rax
+setnz   al
+movzx   eax, al
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_412EEE
+call    ___stack_chk_fail
+leave
+retn

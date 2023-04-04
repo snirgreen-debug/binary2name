@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+tagid], edi
+mov     [rbp+tag], rsi
+mov     [rbp+ctx], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-1Ch]
+mov     rax, [rbp-30h]
+mov     esi, 43251Dh
+mov     rdi, rax
+call    find_attr
+mov     [rbp+action], rax
+cmp     [rbp+action], 0
+jz      short loc_41455D
+mov     edx, [rbp-1Ch]
+mov     rcx, [rbp-38h]
+mov     rsi, [rbp-30h]
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    append_url
+mov     [rbp+up], rax
+cmp     [rbp+up], 0
+jz      short loc_41455D
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+10h]
+or      edx, 1
+mov     [rax+10h], dl
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_414572
+call    ___stack_chk_fail
+leave
+retn

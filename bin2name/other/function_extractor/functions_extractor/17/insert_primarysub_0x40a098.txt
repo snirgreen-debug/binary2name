@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+entry], rdi
+mov     [rbp+arg], rsi
+mov     rax, [rbp-8]
+mov     rax, [rax+18h]
+test    rax, rax
+jnz     short loc_40A0CE
+mov     ecx, 42C5D0h
+mov     edx, 85h
+mov     esi, 42C0E8h
+mov     edi, 42C0EFh
+call    ___assert_fail
+mov     rax, [rbp-8]
+mov     rcx, [rax+18h]
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    insert_primary_withpred
+leave
+retn

@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+signal_name], rdi
+mov     eax, cs:redirect_request
+test    eax, eax
+jnz     short loc_41D33A
+mov     eax, cs:save_context_p
+test    eax, eax
+jz      short loc_41D33A
+mov     cs:redirect_request, 1
+mov     rax, [rbp-8]
+mov     cs:redirect_request_signal_name, rax
+nop
+pop     rbp
+retn

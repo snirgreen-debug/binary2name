@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_63B580
+test    rax, rax
+jnz     short loc_40EC1E
+mov     [rbp+var_4], 0
+jmp     short loc_40EC07
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 5
+add     rax, 42D500h
+mov     eax, [rax]
+cmp     eax, 1
+jnz     short loc_40EC03
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 5
+add     rax, 42D500h
+mov     cs:qword_63B580, rax
+jmp     short loc_40EC1E
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 5
+add     rax, 42D508h
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40EBD5
+mov     rax, cs:qword_63B580
+pop     rbp
+retn

@@ -1,0 +1,105 @@
+push    r12
+push    rbp
+mov     rbp, rdi
+push    rbx
+mov     rbx, rdx
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rsp+38h+var_20], rax
+xor     eax, eax
+test    rdx, rdx
+jle     short loc_40C350
+test    rbx, rbx
+jz      short loc_40C328
+cmp     rbx, 1
+jz      short loc_40C310
+cmp     rbx, 0FFFFFFFFFFFFFFFFh
+mov     ecx, 619CC0h
+mov     edx, 41408Ch
+jz      short loc_40C332
+mov     eax, 1
+mov     rcx, [rsp+18h]
+xor     rcx, fs:28h
+jnz     loc_40C47D
+add     rsp, 20h
+pop     rbx
+pop     rbp
+pop     r12
+retn
+mov     rsi, rbp
+mov     edi, 0Ah
+call    _fputc
+xor     eax, eax
+jmp     short loc_40C2F3
+mov     ecx, 619CC0h
+mov     edx, 41408Ah
+mov     esi, 1
+mov     rdi, rbp
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+jmp     short loc_40C2F3
+test    rsi, rsi
+mov     r12, rsi
+jz      loc_40C418
+mov     rax, [rsi+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40C458
+jbe     loc_40C428
+cmp     rax, 30000h
+jz      short loc_40C3A8
+cmp     rax, 90000h
+jnz     loc_40C418
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+mov     eax, cs:dword_619884
+test    eax, eax
+jnz     loc_40C470
+mov     r8, [r12]
+mov     ecx, 414045h
+mov     edi, 619CC0h
+xor     eax, eax
+mov     edx, 3FFh
+mov     esi, 1
+call    ___sprintf_chk
+mov     rdi, [r12+8]
+mov     r8d, 414086h
+test    rdi, rdi
+jz      loc_40C2D3
+lea     rsi, [rsp+10h]
+mov     [rsp+38h+var_30], r8
+call    _strtod
+mov     rax, [rsp+10h]
+mov     r8, [rsp+8]
+cmp     byte ptr [rax], 0
+jnz     loc_40C2D3
+mov     r8, [r12+8]
+jmp     loc_40C2D3
+mov     r8, [r12]
+mov     ecx, 4140BDh
+jmp     short loc_40C3BF
+cmp     rax, 10000h
+jnz     short loc_40C418
+mov     ecx, cs:dword_619884
+test    ecx, ecx
+jz      loc_40C3B6
+mov     edx, cs:dword_619880
+test    edx, edx
+jnz     short loc_40C418
+mov     r8, [rsi]
+mov     ecx, 41403Ch
+jmp     loc_40C3BF
+mov     esi, cs:dword_619884
+test    esi, esi
+jnz     short loc_40C418
+mov     r8, [r12]
+mov     ecx, 41402Bh
+jmp     loc_40C3BF
+mov     r8, [rsi]
+mov     ecx, 414059h
+jmp     loc_40C3BF
+call    ___stack_chk_fail

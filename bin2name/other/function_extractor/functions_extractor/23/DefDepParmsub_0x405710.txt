@@ -1,0 +1,42 @@
+test    szLex, szLex
+push    r12
+push    rbp
+mov     rbp, pdValue
+push    rbx
+mov     rbx, szLex
+jz      short loc_40573A
+mov     r12, phvar
+call    ___ctype_b_loc
+movsx   rcx, byte ptr [szLex]
+mov     rax, [rax]
+test    byte ptr [rax+rcx*2+1], 4
+jnz     short loc_405758
+cmp     cl, 5Fh
+jz      short loc_405758
+xor     esi, esi
+mov     rdi, szLex
+call    _strtod
+movsd   qword ptr [pdValue+0], xmm0
+mov     eax, 1
+pop     szLex
+pop     pdValue
+pop     r12
+retn
+mov     rdi, cs:vpvmGlo
+mov     rsi, szLex
+call    CalculateVarHandle
+mov     rdx, rax
+mov     [phvar], rax
+mov     eax, 1
+test    rdx, rdx
+jnz     short loc_40574E
+mov     rdx, szLex
+xor     ecx, ecx
+mov     esi, 106h
+xor     edi, edi
+call    ReportError
+pop     szLex
+xor     eax, eax
+pop     pdValue
+pop     phvar
+retn

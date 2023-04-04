@@ -1,0 +1,164 @@
+push    r15
+push    r14
+mov     r15, szEqn
+push    r13
+push    r12
+mov     r14d, ecx
+push    rbp
+push    rbx
+mov     rbx, pibIn
+mov     r12, szLex
+sub     rsp, 1C28h
+mov     rbp, [pibIn+30h]
+mov     pibIn, szLex
+mov     rax, fs:28h
+mov     [rsp+1C58h+var_40], rax
+xor     eax, eax
+call    _strlen
+cmp     i, 50h
+jg      loc_408810
+lea     rsi, [rsp+10h]
+mov     edx, 5Bh
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jnz     loc_408830
+movzx   eax, byte ptr [rsp+10h]
+cmp     al, 3Dh
+jz      loc_408910
+cmp     al, 3Bh
+jnz     short loc_4087F0
+cmp     dword ptr [pinfo+0], 1
+jz      loc_4088F0
+xor     ecx, ecx
+mov     edx, 413397h
+mov     esi, 8014h
+mov     rdi, pibIn
+call    ReportError
+mov     rax, [rsp+1C18h]
+xor     rax, fs:28h
+jnz     loc_4089FB
+add     rsp, 1C28h
+pop     pibIn
+pop     rbp
+pop     szLex
+pop     r13
+pop     iKWCode
+pop     szEqn
+retn
+xor     ecx, ecx
+mov     edx, 41339Eh
+mov     esi, 8014h
+mov     rdi, pibIn
+call    ReportError
+jmp     short loc_4087BF
+xor     ecx, ecx
+mov     rdx, szLex
+mov     esi, 810Bh
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_408776
+lea     rdx, [rsp+8]
+mov     rsi, rsp
+mov     rdi, pibIn
+call    GetArrayBounds
+lea     rsi, [rsp+10h]
+mov     edx, 3Dh
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jnz     loc_408980
+cmp     [rsp+1C58h+szPunct], 3Bh
+jz      short loc_408880
+xor     ecx, ecx
+mov     edx, 4133A8h
+mov     esi, 8014h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_4087BF
+cmp     dword ptr [pinfo+0], 1
+jnz     loc_4087AB
+mov     pinfo, [rsp]
+cmp     i, [rsp+8]
+jge     loc_4087BF
+lea     r13, [rsp+410h]
+nop     dword ptr [rax+00000000h]
+mov     r9, i
+mov     r8, szLex
+mov     ecx, 413386h
+mov     edx, 3FFh
+mov     esi, 1
+mov     rdi, r13
+xor     eax, eax
+add     i, 1
+call    ___sprintf_chk
+mov     ecx, r14d
+mov     edx, 4134C0h
+mov     rsi, r13
+mov     rdi, pibIn
+call    DefineVariable
+cmp     [rsp+1C58h+iUB], i
+jg      short loc_4088A8
+jmp     loc_4087BF
+mov     ecx, r14d
+mov     edx, 4134C0h
+mov     rsi, szLex
+mov     rdi, pibIn
+call    DefineVariable
+jmp     loc_4087BF
+mov     rsi, szEqn
+mov     rdi, pibIn
+call    GetStatement
+lea     rcx, [rsp+810h]
+mov     rdx, szEqn
+xor     esi, esi
+mov     rdi, pibIn
+call    UnrollEquation
+lea     rdx, [rsp+810h]
+mov     ecx, r14d
+mov     rsi, szLex
+mov     rdi, pibIn
+call    DefineVariable
+mov     edx, 3Bh
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetPunct
+test    eax, eax
+jnz     loc_4087BF
+xor     ecx, ecx
+mov     edx, 4133ADh
+mov     esi, 8013h
+mov     rdi, pibIn
+call    ReportError
+jmp     loc_4087BF
+mov     rsi, szEqn
+mov     rdi, pibIn
+lea     r13, [rsp+410h]
+call    GetStatement
+mov     pinfo, [rsp]
+cmp     i, [rsp+8]
+jge     short loc_408946
+xchg    ax, ax
+mov     r9, i
+mov     r8, szLex
+mov     ecx, 413386h
+mov     edx, 3FFh
+mov     esi, 1
+mov     rdi, r13
+xor     eax, eax
+call    ___sprintf_chk
+lea     rcx, [rsp+810h]
+mov     rsi, i
+mov     rdx, szEqn
+mov     rdi, pibIn
+add     i, 1
+call    UnrollEquation
+lea     rdx, [rsp+810h]
+mov     ecx, r14d
+mov     rsi, r13
+mov     rdi, pibIn
+call    DefineVariable
+cmp     [rsp+1C58h+iUB], i
+jg      short loc_4089A0
+jmp     loc_408946
+call    ___stack_chk_fail

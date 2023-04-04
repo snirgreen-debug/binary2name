@@ -1,0 +1,61 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+lea     rax, unk_619B60
+mov     rax, [rax]
+mov     [rbp+var_8], rax
+jmp     loc_40EBCD
+cmp     [rbp+var_14], 0
+jz      short loc_40EB2F
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aDoingUnitListS
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     esi, 0FFFFFFFEh
+mov     rdi, rax
+call    sub_40E633
+test    eax, eax
+jz      short loc_40EB63
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitListSConta
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402C4B
+test    rax, rax
+jz      short loc_40EB92
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitListSHides
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_402D49
+test    rax, rax
+jz      short loc_40EBC1
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aUnitListSHides_0
+mov     eax, 0
+call    _printf
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     loc_40EB0E
+nop
+leave
+retn

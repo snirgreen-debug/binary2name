@@ -1,0 +1,63 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+s1], rsi
+mov     [rbp+nptr], rdx
+mov     [rbp+var_30], rcx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+cmp     [rbp+s1], 0
+jz      short loc_4207DC
+cmp     [rbp+var_30], 0
+jz      short loc_4207C6
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_4207BB
+mov     rax, [rbp-18h]
+mov     rdx, [rax]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jz      short loc_4207C6
+mov     rax, [rbp-30h]
+mov     qword ptr [rax], 0
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_410EC5
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax], rdx
+lea     rcx, [rbp-10h]
+mov     rax, [rbp-28h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtoul
+mov     edx, eax
+cmp     [rbp+var_30], 0
+jz      short loc_420806
+mov     rax, [rbp-30h]
+mov     rax, [rax]
+jmp     short loc_42080B
+mov     eax, 0
+sub     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax+8], edx
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+0Ch], 0
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+setnz   al
+movzx   eax, al
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_420842
+call    ___stack_chk_fail
+leave
+retn

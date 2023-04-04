@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     dword ptr [rax+10h], 0
+mov     rax, [rbp-18h]
+mov     rdx, [rbp-20h]
+mov     [rax+20h], rdx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    grecs_tree_first_node
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax+28h], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+test    rax, rax
+jnz     short loc_4226E3
+mov     eax, 0
+jmp     short locret_422715
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grecs_match
+test    eax, eax
+jz      short loc_422701
+mov     rax, [rbp-18h]
+mov     rax, [rax+28h]
+mov     [rbp+var_8], rax
+jmp     short loc_422711
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    grecs_match_next
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+leave
+retn

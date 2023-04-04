@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     rax, [rbp-18h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     eax, [rax+4]
+cdqe
+mov     edx, 0
+div     qword ptr [rbp-20h]
+mov     rax, rdx
+pop     rbp
+retn

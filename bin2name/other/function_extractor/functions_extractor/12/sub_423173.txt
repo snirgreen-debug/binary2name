@@ -1,0 +1,74 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_34], edx
+mov     [rbp+var_40], rcx
+mov     [rbp+var_48], r8
+mov     rax, [rbp-30h]
+mov     esi, 0
+mov     rdi, rax
+call    sub_42637A
+mov     [rbp+var_18], rax
+cmp     [rbp+var_18], 0
+jnz     short loc_4231C3
+mov     ecx, 436900h
+mov     edx, 25Bh
+mov     esi, 4365FFh
+mov     edi, 43689Fh
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     esi, 0
+mov     rdi, rax
+call    sub_42637A
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_4231F8
+mov     ecx, 436900h
+mov     edx, 25Eh
+mov     esi, 4365FFh
+mov     edi, 4368B3h
+call    ___assert_fail
+mov     edi, 30h
+call    sub_428825
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     edx, 30h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+mov     rdx, [rbp-10h]
+mov     [rax], rdx
+mov     rdi, [rbp-48h]
+mov     rcx, [rbp-40h]
+mov     edx, [rbp-34h]
+mov     rsi, [rbp-18h]
+mov     rax, [rbp-8]
+mov     r8, rdi
+mov     rdi, rax
+call    sub_422C96
+mov     [rbp+var_1C], eax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_42711E
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    sub_42711E
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+cmp     [rbp+var_1C], 0
+jnz     short loc_423292
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_423292
+mov     rax, [rbp-28h]
+mov     rsi, rax
+mov     edi, 4368C8h
+mov     eax, 0
+call    sub_41CEC0
+mov     eax, [rbp-1Ch]
+leave
+retn

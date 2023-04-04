@@ -1,0 +1,59 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, 0
+call    sub_4116FD
+mov     [rbp+addr_len], eax
+movsd   xmm0, cs:qword_647730
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jp      short loc_4032B2
+pxor    xmm1, xmm1
+ucomisd xmm0, xmm1
+jz      short loc_4032DF
+mov     rdx, cs:qword_647730
+mov     eax, cs:fd
+mov     esi, 0
+mov     [rbp+var_20], rdx
+movsd   xmm0, qword ptr [rbp-20h]
+mov     edi, eax
+call    sub_4030C7
+test    eax, eax
+jg      short loc_4032DF
+mov     eax, 0Ch
+jmp     short loc_403339
+mov     rcx, cs:addr
+mov     eax, cs:fd
+lea     rdx, [rbp-0Ch]
+mov     rsi, rcx
+mov     edi, eax
+call    _accept
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+test    eax, eax
+jns     short loc_403313
+mov     eax, 0Ch
+jmp     short loc_403339
+mov     eax, cs:dword_647774
+test    eax, eax
+jz      short loc_403334
+mov     rax, [rbp-18h]
+mov     eax, [rax]
+mov     esi, eax
+mov     edi, 42FDD0h
+mov     eax, 0
+call    sub_41CEC0
+mov     eax, 0Dh
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40334D
+call    ___stack_chk_fail
+leave
+retn

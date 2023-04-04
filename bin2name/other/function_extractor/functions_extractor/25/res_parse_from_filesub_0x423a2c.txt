@@ -1,0 +1,39 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+filename], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    read_file
+mov     [rbp+fm], rax
+cmp     [rbp+fm], 0
+jnz     short loc_423A85
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 43699Ah
+mov     edi, 1
+mov     eax, 0
+call    logprintf
+mov     eax, 0
+jmp     short locret_423AB4
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     edx, eax
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+mov     esi, edx
+mov     rdi, rax
+call    res_parse
+mov     [rbp+specs], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    read_file_free
+mov     rax, [rbp-8]
+leave
+retn

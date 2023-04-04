@@ -1,0 +1,36 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 28h
+mov     [rbp+var_28], rdi
+mov     rax, [rbp-28h]
+mov     [rbp+ptr], rax
+mov     rax, [rbp-18h]
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_40BA6E
+mov     rax, [rbp-18h]
+mov     rax, [rax+18h]
+mov     rdi, rax
+call    _fclose
+test    eax, eax
+jz      short loc_40BA6E
+mov     rax, [rbp-18h]
+mov     rbx, [rax+10h]
+call    ___errno_location
+mov     eax, [rax]
+mov     rsi, rbx
+mov     edi, eax
+call    sub_40B994
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+nop
+add     rsp, 28h
+pop     rbx
+pop     rbp
+retn

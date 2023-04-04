@@ -1,0 +1,92 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+script], rdi
+mov     [rbp+message], rsi
+mov     [rbp+mode], rdx
+mov     [rbp+seek_done], 0
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+mov     ebx, cs:COLS@@NCURSES_TINFO_5_0_19991023
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    utf8len
+sub     ebx, eax
+mov     eax, ebx
+lea     edx, [rax-2]
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    wideaddstr_rev
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    wideaddstr_rev
+mov     edi, 0
+call    getch_fl
+mov     [rbp+resp], eax
+cmp     [rbp+resp], 1Bh
+jnz     short loc_402752
+mov     rax, cs:MODE_TUTORIAL
+cmp     [rbp+mode], rax
+jnz     short loc_402752
+mov     rax, cs:fkey_bindings+58h
+test    rax, rax
+jz      short loc_402744
+mov     rax, cs:fkey_bindings+58h
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_402744
+mov     rcx, cs:fkey_bindings+58h
+mov     rax, [rbp-28h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    seek_label
+mov     [rbp+seek_done], 1
+jmp     short loc_402764
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    do_exit
+jmp     short loc_402764
+cmp     [rbp+resp], 0Ah
+jz      short loc_402764
+cmp     [rbp+resp], 20h
+jz      short loc_402764
+cmp     [rbp+resp], 1Bh
+jnz     short loc_4026E9
+mov     eax, cs:__bss_start
+lea     ecx, [rax-1]
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     edx, 0
+mov     esi, ecx
+mov     rdi, rax
+call    _wmove
+mov     rax, cs:stdscr@@NCURSES_TINFO_5_0_19991023
+mov     rdi, rax
+call    _wclrtoeol
+movzx   eax, byte ptr [rbp-15h]
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_605100
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_401010
+mov     rax, cs:qword_605100
+mov     rdx, [rax+8]
+sub     rdx, 1
+mov     [rax+8], rdx
+mov     rax, cs:qword_605468
+add     rax, 8
+mov     cs:qword_605468, rax
+nop
+pop     rbp
+retn

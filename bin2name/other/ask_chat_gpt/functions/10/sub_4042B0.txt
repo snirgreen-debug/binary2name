@@ -1,0 +1,34 @@
+push    r13
+push    r12
+xor     r13d, r13d
+push    rbp
+push    rbx
+movsxd  rbx, edx
+mov     rbp, rdi
+mov     r12, rsi
+sub     rsp, 18h
+lea     rdx, [rsp+4]
+mov     rax, fs:28h
+mov     [rsp+38h+var_30], rax
+xor     eax, eax
+call    sub_403F80
+mov     eax, ebx
+and     eax, [rsp+4]
+setz    r13b
+jnz     short loc_404304
+mov     rdx, [rbx*8+6191A0h]
+mov     rcx, r12
+mov     esi, 14h
+mov     rdi, rbp
+call    sub_405040
+mov     rcx, [rsp+8]
+xor     rcx, fs:28h
+mov     eax, r13d
+jnz     short loc_404322
+add     rsp, 18h
+pop     rbx
+pop     rbp
+pop     r12
+pop     r13
+retn
+call    ___stack_chk_fail

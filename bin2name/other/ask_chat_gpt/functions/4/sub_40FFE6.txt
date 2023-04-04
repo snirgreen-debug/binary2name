@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rax, cs:stdout
+mov     edx, 0
+mov     esi, 0
+mov     rdi, rax
+call    sub_40A1FE
+mov     edi, 42E310h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E3A0h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E470h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E580h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E6B0h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E78Ah
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E7A8h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 42E8A8h
+call    _gettext
+mov     rdi, rax
+call    _puts
+mov     edi, 0
+call    _exit

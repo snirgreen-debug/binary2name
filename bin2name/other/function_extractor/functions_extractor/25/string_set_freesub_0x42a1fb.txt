@@ -1,0 +1,15 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+ht], rdi
+mov     rax, [rbp-8]
+mov     edx, 0
+mov     esi, 42A1D4h
+mov     rdi, rax
+call    hash_table_map
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    hash_table_destroy
+nop
+leave
+retn

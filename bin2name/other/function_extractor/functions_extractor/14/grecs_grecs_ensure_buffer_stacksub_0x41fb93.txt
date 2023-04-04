@@ -1,0 +1,69 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jnz     short loc_41FC19
+mov     [rbp+var_8], 1
+mov     eax, [rbp-8]
+cdqe
+shl     rax, 3
+mov     rdi, rax
+call    grecs_grecs_alloc
+mov     cs:grecs_grecs__buffer_stack, rax
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jnz     short loc_41FBDC
+mov     edi, 426608h
+call    grecs_grecs__fatal_error
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     eax, [rbp-8]
+cdqe
+mov     cs:grecs_grecs__buffer_stack_max, rax
+mov     cs:grecs_grecs__buffer_stack_top, 0
+jmp     locret_41FCC3
+mov     rax, cs:grecs_grecs__buffer_stack_max
+lea     rdx, [rax-1]
+mov     rax, cs:grecs_grecs__buffer_stack_top
+cmp     rdx, rax
+ja      locret_41FCC3
+mov     [rbp+var_4], 8
+mov     rax, cs:grecs_grecs__buffer_stack_max
+mov     edx, eax
+mov     eax, [rbp-4]
+add     eax, edx
+mov     [rbp+var_8], eax
+mov     eax, [rbp-8]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_grecs_realloc
+mov     cs:grecs_grecs__buffer_stack, rax
+mov     rax, cs:grecs_grecs__buffer_stack
+test    rax, rax
+jnz     short loc_41FC88
+mov     edi, 426608h
+call    grecs_grecs__fatal_error
+mov     eax, [rbp-4]
+cdqe
+lea     rdx, [rax*8+0]
+mov     rax, cs:grecs_grecs__buffer_stack
+mov     rcx, cs:grecs_grecs__buffer_stack_max
+shl     rcx, 3
+add     rax, rcx
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     eax, [rbp-8]
+cdqe
+mov     cs:grecs_grecs__buffer_stack_max, rax
+leave
+retn

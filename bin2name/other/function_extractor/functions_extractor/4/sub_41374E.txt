@@ -1,0 +1,126 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+var_40], rdx
+mov     [rbp+var_38], rcx
+movsd   [rbp+var_48], xmm0
+mov     [rbp+format], r8
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-30h]
+lea     rdx, [rax+4]
+lea     rax, [rbp-28h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_413C3C
+test    al, al
+jz      loc_413933
+mov     rax, [rbp-30h]
+mov     eax, [rax+4]
+cmp     eax, 1
+jz      short loc_4137B3
+cmp     eax, 1
+jb      short loc_4137C0
+cmp     eax, 2
+jmp     short loc_4137CC
+mov     rax, [rbp-30h]
+mov     dword ptr [rax+4], 0
+jmp     short loc_4137CC
+mov     rax, [rbp-30h]
+mov     dword ptr [rax+4], 1
+nop
+mov     rax, [rbp-28h]
+lea     rdx, [rbp-20h]
+mov     ecx, 402BE0h
+mov     esi, 0
+mov     rdi, rax
+call    sub_422FBB
+test    al, al
+jz      loc_41392C
+movsd   xmm0, qword ptr [rbp-20h]
+mulsd   xmm0, qword ptr [rbp-48h]
+lea     rax, [rbp-18h]
+mov     rdi, rax
+call    _modf
+movq    rax, xmm0
+mov     [rbp+var_10], rax
+movsd   xmm1, qword ptr [rbp-10h]
+movsd   xmm0, cs:qword_42F9B0
+mulsd   xmm0, xmm1
+movsd   [rbp+var_10], xmm0
+mov     rax, cs:qword_42F938
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+ucomisd xmm0, qword ptr [rbp-10h]
+ja      short loc_413853
+mov     ecx, 42F940h
+mov     edx, 0C59h
+mov     esi, 42E06Ch
+mov     edi, 42F7F9h
+call    ___assert_fail
+mov     rax, [rbp-40h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, qword ptr [rbp-18h]
+subsd   xmm0, xmm1
+cvttsd2si rdx, xmm0
+mov     rax, [rbp-30h]
+mov     [rax+8], rdx
+mov     rdx, [rbp-40h]
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+cmp     rdx, rax
+setl    dl
+movsd   xmm1, qword ptr [rbp-18h]
+pxor    xmm0, xmm0
+ucomisd xmm0, xmm1
+setnbe  al
+xor     eax, edx
+test    al, al
+jz      short loc_4138C0
+mov     rdx, [rbp-28h]
+mov     rax, [rbp-50h]
+mov     rcx, rdx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, [rbp-38h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+subsd   xmm0, qword ptr [rbp-10h]
+cvttsd2si rdx, xmm0
+mov     rax, [rbp-30h]
+mov     [rax+10h], rdx
+mov     rax, [rbp-38h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, qword ptr [rbp-10h]
+ucomisd xmm1, xmm0
+jbe     short loc_413925
+mov     rax, [rbp-30h]
+mov     rdx, [rax+10h]
+mov     rax, cs:qword_42F938
+add     rdx, rax
+mov     rax, [rbp-30h]
+mov     [rax+10h], rdx
+mov     rax, [rbp-30h]
+mov     rax, [rax+8]
+lea     rdx, [rax-1]
+mov     rax, [rbp-30h]
+mov     [rax+8], rdx
+mov     eax, 1
+jmp     short loc_413938
+mov     eax, 0
+jmp     short loc_413938
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41394C
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-20h]
+mov     eax, [rax+18h]
+mov     [rbp+mode], eax
+mov     eax, [rbp-8]
+and     eax, 0F000h
+cmp     eax, 4000h
+setz    al
+movzx   edx, al
+mov     rax, [rbp-28h]
+movsxd  rdx, edx
+add     rdx, 0Ch
+mov     eax, [rax+rdx*4+0Ch]
+mov     [rbp+perm_val], eax
+mov     rax, [rbp-28h]
+mov     eax, [rax+38h]
+cmp     eax, 1
+jz      short loc_405A01
+cmp     eax, 1
+jb      short loc_4059F3
+cmp     eax, 2
+jz      short loc_405A1B
+jmp     short loc_405A2B
+mov     eax, [rbp-8]
+and     eax, [rbp-4]
+cmp     eax, [rbp-4]
+setz    al
+jmp     short locret_405A30
+cmp     [rbp+perm_val], 0
+jnz     short loc_405A0E
+mov     eax, 1
+jmp     short locret_405A30
+mov     eax, [rbp-8]
+and     eax, [rbp-4]
+test    eax, eax
+setnz   al
+jmp     short locret_405A30
+mov     eax, [rbp-8]
+and     eax, 0FFFh
+cmp     eax, [rbp-4]
+setz    al
+jmp     short locret_405A30
+call    _abort
+leave
+retn

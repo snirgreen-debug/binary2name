@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+string], rdi
+mov     [rbp+length], esi
+mov     eax, [rbp-1Ch]
+add     eax, 1
+lea     rsi, aDupnstr
+mov     edi, eax
+call    mymalloc
+mov     [rbp+newstr], rax
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _strncpy
+mov     eax, [rbp-1Ch]
+movsxd  rdx, eax
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     byte ptr [rax], 0
+mov     rax, [rbp-8]
+leave
+retn

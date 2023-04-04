@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+mov     [rbp+var_8], rax
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax+28h]
+movzx   edi, al
+mov     r9d, cs:dword_63BFFC
+mov     r8, cs:qword_63BFD8
+mov     rdx, cs:s1
+mov     esi, cs:fildes
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+push    [rbp+var_8]
+push    rdi
+mov     rdi, rax
+call    sub_4140DF
+add     rsp, 10h
+mov     eax, 1
+leave
+retn

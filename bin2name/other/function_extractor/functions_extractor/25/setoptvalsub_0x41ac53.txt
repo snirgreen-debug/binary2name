@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    findcmd
+mov     ecx, eax
+mov     rdx, [rbp-10h]
+mov     rax, [rbp-8]
+mov     rsi, rax
+mov     edi, ecx
+call    setval_internal
+test    eax, eax
+jnz     short loc_41AC91
+mov     edi, 2
+call    _exit
+nop
+leave
+retn

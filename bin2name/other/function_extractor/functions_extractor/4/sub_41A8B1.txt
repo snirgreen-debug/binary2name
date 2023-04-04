@@ -1,0 +1,90 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s2], rdi
+mov     rax, cs:qword_63B5C0
+mov     [rbp+var_10], rax
+jmp     short loc_41A90D
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+10h]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_41A901
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcmp
+test    eax, eax
+jnz     short loc_41A901
+mov     rax, [rbp-10h]
+jmp     locret_41AA02
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_41A8CA
+mov     rax, cs:qword_63B5C8
+mov     [rbp+var_10], rax
+jmp     short loc_41A965
+mov     rax, [rbp-10h]
+movzx   edx, byte ptr [rax+10h]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     dl, al
+jnz     short loc_41A959
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcmp
+test    eax, eax
+jnz     short loc_41A959
+mov     eax, 0
+jmp     locret_41AA02
+mov     rax, [rbp-10h]
+mov     rax, [rax+8]
+mov     [rbp+var_10], rax
+cmp     [rbp+var_10], 0
+jnz     short loc_41A921
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _getpwnam
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+add     rax, 11h
+mov     rdi, rax
+call    sub_422DC2
+mov     [rbp+var_10], rax
+mov     rax, [rbp-10h]
+lea     rdx, [rax+10h]
+mov     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    _strcpy
+cmp     [rbp+var_8], 0
+jz      short loc_41A9E3
+mov     rax, [rbp-8]
+mov     edx, [rax+10h]
+mov     rax, [rbp-10h]
+mov     [rax], edx
+mov     rdx, cs:qword_63B5C0
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     cs:qword_63B5C0, rax
+mov     rax, [rbp-10h]
+jmp     short locret_41AA02
+mov     rdx, cs:qword_63B5C8
+mov     rax, [rbp-10h]
+mov     [rax+8], rdx
+mov     rax, [rbp-10h]
+mov     cs:qword_63B5C8, rax
+mov     eax, 0
+leave
+retn

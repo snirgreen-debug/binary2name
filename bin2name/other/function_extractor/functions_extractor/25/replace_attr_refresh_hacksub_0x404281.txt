@@ -1,0 +1,57 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+p], rdi
+mov     [rbp+size], esi
+mov     [rbp+fp], rdx
+mov     [rbp+new_text], rcx
+mov     [rbp+timeout], r8d
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     eax, [rbp-30h]
+cdqe
+mov     rdi, rax
+call    numdigit
+add     eax, 6
+movsxd  rbx, eax
+mov     rax, [rbp-40h]
+mov     rdi, rax
+call    _strlen
+add     rax, rbx
+add     rax, 1
+lea     rdx, [rax+0Fh]
+mov     eax, 10h
+sub     rax, 1
+add     rax, rdx
+mov     ebx, 10h
+mov     edx, 0
+div     rbx
+imul    rax, 10h
+sub     rsp, rax
+mov     rax, rsp
+add     rax, 0Fh
+shr     rax, 4
+shl     rax, 4
+mov     [rbp+new_with_timeout], rax
+mov     rcx, [rbp-40h]
+mov     edx, [rbp-30h]
+mov     rax, [rbp-20h]
+mov     esi, 43002Ch
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-38h]
+mov     esi, [rbp-2Ch]
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    replace_attr
+mov     rbx, [rbp-18h]
+xor     rbx, fs:28h
+jz      short loc_404351
+call    ___stack_chk_fail
+mov     rbx, [rbp-8]
+leave
+retn

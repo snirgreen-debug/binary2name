@@ -1,0 +1,14 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+var_8], rdi
+mov     rax, [rbp-8]
+mov     r9d, 0
+mov     r8d, 0
+mov     ecx, 0
+mov     edx, 0
+mov     esi, 0
+mov     rdi, rax
+call    grecs_symtab_create
+leave
+retn

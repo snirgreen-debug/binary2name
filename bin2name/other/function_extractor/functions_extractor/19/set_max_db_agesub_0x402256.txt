@@ -1,0 +1,90 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 30h
+mov     [rbp+s], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     rax, [rbp-38h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_4022A0
+mov     edi, 40D9E8h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+call    ___errno_location
+mov     dword ptr [rax], 0
+lea     rcx, [rbp-28h]
+mov     rax, [rbp-38h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtoul
+mov     [rbp+val], rax
+cmp     [rbp+val], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4022DA
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 22h
+jz      short loc_4022ED
+cmp     [rbp+val], 0
+jnz     short loc_402333
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 16h
+jnz     short loc_402333
+mov     rax, [rbp-38h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     r12, rax
+mov     edi, 40DA28h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rcx, r12
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_402387
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40237D
+mov     rax, [rbp-38h]
+mov     rdx, rax
+mov     esi, 8
+mov     edi, 0
+call    quotearg_n_style
+mov     rbx, rax
+mov     edi, 40DA28h
+call    _gettext
+mov     rcx, rbx
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+jmp     short loc_402387
+mov     rax, [rbp-20h]
+mov     cs:warn_number_units, eax
+nop
+mov     rax, [rbp-18h]
+xor     rax, fs:28h
+jz      short loc_40239C
+call    ___stack_chk_fail
+add     rsp, 30h
+pop     rbx
+pop     r12
+pop     rbp
+retn

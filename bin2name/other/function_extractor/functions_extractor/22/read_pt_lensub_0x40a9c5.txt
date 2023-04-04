@@ -1,0 +1,107 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+nn], edi
+mov     [rbp+nbit], esi
+mov     [rbp+i_special], edx
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    getbits
+mov     [rbp+n], eax
+cmp     [rbp+n], 0
+jnz     short loc_40AA44
+mov     eax, [rbp-18h]
+mov     edi, eax
+call    getbits
+mov     [rbp+c], eax
+mov     [rbp+i], 0
+jmp     short loc_40AA0F
+mov     eax, [rbp-10h]
+cdqe
+mov     ds:pt_len[rax], 0
+add     [rbp+i], 1
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-14h]
+jl      short loc_40A9FF
+mov     [rbp+i], 0
+jmp     short loc_40AA36
+mov     eax, [rbp-0Ch]
+mov     edx, eax
+mov     eax, [rbp-10h]
+cdqe
+mov     ds:pt_table[rax+rax], dx
+add     [rbp+i], 1
+cmp     [rbp+i], 0FFh
+jle     short loc_40AA20
+jmp     loc_40AB3A
+mov     [rbp+i], 0
+jmp     loc_40AAF9
+movzx   eax, cs:bitbuf
+shr     ax, 0Dh
+movzx   eax, ax
+mov     [rbp+c], eax
+cmp     [rbp+c], 7
+jnz     short loc_40AA98
+mov     [rbp+mask], 1000h
+jmp     short loc_40AA77
+shr     [rbp+mask], 1
+add     [rbp+c], 1
+movzx   eax, cs:bitbuf
+movzx   eax, ax
+and     eax, [rbp-8]
+test    eax, eax
+jnz     short loc_40AA70
+cmp     [rbp+c], 10h
+jle     short loc_40AA98
+mov     edi, 41135Ch
+call    gzip_error
+cmp     [rbp+c], 6
+jle     short loc_40AAA6
+mov     eax, [rbp-0Ch]
+sub     eax, 3
+jmp     short loc_40AAAB
+mov     eax, 3
+mov     edi, eax
+call    fillbuf
+mov     eax, [rbp-10h]
+lea     edx, [rax+1]
+mov     [rbp+i], edx
+mov     edx, [rbp-0Ch]
+cdqe
+mov     ds:pt_len[rax], dl
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-1Ch]
+jnz     short loc_40AAF9
+mov     edi, 2
+call    getbits
+mov     [rbp+c], eax
+jmp     short loc_40AAEF
+mov     eax, [rbp-10h]
+lea     edx, [rax+1]
+mov     [rbp+i], edx
+cdqe
+mov     ds:pt_len[rax], 0
+sub     [rbp+c], 1
+cmp     [rbp+c], 0
+jns     short loc_40AADD
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-4]
+jl      loc_40AA50
+jmp     short loc_40AB19
+mov     eax, [rbp-10h]
+lea     edx, [rax+1]
+mov     [rbp+i], edx
+cdqe
+mov     ds:pt_len[rax], 0
+mov     eax, [rbp-10h]
+cmp     eax, [rbp-14h]
+jl      short loc_40AB07
+mov     eax, [rbp-14h]
+mov     ecx, 617DA0h
+mov     edx, 8
+mov     esi, 617D60h
+mov     edi, eax
+call    make_table
+nop
+leave
+retn

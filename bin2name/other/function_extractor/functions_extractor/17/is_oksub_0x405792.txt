@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 18h
+mov     [rbp+program], rdi
+mov     [rbp+arg], rsi
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fflush
+mov     edi, 42B0C0h
+call    _gettext
+mov     rsi, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+test    eax, eax
+jns     short loc_405807
+mov     edi, 42B0D8h
+call    _gettext
+mov     rbx, rax
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, rbx
+mov     esi, eax
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdi, rax
+call    rpl_fflush
+call    yesno
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn

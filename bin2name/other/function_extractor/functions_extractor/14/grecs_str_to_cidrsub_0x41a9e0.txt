@@ -1,0 +1,244 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0D0h
+mov     [rbp+var_B8], rdi
+mov     [rbp+s], rsi
+mov     [rbp+var_C8], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-0C0h]
+mov     esi, 2Fh
+mov     rdi, rax
+call    _strchr
+mov     [rbp+nptr], rax
+cmp     [rbp+nptr], 0
+jz      short loc_41AA51
+mov     rdx, [rbp-90h]
+mov     rax, [rbp-0C0h]
+sub     rdx, rax
+mov     rax, rdx
+mov     [rbp+n], rax
+jmp     short loc_41AA67
+mov     rax, [rbp-0C0h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+n], rax
+cmp     [rbp+n], 29h
+jbe     short loc_41AAAE
+mov     edi, 4247E0h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     loc_41ADF0
+mov     rdx, [rbp-98h]
+mov     rcx, [rbp-0C0h]
+lea     rax, [rbp-40h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-98h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    grecs_str_is_ipv4
+test    eax, eax
+jz      short loc_41AAF5
+mov     [rbp+src], 2
+jmp     short loc_41AB4B
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    grecs_str_is_ipv6
+test    eax, eax
+jz      short loc_41AB0E
+mov     [rbp+src], 0Ah
+jmp     short loc_41AB4B
+mov     edi, 424800h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     loc_41ADF0
+mov     eax, [rbp-70h]
+lea     rdx, [rbp-80h]
+lea     rcx, [rbp-40h]
+mov     rsi, rcx
+mov     edi, eax
+call    _inet_pton
+mov     [rbp+var_A4], eax
+cmp     [rbp+var_A4], 0FFFFFFFFh
+jnz     short loc_41ABAC
+mov     edi, 424800h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     loc_41ADF0
+cmp     [rbp+var_A4], 1
+jz      short loc_41ABF2
+mov     edi, 424820h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     loc_41ADF0
+mov     eax, [rbp-70h]
+lea     rdx, [rbp-70h]
+add     rdx, 8
+lea     rcx, [rbp-80h]
+mov     rsi, rcx
+mov     edi, eax
+call    grecs_inaddr_to_bytes
+mov     [rbp+var_6C], eax
+mov     eax, [rbp-6Ch]
+test    eax, eax
+jnz     short loc_41AC52
+mov     edi, 424800h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     loc_41ADF0
+cmp     [rbp+nptr], 0
+jz      loc_41ADAF
+add     [rbp+nptr], 1
+lea     rcx, [rbp-0A0h]
+mov     rax, [rbp-90h]
+mov     edx, 0Ah
+mov     rsi, rcx
+mov     rdi, rax
+call    _strtoul
+mov     [rbp+var_88], rax
+mov     rax, [rbp-0A0h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_41ACBF
+mov     eax, [rbp-6Ch]
+cdqe
+mov     rdx, [rbp-88h]
+lea     rcx, [rbp-70h]
+add     rcx, 18h
+mov     rsi, rax
+mov     rdi, rcx
+call    masklen_to_netmask
+jmp     loc_41ADD0
+mov     eax, [rbp-70h]
+cmp     eax, 2
+jnz     short loc_41ACDA
+mov     rax, [rbp-90h]
+mov     rdi, rax
+call    grecs_str_is_ipv4
+test    eax, eax
+jnz     short loc_41ACF6
+mov     eax, [rbp-70h]
+cmp     eax, 0Ah
+jnz     loc_41AD75
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    grecs_str_is_ipv6
+test    eax, eax
+jz      short loc_41AD75
+mov     eax, [rbp-70h]
+lea     rdx, [rbp-80h]
+mov     rcx, [rbp-90h]
+mov     rsi, rcx
+mov     edi, eax
+call    _inet_pton
+mov     [rbp+var_A4], eax
+cmp     [rbp+var_A4], 1
+jz      short loc_41AD5A
+mov     edi, 4247E0h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     loc_41ADF0
+mov     eax, [rbp-70h]
+lea     rdx, [rbp-70h]
+add     rdx, 18h
+lea     rcx, [rbp-80h]
+mov     rsi, rcx
+mov     edi, eax
+call    grecs_inaddr_to_bytes
+jmp     short loc_41ADD0
+mov     edi, 4247E0h
+call    _gettext
+mov     rsi, rax
+mov     rdx, [rbp-0C0h]
+mov     rax, [rbp-0C8h]
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, 0
+mov     rdi, rax
+mov     eax, 0
+call    grecs_error
+mov     eax, 0FFFFFFFFh
+jmp     short loc_41ADF0
+mov     eax, [rbp-6Ch]
+shl     eax, 3
+movsxd  rdx, eax
+mov     eax, [rbp-6Ch]
+cdqe
+lea     rcx, [rbp-70h]
+add     rcx, 18h
+mov     rsi, rax
+mov     rdi, rcx
+call    masklen_to_netmask
+lea     rcx, [rbp-70h]
+mov     rax, [rbp-0B8h]
+mov     edx, 28h
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41AE04
+call    ___stack_chk_fail
+leave
+retn

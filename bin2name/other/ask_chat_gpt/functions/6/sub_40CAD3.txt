@@ -1,0 +1,80 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 38h
+mov     [rbp+var_28], rdi
+mov     [rbp+var_30], rsi
+mov     [rbp+n], rdx
+mov     [rbp+s1], 0
+mov     rbx, cs:stderr
+mov     edi, 40FDBBh
+call    _gettext
+mov     rsi, rbx
+mov     rdi, rax
+call    _fputs
+mov     [rbp+var_20], 0
+jmp     loc_40CBDD
+cmp     [rbp+var_20], 0
+jz      short loc_40CB4B
+mov     rax, [rbp-38h]
+imul    rax, [rbp-20h]
+mov     rdx, rax
+mov     rax, [rbp-30h]
+lea     rcx, [rdx+rax]
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-18h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcmp
+test    eax, eax
+jz      short loc_40CB9E
+mov     rax, [rbp-20h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40B25F
+mov     rdx, rax
+mov     rax, cs:stderr
+mov     esi, 40FDD0h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     rax, [rbp-38h]
+imul    rax, [rbp-20h]
+mov     rdx, rax
+mov     rax, [rbp-30h]
+add     rax, rdx
+mov     [rbp+s1], rax
+jmp     short loc_40CBD8
+mov     rax, [rbp-20h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rax, [rax]
+mov     rdi, rax
+call    sub_40B25F
+mov     rdx, rax
+mov     rax, cs:stderr
+mov     esi, 40FDD8h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     [rbp+var_20], 1
+mov     rax, [rbp-20h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-28h]
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     loc_40CB19
+mov     rax, cs:stderr
+mov     rsi, rax
+mov     edi, 0Ah
+call    __IO_putc
+nop
+add     rsp, 38h
+pop     rbx
+pop     rbp
+retn

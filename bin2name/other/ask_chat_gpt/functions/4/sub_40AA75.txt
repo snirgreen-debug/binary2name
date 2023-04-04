@@ -1,0 +1,40 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+call    sub_408BAE
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_40AAA3
+mov     rax, [rbp-8]
+mov     esi, 40A74Bh
+mov     rdi, rax
+call    sub_40A98D
+call    sub_40A725
+mov     rax, cs:qword_63BFB0
+mov     rdi, rax
+call    sub_40BB7A
+cmp     [rbp+var_8], 0
+jz      short loc_40AACA
+mov     rax, [rbp-8]
+mov     esi, 40AA01h
+mov     rdi, rax
+call    sub_40A98D
+call    sub_40A8A2
+call    sub_40AA54
+test    al, al
+jz      short loc_40AAE2
+call    sub_416BD1
+call    sub_416BA5
+mov     rax, cs:stdout
+mov     rdi, rax
+call    sub_4241A7
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_40AB09
+call    ___errno_location
+mov     eax, [rax]
+mov     esi, 42C27Ch
+mov     edi, eax
+call    sub_40B967
+nop
+leave
+retn

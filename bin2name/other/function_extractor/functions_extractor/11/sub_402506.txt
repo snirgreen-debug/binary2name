@@ -1,0 +1,23 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+s], rdi
+mov     rax, cs:stdout_ptr
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+lea     rax, unk_619B48
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_402553
+lea     rax, unk_619B48
+mov     rdx, [rax]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+nop
+leave
+retn

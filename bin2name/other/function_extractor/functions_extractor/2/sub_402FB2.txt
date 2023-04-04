@@ -1,0 +1,46 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 90h
+mov     [rbp+var_44], edi
+mov     [rbp+var_48], esi
+mov     [rbp+var_50], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-90h]
+mov     edx, [rbp-48h]
+mov     esi, edx
+mov     rdi, rax
+call    sub_4018B1
+mov     rax, [rbp-90h]
+mov     [rbp+var_40], rax
+mov     rax, [rbp-88h]
+mov     [rbp+var_38], rax
+mov     rax, [rbp-80h]
+mov     [rbp+var_30], rax
+mov     rax, [rbp-78h]
+mov     [rbp+var_28], rax
+mov     rax, [rbp-70h]
+mov     [rbp+var_20], rax
+mov     rax, [rbp-68h]
+mov     [rbp+var_18], rax
+mov     rax, [rbp-60h]
+mov     [rbp+var_10], rax
+lea     rax, [rbp-40h]
+mov     edx, 1
+mov     esi, 3Ah
+mov     rdi, rax
+call    sub_40179B
+lea     rdx, [rbp-40h]
+mov     rsi, [rbp-50h]
+mov     eax, [rbp-44h]
+mov     rcx, rdx
+mov     rdx, 0FFFFFFFFFFFFFFFFh
+mov     edi, eax
+call    sub_402A2A
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40306E
+call    ___stack_chk_fail
+leave
+retn

@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+theunit], rdi
+lea     rax, irreducible
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40779C
+lea     rax, irreducible
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+lea     rax, irreducible
+mov     qword ptr [rax], 0
+mov     [rbp+ret], 1
+jmp     short loc_40780C
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    reduceproduct
+mov     [rbp+ret], eax
+mov     eax, [rbp-4]
+and     eax, 4
+test    eax, eax
+jnz     short loc_4077E5
+mov     rax, [rbp-18h]
+mov     esi, 1
+mov     rdi, rax
+call    reduceproduct
+or      [rbp+ret], eax
+mov     eax, [rbp-4]
+and     eax, 4
+test    eax, eax
+jz      short loc_40780C
+lea     rax, irreducible
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_407805
+mov     eax, 7
+jmp     short locret_40781B
+mov     eax, 3
+jmp     short locret_40781B
+mov     eax, [rbp-4]
+and     eax, 1
+test    eax, eax
+jnz     short loc_4077B3
+mov     eax, 0
+leave
+retn

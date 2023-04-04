@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+push    p1
+push    p2
+sub     rsp, 20h
+mov     [rbp+s1], rdi
+mov     [rbp+s2], rsi
+mov     p1, [rbp-28h]
+mov     p2, [rbp-30h]
+cmp     p1, p2
+jnz     short loc_4298E9
+mov     eax, 0
+jmp     short loc_429931
+movzx   eax, byte ptr [p1]
+movzx   eax, al
+mov     edi, eax
+call    c_tolower
+mov     [rbp+c1], al
+movzx   eax, byte ptr [p2]
+movzx   eax, al
+mov     edi, eax
+call    c_tolower
+mov     [rbp+c2], al
+cmp     [rbp+c1], 0
+jz      short loc_429924
+add     p1, 1
+add     p2, 1
+movzx   eax, byte ptr [rbp-12h]
+cmp     al, [rbp-11h]
+jz      short loc_4298E9
+jmp     short loc_429925
+nop
+movzx   edx, byte ptr [rbp-12h]
+movzx   eax, byte ptr [rbp-11h]
+sub     edx, eax
+mov     eax, edx
+add     rsp, 20h
+pop     p2
+pop     p1
+pop     rbp
+retn

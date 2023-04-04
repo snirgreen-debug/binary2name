@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+n], edi
+movzx   eax, cs:bitbuf
+movzx   edx, ax
+mov     eax, [rbp-4]
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+mov     cs:bitbuf, ax
+jmp     loc_40A44A
+mov     edx, cs:subbitbuf
+mov     eax, cs:bitcount
+sub     [rbp+n], eax
+mov     eax, [rbp-4]
+mov     ecx, eax
+shl     edx, cl
+mov     eax, edx
+mov     edx, eax
+movzx   eax, cs:bitbuf
+or      eax, edx
+mov     cs:bitbuf, ax
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnb     short loc_40A41B
+mov     eax, cs:inptr
+lea     edx, [rax+1]
+mov     cs:inptr, edx
+mov     eax, eax
+movzx   eax, byte ptr [rax+65D360h]
+movzx   eax, al
+jmp     short loc_40A425
+mov     edi, 1
+call    fill_inbuf
+mov     cs:subbitbuf, eax
+mov     eax, cs:subbitbuf
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_40A440
+mov     cs:subbitbuf, 0
+mov     cs:bitcount, 8
+mov     eax, cs:bitcount
+cmp     [rbp+n], eax
+jg      loc_40A3C4
+mov     edx, cs:subbitbuf
+mov     eax, cs:bitcount
+sub     eax, [rbp-4]
+mov     cs:bitcount, eax
+mov     eax, cs:bitcount
+mov     ecx, eax
+shr     edx, cl
+mov     eax, edx
+mov     edx, eax
+movzx   eax, cs:bitbuf
+or      eax, edx
+mov     cs:bitbuf, ax
+nop
+leave
+retn

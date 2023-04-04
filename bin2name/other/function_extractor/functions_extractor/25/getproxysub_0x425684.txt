@@ -1,0 +1,70 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+u], rdi
+mov     [rbp+proxy], 0
+mov     eax, cs:opt.use_proxy
+test    eax, eax
+jnz     short loc_4256AC
+mov     eax, 0
+jmp     locret_42578C
+mov     rdx, cs:opt.no_proxy
+mov     rax, [rbp-18h]
+mov     rax, [rax+10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    no_proxy_match
+test    eax, eax
+jnz     short loc_4256D4
+mov     eax, 0
+jmp     locret_42578C
+mov     rax, [rbp-18h]
+mov     eax, [rax+8]
+cmp     eax, 1
+jz      short loc_42570F
+cmp     eax, 1
+jb      short loc_4256EA
+cmp     eax, 2
+jmp     short loc_425733
+mov     rax, cs:opt.http_proxy
+test    rax, rax
+jz      short loc_4256FF
+mov     rax, cs:opt.http_proxy
+jmp     short loc_425709
+mov     edi, 436BF9h
+call    _getenv
+mov     [rbp+proxy], rax
+jmp     short loc_425733
+mov     rax, cs:opt.ftp_proxy
+test    rax, rax
+jz      short loc_425724
+mov     rax, cs:opt.ftp_proxy
+jmp     short loc_42572E
+mov     edi, 436C04h
+call    _getenv
+mov     [rbp+proxy], rax
+nop
+cmp     [rbp+proxy], 0
+jz      short loc_425745
+mov     rax, [rbp-10h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_42574C
+mov     eax, 0
+jmp     short locret_42578C
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    rewrite_shorthand_url
+mov     [rbp+rewritten_url], rax
+cmp     [rbp+rewritten_url], 0
+jz      short loc_425788
+mov     rax, [rbp-8]
+mov     edx, 400h
+mov     rsi, rax
+mov     edi, 646FA0h
+call    _strncpy
+mov     cs:rewritten_storage_5556+3FFh, 0
+mov     [rbp+proxy], 646FA0h
+mov     rax, [rbp-10h]
+leave
+retn

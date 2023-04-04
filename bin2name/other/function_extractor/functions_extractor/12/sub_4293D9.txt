@@ -1,0 +1,79 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_4], eax
+jmp     short loc_4293FA
+sub     [rbp+var_4], 1
+cmp     [rbp+var_4], 0
+jz      short loc_429414
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_4293F6
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, [rbp-18h]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_429435
+mov     eax, [rbp-4]
+cdqe
+add     rax, 1
+add     [rbp+var_18], rax
+mov     rax, cs:qword_647628
+test    rax, rax
+jz      short loc_4294B6
+mov     rax, cs:qword_647630
+test    rax, rax
+jz      short loc_429499
+mov     rax, cs:qword_647628
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_42979C
+test    eax, eax
+jz      short loc_429492
+mov     rax, cs:qword_647630
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_42979C
+test    eax, eax
+jnz     short loc_429492
+mov     eax, 1
+jmp     short locret_4294EC
+mov     eax, 0
+jmp     short locret_4294EC
+mov     rax, cs:qword_647628
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_42979C
+jmp     short locret_4294EC
+mov     rax, cs:qword_647630
+test    rax, rax
+jz      short loc_4294E7
+mov     rax, cs:qword_647630
+mov     rcx, [rbp-18h]
+mov     edx, 1
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_42979C
+test    eax, eax
+setz    al
+movzx   eax, al
+jmp     short locret_4294EC
+mov     eax, 1
+leave
+retn

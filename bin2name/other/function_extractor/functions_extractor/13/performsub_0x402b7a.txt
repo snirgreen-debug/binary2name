@@ -1,0 +1,64 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     cs:tos, 605480h
+jmp     loc_402C4D
+mov     edx, cs:idx
+mov     rax, cs:ptr
+mov     esi, edx
+mov     rdi, rax
+call    iscommand
+test    eax, eax
+jz      loc_402C48
+mov     edx, cs:idx
+mov     rax, cs:ptr
+mov     esi, edx
+mov     rdi, rax
+call    addr
+mov     rdx, rax
+lea     rax, [rbp-18h]
+mov     rsi, rax
+mov     rdi, rdx
+call    nextword
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    lookup_word
+mov     [rbp+word], rax
+cmp     [rbp+word], 0
+jz      short loc_402C0E
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    exec
+jmp     short loc_402C3A
+mov     eax, cs:warning
+test    eax, eax
+jz      short loc_402C35
+mov     rdx, [rbp-18h]
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 403948h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    skip_past_newline
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _free
+jmp     short loc_402C4D
+call    skip_past_newline
+mov     edx, cs:idx
+mov     rax, cs:ptr
+mov     esi, edx
+mov     rdi, rax
+call    at
+test    al, al
+jnz     loc_402BA1
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_402C81
+call    ___stack_chk_fail
+leave
+retn

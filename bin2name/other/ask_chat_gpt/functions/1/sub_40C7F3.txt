@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_24], edx
+mov     eax, [rbp-24h]
+mov     [rbp+var_4], eax
+jmp     short loc_40C812
+add     [rbp+var_4], 1
+mov     eax, [rbp-4]
+cdqe
+cmp     rax, [rbp-20h]
+jnb     short loc_40C838
+mov     eax, [rbp-4]
+cdqe
+shl     rax, 5
+mov     rdx, rax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40C80E
+mov     eax, [rbp-4]
+sub     eax, [rbp-24h]
+mov     edx, eax
+mov     ecx, [rbp-24h]
+mov     rax, [rbp-18h]
+mov     esi, ecx
+mov     rdi, rax
+call    sub_40C7B2
+mov     eax, [rbp-4]
+add     eax, 1
+leave
+retn

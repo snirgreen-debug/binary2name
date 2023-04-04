@@ -1,0 +1,50 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+mov     eax, ecx
+mov     [rbp+var_2C], al
+mov     [rbp+var_9], 0
+mov     rax, [rbp-20h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     loc_405409
+mov     rdx, cs:s1
+mov     eax, cs:fildes
+mov     rsi, rdx
+mov     edi, eax
+call    sub_4171B3
+mov     [rbp+name], rax
+cmp     [rbp+name], 0
+jz      short loc_4053DE
+cmp     [rbp+var_2C], 0
+jz      short loc_4053B8
+mov     edx, 10h
+jmp     short loc_4053BD
+mov     edx, 0
+mov     rax, [rbp-28h]
+mov     rax, [rax+38h]
+mov     rcx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+call    _fnmatch
+test    eax, eax
+jnz     short loc_4053FD
+mov     [rbp+var_9], 1
+jmp     short loc_4053FD
+call    ___errno_location
+mov     eax, [rax]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     edi, eax
+call    sub_40B90B
+mov     cs:status, 1
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+movzx   eax, byte ptr [rbp-9]
+leave
+retn

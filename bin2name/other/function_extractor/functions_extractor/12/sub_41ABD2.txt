@@ -1,0 +1,38 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_4], edi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+cmp     [rbp+var_4], 0
+js      short loc_41ABF3
+mov     eax, [rbp-4]
+cmp     eax, 5Bh
+jbe     short loc_41AC0C
+mov     ecx, 433B30h
+mov     edx, 22Ch
+mov     esi, 433879h
+mov     edi, 433880h
+call    ___assert_fail
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63EA50h
+mov     rcx, [rax]
+mov     eax, [rbp-4]
+movsxd  rdx, eax
+mov     rax, rdx
+add     rax, rax
+add     rax, rdx
+shl     rax, 3
+add     rax, 63EA48h
+mov     rdx, [rax]
+mov     rsi, [rbp-18h]
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    rcx
+leave
+retn

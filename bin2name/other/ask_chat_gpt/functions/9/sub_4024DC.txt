@@ -1,0 +1,119 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 10h
+mov     rax, cs:qword_6142A0
+mov     edx, eax
+mov     eax, cs:dword_614820
+sub     edx, eax
+mov     eax, cs:dword_618288
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+var_14], eax
+cmp     [rbp+var_14], 0FFFFFFFFh
+jnz     short loc_402514
+sub     [rbp+var_14], 1
+jmp     loc_402638
+mov     eax, cs:dword_618288
+cmp     eax, 0FEF9h
+jbe     loc_402638
+mov     eax, 655320h
+mov     edx, 8000h
+mov     rsi, rax
+mov     edi, 64D320h
+call    _memcpy
+mov     eax, cs:dword_6182A4
+sub     eax, 8000h
+mov     cs:dword_6182A4, eax
+mov     eax, cs:dword_618288
+sub     eax, 8000h
+mov     cs:dword_618288, eax
+mov     rdx, cs:qword_614838
+mov     eax, 0FFFFFFFFh
+cmp     rdx, rax
+jz      short loc_402583
+mov     rax, cs:qword_614838
+sub     rax, 8000h
+mov     cs:qword_614838, rax
+mov     rax, cs:qword_618290
+sub     rax, 8000h
+mov     cs:qword_618290, rax
+mov     ebx, 0
+jmp     short loc_4025E5
+mov     eax, ebx
+add     rax, 8000h
+add     rax, rax
+add     rax, 6186E0h
+movzx   eax, word ptr [rax]
+movzx   r12d, ax
+mov     eax, ebx
+add     rax, 8000h
+add     rax, rax
+add     rax, 6186E0h
+cmp     r12d, 7FFFh
+jbe     short loc_4025DA
+lea     edx, [r12-8000h]
+jmp     short loc_4025DF
+mov     edx, 0
+mov     [rax], dx
+add     ebx, 1
+cmp     ebx, 7FFFh
+jbe     short loc_40259E
+mov     ebx, 0
+jmp     short loc_402629
+mov     eax, ebx
+movzx   eax, word ptr [rax+rax+6186E0h]
+movzx   r12d, ax
+cmp     r12d, 7FFFh
+jbe     short loc_402617
+lea     eax, [r12-8000h]
+mov     edx, eax
+jmp     short loc_40261C
+mov     edx, 0
+mov     eax, ebx
+mov     ds:word_6186E0[rax+rax], dx
+add     ebx, 1
+cmp     ebx, 7FFFh
+jbe     short loc_4025F4
+add     [rbp+var_14], 8000h
+mov     eax, cs:dword_61481C
+test    eax, eax
+jnz     short loc_4026BD
+mov     rax, cs:qword_618280
+mov     edx, cs:dword_618288
+mov     ecx, edx
+mov     edx, cs:dword_614820
+mov     edx, edx
+add     rdx, rcx
+lea     rcx, [rdx+64D320h]
+mov     edx, [rbp-14h]
+mov     esi, edx
+mov     rdi, rcx
+call    rax 
+mov     ebx, eax
+test    ebx, ebx
+jz      short loc_402678
+cmp     ebx, 0FFFFFFFFh
+jnz     short loc_4026AF
+mov     cs:dword_61481C, 1
+mov     eax, cs:dword_618288
+mov     edx, eax
+mov     eax, cs:dword_614820
+mov     eax, eax
+add     rax, rdx
+add     rax, 64D320h
+mov     edx, 2
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+jmp     short loc_4026BD
+mov     eax, cs:dword_614820
+add     eax, ebx
+mov     cs:dword_614820, eax
+nop
+add     rsp, 10h
+pop     rbx
+pop     r12
+pop     rbp
+retn

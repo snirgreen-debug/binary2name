@@ -1,0 +1,27 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:decompress
+test    eax, eax
+jz      short loc_403AB3
+mov     eax, cs:last_member
+test    eax, eax
+jz      short loc_403ABA
+mov     eax, 1
+jmp     short loc_403AFC
+mov     edx, cs:inptr
+mov     eax, cs:insize
+cmp     edx, eax
+jnz     short loc_403AF7
+mov     eax, cs:insize
+cmp     eax, 8000h
+jnz     short loc_403AE6
+mov     edi, 1
+call    fill_inbuf
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_403AED
+mov     eax, 1
+jmp     short loc_403AFC
+mov     cs:inptr, 0
+mov     eax, 0
+pop     rbp
+retn

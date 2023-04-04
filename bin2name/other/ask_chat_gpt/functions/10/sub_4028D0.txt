@@ -1,0 +1,18 @@
+push    rbp
+push    rbx
+mov     rbp, rdi
+xor     ebx, ebx
+sub     rsp, 8
+jmp     short loc_4028E4
+add     rbx, 1
+mov     rdi, rbp
+call    __IO_getc
+cmp     al, 0FFh
+jnz     short loc_4028E0
+mov     rdi, rbp
+call    _rewind
+add     rsp, 8
+mov     rax, rbx
+pop     rbx
+pop     rbp
+retn

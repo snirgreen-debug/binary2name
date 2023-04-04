@@ -1,0 +1,190 @@
+push    rbp
+mov     rbp, rsp
+push    rbx
+sub     rsp, 68h
+mov     [rbp+var_68], rdi
+mov     rax, fs:28h
+mov     [rbp+var_18], rax
+xor     eax, eax
+mov     [rbp+var_40], 0
+mov     [rbp+var_38], 0
+mov     [rbp+var_34], 0
+mov     rax, cs:qword_647608
+test    rax, rax
+jz      short loc_4279E2
+mov     rax, cs:qword_647608
+lea     rdx, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4273C2
+mov     eax, cs:dword_6475F0
+test    eax, eax
+jz      loc_427AAA
+mov     eax, cs:dword_6475FC
+test    eax, eax
+jz      loc_427A97
+mov     eax, [rbp-34h]
+test    eax, eax
+jz      short loc_427A16
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 2Fh
+call    sub_4274A4
+mov     rax, [rbp-68h]
+mov     rax, [rax+10h]
+lea     rdx, [rbp-40h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4273C2
+mov     rax, [rbp-68h]
+mov     ebx, [rax+18h]
+mov     rax, [rbp-68h]
+mov     eax, [rax+8]
+mov     edi, eax
+call    sub_42602E
+cmp     ebx, eax
+jz      short loc_427A97
+mov     rax, [rbp-68h]
+mov     eax, [rax+18h]
+movsxd  rdx, eax
+lea     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_42A4E6
+mov     eax, cs:dword_647800
+cmp     eax, 1
+jz      short loc_427A71
+mov     edx, 3Ah
+jmp     short loc_427A76
+mov     edx, 2Bh
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, edx
+call    sub_4274A4
+lea     rdx, [rbp-40h]
+lea     rax, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4273C2
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-68h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_4278E7
+mov     eax, [rbp-34h]
+test    eax, eax
+jz      short loc_427AC2
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 2Fh
+call    sub_4274A4
+mov     rax, [rbp-68h]
+mov     rax, [rax+48h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_427ADB
+mov     rax, [rbp-68h]
+mov     rax, [rax+48h]
+jmp     short loc_427AE0
+mov     eax, 43743Ah
+mov     [rbp+var_60], rax
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-60h]
+lea     rsi, [rdx+rax]
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-60h]
+mov     rcx, rdx
+mov     edx, 0
+mov     rdi, rax
+call    sub_427565
+mov     rax, [rbp-68h]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_427B39
+mov     rax, [rbp-68h]
+mov     rax, [rax+30h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_427B39
+mov     rax, [rbp-68h]
+mov     rax, [rax+30h]
+jmp     short loc_427B3E
+mov     eax, 0
+mov     [rbp+var_58], rax
+cmp     [rbp+var_58], 0
+jz      short loc_427B9D
+mov     eax, cs:dword_647800
+cmp     eax, 1
+jz      short loc_427B5B
+mov     edx, 3Fh
+jmp     short loc_427B60
+mov     edx, 40h
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, edx
+call    sub_4274A4
+mov     rax, [rbp-58h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-58h]
+lea     rsi, [rdx+rax]
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     rcx, rdx
+mov     edx, 1
+mov     rdi, rax
+call    sub_427565
+lea     rax, [rbp-40h]
+mov     rsi, rax
+mov     edi, 0
+call    sub_4274A4
+mov     rax, [rbp-40h]
+mov     [rbp+var_50], rax
+mov     eax, cs:dword_647600
+test    eax, eax
+jnz     short loc_427BDE
+mov     eax, cs:dword_647690
+test    eax, eax
+jnz     short loc_427BDE
+mov     eax, cs:dword_647778
+test    eax, eax
+jnz     short loc_427BDE
+mov     eax, cs:dword_6475F0
+test    eax, eax
+jz      short loc_427C04
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_428F67
+test    eax, eax
+jz      short loc_427BFE
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    sub_428F8E
+test    eax, eax
+jz      short loc_427C04
+mov     rax, [rbp-50h]
+jmp     short loc_427C33
+mov     rax, [rbp-50h]
+mov     esi, 1
+mov     rdi, rax
+call    sub_42915E
+mov     [rbp+var_48], rax
+mov     rax, [rbp-48h]
+cmp     rax, [rbp-50h]
+jz      short loc_427C2F
+mov     rax, [rbp-50h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-48h]
+mov     rcx, [rbp-18h]
+xor     rcx, fs:28h
+jz      short loc_427C47
+call    ___stack_chk_fail
+add     rsp, 68h
+pop     rbx
+pop     rbp
+retn

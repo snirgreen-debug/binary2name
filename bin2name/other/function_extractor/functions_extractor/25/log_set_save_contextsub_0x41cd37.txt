@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+savep], edi
+mov     eax, cs:save_context_p
+mov     [rbp+old], eax
+mov     eax, [rbp-14h]
+mov     cs:save_context_p, eax
+mov     eax, [rbp-4]
+pop     rbp
+retn

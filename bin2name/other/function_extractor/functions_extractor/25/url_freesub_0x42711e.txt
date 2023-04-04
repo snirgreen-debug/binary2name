@@ -1,0 +1,70 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+url], rdi
+mov     rax, [rbp-8]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+test    rax, rax
+jz      short loc_427176
+mov     rax, [rbp-8]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+30h]
+test    rax, rax
+jz      short loc_427193
+mov     rax, [rbp-8]
+mov     rax, [rax+30h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+test    rax, rax
+jz      short loc_4271B0
+mov     rax, [rbp-8]
+mov     rax, [rax+38h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+50h]
+test    rax, rax
+jz      short loc_4271CD
+mov     rax, [rbp-8]
+mov     rax, [rax+50h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+58h]
+test    rax, rax
+jz      short loc_4271EA
+mov     rax, [rbp-8]
+mov     rax, [rax+58h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+40h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rax, [rax+48h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _free
+nop
+leave
+retn

@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, [rbp-8]
+mov     rcx, [rax+10h]
+movzx   eax, cs:stdout_is_a_tty
+movzx   edx, al
+mov     rsi, cs:quote_opts
+mov     rax, cs:stdout@@GLIBC_2_2_5
+mov     r8, rcx
+mov     ecx, 40DA7Bh
+mov     rdi, rax
+call    print_quoted
+mov     eax, cs:separator
+mov     edi, eax
+call    _putchar
+mov     eax, 1
+leave
+retn

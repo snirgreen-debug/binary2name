@@ -1,0 +1,12 @@
+push    rbp
+mov     rbp, rsp
+movzx   eax, cs:state_0.execdirs_outstanding
+test    al, al
+jz      short loc_40A748
+call    get_eval_tree
+mov     rdi, rax
+call    do_complete_pending_execdirs
+mov     cs:state_0.execdirs_outstanding, 0
+nop
+pop     rbp
+retn

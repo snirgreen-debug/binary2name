@@ -1,0 +1,18 @@
+mov     esi, 6134C0h
+push    rbp
+sub     rsi, 6134C0h
+sar     rsi, 3
+mov     rbp, rsp
+mov     rax, rsi
+shr     rax, 3Fh
+add     rsi, rax
+sar     rsi, 1
+jz      short loc_402208
+mov     eax, 0
+test    rax, rax
+jz      short loc_402208
+pop     rbp
+mov     edi, 6134C0h
+jmp     rax
+pop     rbp
+retn

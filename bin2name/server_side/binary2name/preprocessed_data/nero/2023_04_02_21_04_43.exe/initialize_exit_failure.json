@@ -1,0 +1,81 @@
+{
+    "GNN_DATA": {
+        "edges": [
+            {
+                "dst": 4200252,
+                "src": 4200230
+            },
+            {
+                "dst": 4200243,
+                "src": 4200230
+            },
+            {
+                "dst": "loopSeerDum",
+                "src": 4200252
+            },
+            {
+                "dst": 4200252,
+                "src": 4200243
+            }
+        ],
+        "nodes": [
+            {
+                "block_addr": 4200230,
+                "constraints": [
+                    [
+                        0,
+                        []
+                    ]
+                ],
+                "instructions": "push|rbp|    |mov|rbp|rsp|    |mov|dword|ptr|rbp|-|4|edi|    |cmp|dword|ptr|rbp|-|4|1|    |je|target_0|    "
+            },
+            {
+                "block_addr": 4200252,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool __eq__(Extract(31, 0, reg_48_280_64), 0x1)>"
+                        ]
+                    ],
+                    [
+                        2,
+                        []
+                    ]
+                ],
+                "instructions": "nop|    |pop|rbp|    |ret|    "
+            },
+            {
+                "block_addr": "loopSeerDum",
+                "constraints": [
+                    [
+                        2,
+                        [
+                            "<BV32 reg_10_281_32>"
+                        ]
+                    ],
+                    [
+                        3,
+                        [
+                            "<BV32 Extract(31, 0, reg_48_280_64)>"
+                        ]
+                    ]
+                ],
+                "instructions": "no_instructions"
+            },
+            {
+                "block_addr": 4200243,
+                "constraints": [
+                    [
+                        1,
+                        [
+                            "<Bool __ne__(Extract(31, 0, reg_48_280_64), 0x1)>"
+                        ]
+                    ]
+                ],
+                "instructions": "mov|eax|dword|ptr|rbp|-|4|    |mov|dword|ptr|rip|+|0x206abc|eax|    |nop|    |pop|rbp|    |ret|    "
+            }
+        ]
+    },
+    "func_name": "4200230"
+}

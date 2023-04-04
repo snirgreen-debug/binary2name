@@ -1,0 +1,24 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+string], rdi
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+e], eax
+mov     rdx, cs:program_name
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     esi, 40FE2Dh
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-4]
+mov     [rdx], eax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _perror
+mov     cs:exit_code, 1
+nop
+leave
+retn

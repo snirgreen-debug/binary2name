@@ -1,0 +1,100 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_18], rdi
+mov     [rbp+s], rsi
+mov     [rbp+var_24], edx
+mov     [rbp+var_30], rcx
+mov     [rbp+stream], r8
+mov     rax, [rbp-20h]
+mov     esi, 3Bh
+mov     rdi, rax
+call    _strchr
+test    rax, rax
+jnz     short loc_405796
+cmp     [rbp+stream], 0
+jz      short loc_40578C
+lea     rax, unk_61A8C8
+mov     rdx, [rax]
+mov     rsi, [rbp-30h]
+mov     ecx, [rbp-24h]
+mov     rax, [rbp-38h]
+mov     r9, rsi
+mov     r8d, ecx
+mov     ecx, 3Bh
+lea     rsi, aSUnitListMissi
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, 11h
+jmp     locret_4058A6
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_402DB5
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      short loc_40581A
+lea     rax, unk_61BBA0
+mov     eax, [rax+18h]
+test    eax, eax
+jz      short loc_405808
+cmp     [rbp+stream], 0
+jz      short loc_405808
+mov     rax, [rbp-8]
+mov     r8, [rax+20h]
+mov     rax, [rbp-8]
+mov     edi, [rax+18h]
+lea     rax, unk_61A8C8
+mov     rdx, [rax]
+mov     rcx, [rbp-18h]
+mov     rax, [rbp-38h]
+push    [rbp+var_30]
+mov     esi, [rbp-24h]
+push    rsi
+mov     r9, r8
+mov     r8d, edi
+lea     rsi, aSUnitListSDefi
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+add     rsp, 10h
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    _free
+jmp     short loc_405874
+lea     rsi, aNewalias
+mov     edi, 28h
+call    sub_402A3E
+mov     [rbp+var_8], rax
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_402AA1
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+10h], 0
+lea     rax, off_619520
+mov     rax, [rax]
+mov     rdx, [rbp-8]
+mov     [rax], rdx
+mov     rax, [rbp-8]
+lea     rdx, [rax+10h]
+lea     rax, off_619520
+mov     [rax], rdx
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_402AA1
+mov     rdx, rax
+mov     rax, [rbp-8]
+mov     [rax+8], rdx
+mov     rax, [rbp-8]
+mov     edx, [rbp-24h]
+mov     [rax+18h], edx
+mov     rax, [rbp-8]
+mov     rdx, [rbp-30h]
+mov     [rax+20h], rdx
+mov     eax, 0
+leave
+retn

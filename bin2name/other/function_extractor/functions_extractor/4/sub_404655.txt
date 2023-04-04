@@ -1,0 +1,31 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     rax, rdi
+mov     r8, rsi
+mov     rsi, rax
+mov     rdi, rdx
+mov     rdi, r8
+mov     [rbp+time1], rsi
+mov     [rbp+var_18], rdi
+mov     [rbp+time0], rdx
+mov     [rbp+var_28], rcx
+mov     rdx, [rbp-30h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _difftime
+movapd  xmm2, xmm0
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-28h]
+sub     rdx, rax
+mov     rax, rdx
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, cs:qword_42B388
+mulsd   xmm0, xmm1
+addsd   xmm0, xmm2
+movsd   [rbp+var_8], xmm0
+movsd   xmm0, qword ptr [rbp-8]
+leave
+retn

@@ -1,0 +1,37 @@
+push    rbp
+mov     rbp, rsp
+movzx   eax, cs:checked_8308
+xor     eax, 1
+test    al, al
+jz      short loc_41023C
+mov     edx, 0
+mov     esi, 42E964h
+mov     edi, 42E964h
+call    _fnmatch
+test    eax, eax
+jnz     short loc_41020D
+mov     edx, 0
+mov     esi, 42E964h
+mov     edi, 42E968h
+call    _fnmatch
+test    eax, eax
+jz      short loc_41020D
+mov     edx, 10h
+mov     esi, 42E964h
+mov     edi, 42E968h
+call    _fnmatch
+test    eax, eax
+jz      short loc_410235
+mov     edi, 42E970h
+call    _gettext
+mov     rdx, rax
+mov     esi, 0
+mov     edi, 1
+mov     eax, 0
+call    _error
+mov     eax, 0
+jmp     short loc_410243
+mov     cs:checked_8308, 1
+movzx   eax, cs:checked_8308
+pop     rbp
+retn

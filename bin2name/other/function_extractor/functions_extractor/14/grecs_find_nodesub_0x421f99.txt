@@ -1,0 +1,49 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 60h
+mov     [rbp+var_58], rdi
+mov     [rbp+s1], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-60h]
+mov     esi, 426799h
+mov     rdi, rax
+call    _strcmp
+test    eax, eax
+jnz     short loc_421FD3
+mov     rax, [rbp-58h]
+jmp     short loc_42203E
+lea     rax, [rbp-40h]
+lea     rcx, [rax+18h]
+lea     rax, [rbp-40h]
+lea     rdx, [rax+8]
+lea     rsi, [rbp-40h]
+mov     rax, [rbp-60h]
+mov     rdi, rax
+call    split_cfg_path
+mov     [rbp+var_44], eax
+cmp     [rbp+var_44], 0
+jnz     short loc_422003
+mov     eax, [rbp-40h]
+test    eax, eax
+jnz     short loc_42200A
+mov     eax, 0
+jmp     short loc_42203E
+mov     [rbp+var_30], 0
+mov     [rbp+var_18], 0
+lea     rdx, [rbp-40h]
+mov     rax, [rbp-58h]
+mov     esi, 421E1Fh
+mov     rdi, rax
+call    grecs_tree_recurse
+lea     rax, [rbp-40h]
+mov     rdi, rax
+call    grecs_match_buf_free_contents
+mov     rax, [rbp-18h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_422052
+call    ___stack_chk_fail
+leave
+retn

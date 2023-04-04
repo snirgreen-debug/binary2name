@@ -1,0 +1,82 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+fts], rdi
+mov     [rbp+ent], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-50h]
+add     rax, 78h
+mov     [rbp+st], rax
+mov     rax, [rbp-48h]
+mov     eax, [rax+48h]
+and     eax, 102h
+test    eax, eax
+jz      short loc_42455D
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+mov     [rbp+obj.dev], rax
+mov     rax, [rbp-38h]
+mov     rax, [rax+8]
+mov     [rbp+obj.ino], rax
+mov     rax, [rbp-48h]
+mov     rax, [rax+58h]
+lea     rdx, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    hash_delete
+mov     [rbp+found], rax
+cmp     [rbp+found], 0
+jnz     short loc_42454C
+call    _abort
+mov     rax, [rbp-30h]
+mov     rdi, rax
+call    _free
+jmp     loc_4245ED
+mov     rax, [rbp-50h]
+mov     rax, [rax+8]
+mov     [rbp+parent], rax
+cmp     [rbp+parent], 0
+jz      short loc_4245ED
+mov     rax, [rbp-28h]
+mov     rax, [rax+58h]
+test    rax, rax
+js      short loc_4245ED
+mov     rax, [rbp-48h]
+mov     rax, [rax+58h]
+mov     rax, [rax+10h]
+test    rax, rax
+jnz     short loc_424593
+call    _abort
+mov     rax, [rbp-48h]
+mov     rax, [rax+58h]
+mov     rdx, [rax]
+mov     rax, [rbp-38h]
+mov     rax, [rax+8]
+cmp     rdx, rax
+jnz     short loc_4245ED
+mov     rax, [rbp-48h]
+mov     rax, [rax+58h]
+mov     rdx, [rax+8]
+mov     rax, [rbp-38h]
+mov     rax, [rax]
+cmp     rdx, rax
+jnz     short loc_4245ED
+mov     rax, [rbp-48h]
+mov     rax, [rax+58h]
+mov     rdx, [rbp-28h]
+mov     rdx, [rdx+78h]
+mov     [rax+8], rdx
+mov     rax, [rbp-48h]
+mov     rax, [rax+58h]
+mov     rdx, [rbp-28h]
+mov     rdx, [rdx+80h]
+mov     [rax], rdx
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_424602
+call    ___stack_chk_fail
+leave
+retn

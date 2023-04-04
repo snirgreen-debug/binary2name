@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], rdi
+mov     rax, cs:options_0.debug_options
+and     eax, 40h
+test    rax, rax
+jz      short loc_406642
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rcx, rax
+mov     edx, 2Ah
+mov     esi, 1
+mov     edi, 42B188h
+call    _fwrite
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    print_optlist
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rsi, rax
+mov     edi, 0Ah
+call    _fputc
+nop
+leave
+retn

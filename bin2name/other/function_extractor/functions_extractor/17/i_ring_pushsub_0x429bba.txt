@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+ir], rdi
+mov     [rbp+val], esi
+mov     rax, [rbp-18h]
+mov     edx, [rax+14h]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+1Ch]
+xor     eax, 1
+movzx   eax, al
+add     eax, edx
+and     eax, 3
+mov     [rbp+dest_idx], eax
+mov     rax, [rbp-18h]
+mov     edx, [rbp-8]
+mov     eax, [rax+rdx*4]
+mov     [rbp+old_val], eax
+mov     rax, [rbp-18h]
+mov     edx, [rbp-8]
+mov     ecx, [rbp-1Ch]
+mov     [rax+rdx*4], ecx
+mov     rax, [rbp-18h]
+mov     edx, [rbp-8]
+mov     [rax+14h], edx
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+cmp     eax, [rbp-8]
+jnz     short loc_429C35
+mov     rax, [rbp-18h]
+mov     edx, [rax+18h]
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax+1Ch]
+xor     eax, 1
+movzx   eax, al
+add     eax, edx
+and     eax, 3
+mov     edx, eax
+mov     rax, [rbp-18h]
+mov     [rax+18h], edx
+mov     rax, [rbp-18h]
+mov     byte ptr [rax+1Ch], 0
+mov     eax, [rbp-4]
+pop     rbp
+retn

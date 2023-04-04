@@ -1,0 +1,10 @@
+push    rbp
+mov     rbp, rsp
+mov     edi, 0
+call    sub_420E81
+mov     rax, cs:qword_62D7A0
+mov     esi, 1
+mov     rdi, rax
+call    sub_41488C
+pop     rbp
+retn

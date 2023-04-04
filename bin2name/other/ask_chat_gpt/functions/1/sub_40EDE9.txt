@@ -1,0 +1,89 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 100h
+mov     [rbp+var_F8], rdi
+mov     [rbp+var_A8], rsi
+mov     [rbp+var_A0], rdx
+mov     [rbp+var_98], rcx
+mov     [rbp+var_90], r8
+mov     [rbp+var_88], r9
+test    al, al
+jz      short loc_40EE42
+movaps  [rbp+var_80], xmm0
+movaps  [rbp+var_70], xmm1
+movaps  [rbp+var_60], xmm2
+movaps  [rbp+var_50], xmm3
+movaps  [rbp+var_40], xmm4
+movaps  [rbp+var_30], xmm5
+movaps  [rbp+var_20], xmm6
+movaps  [rbp+var_10], xmm7
+mov     rax, fs:28h
+mov     [rbp+var_B8], rax
+xor     eax, eax
+mov     [rbp+var_E8], 0
+mov     [rbp+var_E0], 0
+mov     [rbp+var_D8], 0
+mov     [rbp+var_D0], 8
+mov     [rbp+var_CC], 30h
+lea     rax, [rbp+10h]
+mov     [rbp+var_C8], rax
+lea     rax, [rbp-0B0h]
+mov     [rbp+var_C0], rax
+mov     rax, [rbp-0F8h]
+mov     [rbp+var_F0], rax
+mov     rax, [rbp-0D8h]
+cmp     rax, [rbp-0E0h]
+jnz     short loc_40EF07
+cmp     [rbp+var_E0], 0
+jnz     short loc_40EED7
+mov     [rbp+var_E0], 10h
+jmp     short loc_40EEDF
+add     [rbp+var_E0], 10h
+mov     rax, [rbp-0E0h]
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-0E8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_40C52A
+mov     [rbp+var_E8], rax
+mov     rax, [rbp-0D8h]
+lea     rdx, [rax+1]
+mov     [rbp+var_D8], rdx
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-0E8h]
+add     rdx, rax
+mov     rax, [rbp-0F0h]
+mov     [rdx], rax
+cmp     [rbp+var_F0], 0
+jz      short loc_40EF8E
+mov     eax, [rbp-0D0h]
+cmp     eax, 30h
+jnb     short loc_40EF6D
+mov     rax, [rbp-0C0h]
+mov     edx, [rbp-0D0h]
+mov     edx, edx
+add     rax, rdx
+mov     edx, [rbp-0D0h]
+add     edx, 8
+mov     [rbp+var_D0], edx
+jmp     short loc_40EF7F
+mov     rax, [rbp-0C8h]
+lea     rdx, [rax+8]
+mov     [rbp+var_C8], rdx
+mov     rax, [rax]
+mov     [rbp+var_F0], rax
+jmp     loc_40EEB0
+nop
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    sub_40ED34
+mov     rax, [rbp-0E8h]
+mov     rdi, rax
+call    sub_40C47F
+nop
+mov     rax, [rbp-0B8h]
+xor     rax, fs:28h
+jz      short locret_40EFC5
+call    ___stack_chk_fail
+leave
+retn

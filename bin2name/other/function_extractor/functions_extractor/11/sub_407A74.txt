@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_18], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_40776F
+mov     [rbp+var_4], eax
+cmp     [rbp+var_4], 0
+jz      short loc_407A9A
+mov     eax, [rbp-4]
+jmp     short locret_407AB7
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_406D31
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    sub_406DDA
+mov     eax, 0
+leave
+retn

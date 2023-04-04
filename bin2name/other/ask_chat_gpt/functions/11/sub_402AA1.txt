@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+add     eax, 1
+lea     rsi, aDupstr
+mov     edi, eax
+call    sub_402A3E
+mov     [rbp+dest], rax
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-8]
+mov     rsi, rdx
+mov     rdi, rax
+call    _strcpy
+mov     rax, [rbp-8]
+leave
+retn

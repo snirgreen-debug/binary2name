@@ -1,0 +1,44 @@
+test    edx, edx
+jle     short loc_405B2D
+push    r14
+push    r13
+xor     r14d, r14d
+push    r12
+push    rbp
+mov     r13d, edx
+push    rbx
+mov     rbp, szLex
+mov     r12, pibIn
+mov     rbx, rgd
+sub     rsp, 10h
+nop
+mov     edx, 6
+mov     rsi, szLex
+mov     rdi, pibIn
+call    ENextLex
+test    eax, eax
+jz      short loc_405AF8
+add     rsp, 10h
+pop     rbx
+pop     szLex
+pop     pibIn
+pop     nNumbers
+pop     r14
+retn
+xor     esi, esi
+mov     rdi, szLex
+add     r14d, 1
+mov     [rsp+38h+bErr], eax
+call    _strtod
+cmp     r13d, r14d
+movsd   qword ptr [rbx], xmm0
+mov     eax, [rsp+0Ch]
+jle     short loc_405AE4
+mov     edx, 2Ch
+mov     rsi, szLex
+mov     rdi, pibIn
+call    GetOptPunct
+add     rbx, 8
+jmp     short loc_405AD0
+xor     eax, eax
+retn

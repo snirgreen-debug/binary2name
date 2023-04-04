@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+pred], rdi
+jmp     short loc_40AF4A
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+19h]
+test    al, al
+jz      short loc_40AF3B
+mov     eax, 0
+jmp     short loc_40AF56
+mov     rax, [rbp-8]
+mov     rax, [rax+108h]
+mov     [rbp+pred], rax
+cmp     [rbp+pred], 0
+jnz     short loc_40AF28
+mov     eax, 1
+pop     rbp
+retn

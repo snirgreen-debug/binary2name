@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:opt.dfp
+test    rax, rax
+jz      short loc_41C59D
+mov     rax, cs:opt.dfp
+mov     rdi, rax
+call    _fclose
+nop
+pop     rbp
+retn

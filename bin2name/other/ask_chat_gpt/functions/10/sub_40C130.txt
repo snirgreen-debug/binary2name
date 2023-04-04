@@ -1,0 +1,84 @@
+push    rbp
+push    rbx
+sub     rsp, 18h
+mov     rax, fs:28h
+mov     [rsp+28h+var_20], rax
+xor     eax, eax
+test    rdx, rdx
+jle     short loc_40C170
+mov     rcx, [rsp+8]
+xor     rcx, fs:28h
+jnz     loc_40C2A8
+add     rsp, 18h
+pop     rbx
+pop     rbp
+retn
+test    rsi, rsi
+mov     rbp, rdi
+mov     rbx, rsi
+jz      short loc_40C1C8
+mov     rax, [rsi+10h]
+and     eax, 0F0000h
+cmp     rax, 20000h
+jz      loc_40C280
+jbe     loc_40C248
+cmp     rax, 30000h
+jz      loc_40C230
+cmp     rax, 90000h
+jnz     short loc_40C1C8
+mov     ecx, 415AF0h
+mov     edx, 177h
+mov     esi, 414065h
+mov     edi, 41406Ch
+call    ___assert_fail
+mov     r8, [rbx]
+mov     ecx, 4140BDh
+mov     edi, 619CC0h
+xor     eax, eax
+mov     edx, 3FFh
+mov     esi, 1
+call    ___sprintf_chk
+mov     rdi, [rbx+8]
+test    rdi, rdi
+jz      short loc_40C21D
+mov     rsi, rsp
+call    _strtod
+mov     rax, [rsp]
+cmp     byte ptr [rax], 0
+jz      short loc_40C21D
+mov     r8, [rbx+8]
+mov     ecx, 619CC0h
+mov     edx, 414078h
+mov     esi, 1
+mov     rdi, rbp
+xor     eax, eax
+call    ___fprintf_chk
+mov     eax, 1
+jmp     loc_40C14B
+mov     eax, cs:dword_619884
+test    eax, eax
+jnz     short loc_40C29B
+mov     r8, [rbx]
+mov     ecx, 414045h
+jmp     short loc_40C1D0
+cmp     rax, 10000h
+jnz     loc_40C1C8
+mov     ecx, cs:dword_619884
+test    ecx, ecx
+jz      short loc_40C23A
+mov     edx, cs:dword_619880
+test    edx, edx
+jnz     loc_40C1C8
+mov     r8, [rsi]
+mov     ecx, 41403Ch
+jmp     loc_40C1D0
+mov     esi, cs:dword_619884
+test    esi, esi
+jnz     loc_40C1C8
+mov     r8, [rbx]
+mov     ecx, 41402Bh
+jmp     loc_40C1D0
+mov     r8, [rsi]
+mov     ecx, 414059h
+jmp     loc_40C1D0
+call    ___stack_chk_fail

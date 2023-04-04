@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+inp], rdi
+mov     [rbp+cp], rsi
+mov     [rbp+var_28], rdx
+mov     rdx, [rbp-18h]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _inet_aton
+test    eax, eax
+jnz     short loc_4117D4
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    _gethostbyname
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jnz     short loc_4117C1
+mov     eax, 1
+jmp     short locret_4117D9
+mov     rax, [rbp-8]
+mov     rax, [rax+18h]
+mov     rax, [rax]
+mov     edx, [rax]
+mov     rax, [rbp-18h]
+mov     [rax], edx
+mov     eax, 0
+leave
+retn

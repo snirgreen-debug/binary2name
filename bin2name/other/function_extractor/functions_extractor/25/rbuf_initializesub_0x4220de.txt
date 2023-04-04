@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+rbuf], rdi
+mov     [rbp+fd], esi
+mov     rax, [rbp-8]
+mov     edx, [rbp-0Ch]
+mov     [rax], edx
+mov     rax, [rbp-8]
+lea     rdx, [rax+4]
+mov     rax, [rbp-8]
+mov     [rax+1008h], rdx
+mov     rax, [rbp-8]
+mov     qword ptr [rax+1010h], 0
+nop
+pop     rbp
+retn

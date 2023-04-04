@@ -1,0 +1,47 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+var_48], rdi
+mov     [rbp+var_50], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, cs:evtab
+test    rax, rax
+jz      short loc_40677F
+mov     rax, [rbp-48h]
+mov     [rbp+var_28], rax
+mov     rax, cs:evtab
+lea     rcx, [rbp-30h]
+mov     edx, 0
+mov     rsi, rcx
+mov     rdi, rax
+call    hashtab_lookup_or_install
+mov     [rbp+var_38], rax
+cmp     [rbp+var_38], 0
+jz      short loc_40677F
+mov     rax, [rbp-50h]
+mov     rdx, [rbp-38h]
+mov     rdx, [rdx+10h]
+mov     [rax], rdx
+mov     eax, 0
+jmp     short loc_4067B2
+mov     rax, [rbp-50h]
+lea     rdx, [rax+4]
+mov     rax, [rbp-48h]
+mov     rsi, rax
+mov     edi, 62D100h
+call    trans_strtotok
+test    eax, eax
+jz      short loc_4067A3
+mov     eax, 0FFFFFFFFh
+jmp     short loc_4067B2
+mov     rax, [rbp-50h]
+mov     dword ptr [rax], 0
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4067C6
+call    ___stack_chk_fail
+leave
+retn

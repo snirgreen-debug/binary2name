@@ -1,0 +1,11 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:stream
+test    rax, rax
+jz      short loc_41C59D
+mov     rax, cs:stream
+mov     rdi, rax
+call    _fclose
+nop
+pop     rbp
+retn

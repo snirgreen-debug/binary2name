@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+mov     eax, cs:dword_63A4D0
+and     eax, 200h
+test    eax, eax
+jz      short loc_4034CA
+mov     eax, cs:fd
+test    eax, eax
+js      short loc_4034CA
+mov     eax, cs:fd
+mov     edi, eax
+call    _close
+mov     cs:fd, 0FFFFFFFFh
+nop
+pop     rbp
+retn

@@ -1,0 +1,41 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     eax, cs:dword_614724
+mov     esi, eax
+mov     edi, 614E20h
+call    sub_409771
+mov     eax, cs:dword_614764
+mov     esi, eax
+mov     edi, 615720h
+call    sub_409771
+mov     edi, 614780h
+call    sub_4093EB
+mov     [rbp+var_4], 12h
+jmp     short loc_409B7F
+mov     eax, [rbp-4]
+cdqe
+movzx   eax, byte ptr [rax+6147B0h]
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax*4+615D22h]
+test    ax, ax
+jnz     short loc_409B87
+sub     [rbp+var_4], 1
+cmp     [rbp+var_4], 2
+jg      short loc_409B5D
+jmp     short loc_409B88
+nop
+mov     eax, [rbp-4]
+lea     edx, [rax+1]
+mov     eax, edx
+add     eax, eax
+add     eax, edx
+add     eax, 0Eh
+movsxd  rdx, eax
+mov     rax, cs:qword_617D30
+add     rax, rdx
+mov     cs:qword_617D30, rax
+mov     eax, [rbp-4]
+leave
+retn

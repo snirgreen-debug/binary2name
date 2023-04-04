@@ -1,0 +1,75 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 1030h
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, cs:fd
+lea     rcx, [rbp-1010h]
+mov     edx, 1000h
+mov     rsi, rcx
+mov     edi, eax
+call    _read
+mov     [rbp+var_1020], rax
+cmp     [rbp+var_1020], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_40A4DC
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 4
+jnz     short loc_40A4B0
+mov     eax, cs:dword_62D580
+cmp     eax, 11h
+jz      short loc_40A480
+mov     eax, cs:dword_62D580
+cmp     eax, 0Eh
+jnz     short loc_40A48A
+mov     eax, 0
+jmp     loc_40A551
+mov     eax, cs:dword_62D580
+mov     edx, eax
+mov     esi, 423BF1h
+mov     edi, 5
+mov     eax, 0
+call    sub_402A42
+mov     eax, 1
+jmp     loc_40A551
+call    ___errno_location
+mov     eax, [rax]
+mov     edi, eax
+call    _strerror
+mov     rdx, rax
+mov     esi, 423BFFh
+mov     edi, 5
+mov     eax, 0
+call    sub_402A42
+mov     eax, 1
+jmp     short loc_40A551
+lea     rax, [rbp-1010h]
+mov     [rbp+var_1028], rax
+jmp     short loc_40A542
+mov     rax, [rbp-1028h]
+mov     eax, [rax]
+test    eax, eax
+js      short loc_40A508
+mov     rax, [rbp-1028h]
+mov     rdi, rax
+call    sub_40A172
+mov     rax, [rbp-1028h]
+mov     eax, [rax+0Ch]
+mov     eax, eax
+add     rax, 10h
+mov     [rbp+var_1018], rax
+mov     rax, [rbp-1018h]
+add     [rbp+var_1028], rax
+mov     rax, [rbp-1020h]
+sub     rax, [rbp-1018h]
+mov     [rbp+var_1020], rax
+cmp     [rbp+var_1020], 0
+jnz     short loc_40A4EC
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_40A565
+call    ___stack_chk_fail
+leave
+retn

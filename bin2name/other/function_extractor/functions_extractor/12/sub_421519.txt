@@ -1,0 +1,94 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+movsd   [rbp+var_28], xmm0
+mov     rax, [rbp-18h]
+add     rax, 38h
+mov     [rbp+var_10], rax
+mov     rax, [rbp-18h]
+movsd   xmm1, qword ptr [rax+190h]
+movsd   xmm0, qword ptr [rbp-28h]
+subsd   xmm0, xmm1
+movsd   [rbp+var_8], xmm0
+mov     rax, [rbp-18h]
+mov     rdx, [rax+198h]
+mov     rax, [rbp-20h]
+add     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax+198h], rdx
+movsd   xmm0, cs:qword_436520
+ucomisd xmm0, qword ptr [rbp-8]
+ja      loc_4216AD
+mov     rax, [rbp-10h]
+mov     rcx, [rax+148h]
+mov     rax, [rbp-10h]
+mov     edx, [rax]
+mov     rax, [rbp-10h]
+movsxd  rdx, edx
+mov     rax, [rax+rdx*8+8]
+sub     rcx, rax
+mov     rdx, rcx
+mov     rax, [rbp-10h]
+mov     [rax+148h], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+150h]
+mov     rax, [rbp-10h]
+mov     ecx, [rax]
+mov     rax, [rbp-10h]
+movsxd  rcx, ecx
+add     rcx, 14h
+mov     rax, [rax+rcx*8+8]
+sub     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+150h], rdx
+mov     rax, [rbp-10h]
+mov     edx, [rax]
+movsd   xmm0, qword ptr [rbp-8]
+cvttsd2si rcx, xmm0
+mov     rax, [rbp-10h]
+movsxd  rdx, edx
+mov     [rax+rdx*8+8], rcx
+mov     rax, [rbp-10h]
+mov     ecx, [rax]
+mov     rax, [rbp-18h]
+mov     rdx, [rax+198h]
+mov     rax, [rbp-10h]
+movsxd  rcx, ecx
+add     rcx, 14h
+mov     [rax+rcx*8+8], rdx
+mov     rax, [rbp-10h]
+mov     rax, [rax+148h]
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+addsd   xmm0, qword ptr [rbp-8]
+cvttsd2si rdx, xmm0
+mov     rax, [rbp-10h]
+mov     [rax+148h], rdx
+mov     rax, [rbp-10h]
+mov     rdx, [rax+150h]
+mov     rax, [rbp-18h]
+mov     rax, [rax+198h]
+add     rdx, rax
+mov     rax, [rbp-10h]
+mov     [rax+150h], rdx
+mov     rax, [rbp-18h]
+movsd   xmm0, qword ptr [rbp-28h]
+movsd   qword ptr [rax+190h], xmm0
+mov     rax, [rbp-18h]
+mov     qword ptr [rax+198h], 0
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+lea     edx, [rax+1]
+mov     rax, [rbp-10h]
+mov     [rax], edx
+mov     rax, [rbp-10h]
+mov     eax, [rax]
+cmp     eax, 14h
+jnz     short loc_4216AE
+mov     rax, [rbp-10h]
+mov     dword ptr [rax], 0
+jmp     short loc_4216AE
+nop
+pop     rbp
+retn

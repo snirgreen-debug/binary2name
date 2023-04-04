@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     eax, cs:dword_60C788
+test    eax, eax
+jz      short loc_408F45
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_408CF2
+jmp     locret_408FE4
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_408D6E
+mov     [rbp+s], rax
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _strlen
+mov     [rbp+var_14], eax
+mov     eax, [rbp-14h]
+add     eax, 1
+cdqe
+shl     rax, 2
+mov     rdi, rax
+call    _malloc
+mov     [rbp+var_8], rax
+mov     [rbp+var_18], 0
+jmp     short loc_408FB2
+mov     eax, [rbp-18h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-8]
+add     rdx, rax
+mov     eax, [rbp-18h]
+movsxd  rcx, eax
+mov     rax, [rbp-10h]
+add     rax, rcx
+movzx   eax, byte ptr [rax]
+movzx   eax, al
+mov     [rdx], eax
+add     [rbp+var_18], 1
+mov     eax, [rbp-18h]
+cmp     eax, [rbp-14h]
+jl      short loc_408F85
+mov     eax, [rbp-14h]
+cdqe
+lea     rdx, [rax*4+0]
+mov     rax, [rbp-8]
+add     rax, rdx
+mov     dword ptr [rax], 0
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-8]
+leave
+retn

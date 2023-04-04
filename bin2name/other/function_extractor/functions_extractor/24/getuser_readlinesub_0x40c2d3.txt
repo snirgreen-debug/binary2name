@@ -1,0 +1,78 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+buffer], rdi
+mov     [rbp+bufsize], rsi
+mov     [rbp+query], rdx
+mov     [rbp+valid], 0
+jmp     loc_40C385
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C30E
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _readline
+mov     rdx, rax
+mov     rax, [rbp-18h]
+mov     [rax], rdx
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C33F
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    replacectrlchars
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C35E
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    strwidth
+test    eax, eax
+js      short loc_40C367
+mov     [rbp+valid], 1
+jmp     short loc_40C385
+lea     rax, invalid_utf8
+mov     rax, [rax]
+mov     rsi, rax
+lea     rdi, aErrorS
+mov     eax, 0
+call    _printf
+cmp     [rbp+valid], 0
+jz      loc_40C2F3
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_40C3B8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_40C3B8
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+mov     rdi, rax
+call    _add_history
+mov     rax, [rbp-18h]
+mov     rax, [rax]
+test    rax, rax
+jnz     short loc_40C3E6
+lea     rax, flags
+mov     eax, [rax+8]
+test    eax, eax
+jnz     short loc_40C3DC
+mov     edi, 0Ah
+call    _putchar
+mov     edi, 0
+call    _exit
+nop
+leave
+retn

@@ -1,0 +1,7 @@
+push    rbp
+mov     rbp, rsp
+call    sub_414698
+mov     cs:qword_62D7A0, rax
+nop
+pop     rbp
+retn

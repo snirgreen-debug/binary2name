@@ -1,0 +1,34 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+mov     [rbp+ptr], esi
+mov     [rbp+var_20], edx
+cmp     [rbp+var_20], 0
+jnz     short loc_405415
+mov     ecx, 40ED50h
+mov     edx, 0A7h
+mov     esi, 40ED14h
+mov     edi, 40ED20h
+call    ___assert_fail
+cmp     [rbp+var_20], 2
+jnz     short loc_405428
+mov     eax, [rbp-1Ch]
+mov     edi, eax
+call    sub_4051C1
+mov     [rbp+ptr], eax
+mov     rdx, [rbp-18h]
+lea     rax, [rbp-1Ch]
+mov     rcx, rdx
+mov     edx, 1
+mov     esi, 4
+mov     rdi, rax
+call    _fwrite
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 1
+jnz     short loc_405457
+mov     eax, 1
+jmp     short locret_40545C
+mov     eax, 0
+leave
+retn

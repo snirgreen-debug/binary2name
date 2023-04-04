@@ -1,0 +1,9 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+size], rdi
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    _malloc
+leave
+retn

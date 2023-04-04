@@ -1,0 +1,179 @@
+push    rbp
+mov     rbp, rsp
+push    i
+sub     rsp, 28h
+mov     [rbp+procdata], rdi
+mov     [rbp+context], rsi
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_4028C7
+mov     eax, 8
+jmp     loc_402AFC
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 1Eh
+jnz     loc_402988
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+lea     edx, [rax-0Eh]
+mov     rax, [rbp-28h]
+mov     [rax+4], edx
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+neg     eax
+mov     [rbp+minval], eax
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+test    eax, eax
+js      short loc_402915
+mov     rax, [rbp-28h]
+mov     edx, [rax+8]
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+sub     edx, eax
+mov     eax, edx
+mov     [rbp+maxval], eax
+jmp     short loc_40291F
+mov     rax, [rbp-28h]
+mov     eax, [rax+8]
+mov     [rbp+maxval], eax
+mov     rax, [rbp-28h]
+lea     rdi, [rax+38h]
+mov     eax, [rbp-1Ch]
+movsxd  rcx, eax
+mov     eax, [rbp-18h]
+movsxd  rdx, eax
+mov     rax, [rbp-28h]
+mov     rsi, [rax+30h]
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+mov     r8, rdi
+mov     rdi, rax
+call    getword
+mov     [rbp+word], eax
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     eax, [rbp-14h]
+add     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+4], edx
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+test    eax, eax
+jns     short loc_4029C5
+mov     ecx, 40EBA0h
+mov     edx, 1F1h
+mov     esi, 40DA68h
+mov     edi, 40DAC5h
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     edx, [rax+4]
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+sub     eax, 0Eh
+add     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax+4], edx
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+test    eax, eax
+jns     short loc_4029C5
+mov     ecx, 40EBA0h
+mov     edx, 1F6h
+mov     esi, 40DA68h
+mov     edi, 40DAC5h
+call    ___assert_fail
+mov     rax, [rbp-28h]
+mov     eax, [rax+4]
+movsxd  i, eax
+jmp     loc_402A92
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 0FFFFFFFFh
+jz      loc_402ABB
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 7Fh
+jg      short loc_402A1E
+mov     rax, [rbp-28h]
+mov     edx, 1
+mov     rsi, i
+mov     rdi, rax
+call    extend
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, i
+lea     i, [rax+1]
+add     rdx, rax
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+mov     [rdx], al
+jmp     short loc_402A92
+mov     rax, [rbp-28h]
+mov     edx, 2
+mov     rsi, i
+mov     rdi, rax
+call    extend
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+and     eax, 7Fh
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax], edx
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, i
+lea     i, [rax+1]
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+mov     rdx, [rbp-28h]
+cdqe
+movzx   eax, byte ptr [rdx+rax+3Ch]
+mov     [rcx], al
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, i
+lea     i, [rax+1]
+lea     rcx, [rdx+rax]
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+mov     rdx, [rbp-28h]
+cdqe
+movzx   eax, byte ptr [rdx+rax+0BCh]
+mov     [rcx], al
+mov     rax, [rbp-28h]
+mov     rax, [rax+28h]
+mov     rdi, rax
+call    __IO_getc
+mov     edx, eax
+mov     rax, [rbp-28h]
+mov     [rax], edx
+mov     rax, [rbp-28h]
+mov     eax, [rax]
+cmp     eax, 1Eh
+jg      loc_4029D4
+jmp     short loc_402ABC
+nop
+mov     rax, [rbp-28h]
+mov     edx, 1
+mov     rsi, i
+mov     rdi, rax
+call    extend
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+add     rax, i
+mov     byte ptr [rax], 0
+mov     edx, ebx
+mov     rax, [rbp-28h]
+mov     [rax+8], edx
+mov     rax, [rbp-28h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     [rax+20h], rdx
+mov     eax, 1
+add     rsp, 28h
+pop     i
+pop     rbp
+retn

@@ -1,0 +1,21 @@
+push    rbp
+push    rbx
+mov     ebp, esi
+mov     rbx, pibIn
+sub     rsp, 8
+mov     rax, [pibIn+30h]
+mov     qword ptr [rax+60h], 0
+jmp     short loc_40A2BA
+mov     esi, ebp
+mov     rdi, pibIn
+call    ReadCpt
+mov     edx, 3
+mov     esi, 2
+mov     rdi, pibIn
+call    GetSBMLLex
+test    eax, eax
+jnz     short loc_40A2B0
+add     rsp, 8
+pop     pibIn
+pop     bTell
+retn

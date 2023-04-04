@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_28], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     eax, cs:dword_60C788
+test    eax, eax
+jz      short loc_409315
+mov     rax, cs:stdscr
+lea     rdx, [rbp-14h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _wget_wch
+mov     [rbp+var_C], eax
+cmp     [rbp+var_C], 0FFFFFFFFh
+jnz     short loc_4092F9
+mov     eax, 0FFFFFFFFh
+jmp     loc_40939A
+cmp     [rbp+var_C], 100h
+jnz     short loc_409336
+mov     eax, [rbp-14h]
+cmp     eax, 107h
+jnz     short loc_409336
+mov     [rbp+var_14], 8
+jmp     short loc_409336
+mov     rax, cs:stdscr
+mov     rdi, rax
+call    _wgetch
+mov     [rbp+var_14], eax
+mov     eax, [rbp-14h]
+cmp     eax, 0FFFFFFFFh
+jnz     short loc_409336
+mov     eax, 0FFFFFFFFh
+jmp     short loc_40939A
+mov     eax, [rbp-14h]
+cmp     eax, 1Bh
+jnz     short loc_40938C
+call    _cbreak
+mov     rax, cs:stdscr
+mov     esi, 1
+mov     rdi, rax
+call    _nodelay
+mov     rax, cs:stdscr
+lea     rdx, [rbp-10h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _wget_wch
+cmp     eax, 0FFFFFFFFh
+jz      short loc_409378
+mov     eax, [rbp-10h]
+mov     [rbp+var_14], eax
+mov     rax, cs:stdscr
+mov     esi, 0
+mov     rdi, rax
+call    _nodelay
+mov     edx, [rbp-14h]
+mov     rax, [rbp-28h]
+mov     [rax], edx
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_4093AE
+call    ___stack_chk_fail
+leave
+retn

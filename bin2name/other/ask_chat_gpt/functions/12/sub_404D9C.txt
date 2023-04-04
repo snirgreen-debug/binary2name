@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     edi, 50h
+call    sub_428825
+mov     [rbp+var_8], rax
+mov     rax, [rbp-8]
+mov     edx, 50h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     rax, [rbp-8]
+mov     dword ptr [rax+8], 0FFFFFFFFh
+mov     rax, [rbp-8]
+leave
+retn

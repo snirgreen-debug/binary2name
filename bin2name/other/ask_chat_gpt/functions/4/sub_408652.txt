@@ -1,0 +1,17 @@
+push    rbp
+mov     rbp, rsp
+movss   [rbp+var_4], xmm0
+movss   xmm0, dword ptr [rbp-4]
+movss   xmm1, cs:dword_42BF74
+ucomiss xmm0, xmm1
+jbe     short loc_408677
+movss   xmm0, cs:dword_42BF74
+jmp     short loc_40868C
+pxor    xmm0, xmm0
+ucomiss xmm0, dword ptr [rbp-4]
+jbe     short loc_408687
+pxor    xmm0, xmm0
+jmp     short loc_40868C
+movss   xmm0, dword ptr [rbp-4]
+pop     rbp
+retn

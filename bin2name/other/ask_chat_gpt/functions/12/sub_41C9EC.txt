@@ -1,0 +1,60 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+mov     [rbp+var_20], rsi
+call    sub_41D2F3
+call    sub_41C9B9
+mov     [rbp+var_8], rax
+cmp     [rbp+var_8], 0
+jz      loc_41CAA0
+mov     eax, [rbp-14h]
+cmp     eax, 1
+jz      short loc_41CA2B
+cmp     eax, 1
+jb      short loc_41CA4D
+cmp     eax, 2
+jz      short loc_41CA37
+cmp     eax, 3
+jmp     short loc_41CA59
+mov     eax, cs:dword_6475C4
+test    eax, eax
+jz      short loc_41CA59
+jmp     short locret_41CAA7
+mov     eax, cs:dword_6475C0
+test    eax, eax
+jnz     short loc_41CAA3
+mov     eax, cs:dword_6475C4
+test    eax, eax
+jz      short loc_41CA59
+jmp     short loc_41CAA3
+mov     eax, cs:dword_6475C0
+test    eax, eax
+jz      short loc_41CAA6
+jmp     short loc_41CA5A
+nop
+mov     rdx, [rbp-8]
+mov     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    _fputs
+mov     eax, cs:dword_6420D4
+test    eax, eax
+jz      short loc_41CA83
+mov     rax, [rbp-20h]
+mov     rdi, rax
+call    sub_41C945
+mov     eax, cs:dword_63F2E0
+test    eax, eax
+jz      short loc_41CA94
+call    sub_41CCC0
+jmp     short locret_41CAA7
+mov     cs:dword_6420D8, 1
+jmp     short locret_41CAA7
+nop
+jmp     short locret_41CAA7
+nop
+jmp     short locret_41CAA7
+nop
+leave
+retn

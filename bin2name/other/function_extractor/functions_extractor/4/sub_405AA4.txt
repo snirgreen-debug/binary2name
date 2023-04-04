@@ -1,0 +1,16 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_8], rdi
+mov     [rbp+var_10], rsi
+mov     [rbp+var_18], rdx
+mov     rsi, cs:s1
+mov     eax, cs:fildes
+mov     ecx, 0
+mov     edx, 2
+mov     edi, eax
+call    _faccessat
+test    eax, eax
+setz    al
+leave
+retn

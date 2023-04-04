@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+com], rdi
+mov     [rbp+val], rsi
+mov     [rbp+closure], rdx
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     edx, 6477A0h
+mov     rsi, rcx
+mov     rdi, rax
+call    cmd_boolean
+mov     [rbp+flag], eax
+cmp     [rbp+flag], 0
+jz      short loc_41BECC
+mov     eax, cs:opt.htmlify
+test    eax, eax
+jnz     short loc_41BECC
+mov     cs:opt.remove_listing, 0
+mov     eax, [rbp-4]
+leave
+retn

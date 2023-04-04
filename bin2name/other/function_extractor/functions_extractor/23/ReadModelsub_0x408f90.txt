@@ -1,0 +1,129 @@
+push    r13
+push    r12
+mov     r12, pinfo
+push    rbp
+push    rbx
+mov     rbx, ptempinfo_0
+mov     ptempinfo_0, 0FFFFFFFFFFFFFFFFh
+mov     r13, szFileIn
+sub     rsp, 1868h
+lea     pinfo, [rsp+10h]
+mov     rax, fs:28h
+mov     [rsp+1888h+var_30], rax
+xor     eax, eax
+call    InitBuffer
+test    eax, eax
+jz      loc_40918B
+mov     [rsp+1888h+pibIn.pTempInfo], ptempinfo_0
+mov     ptempinfo_0, [rsp+18h]
+mov     [rsp+1888h+pibIn.pInfo], pinfo
+mov     rbp, rbx
+add     rbp, [rsp+20h]
+cmp     rbx, rbp
+jb      short loc_408FF9
+jmp     short loc_409060
+add     rbx, 1
+cmp     rbp, rbx
+jbe     short loc_409060
+cmp     byte ptr [rbx], 0Ah
+jnz     short loc_408FF0
+add     rbx, 1
+cmp     rbp, rbx
+jbe     short loc_408FF0
+call    ___ctype_b_loc
+mov     rcx, [rax]
+jmp     short loc_409021
+add     rbx, 1
+cmp     rbp, rbx
+jz      short loc_4090A0
+movsx   rdx, byte ptr [rbx]
+test    byte ptr [rcx+rdx*2+1], 20h
+mov     rax, rdx
+jnz     short loc_409018
+cmp     rbp, rbx
+jbe     short loc_408FF0
+lea     rdx, [rbx+2]
+cmp     rbp, rdx
+jbe     short loc_408FF0
+cmp     al, 45h
+jnz     short loc_408FF0
+cmp     byte ptr [rbx+1], 6Eh
+jnz     short loc_408FF0
+cmp     byte ptr [rbx+2], 64h
+jz      short loc_409078
+add     rbx, 1
+cmp     rbp, rbx
+ja      short loc_408FF9
+nop     word ptr [rax+rax+00000000h]
+xor     ecx, ecx
+mov     rdx, szFileIn
+mov     esi, 810Fh
+xor     edi, edi
+call    ReportError
+nop     dword ptr [rax+00000000h]
+lea     rdx, [rsp+0Ch]
+lea     rsi, [rsp+50h]
+lea     rdi, [rsp+10h]
+call    NextLex
+cmp     [rsp+1888h+iLexType], 20h
+ja      short def_409097
+mov     eax, [rsp+0Ch]
+jmp     ds:jpt_409097[rax*8]
+mov     rbx, rbp
+jmp     loc_408FF0
+movzx   eax, byte ptr [rsp+50h]
+cmp     al, 3Bh
+jz      short loc_4090E2
+cmp     al, 7Dh
+jz      loc_409173
+cmp     al, 23h
+jz      loc_4091A6
+lea     rdx, [rsp+50h]
+lea     rdi, [rsp+10h]
+mov     ecx, 412E3Eh
+mov     esi, 11h
+call    ReportError
+cmp     dword ptr [pinfo], 4000h
+jnz     short loc_409078
+jmp     short loc_409118
+lea     rdx, [rsp+50h]
+lea     rdi, [rsp+10h]
+mov     ecx, 412E3Eh
+mov     esi, 12h
+call    ReportError
+jmp     short loc_4090E2
+mov     dword ptr [pinfo], 4000h
+mov     rdi, [rsp+18h]
+test    rdi, rdi
+jz      short loc_409127
+call    _free
+mov     rax, [rsp+1858h]
+xor     rax, fs:28h
+jnz     short loc_4091B5
+add     rsp, 1868h
+pop     rbx
+pop     rbp
+pop     pinfo
+pop     szFileIn
+retn
+cmp     [rsp+1888h+szLex], 0
+jz      short loc_4090E2
+lea     rdx, [rsp+450h]
+lea     rsi, [rsp+50h]
+lea     rdi, [rsp+10h]
+call    ProcessWord_0
+jmp     loc_4090E2
+test    byte ptr [pinfo], 7
+jz      def_409097
+mov     dword ptr [pinfo], 1
+jmp     loc_409078
+lea     rdi, [rsp+10h]
+xor     ecx, ecx
+mov     edx, 4133DFh
+mov     esi, 8001h
+call    ReportError
+jmp     loc_408FD2
+lea     rdi, [rsp+10h]
+call    SkipComment
+jmp     loc_4090E2
+call    ___stack_chk_fail

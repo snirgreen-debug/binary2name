@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+s], rdi
+jmp     short loc_41C9AB
+mov     rax, [rbp-18h]
+mov     esi, 0Ah
+mov     rdi, rax
+call    _strchr
+mov     [rbp+end], rax
+cmp     [rbp+end], 0
+jnz     short loc_41C98B
+mov     rax, [rbp-18h]
+mov     rdi, rax
+call    _strlen
+mov     rdx, rax
+mov     rax, [rbp-18h]
+add     rax, rdx
+mov     [rbp+end], rax
+jmp     short loc_41C990
+add     [rbp+end], 1
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    saved_append_1
+mov     rax, [rbp-8]
+mov     [rbp+s], rax
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_41C953
+nop
+leave
+retn

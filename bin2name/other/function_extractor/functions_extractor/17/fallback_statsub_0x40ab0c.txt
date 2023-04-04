@@ -1,0 +1,32 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+name], rdi
+mov     [rbp+p], rsi
+mov     [rbp+prev_rv], edx
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jz      short loc_40AB30
+cmp     eax, 14h
+jnz     short loc_40AB78
+mov     rax, cs:options_0.debug_options
+and     eax, 2
+test    rax, rax
+jz      short loc_40AB5C
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-8]
+mov     esi, 42C290h
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+mov     eax, cs:state_0.cwd_dir_fd
+mov     rdx, [rbp-10h]
+mov     rsi, [rbp-8]
+mov     ecx, 100h
+mov     edi, eax
+call    fstatat
+jmp     short locret_40AB7B
+mov     eax, [rbp-14h]
+leave
+retn

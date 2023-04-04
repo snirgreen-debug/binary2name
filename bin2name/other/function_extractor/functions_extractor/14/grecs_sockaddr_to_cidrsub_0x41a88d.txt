@@ -1,0 +1,48 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     [rbp+var_40], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rdx, [rbp-40h]
+lea     rax, [rbp-20h]
+mov     rsi, rdx
+mov     rdi, rax
+call    grecs_sockaddr_to_bytes
+mov     [rbp+var_24], eax
+cmp     [rbp+var_24], 0
+jnz     short loc_41A8CF
+mov     eax, 0FFFFFFFFh
+jmp     short loc_41A926
+mov     rax, [rbp-40h]
+movzx   eax, word ptr [rax]
+movzx   edx, ax
+mov     rax, [rbp-38h]
+mov     [rax], edx
+mov     rax, [rbp-38h]
+mov     edx, [rbp-24h]
+mov     [rax+4], edx
+mov     rax, [rbp-38h]
+lea     rcx, [rax+8]
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-18h]
+mov     [rcx], rax
+mov     [rcx+8], rdx
+mov     [rbp+var_28], 0
+jmp     short loc_41A91B
+mov     rdx, [rbp-38h]
+mov     eax, [rbp-28h]
+cdqe
+mov     byte ptr [rdx+rax+18h], 0FFh
+add     [rbp+var_28], 1
+cmp     [rbp+var_28], 0Fh
+jle     short loc_41A909
+mov     eax, 0
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41A93A
+call    ___stack_chk_fail
+leave
+retn

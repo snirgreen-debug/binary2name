@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+pathname], rdi
+mov     [rbp+stat_buf], rsi
+mov     [rbp+pred_ptr], rdx
+mov     rax, [rbp-28h]
+mov     rax, [rax+40h]
+mov     [rbp+stream], rax
+mov     rax, [rbp-28h]
+movzx   eax, byte ptr [rax+28h]
+movzx   edi, al
+mov     r9d, cs:options_0.output_block_size
+mov     r8, cs:options_0.start_time.tv_sec
+mov     rdx, cs:state_0.rel_pathname
+mov     esi, cs:state_0.cwd_dir_fd
+mov     rcx, [rbp-20h]
+mov     rax, [rbp-18h]
+push    [rbp+stream]
+push    rdi
+mov     rdi, rax
+call    list_file
+add     rsp, 10h
+mov     eax, 1
+leave
+retn

@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+p], rdi
+cmp     [rbp+p], 0
+jz      short loc_407C1D
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax+18h]
+test    al, al
+jnz     short loc_407C0C
+mov     rax, [rbp-8]
+mov     rax, [rax+110h]
+mov     rdi, rax
+call    subtree_has_side_effects
+test    al, al
+jnz     short loc_407C0C
+mov     rax, [rbp-8]
+mov     rax, [rax+118h]
+mov     rdi, rax
+call    subtree_has_side_effects
+test    al, al
+jz      short loc_407C13
+mov     eax, 1
+jmp     short loc_407C18
+mov     eax, 0
+and     eax, 1
+jmp     short locret_407C22
+mov     eax, 0
+leave
+retn

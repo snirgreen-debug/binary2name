@@ -1,0 +1,30 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+st], rdi
+mov     [rbp+dtype], esi
+cmp     [rbp+dtype], 0Ch
+ja      short def_425B70
+mov     eax, [rbp-1Ch]
+mov     rax, [rax*8+432640h]
+jmp     rax
+mov     [rbp+type], 6000h
+jmp     short loc_425BB8
+mov     [rbp+type], 2000h
+jmp     short loc_425BB8
+mov     [rbp+type], 4000h
+jmp     short loc_425BB8
+mov     [rbp+type], 1000h
+jmp     short loc_425BB8
+mov     [rbp+type], 0A000h
+jmp     short loc_425BB8
+mov     [rbp+type], 8000h
+jmp     short loc_425BB8
+mov     [rbp+type], 0C000h
+jmp     short loc_425BB8
+mov     [rbp+type], 0
+mov     rax, [rbp-18h]
+mov     edx, [rbp-4]
+mov     [rax+18h], edx
+nop
+pop     rbp
+retn

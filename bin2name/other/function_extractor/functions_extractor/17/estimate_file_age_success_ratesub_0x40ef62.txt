@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+movss   [rbp+num_days], xmm0
+cvtss2sd xmm0, dword ptr [rbp-4]
+movsd   xmm1, cs:qword_42F958
+ucomisd xmm1, xmm0
+jbe     short loc_40EF88
+movss   xmm0, cs:dword_42F960
+jmp     short loc_40EFC0
+movss   xmm0, cs:dword_42F964
+ucomiss xmm0, dword ptr [rbp-4]
+jbe     short loc_40EFA0
+movss   xmm0, cs:dword_42F968
+jmp     short loc_40EFC0
+movss   xmm0, dword ptr [rbp-4]
+ucomiss xmm0, cs:dword_42F96C
+jbe     short loc_40EFB8
+movss   xmm0, cs:dword_42F968
+jmp     short loc_40EFC0
+movss   xmm0, cs:dword_42F970
+pop     rbp
+retn

@@ -1,0 +1,55 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+var_18], rdi
+mov     [rbp+var_20], rsi
+mov     [rbp+var_28], rdx
+movzx   eax, cs:byte_63BFF8
+xor     eax, 1
+test    al, al
+jz      loc_40F5BD
+mov     rax, cs:timer
+add     rax, 15180h
+mov     cs:timer, rax
+mov     cs:qword_63BFF0, 0
+mov     edi, 63BFE8h
+call    _localtime
+mov     [rbp+var_8], rax
+mov     rsi, cs:timer
+cmp     [rbp+var_8], 0
+jz      short loc_40F574
+mov     rax, [rbp-8]
+mov     edx, [rax]
+mov     rax, [rbp-8]
+mov     eax, [rax+4]
+shl     eax, 2
+mov     ecx, eax
+shl     ecx, 4
+sub     ecx, eax
+mov     eax, ecx
+add     edx, eax
+mov     rax, [rbp-8]
+mov     eax, [rax+8]
+imul    eax, 0E10h
+add     eax, edx
+cdqe
+jmp     short loc_40F5A9
+mov     rcx, cs:timer
+mov     rdx, 1845C8A0CE512957h
+mov     rax, rcx
+imul    rdx
+sar     rdx, 0Dh
+mov     rax, rcx
+sar     rax, 3Fh
+sub     rdx, rax
+mov     rax, rdx
+imul    rax, 15180h
+sub     rcx, rax
+mov     rax, rcx
+sub     rsi, rax
+mov     rax, rsi
+mov     cs:timer, rax
+mov     cs:byte_63BFF8, 1
+mov     eax, 1
+leave
+retn

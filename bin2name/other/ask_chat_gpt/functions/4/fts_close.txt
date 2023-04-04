@@ -1,0 +1,121 @@
+push    rbp
+mov     rbp, rsp
+push    r12
+push    rbx
+sub     rsp, 20h
+mov     [rbp+ptr], rdi
+mov     [rbp+var_14], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_424E2C
+mov     rax, [rbp-28h]
+mov     rbx, [rax]
+jmp     short loc_424E1B
+mov     r12, rbx
+mov     rax, [rbx+10h]
+test    rax, rax
+jz      short loc_424E0C
+mov     rax, [rbx+10h]
+jmp     short loc_424E10
+mov     rax, [rbx+8]
+mov     rbx, rax
+mov     rdi, r12
+call    _free
+mov     rax, [rbx+58h]
+test    rax, rax
+jns     short loc_424DFA
+mov     rdi, rbx
+call    _free
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_424E49
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+mov     rdi, rax
+call    sub_4269E5
+mov     rax, [rbp-28h]
+mov     rax, [rax+10h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     rax, [rax+20h]
+mov     rdi, rax
+call    _free
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 200h
+test    eax, eax
+jz      short loc_424EA2
+mov     rax, [rbp-28h]
+mov     eax, [rax+2Ch]
+test    eax, eax
+js      short loc_424EEE
+mov     rax, [rbp-28h]
+mov     eax, [rax+2Ch]
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      short loc_424EEE
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_14], eax
+jmp     short loc_424EEE
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 4
+test    eax, eax
+jnz     short loc_424EEE
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+mov     edi, eax
+call    _fchdir
+test    eax, eax
+jz      short loc_424ECC
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_14], eax
+mov     rax, [rbp-28h]
+mov     eax, [rax+28h]
+mov     edi, eax
+call    _close
+test    eax, eax
+jz      short loc_424EEE
+cmp     [rbp+var_14], 0
+jnz     short loc_424EEE
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+var_14], eax
+mov     rax, [rbp-28h]
+add     rax, 60h
+mov     rdi, rax
+call    sub_424652
+mov     rax, [rbp-28h]
+mov     rax, [rax+50h]
+test    rax, rax
+jz      short loc_424F1B
+mov     rax, [rbp-28h]
+mov     rax, [rax+50h]
+mov     rdi, rax
+call    sub_418B13
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    sub_424604
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _free
+cmp     [rbp+var_14], 0
+jz      short loc_424F4D
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-14h]
+mov     [rdx], eax
+mov     eax, 0FFFFFFFFh
+jmp     short loc_424F52
+mov     eax, 0
+add     rsp, 20h
+pop     rbx
+pop     r12
+pop     rbp
+retn

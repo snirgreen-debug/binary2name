@@ -1,0 +1,22 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+string], rdi
+mov     [rbp+maxlen], rsi
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-18h]
+mov     esi, 0
+mov     rdi, rax
+call    _memchr
+mov     [rbp+end], rax
+cmp     [rbp+end], 0
+jz      short loc_4099E8
+mov     rdx, [rbp-8]
+mov     rax, [rbp-18h]
+sub     rdx, rax
+mov     rax, rdx
+add     rax, 1
+jmp     short locret_4099EC
+mov     rax, [rbp-20h]
+leave
+retn

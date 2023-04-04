@@ -1,0 +1,167 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 480h
+mov     [rbp+fd], edi
+mov     [rbp+filename], rsi
+mov     [rbp+buffer], rdx
+mov     [rbp+buffer_size], rcx
+mov     [rbp+alloc], r8
+mov     [rbp+preadlinkat], r9
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, 8000000000000000h
+mov     [rbp+buf_size_max], rax
+cmp     [rbp+alloc], 0
+jnz     short loc_417251
+mov     [rbp+alloc], 4327C0h
+cmp     [rbp+buffer_size], 0
+jnz     short loc_417274
+lea     rax, [rbp-410h]
+mov     [rbp+buffer], rax
+mov     [rbp+buffer_size], 400h
+mov     rax, [rbp-468h]
+mov     [rbp+buf], rax
+mov     rax, [rbp-470h]
+mov     [rbp+buf_size], rax
+mov     rcx, [rbp-440h]
+mov     rdx, [rbp-448h]
+mov     rsi, [rbp-460h]
+mov     edi, [rbp-454h]
+mov     rax, [rbp-480h]
+call    rax
+mov     [rbp+link_length], rax
+cmp     [rbp+link_length], 0
+jns     short loc_41731C
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+readlinkat_errno], eax
+cmp     [rbp+readlinkat_errno], 22h
+jz      short loc_41731C
+mov     rax, [rbp-448h]
+cmp     rax, [rbp-468h]
+jz      short loc_417312
+mov     rax, [rbp-478h]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-448h]
+mov     rdi, rdx
+call    rax
+call    ___errno_location
+mov     rdx, rax
+mov     eax, [rbp-44Ch]
+mov     [rdx], eax
+mov     eax, 0
+jmp     loc_417539
+mov     rax, [rbp-430h]
+mov     [rbp+link_size], rax
+mov     rax, [rbp-428h]
+cmp     rax, [rbp-440h]
+jnb     loc_417452
+mov     rax, [rbp-428h]
+lea     rdx, [rax+1]
+mov     [rbp+link_size], rdx
+mov     rdx, [rbp-448h]
+add     rax, rdx
+mov     byte ptr [rax], 0
+lea     rax, [rbp-410h]
+cmp     [rbp+buf], rax
+jnz     short loc_4173D6
+mov     rax, [rbp-478h]
+mov     rax, [rax]
+mov     rdx, [rbp-428h]
+mov     rdi, rdx
+call    rax
+mov     [rbp+b], rax
+mov     rax, [rbp-428h]
+mov     [rbp+buf_size], rax
+cmp     [rbp+b], 0
+jz      loc_4174FE
+mov     rdx, [rbp-428h]
+mov     rcx, [rbp-448h]
+mov     rax, [rbp-420h]
+mov     rsi, rcx
+mov     rdi, rax
+call    _memcpy
+mov     rax, [rbp-420h]
+mov     [rbp+buf], rax
+jmp     short loc_417446
+mov     rax, [rbp-428h]
+cmp     rax, [rbp-440h]
+jnb     short loc_417446
+mov     rax, [rbp-448h]
+cmp     rax, [rbp-468h]
+jz      short loc_417446
+mov     rax, [rbp-478h]
+mov     rax, [rax+8]
+test    rax, rax
+jz      short loc_417446
+mov     rax, [rbp-478h]
+mov     rax, [rax+8]
+mov     rcx, [rbp-428h]
+mov     rdx, [rbp-448h]
+mov     rsi, rcx
+mov     rdi, rdx
+call    rax
+mov     [rbp+b_0], rax
+cmp     [rbp+b_0], 0
+jz      short loc_417446
+mov     rax, [rbp-418h]
+mov     [rbp+buf], rax
+mov     rax, [rbp-448h]
+jmp     loc_417539
+mov     rax, [rbp-448h]
+cmp     rax, [rbp-468h]
+jz      short loc_417479
+mov     rax, [rbp-478h]
+mov     rax, [rax+10h]
+mov     rdx, [rbp-448h]
+mov     rdi, rdx
+call    rax
+mov     rax, [rbp-438h]
+shr     rax, 1
+cmp     rax, [rbp-440h]
+jb      short loc_417495
+shl     [rbp+buf_size], 1
+jmp     short loc_4174D1
+mov     rax, [rbp-440h]
+cmp     rax, [rbp-438h]
+jnb     short loc_4174B5
+mov     rax, [rbp-438h]
+mov     [rbp+buf_size], rax
+jmp     short loc_4174D1
+cmp     [rbp+buf_size_max], 0FFFFFFFFFFFFFFFFh
+jz      short loc_417501
+call    ___errno_location
+mov     dword ptr [rax], 24h
+mov     eax, 0
+jmp     short loc_417539
+mov     rax, [rbp-478h]
+mov     rax, [rax]
+mov     rdx, [rbp-440h]
+mov     rdi, rdx
+call    rax
+mov     [rbp+buf], rax
+cmp     [rbp+buf], 0
+jnz     loc_417290
+jmp     short loc_417502
+nop
+jmp     short loc_417502
+nop
+mov     rax, [rbp-478h]
+mov     rax, [rax+18h]
+test    rax, rax
+jz      short loc_417529
+mov     rax, [rbp-478h]
+mov     rax, [rax+18h]
+mov     rdx, [rbp-440h]
+mov     rdi, rdx
+call    rax
+call    ___errno_location
+mov     dword ptr [rax], 0Ch
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_41754D
+call    ___stack_chk_fail
+leave
+retn

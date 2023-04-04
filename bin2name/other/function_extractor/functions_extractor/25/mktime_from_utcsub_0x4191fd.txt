@@ -1,0 +1,69 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 30h
+mov     [rbp+t], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _mktime
+mov     [rbp+tl], rax
+mov     rax, [rbp-20h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_419277
+mov     rax, [rbp-28h]
+mov     eax, [rax+8]
+lea     edx, [rax-1]
+mov     rax, [rbp-28h]
+mov     [rax+8], edx
+mov     rax, [rbp-28h]
+mov     rdi, rax
+call    _mktime
+mov     [rbp+tl], rax
+mov     rax, [rbp-20h]
+cmp     rax, 0FFFFFFFFFFFFFFFFh
+jnz     short loc_419269
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     loc_4192F7
+mov     rax, [rbp-20h]
+add     rax, 0E10h
+mov     [rbp+tl], rax
+lea     rax, [rbp-20h]
+mov     rdi, rax
+call    _gmtime
+mov     [rbp+tg], rax
+mov     rax, [rbp-10h]
+mov     dword ptr [rax+20h], 0
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _mktime
+mov     [rbp+tb], rax
+cmp     [rbp+tb], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4192E2
+mov     rax, [rbp-10h]
+mov     eax, [rax+8]
+lea     edx, [rax-1]
+mov     rax, [rbp-10h]
+mov     [rax+8], edx
+mov     rax, [rbp-10h]
+mov     rdi, rax
+call    _mktime
+mov     [rbp+tb], rax
+cmp     [rbp+tb], 0FFFFFFFFFFFFFFFFh
+jnz     short loc_4192DA
+mov     rax, 0FFFFFFFFFFFFFFFFh
+jmp     short loc_4192F7
+add     [rbp+tb], 0E10h
+mov     rax, [rbp-20h]
+mov     rdx, [rbp-20h]
+mov     rcx, [rbp-18h]
+sub     rcx, rdx
+mov     rdx, rcx
+sub     rax, rdx
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_41930B
+call    ___stack_chk_fail
+leave
+retn

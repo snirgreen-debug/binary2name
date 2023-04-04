@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+n], edi
+movzx   eax, cs:bitbuf
+movzx   edx, ax
+mov     eax, [rbp-14h]
+mov     ecx, 10h
+sub     ecx, eax
+mov     eax, ecx
+mov     ecx, eax
+sar     edx, cl
+mov     eax, edx
+mov     [rbp+x], eax
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    fillbuf
+mov     eax, [rbp-4]
+leave
+retn

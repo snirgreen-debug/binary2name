@@ -1,0 +1,56 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 70h
+mov     [rbp+var_58], rdi
+mov     [rbp+var_60], rsi
+mov     [rbp+var_68], rdx
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+mov     rax, [rbp-68h]
+mov     eax, [rax]
+mov     [rbp+var_44], eax
+lea     rdx, [rbp-40h]
+mov     rcx, [rbp-68h]
+mov     rax, [rbp-60h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40F08F
+test    al, al
+jz      short loc_411A14
+lea     rdx, [rbp-38h]
+mov     rcx, [rbp-68h]
+mov     rax, [rbp-60h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40F010
+test    al, al
+jz      short loc_411A14
+mov     rax, [rbp-40h]
+lea     rdx, [rbp-30h]
+mov     rsi, rdx
+mov     rdi, rax
+call    sub_413EC9
+mov     rax, [rbp-68h]
+mov     eax, [rax]
+mov     [rbp+var_44], eax
+mov     rdx, [rbp-38h]
+mov     rcx, [rbp-58h]
+lea     rax, [rbp-30h]
+mov     rsi, rcx
+mov     rdi, rax
+call    sub_40C3A7
+test    al, al
+jz      short loc_411A14
+mov     eax, 1
+jmp     short loc_411A22
+mov     rax, [rbp-68h]
+mov     edx, [rbp-44h]
+mov     [rax], edx
+mov     eax, 0
+mov     rsi, [rbp-8]
+xor     rsi, fs:28h
+jz      short locret_411A36
+call    ___stack_chk_fail
+leave
+retn

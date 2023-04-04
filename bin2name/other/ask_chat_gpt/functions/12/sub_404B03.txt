@@ -1,0 +1,35 @@
+push    rbp
+mov     rbp, rsp
+mov     rax, cs:qword_63FFE8
+test    rax, rax
+jz      short loc_404B3C
+mov     rax, cs:qword_63FFE8
+mov     rdi, rax
+call    sub_42A25F
+mov     rax, cs:qword_63FFE8
+mov     rdi, rax
+call    sub_410490
+mov     cs:qword_63FFE8, 0
+mov     rax, cs:qword_6474E0
+test    rax, rax
+jz      short loc_404B71
+mov     rax, cs:qword_6474E0
+mov     rdi, rax
+call    sub_42A25F
+mov     rax, cs:qword_6474E0
+mov     rdi, rax
+call    sub_410490
+mov     cs:qword_6474E0, 0
+mov     rax, cs:qword_6474D8
+test    rax, rax
+jz      short loc_404B8C
+mov     rax, cs:qword_6474D8
+mov     rdi, rax
+call    sub_42A1FB
+mov     rax, cs:qword_63FFF0
+mov     rdi, rax
+call    sub_42A119
+mov     cs:qword_63FFF0, 0
+nop
+pop     rbp
+retn

@@ -1,0 +1,131 @@
+push    rbp
+mov     rbp, rsp
+push    p
+sub     rsp, 28h
+mov     [rbp+sp_0], rdi
+mov     p, rsi
+mov     eax, edx
+mov     [rbp+follow], al
+lea     rax, [p+78h]
+mov     [rbp+sbp], rax
+mov     rax, [p+58h]
+test    rax, rax
+jnz     short loc_4265F7
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 1
+test    eax, eax
+jz      short loc_4265F7
+mov     [rbp+follow], 1
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 2
+test    eax, eax
+jnz     short loc_42660B
+cmp     [rbp+follow], 0
+jz      short loc_426670
+mov     rax, [p+30h]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+jz      loc_4266B9
+call    ___errno_location
+mov     eax, [rax]
+mov     [rbp+saved_errno], eax
+call    ___errno_location
+mov     eax, [rax]
+cmp     eax, 2
+jnz     short loc_426668
+mov     rax, [p+30h]
+mov     rdx, [rbp-18h]
+mov     rsi, rdx
+mov     rdi, rax
+call    lstat
+test    eax, eax
+jnz     short loc_426668
+call    ___errno_location
+mov     dword ptr [rax], 0
+mov     eax, 0Dh
+jmp     loc_42677B
+mov     eax, [rbp-1Ch]
+mov     [p+40h], eax
+jmp     short err
+mov     rsi, [p+30h]
+mov     rax, [rbp-28h]
+mov     eax, [rax+2Ch]
+mov     rdx, [rbp-18h]
+mov     ecx, 100h
+mov     edi, eax
+call    fstatat
+test    eax, eax
+jz      short loc_4266B9
+call    ___errno_location
+mov     eax, [rax]
+mov     [p+40h], eax
+mov     rax, [rbp-18h]
+mov     edx, 90h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+mov     eax, 0Ah
+jmp     loc_42677B
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 4000h
+jnz     short loc_426742
+mov     rax, [rbp-18h]
+mov     rdx, [rax+10h]
+mov     rax, [rbp-28h]
+mov     eax, [rax+48h]
+and     eax, 20h
+test    eax, eax
+jz      short loc_4266E9
+mov     eax, 0
+jmp     short loc_4266EE
+mov     eax, 2
+sub     rdx, rax
+mov     rax, rdx
+mov     [p+68h], rax
+movzx   eax, byte ptr [p+108h]
+cmp     al, 2Eh
+jnz     short loc_42673B
+movzx   eax, byte ptr [p+109h]
+test    al, al
+jz      short loc_426724
+movzx   eax, byte ptr [p+109h]
+cmp     al, 2Eh
+jnz     short loc_42673B
+movzx   eax, byte ptr [p+10Ah]
+test    al, al
+jnz     short loc_42673B
+mov     rax, [p+58h]
+test    rax, rax
+jnz     short loc_426734
+mov     eax, 1
+jmp     short loc_42677B
+mov     eax, 5
+jmp     short loc_42677B
+mov     eax, 1
+jmp     short loc_42677B
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 0A000h
+jnz     short loc_42675C
+mov     eax, 0Ch
+jmp     short loc_42677B
+mov     rax, [rbp-18h]
+mov     eax, [rax+18h]
+and     eax, 0F000h
+cmp     eax, 8000h
+jnz     short loc_426776
+mov     eax, 8
+jmp     short loc_42677B
+mov     eax, 3
+add     rsp, 28h
+pop     p
+pop     rbp
+retn

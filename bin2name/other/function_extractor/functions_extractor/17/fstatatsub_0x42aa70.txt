@@ -1,0 +1,6 @@
+mov     r8d, ecx
+mov     rcx, rdx
+mov     rdx, rsi
+mov     esi, edi
+mov     edi, 1
+jmp     ___fxstatat

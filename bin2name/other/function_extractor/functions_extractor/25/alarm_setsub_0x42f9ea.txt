@@ -1,0 +1,45 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+movsd   [rbp+timeout], xmm0
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rax, [rbp-30h]
+mov     edx, 20h
+mov     esi, 0
+mov     rdi, rax
+call    _memset
+movsd   xmm0, qword ptr [rbp-38h]
+cvttsd2si rax, xmm0
+mov     [rbp+itv.it_value.tv_sec], rax
+movsd   xmm0, qword ptr [rbp-38h]
+cvttsd2si rax, xmm0
+pxor    xmm0, xmm0
+cvtsi2sd xmm0, rax
+movsd   xmm1, qword ptr [rbp-38h]
+subsd   xmm1, xmm0
+movapd  xmm0, xmm1
+movsd   xmm1, cs:qword_437770
+mulsd   xmm0, xmm1
+cvttsd2si rax, xmm0
+mov     [rbp+itv.it_value.tv_usec], rax
+mov     rax, [rbp-20h]
+test    rax, rax
+jnz     short loc_42FA79
+mov     rax, [rbp-18h]
+test    rax, rax
+jnz     short loc_42FA79
+mov     [rbp+itv.it_value.tv_usec], 1
+lea     rax, [rbp-30h]
+mov     edx, 0
+mov     rsi, rax
+mov     edi, 0
+call    _setitimer
+nop
+mov     rax, [rbp-8]
+xor     rax, fs:28h
+jz      short locret_42FAA4
+call    ___stack_chk_fail
+leave
+retn

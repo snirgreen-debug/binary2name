@@ -1,0 +1,21 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 8
+mov     [rbp+candidate], rdi
+cmp     [rbp+candidate], 9
+ja      short loc_4185A8
+mov     [rbp+candidate], 0Ah
+or      [rbp+candidate], 1
+jmp     short loc_4185B4
+add     [rbp+candidate], 2
+cmp     [rbp+candidate], 0FFFFFFFFFFFFFFFFh
+jz      short loc_4185CE
+mov     rax, [rbp-8]
+mov     rdi, rax
+call    is_prime
+xor     eax, 1
+test    al, al
+jnz     short loc_4185AF
+mov     rax, [rbp-8]
+leave
+retn

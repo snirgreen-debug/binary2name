@@ -1,0 +1,18 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+var_8], rdi
+mov     [rbp+var_C], esi
+mov     edx, [rbp-0Ch]
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+cmp     rdx, rax
+jb      short loc_400BB8
+mov     eax, 0
+jmp     short loc_400BC8
+mov     rax, [rbp-8]
+mov     rdx, [rax]
+mov     eax, [rbp-0Ch]
+add     rax, rdx
+movzx   eax, byte ptr [rax]
+pop     rbp
+retn

@@ -1,0 +1,67 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+mov     [rbp+params], rdi
+cmp     [rbp+params], 0
+jz      short loc_421128
+mov     rax, [rbp-8]
+movzx   eax, byte ptr [rax]
+test    al, al
+jnz     short loc_421133
+mov     rax, cs:opt.dot_style
+mov     [rbp+params], rax
+cmp     [rbp+params], 0
+jz      loc_421246
+mov     rax, [rbp-8]
+mov     esi, 4363C7h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_421177
+mov     cs:opt.dot_bytes, 400h
+mov     cs:opt.dot_spacing, 0Ah
+mov     cs:opt.dots_in_line, 32h
+jmp     locret_421247
+mov     rax, [rbp-8]
+mov     esi, 4363CFh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_4211B0
+mov     cs:opt.dot_bytes, 2000h
+mov     cs:opt.dot_spacing, 10h
+mov     cs:opt.dots_in_line, 30h
+jmp     locret_421247
+mov     rax, [rbp-8]
+mov     esi, 4363D6h
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_4211E6
+mov     cs:opt.dot_bytes, 10000h
+mov     cs:opt.dot_spacing, 8
+mov     cs:opt.dots_in_line, 30h
+jmp     short locret_421247
+mov     rax, [rbp-8]
+mov     esi, 4363DBh
+mov     rdi, rax
+call    _strcasecmp
+test    eax, eax
+jnz     short loc_42121C
+mov     cs:opt.dot_bytes, 100000h
+mov     cs:opt.dot_spacing, 8
+mov     cs:opt.dots_in_line, 20h
+jmp     short locret_421247
+mov     edi, 4363E0h
+call    _gettext
+mov     rcx, rax
+mov     rax, cs:stderr@@GLIBC_2_2_5
+mov     rdx, [rbp-8]
+mov     rsi, rcx
+mov     rdi, rax
+mov     eax, 0
+call    _fprintf
+jmp     short locret_421247
+nop
+leave
+retn

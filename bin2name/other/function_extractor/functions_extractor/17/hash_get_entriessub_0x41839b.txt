@@ -1,0 +1,44 @@
+push    rbp
+mov     rbp, rsp
+mov     [rbp+table], rdi
+mov     [rbp+buffer], rsi
+mov     [rbp+buffer_size], rdx
+mov     [rbp+counter], 0
+mov     rax, [rbp-28h]
+mov     rax, [rax]
+mov     [rbp+bucket], rax
+jmp     short loc_418423
+mov     rax, [rbp-10h]
+mov     rax, [rax]
+test    rax, rax
+jz      short loc_41841E
+mov     rax, [rbp-10h]
+mov     [rbp+cursor], rax
+jmp     short loc_418417
+mov     rax, [rbp-18h]
+cmp     rax, [rbp-38h]
+jb      short loc_4183E6
+mov     rax, [rbp-18h]
+jmp     short loc_418435
+mov     rax, [rbp-18h]
+lea     rdx, [rax+1]
+mov     [rbp+counter], rdx
+lea     rdx, [rax*8+0]
+mov     rax, [rbp-30h]
+add     rdx, rax
+mov     rax, [rbp-8]
+mov     rax, [rax]
+mov     [rdx], rax
+mov     rax, [rbp-8]
+mov     rax, [rax+8]
+mov     [rbp+cursor], rax
+cmp     [rbp+cursor], 0
+jnz     short loc_4183D6
+add     [rbp+bucket], 10h
+mov     rax, [rbp-28h]
+mov     rax, [rax+8]
+cmp     rax, [rbp-10h]
+ja      short loc_4183C0
+mov     rax, [rbp-18h]
+pop     rbp
+retn

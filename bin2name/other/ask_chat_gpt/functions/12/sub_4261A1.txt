@@ -1,0 +1,103 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 40h
+mov     [rbp+var_38], rdi
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    sub_425F72
+test    eax, eax
+jz      short loc_4261C7
+mov     eax, 0
+jmp     locret_42630A
+mov     rax, [rbp-38h]
+mov     [rbp+var_20], rax
+jmp     short loc_4261D6
+add     [rbp+var_20], 1
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4261F7
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+cmp     al, 3Ah
+jz      short loc_4261F7
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jnz     short loc_4261D1
+mov     rax, [rbp-20h]
+cmp     rax, [rbp-38h]
+jnz     short loc_42620B
+mov     eax, 0
+jmp     locret_42630A
+mov     rax, [rbp-20h]
+movzx   eax, byte ptr [rax]
+cmp     al, 3Ah
+jnz     loc_4262D0
+mov     [rbp+var_24], 0
+mov     rax, [rbp-20h]
+add     rax, 1
+mov     [rbp+var_18], rax
+jmp     short loc_426238
+add     [rbp+var_24], 1
+add     [rbp+var_18], 1
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+movsx   eax, al
+movzx   eax, al
+cdqe
+movzx   eax, word ptr [rax+rax+436C80h]
+movzx   eax, ax
+and     eax, 4
+test    eax, eax
+jnz     short loc_42622F
+cmp     [rbp+var_24], 0
+jle     short loc_426275
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+cmp     al, 2Fh
+jz      short loc_4262D0
+mov     rax, [rbp-18h]
+movzx   eax, byte ptr [rax]
+test    al, al
+jz      short loc_4262D0
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _strlen
+add     rax, 7
+mov     rdi, rax
+call    sub_428825
+mov     [rbp+var_10], rax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-10h]
+mov     esi, 4371D3h
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rdx, [rbp-20h]
+mov     rax, [rbp-38h]
+sub     rdx, rax
+mov     rax, rdx
+add     rax, 6
+mov     rdx, rax
+mov     rax, [rbp-10h]
+add     rax, rdx
+mov     byte ptr [rax], 2Fh
+mov     rax, [rbp-10h]
+jmp     short locret_42630A
+mov     rax, [rbp-38h]
+mov     rdi, rax
+call    _strlen
+add     rax, 8
+mov     rdi, rax
+call    sub_428825
+mov     [rbp+var_8], rax
+mov     rdx, [rbp-38h]
+mov     rax, [rbp-8]
+mov     esi, 4371DCh
+mov     rdi, rax
+mov     eax, 0
+call    _sprintf
+mov     rax, [rbp-8]
+leave
+retn

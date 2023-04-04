@@ -1,0 +1,33 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 50h
+mov     [rbp+prev_non_cloexec_fds], rdi
+mov     [rbp+n], rsi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+call    get_max_fd
+mov     [rbp+max_fd], eax
+cmp     [rbp+max_fd], 7FFFFFFFh
+jz      short loc_405DFE
+add     [rbp+max_fd], 1
+mov     rax, [rbp-48h]
+mov     [rbp+context.prev_buf], rax
+mov     rax, [rbp-50h]
+mov     [rbp+context.used], rax
+mov     [rbp+context.lookup_pos], 0
+mov     [rbp+context.leaked_fd], 0FFFFFFFFh
+lea     rdx, [rbp-30h]
+mov     eax, [rbp-34h]
+mov     rcx, rdx
+mov     edx, 405D18h
+mov     esi, eax
+mov     edi, 0
+call    visit_open_fds
+mov     eax, [rbp-18h]
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_405E4F
+call    ___stack_chk_fail
+leave
+retn

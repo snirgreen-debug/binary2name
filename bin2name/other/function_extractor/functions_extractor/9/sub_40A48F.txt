@@ -1,0 +1,20 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 20h
+mov     [rbp+var_14], edi
+movzx   eax, cs:word_617FA0
+movzx   edx, ax
+mov     eax, [rbp-14h]
+mov     ecx, 10h
+sub     ecx, eax
+mov     eax, ecx
+mov     ecx, eax
+sar     edx, cl
+mov     eax, edx
+mov     [rbp+var_4], eax
+mov     eax, [rbp-14h]
+mov     edi, eax
+call    sub_40A39A
+mov     eax, [rbp-4]
+leave
+retn

@@ -1,0 +1,26 @@
+push    rbp
+mov     rbp, rsp
+sub     rsp, 0B0h
+mov     [rbp+ref_file], rdi
+mov     rax, fs:28h
+mov     [rbp+var_8], rax
+xor     eax, eax
+lea     rdx, [rbp-0A0h]
+mov     rax, [rbp-0A8h]
+mov     rsi, rdx
+mov     rdi, rax
+call    stat_0
+test    eax, eax
+jz      short loc_41C7AC
+mov     eax, 0
+jmp     short loc_41C7BE
+mov     eax, [rbp-88h]
+mov     esi, 0FFFh
+mov     edi, eax
+call    make_node_op_equals
+mov     rcx, [rbp-8]
+xor     rcx, fs:28h
+jz      short locret_41C7D2
+call    ___stack_chk_fail
+leave
+retn
